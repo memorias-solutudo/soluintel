@@ -219,7 +219,9 @@
   .pv-fx:first-of-type{border-top:none}
   .pv-fx .pv-fh{display:flex;align-items:center;gap:10px;margin-bottom:11px}
   .pv-fx .pv-tema{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
-  .pv-fx .pv-legenda{font-size:14px;color:#222;line-height:1.6;white-space:pre-wrap;font-weight:400}
+  .pv-fx .pv-legenda{font-size:14px;color:#222;line-height:1.6;font-weight:400}
+  .pv-fx .pv-legenda p{margin:0 0 10px}
+  .pv-fx .pv-legenda p:last-child{margin-bottom:0}
   .pv-copy{margin-left:auto}
 
   @media print{
@@ -445,6 +447,12 @@ async function copy(text,btn,msg){
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
 function legendaFull(f){return (f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:'');}
+/* legenda em parágrafos reais p/ a visão de entrega/PDF — evita que o
+   copiar/colar do PDF salvo herde quebras de linha indevidas do pre-wrap */
+function legendaHtml(f){
+  return legendaFull(f).trim().split(/\n{2,}/).map(p=>
+    `<p>${esc(p.trim()).replace(/\n/g,'<br>')}</p>`).join('');
+}
 function fixadoText(f,n){return `FIXADO ${n} · ${f.tema}\n\n— LEGENDA —\n${legendaFull(f)}\n\n— TEXTO DA IMAGEM —\n${arteText(f)}\n\n— DIREÇÃO VISUAL —\n${f.direcao||''}\n\n— PROMPT 1 —\n${(f.prompts||[])[0]||''}\n\n— PROMPT 2 —\n${(f.prompts||[])[1]||''}`;}
 
 /* ===================== RENDER ===================== */
@@ -747,7 +755,7 @@ function openPdf(){
           <span class="fx-num">${i+1}</span><span class="pv-tema">${esc(f.tema)}</span>
           <button class="copybtn pv-copy" data-pv="${i}">${I.copy}Copiar legenda</button>
         </div>
-        <div class="pv-legenda">${esc(legendaFull(f))}</div>
+        <div class="pv-legenda">${legendaHtml(f)}</div>
       </div>`).join('')}`;
   document.getElementById('pdfView').classList.add('open');
   document.body.style.overflow='hidden';
