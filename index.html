@@ -879,7 +879,7 @@ function exportWord(){
     {name:'_rels/.rels',data:enc.encode(rels)},
     {name:'word/document.xml',data:enc.encode(documentXml)},
   ]);
-  saveBlob(blob,`${slug(c.nome)}-fixados.docx`);
+  saveBlob(blob,`Legendas.docx`);
 }
 /* salva o blob deixando o usuário escolher a pasta (File System Access API),
    com fallback p/ download automático em navegadores sem suporte */
