@@ -445,8 +445,10 @@ async function copy(text,btn,msg){
   if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML=I.check+'Copiado';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},1200);}
 }
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
+/* remove marcação markdown de negrito (**), que não é interpretada ao colar */
+function semMd(s){return String(s||'').replace(/\*\*/g,'');}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
-function legendaFull(f){return (f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:'');}
+function legendaFull(f){return semMd((f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:''));}
 /* legenda em parágrafos reais p/ a visão de entrega/PDF — evita que o
    copiar/colar do PDF salvo herde quebras de linha indevidas do pre-wrap */
 function legendaHtml(f){
@@ -496,7 +498,7 @@ function render(){
             <button class="copybtn" style="margin-left:auto" data-fx="${i}" data-kind="full">${I.copy}Tudo</button></div>
           <div class="fx-body">
             <div class="copybar"><span class="tag">Legenda</span><button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar legenda</button></div>
-            <div class="fx-legenda">${esc(f.legenda)}</div>
+            <div class="fx-legenda">${esc(semMd(f.legenda))}</div>
             ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar hashtags</button></div>
             <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
           </div>
@@ -810,8 +812,12 @@ function exportWord(){
   };
   let body=para(c.nome,{b:true,sz:40,after:60})+para(buildSub(c),{sz:20,after:240});
   fx.forEach((f,i)=>{
-    body+=para(`${i+1}. ${f.tema}`,{b:true,sz:28,before:240,after:120});
-    legendaFull(f).trim().split(/\n{2,}/).forEach(p=>{ body+=para(p.trim(),{sz:22,after:120}); });
+    // remove numeração/espaço já existentes no tema p/ não duplicar nem bugar
+    const tema=String(f.tema||'').replace(/^\s*\d+\s*[.)\-–—]\s+/,'').trim();
+    body+=para(`${i+1}. ${tema}`,{b:true,sz:28,before:240,after:120});
+    // legenda inteira em um parágrafo: cada \n vira quebra de linha (w:br),
+    // preservando as linhas em branco ao copiar/colar
+    body+=para(legendaFull(f).trim(),{sz:22,after:120});
   });
   const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`+
     `<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}`+
