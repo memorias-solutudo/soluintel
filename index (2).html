@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fixados do Instagram · Solutudo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" />
+<style>
+  :root{
+    --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
+    --brand-yellow:#FFC700; --brand-cyan:#20CCEF; --brand-green:#00FFAD;
+    --ink:#151515; --slate:#58476C; --g700:#4D4D4D; --g600:#656565; --g500:#888888;
+    --g400:#9D9D9D; --g300:#ACACAC; --g200:#DCDCDC; --g150:#E3E3E3; --g100:#F2F2F2; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-lav2:#E7D0FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-yellow:#FFF1D0; --tint-pink:#FFE3F1;
+    --grad-brand:linear-gradient(248deg,#FFD13C -9%,#F54A07 22%,#D901AA 55%,#A701FD 114%);
+    --grad-brand-text:linear-gradient(90deg,#FFD13C 2%,#F54A07 18%,#D901AA 34%,#A701FD 57%);
+    --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
+    --grad-rainbow:linear-gradient(90deg,#A701FD 6%,#674EF0 17%,#20CCEF 26%,#00FFAD 47%,#FFC024 64%,#FF6849 79%,#FF34A3 92%);
+    --shadow-card:0 8px 28px rgba(21,21,21,.06); --shadow-md:0 12px 32px rgba(21,21,21,.10);
+    --shadow-lg:0 24px 60px rgba(21,21,21,.18);
+    --shadow-brand:0 10px 24px rgba(167,1,253,.28); --ring:inset 0 0 0 1px #EEE;
+    --r-sm:12px; --r-md:16px; --r-lg:20px; --pill:999px;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --display:'Playfair Display',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--g100);color:var(--g600);
+    letter-spacing:-.02em;-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh}
+  h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+  ::selection{background:var(--tint-lav2)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#d4d4d4;border-radius:20px;border:3px solid var(--g100)}
+  .sol-display{font-family:var(--display);font-style:italic;font-weight:600;letter-spacing:-.02em}
+  .grad-text{background:var(--grad-brand-text);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent}
+
+  /* topo: faixa branca sólida (sem blur) para melhor visibilidade */
+  .topbar{position:sticky;top:0;z-index:30;background:var(--white);box-shadow:0 1px 0 var(--g150),0 6px 18px rgba(21,21,21,.05)}
+  .topbar-in{max-width:none;margin:0;padding:13px clamp(14px,2.4vw,26px);
+    display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .gpill{display:flex;align-items:center;gap:8px;background:var(--white);
+    border:1px solid var(--g200);box-shadow:var(--shadow-card);border-radius:var(--pill);padding:7px 9px}
+  .gpill.tight{padding:6px 7px}
+  /* grupo da marca + seletor de cliente */
+  .brand .mark{width:40px;height:40px;border-radius:50%;background:var(--grad-brand);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .brandtxt{display:flex;flex-direction:column;gap:1px;min-width:0;padding-right:4px}
+  .brandtxt .wm{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);line-height:1}
+  .clientsel{display:flex;align-items:center;gap:2px}
+  .clientsel select{font-family:inherit;font-size:14.5px;font-weight:800;color:var(--ink);border:none;background:transparent;
+    cursor:pointer;outline:none;letter-spacing:-.03em;max-width:240px;padding:1px 2px;margin:0;
+    -webkit-appearance:none;appearance:none}
+  .clientsel .caret{display:flex;color:var(--g400);pointer-events:none}
+  .clientsel .caret svg{width:14px;height:14px}
+  .clientsel .pico{width:26px;height:26px;border-radius:50%;border:none;background:var(--g100);color:var(--g600);
+    display:grid;place-items:center;cursor:pointer;flex:0 0 auto;transition:.15s var(--ease);margin-left:4px}
+  .clientsel .pico:hover{background:var(--tint-lav);color:var(--brand-purple)}
+  .clientsel .pico svg{width:14px;height:14px}
+  .brandtxt .sub{font-size:10.5px;color:var(--g500);font-weight:600;line-height:1.2;max-width:330px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .actions .gpill{gap:6px}
+  .btn{font-family:inherit;font-size:12px;font-weight:700;letter-spacing:-.01em;border-radius:var(--pill);
+    padding:9px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--g200);
+    background:var(--white);color:var(--ink);transition:.18s var(--ease)}
+  .btn:hover{box-shadow:var(--shadow-card);transform:translateY(-1px)}
+  .btn svg{width:14px;height:14px}
+  .btn-grad{background:var(--grad-cta);color:#fff;border-color:transparent;box-shadow:var(--shadow-brand)}
+  .btn-grad:hover{filter:brightness(1.05)}
+  .btn-dark{background:var(--ink);color:#fff;border-color:transparent}
+  .btn:active{transform:scale(.97)}
+  /* botões dentro de uma pílula-grupo ficam lisos (sem borda/sombra própria) */
+  .actions .gpill .btn{border-color:transparent;box-shadow:none;background:transparent}
+  .actions .gpill .btn:hover{background:var(--g100);transform:none}
+  .actions .gpill .btn-dark{background:var(--ink);color:#fff}
+  .actions .gpill .btn-dark:hover{background:#2a2a2a}
+  .actions .gpill .btn-grad{background:var(--grad-cta);color:#fff;box-shadow:var(--shadow-brand)}
+  .actions .gpill .btn-grad:hover{filter:brightness(1.05);background:var(--grad-cta)}
+
+  .wrap{max-width:none;margin:0;padding:18px clamp(14px,2.4vw,26px) 60px}
+  .empty{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:40px;text-align:center;margin-top:30px}
+  .empty h2{font-size:22px;margin-bottom:8px}
+  .empty p{font-size:13.5px;margin-bottom:18px}
+  .cols{display:grid;grid-template-columns:268px minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+  @media(max-width:1200px){.cols{grid-template-columns:1fr 1fr}}
+  @media(max-width:820px){.cols{grid-template-columns:1fr}}
+
+  .coltitle{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;text-transform:uppercase;
+    letter-spacing:.05em;color:var(--g500);margin:2px 0 11px}
+  .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--ink);color:#fff;display:grid;
+    place-items:center;font-size:10px;font-weight:800}
+
+  .card{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
+  .card+.card{margin-top:13px}
+
+  .kv{display:flex;flex-direction:column;gap:8px}
+  .kv .row{display:flex;flex-direction:column;gap:1px}
+  .kv .k{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g400)}
+  .kv .v{font-size:12px;font-weight:600;color:var(--ink);white-space:pre-wrap;line-height:1.35}
+  .card-h{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+  .card-h .ic{width:26px;height:26px;border-radius:8px;background:var(--tint-lav);color:var(--brand-purple);
+    display:grid;place-items:center;flex:0 0 auto}
+  .card-h .ic svg{width:15px;height:15px}
+  .card-h h3{font-size:13.5px}
+  .slogan{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--g150)}
+  .slogan:first-of-type{border-top:none}
+  .slogan .num{font-size:10px;font-weight:800;color:#fff;background:var(--grad-brand);min-width:17px;height:17px;
+    border-radius:5px;display:grid;place-items:center;flex:0 0 auto;margin-top:1px}
+  .slogan .txt{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.32;flex:1}
+  .slogan .mini{border:none;background:transparent;cursor:pointer;color:var(--g400);padding:2px;flex:0 0 auto}
+  .slogan .mini:hover{color:var(--brand-purple)}
+  .slogan .mini svg{width:13px;height:13px}
+
+  .fx{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
+  .fx+.fx{margin-top:14px}
+  .fx-top{display:flex;align-items:center;gap:10px;padding:12px 14px 11px;border-bottom:1px solid var(--g150)}
+  .fx-num{width:30px;height:30px;border-radius:10px;background:var(--grad-brand);color:#fff;display:grid;
+    place-items:center;font-weight:800;font-size:14px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .fx-top .lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g400)}
+  .fx-top .tema{font-size:14.5px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+  .fx-body{padding:13px 14px}
+  .fx-legenda{font-size:11.5px;color:var(--g700);white-space:pre-wrap;line-height:1.5;font-weight:500}
+  .fx-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--g200)}
+  .fx-tags .t{font-size:10.5px;font-weight:700;color:var(--brand-purple);background:var(--tint-lav);
+    border-radius:var(--pill);padding:3px 9px;letter-spacing:-.01em}
+  .copybar{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+  .copybar .tag{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--brand-purple)}
+
+  .copybtn{font-family:inherit;font-size:10px;font-weight:700;letter-spacing:.01em;border:1px solid var(--g200);
+    background:var(--white);color:var(--g600);border-radius:var(--pill);padding:4px 10px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:5px;transition:.15s var(--ease);flex:0 0 auto}
+  .copybtn:hover{border-color:var(--brand-purple);color:var(--brand-purple)}
+  .copybtn:active{transform:scale(.96)}
+  .copybtn svg{width:12px;height:12px}
+  .copybtn.done{border-color:var(--brand-green);color:#0a8f5e;background:var(--tint-mint)}
+
+  .img-card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
+  .img-card+.img-card{margin-top:14px}
+  .img-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--tint-lav);border-bottom:1px solid var(--g150)}
+  .img-head .n{width:24px;height:24px;border-radius:7px;background:var(--brand-purple);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:0 0 auto}
+  .img-head .t{font-size:12.5px;font-weight:800;color:var(--ink)}
+  .img-body{padding:13px 14px;display:flex;flex-direction:column;gap:10px}
+  .field .flbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);margin-bottom:3px}
+  .field .chamada{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--brand-orange-deep)}
+  .field .titulo{font-size:14px;font-weight:800;color:var(--ink);line-height:1.18;letter-spacing:-.03em}
+  .field .apoio{font-size:11.5px;color:var(--g700);font-weight:500;line-height:1.45}
+  .destaques{display:flex;flex-direction:column;gap:5px}
+  .destaques .d{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--g100);border-radius:9px;padding:6px 9px;line-height:1.3}
+
+  .below{margin-top:22px}
+  .below .sec-h{display:flex;align-items:center;gap:9px;margin:0 0 14px}
+  .below .sec-h .bar{width:30px;height:4px;border-radius:3px;background:var(--grad-rainbow)}
+  .below .sec-h h2{font-size:19px}
+  .prompts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:1100px){.prompts-grid{grid-template-columns:1fr}}
+  .pcard{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
+  .pcard h4{font-size:13px;margin-bottom:3px}
+  .pcard .pf{font-size:11px;color:var(--g500);font-weight:600;margin-bottom:10px}
+  .pblock{border-top:1px solid var(--g150);padding-top:10px;margin-top:10px}
+  .pblock:first-of-type{border-top:none;padding-top:0;margin-top:0}
+  .pblock .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .pblock .ph .pl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--brand-purple)}
+  .pblock .pt{font-size:10.5px;color:var(--g600);line-height:1.5;font-weight:500;white-space:pre-wrap}
+  .pblock .dir{color:var(--g700)}
+  .flowlink{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--brand-purple);
+    text-decoration:none;background:var(--tint-lav);padding:5px 11px;border-radius:var(--pill);margin-bottom:14px}
+  .flowlink svg{width:13px;height:13px}
+
+  /* ===== MODAIS ===== */
+  .overlay{position:fixed;inset:0;z-index:90;background:rgba(21,21,21,.42);backdrop-filter:blur(3px);
+    opacity:0;pointer-events:none;transition:.2s var(--ease);display:flex;align-items:flex-start;justify-content:center;
+    padding:40px 16px;overflow-y:auto}
+  .overlay.open{opacity:1;pointer-events:auto}
+  .modal{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);width:100%;max-width:640px;
+    transform:translateY(14px);transition:.24s var(--ease);overflow:hidden}
+  .overlay.open .modal{transform:translateY(0)}
+  .modal-h{display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid var(--g150)}
+  .modal-h .ic{width:34px;height:34px;border-radius:10px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+  .modal-h .ic svg{width:17px;height:17px}
+  .modal-h h3{font-size:16px}
+  .modal-h .mh-sub{font-size:11.5px;color:var(--g500);font-weight:500;margin-top:1px}
+  .modal-h .x{margin-left:auto;width:34px;height:34px;border-radius:10px;border:1px solid var(--g200);background:var(--white);
+    cursor:pointer;display:grid;place-items:center;color:var(--g500)}
+  .modal-h .x:hover{color:var(--brand-pink);border-color:var(--brand-pink)}
+  .modal-h .x svg{width:16px;height:16px}
+  .modal-b{padding:18px 20px;max-height:62vh;overflow-y:auto}
+  .modal-f{padding:14px 20px;border-top:1px solid var(--g150);display:flex;gap:9px;justify-content:flex-end;background:var(--g100)}
+  .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .formgrid .full{grid-column:1/-1}
+  label.fld{display:flex;flex-direction:column;gap:4px;font-size:10.5px;font-weight:800;text-transform:uppercase;
+    letter-spacing:.04em;color:var(--g500)}
+  label.fld input,label.fld textarea{font-family:inherit;font-size:13px;font-weight:500;color:var(--ink);
+    border:1px solid var(--g200);border-radius:var(--r-sm);padding:9px 11px;background:var(--white);
+    letter-spacing:-.01em;resize:vertical;text-transform:none}
+  label.fld input:focus,label.fld textarea:focus{outline:none;border-color:var(--brand-purple);box-shadow:0 0 0 3px var(--tint-lav)}
+  .hint{font-size:11.5px;color:var(--g500);line-height:1.5;margin-bottom:12px}
+  .hint b{color:var(--ink)}
+
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(18px);z-index:120;
+    background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:10px 18px;border-radius:var(--pill);
+    box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:.2s var(--ease);display:flex;align-items:center;gap:8px}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast svg{width:15px;height:15px;color:var(--brand-green)}
+  .toast.err svg{color:var(--brand-orange)}
+
+  /* ===== VISÃO DE ENTREGA / PDF ===== */
+  .pdfview{position:fixed;inset:0;z-index:100;background:#fff;overflow-y:auto;display:none}
+  .pdfview.open{display:block}
+  .pv-bar{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--g150);padding:12px clamp(14px,3vw,30px);display:flex;align-items:center;gap:10px}
+  .pv-bar .ttl{font-size:13px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .pv-bar .right{margin-left:auto;display:flex;gap:9px}
+  .pv-doc{max-width:760px;margin:0 auto;padding:36px clamp(16px,4vw,40px) 80px}
+  .pv-doc .pv-emp{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.03em;margin-bottom:4px}
+  .pv-doc .pv-emp .grad-text{}
+  .pv-doc .pv-meta{font-size:12.5px;color:var(--g500);font-weight:600;margin-bottom:26px}
+  .pv-fx{padding:20px 0;border-top:1px solid var(--g150)}
+  .pv-fx:first-of-type{border-top:none}
+  .pv-fx .pv-fh{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .pv-fx .pv-tema{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .pv-fx .pv-legenda{font-size:14px;color:#222;line-height:1.6;white-space:pre-wrap;font-weight:400}
+  .pv-copy{margin-left:auto}
+
+  @media print{
+    @page{margin:16mm}
+    body{background:#fff}
+    body.pdf-mode .topbar,body.pdf-mode .wrap,body.pdf-mode .overlay,body.pdf-mode .toast{display:none!important}
+    body.pdf-mode .pdfview{position:static;display:block;overflow:visible}
+    body.pdf-mode .pv-bar,body.pdf-mode .pv-copy{display:none!important}
+    .pv-fx{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <!-- grupo: marca + seletor de cliente -->
+    <div class="gpill tight">
+      <div class="mark" id="mark">SV</div>
+      <div class="brandtxt">
+        <span class="wm">Solutudo · Fixados</span>
+        <div class="clientsel">
+          <select id="clientSel" title="Selecionar cliente"></select>
+          <span class="caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          <button class="pico" id="btnNew" title="Cadastrar novo cliente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <span class="sub" id="cliSub"></span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <!-- grupo: gestão de conteúdo -->
+      <div class="gpill">
+        <button class="btn btn-dark" id="btnImport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Enviar dados
+        </button>
+        <button class="btn" id="btnEdit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+          Editar
+        </button>
+      </div>
+      <!-- grupo: saída / exportar -->
+      <div class="gpill">
+        <button class="btn" id="btnAll">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar tudo
+        </button>
+        <button class="btn btn-grad" id="btnPdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+          Gerar PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="wrap"></div>
+
+<!-- ===== MODAL: CADASTRAR/EDITAR ===== -->
+<div class="overlay" id="ovEdit">
+  <div class="modal">
+    <div class="modal-h">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/></svg></span>
+      <div><h3 id="editTitle">Cadastrar cliente</h3><div class="mh-sub">Detalhes da empresa e slogans</div></div>
+      <button class="x" data-close="ovEdit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-b">
+      <div class="formgrid">
+        <label class="fld full">Nome da empresa<input id="fNome" placeholder="Ex.: Serva — Contabilidade e Condominial"></label>
+        <label class="fld">Iniciais (logo)<input id="fInit" maxlength="3" placeholder="SV"></label>
+        <label class="fld">Cidade/Estado<input id="fCidade" placeholder="Aracaju/SE"></label>
+        <label class="fld">Segmento<input id="fSeg" placeholder="Contabilidade empresarial e condominial"></label>
+        <label class="fld">Atuação<input id="fAtu" placeholder="Desde 1997"></label>
+        <label class="fld full">Endereço<input id="fEnd" placeholder="Rua, nº — bairro — cidade/UF"></label>
+        <label class="fld">WhatsApp principal<input id="fWpp" placeholder="(79) 99106-7263"></label>
+        <label class="fld">Telefone fixo<input id="fTel" placeholder="(79) 3246-3084"></label>
+        <label class="fld">Site<input id="fSite" placeholder="servacontabilidade.com"></label>
+        <label class="fld">Atendimento<input id="fHor" placeholder="Seg a qui: 9h–18h · Sex: até 17h"></label>
+        <label class="fld full">Diferencial<textarea id="fDif" rows="2" placeholder="Fator único da empresa"></textarea></label>
+        <label class="fld full">CTA padrão<textarea id="fCta" rows="3" placeholder="📍 ...&#10;📊 ...&#10;📲 WhatsApp: ..."></textarea></label>
+        <label class="fld full">Slogans (um por linha)<textarea id="fSlog" rows="5" placeholder="Slogan 1&#10;Slogan 2&#10;..."></textarea></label>
+      </div>
+    </div>
+    <div class="modal-f">
+      <button class="btn" id="btnDelete" style="margin-right:auto;color:var(--brand-pink);border-color:var(--g200)">Excluir cliente</button>
+      <button class="btn" data-close="ovEdit">Cancelar</button>
+      <button class="btn btn-grad" id="btnSave">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL: ENVIAR DADOS ===== -->
+<div class="overlay" id="ovImport">
+  <div class="modal">
+    <div class="modal-h">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
+      <div><h3>Enviar dados do conteúdo</h3><div class="mh-sub">Cole a resposta completa — eu organizo e publico</div></div>
+      <button class="x" data-close="ovImport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-b">
+      <div class="hint">Cole o conteúdo completo (diretrizes da empresa, slogans, as 3 legendas, conteúdo da imagem e prompts). Se a <b>empresa ainda não estiver cadastrada</b>, ela é criada automaticamente com os dados enviados. Se já existir, os fixados são atualizados.</div>
+      <label class="fld full" style="text-transform:none;font-size:10.5px">Conteúdo
+        <textarea id="impText" rows="14" placeholder="## Diretrizes iniciais da empresa&#10;**Empresa:** ...&#10;..."></textarea>
+      </label>
+    </div>
+    <div class="modal-f">
+      <button class="btn" data-close="ovImport">Cancelar</button>
+      <button class="btn btn-grad" id="btnDoImport">Organizar e publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VISÃO DE ENTREGA / PDF ===== -->
+<div class="pdfview" id="pdfView">
+  <div class="pv-bar">
+    <span class="ttl">Entrega · Fixados</span>
+    <div class="right">
+      <button class="btn" id="pvBack">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Voltar
+      </button>
+      <button class="btn btn-grad" id="pvPrint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+        Salvar como PDF
+      </button>
+    </div>
+  </div>
+  <div class="pv-doc" id="pvDoc"></div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+  <span id="toastMsg">Copiado!</span>
+</div>
+
+<script>
+const I={
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+  building:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/></svg>',
+  bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>',
+};
+
+/* ===================== PERSISTÊNCIA ===================== */
+const STORE='solutudo_fixados_v1';
+let CLIENTES=[], activeId=null;
+
+const SEED={
+  id:'serva', nome:'Serva — Contabilidade e Condominial', iniciais:'SV',
+  dados:{cidade:'Aracaju/SE', segmento:'Contabilidade empresarial e condominial', atuacao:'Desde 1997',
+    endereco:'Praça Eronildes de Carvalho, 37 — Salgado Filho — Aracaju/SE', whatsapp:'(79) 99106-7263',
+    telefone:'(79) 3246-3084', site:'servacontabilidade.com', atendimento:'Seg a qui: 9h–18h · Sex: até 17h',
+    diferencial:'Experiência contábil + atuação condominial especializada + agilidade no atendimento.',
+    cta:'📍 Aracaju/SE\n📊 Contabilidade empresarial • condominial\n📲 WhatsApp: (79) 99106-7263'},
+  slogans:[
+    'Experiência, eficiência e segurança para empresas e condomínios.',
+    'Desde 1997 cuidando da contabilidade de empresas e condomínios.',
+    'Contabilidade empresarial e condominial com agilidade e transparência.',
+    'Mais tranquilidade para empresas, síndicos e condomínios.',
+    'Soluções contábeis seguras para uma gestão mais eficiente.'],
+  fixados:[
+    {tema:'Nossa história',
+     legenda:'Fundada em 1997, a Serva — Contabilidade e Condominial nasceu com o propósito de oferecer soluções contábeis seguras, eficientes e transparentes para empresas e condomínios.\n\nCom o crescimento do mercado imobiliário, ampliamos nossa atuação para atender também às necessidades específicas da administração condominial, apoiando síndicos e condomínios em rotinas contábeis, administrativas e tributárias.\n\nAo longo dessa trajetória, construímos uma relação de confiança com nossos clientes, sempre buscando evolução, tecnologia e melhorias nos processos para oferecer um atendimento mais próximo, ágil e responsável.\n\nServa — experiência, eficiência e segurança para empresas e condomínios.\n\n📍 Aracaju/SE\n📊 Contabilidade empresarial • Contabilidade condominial\n📲 Nos chame no WhatsApp: (79) 99106-7263',
+     chamada:'NOSSA HISTÓRIA', titulo:'Desde 1997 levando segurança contábil para empresas e condomínios.',
+     apoio:'A Serva nasceu com o propósito de oferecer soluções contábeis seguras, eficientes e transparentes, ampliando sua atuação para atender também às necessidades da administração condominial.',
+     destaques:['📊 Contabilidade empresarial','🏢 Contabilidade condominial','🤝 Atendimento ágil e transparente'],
+     direcao:'Imagem de escritório contábil profissional, reunião com cliente, documentos organizados, notebook, calculadora ou equipe analisando relatórios. Pode incluir referência visual sutil a prédios/condomínios para conectar com a atuação condominial.',
+     prompts:['Photorealistic corporate accounting office scene in Aracaju, Brazil, showing an experienced accountant reviewing organized financial documents with a business client and a condominium manager. Include a clean desk, laptop, calculator, folders, spreadsheets and a subtle condominium building visible through the window or in the background. The atmosphere should communicate experience since 1997, trust, transparency, quality and secure accounting support for companies and condominiums. Professional lighting, no text, no logos, no brand names.',
+       'Photorealistic image of a professional accounting team in a modern office, working with documents related to companies and condominiums. Include business reports, tax folders, condominium administration documents, a laptop with abstract spreadsheets and a calm serious atmosphere. The image should communicate efficiency, responsibility, transparency, technical knowledge and long-term accounting experience. Clean corporate environment, subtle purple accents, no text, no logos, no brand names.']},
+    {tema:'O que oferecemos',
+     legenda:'A Serva oferece soluções contábeis para empresas e condomínios que precisam de mais organização, segurança e tranquilidade na gestão.\n\nPrincipais serviços:\n\n📊 Contabilidade empresarial\nSuporte para empresas em rotinas contábeis, fiscais, tributárias e obrigações legais.\n\n🏢 Contabilidade condominial\nApoio especializado para síndicos e condomínios em atividades administrativas, contábeis e tributárias.\n\n🧾 Regularização e orientação técnica\nAuxílio em questões fiscais, obrigações legais, defesas administrativas perante a Receita Federal e situações que exigem conhecimento técnico.\n\nTambém trabalhamos com atendimento ágil, processos mais eficientes e orientação próxima para ajudar cada cliente a tomar decisões com mais segurança.\n\n📍 Aracaju/SE\n📊 Contabilidade empresarial • Contabilidade condominial\n📲 Nos chame no WhatsApp: (79) 99106-7263',
+     chamada:'O QUE OFERECEMOS', titulo:'Soluções contábeis para empresas e condomínios.',
+     apoio:'Mais organização, transparência e segurança para sua gestão.',
+     destaques:['📊 Contabilidade empresarial — rotinas contábeis, fiscais e obrigações legais','🏢 Contabilidade condominial — apoio para síndicos, condomínios e administração','🧾 Orientação técnica — questões fiscais, tributárias e defesas administrativas'],
+     direcao:'Composição que mostre claramente os dois públicos: empresa e condomínio. Pode usar documentos, relatórios financeiros, reunião com síndico, prédio residencial, mesa de contabilidade e notebook com gráficos.',
+     prompts:['Photorealistic composition showing accounting services for both businesses and condominiums in one organized office environment. On one side, show company financial reports, invoices, tax documents and a laptop with spreadsheets; on the other side, show condominium documents, building management papers, a residential building model and administrative folders. The scene should represent corporate accounting, condominium accounting, tax guidance and legal obligations support. Professional lighting, clean desk, no text, no logos, no brand names.',
+       'Photorealistic image of an accountant organizing fiscal, tax and administrative documents for a company and a condominium. Include folders, calculator, printed reports, laptop, building plan or condominium files and a subtle city office atmosphere. The visual should communicate organization, transparency, secure decision-making, administrative support and technical accounting responsibility. Modern Brazilian office, clean composition, no text, no logos, no brand names.']},
+    {tema:'Fale com a Serva',
+     legenda:'Sua empresa ou condomínio precisa de mais segurança, organização e orientação contábil?\n\nFale com a Serva — Contabilidade e Condominial e conte com uma equipe preparada para entender sua necessidade e indicar o melhor caminho.\n\nAtuamos com contabilidade empresarial, contabilidade condominial, obrigações fiscais, questões tributárias, regularizações e suporte administrativo para síndicos, empresas e condomínios.\n\nCom experiência desde 1997, qualidade nos serviços e agilidade no atendimento, ajudamos você a ter mais tranquilidade na gestão.\n\n📍 Aracaju/SE\n📊 Contabilidade empresarial • Contabilidade condominial\n📲 Nos chame no WhatsApp: (79) 99106-7263',
+     chamada:'ESTAMOS AQUI POR VOCÊ', titulo:'Precisa de apoio contábil para sua empresa ou condomínio?',
+     apoio:'Nossa equipe te orienta com clareza, agilidade e responsabilidade para encontrar a melhor solução para sua necessidade.',
+     destaques:['Empresas • Condomínios • Regularização • Obrigações fiscais','📲 Nos chame no WhatsApp: (79) 99106-7263'],
+     direcao:'Imagem de atendimento consultivo, contador conversando com cliente ou síndico, ambiente organizado, documentos, notebook e sensação de confiança. Deve transmitir proximidade, clareza e segurança.',
+     prompts:['Photorealistic customer service scene inside an accounting office, showing a friendly accountant speaking with a business owner and a condominium manager across a desk. Include organized documents, laptop, financial reports, tax folders and a professional calm atmosphere. The image should communicate clear guidance, fast service, trust, responsibility and personalized accounting support for companies and condominiums. Clean corporate lighting, no text, no logos, no brand names.',
+       'Photorealistic image of a consultant answering a WhatsApp or phone inquiry in a professional accounting office, with spreadsheets, tax documents, condominium folders, laptop and organized paperwork on the desk. The scene should feel approachable, agile, transparent and reliable, representing accounting support for companies, condominiums, regularization and fiscal obligations. Modern office, neutral and purple accents, realistic lighting, no text, no logos, no brand names.']},
+  ]
+};
+
+function load(){
+  try{const d=JSON.parse(localStorage.getItem(STORE));
+    if(d&&Array.isArray(d.clientes)&&d.clientes.length){CLIENTES=d.clientes;activeId=d.activeId||CLIENTES[0].id;return;}
+  }catch(e){}
+  CLIENTES=[SEED]; activeId=SEED.id; save();
+}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({clientes:CLIENTES,activeId}));}catch(e){}}
+function active(){return CLIENTES.find(c=>c.id===activeId)||CLIENTES[0];}
+
+/* ===================== HELPERS ===================== */
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function inits(nome){const w=String(nome).replace(/[—–-].*/,'').trim().split(/\s+/).filter(Boolean);
+  return (((w[0]||'')[0]||'')+((w[1]||'')[0]||(w[0]||'')[1]||'')).toUpperCase()||'SX';}
+function slug(s){return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,32)||'cliente';}
+function buildEmpresa(c){
+  const d=c.dados||{}; const out=[];
+  const add=(k,v)=>{if(v&&String(v).trim())out.push({k,v});};
+  add('Segmento',d.segmento); add('Atuação',d.atuacao); add('Endereço',d.endereco);
+  add('WhatsApp (principal)',d.whatsapp); add('Telefone fixo',d.telefone); add('Site',d.site);
+  add('Atendimento',d.atendimento); add('Diferencial',d.diferencial); add('CTA padrão',d.cta);
+  return out;
+}
+function buildSub(c){const d=c.dados||{};return [d.cidade,d.segmento,d.atuacao].filter(Boolean).join(' · ');}
+function toast(m,err){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m||'Copiado!';
+  t.classList.toggle('err',!!err);t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),err?2600:1500);}
+async function copy(text,btn,msg){
+  try{await navigator.clipboard.writeText(text);}
+  catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+  toast(msg);
+  if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML=I.check+'Copiado';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},1200);}
+}
+function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
+/* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
+function legendaFull(f){return (f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:'');}
+function fixadoText(f,n){return `FIXADO ${n} · ${f.tema}\n\n— LEGENDA —\n${legendaFull(f)}\n\n— TEXTO DA IMAGEM —\n${arteText(f)}\n\n— DIREÇÃO VISUAL —\n${f.direcao||''}\n\n— PROMPT 1 —\n${(f.prompts||[])[0]||''}\n\n— PROMPT 2 —\n${(f.prompts||[])[1]||''}`;}
+
+/* ===================== RENDER ===================== */
+function renderClientSelect(){
+  const sel=document.getElementById('clientSel');
+  sel.innerHTML=CLIENTES.map(c=>`<option value="${c.id}"${c.id===activeId?' selected':''}>${esc(c.nome)}</option>`).join('');
+}
+function render(){
+  renderClientSelect();
+  const c=active();
+  document.getElementById('mark').textContent=c.iniciais||inits(c.nome);
+  document.getElementById('cliSub').textContent=buildSub(c);
+  const wrap=document.getElementById('wrap');
+  const fixados=c.fixados||[];
+  if(!fixados.length){
+    wrap.innerHTML=`<div class="empty"><h2>Sem fixados ainda para <span class="sol-display grad-text">${esc(c.nome)}</span></h2>
+      <p>Clique em <b>Enviar dados</b> e cole o conteúdo completo — eu organizo e publico os 3 fixados aqui.</p>
+      <button class="btn btn-grad" onclick="openImport()">Enviar dados</button></div>`;
+    return;
+  }
+  const empresa=buildEmpresa(c);
+  wrap.innerHTML=`
+  <div class="cols">
+    <div>
+      <div class="coltitle"><span class="n">1</span> Empresa & slogans</div>
+      <div class="card">
+        <div class="card-h"><span class="ic">${I.building}</span><h3>Detalhes da empresa</h3></div>
+        <div class="kv">${empresa.map(e=>`<div class="row"><span class="k">${esc(e.k)}</span><span class="v">${esc(e.v)}</span></div>`).join('')}</div>
+      </div>
+      <div class="card">
+        <div class="card-h"><span class="ic">${I.bulb}</span><h3>Slogans</h3></div>
+        ${(c.slogans||[]).map((s,i)=>`<div class="slogan"><span class="num">${i+1}</span><span class="txt">${esc(s)}</span><button class="mini" data-slogan="${i}" title="Copiar">${I.copy}</button></div>`).join('')||'<div class="hint">Sem slogans.</div>'}
+      </div>
+    </div>
+    <div>
+      <div class="coltitle"><span class="n">2</span> Os 3 fixados</div>
+      ${fixados.map((f,i)=>`
+        <div class="fx">
+          <div class="fx-top"><span class="fx-num">${i+1}</span>
+            <div><div class="lbl">Fixado ${i+1}</div><div class="tema">${esc(f.tema)}</div></div>
+            <button class="copybtn" style="margin-left:auto" data-fx="${i}" data-kind="full">${I.copy}Tudo</button></div>
+          <div class="fx-body">
+            <div class="copybar"><span class="tag">Legenda</span><button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar legenda</button></div>
+            <div class="fx-legenda">${esc(f.legenda)}</div>
+            ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar hashtags</button></div>
+            <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
+          </div>
+        </div>`).join('')}
+    </div>
+    <div>
+      <div class="coltitle"><span class="n">3</span> Texto da imagem</div>
+      ${fixados.map((f,i)=>`
+        <div class="img-card">
+          <div class="img-head"><span class="n">${i+1}</span><span class="t">${esc(f.tema)}</span>
+            <button class="copybtn" style="margin-left:auto" data-art="${i}">${I.copy}Copiar arte</button></div>
+          <div class="img-body">
+            <div class="field"><div class="flbl">Chamada superior</div><div class="chamada">${esc(f.chamada)}</div></div>
+            <div class="field"><div class="flbl">Título principal</div><div class="titulo">${esc(f.titulo)}</div></div>
+            <div class="field"><div class="flbl">Texto de apoio</div><div class="apoio">${esc(f.apoio)}</div></div>
+            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>
+  <div class="below">
+    <div class="sec-h"><span class="bar"></span><h2>Prompts <span class="sol-display grad-text">Google&nbsp;Flow</span> &amp; direção visual</h2></div>
+    <a class="flowlink" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>
+      labs.google/fx/tools/flow</a>
+    <div class="prompts-grid">
+      ${fixados.map((f,i)=>`
+        <div class="pcard">
+          <h4>Fixado ${i+1} · ${esc(f.tema)}</h4>
+          <div class="pf">Direção visual e prompts para gerar a imagem</div>
+          <div class="pblock"><div class="ph"><span class="pl">Direção visual</span><button class="copybtn" data-p="${i}" data-k="dir">${I.copy}Copiar</button></div><div class="pt dir">${esc(f.direcao)}</div></div>
+          <div class="pblock"><div class="ph"><span class="pl">Prompt 1 · Flow</span><button class="copybtn" data-p="${i}" data-k="0">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[0])}</div></div>
+          <div class="pblock"><div class="ph"><span class="pl">Prompt 2 · Flow</span><button class="copybtn" data-p="${i}" data-k="1">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[1])}</div></div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+/* cópias (delegação no wrap) */
+document.getElementById('wrap').addEventListener('click',e=>{
+  const c=active();
+  const sl=e.target.closest('[data-slogan]'); if(sl){copy(c.slogans[+sl.dataset.slogan],sl,'Slogan copiado');return;}
+  const fx=e.target.closest('[data-fx]'); if(fx){const f=c.fixados[+fx.dataset.fx],n=+fx.dataset.fx+1,k=fx.dataset.kind;
+    if(k==='legenda')copy(legendaFull(f),fx,'Legenda copiada');
+    else if(k==='hashtags')copy(f.hashtags||'',fx,'Hashtags copiadas');
+    else copy(fixadoText(f,n),fx,`Fixado ${n} copiado`);return;}
+  const ar=e.target.closest('[data-art]'); if(ar){copy(arteText(c.fixados[+ar.dataset.art]),ar,'Texto da arte copiado');return;}
+  const p=e.target.closest('[data-p]'); if(p){const f=c.fixados[+p.dataset.p];
+    p.dataset.k==='dir'?copy(f.direcao,p,'Direção copiada'):copy(f.prompts[+p.dataset.k],p,`Prompt ${+p.dataset.k+1} copiado`);return;}
+});
+
+/* ===================== MODAIS ===================== */
+function openOv(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeOv(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeOv(b.dataset.close)));
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeOv(o.id);}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.overlay.open').forEach(o=>closeOv(o.id));});
+
+/* --- cadastrar/editar --- */
+let editingNew=false;
+function openEdit(isNew){
+  editingNew=isNew;
+  document.getElementById('editTitle').textContent=isNew?'Cadastrar cliente':'Editar cliente';
+  document.getElementById('btnDelete').style.display=isNew?'none':'';
+  const c=isNew?{nome:'',iniciais:'',dados:{},slogans:[]}:active();
+  const d=c.dados||{};
+  fNome.value=c.nome||''; fInit.value=c.iniciais||''; fCidade.value=d.cidade||''; fSeg.value=d.segmento||'';
+  fAtu.value=d.atuacao||''; fEnd.value=d.endereco||''; fWpp.value=d.whatsapp||''; fTel.value=d.telefone||'';
+  fSite.value=d.site||''; fHor.value=d.atendimento||''; fDif.value=d.diferencial||''; fCta.value=d.cta||'';
+  fSlog.value=(c.slogans||[]).join('\n');
+  openOv('ovEdit');
+}
+document.getElementById('btnNew').addEventListener('click',()=>openEdit(true));
+document.getElementById('btnEdit').addEventListener('click',()=>openEdit(false));
+document.getElementById('btnSave').addEventListener('click',()=>{
+  const nome=fNome.value.trim(); if(!nome){toast('Informe o nome da empresa',true);return;}
+  const dados={cidade:fCidade.value.trim(),segmento:fSeg.value.trim(),atuacao:fAtu.value.trim(),
+    endereco:fEnd.value.trim(),whatsapp:fWpp.value.trim(),telefone:fTel.value.trim(),site:fSite.value.trim(),
+    atendimento:fHor.value.trim(),diferencial:fDif.value.trim(),cta:fCta.value.trim()};
+  const slogans=fSlog.value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const iniciais=(fInit.value.trim()||inits(nome)).toUpperCase();
+  if(editingNew){
+    const id=slug(nome)+'-'+Date.now().toString(36).slice(-4);
+    CLIENTES.push({id,nome,iniciais,dados,slogans,fixados:[]}); activeId=id;
+  }else{
+    const c=active(); c.nome=nome; c.iniciais=iniciais; c.dados=dados; c.slogans=slogans;
+  }
+  save(); render(); closeOv('ovEdit'); toast(editingNew?'Cliente cadastrado':'Cliente atualizado');
+});
+document.getElementById('btnDelete').addEventListener('click',()=>{
+  if(CLIENTES.length<=1){toast('Não é possível excluir o único cliente',true);return;}
+  if(!confirm('Excluir este cliente e seus fixados?'))return;
+  CLIENTES=CLIENTES.filter(c=>c.id!==activeId); activeId=CLIENTES[0].id;
+  save(); render(); closeOv('ovEdit'); toast('Cliente excluído');
+});
+document.getElementById('clientSel').addEventListener('change',e=>{activeId=e.target.value;save();render();});
+
+/* --- enviar dados (importar) --- */
+window.openImport=()=>{document.getElementById('impText').value='';openOv('ovImport');};
+document.getElementById('btnImport').addEventListener('click',window.openImport);
+document.getElementById('btnDoImport').addEventListener('click',()=>{
+  const txt=document.getElementById('impText').value;
+  if(!txt.trim()){toast('Cole o conteúdo primeiro',true);return;}
+  let parsed; try{parsed=parseImport(txt);}catch(err){toast('Não consegui ler o conteúdo',true);return;}
+  if(!parsed.nome && parsed.fixados.length===0){toast('Conteúdo não reconhecido',true);return;}
+
+  // localizar cliente existente pelo nome
+  let c=parsed.nome?CLIENTES.find(x=>x.nome.toLowerCase()===parsed.nome.toLowerCase()):active();
+  if(!c){ // criar novo
+    const nome=parsed.nome||'Novo cliente';
+    c={id:slug(nome)+'-'+Date.now().toString(36).slice(-4),nome,iniciais:inits(nome),dados:{},slogans:[],fixados:[]};
+    CLIENTES.push(c);
+  }
+  // mesclar dados (só sobrescreve o que veio preenchido)
+  if(parsed.nome)c.nome=parsed.nome; c.iniciais=c.iniciais||inits(c.nome);
+  c.dados=Object.assign({},c.dados,Object.fromEntries(Object.entries(parsed.dados).filter(([k,v])=>v&&v.trim())));
+  if(parsed.slogans.length)c.slogans=parsed.slogans;
+  if(parsed.fixados.length)c.fixados=parsed.fixados;
+  activeId=c.id; save(); render(); closeOv('ovImport');
+  toast('Dados organizados e publicados ✓');
+});
+
+/* ===================== PARSER ===================== */
+function parseImport(text){
+  text=text.replace(/\r/g,'');
+  const esc=s=>s.replace(/[.*+?^${}()|[\]\\/]/g,'\\$&');
+  const section=(name)=>{const re=new RegExp('##+\\s*'+esc(name)+'[^\\n]*\\n([\\s\\S]*?)(?=\\n##\\s|\\n## |$)','i');const m=text.match(re);return m?m[1]:'';};
+  // lê o valor de um rótulo, com OU sem **negrito** (ex.: "**Label:**" ou "Label:")
+  const lblVal=(block,label)=>{
+    const re=new RegExp('(?:^|\\n)\\s*\\*{0,2}\\s*'+esc(label)+'[^\\n*]*?:?\\s*\\*{0,2}\\s*\\n?([\\s\\S]*?)(?=\\n\\s*\\*{0,2}[A-Za-zÀ-ÿ][^\\n*]*:\\*{0,2}\\s*(?:\\n|$)|\\n\\s*\\*\\*[^\\n]+\\*\\*|\\n\\s*#{2,}|\\n\\s*—\\s*\\n|$)','i');
+    const m=block.match(re);return m?m[1].trim():'';
+  };
+  const startsEmoji=(s)=>/^[←-⇿⌀-➿⬀-⯿☀-⛿\u{1F000}-\u{1FAFF}]/u.test(s.trim());
+  const clean=s=>s.replace(/^\*\*|\*\*$/g,'').trim();
+
+  const all=text;
+  // ---- empresa ----
+  const dados={
+    cidade:clean(lblVal(all,'Cidade/Estado')||lblVal(all,'Cidade')),
+    segmento:clean(lblVal(all,'Segmento')),
+    atuacao:clean(lblVal(all,'Atuação')),
+    endereco:clean(lblVal(all,'Endereço')),
+    whatsapp:clean(lblVal(all,'WhatsApp principal')||lblVal(all,'Celular/WhatsApp principal')||lblVal(all,'WhatsApp')),
+    telefone:clean(lblVal(all,'Telefone')),
+    site:clean(lblVal(all,'Site')),
+    atendimento:clean(lblVal(all,'Horário de atendimento')||lblVal(all,'Horário')),
+    diferencial:'', cta:''
+  };
+  const nome=clean(lblVal(all,'Empresa')||'');
+  // bloco após um rótulo em **negrito**, até o próximo rótulo/título
+  const boldBlock=(label)=>{const re=new RegExp('\\*\\*[^\\n]*'+esc(label)+'[^\\n]*\\*\\*\\s*([\\s\\S]*?)(?=\\n\\*\\*[^\\n]+\\*\\*\\s*(?:\\n|$)|\\n##|$)','i');const m=all.match(re);return m?m[1].trim():'';};
+  // diferencial — pega a frase "(diferencial|ponto) mais forte é:" (com ou sem **)
+  let dif=(all.match(/(?:diferencial|ponto)\s+mais\s+forte[^:\n]*:\s*\*{0,2}([^\n]+?)\*{0,2}\s*(?:\n|$)/i)||[])[1]||'';
+  if(!dif){const difBlock=boldBlock('Fator único')||boldBlock('diferencial');
+    if(difBlock)dif=difBlock.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean).pop()||'';}
+  dados.diferencial=dif.replace(/\n+/g,' ').replace(/\*\*/g,'').trim();
+  // cta — bloco do rótulo, ou (fallback) do primeiro 📍 até a linha do 📲
+  let ctaBlock=boldBlock('CTA final padrão')||boldBlock('CTA');
+  const ctaM=ctaBlock.match(/(📍[\s\S]*?)(?=\n\s*\*\*|\n\s*##|$)/);
+  dados.cta=(ctaM?ctaM[1]:ctaBlock).trim();
+  if(!dados.cta){const m=all.match(/(📍[\s\S]*?📲[^\n]*)/);if(m)dados.cta=m[1].trim();}
+
+  // ---- slogans ----
+  const slogBlock=section('Resumo/Slogan')||section('Slogan');
+  const slogans=[...slogBlock.matchAll(/^\s*\d+\.\s*(.+)$/gm)].map(m=>clean(m[1]).replace(/\*\*/g,'').trim()).filter(Boolean);
+
+  // ---- hashtags padrão ----
+  const htBlock=section('Hashtags padrão')||section('Hashtags');
+  const defTags=[...htBlock.matchAll(/#\S+/g)].map(m=>m[0]).join(' ').replace(/\s+/g,' ').trim();
+  // separa as hashtags finais de um corpo de legenda
+  const splitTags=(body)=>{
+    let lines=body.split('\n'), tags=[];
+    while(lines.length){const last=lines[lines.length-1].trim();
+      if(last===''){lines.pop();continue;}
+      if(/^#\S/.test(last)){tags.unshift(last);lines.pop();}else break;}
+    return {legenda:lines.join('\n').trim(), tags:tags.join(' ').replace(/\s+/g,' ').trim()};
+  };
+
+  // ---- legendas ----
+  const legBlock=section('Legendas dos 3 fixados')||section('Legendas');
+  const legs={};
+  [...legBlock.matchAll(/\*\*Fixado\s*(\d+)\s*[—–-]\s*([^\n*]+)\*\*\s*([\s\S]*?)(?=\n\s*\*\*Fixado|\n\s*##|$)/gi)].forEach(m=>{
+    let body=m[3].replace(/\n*\s*—\s*\n*$/,'').trim();
+    const st=splitTags(body);
+    legs[+m[1]]={tema:m[2].trim(),legenda:st.legenda,hashtags:st.tags||defTags};
+  });
+
+  // destaques: aceita "Destaques curtos", "Destaques" ou "Blocos de serviços"
+  // (agrupa rótulo em negrito + descrição na linha seguinte)
+  const parseDestaques=(b)=>{
+    const v=lblVal(b,'Destaques curtos')||lblVal(b,'Destaques')||lblVal(b,'Blocos de serviços');
+    if(!v)return [];
+    const lines=v.split('\n').map(s=>s.trim()).filter(Boolean);
+    // rótulo = linha em **negrito** OU que começa com emoji (título de bloco)
+    const isHead=l=>/\*\*/.test(l)||startsEmoji(l);
+    const heads=lines.filter(isHead).length;
+    // lista simples (todas as linhas são "rótulos"): cada linha vira um destaque
+    if(heads===lines.length)return lines.map(l=>l.replace(/\*\*/g,'').trim());
+    const out=[]; // blocos: título (rótulo/emoji) + descrição na linha seguinte
+    lines.forEach(ln=>{const c=ln.replace(/\*\*/g,'').trim();
+      if(isHead(ln)||!out.length)out.push(c); else out[out.length-1]+=' — '+c;});
+    return out;
+  };
+
+  // ---- conteúdo da imagem ----
+  const imgBlock=section('Conteúdo da imagem');
+  const imgs={};
+  [...imgBlock.matchAll(/###[^\n]*?Fixado\s*(\d+)[^\n]*\n([\s\S]*?)(?=\n###|\n##|$)/gi)].forEach(m=>{
+    const b=m[2];
+    imgs[+m[1]]={
+      chamada:clean(lblVal(b,'Chamada superior')),
+      titulo:clean(lblVal(b,'Título principal')),
+      apoio:clean(lblVal(b,'Texto de apoio')||lblVal(b,'Texto complementar')),
+      destaques:parseDestaques(b),
+      direcao:clean(lblVal(b,'Direção visual'))
+    };
+  });
+
+  // ---- prompts ----
+  const prBlock=section('Prompts para gerar imagens')||section('Prompts');
+  const prompts={};
+  [...prBlock.matchAll(/###[^\n]*?Fixado\s*(\d+)[^\n]*\n([\s\S]*?)(?=\n###|\n##|$)/gi)].forEach(m=>{
+    const b=m[2];
+    const p1=(b.match(/\*\*Prompt\s*1\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*Prompt\s*2|\n###|\n##|$)/i)||[])[1]||'';
+    const p2=(b.match(/\*\*Prompt\s*2\*\*\s*\n([\s\S]*?)(?=\n###|\n##|$)/i)||[])[1]||'';
+    prompts[+m[1]]=[p1.trim(),p2.trim()];
+  });
+
+  // ---- montar fixados (1..3) ----
+  const nums=[...new Set([...Object.keys(legs),...Object.keys(imgs),...Object.keys(prompts)].map(Number))].sort((a,b)=>a-b);
+  const fixados=nums.map(n=>{
+    const L=legs[n]||{},Im=imgs[n]||{},P=prompts[n]||['',''];
+    return {tema:L.tema||Im.titulo||('Fixado '+n),legenda:L.legenda||'',hashtags:L.hashtags||defTags||'',
+      chamada:Im.chamada||'',titulo:Im.titulo||'',apoio:Im.apoio||'',destaques:Im.destaques||[],
+      direcao:Im.direcao||'',prompts:[P[0]||'',P[1]||'']};
+  });
+
+  return {nome,dados,slogans,fixados};
+}
+
+/* ===================== AÇÕES TOPO ===================== */
+document.getElementById('btnAll').addEventListener('click',()=>{
+  const c=active(); if(!(c.fixados||[]).length){toast('Sem fixados para copiar',true);return;}
+  const all=c.fixados.map((f,i)=>fixadoText(f,i+1)).join('\n\n'+'═'.repeat(30)+'\n\n');
+  copy(`${c.nome} · Fixados do Instagram\n\n${all}`,null,'Tudo copiado');});
+/* ---- visão de entrega / PDF ---- */
+function openPdf(){
+  const c=active(); const fx=c.fixados||[];
+  if(!fx.length){toast('Sem fixados para gerar PDF',true);return;}
+  document.getElementById('pvDoc').innerHTML=`
+    <div class="pv-emp">${esc(c.nome)}</div>
+    <div class="pv-meta">${esc(buildSub(c))}</div>
+    ${fx.map((f,i)=>`
+      <div class="pv-fx">
+        <div class="pv-fh">
+          <span class="fx-num">${i+1}</span><span class="pv-tema">${esc(f.tema)}</span>
+          <button class="copybtn pv-copy" data-pv="${i}">${I.copy}Copiar legenda</button>
+        </div>
+        <div class="pv-legenda">${esc(legendaFull(f))}</div>
+      </div>`).join('')}`;
+  document.getElementById('pdfView').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('btnPdf').addEventListener('click',openPdf);
+document.getElementById('pvBack').addEventListener('click',closePdf);
+document.getElementById('pvPrint').addEventListener('click',()=>{
+  document.body.classList.add('pdf-mode'); window.print();
+  setTimeout(()=>document.body.classList.remove('pdf-mode'),300);
+});
+document.getElementById('pvDoc').addEventListener('click',e=>{
+  const b=e.target.closest('[data-pv]'); if(!b)return;
+  // copia a legenda (com hashtags) como texto corrido — apenas quebras de parágrafo
+  const leg=legendaFull(active().fixados[+b.dataset.pv]).replace(/[ \t]+\n/g,'\n').trim();
+  copy(leg,b,'Legenda copiada');
+});
+
+/* ===================== INIT ===================== */
+load(); render();
+</script>
+</body>
+</html>
