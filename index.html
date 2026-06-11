@@ -463,7 +463,6 @@ function buildLinks(c){
   add('Site',I.globe,normUrl('site',d.site));
   add('Solutudo',I.star,normUrl('site',d.solutudo));
   add('Instagram',I.insta,normUrl('instagram',d.instagram));
-  add('WhatsApp',I.wpp,normUrl('whatsapp',d.whatsapp));
   return out;
 }
 function toast(m,err){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m||'Copiado!';
@@ -668,6 +667,13 @@ function parseImport(text){
   };
   const startsEmoji=(s)=>/^[←-⇿⌀-➿⬀-⯿☀-⛿\u{1F000}-\u{1FAFF}]/u.test(s.trim());
   const clean=s=>s.replace(/^\*\*|\*\*$/g,'').trim();
+  // extrai a URL de um valor: markdown [txt](url), URL crua ou texto simples
+  const urlOf=v=>{
+    v=String(v||'').trim();
+    const md=v.match(/\(\s*(https?:\/\/[^)\s]+)\s*\)/i); if(md)return md[1];
+    const u=v.match(/https?:\/\/[^\s)\]]+/i); if(u)return u[0];
+    return clean(v).replace(/^\[|\]$/g,'');
+  };
 
   const all=text;
   // ---- empresa ----
@@ -678,9 +684,9 @@ function parseImport(text){
     endereco:clean(lblVal(all,'Endereço')),
     whatsapp:clean(lblVal(all,'WhatsApp principal')||lblVal(all,'Celular/WhatsApp principal')||lblVal(all,'WhatsApp')),
     telefone:clean(lblVal(all,'Telefone')),
-    site:clean(lblVal(all,'Site')),
-    instagram:clean(lblVal(all,'Instagram')||lblVal(all,'Insta')),
-    solutudo:clean(lblVal(all,'Solutudo')),
+    site:urlOf(lblVal(all,'Site oficial')||lblVal(all,'Site')),
+    instagram:urlOf(lblVal(all,'Instagram')||lblVal(all,'Insta')),
+    solutudo:urlOf(lblVal(all,'Página na Solutudo')||lblVal(all,'Solutudo')),
     atendimento:clean(lblVal(all,'Horário de atendimento')||lblVal(all,'Horário')),
     diferencial:'', cta:''
   };
