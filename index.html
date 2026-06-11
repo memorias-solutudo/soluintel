@@ -274,7 +274,7 @@
         </button>
         <button class="btn btn-grad" id="btnPdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
-          Gerar PDF
+          Gerar entrega
         </button>
       </div>
     </div>
@@ -346,9 +346,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Voltar
       </button>
-      <button class="btn btn-grad" id="pvPrint">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
-        Salvar como PDF
+      <button class="btn btn-grad" id="pvWord">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13l1.5 5 1.5-4 1.5 4L14 13"/></svg>
+        Salvar como Word
       </button>
     </div>
   </div>
@@ -763,10 +763,33 @@ function openPdf(){
 function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('btnPdf').addEventListener('click',openPdf);
 document.getElementById('pvBack').addEventListener('click',closePdf);
-document.getElementById('pvPrint').addEventListener('click',()=>{
-  document.body.classList.add('pdf-mode'); window.print();
-  setTimeout(()=>document.body.classList.remove('pdf-mode'),300);
-});
+/* exporta a entrega como documento Microsoft Word (.doc) — texto estruturado,
+   sem as quebras de linha indevidas que o copiar/colar de PDF produzia */
+function exportWord(){
+  const c=active(); const fx=c.fixados||[];
+  if(!fx.length){toast('Sem fixados para exportar',true);return;}
+  const corpo=`
+    <h1>${esc(c.nome)}</h1>
+    <p class="meta">${esc(buildSub(c))}</p>
+    ${fx.map((f,i)=>`
+      <h2>${i+1}. ${esc(f.tema)}</h2>
+      <div class="leg">${legendaHtml(f)}</div>`).join('')}`;
+  const doc=`<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" `+
+    `xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">`+
+    `<head><meta charset="utf-8"><title>Entrega · ${esc(c.nome)}</title>`+
+    `<style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#222;line-height:1.5}`+
+    `h1{font-size:20pt;margin:0 0 4px}h2{font-size:13pt;margin:22px 0 8px}`+
+    `.meta{color:#666;margin:0 0 18px}.leg p{margin:0 0 8px}</style></head>`+
+    `<body>${corpo}</body></html>`;
+  const blob=new Blob(['﻿'+doc],{type:'application/msword'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=`${slug(c.nome)}-fixados.doc`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast('Word exportado');
+}
+document.getElementById('pvWord').addEventListener('click',exportWord);
 document.getElementById('pvDoc').addEventListener('click',e=>{
   const b=e.target.closest('[data-pv]'); if(!b)return;
   // copia a legenda (com hashtags) como texto corrido — apenas quebras de parágrafo
