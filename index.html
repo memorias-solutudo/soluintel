@@ -836,9 +836,26 @@ function exportWord(){
     {name:'_rels/.rels',data:enc.encode(rels)},
     {name:'word/document.xml',data:enc.encode(documentXml)},
   ]);
+  saveBlob(blob,`${slug(c.nome)}-fixados.docx`);
+}
+/* salva o blob deixando o usuário escolher a pasta (File System Access API),
+   com fallback p/ download automático em navegadores sem suporte */
+async function saveBlob(blob,nome){
+  if(window.showSaveFilePicker){
+    try{
+      const handle=await window.showSaveFilePicker({
+        suggestedName:nome,
+        types:[{description:'Documento Word',accept:{'application/vnd.openxmlformats-officedocument.wordprocessingml.document':['.docx']}}]
+      });
+      const w=await handle.createWritable();
+      await w.write(blob); await w.close();
+      toast('Word salvo');
+      return;
+    }catch(e){ if(e&&e.name==='AbortError') return; } // usuário cancelou
+  }
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url; a.download=`${slug(c.nome)}-fixados.docx`;
+  a.href=url; a.download=nome;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
   toast('Word exportado');
