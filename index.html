@@ -153,6 +153,7 @@
   .field .apoio{font-size:11.5px;color:var(--g700);font-weight:500;line-height:1.45}
   .destaques{display:flex;flex-direction:column;gap:5px}
   .destaques .d{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--g100);border-radius:9px;padding:6px 9px;line-height:1.3}
+  .arte-full{font-size:11.5px;color:var(--ink);font-weight:500;line-height:1.5;white-space:pre-wrap}
 
   .below{margin-top:22px}
   .below .sec-h{display:flex;align-items:center;gap:9px;margin:0 0 14px}
@@ -473,7 +474,8 @@ async function copy(text,btn,msg){
   toast(msg);
   if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML=I.check+'Copiado';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},1200);}
 }
-function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
+/* texto da arte: usa o conteúdo íntegro enviado; fallback p/ campos estruturados */
+function arteText(f){return f.arte||`${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* remove marcação markdown de negrito (**), que não é interpretada ao colar */
 function semMd(s){return String(s||'').replace(/\*\*/g,'');}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
@@ -543,10 +545,11 @@ function render(){
           <div class="img-head"><span class="n">${i+1}</span><span class="t">${esc(f.tema)}</span>
             <button class="copybtn" style="margin-left:auto" data-art="${i}">${I.copy}Copiar arte</button></div>
           <div class="img-body">
+            ${f.arte?`<div class="arte-full">${esc(f.arte)}</div>`:`
             <div class="field"><div class="flbl">Chamada superior</div><div class="chamada">${esc(f.chamada)}</div></div>
             <div class="field"><div class="flbl">Título principal</div><div class="titulo">${esc(f.titulo)}</div></div>
             <div class="field"><div class="flbl">Texto de apoio</div><div class="apoio">${esc(f.apoio)}</div></div>
-            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>
+            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>`}
           </div>
         </div>`).join('')}
     </div>
@@ -751,7 +754,13 @@ function parseImport(text){
   const imgs={};
   [...imgBlock.matchAll(/###[^\n]*?Fixado\s*(\d+)[^\n]*\n([\s\S]*?)(?=\n###|\n##|$)/gi)].forEach(m=>{
     const b=m[2];
+    // texto da arte na íntegra, exatamente como enviado (até a Direção visual),
+    // só removendo a marcação ** e linhas de separador ---
+    const arte=b.split(/\n\s*\*{0,2}\s*Direção visual/i)[0]
+      .replace(/^\s*-{3,}\s*$/gm,'').replace(/\*\*/g,'')
+      .replace(/\n{3,}/g,'\n\n').trim();
     imgs[+m[1]]={
+      arte,
       chamada:clean(lblVal(b,'Chamada superior')),
       titulo:clean(lblVal(b,'Título principal')),
       apoio:clean(lblVal(b,'Texto de apoio')||lblVal(b,'Texto complementar')),
@@ -775,7 +784,7 @@ function parseImport(text){
   const fixados=nums.map(n=>{
     const L=legs[n]||{},Im=imgs[n]||{},P=prompts[n]||['',''];
     return {tema:L.tema||Im.titulo||('Fixado '+n),legenda:L.legenda||'',hashtags:L.hashtags||defTags||'',
-      chamada:Im.chamada||'',titulo:Im.titulo||'',apoio:Im.apoio||'',destaques:Im.destaques||[],
+      arte:Im.arte||'',chamada:Im.chamada||'',titulo:Im.titulo||'',apoio:Im.apoio||'',destaques:Im.destaques||[],
       direcao:Im.direcao||'',prompts:[P[0]||'',P[1]||'']};
   });
 
