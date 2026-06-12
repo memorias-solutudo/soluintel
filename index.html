@@ -41,24 +41,32 @@
     display:flex;align-items:center;gap:11px;flex-wrap:wrap}
   .gpill{display:flex;align-items:center;gap:8px;background:var(--white);
     border:1px solid var(--g200);box-shadow:var(--shadow-card);border-radius:var(--pill);padding:7px 9px}
-  .gpill.tight{padding:6px 7px}
-  /* grupo da marca + seletor de cliente */
-  .brand .mark{width:40px;height:40px;border-radius:50%;background:var(--grad-brand);
-    display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
-  .brandtxt{display:flex;flex-direction:column;gap:1px;min-width:0;padding-right:4px}
-  .brandtxt .wm{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);line-height:1}
-  .clientsel{display:flex;align-items:center;gap:2px}
-  .clientsel select{font-family:inherit;font-size:14.5px;font-weight:800;color:var(--ink);border:none;background:transparent;
-    cursor:pointer;outline:none;letter-spacing:-.03em;max-width:240px;padding:1px 2px;margin:0;
-    -webkit-appearance:none;appearance:none}
+  /* pílula da marca */
+  .gpill.brand{padding:5px 14px 5px 5px;gap:9px}
+  .brand .mark{width:32px;height:32px;border-radius:50%;background:var(--grad-brand);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:12.5px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .brand .wm{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink);line-height:1;white-space:nowrap}
+  .brand .wm .sep{width:4px;height:4px;border-radius:50%;background:var(--brand-purple)}
+  /* pílula do seletor de cliente */
+  .gpill.clientsel{padding:5px 6px 5px 14px;gap:6px}
+  .clientsel .cs-lbl{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--brand-purple);line-height:1;margin-right:2px}
+  .clientsel select{font-family:inherit;font-size:13.5px;font-weight:800;color:var(--ink);border:none;background:transparent;
+    cursor:pointer;outline:none;letter-spacing:-.03em;max-width:220px;padding:1px 2px;margin:0;
+    -webkit-appearance:none;appearance:none;text-overflow:ellipsis}
   .clientsel .caret{display:flex;color:var(--g400);pointer-events:none}
   .clientsel .caret svg{width:14px;height:14px}
-  .clientsel .pico{width:26px;height:26px;border-radius:50%;border:none;background:var(--g100);color:var(--g600);
+  .clientsel .pico{width:28px;height:28px;border-radius:50%;border:none;background:var(--g100);color:var(--g600);
     display:grid;place-items:center;cursor:pointer;flex:0 0 auto;transition:.15s var(--ease);margin-left:4px}
   .clientsel .pico:hover{background:var(--tint-lav);color:var(--brand-purple)}
   .clientsel .pico svg{width:14px;height:14px}
-  .brandtxt .sub{font-size:10.5px;color:var(--g500);font-weight:600;line-height:1.2;max-width:330px;
+  /* pílula de contexto (cidade · segmento · atuação) */
+  .gpill.ctx{padding:8px 14px;background:var(--g100);border-color:transparent;box-shadow:none}
+  .gpill.ctx:empty,.gpill.ctx.hide{display:none}
+  .ctx .sub{font-size:11px;color:var(--g600);font-weight:700;line-height:1;max-width:340px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:980px){.gpill.ctx{display:none}}
   .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
   .actions .gpill{gap:6px}
   .btn{font-family:inherit;font-size:12px;font-weight:700;letter-spacing:-.01em;border-radius:var(--pill);
@@ -245,21 +253,24 @@
 
 <header class="topbar">
   <div class="topbar-in">
-    <!-- grupo: marca + seletor de cliente -->
-    <div class="gpill tight">
+    <!-- pílula: marca -->
+    <div class="gpill brand">
       <div class="mark" id="mark">SV</div>
-      <div class="brandtxt">
-        <span class="wm">Solutudo · Fixados</span>
-        <div class="clientsel">
-          <select id="clientSel" title="Selecionar cliente"></select>
-          <span class="caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          <button class="pico" id="btnNew" title="Cadastrar novo cliente">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-        <span class="sub" id="cliSub"></span>
-      </div>
+      <span class="wm">Solutudo<i class="sep"></i>Fixados</span>
     </div>
+
+    <!-- pílula: seletor de cliente -->
+    <div class="gpill clientsel">
+      <span class="cs-lbl">Cliente</span>
+      <select id="clientSel" title="Selecionar cliente"></select>
+      <span class="caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      <button class="pico" id="btnNew" title="Cadastrar novo cliente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <!-- pílula: contexto do cliente (cidade · segmento) -->
+    <div class="gpill ctx" id="ctxPill"><span class="sub" id="cliSub"></span></div>
 
     <div class="actions">
       <!-- grupo: gestão de conteúdo -->
@@ -497,7 +508,9 @@ function render(){
   renderClientSelect();
   const c=active();
   document.getElementById('mark').textContent=c.iniciais||inits(c.nome);
-  document.getElementById('cliSub').textContent=buildSub(c);
+  const sub=buildSub(c);
+  document.getElementById('cliSub').textContent=sub;
+  document.getElementById('ctxPill').classList.toggle('hide',!sub);
   const wrap=document.getElementById('wrap');
   const fixados=c.fixados||[];
   if(!fixados.length){
