@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="g" x1="8%" y1="0%" x2="92%" y2="100%">
+      <stop offset="0%" stop-color="#FFD13C"/>
+      <stop offset="28%" stop-color="#F54A07"/>
+      <stop offset="58%" stop-color="#D901AA"/>
+      <stop offset="100%" stop-color="#A701FD"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#g)"/>
+  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
+    font-family="'DM Sans','Segoe UI',Arial,sans-serif" font-weight="800"
+    font-size="38" fill="#fff">F</text>
+</svg>
