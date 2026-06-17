@@ -135,6 +135,13 @@ function ItemCard({ item, mode, onToggle }) {
 
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  // anima o check só na transição não-feito -> feito (não no load inicial)
+  const prevDone = React.useRef(done);
+  const [checkRun, setCheckRun] = React.useState(0);
+  React.useEffect(() => {
+    if (done && !prevDone.current) setCheckRun((n) => n + 1);
+    prevDone.current = done;
+  }, [done]);
   const [comments, setComments] = React.useState(() => loadComments(item.id));
   const abertos = comments.filter((c) => !c.done).length;
   const temComentarios = comments.length > 0;
@@ -173,7 +180,7 @@ function ItemCard({ item, mode, onToggle }) {
     React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 9, opacity: done ? 1 : 0.5, transition: "opacity var(--dur-base) var(--ease-out)" } },
       // top row: status + stage + impacto + critico + pillar
       React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
+        React.createElement("span", { key: checkRun, className: checkRun > 0 && done ? "sol-check sol-check-anim" : "sol-check", style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
         React.createElement("span", { title: `Etapa: ${D.ETAPAS[item.etapa].rotulo}`, style: { width: 22, height: 22, borderRadius: 7, background: "var(--gray-100)", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" } }, StageIcon({ size: 13, color: "var(--gray-500)" })),
         React.createElement("span", { style: { fontSize: 10.5, fontWeight: 600, color: "var(--gray-400)" } }, impactoLabel),
         item.critico && React.createElement("span", { title: "Item crítico — aplica teto ao score", style: { color: "var(--brand-orange-deep)", display: "flex" } }, I2.alert({ size: 12, color: "var(--brand-orange-deep)" })),

@@ -26,6 +26,42 @@
   ::selection { background: var(--tint-lavender-200); }
   image-slot { --is-bg: var(--gray-150); }
   @keyframes ccPop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+  /* ===== Animações do check ao marcar o card (Tweaks) — todas <= 0.3s ===== */
+  .sol-check { position: relative; }
+  .sol-check > svg { will-change: transform; }
+  /* 1 · Pop */
+  @keyframes ca1 { 0%{transform:scale(0)} 60%{transform:scale(1.18)} 100%{transform:scale(1)} }
+  body[data-check-anim="1"] .sol-check-anim { animation: ca1 .26s cubic-bezier(.22,1,.36,1) both; }
+  /* 2 · Bounce */
+  @keyframes ca2 { 0%{transform:translateY(-10px) scale(.6);opacity:.2} 70%{transform:translateY(2px) scale(1.06)} 100%{transform:translateY(0) scale(1);opacity:1} }
+  body[data-check-anim="2"] .sol-check-anim { animation: ca2 .3s cubic-bezier(.22,1,.36,1) both; }
+  /* 3 · Giro */
+  @keyframes ca3 { 0%{transform:rotate(-120deg) scale(0)} 100%{transform:rotate(0) scale(1)} }
+  body[data-check-anim="3"] .sol-check-anim { animation: ca3 .28s cubic-bezier(.22,1,.36,1) both; }
+  /* 4 · Anel (ring burst) */
+  @keyframes ca4 { 0%{transform:scale(.7)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  @keyframes ca4ring { 0%{transform:scale(.8);opacity:.75} 100%{transform:scale(2.1);opacity:0} }
+  body[data-check-anim="4"] .sol-check-anim { animation: ca4 .26s cubic-bezier(.22,1,.36,1) both; }
+  body[data-check-anim="4"] .sol-check-anim::after { content:""; position:absolute; inset:0; border-radius:50%; border:2px solid var(--success); animation: ca4ring .3s ease-out both; pointer-events:none; }
+  /* 5 · Brilho (glow) */
+  @keyframes ca5 { 0%{box-shadow:0 0 0 0 rgba(0,200,120,.55)} 100%{box-shadow:0 0 0 11px rgba(0,200,120,0)} }
+  body[data-check-anim="5"] .sol-check-anim { animation: ca5 .3s ease-out both; }
+  /* 6 · Flip */
+  @keyframes ca6 { 0%{transform:perspective(120px) rotateY(90deg) scale(.85)} 100%{transform:perspective(120px) rotateY(0) scale(1)} }
+  body[data-check-anim="6"] .sol-check-anim { animation: ca6 .28s cubic-bezier(.22,1,.36,1) both; }
+  /* 7 · Zoom */
+  @keyframes ca7 { 0%{transform:scale(1.9);opacity:0} 100%{transform:scale(1);opacity:1} }
+  body[data-check-anim="7"] .sol-check-anim { animation: ca7 .22s cubic-bezier(.22,1,.36,1) both; }
+  /* 8 · Squash */
+  @keyframes ca8 { 0%{transform:scale(.4,1.12)} 40%{transform:scale(1.16,.88)} 70%{transform:scale(.95,1.05)} 100%{transform:scale(1,1)} }
+  body[data-check-anim="8"] .sol-check-anim { animation: ca8 .3s cubic-bezier(.22,1,.36,1) both; }
+  /* 9 · Gota (drop) */
+  @keyframes ca9 { 0%{transform:translateY(-15px) scale(.9);opacity:0} 100%{transform:translateY(0) scale(1);opacity:1} }
+  body[data-check-anim="9"] .sol-check-anim { animation: ca9 .26s cubic-bezier(.34,1.56,.64,1) both; }
+  /* 10 · Spin */
+  @keyframes ca10 { 0%{transform:rotate(0) scale(.5);opacity:.4} 100%{transform:rotate(360deg) scale(1);opacity:1} }
+  body[data-check-anim="10"] .sol-check-anim { animation: ca10 .3s cubic-bezier(.22,1,.36,1) both; }
 </style>
 </head>
 <body>
