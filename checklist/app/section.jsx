@@ -33,11 +33,20 @@ async function fileToDataUrl(file, cap) {
   });
 }
 
-/* ---------- Editor de print: arrastar / selecionar / remover (sem crop) ---------- */
-function PrintEditor({ titulo, src, onSave, onRemove, onClose }) {
+/* ---------- Normaliza um link colado (adiciona https:// quando falta) ---------- */
+function normalizeUrl(s) {
+  s = (s || "").trim();
+  if (!s) return "";
+  if (!/^https?:\/\//i.test(s)) s = "https://" + s.replace(/^\/+/, "");
+  return s;
+}
+
+/* ---------- Editor de print + link: arrastar / selecionar / remover (sem crop) ---------- */
+function PrintEditor({ titulo, src, link, showLink, onSave, onRemove, onSaveLink, onClose }) {
   const fileRef = React.useRef(null);
   const [over, setOver] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
+  const [linkDraft, setLinkDraft] = React.useState(link || "");
   const handle = async (file) => {
     if (!file) return;
     setBusy(true);
@@ -48,14 +57,25 @@ function PrintEditor({ titulo, src, onSave, onRemove, onClose }) {
     onClick: (e) => { if (e.target === e.currentTarget) onClose(); },
     style: { position: "fixed", inset: 0, zIndex: 1200, background: "rgba(24,22,34,0.34)", backdropFilter: "blur(3px)", WebkitBackdropFilter: "blur(3px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }
   },
-    React.createElement("div", { style: { width: 380, maxWidth: "100%", background: "var(--white)", borderRadius: 22, boxShadow: "var(--shadow-lg, 0 24px 60px rgba(20,18,30,0.3))", padding: "20px 22px 22px", animation: "ccPop .18s var(--ease-out)" } },
+    React.createElement("div", { style: { width: 380, maxWidth: "100%", maxHeight: "90vh", overflowY: "auto", background: "var(--white)", borderRadius: 22, boxShadow: "var(--shadow-lg, 0 24px 60px rgba(20,18,30,0.3))", padding: "20px 22px 22px", animation: "ccPop .18s var(--ease-out)" } },
       React.createElement("div", { style: { display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 16 } },
         React.createElement("div", { style: { lineHeight: 1.25 } },
-          React.createElement("div", { style: { fontWeight: 800, fontSize: 16, color: "var(--ink)", letterSpacing: "-0.03em" } }, "Print da página"),
+          React.createElement("div", { style: { fontWeight: 800, fontSize: 16, color: "var(--ink)", letterSpacing: "-0.03em" } }, "Preview da página"),
           React.createElement("div", { style: { fontSize: 12, color: "var(--gray-500)", fontWeight: 500 } }, titulo)
         ),
         React.createElement("button", { type: "button", title: "Fechar", onClick: onClose, style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, I3.x({ size: 16, color: "var(--gray-600)" }))
       ),
+      showLink && React.createElement("div", { style: { marginBottom: 18, padding: "13px 14px 14px", background: "var(--gray-100)", borderRadius: 16 } },
+        React.createElement("div", { style: { fontSize: 12.5, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 } },
+          React.createElement("img", { src: "assets/mark-heart.png", alt: "", style: { height: 13, width: "auto" } }), "Link do site ao vivo (Com Solutudo)"),
+        React.createElement("div", { style: { display: "flex", gap: 7 } },
+          React.createElement("input", { type: "url", value: linkDraft, placeholder: "saborserra.com.br", onChange: (e) => setLinkDraft(e.target.value), onKeyDown: (e) => { if (e.key === "Enter") onSaveLink(normalizeUrl(linkDraft)); }, style: { flex: 1, minWidth: 0, border: "none", background: "var(--white)", borderRadius: 10, padding: "9px 11px", fontSize: 13, fontWeight: 600, color: "var(--ink)", boxShadow: "inset 0 0 0 1px var(--gray-200, #ddd)" } }),
+          React.createElement("button", { type: "button", onClick: () => onSaveLink(normalizeUrl(linkDraft)), style: { ...btnBase, padding: "9px 14px", background: "var(--ink)", color: "#fff" } }, "Salvar")
+        ),
+        React.createElement("div", { style: { fontSize: 11, color: "var(--gray-500)", fontWeight: 500, marginTop: 7, lineHeight: 1.35 } }, "Mostra o site ao vivo no container. Se o site não permitir ser incorporado (ex.: Instagram, perfil do Google), cai automaticamente no print abaixo."),
+        link && React.createElement("button", { type: "button", onClick: () => { setLinkDraft(""); onSaveLink(""); }, style: { ...btnBase, marginTop: 9, padding: "7px 12px", fontSize: 12.5, background: "transparent", color: "var(--brand-orange-deep)" } }, I3.trash({ size: 13, color: "var(--brand-orange-deep)" }), "Remover link")
+      ),
+      showLink && React.createElement("div", { style: { fontSize: 12.5, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em", marginBottom: 9 } }, "Print (fallback)"),
       src && React.createElement("div", { style: { display: "flex", justifyContent: "center", marginBottom: 14, background: "var(--gray-100)", borderRadius: 14, padding: 10, maxHeight: 200, overflow: "hidden" } },
         React.createElement("img", { src, alt: "", style: { maxWidth: "100%", maxHeight: 180, objectFit: "contain", borderRadius: 8, display: "block" } })
       ),
@@ -81,14 +101,34 @@ function PrintEditor({ titulo, src, onSave, onRemove, onClose }) {
 function EvidencePanel({ produto, mode, ag, onModal }) {
   const isCom = mode === "com";
   const storeKey = (m) => `sol_print_${produto.id}_${m}`;
+  const linkKey = `sol_link_${produto.id}`;
   const loadImg = (m) => { try { return localStorage.getItem(storeKey(m)) || null; } catch (e) { return null; } };
+  const loadLink = () => { try { return localStorage.getItem(linkKey) || ""; } catch (e) { return ""; } };
   const [imgs, setImgs] = React.useState(() => ({ sem: loadImg("sem"), com: loadImg("com") }));
+  const [link, setLink] = React.useState(loadLink);
+  const [comView, setComView] = React.useState("live"); // "live" | "print"
+  const [frameState, setFrameState] = React.useState("loading"); // loading | ok | blocked
   const [editing, setEditing] = React.useState(false);
   const [lightbox, setLightbox] = React.useState(false);
   const [zoom, setZoom] = React.useState(1);
   const src = imgs[mode];
+  const showLive = isCom && !!link && comView === "live";
 
   React.useEffect(() => { if (onModal) onModal(editing); }, [editing]);
+
+  // Carga do iframe: se não carregar em ~7s, assume bloqueio e cai no print.
+  React.useEffect(() => {
+    if (!showLive) return;
+    setFrameState("loading");
+    const t = setTimeout(() => setFrameState((s) => (s === "loading" ? "blocked" : s)), 7000);
+    return () => clearTimeout(t);
+  }, [showLive, link]);
+
+  const saveLink = (url) => {
+    setLink(url);
+    try { url ? localStorage.setItem(linkKey, url) : localStorage.removeItem(linkKey); } catch (e) {}
+    if (url) setComView("live");
+  };
 
   const saveImg = (url) => {
     setImgs((p) => ({ ...p, [mode]: url }));
@@ -109,36 +149,54 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
 
   return React.createElement("aside", { style: { position: "sticky", top: 76, alignSelf: "start", display: "flex", flexDirection: "column", gap: 12 } },
     React.createElement("div", { style: { background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "var(--shadow-card)", overflow: "hidden", display: "flex", flexDirection: "column" } },
-      // browser chrome + botão editar
-      React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 12, padding: "11px 14px", borderBottom: "1px solid var(--gray-100)" } },
+      // browser chrome + alternar Site/Print + abrir + editar
+      React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 10, padding: "11px 14px", borderBottom: "1px solid var(--gray-100)" } },
         React.createElement("div", { style: { display: "flex", gap: 6, flex: "0 0 auto" } },
           ["#FF5F57", "#FEBC2E", "#28C840"].map((c) => React.createElement("span", { key: c, style: { width: 11, height: 11, borderRadius: "50%", background: c } }))
         ),
         React.createElement("div", { style: { flex: 1, display: "flex", alignItems: "center", gap: 7, background: "var(--gray-100)", borderRadius: 999, padding: "6px 12px", minWidth: 0 } },
-          React.createElement("span", { style: { color: "var(--gray-400)", display: "flex", flex: "0 0 auto" } }, I3.globe({ size: 13, color: "var(--gray-400)" })),
-          React.createElement("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--gray-600)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, produto.url || produto.superficie)
+          React.createElement("span", { style: { color: showLive ? "var(--brand-purple)" : "var(--gray-400)", display: "flex", flex: "0 0 auto" } }, I3.globe({ size: 13, color: showLive ? "var(--brand-purple)" : "var(--gray-400)" })),
+          React.createElement("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--gray-600)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, showLive ? link.replace(/^https?:\/\//, "") : (produto.url || produto.superficie))
         ),
-        React.createElement("button", { type: "button", title: "Editar print", onClick: () => setEditing(true), style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, I3.edit({ size: 15, color: "var(--gray-600)" }))
+        // alternador Site/Print — só no Com Solutudo quando há link
+        isCom && link && React.createElement("div", { style: { display: "flex", gap: 2, background: "var(--gray-100)", borderRadius: 999, padding: 2, flex: "0 0 auto" } },
+          [["live", "Site"], ["print", "Print"]].map(([v, lbl]) => React.createElement("button", { key: v, type: "button", onClick: () => setComView(v), style: { border: "none", borderRadius: 999, padding: "5px 11px", fontSize: 11.5, fontWeight: 800, letterSpacing: "-0.01em", cursor: "pointer", background: comView === v ? "var(--white)" : "transparent", color: comView === v ? "var(--ink)" : "var(--gray-500)", boxShadow: comView === v ? "var(--shadow-sm)" : "none" } }, lbl))
+        ),
+        showLive && React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer", title: "Abrir em nova aba", style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto", textDecoration: "none" } }, I3.externalLink ? I3.externalLink({ size: 14, color: "var(--gray-600)" }) : I3.globe({ size: 14, color: "var(--gray-600)" })),
+        React.createElement("button", { type: "button", title: "Editar link / print", onClick: () => setEditing(true), style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, I3.edit({ size: 15, color: "var(--gray-600)" }))
       ),
-      // imagem (container acompanha a altura) ou placeholder
-      src
+      // site ao vivo (iframe) · imagem · ou placeholder
+      showLive
+        ? React.createElement("div", { style: { position: "relative", background: "linear-gradient(180deg,#FBF6FF,#fff)" } },
+            React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 2, pointerEvents: "none" } }, badge),
+            frameState !== "blocked" && React.createElement("iframe", { src: link, title: produto.nome, onLoad: () => setFrameState("ok"), onError: () => setFrameState("blocked"), loading: "lazy", referrerPolicy: "no-referrer", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { display: "block", width: "100%", height: 560, border: "none", background: "#fff" } }),
+            frameState === "loading" && React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-500)", fontSize: 13, fontWeight: 600, pointerEvents: "none" } }, "Carregando o site…"),
+            frameState === "blocked" && React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, minHeight: 360, padding: 24, textAlign: "center", color: "var(--gray-600)" } },
+              src
+                ? React.createElement("img", { src, alt: produto.nome, onClick: () => setLightbox(true), title: "Clique para ampliar", style: { maxWidth: "100%", maxHeight: 320, objectFit: "contain", borderRadius: 10, cursor: "zoom-in" } })
+                : I3.globe({ size: 30, color: "var(--gray-400)" }),
+              React.createElement("div", { style: { fontSize: 12.5, fontWeight: 600, lineHeight: 1.4, maxWidth: 360 } }, src ? "O site não permitiu ser incorporado — exibindo o print." : "O site não permitiu ser incorporado. Adicione um print como fallback ou abra em nova aba."),
+              React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer", style: { fontSize: 12.5, fontWeight: 800, color: "var(--brand-purple)", textDecoration: "none" } }, "Abrir o site em nova aba →")
+            )
+          )
+        : src
         ? React.createElement("div", { style: { position: "relative", background: isCom ? "linear-gradient(180deg,#FBF6FF,#fff)" : "var(--gray-100)" } },
             React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 2, pointerEvents: "none" } }, badge),
             React.createElement("img", { src, alt: produto.nome, onClick: () => setLightbox(true), title: "Clique para ampliar", style: { display: "block", width: "100%", height: "auto", cursor: "zoom-in" } })
           )
         : React.createElement("div", { onClick: () => setEditing(true), style: { position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, height: 360, cursor: "pointer", background: isCom ? "linear-gradient(180deg,#FBF6FF,#fff)" : "var(--gray-100)", color: "var(--gray-500)", textAlign: "center", padding: 20 } },
             React.createElement("div", { style: { position: "absolute", top: 10, left: 12 } }, badge),
-            I3.camera({ size: 30, color: "var(--gray-400)" }),
-            React.createElement("div", { style: { fontSize: 13.5, fontWeight: 700, color: "var(--ink)" } }, "Adicionar print da página"),
-            React.createElement("div", { style: { fontSize: 12, fontWeight: 500 } }, "Arraste a imagem ou clique para escolher")
+            isCom ? I3.globe({ size: 30, color: "var(--gray-400)" }) : I3.camera({ size: 30, color: "var(--gray-400)" }),
+            React.createElement("div", { style: { fontSize: 13.5, fontWeight: 700, color: "var(--ink)" } }, isCom ? "Adicionar link do site ou print" : "Adicionar print da página"),
+            React.createElement("div", { style: { fontSize: 12, fontWeight: 500 } }, isCom ? "Clique em editar para colar o link ou arraste um print" : "Arraste a imagem ou clique para escolher")
           ),
       // caption
       React.createElement("div", { style: { padding: "11px 15px", display: "flex", alignItems: "center", gap: 9, color: "var(--gray-600)", borderTop: "1px solid var(--gray-100)" } },
-        I3.paperclip({ size: 14, color: "var(--gray-400)" }),
-        React.createElement("span", { style: { fontSize: 12, fontWeight: 500, lineHeight: 1.3 } }, isCom ? "Print da página — Com Solutudo" : "Print da página — Sem Solutudo")
+        showLive ? I3.globe({ size: 14, color: "var(--gray-400)" }) : I3.paperclip({ size: 14, color: "var(--gray-400)" }),
+        React.createElement("span", { style: { fontSize: 12, fontWeight: 500, lineHeight: 1.3 } }, showLive ? "Site ao vivo — Com Solutudo" : (isCom ? "Print da página — Com Solutudo" : "Print da página — Sem Solutudo"))
       )
     ),
-    editing && React.createElement(PrintEditor, { titulo: `${produto.nome} · ${isCom ? "Com Solutudo" : "Sem Solutudo"}`, src, onSave: saveImg, onRemove: () => saveImg(null), onClose: () => setEditing(false) }),
+    editing && React.createElement(PrintEditor, { titulo: `${produto.nome} · ${isCom ? "Com Solutudo" : "Sem Solutudo"}`, src, link, showLink: isCom, onSave: saveImg, onRemove: () => saveImg(null), onSaveLink: saveLink, onClose: () => setEditing(false) }),
     // lightbox — máx 90% da largura, zoom em pílula, fundo desfocado (portal p/ cobrir tudo)
     lightbox && src && ReactDOM.createPortal(React.createElement("div", { onClick: () => setLightbox(false), style: { position: "fixed", inset: 0, zIndex: 1000, background: "rgba(21,21,21,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", overflow: "auto", cursor: "zoom-out", padding: "64px 20px" } },
       React.createElement("button", { onClick: (e) => { e.stopPropagation(); setLightbox(false); }, title: "Fechar (Esc)", style: { position: "fixed", top: 16, right: 20, zIndex: 3, width: 40, height: 40, borderRadius: 999, border: "none", cursor: "pointer", background: "var(--glass-white)", backdropFilter: "var(--blur-glass)", boxShadow: "var(--shadow-md)", color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center" } }, I3.x({ size: 18, color: "var(--ink)" })),

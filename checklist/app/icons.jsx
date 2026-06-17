@@ -43,6 +43,7 @@ const Icons = {
   search: (p) => React.createElement(Ic, p, React.createElement("circle", { cx: 11, cy: 11, r: 7 }), React.createElement("path", { d: "m21 21-4.3-4.3" })),
   globe: (p) => React.createElement(Ic, p, React.createElement("circle", { cx: 12, cy: 12, r: 9 }), React.createElement("path", { d: "M3 12h18" }), React.createElement("path", { d: "M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z" })),
   share: (p) => React.createElement(Ic, p, React.createElement("circle", { cx: 18, cy: 5, r: 3 }), React.createElement("circle", { cx: 6, cy: 12, r: 3 }), React.createElement("circle", { cx: 18, cy: 19, r: 3 }), React.createElement("path", { d: "m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" })),
+  externalLink: (p) => React.createElement(Ic, p, React.createElement("path", { d: "M15 3h6v6" }), React.createElement("path", { d: "M10 14 21 3" }), React.createElement("path", { d: "M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" })),
 };
 
 window.SOL_ICONS = Icons;
