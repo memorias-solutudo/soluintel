@@ -110,11 +110,19 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
   const [frameState, setFrameState] = React.useState("loading"); // loading | ok | blocked
   const [editing, setEditing] = React.useState(false);
   const [lightbox, setLightbox] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
   const [zoom, setZoom] = React.useState(1);
   const src = imgs[mode];
   const showLive = isCom && !!link && comView === "live";
 
-  React.useEffect(() => { if (onModal) onModal(editing); }, [editing]);
+  React.useEffect(() => { if (onModal) onModal(editing || expanded); }, [editing, expanded]);
+
+  React.useEffect(() => {
+    if (!expanded) return;
+    const onKey = (e) => { if (e.key === "Escape") setExpanded(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [expanded]);
 
   // Carga do iframe: se não carregar em ~7s, assume bloqueio e cai no print.
   React.useEffect(() => {
@@ -168,8 +176,12 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
       // site ao vivo (iframe) · imagem · ou placeholder
       showLive
         ? React.createElement("div", { style: { position: "relative", background: "linear-gradient(180deg,#FBF6FF,#fff)" } },
-            React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 2, pointerEvents: "none" } }, badge),
-            frameState !== "blocked" && React.createElement("iframe", { src: link, title: produto.nome, onLoad: () => setFrameState("ok"), onError: () => setFrameState("blocked"), loading: "lazy", referrerPolicy: "no-referrer", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { display: "block", width: "100%", height: 560, border: "none", background: "#fff" } }),
+            React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 3, pointerEvents: "none" } }, badge),
+            // miniatura do site a 50% (iframe 200% reduzido por scale 0.5); não-interativa
+            frameState !== "blocked" && React.createElement("div", { style: { position: "relative", height: 560, overflow: "hidden" } },
+              React.createElement("iframe", { src: link, title: produto.nome, onLoad: () => setFrameState("ok"), onError: () => setFrameState("blocked"), loading: "lazy", referrerPolicy: "no-referrer", scrolling: "no", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { width: "200%", height: 1120, border: "none", background: "#fff", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" } }),
+              frameState === "ok" && React.createElement("div", { onClick: () => setExpanded(true), title: "Clique para ver o site em tela cheia", style: { position: "absolute", inset: 0, zIndex: 2, cursor: "zoom-in" } })
+            ),
             frameState === "loading" && React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-500)", fontSize: 13, fontWeight: 600, pointerEvents: "none" } }, "Carregando o site…"),
             frameState === "blocked" && React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, minHeight: 360, padding: 24, textAlign: "center", color: "var(--gray-600)" } },
               src
@@ -197,6 +209,21 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
       )
     ),
     editing && React.createElement(PrintEditor, { titulo: `${produto.nome} · ${isCom ? "Com Solutudo" : "Sem Solutudo"}`, src, link, showLink: isCom, onSave: saveImg, onRemove: () => saveImg(null), onSaveLink: saveLink, onClose: () => setEditing(false) }),
+    // modal do site ao vivo — 90% da tela, iframe a 100% e interativo (portal)
+    expanded && link && ReactDOM.createPortal(React.createElement("div", { onClick: (e) => { if (e.target === e.currentTarget) setExpanded(false); }, style: { position: "fixed", inset: 0, zIndex: 1100, background: "rgba(21,21,21,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "3vh 0" } },
+      React.createElement("div", { style: { width: "90vw", height: "90vh", background: "#fff", borderRadius: 16, boxShadow: "var(--shadow-lg, 0 24px 60px rgba(20,18,30,0.4))", overflow: "hidden", display: "flex", flexDirection: "column" } },
+        React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderBottom: "1px solid var(--gray-100)", flex: "0 0 auto" } },
+          React.createElement("div", { style: { display: "flex", gap: 6, flex: "0 0 auto" } }, ["#FF5F57", "#FEBC2E", "#28C840"].map((c) => React.createElement("span", { key: c, style: { width: 11, height: 11, borderRadius: "50%", background: c } }))),
+          React.createElement("div", { style: { flex: 1, display: "flex", alignItems: "center", gap: 7, background: "var(--gray-100)", borderRadius: 999, padding: "6px 12px", minWidth: 0 } },
+            React.createElement("span", { style: { color: "var(--brand-purple)", display: "flex", flex: "0 0 auto" } }, I3.globe({ size: 13, color: "var(--brand-purple)" })),
+            React.createElement("span", { style: { fontSize: 12.5, fontWeight: 600, color: "var(--gray-600)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, link.replace(/^https?:\/\//, ""))
+          ),
+          React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer", title: "Abrir em nova aba", style: { border: "none", background: "var(--gray-100)", width: 32, height: 32, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto", textDecoration: "none" } }, (I3.externalLink || I3.globe)({ size: 15, color: "var(--gray-600)" })),
+          React.createElement("button", { type: "button", title: "Fechar (Esc)", onClick: () => setExpanded(false), style: { border: "none", background: "var(--gray-100)", width: 32, height: 32, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, I3.x({ size: 17, color: "var(--gray-600)" }))
+        ),
+        React.createElement("iframe", { src: link, title: produto.nome, referrerPolicy: "no-referrer", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { flex: 1, width: "100%", border: "none", background: "#fff" } })
+      )
+    ), document.body),
     // lightbox — máx 90% da largura, zoom em pílula, fundo desfocado (portal p/ cobrir tudo)
     lightbox && src && ReactDOM.createPortal(React.createElement("div", { onClick: () => setLightbox(false), style: { position: "fixed", inset: 0, zIndex: 1000, background: "rgba(21,21,21,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", overflow: "auto", cursor: "zoom-out", padding: "64px 20px" } },
       React.createElement("button", { onClick: (e) => { e.stopPropagation(); setLightbox(false); }, title: "Fechar (Esc)", style: { position: "fixed", top: 16, right: 20, zIndex: 3, width: 40, height: 40, borderRadius: 999, border: "none", cursor: "pointer", background: "var(--glass-white)", backdropFilter: "var(--blur-glass)", boxShadow: "var(--shadow-md)", color: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center" } }, I3.x({ size: 18, color: "var(--ink)" })),
