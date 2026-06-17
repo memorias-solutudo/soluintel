@@ -112,6 +112,7 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
   const [lightbox, setLightbox] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [zoom, setZoom] = React.useState(1);
+  const [previewH] = React.useState(() => Math.max(440, Math.min(760, (typeof window !== "undefined" ? window.innerHeight : 820) - 180)));
   const src = imgs[mode];
   const showLive = isCom && !!link && comView === "live";
 
@@ -170,6 +171,7 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
         isCom && link && React.createElement("div", { style: { display: "flex", gap: 2, background: "var(--gray-100)", borderRadius: 999, padding: 2, flex: "0 0 auto" } },
           [["live", "Site"], ["print", "Print"]].map(([v, lbl]) => React.createElement("button", { key: v, type: "button", onClick: () => setComView(v), style: { border: "none", borderRadius: 999, padding: "5px 11px", fontSize: 11.5, fontWeight: 800, letterSpacing: "-0.01em", cursor: "pointer", background: comView === v ? "var(--white)" : "transparent", color: comView === v ? "var(--ink)" : "var(--gray-500)", boxShadow: comView === v ? "var(--shadow-sm)" : "none" } }, lbl))
         ),
+        showLive && React.createElement("button", { type: "button", title: "Ver em tela cheia", onClick: () => setExpanded(true), style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, (I3.maximize || I3.globe)({ size: 14, color: "var(--gray-600)" })),
         showLive && React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer", title: "Abrir em nova aba", style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto", textDecoration: "none" } }, I3.externalLink ? I3.externalLink({ size: 14, color: "var(--gray-600)" }) : I3.globe({ size: 14, color: "var(--gray-600)" })),
         React.createElement("button", { type: "button", title: "Editar link / print", onClick: () => setEditing(true), style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-600)", flex: "0 0 auto" } }, I3.edit({ size: 15, color: "var(--gray-600)" }))
       ),
@@ -177,10 +179,9 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
       showLive
         ? React.createElement("div", { style: { position: "relative", background: "linear-gradient(180deg,#FBF6FF,#fff)" } },
             React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 3, pointerEvents: "none" } }, badge),
-            // miniatura do site a 50% (iframe 200% reduzido por scale 0.5); não-interativa
-            frameState !== "blocked" && React.createElement("div", { style: { position: "relative", height: 560, overflow: "hidden" } },
-              React.createElement("iframe", { src: link, title: produto.nome, onLoad: () => setFrameState("ok"), onError: () => setFrameState("blocked"), loading: "lazy", referrerPolicy: "no-referrer", scrolling: "no", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { width: "200%", height: 1120, border: "none", background: "#fff", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" } }),
-              frameState === "ok" && React.createElement("div", { onClick: () => setExpanded(true), title: "Clique para ver o site em tela cheia", style: { position: "absolute", inset: 0, zIndex: 2, cursor: "zoom-in" } })
+            // miniatura do site a 50% (iframe 200% reduzido por scale 0.5); rolagem interna isolada
+            frameState !== "blocked" && React.createElement("div", { style: { position: "relative", height: previewH, overflow: "hidden", overscrollBehavior: "contain" } },
+              React.createElement("iframe", { src: link, title: produto.nome, onLoad: () => setFrameState("ok"), onError: () => setFrameState("blocked"), loading: "lazy", referrerPolicy: "no-referrer", scrolling: "auto", sandbox: "allow-scripts allow-same-origin allow-popups allow-forms", style: { width: "200%", height: previewH * 2, border: "none", background: "#fff", transform: "scale(0.5)", transformOrigin: "top left" } })
             ),
             frameState === "loading" && React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-500)", fontSize: 13, fontWeight: 600, pointerEvents: "none" } }, "Carregando o site…"),
             frameState === "blocked" && React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, minHeight: 360, padding: 24, textAlign: "center", color: "var(--gray-600)" } },
@@ -192,9 +193,11 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
             )
           )
         : src
-        ? React.createElement("div", { style: { position: "relative", background: isCom ? "linear-gradient(180deg,#FBF6FF,#fff)" : "var(--gray-100)" } },
+        ? React.createElement("div", { style: { position: "relative", height: previewH, background: isCom ? "linear-gradient(180deg,#FBF6FF,#fff)" : "var(--gray-100)" } },
             React.createElement("div", { style: { position: "absolute", top: 10, left: 12, zIndex: 2, pointerEvents: "none" } }, badge),
-            React.createElement("img", { src, alt: produto.nome, onClick: () => setLightbox(true), title: "Clique para ampliar", style: { display: "block", width: "100%", height: "auto", cursor: "zoom-in" } })
+            React.createElement("div", { style: { height: "100%", overflowY: "auto", overscrollBehavior: "contain" } },
+              React.createElement("img", { src, alt: produto.nome, onClick: () => setLightbox(true), title: "Clique para ampliar", style: { display: "block", width: "100%", height: "auto", cursor: "zoom-in" } })
+            )
           )
         : React.createElement("div", { onClick: () => setEditing(true), style: { position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, height: 360, cursor: "pointer", background: isCom ? "linear-gradient(180deg,#FBF6FF,#fff)" : "var(--gray-100)", color: "var(--gray-500)", textAlign: "center", padding: 20 } },
             React.createElement("div", { style: { position: "absolute", top: 10, left: 12 } }, badge),
