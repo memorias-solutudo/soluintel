@@ -6,26 +6,30 @@ const SS = window.SOL_SCORE;
 const Ik = window.SOL_ICONS;
 
 const MODE_KEY = "sol_mode_v1";
-const ANIM_KEY = "sol_check_anim";
-const CHECK_ANIMS = [
-  ["1", "Pop"], ["2", "Bounce"], ["3", "Giro"], ["4", "Anel"], ["5", "Brilho"],
-  ["6", "Flip"], ["7", "Zoom"], ["8", "Squash"], ["9", "Gota"], ["10", "Spin"],
+const CARD_ANIM_KEY = "sol_card_anim";
+const ACTIVE_KEY = "sol_active_style";
+const CARD_ANIMS = [
+  ["1", "Pop"], ["2", "Toque"], ["3", "Pulso"], ["4", "Glow"], ["5", "Flash"],
+  ["6", "Lift"], ["7", "Anel"], ["8", "Bounce"], ["9", "Tilt"], ["10", "Sombra"],
+];
+const ACTIVE_STYLES = [
+  ["padrao", "Padrão"], ["anel", "Anel"], ["barra", "Barra"], ["tint", "Fundo"],
+  ["elevado", "Elevado"], ["borda", "Borda"], ["selo", "Selo"],
 ];
 
-/* Seletor de animação do check (Tweaks) — fixo à direita, com preview e persistência. */
+/* Seletor de Tweaks — fixo à direita: animação do clique + estado ativo, com preview vivo. */
 function TweaksDock() {
-  const [v, setV] = React.useState(() => { try { return localStorage.getItem(ANIM_KEY) || "1"; } catch (e) { return "1"; } });
+  const [anim, setAnim] = React.useState(() => { try { return localStorage.getItem(CARD_ANIM_KEY) || "1"; } catch (e) { return "1"; } });
+  const [active, setActive] = React.useState(() => { try { return localStorage.getItem(ACTIVE_KEY) || "anel"; } catch (e) { return "anel"; } });
   const [tick, setTick] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  React.useEffect(() => {
-    document.body.dataset.checkAnim = v;
-    try { localStorage.setItem(ANIM_KEY, v); } catch (e) {}
-  }, [v]);
-  const pick = (id) => { setV(id); setTick((t) => t + 1); };
+  React.useEffect(() => { document.body.dataset.cardAnim = anim; try { localStorage.setItem(CARD_ANIM_KEY, anim); } catch (e) {} }, [anim]);
+  React.useEffect(() => { document.body.dataset.activeStyle = active; try { localStorage.setItem(ACTIVE_KEY, active); } catch (e) {} }, [active]);
+  const replay = () => setTick((t) => t + 1);
 
   if (!open) {
     return React.createElement("button", {
-      type: "button", onClick: () => setOpen(true), title: "Animação do check (Tweaks)",
+      type: "button", onClick: () => setOpen(true), title: "Tweaks do card",
       style: { position: "fixed", right: 14, top: "50%", transform: "translateY(-50%)", zIndex: 90, border: "none", cursor: "pointer", background: "var(--white)", boxShadow: "var(--shadow-md)", borderRadius: 999, padding: "12px 9px", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, color: "var(--ink)" },
     },
       Ik.autenticidade({ size: 17, color: "var(--brand-purple)", fill: "var(--brand-purple)" }),
@@ -33,28 +37,37 @@ function TweaksDock() {
     );
   }
 
-  const previewCircle = React.createElement("span", {
-    key: v + "-" + tick, className: "sol-check sol-check-anim",
-    style: { width: 34, height: 34, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--success)" },
-  }, Ik.check({ size: 19, color: "#fff", sw: 2.6 }));
+  // mini-card de preview: reflete o estado ativo e replay da animação a cada escolha
+  const previewCard = React.createElement("div", {
+    key: tick, className: "sol-itemcard is-done sol-card-anim",
+    style: { position: "relative", borderRadius: 12, padding: "10px 11px", display: "flex", flexDirection: "column", gap: 7, "--acc": "var(--brand-purple)" },
+  },
+    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 7 } },
+      React.createElement("span", { style: { width: 18, height: 18, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--success)" } }, Ik.check({ size: 11, color: "#fff", sw: 2.8 })),
+      React.createElement("span", { style: { fontSize: 11.5, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.01em" } }, "Item marcado")
+    ),
+    React.createElement("div", { style: { fontSize: 10.5, fontWeight: 500, color: "var(--gray-500)" } }, "Clique p/ pré-visualizar")
+  );
 
-  return React.createElement("div", { style: { position: "fixed", right: 14, top: "50%", transform: "translateY(-50%)", zIndex: 90, width: 168, background: "var(--white)", borderRadius: 18, boxShadow: "var(--shadow-lg, 0 18px 50px rgba(21,21,21,0.18))", padding: 12, display: "flex", flexDirection: "column", gap: 10 } },
+  const sectionTitle = (t) => React.createElement("div", { style: { fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--gray-500)", marginTop: 2 } }, t);
+  const optBtn = (sel, id, nome, onClick, showNum) => React.createElement("button", {
+    key: id, type: "button", onClick, title: nome,
+    style: { border: "none", cursor: "pointer", borderRadius: 9, padding: "7px 7px", fontSize: 11.5, fontWeight: 700, letterSpacing: "-0.01em", textAlign: "left", display: "flex", alignItems: "center", gap: 5, background: sel ? "var(--brand-purple)" : "var(--gray-100)", color: sel ? "#fff" : "var(--gray-600)" },
+  }, showNum && React.createElement("span", { style: { fontSize: 10, fontWeight: 800, opacity: 0.7, minWidth: 12 } }, id), nome);
+
+  return React.createElement("div", { style: { position: "fixed", right: 14, top: "50%", transform: "translateY(-50%)", zIndex: 90, width: 184, maxHeight: "86vh", overflowY: "auto", background: "var(--white)", borderRadius: 18, boxShadow: "var(--shadow-lg, 0 18px 50px rgba(21,21,21,0.18))", padding: 12, display: "flex", flexDirection: "column", gap: 9 } },
     React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-      React.createElement("span", { style: { fontSize: 12.5, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)" } }, "Animação do check"),
+      React.createElement("span", { style: { fontSize: 12.5, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)" } }, "Tweaks do card"),
       React.createElement("button", { type: "button", onClick: () => setOpen(false), title: "Fechar", style: { marginLeft: "auto", width: 24, height: 24, borderRadius: 8, border: "none", background: "var(--gray-100)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-500)" } }, Ik.x({ size: 14, color: "var(--gray-500)" }))
     ),
-    React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 9, padding: "10px 0", background: "var(--gray-100)", borderRadius: 12 } },
-      previewCircle,
-      React.createElement("span", { style: { fontSize: 11.5, fontWeight: 600, color: "var(--gray-500)" } }, "preview")
-    ),
+    React.createElement("div", { style: { background: "var(--gray-100)", borderRadius: 12, padding: 10 } }, previewCard),
+    sectionTitle("Animação do clique"),
     React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 } },
-      CHECK_ANIMS.map(([id, nome]) => React.createElement("button", {
-        key: id, type: "button", onClick: () => pick(id), title: nome,
-        style: { border: "none", cursor: "pointer", borderRadius: 9, padding: "7px 6px", fontSize: 11.5, fontWeight: 700, letterSpacing: "-0.01em", textAlign: "left", display: "flex", alignItems: "center", gap: 5, background: v === id ? "var(--brand-purple)" : "var(--gray-100)", color: v === id ? "#fff" : "var(--gray-600)" },
-      },
-        React.createElement("span", { style: { fontSize: 10, fontWeight: 800, opacity: 0.7, minWidth: 12 } }, id),
-        nome
-      ))
+      CARD_ANIMS.map(([id, nome]) => optBtn(anim === id, id, nome, () => { setAnim(id); replay(); }, true))
+    ),
+    sectionTitle("Card marcado (ativo)"),
+    React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 } },
+      ACTIVE_STYLES.map(([id, nome]) => optBtn(active === id, id, nome, () => { setActive(id); replay(); }, false))
     )
   );
 }
