@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Catálogo de Checklist — Solutudo</title>
+
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/gradients.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/styles.css">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans, "DM Sans", sans-serif);
+    background: var(--surface-app, #F2F2F2);
+    color: var(--ink, #151515);
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--tint-lavender-200, #E9DBFB); }
+  input, textarea, button { font-family: inherit; }
+  textarea { resize: none; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gray-300); background-clip: content-box; }
+</style>
+</head>
+<body>
+<div id="admin-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/_ds_bundle.js"></script>
+
+<script type="text/babel" src="app/data.jsx"></script>
+<script type="text/babel" src="app/icons.jsx"></script>
+<script type="text/babel" src="app/admin.jsx"></script>
+</body>
+</html>

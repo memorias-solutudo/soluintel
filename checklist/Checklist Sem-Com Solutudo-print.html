@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrega PRO — Checklist Sem / Com Solutudo (PDF)</title>
+
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/gradients.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/styles.css">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans, "DM Sans", sans-serif);
+    background: var(--surface-app);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { min-height: 100vh; }
+  ::selection { background: var(--tint-lavender-200); }
+  image-slot { --is-bg: var(--gray-150); }
+
+  /* ============ PRINT ============ */
+  @page { size: A4 landscape; margin: 1cm; }
+
+  @media print {
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      /* freeze animations at end state, kill transitions */
+      animation-delay: -99s !important;
+      animation-duration: .001s !important;
+      animation-iteration-count: 1 !important;
+      animation-fill-mode: both !important;
+      animation-play-state: running !important;
+      transition-duration: 0s !important;
+    }
+
+    html, body { background: #fff !important; }
+
+    /* wrapper → flow as a column so we can reorder the floating chrome */
+    #app-root > div {
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+
+    /* TopBar (logo) — static banner, page 1 */
+    #app-root > div > div:first-child {
+      position: static !important;
+      order: 1 !important;
+      padding: 4px 8px 10px !important;
+    }
+
+    /* hide the floating product rail */
+    #app-root > div > nav[aria-label="Produtos do cliente"] { display: none !important; }
+
+    /* FooterDock (scores) — static summary band on page 1 */
+    #app-root > div > div:last-child {
+      position: static !important;
+      order: 2 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      padding: 4px 0 0 !important;
+      gap: 14px !important;
+      break-after: page !important;
+      align-items: center !important;
+    }
+    /* center scores pill: undo absolute centering so it sits in the row */
+    #app-root > div > div:last-child > div:nth-child(2) {
+      position: static !important;
+      transform: none !important;
+    }
+
+    /* main column → one product per page */
+    #app-root > div > main {
+      order: 3 !important;
+      display: block !important;
+      padding: 0 !important;
+      gap: 0 !important;
+    }
+    #app-root > div > main > section {
+      break-before: page !important;
+      break-inside: auto !important;
+      padding: 6px 4px 0 !important;
+      scroll-margin-top: 0 !important;
+    }
+    #app-root > div > main > section:first-of-type { break-before: auto !important; }
+
+    /* checklist cards shouldn't split across pages */
+    #app-root > div > main > section > div:nth-child(2) > div:first-child > * {
+      break-inside: avoid !important;
+    }
+
+    /* evidence panel — un-stick and cap the preview height for print */
+    #app-root > div > main > section aside {
+      position: static !important;
+      top: auto !important;
+    }
+    #app-root > div > main > section aside > div:first-child > div:nth-child(2) {
+      height: 560px !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="_ds/solutudo-design-system-99d98ceb-bdc7-493d-8287-095149abea2b/_ds_bundle.js"></script>
+<script src="image-slot.js"></script>
+
+<script type="text/babel" src="app/data.jsx"></script>
+<script type="text/babel" src="app/scoring.jsx"></script>
+<script type="text/babel" src="app/icons.jsx"></script>
+<script type="text/babel" src="app/header.jsx"></script>
+<script type="text/babel" src="app/cards.jsx"></script>
+<script type="text/babel" src="app/section.jsx"></script>
+<script type="text/babel" src="app/main.jsx"></script>
+
+<script type="text/babel">
+  // Auto-print once the React app has mounted and fonts are ready.
+  (function () {
+    function ready() {
+      return document.querySelector("#app-root > div > main > section");
+    }
+    function go() {
+      if (!ready()) { setTimeout(go, 120); return; }
+      const fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      fonts.then(function () {
+        setTimeout(function () { window.print(); }, 800);
+      });
+    }
+    go();
+  })();
+</script>
+</body>
+</html>
