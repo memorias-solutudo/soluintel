@@ -55,7 +55,7 @@ function CommentThread({ list, accent, onChange, onClose }) {
   return React.createElement("div", {
     onClick: stop, onMouseDown: stop,
     style: {
-      position: "absolute", top: "calc(100% + 8px)", left: 0, width: 280, zIndex: 30,
+      position: "absolute", left: "calc(100% + 10px)", bottom: 0, width: 280, zIndex: 30,
       background: "var(--white)", borderRadius: 16, boxShadow: "var(--shadow-lg, 0 18px 50px rgba(21,21,21,0.18)), var(--ring-hairline)",
       display: "flex", flexDirection: "column", overflow: "hidden", cursor: "default",
       animation: "ccPop var(--dur-base, .18s) var(--ease-out, ease) both",
@@ -182,9 +182,8 @@ function ItemCard({ item, mode, onToggle }) {
       ),
       // promessa
       React.createElement("div", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto),
-      // footer: status word + comment + evidence
+      // footer: comment + evidence
       React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { fontSize: 11, fontWeight: 700, color: done ? "var(--success)" : "var(--gray-400)", letterSpacing: "-0.01em" } }, mode === "com" ? (done ? "Entregue" : "A entregar") : (done ? "Já tinha" : "Não tinha")),
         React.createElement("div", { style: { marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 } },
           // botão de comentário — sutil, surge no hover (ou se há comentários)
           React.createElement("button", {
