@@ -223,7 +223,7 @@ window.SOL_CARDS = { ItemCard, ReviewCard };
 function StarRating({ value, onChange, color }) {
   const ref = React.useRef(null);
   const dragRef = React.useRef(false);
-  const N = 5, size = 30, gap = 2;
+  const N = 5, size = 30, gap = 0;
   const W = N * size + (N - 1) * gap;
   const setFromX = (clientX) => {
     const el = ref.current; if (!el) return;
