@@ -112,7 +112,7 @@ function EvidencePanel({ produto, mode, ag, onModal }) {
   const [lightbox, setLightbox] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [zoom, setZoom] = React.useState(1);
-  const [previewH] = React.useState(() => Math.max(440, Math.min(760, (typeof window !== "undefined" ? window.innerHeight : 820) - 180)));
+  const [previewH] = React.useState(() => Math.max(360, Math.min(560, (typeof window !== "undefined" ? window.innerHeight : 820) - 240)));
   const src = imgs[mode];
   const showLive = isCom && !!link && comView === "live";
 
@@ -264,8 +264,8 @@ function ProductSection({ produto, idx, mode, onToggle, onSet, onModal, sectionR
         )
       )
     ),
-    React.createElement("div", { style: temPreview ? { display: "grid", gridTemplateColumns: "minmax(0,1fr) 600px", gap: 22, alignItems: "start" } : { display: "block" } },
-      React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(max(232px, (100% - 33px) / 4), 1fr))", gap: 11, alignContent: "start" } },
+    React.createElement("div", { style: temPreview ? { display: "grid", gridTemplateColumns: "minmax(0,1fr) 780px", gap: 22, alignItems: "start" } : { display: "block" } },
+      React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(max(220px, (100% - 22px) / 3), 1fr))", gap: 11, alignContent: "start" } },
         produto.itens.map((item) =>
           ehAv
             ? React.createElement(ReviewCard, { key: item.id, item, mode, onSet })
