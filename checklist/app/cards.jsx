@@ -102,7 +102,7 @@ function CommentRow({ c, accent, editing, editText, setEditText, commitEdit, onT
     // marcar como concluído
     React.createElement("button", {
       type: "button", onClick: onToggle, title: c.done ? "Reabrir" : "Marcar como concluído",
-      style: { width: 19, height: 19, marginTop: 1, flex: "0 0 auto", borderRadius: "50%", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", background: c.done ? "var(--success)" : "transparent", boxShadow: c.done ? "none" : "inset 0 0 0 1.6px var(--gray-200)", transition: "all var(--dur-fast) var(--ease-out)" },
+      style: { width: 19, height: 19, marginTop: 1, flex: "0 0 auto", borderRadius: "50%", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", background: c.done ? "var(--success)" : "transparent", boxShadow: c.done ? "none" : "inset 0 0 0 1.6px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" },
     }, c.done && I2.check({ size: 11, color: "#fff", sw: 2.8 })),
     React.createElement("div", { style: { flex: 1, minWidth: 0 } },
       editing
@@ -127,8 +127,8 @@ function CommentRow({ c, accent, editing, editText, setEditText, commitEdit, onT
   );
 }
 
-function ItemCard({ item, onToggle }) {
-  const done = item.com;
+function ItemCard({ item, mode, onToggle }) {
+  const done = mode === "com" ? item.com : item.sem;
   const pil = D.PILARES[item.pilar];
   const StageIcon = I2[item.etapa];
   const impactoLabel = { baixo: "Baixo", medio: "Médio", alto: "Alto" }[item.impacto];
@@ -158,7 +158,9 @@ function ItemCard({ item, onToggle }) {
     onClick: () => onToggle(item.id),
     onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
     role: "checkbox", "aria-checked": done,
-    title: done ? "Entregue — clique para desmarcar" : "A entregar — clique para marcar",
+    title: mode === "com"
+      ? (done ? "Entregue — clique para desmarcar" : "A entregar — clique para marcar")
+      : (done ? "Já existia antes — clique para desmarcar" : "Não existia antes — clique para marcar"),
     style: {
       position: "relative", zIndex: open ? 60 : "auto",
       background: "var(--white)", borderRadius: 14, padding: "12px 13px",
@@ -171,7 +173,7 @@ function ItemCard({ item, onToggle }) {
     React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 9, opacity: done ? 1 : 0.5, transition: "opacity var(--dur-base) var(--ease-out)" } },
       // top row: status + stage + impacto + critico + pillar
       React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "all var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
+        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
         React.createElement("span", { title: `Etapa: ${D.ETAPAS[item.etapa].rotulo}`, style: { width: 22, height: 22, borderRadius: 7, background: "var(--gray-100)", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" } }, StageIcon({ size: 13, color: "var(--gray-500)" })),
         React.createElement("span", { style: { fontSize: 10.5, fontWeight: 600, color: "var(--gray-400)" } }, impactoLabel),
         item.critico && React.createElement("span", { title: "Item crítico — aplica teto ao score", style: { color: "var(--brand-orange-deep)", display: "flex" } }, I2.alert({ size: 12, color: "var(--brand-orange-deep)" })),
@@ -182,7 +184,7 @@ function ItemCard({ item, onToggle }) {
       React.createElement("div", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto),
       // footer: status word + comment + evidence
       React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { fontSize: 11, fontWeight: 700, color: done ? "var(--success)" : "var(--gray-400)", letterSpacing: "-0.01em" } }, done ? "Entregue" : "A entregar"),
+        React.createElement("span", { style: { fontSize: 11, fontWeight: 700, color: done ? "var(--success)" : "var(--gray-400)", letterSpacing: "-0.01em" } }, mode === "com" ? (done ? "Entregue" : "A entregar") : (done ? "Já tinha" : "Não tinha")),
         React.createElement("div", { style: { marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 } },
           // botão de comentário — sutil, surge no hover (ou se há comentários)
           React.createElement("button", {
@@ -201,8 +203,8 @@ function ItemCard({ item, onToggle }) {
           )
         )
       ),
-      // o que falta (só quando não entregue)
-      !done && item.acao && React.createElement("div", { style: { display: "flex", gap: 7, alignItems: "flex-start", background: item.dono === "cliente" ? "var(--gray-100)" : "var(--tint-peach)", borderRadius: 10, padding: "7px 9px" } },
+      // o que falta (só no modo Com Solutudo, quando ainda não entregue)
+      mode === "com" && !done && item.acao && React.createElement("div", { style: { display: "flex", gap: 7, alignItems: "flex-start", background: item.dono === "cliente" ? "var(--gray-100)" : "var(--tint-peach)", borderRadius: 10, padding: "7px 9px" } },
         React.createElement("span", { style: { flex: "0 0 auto", marginTop: 1 } }, (item.dono === "cliente" ? I2.user : I2.building)({ size: 13, color: item.dono === "cliente" ? "var(--gray-600)" : "var(--brand-orange-deep)" })),
         React.createElement("div", { style: { lineHeight: 1.28 } },
           React.createElement("div", { style: { fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.03em", color: item.dono === "cliente" ? "var(--gray-500)" : "var(--brand-orange-deep)", marginBottom: 1 } }, item.dono === "cliente" ? "Falta — insumo do cliente" : "Falta — ação nossa"),
@@ -215,4 +217,69 @@ function ItemCard({ item, onToggle }) {
   );
 }
 
-window.SOL_CARDS = { ItemCard };
+window.SOL_CARDS = { ItemCard, ReviewCard };
+
+/* ---------- Nota por estrelas — arrastável, fracionária ---------- */
+function StarRating({ value, onChange, color }) {
+  const ref = React.useRef(null);
+  const dragRef = React.useRef(false);
+  const N = 5, size = 30, gap = 2;
+  const W = N * size + (N - 1) * gap;
+  const setFromX = (clientX) => {
+    const el = ref.current; if (!el) return;
+    const rect = el.getBoundingClientRect();
+    let v = ((clientX - rect.left) / rect.width) * N;
+    v = Math.max(0, Math.min(N, Math.round(v * 10) / 10));
+    onChange(v);
+  };
+  const oneStar = (i) => {
+    const fill = Math.max(0, Math.min(1, value - i));
+    return React.createElement("span", { key: i, style: { position: "relative", width: size, height: size, flex: "0 0 auto", display: "block" } },
+      React.createElement("span", { style: { position: "absolute", inset: 0, display: "flex" } }, I2.autenticidade({ size, color: "var(--gray-150)", fill: "var(--gray-150)" })),
+      fill > 0 && React.createElement("span", { style: { position: "absolute", top: 0, left: 0, height: "100%", width: `${fill * 100}%`, overflow: "hidden", pointerEvents: "none" } },
+        React.createElement("span", { style: { display: "flex", width: size, height: size } }, I2.autenticidade({ size, color, fill: color }))
+      )
+    );
+  };
+  return React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 13 } },
+    React.createElement("div", {
+      ref,
+      onClick: (e) => { e.stopPropagation(); },
+      onPointerDown: (e) => { e.stopPropagation(); dragRef.current = true; e.currentTarget.setPointerCapture(e.pointerId); setFromX(e.clientX); },
+      onPointerMove: (e) => { if (dragRef.current) setFromX(e.clientX); },
+      onPointerUp: () => { dragRef.current = false; },
+      onPointerCancel: () => { dragRef.current = false; },
+      title: "Arraste para definir a nota",
+      style: { display: "flex", gap, width: W, height: size, cursor: "pointer", touchAction: "none", flex: "0 0 auto" },
+    },
+      Array.from({ length: N }, (_, i) => oneStar(i))
+    ),
+    React.createElement("span", { style: { fontSize: 19, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.04em", minWidth: 36 } }, (value || 0).toFixed(1))
+  );
+}
+
+/* ---------- Card de avaliação — range (segmentado) ou nota (estrelas) ---------- */
+function ReviewCard({ item, mode, onSet }) {
+  const isGoogle = item.fonte === "Google";
+  const fonteCor = isGoogle ? "var(--brand-orange-deep)" : "var(--brand-purple)";
+  const fonteBg = isGoogle ? "var(--tint-peach)" : "var(--tint-lavender)";
+  return React.createElement("div", { style: { background: "var(--white)", borderRadius: 14, padding: "14px 15px", boxShadow: "var(--shadow-card)", display: "flex", flexDirection: "column", gap: 13 } },
+    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
+      React.createElement("span", { style: { display: "inline-flex", alignItems: "center", padding: "3px 9px", borderRadius: 999, background: fonteBg, color: fonteCor, fontSize: 11, fontWeight: 800, letterSpacing: "-0.01em", flex: "0 0 auto" } }, item.fonte),
+      React.createElement("span", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto)
+    ),
+    item.tipo === "range"
+      ? React.createElement("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } },
+          item.opcoes.map((opt) => {
+            const sel = item.valor[mode] === opt;
+            return React.createElement("button", {
+              key: opt, type: "button", onClick: () => onSet(item.id, { valor: { ...item.valor, [mode]: opt } }),
+              style: { border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, letterSpacing: "-0.01em", background: sel ? "var(--ink)" : "var(--gray-100)", color: sel ? "#fff" : "var(--gray-600)", transition: "color var(--dur-fast) var(--ease-out)" },
+            }, opt);
+          })
+        )
+      : React.createElement(StarRating, { value: item.nota[mode] || 0, color: "var(--brand-amber)", onChange: (v) => onSet(item.id, { nota: { ...item.nota, [mode]: v } }) })
+  );
+}
+
+window.SOL_CARDS = { ItemCard, ReviewCard, StarRating };

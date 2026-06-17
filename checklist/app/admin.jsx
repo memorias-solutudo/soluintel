@@ -39,7 +39,7 @@ const uid = (p) => `${p}_${Date.now().toString(36)}_${(_k++).toString(36)}`;
 
 /* ---- seed a partir dos dados de exemplo (só campos de catálogo) ---- */
 function seedFromData() {
-  const PROD_ICON = { destaque: "sparkles", google: "search", solusite: "globe", social: "share" };
+  const PROD_ICON = { destaque: "sparkles", google: "search", solusite: "globe", social: "share", atualizacao: "refresh", consistencia: "copy", avaliacoes: "autenticidade" };
   return {
     versao: 1,
     atualizadoEm: Date.now(),

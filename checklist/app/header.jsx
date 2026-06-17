@@ -2,7 +2,7 @@
 const { Badge, Card, Button, SegmentedToggle } = window.SolutudoDesignSystem_99d98c;
 const I = window.SOL_ICONS;
 const { PILARES, ETAPAS, PESO } = window.SOL_DATA;
-const { qualidadeItem, ehDelta, agregar, pct } = window.SOL_SCORE;
+const { qualidadeItem, ehDelta, agregar, scoreAvaliacoes, pct } = window.SOL_SCORE;
 
 /* ---------- Donut gauge (overall + pillar) ---------- */
 function Gauge({ value, size = 64, stroke = 7, color = "var(--brand-purple)", track = "var(--gray-150)", label, sub, capped }) {
@@ -195,7 +195,7 @@ function LogoEditor({ empresa, logo, onSave, onRemove, onClose }) {
 }
 
 /* ---------- Doca flutuante de rodapé: empresa · scores · demandas ---------- */
-function FooterDock({ cliente, geral, pilares }) {
+function FooterDock({ cliente, geral, pilares, mode }) {
   const glass = { background: "var(--glass-white)", backdropFilter: "var(--blur-glass)", WebkitBackdropFilter: "var(--blur-glass)", boxShadow: "var(--shadow-card), var(--ring-hairline)", borderRadius: 999 };
   const logoKey = "sol_logo_" + (cliente.empresa || "").toLowerCase().replace(/\s+/g, "_");
   const [logo, setLogo] = React.useState(() => { try { return localStorage.getItem(logoKey) || null; } catch (e) { return null; } });
@@ -204,6 +204,7 @@ function FooterDock({ cliente, geral, pilares }) {
   const divider = React.createElement("div", { style: { width: 1, alignSelf: "stretch", background: "var(--gray-150)", margin: "4px 0" } });
   const keys = Object.keys(pilares);
   const overallSize = 50, oStroke = 7, oR = (overallSize - oStroke) / 2, oC = 2 * Math.PI * oR, oOff = oC * (1 - geral.pct);
+  const oColor = mode === "com" ? "var(--brand-purple)" : "var(--gray-500)";
   return React.createElement("div", { style: { position: "fixed", left: 0, right: 0, bottom: 18, zIndex: 40, padding: "0 24px", pointerEvents: "none", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16 } },
     // ESQUERDA — agrupamento da empresa
     React.createElement("div", { style: { ...glass, pointerEvents: "auto", padding: "9px 16px 9px 11px", display: "flex", alignItems: "center", gap: 11, maxWidth: 320 } },
@@ -222,13 +223,16 @@ function FooterDock({ cliente, geral, pilares }) {
         React.createElement("div", { style: { position: "relative", width: overallSize, height: overallSize } },
           React.createElement("svg", { width: overallSize, height: overallSize, style: { transform: "rotate(-90deg)" } },
             React.createElement("circle", { cx: overallSize / 2, cy: overallSize / 2, r: oR, fill: "none", stroke: "var(--gray-150)", strokeWidth: oStroke }),
-            React.createElement("circle", { cx: overallSize / 2, cy: overallSize / 2, r: oR, fill: "none", stroke: "var(--brand-purple)", strokeWidth: oStroke, strokeLinecap: "round", strokeDasharray: oC, strokeDashoffset: oOff, style: { transition: "stroke-dashoffset .5s var(--ease-out)" } })
+            React.createElement("circle", { cx: overallSize / 2, cy: overallSize / 2, r: oR, fill: "none", stroke: oColor, strokeWidth: oStroke, strokeLinecap: "round", strokeDasharray: oC, strokeDashoffset: oOff, style: { transition: "stroke-dashoffset .5s var(--ease-out)" } })
           ),
           React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 15, color: "var(--ink)", letterSpacing: "-0.04em" } }, pct(geral.pct))
         ),
         React.createElement("div", { style: { lineHeight: 1.15 } },
-          React.createElement("div", { style: { fontWeight: 800, fontSize: 13, color: "var(--ink)", letterSpacing: "-0.02em" } }, "Score do cliente"),
-          React.createElement("div", { style: { fontSize: 10.5, color: "var(--gray-500)", fontWeight: 600 } }, `${geral.completos}/${geral.total} completos`),
+          React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 6 } },
+            React.createElement("div", { style: { fontWeight: 800, fontSize: 13, color: "var(--ink)", letterSpacing: "-0.02em" } }, "Score do cliente"),
+            React.createElement("span", { style: { display: "inline-flex", alignItems: "center", gap: 4, fontSize: 9, fontWeight: 800, letterSpacing: "0.02em", padding: "2px 7px", borderRadius: 999, background: mode === "com" ? "var(--tint-lavender)" : "var(--gray-100)", color: mode === "com" ? "var(--brand-purple)" : "var(--gray-500)", textTransform: "uppercase" } }, mode === "com" ? "agora" : "antes")
+          ),
+          React.createElement("div", { style: { fontSize: 10.5, color: "var(--gray-500)", fontWeight: 600 } }, `${geral.completos}/${geral.total} ${mode === "com" ? "completos" : "já tinha"}`),
           geral.criticoFuro && React.createElement("div", { style: { fontSize: 10, color: "var(--brand-orange-deep)", fontWeight: 700 } }, "teto por crítico")
         )
       ),
@@ -248,16 +252,16 @@ function FooterDock({ cliente, geral, pilares }) {
 }
 
 /* ---------- Trilho vertical de produtos (etapas, só ícones) ---------- */
-const PROD_ICON = { destaque: "sparkles", google: "search", solusite: "globe", social: "share" };
+const PROD_ICON = { destaque: "sparkles", google: "search", solusite: "globe", social: "share", atualizacao: "refresh", consistencia: "copy", avaliacoes: "autenticidade" };
 
-function ProductRail({ produtos, activeId, onJump }) {
+function ProductRail({ produtos, activeId, onJump, mode }) {
   const [hover, setHover] = React.useState(null);
   return React.createElement("nav", { "aria-label": "Produtos do cliente", style: { position: "fixed", left: 18, top: "50%", transform: "translateY(-50%)", zIndex: 45 } },
     React.createElement("div", { style: { position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 14, padding: "16px 11px", background: "var(--glass-white)", backdropFilter: "var(--blur-glass)", WebkitBackdropFilter: "var(--blur-glass)", borderRadius: 999, boxShadow: "var(--shadow-card), var(--ring-hairline)", transform: "scale(0.5)", transformOrigin: "left center" } },
       // linha conectora (sensação de etapas)
       React.createElement("div", { style: { position: "absolute", top: 30, bottom: 30, width: 2.5, background: "var(--gray-150)", borderRadius: 2, zIndex: 0 } }),
       produtos.map((p) => {
-        const ag = agregar(p.itens, PESO);
+        const ag = p.tipo === "avaliacoes" ? scoreAvaliacoes(p.itens, mode) : agregar(p.itens, PESO, mode);
         const on = activeId === p.id;
         const Icon = I[PROD_ICON[p.id]] || I.sparkles;
         const size = 46, r = (size - 4) / 2, c = 2 * Math.PI * r, off = c * (1 - ag.pct);
@@ -274,7 +278,7 @@ function ProductRail({ produtos, activeId, onJump }) {
           React.createElement("span", { style: { width: 34, height: 34, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: on ? "var(--ink)" : "var(--white)", boxShadow: on ? "none" : "inset 0 0 0 1px var(--gray-150)", transition: "background var(--dur-base) var(--ease-out)" } },
             Icon({ size: 18, color: on ? "#fff" : p.cor })
           ),
-          hover === p.id && React.createElement("div", { style: { position: "absolute", left: size + 13, top: "50%", transform: "translateY(-50%) scale(1.5)", transformOrigin: "left center", whiteSpace: "nowrap", background: "var(--ink)", color: "#fff", padding: "8px 13px", borderRadius: 12, boxShadow: "var(--shadow-md)", display: "flex", flexDirection: "column", gap: 1, pointerEvents: "none" } },
+          hover === p.id && React.createElement("div", { style: { position: "absolute", left: size + 13, top: "50%", transform: "translateY(-50%) scale(3)", transformOrigin: "left center", whiteSpace: "nowrap", background: "var(--ink)", color: "#fff", padding: "8px 13px", borderRadius: 12, boxShadow: "var(--shadow-md)", display: "flex", flexDirection: "column", gap: 1, pointerEvents: "none" } },
             React.createElement("span", { style: { position: "absolute", left: -4, top: "50%", transform: "translateY(-50%) rotate(45deg)", width: 9, height: 9, background: "var(--ink)", borderRadius: 2 } }),
             React.createElement("span", { style: { fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em" } }, p.nome),
             React.createElement("span", { style: { fontSize: 11.5, color: "rgba(255,255,255,0.6)", fontWeight: 600 } }, `${pct(ag.pct)}% · ${ag.completos}/${ag.total} itens`)
@@ -285,4 +289,76 @@ function ProductRail({ produtos, activeId, onJump }) {
   );
 }
 
-window.SOL_UI = { Gauge, TopBar, FooterDock, ProductRail };
+/* ---------- Controle global Sem / Com Solutudo (topo) ---------- */
+function ModeToggle({ mode, onChange }) {
+  const seg = (val, label, withHeart) => {
+    const active = mode === val;
+    return React.createElement("button", { type: "button", onClick: () => onChange(val),
+      style: { display: "flex", alignItems: "center", gap: 7, border: "none", cursor: "pointer", borderRadius: 999, padding: "9px 18px", background: active ? "var(--ink)" : "transparent", color: active ? "#fff" : "var(--gray-500)", fontSize: 14, fontWeight: 700, letterSpacing: "-0.02em", transition: "color var(--dur-fast) var(--ease-out)" } },
+      withHeart && React.createElement("img", { src: "assets/mark-heart.png", alt: "", style: { height: 17, width: "auto", display: "block" } }),
+      label
+    );
+  };
+  return React.createElement("div", { style: { position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 55, display: "flex", alignItems: "center", gap: 3, padding: 4, borderRadius: 999, background: "var(--glass-white)", backdropFilter: "var(--blur-glass)", WebkitBackdropFilter: "var(--blur-glass)", boxShadow: "var(--shadow-card), var(--ring-hairline)" } },
+    seg("sem", "Sem Solutudo", false),
+    seg("com", "Com Solutudo", true)
+  );
+}
+
+/* ---------- Bloco 0 — Dados da empresa (área compacta no topo) ---------- */
+function CompanyData({ dados, mode, onToggle }) {
+  const [open, setOpen] = React.useState(true);
+  const isOk = (d) => !!d[mode];
+  const ag = agregar(dados, PESO, mode);
+  const done = dados.filter(isOk).length;
+  const total = dados.length;
+  const score = pct(ag.pct);
+
+  const ring = (() => {
+    const s = 38, sw = 5, r = (s - sw) / 2, c = 2 * Math.PI * r, off = c * (1 - ag.pct);
+    const color = mode === "com" ? "var(--brand-purple)" : "var(--gray-500)";
+    return React.createElement("div", { style: { position: "relative", width: s, height: s, flex: "0 0 auto" } },
+      React.createElement("svg", { width: s, height: s, style: { transform: "rotate(-90deg)" } },
+        React.createElement("circle", { cx: s / 2, cy: s / 2, r, fill: "none", stroke: "var(--gray-150)", strokeWidth: sw }),
+        React.createElement("circle", { cx: s / 2, cy: s / 2, r, fill: "none", stroke: color, strokeWidth: sw, strokeLinecap: "round", strokeDasharray: c, strokeDashoffset: off, style: { transition: "stroke-dashoffset .5s var(--ease-out)" } })
+      ),
+      React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 11.5, color: "var(--ink)", letterSpacing: "-0.04em" } }, score)
+    );
+  })();
+
+  return React.createElement("div", { style: { background: "var(--white)", borderRadius: "var(--radius-xl, 20px)", boxShadow: "var(--shadow-card)", padding: "16px 20px 18px", marginBottom: 4 } },
+    // cabeçalho
+    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 13 } },
+      ring,
+      React.createElement("div", { style: { lineHeight: 1.2, minWidth: 0, flex: 1 } },
+        React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
+          React.createElement("h2", { style: { margin: 0, fontSize: 17, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.035em" } }, "Dados da empresa"),
+          React.createElement("span", { style: { fontSize: 11.5, fontWeight: 700, color: "var(--gray-400)" } }, `${score}/100 · ${done}/${total}`)
+        ),
+        React.createElement("div", { style: { fontSize: 12, color: "var(--gray-500)", fontWeight: 500 } }, "A fonte da verdade — dados factuais que alimentam todos os produtos.")
+      ),
+      React.createElement("button", { type: "button", onClick: () => setOpen((v) => !v), title: open ? "Recolher" : "Expandir", style: { border: "none", background: "var(--gray-100)", width: 30, height: 30, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-500)", flex: "0 0 auto", transform: open ? "rotate(180deg)" : "none", transition: "transform var(--dur-base) var(--ease-out)" } }, I.chevronDown({ size: 16, color: "var(--gray-500)" }))
+    ),
+    // grade de campos
+    open && React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 7, marginTop: 14 } },
+      dados.map((d) => {
+        const ok = isOk(d);
+        return React.createElement("button", {
+          key: d.id, type: "button", onClick: () => onToggle(d.id), role: "checkbox", "aria-checked": ok,
+          title: mode === "com"
+            ? (ok ? "Coletado — clique para desmarcar" : "Pendente — clique para marcar como coletado")
+            : (ok ? "Já tinha antes — clique para desmarcar" : "Não tinha antes — clique para marcar"),
+          style: { display: "flex", alignItems: "center", gap: 9, textAlign: "left", border: "none", cursor: "pointer", background: ok ? "var(--tint-lavender)" : "var(--gray-100)", borderRadius: 11, padding: "8px 11px", transition: "color var(--dur-fast) var(--ease-out)" },
+        },
+          React.createElement("span", { style: { width: 18, height: 18, flex: "0 0 auto", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: ok ? "var(--brand-purple)" : "transparent", boxShadow: ok ? "none" : "inset 0 0 0 1.6px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, ok && I.check({ size: 11, color: "#fff", sw: 2.8 })),
+          React.createElement("span", { style: { lineHeight: 1.2, minWidth: 0 } },
+            React.createElement("span", { style: { display: "block", fontSize: 12, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.01em", textWrap: "pretty" } }, d.label),
+            d.valor && React.createElement("span", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: ok ? "var(--brand-purple)" : "var(--gray-400)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, d.valor)
+          )
+        );
+      })
+    )
+  );
+}
+
+window.SOL_UI = { Gauge, TopBar, FooterDock, ProductRail, CompanyData, ModeToggle };

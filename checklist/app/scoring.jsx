@@ -1,32 +1,32 @@
 /* ============================================================
    Motor de score — reativo, ponderado por impacto, honesto.
-   Conceitos da spec §8:
-   - qualidade do item: só conta se "com" estiver marcado E as 3
-     lentes passarem (conteúdo/visual/autenticidade). Item marcado
-     com conteúdo genérico = falha de qualidade, não entrega.
-       com + 3 lentes  -> 1.0
-       com + 2 lentes  -> ~0.66
-       com + 1 lente   -> ~0.33
-       sem "com"       -> 0
+   `campo` = "sem" | "com" — permite calcular o estado ANTES
+   (Sem Solutudo) e o estado DEPOIS (Com Solutudo) com a mesma
+   máquina, conforme o modo global selecionado no topo.
+
+   - qualidade do item: binária — o campo do modo está marcado (1) ou não (0)
    - delta = com && !sem  => o que a Solutudo entregou (prova de valor)
-   - teto: item CRÍTICO não 100% limita o score geral a TETO_CRITICO
+   - teto: item CRÍTICO não 100% limita o score àquele bloco a TETO_CRITICO
    - separa o que falta por NÓS vs por INSUMO DO CLIENTE
+   As funções de pilar/geral recebem uma LISTA PLANA de itens
+   (produtos + dados da empresa), para tirar a média de tudo.
    ============================================================ */
 
 const TETO_CRITICO = 0.7;
 
-// Binário e honesto: o item está entregue/feito (marcado) ou não.
-function qualidadeItem(item) { return item.com ? 1 : 0; }
+// Binário e honesto: o campo do modo (sem/com) está marcado?
+function qualidadeItem(item, campo) { return item[campo || "com"] ? 1 : 0; }
 
 function ehDelta(item) { return item.com && !item.sem; }
 
 // Agrega uma lista de itens em { pct, completos, total, delta, ... }
-function agregar(itens, PESO) {
+function agregar(itens, PESO, campo) {
+  campo = campo || "com";
   let somaPeso = 0, somaQual = 0, delta = 0, criticoFuro = false;
   let pendNos = 0, pendCliente = 0, completos = 0;
   for (const item of itens) {
     const w = PESO[item.impacto] || 1;
-    const q = qualidadeItem(item);
+    const q = qualidadeItem(item, campo);
     somaPeso += w;
     somaQual += w * q;
     if (ehDelta(item)) delta++;
@@ -43,23 +43,40 @@ function agregar(itens, PESO) {
   return { pct, pctBruto, criticoFuro, delta, pendNos, pendCliente, completos, total: itens.length };
 }
 
-// Score por pilar a partir de todos os itens (todos os produtos).
-function scorePorPilar(produtos, PESO, PILARES) {
+// Score por pilar a partir de uma lista plana de itens.
+function scorePorPilar(itens, PESO, PILARES, campo) {
   const out = {};
   for (const k of Object.keys(PILARES)) {
-    const itens = [];
-    produtos.forEach((p) => p.itens.forEach((i) => { if (i.pilar === k) itens.push(i); }));
-    out[k] = agregar(itens, PESO);
+    out[k] = agregar(itens.filter((i) => i.pilar === k), PESO, campo);
   }
   return out;
 }
 
-function scoreGeral(produtos, PESO) {
-  const todos = [];
-  produtos.forEach((p) => p.itens.forEach((i) => todos.push(i)));
-  return agregar(todos, PESO);
+// Score geral (média ponderada) de uma lista plana de itens.
+function scoreGeral(itens, PESO, campo) {
+  return agregar(itens, PESO, campo);
 }
 
 function pct(n) { return Math.round(n * 100); }
 
-window.SOL_SCORE = { qualidadeItem, ehDelta, agregar, scorePorPilar, scoreGeral, pct, TETO_CRITICO };
+// Score da área de Avaliações (campos especiais: range + nota por estrelas).
+function scoreAvaliacoes(itens, campo) {
+  campo = campo || "com";
+  let soma = 0, n = 0, completos = 0;
+  for (const it of itens) {
+    let q = 0;
+    if (it.tipo === "range") {
+      const i = it.opcoes.indexOf(it.valor[campo]);
+      q = i <= 0 ? 0 : i / (it.opcoes.length - 1);
+      if (i > 0) completos++;
+    } else if (it.tipo === "rating") {
+      const v = it.nota[campo] || 0;
+      q = v / 5;
+      if (v > 0) completos++;
+    }
+    soma += q; n++;
+  }
+  return { pct: n ? soma / n : 0, pctBruto: n ? soma / n : 0, criticoFuro: false, delta: 0, pendNos: 0, pendCliente: 0, completos, total: n };
+}
+
+window.SOL_SCORE = { qualidadeItem, ehDelta, agregar, scorePorPilar, scoreGeral, scoreAvaliacoes, pct, TETO_CRITICO };

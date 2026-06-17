@@ -1,19 +1,27 @@
-/* Main app — state, scoring, layout. */
-const { TopBar, FooterDock, ProductRail } = window.SOL_UI;
+/* Main app — estado global, modo Sem/Com, scoring (média de tudo). */
+const { TopBar, FooterDock, ProductRail, CompanyData, ModeToggle } = window.SOL_UI;
 const { ProductSection } = window.SOL_SECTION;
 const SD = window.SOL_DATA;
 const SS = window.SOL_SCORE;
 const Ik = window.SOL_ICONS;
 
+const MODE_KEY = "sol_mode_v1";
+
 function App() {
   const [produtos, setProdutos] = React.useState(() => JSON.parse(JSON.stringify(SD.PRODUTOS)));
-  const [modes, setModes] = React.useState(() => Object.fromEntries(SD.PRODUTOS.map((p) => [p.id, "com"])));
+  const [dados, setDados] = React.useState(() => JSON.parse(JSON.stringify(SD.DADOS_EMPRESA)));
+  const [mode, setMode] = React.useState(() => { try { return localStorage.getItem(MODE_KEY) || "com"; } catch (e) { return "com"; } });
   const [activeId, setActiveId] = React.useState(SD.PRODUTOS[0].id);
+  const [modalOpen, setModalOpen] = React.useState(false);
   const refs = React.useRef({});
 
-  const setItem = (id, patch) => setProdutos((prev) => prev.map((p) => ({ ...p, itens: p.itens.map((i) => i.id === id ? { ...i, ...(typeof patch === "function" ? patch(i) : patch) } : i) })));
+  const changeMode = (m) => { setMode(m); try { localStorage.setItem(MODE_KEY, m); } catch (e) {} };
 
-  const onToggle = (id) => setItem(id, (i) => ({ com: !i.com }));
+  // alterna o campo do MODO atual (sem | com) — permite editar antes e depois
+  const setItem = (id, patch) => setProdutos((prev) => prev.map((p) => ({ ...p, itens: p.itens.map((i) => i.id === id ? { ...i, ...(typeof patch === "function" ? patch(i) : patch) } : i) })));
+  const onToggle = (id) => setItem(id, (i) => ({ [mode]: !i[mode] }));
+  const onSet = (id, patch) => setItem(id, patch);
+  const onToggleDado = (id) => setDados((prev) => prev.map((d) => d.id === id ? { ...d, [mode]: !d[mode] } : d));
 
   const onJump = (pid) => {
     const el = refs.current[pid];
@@ -36,23 +44,26 @@ function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [produtos]);
 
-  const geral = SS.scoreGeral(produtos, SD.PESO);
-  const pilares = SS.scorePorPilar(produtos, SD.PESO, SD.PILARES);
+  // média de TUDO: dados da empresa + itens dos produtos (avaliações têm métrica própria, fora da média binária)
+  const itensProdutos = produtos.filter((p) => p.tipo !== "avaliacoes").reduce((a, p) => a.concat(p.itens), []);
+  const allItens = dados.concat(itensProdutos);
+  const geral = SS.scoreGeral(allItens, SD.PESO, mode);
+  const pilares = SS.scorePorPilar(allItens, SD.PESO, SD.PILARES, mode);
 
   return React.createElement("div", { style: { minHeight: "100vh", background: "var(--surface-app)" } },
-    React.createElement(TopBar, { onBack: () => { /* TODO: navegar para o dashboard (a elaborar) */ } }),
-    React.createElement(ProductRail, { produtos, activeId, onJump }),
+    !modalOpen && React.createElement(TopBar, { onBack: () => { /* TODO: navegar para o dashboard (a elaborar) */ } }),
+    !modalOpen && React.createElement(ModeToggle, { mode, onChange: changeMode }),
+    !modalOpen && React.createElement(ProductRail, { produtos, activeId, onJump, mode }),
     React.createElement("main", { style: { padding: "76px 44px 128px 64px", display: "flex", flexDirection: "column", gap: 40 } },
+      React.createElement(CompanyData, { dados, mode, onToggle: onToggleDado }),
       produtos.map((p, idx) =>
         React.createElement(ProductSection, {
-          key: p.id, produto: p, idx,
-          mode: modes[p.id], onMode: (v) => setModes((m) => ({ ...m, [p.id]: v })),
-          onToggle,
+          key: p.id, produto: p, idx, mode, onToggle, onSet, onModal: setModalOpen,
           sectionRef: (el) => { refs.current[p.id] = el; },
         })
       )
     ),
-    React.createElement(FooterDock, { cliente: SD.CLIENTE, geral, pilares })
+    !modalOpen && React.createElement(FooterDock, { cliente: SD.CLIENTE, geral, pilares, mode })
   );
 }
 
