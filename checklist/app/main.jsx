@@ -82,9 +82,40 @@ function App() {
 
   const changeMode = (m) => { setMode(m); try { localStorage.setItem(MODE_KEY, m); } catch (e) {} };
 
-  // alterna o campo do MODO atual (sem | com) — permite editar antes e depois
-  const setItem = (id, patch) => setProdutos((prev) => prev.map((p) => ({ ...p, itens: p.itens.map((i) => i.id === id ? { ...i, ...(typeof patch === "function" ? patch(i) : patch) } : i) })));
-  const onToggle = (id) => setItem(id, (i) => ({ [mode]: !i[mode] }));
+  // alterna o campo do MODO atual (sem | com) — permite editar antes e depois.
+  // Vínculo de consistência: itens com o mesmo `grupo` representam o mesmo fato
+  // em vários canais. Marcar o item de Consistência (consolida) marca todos os
+  // do grupo; e o item de Consistência fica ativo só quando todos do grupo estão.
+  const toggleItem = (id) => {
+    const m = mode;
+    const P = produtos.map((p) => ({ ...p, itens: p.itens.map((i) => ({ ...i })) }));
+    const D = dados.map((d) => ({ ...d }));
+    const items = [...D, ...P.flatMap((p) => p.itens)];
+    const byId = {}; items.forEach((i) => { byId[i.id] = i; });
+    const target = byId[id];
+    if (!target) return;
+    const newVal = !target[m];
+    const changed = new Set([id]);
+    target[m] = newVal;
+    // Consolida (item de Consistência) → propaga para os membros do(s) grupo(s).
+    if (target.consolida && target.grupo) {
+      for (const it of items) {
+        if (!it.consolida && it.grupo && it.grupo.some((g) => target.grupo.includes(g))) {
+          it[m] = newVal; changed.add(it.id);
+        }
+      }
+    }
+    // Recalcula só os agregadores cujos grupos foram afetados (evita efeitos colaterais).
+    const afetados = new Set();
+    changed.forEach((cid) => (byId[cid].grupo || []).forEach((g) => afetados.add(g)));
+    for (const agg of items) {
+      if (!agg.consolida || !agg.grupo || !agg.grupo.some((g) => afetados.has(g))) continue;
+      const membros = items.filter((it) => !it.consolida && it.grupo && it.grupo.some((g) => agg.grupo.includes(g)));
+      if (membros.length) agg[m] = membros.every((it) => it[m]);
+    }
+    setProdutos(P); setDados(D);
+  };
+  const onToggle = (id) => toggleItem(id);
   // Avaliações: quantidade e nota da MESMA fonte dependem uma da outra.
   //  - "Nenhuma" => zera a nota (0 estrelas).
   //  - nota >= 0.1 (há ao menos 1 avaliação) => quantidade sobe p/ "1 a 5".
@@ -107,7 +138,7 @@ function App() {
       return i;
     }) };
   }));
-  const onToggleDado = (id) => setDados((prev) => prev.map((d) => d.id === id ? { ...d, [mode]: !d[mode] } : d));
+  const onToggleDado = (id) => toggleItem(id);
 
   const onJump = (pid) => {
     const el = refs.current[pid];
