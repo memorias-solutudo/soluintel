@@ -54,7 +54,7 @@
   body[data-card-anim="10"] .sol-card-anim { animation: cc10 .3s var(--ease-out,ease) both; }
 
   /* --- estado ativo persistente (card marcado) --- */
-  body[data-active-style="anel"] .sol-itemcard.is-done { box-shadow: var(--shadow-card), inset 0 0 0 1.5px var(--success); }
+  body[data-active-style="anel"] .sol-itemcard.is-done { box-shadow: var(--shadow-card), inset 0 0 0 1.5px var(--acc, var(--success)); }
   body[data-active-style="barra"] .sol-itemcard.is-done { box-shadow: var(--shadow-card); border-left: 3px solid var(--acc, var(--success)); }
   body[data-active-style="tint"] .sol-itemcard.is-done { background-color: var(--tint-mint, #d9f7ee); box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(0,200,120,.35); }
   body[data-active-style="elevado"] .sol-itemcard.is-done { box-shadow: var(--shadow-md, 0 12px 32px rgba(21,21,21,.10)); border-top: 2px solid var(--acc, var(--success)); }

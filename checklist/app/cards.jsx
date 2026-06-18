@@ -137,9 +137,10 @@ function CommentRow({ c, accent, editing, editText, setEditText, commitEdit, onT
   );
 }
 
-function ItemCard({ item, mode, onToggle }) {
+function ItemCard({ item, mode, onToggle, cor }) {
   const done = mode === "com" ? item.com : item.sem;
   const pil = D.PILARES[item.pilar];
+  const acc = cor || pil.cor; // cor do produto/etapa que o card representa
   const StageIcon = I2[item.etapa];
   const impactoLabel = { baixo: "Baixo", medio: "Médio", alto: "Alto" }[item.impacto];
 
@@ -184,14 +185,14 @@ function ItemCard({ item, mode, onToggle }) {
       position: "relative", zIndex: open ? 60 : "auto",
       borderRadius: 14, padding: "12px 13px",
       display: "flex", flexDirection: "column", gap: 9, cursor: "pointer",
-      "--acc": pil.cor,
+      "--acc": acc,
     },
   },
     // conteúdo (esmaece quando não entregue)
     React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 9, opacity: done ? 1 : 0.5, transition: "opacity var(--dur-base) var(--ease-out)" } },
       // top row: status + stage + impacto + critico + pillar
       React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
+        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? acc : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
         React.createElement("span", { title: `Etapa: ${D.ETAPAS[item.etapa].rotulo}`, style: { width: 22, height: 22, borderRadius: 7, background: "var(--gray-100)", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" } }, StageIcon({ size: 13, color: "var(--gray-500)" })),
         React.createElement("span", { style: { fontSize: 10.5, fontWeight: 600, color: "var(--gray-400)" } }, impactoLabel),
         item.critico && React.createElement("span", { title: "Item crítico — aplica teto ao score", style: { color: "var(--brand-orange-deep)", display: "flex" } }, I2.alert({ size: 12, color: "var(--brand-orange-deep)" })),

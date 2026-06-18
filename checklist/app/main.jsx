@@ -7,7 +7,7 @@ const Ik = window.SOL_ICONS;
 
 const MODE_KEY = "sol_mode_v1";
 const CARD_ANIM_KEY = "sol_card_anim";
-const ACTIVE_KEY = "sol_active_style";
+const ACTIVE_KEY = "sol_active_style_v2";
 const CARD_ANIMS = [
   ["1", "Pop"], ["2", "Toque"], ["3", "Pulso"], ["4", "Glow"], ["5", "Flash"],
   ["6", "Lift"], ["7", "Anel"], ["8", "Bounce"], ["9", "Tilt"], ["10", "Sombra"],
@@ -20,7 +20,7 @@ const ACTIVE_STYLES = [
 /* Seletor de Tweaks — fixo à direita: animação do clique + estado ativo, com preview vivo. */
 function TweaksDock() {
   const [anim, setAnim] = React.useState(() => { try { return localStorage.getItem(CARD_ANIM_KEY) || "1"; } catch (e) { return "1"; } });
-  const [active, setActive] = React.useState(() => { try { return localStorage.getItem(ACTIVE_KEY) || "anel"; } catch (e) { return "anel"; } });
+  const [active, setActive] = React.useState(() => { try { return localStorage.getItem(ACTIVE_KEY) || "padrao"; } catch (e) { return "padrao"; } });
   const [tick, setTick] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => { document.body.dataset.cardAnim = anim; try { localStorage.setItem(CARD_ANIM_KEY, anim); } catch (e) {} }, [anim]);

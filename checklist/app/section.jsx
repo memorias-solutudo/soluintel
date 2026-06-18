@@ -269,7 +269,7 @@ function ProductSection({ produto, idx, mode, onToggle, onSet, onModal, sectionR
         produto.itens.map((item) =>
           ehAv
             ? React.createElement(ReviewCard, { key: item.id, item, mode, onSet })
-            : React.createElement(ItemCard, { key: item.id, item, mode, onToggle })
+            : React.createElement(ItemCard, { key: item.id, item, mode, onToggle, cor: produto.cor })
         )
       ),
       temPreview && React.createElement(EvidencePanel, { produto, mode, ag, onModal })
