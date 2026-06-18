@@ -273,22 +273,26 @@ function ReviewCard({ item, mode, onSet }) {
   const isGoogle = item.fonte === "Google";
   const fonteCor = isGoogle ? "var(--brand-orange-deep)" : "var(--brand-purple)";
   const fonteBg = isGoogle ? "var(--tint-peach)" : "var(--tint-lavender)";
-  return React.createElement("div", { style: { background: "var(--white)", borderRadius: 14, padding: "14px 15px", boxShadow: "var(--shadow-card)", display: "flex", flexDirection: "column", gap: 13 } },
-    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-      React.createElement("span", { style: { display: "inline-flex", alignItems: "center", padding: "3px 9px", borderRadius: 999, background: fonteBg, color: fonteCor, fontSize: 11, fontWeight: 800, letterSpacing: "-0.01em", flex: "0 0 auto" } }, item.fonte),
-      React.createElement("span", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto)
-    ),
-    item.tipo === "range"
-      ? React.createElement("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } },
-          item.opcoes.map((opt) => {
-            const sel = item.valor[mode] === opt;
-            return React.createElement("button", {
-              key: opt, type: "button", onClick: () => onSet(item.id, { valor: { ...item.valor, [mode]: opt } }),
-              style: { border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, letterSpacing: "-0.01em", background: sel ? "var(--ink)" : "var(--gray-100)", color: sel ? "#fff" : "var(--gray-600)", transition: "color var(--dur-fast) var(--ease-out)" },
-            }, opt);
-          })
-        )
-      : React.createElement(StarRating, { value: item.nota[mode] || 0, color: "var(--brand-amber)", onChange: (v) => onSet(item.id, { nota: { ...item.nota, [mode]: v } }) })
+  // preenchido = tem avaliação (range != "Nenhuma" / nota > 0). Vazio fica "sem check".
+  const filled = item.tipo === "range" ? (item.opcoes.indexOf(item.valor[mode]) > 0) : ((item.nota[mode] || 0) > 0);
+  return React.createElement("div", { style: { borderRadius: 14, padding: "14px 15px", background: filled ? "var(--white)" : "transparent", boxShadow: filled ? "var(--shadow-card)" : "inset 0 0 0 1.5px var(--gray-200)", display: "flex", flexDirection: "column", gap: 13, transition: "box-shadow .2s var(--ease-out,ease), background-color .2s var(--ease-out,ease)" } },
+    React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 13, opacity: filled ? 1 : 0.55, transition: "opacity .2s var(--ease-out,ease)" } },
+      React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
+        React.createElement("span", { style: { display: "inline-flex", alignItems: "center", padding: "3px 9px", borderRadius: 999, background: fonteBg, color: fonteCor, fontSize: 11, fontWeight: 800, letterSpacing: "-0.01em", flex: "0 0 auto" } }, item.fonte),
+        React.createElement("span", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto)
+      ),
+      item.tipo === "range"
+        ? React.createElement("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } },
+            item.opcoes.map((opt) => {
+              const sel = item.valor[mode] === opt;
+              return React.createElement("button", {
+                key: opt, type: "button", onClick: () => onSet(item.id, { valor: { ...item.valor, [mode]: opt } }),
+                style: { border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 14px", fontSize: 12.5, fontWeight: 700, letterSpacing: "-0.01em", background: sel ? "var(--ink)" : "var(--gray-100)", color: sel ? "#fff" : "var(--gray-600)", transition: "color var(--dur-fast) var(--ease-out)" },
+              }, opt);
+            })
+          )
+        : React.createElement(StarRating, { value: item.nota[mode] || 0, color: "var(--brand-amber)", onChange: (v) => onSet(item.id, { nota: { ...item.nota, [mode]: v } }) })
+    )
   );
 }
 
