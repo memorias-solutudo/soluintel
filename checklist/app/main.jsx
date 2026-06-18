@@ -85,7 +85,28 @@ function App() {
   // alterna o campo do MODO atual (sem | com) — permite editar antes e depois
   const setItem = (id, patch) => setProdutos((prev) => prev.map((p) => ({ ...p, itens: p.itens.map((i) => i.id === id ? { ...i, ...(typeof patch === "function" ? patch(i) : patch) } : i) })));
   const onToggle = (id) => setItem(id, (i) => ({ [mode]: !i[mode] }));
-  const onSet = (id, patch) => setItem(id, patch);
+  // Avaliações: quantidade e nota da MESMA fonte dependem uma da outra.
+  //  - "Nenhuma" => zera a nota (0 estrelas).
+  //  - nota >= 0.1 (há ao menos 1 avaliação) => quantidade sobe p/ "1 a 5".
+  const onSet = (id, patch) => setProdutos((prev) => prev.map((p) => {
+    const target = p.itens.find((i) => i.id === id);
+    if (!target) return p;
+    const updated = { ...target, ...(typeof patch === "function" ? patch(target) : patch) };
+    const sibling = p.itens.find((i) => i.id !== id && i.fonte && i.fonte === target.fonte && i.tipo !== target.tipo);
+    let sibPatch = null;
+    if (sibling) {
+      if (updated.tipo === "range" && updated.valor[mode] === updated.opcoes[0] && (sibling.nota && sibling.nota[mode] || 0) > 0) {
+        sibPatch = { nota: { ...sibling.nota, [mode]: 0 } };
+      } else if (updated.tipo === "rating" && (updated.nota[mode] || 0) >= 0.1 && sibling.opcoes && sibling.valor[mode] === sibling.opcoes[0]) {
+        sibPatch = { valor: { ...sibling.valor, [mode]: sibling.opcoes[1] } };
+      }
+    }
+    return { ...p, itens: p.itens.map((i) => {
+      if (i.id === id) return updated;
+      if (sibPatch && sibling && i.id === sibling.id) return { ...i, ...sibPatch };
+      return i;
+    }) };
+  }));
   const onToggleDado = (id) => setDados((prev) => prev.map((d) => d.id === id ? { ...d, [mode]: !d[mode] } : d));
 
   const onJump = (pid) => {
