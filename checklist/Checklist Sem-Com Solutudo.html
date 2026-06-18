@@ -28,7 +28,8 @@
   @keyframes ccPop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
 
   /* ===== Tweaks: animação do card ao marcar (<=0.3s) + estado ativo persistente ===== */
-  .sol-itemcard { background: var(--white); box-shadow: var(--shadow-card); border: 1px solid transparent; transition: box-shadow .2s var(--ease-out,ease), border-color .2s var(--ease-out,ease), background-color .2s var(--ease-out,ease); }
+  .sol-itemcard { background: transparent; box-shadow: inset 0 0 0 1.5px var(--gray-200); border: 1px solid transparent; transition: box-shadow .2s var(--ease-out,ease), border-color .2s var(--ease-out,ease), background-color .2s var(--ease-out,ease); }
+  .sol-itemcard.is-done { background: var(--white); box-shadow: var(--shadow-card); }
 
   /* --- animação no clique (card inteiro) --- */
   @keyframes cc1 { 0%{transform:scale(1)} 45%{transform:scale(1.04)} 100%{transform:scale(1)} }
