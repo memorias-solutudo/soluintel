@@ -14,8 +14,18 @@ function loadAllComments() { try { return JSON.parse(localStorage.getItem(CKEY))
 function loadComments(id) { return loadAllComments()[id] || []; }
 function saveComments(id, list) {
   const all = loadAllComments();
-  if (list && list.length) all[id] = list; else delete all[id];
+  all[id] = list || []; // armazena sempre (inclusive vazio) p/ persistir remoções do comentário semeado
   try { localStorage.setItem(CKEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
+}
+// Semeia "o que falta" como 1º comentário do item (até o usuário mexer).
+function seedComments(item) {
+  const all = loadAllComments();
+  if (item.id in all) return all[item.id];
+  if (item.acao) {
+    const label = item.dono === "cliente" ? "Falta — insumo do cliente" : "Falta — ação nossa";
+    return [{ id: "seed_" + item.id, texto: `${label}: ${item.acao}`, done: false, criadoEm: Date.now() }];
+  }
+  return [];
 }
 let _ck = 0;
 const cuid = () => `c_${Date.now().toString(36)}_${(_ck++).toString(36)}`;
@@ -142,7 +152,7 @@ function ItemCard({ item, mode, onToggle }) {
     if (done && !prevDone.current) setAnimating(true);
     prevDone.current = done;
   }, [done]);
-  const [comments, setComments] = React.useState(() => loadComments(item.id));
+  const [comments, setComments] = React.useState(() => seedComments(item));
   const abertos = comments.filter((c) => !c.done).length;
   const temComentarios = comments.length > 0;
 
@@ -208,14 +218,6 @@ function ItemCard({ item, mode, onToggle }) {
             (temComentarios ? I2.messageDot : I2.message)({ size: 14, color: open || temComentarios ? pil.cor : "var(--gray-400)" }),
             abertos > 0 && React.createElement("span", { style: { position: "absolute", top: -4, right: -4, minWidth: 15, height: 15, padding: "0 4px", borderRadius: 999, background: "var(--brand-orange-deep)", color: "#fff", fontSize: 9.5, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 0 1.5px var(--white)" } }, abertos)
           )
-        )
-      ),
-      // o que falta (só no modo Com Solutudo, quando ainda não entregue)
-      mode === "com" && !done && item.acao && React.createElement("div", { style: { display: "flex", gap: 7, alignItems: "flex-start", background: item.dono === "cliente" ? "var(--gray-100)" : "var(--tint-peach)", borderRadius: 10, padding: "7px 9px" } },
-        React.createElement("span", { style: { flex: "0 0 auto", marginTop: 1 } }, (item.dono === "cliente" ? I2.user : I2.building)({ size: 13, color: item.dono === "cliente" ? "var(--gray-600)" : "var(--brand-orange-deep)" })),
-        React.createElement("div", { style: { lineHeight: 1.28 } },
-          React.createElement("div", { style: { fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.03em", color: item.dono === "cliente" ? "var(--gray-500)" : "var(--brand-orange-deep)", marginBottom: 1 } }, item.dono === "cliente" ? "Falta — insumo do cliente" : "Falta — ação nossa"),
-          React.createElement("div", { style: { fontSize: 11.5, color: "var(--gray-600)", fontWeight: 500 } }, item.acao)
         )
       )
     ),

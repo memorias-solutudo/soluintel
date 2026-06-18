@@ -177,9 +177,9 @@ function LogoEditor({ empresa, logo, onSave, onRemove, onClose }) {
     )
   );
 
-  return React.createElement("div", {
+  return ReactDOM.createPortal(React.createElement("div", {
     onClick: (e) => { if (e.target === e.currentTarget) onClose(); },
-    style: { position: "fixed", inset: 0, zIndex: 200, background: "rgba(24,22,34,0.34)", backdropFilter: "blur(3px)", WebkitBackdropFilter: "blur(3px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, pointerEvents: "auto" }
+    style: { position: "fixed", inset: 0, zIndex: 1200, background: "rgba(24,22,34,0.42)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, pointerEvents: "auto" }
   },
     React.createElement("div", { style: { width: 340, maxWidth: "100%", background: "var(--white)", borderRadius: 22, boxShadow: "var(--shadow-lg, 0 24px 60px rgba(20,18,30,0.3))", padding: "20px 22px 22px", animation: "ccPop .18s var(--ease-out)" } },
       React.createElement("div", { style: { display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 18 } },
@@ -191,7 +191,7 @@ function LogoEditor({ empresa, logo, onSave, onRemove, onClose }) {
       ),
       src ? cropView : pickView
     )
-  );
+  ), document.body);
 }
 
 /* ---------- Doca flutuante de rodapé: empresa · scores · demandas ---------- */
