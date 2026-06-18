@@ -27,15 +27,15 @@ const CLIENTE = {
    ex. o cliente chega sem logo, a Solutudo cria, e no “Com” ele tem logo.
    Cada campo tem sem/com + impacto e entra na média geral (pilar verdade). */
 const DADOS_EMPRESA = [
-  { id: "d_nome", grupo: ["nome"],         label: "Nome oficial exato",        valor: "Restaurante Sabor da Serra", pilar: "verdade", impacto: "alto",  sem: true,  com: true },
-  { id: "d_categoria", grupo: ["categoria"],    label: "Categoria / segmento",      valor: "Restaurantes",               pilar: "verdade", impacto: "medio", sem: true,  com: true },
-  { id: "d_contatos", grupo: ["contato"],     label: "Telefones, WhatsApp e e-mails", pilar: "verdade", impacto: "alto",  sem: true,  com: true },
-  { id: "d_endereco", grupo: ["endereco"],     label: "Endereço completo + físico", valor: "Botucatu/SP",               pilar: "verdade", impacto: "alto",  sem: true,  com: true },
+  { id: "d_nome",         label: "Nome oficial exato",        valor: "Restaurante Sabor da Serra", pilar: "verdade", impacto: "alto",  sem: true,  com: true },
+  { id: "d_categoria",    label: "Categoria / segmento",      valor: "Restaurantes",               pilar: "verdade", impacto: "medio", sem: true,  com: true },
+  { id: "d_contatos",     label: "Telefones, WhatsApp e e-mails", pilar: "verdade", impacto: "alto",  sem: true,  com: true },
+  { id: "d_endereco",     label: "Endereço completo + físico", valor: "Botucatu/SP",               pilar: "verdade", impacto: "alto",  sem: true,  com: true },
   { id: "d_cobertura",   label: "Área de cobertura (bairros + raio)", pilar: "verdade", impacto: "medio", sem: false, com: true },
-  { id: "d_horario", grupo: ["horario"],      label: "Horário por dia + feriados", pilar: "verdade", impacto: "medio", sem: false, com: true },
+  { id: "d_horario",      label: "Horário por dia + feriados", pilar: "verdade", impacto: "medio", sem: false, com: true },
   { id: "d_pagamento",   label: "Formas de pagamento",        pilar: "verdade", impacto: "baixo", sem: false, com: true },
   { id: "d_facilidades", label: "Atributos / facilidades",    pilar: "verdade", impacto: "baixo", sem: false, com: false, dono: "cliente" },
-  { id: "d_marca", grupo: ["logo"],        label: "Logo em alta + cores (hex)", pilar: "verdade", impacto: "alto",  sem: false, com: true },
+  { id: "d_marca",        label: "Logo em alta + cores (hex)", pilar: "verdade", impacto: "alto",  sem: false, com: true },
   { id: "d_historia",    label: "História / ano de fundação", pilar: "verdade", impacto: "medio", sem: false, com: true },
 ];
 
