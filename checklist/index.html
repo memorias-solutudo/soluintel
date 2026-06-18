@@ -26,28 +26,39 @@
   ::selection { background: var(--tint-lavender-200); }
   image-slot { --is-bg: var(--gray-150); }
   @keyframes ccPop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
-  /* Pulso — animação oficial dos cards ativos no momento */
-  @keyframes solPulseRing {
-    0%   { box-shadow: 0 0 0 0 rgba(57,151,0,0.40); }
-    70%  { box-shadow: 0 0 0 9px rgba(57,151,0,0); }
-    100% { box-shadow: 0 0 0 0 rgba(57,151,0,0); }
-  }
-  @keyframes solPulseGlow {
-    0%,100% { box-shadow: var(--shadow-card); }
-    50%     { box-shadow: 0 0 0 3px rgba(57,151,0,0.12), var(--shadow-card); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    [data-pulse] { animation: none !important; }
-    [data-jump] { animation: none !important; }
-  }
-  /* Pulo do card ao marcar no checklist */
-  @keyframes solJump {
-    0%   { transform: translateY(0) scale(1); }
-    28%  { transform: translateY(-9px) scale(1.025); }
-    52%  { transform: translateY(0) scale(0.997); }
-    72%  { transform: translateY(-3px) scale(1.004); }
-    100% { transform: translateY(0) scale(1); }
-  }
+
+  /* ===== Tweaks: animação do card ao marcar (<=0.3s) + estado ativo persistente ===== */
+  .sol-itemcard { background: var(--white); box-shadow: var(--shadow-card); border: 1px solid transparent; transition: box-shadow .2s var(--ease-out,ease), border-color .2s var(--ease-out,ease), background-color .2s var(--ease-out,ease); }
+
+  /* --- animação no clique (card inteiro) --- */
+  @keyframes cc1 { 0%{transform:scale(1)} 45%{transform:scale(1.04)} 100%{transform:scale(1)} }
+  body[data-card-anim="1"] .sol-card-anim { animation: cc1 .26s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes cc2 { 0%{transform:scale(.96)} 55%{transform:scale(1.015)} 100%{transform:scale(1)} }
+  body[data-card-anim="2"] .sol-card-anim { animation: cc2 .22s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes cc3 { 0%{transform:scale(1)} 30%{transform:scale(1.03)} 60%{transform:scale(.99)} 100%{transform:scale(1)} }
+  body[data-card-anim="3"] .sol-card-anim { animation: cc3 .3s ease-out both; }
+  @keyframes cc4 { 0%{box-shadow:var(--shadow-card),0 0 0 0 rgba(0,200,120,.55)} 100%{box-shadow:var(--shadow-card),0 0 0 12px rgba(0,200,120,0)} }
+  body[data-card-anim="4"] .sol-card-anim { animation: cc4 .3s ease-out both; }
+  @keyframes cc5 { 0%{background-color:var(--tint-mint,#d9f7ee)} 100%{background-color:var(--white)} }
+  body[data-card-anim="5"] .sol-card-anim { animation: cc5 .3s ease-out both; }
+  @keyframes cc6 { 0%{transform:translateY(0)} 40%{transform:translateY(-5px)} 100%{transform:translateY(0)} }
+  body[data-card-anim="6"] .sol-card-anim { animation: cc6 .28s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes cc7 { 0%{box-shadow:var(--shadow-card),inset 0 0 0 0 var(--success)} 50%{box-shadow:var(--shadow-card),inset 0 0 0 2px var(--success)} 100%{box-shadow:var(--shadow-card),inset 0 0 0 0 var(--success)} }
+  body[data-card-anim="7"] .sol-card-anim { animation: cc7 .3s ease-out both; }
+  @keyframes cc8 { 0%{transform:scale(.94)} 40%{transform:scale(1.05)} 70%{transform:scale(.985)} 100%{transform:scale(1)} }
+  body[data-card-anim="8"] .sol-card-anim { animation: cc8 .3s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes cc9 { 0%{transform:rotate(0)} 25%{transform:rotate(-1.2deg)} 60%{transform:rotate(.8deg)} 100%{transform:rotate(0)} }
+  body[data-card-anim="9"] .sol-card-anim { animation: cc9 .28s ease-out both; }
+  @keyframes cc10 { 0%{box-shadow:var(--shadow-card);transform:scale(1)} 40%{box-shadow:var(--shadow-lg,0 24px 60px rgba(20,18,30,.18));transform:scale(1.02)} 100%{box-shadow:var(--shadow-card);transform:scale(1)} }
+  body[data-card-anim="10"] .sol-card-anim { animation: cc10 .3s var(--ease-out,ease) both; }
+
+  /* --- estado ativo persistente (card marcado) --- */
+  body[data-active-style="anel"] .sol-itemcard.is-done { box-shadow: var(--shadow-card), inset 0 0 0 1.5px var(--success); }
+  body[data-active-style="barra"] .sol-itemcard.is-done { box-shadow: var(--shadow-card); border-left: 3px solid var(--acc, var(--success)); }
+  body[data-active-style="tint"] .sol-itemcard.is-done { background-color: var(--tint-mint, #d9f7ee); box-shadow: var(--shadow-card), inset 0 0 0 1px rgba(0,200,120,.35); }
+  body[data-active-style="elevado"] .sol-itemcard.is-done { box-shadow: var(--shadow-md, 0 12px 32px rgba(21,21,21,.10)); border-top: 2px solid var(--acc, var(--success)); }
+  body[data-active-style="borda"] .sol-itemcard.is-done { box-shadow: var(--shadow-card); border-color: var(--acc, var(--success)); }
+  body[data-active-style="selo"] .sol-itemcard.is-done::after { content:"Entregue"; position:absolute; bottom:10px; left:12px; z-index:1; background:var(--success); color:#fff; font-size:9px; font-weight:800; letter-spacing:.02em; text-transform:uppercase; padding:3px 7px; border-radius:999px; box-shadow:var(--shadow-sm); pointer-events:none; }
 </style>
 </head>
 <body>
@@ -63,11 +74,9 @@
 <script type="text/babel" src="app/data.jsx"></script>
 <script type="text/babel" src="app/scoring.jsx"></script>
 <script type="text/babel" src="app/icons.jsx"></script>
-<script type="text/babel" src="app/cardskins.jsx"></script>
 <script type="text/babel" src="app/header.jsx"></script>
 <script type="text/babel" src="app/cards.jsx"></script>
 <script type="text/babel" src="app/section.jsx"></script>
-<script type="text/babel" src="app/tweaks.jsx"></script>
 <script type="text/babel" src="app/main.jsx"></script>
 </body>
 </html>
