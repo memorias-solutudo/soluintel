@@ -265,7 +265,7 @@ function ProductSection({ produto, idx, mode, onToggle, onSet, onModal, sectionR
       )
     ),
     React.createElement("div", { style: temPreview ? { display: "grid", gridTemplateColumns: "minmax(0,1fr) 780px", gap: 22, alignItems: "start" } : { display: "block" } },
-      React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(max(220px, (100% - 22px) / 3), 1fr))", gap: 11, alignContent: "start" } },
+      React.createElement("div", { style: { display: "grid", gridTemplateColumns: temPreview ? "repeat(auto-fill, minmax(max(220px, (100% - 22px) / 3), 1fr))" : "repeat(auto-fill, minmax(max(190px, (100% - 44px) / 5), 1fr))", gap: 11, alignContent: "start" } },
         produto.itens.map((item) =>
           ehAv
             ? React.createElement(ReviewCard, { key: item.id, item, mode, onSet })
