@@ -14,11 +14,47 @@ function loadAllComments() { try { return JSON.parse(localStorage.getItem(CKEY))
 function loadComments(id) { return loadAllComments()[id] || []; }
 function saveComments(id, list) {
   const all = loadAllComments();
-  if (list && list.length) all[id] = list; else delete all[id];
+  all[id] = list || []; // armazena sempre (inclusive vazio) p/ persistir remoções do comentário semeado
   try { localStorage.setItem(CKEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
+}
+// Semeia "o que falta" como 1º comentário do item (até o usuário mexer).
+function seedComments(item) {
+  const all = loadAllComments();
+  if (item.id in all) return all[item.id];
+  if (item.acao) {
+    const label = item.dono === "cliente" ? "Falta — insumo do cliente" : "Falta — ação nossa";
+    return [{ id: "seed_" + item.id, texto: `${label}: ${item.acao}`, done: false, criadoEm: Date.now() }];
+  }
+  return [];
 }
 let _ck = 0;
 const cuid = () => `c_${Date.now().toString(36)}_${(_ck++).toString(36)}`;
+
+/* ---- som curto e alegre ao marcar (Web Audio, sem arquivo) ---- */
+let _audioCtx = null;
+function markSound() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    _audioCtx = _audioCtx || new AC();
+    const ctx = _audioCtx;
+    if (ctx.state === "suspended") ctx.resume();
+    const now = ctx.currentTime;
+    // dois toques (A4 → E5), uma oitava abaixo e mais quentes — confirmação suave
+    [{ f: 440, t: 0 }, { f: 659.25, t: 0.08 }].forEach(({ f, t }) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = "sine";
+      o.frequency.setValueAtTime(f, now + t);
+      o.frequency.exponentialRampToValueAtTime(f * 1.18, now + t + 0.05);
+      g.gain.setValueAtTime(0.0001, now + t);
+      g.gain.exponentialRampToValueAtTime(0.18, now + t + 0.014);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.22);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(now + t); o.stop(now + t + 0.26);
+    });
+  } catch (e) { /* ignore */ }
+}
 function timeAgo(ts) {
   const s = Math.floor((Date.now() - ts) / 1000);
   if (s < 60) return "agora";
@@ -55,7 +91,7 @@ function CommentThread({ list, accent, onChange, onClose }) {
   return React.createElement("div", {
     onClick: stop, onMouseDown: stop,
     style: {
-      position: "absolute", left: "calc(100% + 10px)", bottom: 0, width: 280, zIndex: 30,
+      position: "absolute", top: "calc(100% + 8px)", left: 0, width: 280, zIndex: 30,
       background: "var(--white)", borderRadius: 16, boxShadow: "var(--shadow-lg, 0 18px 50px rgba(21,21,21,0.18)), var(--ring-hairline)",
       display: "flex", flexDirection: "column", overflow: "hidden", cursor: "default",
       animation: "ccPop var(--dur-base, .18s) var(--ease-out, ease) both",
@@ -135,14 +171,20 @@ function ItemCard({ item, mode, onToggle }) {
 
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  // anima o card inteiro só na transição não-feito -> feito (não no load inicial)
-  const prevDone = React.useRef(done);
-  const [animating, setAnimating] = React.useState(false);
-  React.useEffect(() => {
-    if (done && !prevDone.current) setAnimating(true);
-    prevDone.current = done;
-  }, [done]);
-  const [comments, setComments] = React.useState(() => loadComments(item.id));
+  const [jump, setJump] = React.useState(false);
+  const jumpT = React.useRef(null);
+  // pulo + som apenas no clique que MARCA o item (não ao trocar Sem/Com em massa)
+  const doMark = () => {
+    const willBeDone = !done;
+    onToggle(item.id);
+    if (willBeDone) {
+      setJump(true);
+      if (jumpT.current) clearTimeout(jumpT.current);
+      jumpT.current = setTimeout(() => setJump(false), 460);
+      markSound();
+    }
+  };
+  const [comments, setComments] = React.useState(() => seedComments(item));
   const abertos = comments.filter((c) => !c.done).length;
   const temComentarios = comments.length > 0;
 
@@ -160,66 +202,53 @@ function ItemCard({ item, mode, onToggle }) {
 
   const showCommentBtn = hover || open || temComentarios;
   const commentAccent = pil.cor;
+  const cardStyle = React.useContext(window.SOL_SKINS.CTX);
+
+  // botão de comentário (surge no hover / quando há comentários) — montado uma vez, colocado pela skin
+  const commentBtn = React.createElement("button", {
+    key: "comment",
+    onClick: (e) => { e.stopPropagation(); setOpen((v) => !v); },
+    title: temComentarios ? `${comments.length} comentário${comments.length > 1 ? "s" : ""}` : "Adicionar comentário",
+    style: {
+      border: "none", height: 26, borderRadius: 999, flex: "0 0 auto",
+      display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
+      width: temComentarios ? "auto" : 26, padding: temComentarios ? "0 9px 0 8px" : 0,
+      cursor: "pointer",
+      background: open || temComentarios ? pil.tint : "var(--gray-100)",
+      opacity: showCommentBtn ? 1 : 0, pointerEvents: showCommentBtn ? "auto" : "none",
+      transition: "opacity var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out)",
+    },
+  },
+    (temComentarios ? I2.messageDot : I2.message)({ size: 14, color: open || temComentarios ? pil.cor : "var(--gray-400)" }),
+    temComentarios && React.createElement("span", { style: { fontSize: 11, fontWeight: 700, lineHeight: 1, letterSpacing: "-0.01em", color: pil.cor } }, comments.length)
+  );
+
+  // "o que falta" agora vive como comentário semeado (acima) — sem box inline
+  const falta = null;
+
+  const parts = {
+    item, mode, done, pil, StageIcon, impactoLabel,
+    statusWord: mode === "com" ? (done ? "Entregue" : "A entregar") : (done ? "Já tinha" : "Não tinha"),
+    comment: commentBtn, falta, I: I2,
+  };
+
+  const SK = window.SOL_SKINS;
+  const skins = done ? SK.ACTIVE : SK.INACTIVE;
+  const idx = done ? (cardStyle.ativo || 0) : (cardStyle.inativo || 0);
+  const def = skins[idx] || skins[0];
+  const { wrap, content } = def.render(parts);
 
   return React.createElement("div", {
-    onClick: () => onToggle(item.id),
+    onClick: () => doMark(),
     onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
-    onAnimationEnd: () => setAnimating(false),
     role: "checkbox", "aria-checked": done,
-    className: "sol-itemcard" + (done ? " is-done" : "") + (animating ? " sol-card-anim" : ""),
+    "data-jump": jump ? "1" : undefined,
     title: mode === "com"
       ? (done ? "Entregue — clique para desmarcar" : "A entregar — clique para marcar")
       : (done ? "Já existia antes — clique para desmarcar" : "Não existia antes — clique para marcar"),
-    style: {
-      position: "relative", zIndex: open ? 60 : "auto",
-      borderRadius: 14, padding: "12px 13px",
-      display: "flex", flexDirection: "column", gap: 9, cursor: "pointer",
-      "--acc": pil.cor,
-    },
+    style: { ...SK.BASE, ...wrap, ...(open ? { zIndex: 60, overflow: "visible" } : {}), ...(jump ? { animation: "solJump 0.46s var(--ease-out)", zIndex: 5 } : {}) },
   },
-    // conteúdo (esmaece quando não entregue)
-    React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 9, opacity: done ? 1 : 0.5, transition: "opacity var(--dur-base) var(--ease-out)" } },
-      // top row: status + stage + impacto + critico + pillar
-      React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("span", { style: { width: 22, height: 22, borderRadius: "50%", flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--success)" : "transparent", boxShadow: done ? "none" : "inset 0 0 0 1.8px var(--gray-200)", transition: "box-shadow var(--dur-fast) var(--ease-out)" } }, done && I2.check({ size: 13, color: "#fff", sw: 2.6 })),
-        React.createElement("span", { title: `Etapa: ${D.ETAPAS[item.etapa].rotulo}`, style: { width: 22, height: 22, borderRadius: 7, background: "var(--gray-100)", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" } }, StageIcon({ size: 13, color: "var(--gray-500)" })),
-        React.createElement("span", { style: { fontSize: 10.5, fontWeight: 600, color: "var(--gray-400)" } }, impactoLabel),
-        item.critico && React.createElement("span", { title: "Item crítico — aplica teto ao score", style: { color: "var(--brand-orange-deep)", display: "flex" } }, I2.alert({ size: 12, color: "var(--brand-orange-deep)" })),
-        React.createElement("span", { style: { marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4, padding: "2px 8px", borderRadius: 999, background: pil.tint, color: pil.cor, fontSize: 10.5, fontWeight: 700, letterSpacing: "-0.01em" } },
-          React.createElement("span", { style: { width: 5, height: 5, borderRadius: "50%", background: pil.cor } }), pil.rotulo)
-      ),
-      // promessa
-      React.createElement("div", { style: { fontSize: 13.5, fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, letterSpacing: "-0.02em", textWrap: "pretty" } }, item.texto),
-      // footer: comment + evidence
-      React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-        React.createElement("div", { style: { marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 } },
-          // botão de comentário — sutil, surge no hover (ou se há comentários)
-          React.createElement("button", {
-            onClick: (e) => { e.stopPropagation(); setOpen((v) => !v); },
-            title: temComentarios ? `${comments.length} comentário${comments.length > 1 ? "s" : ""}` : "Adicionar comentário",
-            style: {
-              position: "relative", border: "none", width: 26, height: 26, borderRadius: 8, flex: "0 0 auto",
-              display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
-              background: open || temComentarios ? pil.tint : "var(--gray-100)",
-              opacity: showCommentBtn ? 1 : 0, pointerEvents: showCommentBtn ? "auto" : "none",
-              transition: "opacity var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out)",
-            },
-          },
-            (temComentarios ? I2.messageDot : I2.message)({ size: 14, color: open || temComentarios ? pil.cor : "var(--gray-400)" }),
-            abertos > 0 && React.createElement("span", { style: { position: "absolute", top: -4, right: -4, minWidth: 15, height: 15, padding: "0 4px", borderRadius: 999, background: "var(--brand-orange-deep)", color: "#fff", fontSize: 9.5, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 0 1.5px var(--white)" } }, abertos)
-          )
-        )
-      ),
-      // o que falta (só no modo Com Solutudo, quando ainda não entregue)
-      mode === "com" && !done && item.acao && React.createElement("div", { style: { display: "flex", gap: 7, alignItems: "flex-start", background: item.dono === "cliente" ? "var(--gray-100)" : "var(--tint-peach)", borderRadius: 10, padding: "7px 9px" } },
-        React.createElement("span", { style: { flex: "0 0 auto", marginTop: 1 } }, (item.dono === "cliente" ? I2.user : I2.building)({ size: 13, color: item.dono === "cliente" ? "var(--gray-600)" : "var(--brand-orange-deep)" })),
-        React.createElement("div", { style: { lineHeight: 1.28 } },
-          React.createElement("div", { style: { fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.03em", color: item.dono === "cliente" ? "var(--gray-500)" : "var(--brand-orange-deep)", marginBottom: 1 } }, item.dono === "cliente" ? "Falta — insumo do cliente" : "Falta — ação nossa"),
-          React.createElement("div", { style: { fontSize: 11.5, color: "var(--gray-600)", fontWeight: 500 } }, item.acao)
-        )
-      )
-    ),
-    // painel de comentários — fora do conteúdo esmaecido, opacidade plena
+    content,
     open && React.createElement(CommentThread, { list: comments, accent: commentAccent, onChange: updateComments, onClose: () => setOpen(false) })
   );
 }
@@ -230,7 +259,7 @@ window.SOL_CARDS = { ItemCard, ReviewCard };
 function StarRating({ value, onChange, color }) {
   const ref = React.useRef(null);
   const dragRef = React.useRef(false);
-  const N = 5, size = 30, gap = 0;
+  const N = 5, size = 30, gap = 2;
   const W = N * size + (N - 1) * gap;
   const setFromX = (clientX) => {
     const el = ref.current; if (!el) return;
