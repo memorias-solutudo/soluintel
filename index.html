@@ -111,6 +111,18 @@
   .fc-lbl{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;color:var(--g300)}
   .fc-chamada{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--g700)}
   .fc-titulo{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+  .fldhead{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+  .fldhead .fc-lbl{margin-bottom:0}
+  .icp{flex:none;width:20px;height:20px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.55;transition:.14s;padding:0}
+  .icp:hover{opacity:1;background:var(--g100)}
+  .icp svg{width:13px;height:13px}
+  .slidebox{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .slidephrase{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.22;color:var(--ink);flex:1;min-width:180px}
+  .slidenav{display:flex;align-items:center;gap:4px;flex:none}
+  .snav{width:30px;height:30px;border:1px solid var(--g200);background:#fff;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--g600);transition:.14s}
+  .snav:hover{background:var(--g100);border-color:var(--g300)}
+  .snav svg{width:15px;height:15px}
+  .scount{font-size:12px;font-weight:800;letter-spacing:.02em;min-width:34px;text-align:center}
   .fc-apoio{font-size:14px;line-height:1.55;color:var(--g600)}
   .fc-dl{list-style:none;display:flex;flex-direction:column;gap:2px}
   .fc-dl li{display:block;padding:10px 0;border-bottom:1px solid var(--g100)}
@@ -124,7 +136,7 @@
   .fc-dl .dtd{font-size:13px;font-weight:500;color:var(--g600);line-height:1.4}
   .fc-tel{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:2px}
   .fc-tel li{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--g150);border-radius:12px}
-  .fc-tel .tinfo{display:flex;flex-direction:column;gap:1px;margin-right:auto;min-width:0}
+  .fc-tel .tinfo{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
   .fc-tel .tlbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g400)}
   .fc-tel .tnum{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
   .fc-tel .fc-tcopy{flex:none;width:28px;height:28px;border:none;background:transparent;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.6;transition:.14s}
@@ -382,11 +394,13 @@ const I={
   cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>',
   chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>',
   gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>',
+  chevL:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+  chevR:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
 };
 
 /* ===================== PERSISTÊNCIA ===================== */
 const STORE='solutudo_fixados_v1';
-let CLIENTES=[], activeId=null, activeFixado=0;
+let CLIENTES=[], activeId=null, activeFixado=0, slogIdx=0;
 
 const SEED={
   id:'serva', nome:'Serva — Contabilidade e Condominial', iniciais:'SV',
@@ -509,15 +523,25 @@ function renderFixadoContent(f,i){
   const ac=accentOf(i)[0], acs=accentOf(i)[1];
   const dest=(f.destaques||[]);
   const isContato=(i===2); const phones=isContato?phonesOf(active()):[];
+  const slog=active().slogans||[]; const si=slog.length?Math.min(slogIdx,slog.length-1):0;
   return `
   <section class="fc-sec">
     <div class="fc-h"><div class="lft"><span class="fc-ic" style="background:${acs};color:${ac}">${I.cam}</span><span class="fc-t">O que vai na imagem</span></div>
       <button class="fc-cp" data-art="${i}" style="color:${ac}">${I.copy}Copiar</button></div>
-    <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Chamada superior</div><div class="fc-chamada">${esc(f.chamada)}</div></div>
-    <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal</div><div class="fc-titulo">${esc(f.titulo)}</div></div>
-    <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Texto de apoio</div><div class="fc-apoio">${esc(f.apoio)}</div></div>
+    <div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Chamada superior</span><button class="icp" data-fxt="${i}-chamada" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-chamada">${esc(f.chamada)}</div></div>
+    ${(i===0&&slog.length)?`<div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal · slogan</div>
+      <div class="slidebox">
+        <div class="slidephrase" id="slogPhrase">${esc(slog[si])}</div>
+        <div class="slidenav">
+          <button class="snav" data-slide="prev" title="Slogan anterior">${I.chevL}</button>
+          <span class="scount" id="slogCount" style="color:${ac}">${si+1}/${slog.length}</span>
+          <button class="snav" data-slide="next" title="Próximo slogan">${I.chevR}</button>
+          <button class="fc-dcopy" data-slogcopy title="Copiar slogan" style="color:${ac};margin-left:4px">${I.copy}</button>
+        </div>
+      </div></div>`:`<div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Título principal</span><button class="icp" data-fxt="${i}-titulo" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-titulo">${esc(f.titulo)}</div></div>`}
+    <div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Texto de apoio</span><button class="icp" data-fxt="${i}-apoio" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-apoio">${esc(f.apoio)}</div></div>
     ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map((d,j)=>{const sd=splitDest(d);return `<li><span class="dt"><span class="dtrow"><button class="fc-dcopy" data-destt="${i}-${j}" title="Copiar título" style="color:${ac}">${I.copy}</button><span class="dtt">${esc(sd.t)}</span></span>${sd.d?`<span class="dtrow"><button class="fc-dcopy" data-destd="${i}-${j}" title="Copiar descrição" style="color:${ac}">${I.copy}</button><span class="dtd">${esc(sd.d)}</span></span>`:''}</span></li>`;}).join('')}</ul></div>`:''}
-    ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}</button></li>`).join('')}</ul></div>`:''}
+    ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}</button><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div></li>`).join('')}</ul></div>`:''}
   </section>
   <div class="fc-row">
     <section class="fc-sec">
@@ -538,7 +562,7 @@ function renderFixadoContent(f,i){
 const FXLABELS=['Sobre a empresa','Serviços','Contato'];
 function selectFixado(i){
   if(i===activeFixado)return;
-  activeFixado=i;
+  activeFixado=i; slogIdx=0;
   const c=active(); const af=(c.fixados||[])[i]; if(!af)return;
   const tb=document.getElementById('tudoBtn'); if(tb)tb.dataset.fx=i;
   const fc=document.getElementById('fcwrap'); if(fc)fc.innerHTML=renderFixadoContent(af,i);
@@ -599,6 +623,9 @@ function render(){
 document.getElementById('wrap').addEventListener('click',e=>{
   const c=active();
   const se=e.target.closest('[data-sel]'); if(se){selectFixado(+se.dataset.sel);return;}
+  const sn=e.target.closest('[data-slide]'); if(sn){const sl=(c.slogans||[]);if(sl.length){slogIdx=(slogIdx+(sn.dataset.slide==='next'?1:-1)+sl.length)%sl.length;const ph=document.getElementById('slogPhrase');if(ph)ph.textContent=sl[slogIdx];const ct=document.getElementById('slogCount');if(ct)ct.textContent=(slogIdx+1)+'/'+sl.length;}return;}
+  const sg=e.target.closest('[data-slogcopy]'); if(sg){const sl=(c.slogans||[]);if(sl.length)copy(sl[Math.min(slogIdx,sl.length-1)],sg,'Slogan copiado');return;}
+  const ft=e.target.closest('[data-fxt]'); if(ft){const pr=ft.dataset.fxt.split('-'),f=c.fixados[+pr[0]],map={chamada:f.chamada,titulo:f.titulo,apoio:f.apoio};copy(map[pr[1]]||'',ft,'Texto copiado');return;}
   const sl=e.target.closest('[data-slogan]'); if(sl){copy(c.slogans[+sl.dataset.slogan],sl,'Slogan copiado');return;}
   const sa=e.target.closest('[data-slogans]'); if(sa){copy((c.slogans||[]).join('\n'),sa,'Slogans copiados');return;}
   const em=e.target.closest('[data-empresa]'); if(em){copy(empresaPlain(c),em,'Dados copiados');return;}
