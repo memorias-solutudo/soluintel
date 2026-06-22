@@ -91,8 +91,8 @@
   .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--brand-purple);color:#fff;display:grid;
     place-items:center;font-size:10px;font-weight:800;box-shadow:var(--shadow-brand)}
 
-  .card{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
-  .card+.card{margin-top:13px}
+  .card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r-md);box-shadow:none;padding:15px}
+  .card+.card{margin-top:16px}
 
   .kv{display:flex;flex-direction:column;gap:8px}
   .kv .row{display:flex;flex-direction:column;gap:1px}
@@ -194,10 +194,11 @@
   .chan svg{width:15px;height:15px;flex:0 0 auto}
 
   /* ===== 3 colunas de fixados (uma por fixado) ===== */
-  .fxgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+  .fxgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:start}
   @media(max-width:1100px){.fxgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:760px){.fxgrid{grid-template-columns:1fr}}
-  .fxcol-h{display:flex;align-items:center;gap:10px;margin:2px 0 12px}
+  .fxcol{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px}
+  .fxcol-h{display:flex;align-items:center;gap:10px;margin:0 0 17px;padding-bottom:14px;border-bottom:1px solid var(--g150)}
   .fxcol-h .n{width:30px;height:30px;border-radius:9px;background:var(--brand-purple);color:#fff;display:grid;
     place-items:center;font-weight:800;font-size:14px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
   .fxcol-h .lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--g500)}
@@ -841,11 +842,9 @@ document.getElementById('btnAll').addEventListener('click',()=>{
 function openPdf(){
   const c=active(); const fx=c.fixados||[];
   if(!fx.length){toast('Sem fixados para gerar PDF',true);return;}
-  const chans=buildChannels(c);
   document.getElementById('pvDoc').innerHTML=`
     <div class="pv-emp">${esc(c.nome)}</div>
     <div class="pv-meta">${esc(buildSub(c))}</div>
-    ${chans.length?`<div class="pv-chips">${chans.map(ch=>`<a class="chan" href="${esc(ch.url)}" target="_blank" rel="noopener">${chanIcon(ch.kind)}${esc(ch.label)}</a>`).join('')}</div>`:''}
     ${fx.map((f,i)=>`
       <div class="pv-fx">
         <div class="pv-fh">
