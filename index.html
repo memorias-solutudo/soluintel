@@ -83,7 +83,7 @@
   .chan .ext{width:13px;height:13px;color:var(--g300);display:inline-flex}
   .chan .ext svg{width:13px;height:13px}
 
-  .md{display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start;animation:solFade .35s var(--ease)}
+  .md{display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start}
   @media(max-width:900px){.md{grid-template-columns:1fr}}
   .master{position:sticky;top:26px;display:flex;flex-direction:column;gap:11px}
   @media(max-width:900px){.master{position:static}}
@@ -113,10 +113,22 @@
   .fc-titulo{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
   .fc-apoio{font-size:14px;line-height:1.55;color:var(--g600)}
   .fc-dl{list-style:none;display:flex;flex-direction:column;gap:2px}
-  .fc-dl li{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--g100)}
+  .fc-dl li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--g100)}
   .fc-dl li:last-child{border-bottom:none}
-  .fc-dl .dot{width:7px;height:7px;border-radius:999px;margin-top:7px;flex:none}
-  .fc-dl .dt{font-size:14px;font-weight:500;color:var(--ink);line-height:1.45}
+  .fc-dl .fc-dcopy{flex:none;width:22px;height:22px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.65;transition:.14s;margin-top:1px}
+  .fc-dl .fc-dcopy:hover{opacity:1;background:var(--g100)}
+  .fc-dl .fc-dcopy svg{width:13px;height:13px}
+  .fc-dl .dt{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .fc-dl .dtt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.01em}
+  .fc-dl .dtd{font-size:13px;font-weight:500;color:var(--g600);line-height:1.4}
+  .fc-tel{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:2px}
+  .fc-tel li{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--g150);border-radius:12px}
+  .fc-tel .tinfo{display:flex;flex-direction:column;gap:1px;margin-right:auto;min-width:0}
+  .fc-tel .tlbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g400)}
+  .fc-tel .tnum{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .fc-tel .fc-tcopy{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--g200);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;font-weight:600;padding:6px 11px;border-radius:var(--pill);cursor:pointer;transition:.14s}
+  .fc-tel .fc-tcopy:hover{border-color:currentColor}
+  .fc-tel .fc-tcopy svg{width:12px;height:12px}
   .fc-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
   @media(max-width:1100px){.fc-row{grid-template-columns:1fr}}
   .fc-p{margin:0 0 13px;font-size:14px;line-height:1.62;color:var(--g600)}
@@ -477,6 +489,8 @@ function renderClientSelect(){
   sel.innerHTML=CLIENTES.map(c=>`<option value="${c.id}"${c.id===activeId?' selected':''}>${esc(c.nome)}</option>`).join('');
 }
 function legParas(s){return String(s||'').split(/\n{2,}/).map(x=>x.trim()).filter(Boolean);}
+function splitDest(s){const p=String(s||'').split(/\s*[—–]\s*/);return p.length>=2?{t:p[0].trim(),d:p.slice(1).join(' — ').trim()}:{t:String(s||'').trim(),d:''};}
+function phonesOf(c){const d=c.dados||{};const out=[];if(d.whatsapp)out.push({label:'WhatsApp (principal)',num:d.whatsapp});if(d.telefone)out.push({label:'Telefone fixo',num:d.telefone});(d.telefones||'').split(/[\n;]+/).map(x=>x.trim()).filter(Boolean).forEach(t=>out.push({label:'Telefone',num:t}));return out;}
 function empresaSection(c){
   const d=c.dados||{};
   const cell=(k,v,full)=>v&&String(v).trim()?`<div${full?' class="full"':''}><div class="fldk">${esc(k)}</div><div class="fldv">${esc(v)}</div></div>`:'';
@@ -493,6 +507,7 @@ function empresaPlain(c){const d=c.dados||{};return [
 function renderFixadoContent(f,i){
   const ac=accentOf(i)[0], acs=accentOf(i)[1];
   const dest=(f.destaques||[]);
+  const isContato=(i===2); const phones=isContato?phonesOf(active()):[];
   return `
   <section class="fc-sec">
     <div class="fc-h"><div class="lft"><span class="fc-ic" style="background:${acs};color:${ac}">${I.cam}</span><span class="fc-t">O que vai na imagem</span></div>
@@ -500,7 +515,8 @@ function renderFixadoContent(f,i){
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Chamada superior</div><div class="fc-chamada">${esc(f.chamada)}</div></div>
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal</div><div class="fc-titulo">${esc(f.titulo)}</div></div>
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Texto de apoio</div><div class="fc-apoio">${esc(f.apoio)}</div></div>
-    ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map(d=>`<li><span class="dot" style="background:${ac}"></span><span class="dt">${esc(d)}</span></li>`).join('')}</ul></div>`:''}
+    ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map((d,j)=>{const sd=splitDest(d);return `<li><button class="fc-dcopy" data-dest="${i}-${j}" title="Copiar destaque" style="color:${ac}">${I.copy}</button><span class="dt"><span class="dtt">${esc(sd.t)}</span>${sd.d?`<span class="dtd">${esc(sd.d)}</span>`:''}</span></li>`;}).join('')}</ul></div>`:''}
+    ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}Copiar</button></li>`).join('')}</ul></div>`:''}
   </section>
   <div class="fc-row">
     <section class="fc-sec">
@@ -518,6 +534,18 @@ function renderFixadoContent(f,i){
     </section>
   </div>`;
 }
+const FXLABELS=['Sobre a empresa','Serviços','Contato'];
+function selectFixado(i){
+  if(i===activeFixado)return;
+  activeFixado=i;
+  const c=active(); const af=(c.fixados||[])[i]; if(!af)return;
+  const tb=document.getElementById('tudoBtn'); if(tb)tb.dataset.fx=i;
+  const fc=document.getElementById('fcwrap'); if(fc)fc.innerHTML=renderFixadoContent(af,i);
+  document.querySelectorAll('.mitem').forEach((el,idx)=>{
+    const ac=accentOf(idx)[0],acs=accentOf(idx)[1],on=idx===i;
+    el.style.borderColor=on?ac:'var(--g150)'; el.style.background=on?acs:'#fff';
+  });
+}
 function render(){
   renderClientSelect();
   const c=active();
@@ -526,7 +554,7 @@ function render(){
   const chans=buildChannels(c);
   const linksHtml=chans.length?`<div class="linksrow"><span class="links-lbl">Links</span>${chans.map(ch=>`<a class="chan" href="${esc(ch.url)}" target="_blank" rel="noopener noreferrer"><span class="ci" style="color:${ch.color}">${chanIcon(ch.kind)}</span>${esc(ch.label)}<span class="ext">${I.ext}</span></a>`).join('')}</div>`:'';
   if(!fixados.length){
-    wrap.innerHTML=linksHtml+`<div class="empty"><h2>Sem fixados ainda para <span class="sol-display grad-text">${esc(c.nome)}</span></h2>
+    wrap.innerHTML=linksHtml+`<div class="empty"><h2>Sem fixados ainda para ${esc(c.nome)}</h2>
       <p>Clique em <b>Enviar dados</b> e cole o conteúdo completo — eu organizo e publico os fixados aqui.</p>
       <button class="btn btn-primary" onclick="openImport()">Enviar dados</button></div>`;
     return;
@@ -540,17 +568,17 @@ function render(){
       ${fixados.map((f,i)=>{const ac=accentOf(i)[0],acs=accentOf(i)[1],on=i===activeFixado;return `
         <button class="mitem" data-sel="${i}" style="border-color:${on?ac:'var(--g150)'};background:${on?acs:'#fff'}">
           <span class="mn" style="background:${ac}">${i+1}</span>
-          <span style="min-width:0"><span class="mkick" style="color:${ac}">Fixado ${i+1}</span><span class="ml">${esc(f.tema)}</span></span>
+          <span style="min-width:0"><span class="mkick" style="color:${ac}">Fixado ${i+1}</span><span class="ml">${esc(FXLABELS[i]||f.tema||('Fixado '+(i+1)))}</span></span>
         </button>`;}).join('')}
     </aside>
     <div class="detail">
       <div class="detail-h"><span class="col-lbl" style="height:auto;padding:0">Conteúdo</span>
-        <button class="btn-dark-pill" data-fx="${activeFixado}" data-kind="full">${I.copy}Tudo</button></div>
-      ${renderFixadoContent(af,activeFixado)}
+        <button class="btn-dark-pill" id="tudoBtn" data-fx="${activeFixado}" data-kind="full">${I.copy}Tudo</button></div>
+      <div id="fcwrap">${renderFixadoContent(af,activeFixado)}</div>
     </div>
   </div>
   <div class="below">
-    <div class="sec-h"><span class="bar"></span><h2>Dados gerais &amp; <span class="sol-display grad-text">slogans</span></h2></div>
+    <div class="sec-h"><h2>Dados gerais &amp; slogans</h2></div>
     <div class="datagrid">
       <section class="bigcard">
         <div class="bc-h"><div class="lft"><span class="bc-ic">${I.building}</span><span class="bc-t">Detalhes da empresa</span></div>
@@ -569,13 +597,15 @@ function render(){
 /* cópias + seleção de fixado (delegação no wrap) */
 document.getElementById('wrap').addEventListener('click',e=>{
   const c=active();
-  const se=e.target.closest('[data-sel]'); if(se){activeFixado=+se.dataset.sel;render();return;}
+  const se=e.target.closest('[data-sel]'); if(se){selectFixado(+se.dataset.sel);return;}
   const sl=e.target.closest('[data-slogan]'); if(sl){copy(c.slogans[+sl.dataset.slogan],sl,'Slogan copiado');return;}
   const sa=e.target.closest('[data-slogans]'); if(sa){copy((c.slogans||[]).join('\n'),sa,'Slogans copiados');return;}
   const em=e.target.closest('[data-empresa]'); if(em){copy(empresaPlain(c),em,'Dados copiados');return;}
   const fx=e.target.closest('[data-fx]'); if(fx){const f=c.fixados[+fx.dataset.fx],n=+fx.dataset.fx+1,k=fx.dataset.kind;
     if(k==='legenda')copy(legendaFull(f),fx,'Legenda copiada');
     else copy(fixadoText(f,n),fx,`Fixado ${n} copiado`);return;}
+  const dd=e.target.closest('[data-dest]'); if(dd){const pr=dd.dataset.dest.split('-').map(Number),f=c.fixados[pr[0]];copy((f.destaques||[])[pr[1]]||'',dd,'Destaque copiado');return;}
+  const tl=e.target.closest('[data-tel]'); if(tl){copy(tl.dataset.tel,tl,'Telefone copiado');return;}
   const ar=e.target.closest('[data-art]'); if(ar){copy(arteText(c.fixados[+ar.dataset.art]),ar,'Texto da arte copiado');return;}
   const p=e.target.closest('[data-p]'); if(p){const f=c.fixados[+p.dataset.p];
     p.dataset.k==='dir'?copy(f.direcao,p,'Direção copiada'):copy(f.prompts[+p.dataset.k],p,`Prompt ${+p.dataset.k+1} copiado`);return;}
