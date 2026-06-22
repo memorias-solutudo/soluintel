@@ -117,7 +117,8 @@
   .icp{flex:none;width:20px;height:20px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.55;transition:.14s;padding:0}
   .icp:hover{opacity:1;background:var(--g100)}
   .icp svg{width:13px;height:13px}
-  .slidebox{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .slidebox{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .slidebox .slidenav{margin-left:auto}
   .slidephrase{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--ink);flex:1;min-width:180px}
   .slidenav{display:flex;align-items:center;gap:4px;flex:none}
   .snav{width:30px;height:30px;border:1px solid var(--g200);background:#fff;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--g600);transition:.14s}
@@ -532,12 +533,12 @@ function renderFixadoContent(f,i){
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Chamada superior</div><div class="valrow"><button class="icp" data-fxt="${i}-chamada" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-chamada">${esc(f.chamada)}</div></div></div>
     ${(i===0&&slog.length)?`<div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal · slogan</div>
       <div class="slidebox">
+        <button class="icp" data-slogcopy title="Copiar slogan" style="color:${ac}">${I.copy}</button>
         <div class="slidephrase" id="slogPhrase">${esc(slog[si])}</div>
         <div class="slidenav">
           <button class="snav" data-slide="prev" title="Slogan anterior">${I.chevL}</button>
           <span class="scount" id="slogCount" style="color:${ac}">${si+1}/${slog.length}</span>
           <button class="snav" data-slide="next" title="Próximo slogan">${I.chevR}</button>
-          <button class="fc-dcopy" data-slogcopy title="Copiar slogan" style="color:${ac};margin-left:4px">${I.copy}</button>
         </div>
       </div></div>`:`<div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal</div><div class="valrow"><button class="icp" data-fxt="${i}-titulo" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-titulo">${esc(f.titulo)}</div></div></div>`}
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Texto de apoio</div><div class="valrow"><button class="icp" data-fxt="${i}-apoio" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-apoio">${esc(f.apoio)}</div></div></div>
