@@ -28,7 +28,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--font);color:var(--g600);
     background:var(--g100);
-    background-image:radial-gradient(1100px 560px at 100% -8%,rgba(167,1,253,.10) 0%,rgba(252,0,151,.06) 26%,rgba(255,104,73,.04) 42%,rgba(242,242,242,0) 62%);
+    background-image:radial-gradient(1000px 520px at 100% -10%,rgba(167,1,253,.07) 0%,rgba(242,242,242,0) 58%);
     background-attachment:fixed;
     letter-spacing:-.02em;-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh}
   h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
@@ -88,7 +88,7 @@
 
   .coltitle{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;text-transform:uppercase;
     letter-spacing:.05em;color:var(--g500);margin:2px 0 11px}
-  .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--grad-brand);color:#fff;display:grid;
+  .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--brand-purple);color:#fff;display:grid;
     place-items:center;font-size:10px;font-weight:800;box-shadow:var(--shadow-brand)}
 
   .card{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
@@ -99,13 +99,13 @@
   .kv .k{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g400)}
   .kv .v{font-size:12px;font-weight:600;color:var(--ink);white-space:pre-wrap;line-height:1.35}
   .card-h{display:flex;align-items:center;gap:8px;margin-bottom:11px}
-  .card-h .ic{width:28px;height:28px;border-radius:9px;background:var(--grad-brand);color:#fff;
+  .card-h .ic{width:28px;height:28px;border-radius:9px;background:var(--brand-purple);color:#fff;
     display:grid;place-items:center;flex:0 0 auto;box-shadow:var(--shadow-brand)}
   .card-h .ic svg{width:15px;height:15px}
   .card-h h3{font-size:13.5px}
   .slogan{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--g150)}
   .slogan:first-of-type{border-top:none}
-  .slogan .num{font-size:10px;font-weight:800;color:#fff;background:var(--grad-brand);min-width:17px;height:17px;
+  .slogan .num{font-size:10px;font-weight:800;color:#fff;background:var(--brand-purple);min-width:17px;height:17px;
     border-radius:5px;display:grid;place-items:center;flex:0 0 auto;margin-top:1px}
   .slogan .txt{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.32;flex:1}
   .slogan .mini{border:none;background:transparent;cursor:pointer;color:var(--g400);padding:2px;flex:0 0 auto}
@@ -113,11 +113,10 @@
   .slogan .mini svg{width:13px;height:13px}
 
   .fx{position:relative;background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden;transition:.2s var(--ease)}
-  .fx::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-rainbow);z-index:1}
   .fx:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
   .fx+.fx{margin-top:16px}
   .fx-top{display:flex;align-items:center;gap:11px;padding:15px 15px 12px;border-bottom:1px solid var(--g150)}
-  .fx-num{width:34px;height:34px;border-radius:11px;background:var(--grad-brand);color:#fff;display:grid;
+  .fx-num{width:34px;height:34px;border-radius:11px;background:var(--brand-purple);color:#fff;display:grid;
     place-items:center;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
   .fx-top .lbl{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--brand-purple)}
   .fx-top .lbl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--brand-purple)}
@@ -145,7 +144,7 @@
   .img-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
   .img-card+.img-card{margin-top:16px}
   .img-head{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--g150)}
-  .img-head .avatar{width:30px;height:30px;border-radius:50%;background:var(--grad-brand);color:#fff;display:grid;
+  .img-head .avatar{width:30px;height:30px;border-radius:50%;background:var(--brand-purple);color:#fff;display:grid;
     place-items:center;font-weight:800;font-size:11px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
   .img-head .who{display:flex;flex-direction:column;line-height:1.18;min-width:0}
   .img-head .who .nm{font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
@@ -166,12 +165,11 @@
 
   .below{margin-top:22px}
   .below .sec-h{display:flex;align-items:center;gap:9px;margin:0 0 14px}
-  .below .sec-h .bar{width:30px;height:4px;border-radius:3px;background:var(--grad-rainbow)}
+  .below .sec-h .bar{width:30px;height:4px;border-radius:3px;background:var(--brand-purple)}
   .below .sec-h h2{font-size:19px}
   .prompts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   @media(max-width:1100px){.prompts-grid{grid-template-columns:1fr}}
   .pcard{position:relative;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:16px 14px 14px;overflow:hidden;transition:.2s var(--ease)}
-  .pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-rainbow)}
   .pcard:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
   .pcard h4{font-size:13px;margin-bottom:3px}
   .pcard .pf{font-size:11px;color:var(--g500);font-weight:600;margin-bottom:10px}
@@ -186,6 +184,30 @@
     text-decoration:none;background:var(--tint-lav);padding:5px 11px;border-radius:var(--pill);margin-bottom:14px}
   .flowlink svg{width:13px;height:13px}
 
+  /* ===== canais do cliente (topo, centralizado) ===== */
+  .channels{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:4px 0 26px}
+  .chan{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:12px;font-weight:700;
+    color:var(--ink);background:var(--white);border:1px solid var(--g200);box-shadow:var(--shadow-card);
+    border-radius:var(--pill);padding:8px 15px;transition:.16s var(--ease);letter-spacing:-.01em}
+  .chan:hover{transform:translateY(-1px);border-color:var(--brand-purple);color:var(--brand-purple)}
+  .chan svg{width:15px;height:15px;flex:0 0 auto}
+
+  /* ===== 3 colunas de fixados (uma por fixado) ===== */
+  .fxgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+  @media(max-width:1100px){.fxgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){.fxgrid{grid-template-columns:1fr}}
+  .fxcol-h{display:flex;align-items:center;gap:10px;margin:2px 0 12px}
+  .fxcol-h .n{width:30px;height:30px;border-radius:9px;background:var(--brand-purple);color:#fff;display:grid;
+    place-items:center;font-weight:800;font-size:14px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .fxcol-h .lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--g500)}
+  .fxcol-h .tema{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1.15}
+  .card-h .copybtn{margin-left:auto}
+
+  /* ===== dados gerais (área abaixo) ===== */
+  .datagrid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start}
+  @media(max-width:760px){.datagrid{grid-template-columns:1fr}}
+  .pv-chips{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 24px}
+
   /* ===== MODAIS ===== */
   .overlay{position:fixed;inset:0;z-index:90;background:rgba(21,21,21,.42);backdrop-filter:blur(3px);
     opacity:0;pointer-events:none;transition:.2s var(--ease);display:flex;align-items:flex-start;justify-content:center;
@@ -195,7 +217,7 @@
     transform:translateY(14px);transition:.24s var(--ease);overflow:hidden}
   .overlay.open .modal{transform:translateY(0)}
   .modal-h{display:flex;align-items:center;gap:11px;padding:16px 20px;border-bottom:1px solid var(--g150)}
-  .modal-h .ic{width:34px;height:34px;border-radius:10px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+  .modal-h .ic{width:34px;height:34px;border-radius:10px;background:var(--brand-purple);color:#fff;display:grid;place-items:center;flex:0 0 auto}
   .modal-h .ic svg{width:17px;height:17px}
   .modal-h h3{font-size:16px}
   .modal-h .mh-sub{font-size:11.5px;color:var(--g500);font-weight:500;margin-top:1px}
@@ -327,6 +349,10 @@
         <label class="fld">WhatsApp principal<input id="fWpp" placeholder="(79) 99106-7263"></label>
         <label class="fld">Telefone fixo<input id="fTel" placeholder="(79) 3246-3084"></label>
         <label class="fld">Site<input id="fSite" placeholder="servacontabilidade.com"></label>
+        <label class="fld">Link Solutudo<input id="fSolutudo" placeholder="solutudo.com.br/empresa/..."></label>
+        <label class="fld">Instagram<input id="fInsta" placeholder="instagram.com/..."></label>
+        <label class="fld">Facebook<input id="fFace" placeholder="facebook.com/..."></label>
+        <label class="fld">Google<input id="fGoogle" placeholder="Google Maps / Meu Negócio"></label>
         <label class="fld">Atendimento<input id="fHor" placeholder="Seg a qui: 9h–18h · Sex: até 17h"></label>
         <label class="fld full">Diferencial<textarea id="fDif" rows="2" placeholder="Fator único da empresa"></textarea></label>
         <label class="fld full">CTA padrão<textarea id="fCta" rows="3" placeholder="📍 ...&#10;📊 ...&#10;📲 WhatsApp: ..."></textarea></label>
@@ -392,6 +418,13 @@ const I={
   bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>',
   pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  quote:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 2H14a4.5 4.5 0 0 0-4.5 4.5V10H7v4h2.5v8h4v-8H17l.6-4h-3.1V6.5a1 1 0 0 1 1-1h1.4z"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>',
+  spark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.5 6.5 6.5 2.5-6.5 2.5L12 20.5 9.5 14 3 11.5 9.5 9z"/></svg>',
+  flow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>',
 };
 
 /* ===================== PERSISTÊNCIA ===================== */
@@ -402,7 +435,9 @@ const SEED={
   id:'serva', nome:'Serva — Contabilidade e Condominial', iniciais:'SV',
   dados:{cidade:'Aracaju/SE', segmento:'Contabilidade empresarial e condominial', atuacao:'Desde 1997',
     endereco:'Praça Eronildes de Carvalho, 37 — Salgado Filho — Aracaju/SE', whatsapp:'(79) 99106-7263',
-    telefone:'(79) 3246-3084', site:'servacontabilidade.com', atendimento:'Seg a qui: 9h–18h · Sex: até 17h',
+    telefone:'(79) 3246-3084', site:'servacontabilidade.com',
+    solutudo:'https://www.solutudo.com.br/empresa/serva-contabilidade-e-condominial', instagram:'https://instagram.com/servacontabilidade', google:'https://maps.google.com/?q=Serva+Contabilidade+e+Condominial+Aracaju',
+    atendimento:'Seg a qui: 9h–18h · Sex: até 17h',
     diferencial:'Experiência contábil + atuação condominial especializada + agilidade no atendimento.',
     cta:'📍 Aracaju/SE\n📊 Contabilidade empresarial • condominial\n📲 WhatsApp: (79) 99106-7263'},
   slogans:[
@@ -462,6 +497,19 @@ function buildEmpresa(c){
   return out;
 }
 function buildSub(c){const d=c.dados||{};return [d.cidade,d.segmento,d.atuacao].filter(Boolean).join(' · ');}
+function normUrl(u){u=String(u||'').trim();if(!u)return'';if(/^(https?:\/\/|mailto:|tel:)/i.test(u))return u;return 'https://'+u.replace(/^\/+/,'');}
+function buildChannels(c){
+  const d=c.dados||{}; const out=[];
+  const add=(kind,label,url)=>{if(url&&String(url).trim())out.push({kind,label,url:normUrl(url)});};
+  add('solutudo','Solutudo',d.solutudo);
+  add('instagram','Instagram',d.instagram);
+  add('facebook','Facebook',d.facebook);
+  add('google','Google',d.google);
+  add('site','Site',d.site);
+  (d.outros||'').split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean).forEach(u=>add('link','Link',u));
+  return out;
+}
+function chanIcon(k){return ({solutudo:I.spark,instagram:I.ig,facebook:I.fb,google:I.pin,site:I.globe,link:I.flow})[k]||I.flow;}
 function toast(m,err){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m||'Copiado!';
   t.classList.toggle('err',!!err);t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),err?2600:1500);}
 async function copy(text,btn,msg){
@@ -494,70 +542,58 @@ function render(){
     return;
   }
   const empresa=buildEmpresa(c);
+  const chans=buildChannels(c);
   wrap.innerHTML=`
-  <div class="cols">
-    <div>
-      <div class="coltitle"><span class="n">1</span> Empresa & slogans</div>
+  ${chans.length?`<div class="channels">${chans.map(ch=>`<a class="chan" href="${esc(ch.url)}" target="_blank" rel="noopener">${chanIcon(ch.kind)}${esc(ch.label)}</a>`).join('')}</div>`:''}
+  <div class="fxgrid">
+    ${fixados.map((f,i)=>`
+      <div class="fxcol">
+        <div class="fxcol-h">
+          <span class="n">${i+1}</span>
+          <div><div class="lbl">Fixado ${i+1}</div><div class="tema">${esc(f.tema)}</div></div>
+          <button class="copybtn" style="margin-left:auto" data-fx="${i}" data-kind="full">${I.copy}Tudo</button>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="ic">${I.image}</span><h3>O que vai na imagem</h3>
+            <button class="copybtn" data-art="${i}">${I.copy}Copiar</button></div>
+          <div class="img-stage">
+            <div class="field"><div class="flbl">Chamada superior</div><div class="chamada">${esc(f.chamada)}</div></div>
+            <div class="field"><div class="flbl">Título principal</div><div class="titulo">${esc(f.titulo)}</div></div>
+            <div class="field"><div class="flbl">Texto de apoio</div><div class="apoio">${esc(f.apoio)}</div></div>
+            ${(f.destaques||[]).length?`<div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>`:''}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="ic">${I.quote}</span><h3>Legenda</h3>
+            <button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar</button></div>
+          <div class="fx-legenda">${esc(f.legenda)}</div>
+          ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar</button></div>
+          <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="ic">${I.bulb}</span><h3>Prompts p/ gerar imagem</h3></div>
+          ${f.direcao?`<div class="pblock"><div class="ph"><span class="pl">Direção visual</span><button class="copybtn" data-p="${i}" data-k="dir">${I.copy}Copiar</button></div><div class="pt dir">${esc(f.direcao)}</div></div>`:''}
+          <div class="pblock"><div class="ph"><span class="pl">Prompt 1 · Flow</span><button class="copybtn" data-p="${i}" data-k="0">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[0]||'')}</div></div>
+          <div class="pblock"><div class="ph"><span class="pl">Prompt 2 · Flow</span><button class="copybtn" data-p="${i}" data-k="1">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[1]||'')}</div></div>
+          <a class="flowlink" style="margin:12px 0 0" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">${I.flow}labs.google/fx/tools/flow</a>
+        </div>
+      </div>`).join('')}
+  </div>
+
+  <div class="below">
+    <div class="sec-h"><span class="bar"></span><h2>Dados gerais &amp; <span class="sol-display grad-text">slogans</span></h2></div>
+    <div class="datagrid">
       <div class="card">
         <div class="card-h"><span class="ic">${I.building}</span><h3>Detalhes da empresa</h3></div>
-        <div class="kv">${empresa.map(e=>`<div class="row"><span class="k">${esc(e.k)}</span><span class="v">${esc(e.v)}</span></div>`).join('')}</div>
+        <div class="kv">${empresa.map(e=>`<div class="row"><span class="k">${esc(e.k)}</span><span class="v">${esc(e.v)}</span></div>`).join('')||'<div class="hint">Sem dados.</div>'}</div>
       </div>
       <div class="card">
         <div class="card-h"><span class="ic">${I.bulb}</span><h3>Slogans</h3></div>
         ${(c.slogans||[]).map((s,i)=>`<div class="slogan"><span class="num">${i+1}</span><span class="txt">${esc(s)}</span><button class="mini" data-slogan="${i}" title="Copiar">${I.copy}</button></div>`).join('')||'<div class="hint">Sem slogans.</div>'}
       </div>
-    </div>
-    <div>
-      <div class="coltitle"><span class="n">2</span> Os 3 fixados</div>
-      ${fixados.map((f,i)=>`
-        <div class="fx">
-          <div class="fx-top"><span class="fx-num">${i+1}</span>
-            <div><div class="lbl">Fixado ${i+1}</div><div class="tema">${esc(f.tema)}</div></div>
-            <button class="copybtn" style="margin-left:auto" data-fx="${i}" data-kind="full">${I.copy}Tudo</button></div>
-          <div class="fx-body">
-            <div class="copybar"><span class="tag">Legenda</span><button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar legenda</button></div>
-            <div class="fx-legenda">${esc(f.legenda)}</div>
-            ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar hashtags</button></div>
-            <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
-          </div>
-        </div>`).join('')}
-    </div>
-    <div>
-      <div class="coltitle"><span class="n">3</span> Texto da imagem</div>
-      ${fixados.map((f,i)=>`
-        <div class="img-card">
-          <div class="img-head">
-            <span class="avatar">${esc(c.iniciais||inits(c.nome))}</span>
-            <span class="who"><span class="nm">${esc(c.nome)}</span><span class="sub">Fixado ${i+1} · arte</span></span>
-            <span class="dots"><i></i><i></i><i></i></span>
-          </div>
-          <div class="img-stage">
-            <div class="field"><div class="flbl">Chamada superior</div><div class="chamada">${esc(f.chamada)}</div></div>
-            <div class="field"><div class="flbl">Título principal</div><div class="titulo">${esc(f.titulo)}</div></div>
-            <div class="field"><div class="flbl">Texto de apoio</div><div class="apoio">${esc(f.apoio)}</div></div>
-            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>
-          </div>
-          <div class="img-foot">
-            <span class="ig-tag">${I.pin||''}${esc(f.tema)}</span>
-            <button class="copybtn" style="margin-left:auto" data-art="${i}">${I.copy}Copiar arte</button>
-          </div>
-        </div>`).join('')}
-    </div>
-  </div>
-  <div class="below">
-    <div class="sec-h"><span class="bar"></span><h2>Prompts <span class="sol-display grad-text">Google&nbsp;Flow</span> &amp; direção visual</h2></div>
-    <a class="flowlink" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>
-      labs.google/fx/tools/flow</a>
-    <div class="prompts-grid">
-      ${fixados.map((f,i)=>`
-        <div class="pcard">
-          <h4>Fixado ${i+1} · ${esc(f.tema)}</h4>
-          <div class="pf">Direção visual e prompts para gerar a imagem</div>
-          <div class="pblock"><div class="ph"><span class="pl">Direção visual</span><button class="copybtn" data-p="${i}" data-k="dir">${I.copy}Copiar</button></div><div class="pt dir">${esc(f.direcao)}</div></div>
-          <div class="pblock"><div class="ph"><span class="pl">Prompt 1 · Flow</span><button class="copybtn" data-p="${i}" data-k="0">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[0])}</div></div>
-          <div class="pblock"><div class="ph"><span class="pl">Prompt 2 · Flow</span><button class="copybtn" data-p="${i}" data-k="1">${I.copy}Copiar</button></div><div class="pt">${esc((f.prompts||[])[1])}</div></div>
-        </div>`).join('')}
     </div>
   </div>`;
 }
@@ -593,6 +629,7 @@ function openEdit(isNew){
   fNome.value=c.nome||''; fInit.value=c.iniciais||''; fCidade.value=d.cidade||''; fSeg.value=d.segmento||'';
   fAtu.value=d.atuacao||''; fEnd.value=d.endereco||''; fWpp.value=d.whatsapp||''; fTel.value=d.telefone||'';
   fSite.value=d.site||''; fHor.value=d.atendimento||''; fDif.value=d.diferencial||''; fCta.value=d.cta||'';
+  fSolutudo.value=d.solutudo||''; fInsta.value=d.instagram||''; fFace.value=d.facebook||''; fGoogle.value=d.google||'';
   fSlog.value=(c.slogans||[]).join('\n');
   openOv('ovEdit');
 }
@@ -602,6 +639,7 @@ document.getElementById('btnSave').addEventListener('click',()=>{
   const nome=fNome.value.trim(); if(!nome){toast('Informe o nome da empresa',true);return;}
   const dados={cidade:fCidade.value.trim(),segmento:fSeg.value.trim(),atuacao:fAtu.value.trim(),
     endereco:fEnd.value.trim(),whatsapp:fWpp.value.trim(),telefone:fTel.value.trim(),site:fSite.value.trim(),
+    solutudo:fSolutudo.value.trim(),instagram:fInsta.value.trim(),facebook:fFace.value.trim(),google:fGoogle.value.trim(),
     atendimento:fHor.value.trim(),diferencial:fDif.value.trim(),cta:fCta.value.trim()};
   const slogans=fSlog.value.split('\n').map(s=>s.trim()).filter(Boolean);
   const iniciais=(fInit.value.trim()||inits(nome)).toUpperCase();
@@ -669,6 +707,10 @@ function parseImport(text){
     whatsapp:clean(lblVal(all,'WhatsApp principal')||lblVal(all,'Celular/WhatsApp principal')||lblVal(all,'WhatsApp')),
     telefone:clean(lblVal(all,'Telefone')),
     site:clean(lblVal(all,'Site')),
+    solutudo:clean(lblVal(all,'Solutudo')||lblVal(all,'Link Solutudo')||lblVal(all,'Perfil Solutudo')),
+    instagram:clean(lblVal(all,'Instagram')||lblVal(all,'Insta')),
+    facebook:clean(lblVal(all,'Facebook')||lblVal(all,'Face')),
+    google:clean(lblVal(all,'Google')||lblVal(all,'Google Maps')||lblVal(all,'Google Meu Negócio')||lblVal(all,'Maps')),
     atendimento:clean(lblVal(all,'Horário de atendimento')||lblVal(all,'Horário')),
     diferencial:'', cta:''
   };
@@ -800,9 +842,11 @@ document.getElementById('btnAll').addEventListener('click',()=>{
 function openPdf(){
   const c=active(); const fx=c.fixados||[];
   if(!fx.length){toast('Sem fixados para gerar PDF',true);return;}
+  const chans=buildChannels(c);
   document.getElementById('pvDoc').innerHTML=`
     <div class="pv-emp">${esc(c.nome)}</div>
     <div class="pv-meta">${esc(buildSub(c))}</div>
+    ${chans.length?`<div class="pv-chips">${chans.map(ch=>`<a class="chan" href="${esc(ch.url)}" target="_blank" rel="noopener">${chanIcon(ch.kind)}${esc(ch.label)}</a>`).join('')}</div>`:''}
     ${fx.map((f,i)=>`
       <div class="pv-fx">
         <div class="pv-fh">
