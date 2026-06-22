@@ -4,8 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Fixados do Instagram · Solutudo</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="apple-touch-icon" href="favicon.svg" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" />
 <style>
   :root{
@@ -18,6 +16,7 @@
     --grad-brand-text:linear-gradient(90deg,#FFD13C 2%,#F54A07 18%,#D901AA 34%,#A701FD 57%);
     --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
     --grad-rainbow:linear-gradient(90deg,#A701FD 6%,#674EF0 17%,#20CCEF 26%,#00FFAD 47%,#FFC024 64%,#FF6849 79%,#FF34A3 92%);
+    --shadow-xs:0 1px 1px rgba(0,0,0,.06); --shadow-sm:0 1px 3px rgba(0,0,0,.08);
     --shadow-card:0 8px 28px rgba(21,21,21,.06); --shadow-md:0 12px 32px rgba(21,21,21,.10);
     --shadow-lg:0 24px 60px rgba(21,21,21,.18);
     --shadow-brand:0 10px 24px rgba(167,1,253,.28); --ring:inset 0 0 0 1px #EEE;
@@ -27,7 +26,10 @@
     --display:'Playfair Display',Georgia,serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font);background:var(--g100);color:var(--g600);
+  body{font-family:var(--font);color:var(--g600);
+    background:var(--g100);
+    background-image:radial-gradient(1100px 560px at 100% -8%,rgba(167,1,253,.10) 0%,rgba(252,0,151,.06) 26%,rgba(255,104,73,.04) 42%,rgba(242,242,242,0) 62%);
+    background-attachment:fixed;
     letter-spacing:-.02em;-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh}
   h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
   ::selection{background:var(--tint-lav2)}
@@ -37,38 +39,26 @@
   .grad-text{background:var(--grad-brand-text);-webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:transparent}
 
-  /* topo: faixa branca sólida (sem blur) para melhor visibilidade */
-  .topbar{position:sticky;top:0;z-index:30;background:var(--white);box-shadow:0 1px 0 var(--g150),0 6px 18px rgba(21,21,21,.05)}
-  .topbar-in{max-width:none;margin:0;padding:13px clamp(14px,2.4vw,26px);
-    display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-  .gpill{display:flex;align-items:center;gap:8px;background:var(--white);
+  /* topo transparente — elementos flutuantes, sem barra branca atrás */
+  .topbar{position:sticky;top:0;z-index:30;background:transparent}
+  .topbar-in{max-width:none;margin:0;padding:14px clamp(14px,2.4vw,26px);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .gpill{display:flex;align-items:center;gap:7px;background:var(--white);
     border:1px solid var(--g200);box-shadow:var(--shadow-card);border-radius:var(--pill);padding:7px 9px}
-  /* pílula da marca */
-  .gpill.brand{padding:5px 14px 5px 5px;gap:9px}
-  .brand .mark{width:32px;height:32px;border-radius:50%;background:var(--grad-brand);
-    display:grid;place-items:center;color:#fff;font-weight:800;font-size:12.5px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
-  .brand .wm{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;
-    letter-spacing:.08em;text-transform:uppercase;color:var(--ink);line-height:1;white-space:nowrap}
-  .brand .wm .sep{width:4px;height:4px;border-radius:50%;background:var(--brand-purple)}
-  /* pílula do seletor de cliente */
-  .gpill.clientsel{padding:5px 6px 5px 14px;gap:6px}
-  .clientsel .cs-lbl{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--brand-purple);line-height:1;margin-right:2px}
-  .clientsel select{font-family:inherit;font-size:13.5px;font-weight:800;color:var(--ink);border:none;background:transparent;
-    cursor:pointer;outline:none;letter-spacing:-.03em;max-width:220px;padding:1px 2px;margin:0;
-    -webkit-appearance:none;appearance:none;text-overflow:ellipsis}
-  .clientsel .caret{display:flex;color:var(--g400);pointer-events:none}
-  .clientsel .caret svg{width:14px;height:14px}
-  .clientsel .pico{width:28px;height:28px;border-radius:50%;border:none;background:var(--g100);color:var(--g600);
-    display:grid;place-items:center;cursor:pointer;flex:0 0 auto;transition:.15s var(--ease);margin-left:4px}
-  .clientsel .pico:hover{background:var(--tint-lav);color:var(--brand-purple)}
-  .clientsel .pico svg{width:14px;height:14px}
-  /* pílula de contexto (cidade · segmento · atuação) */
-  .gpill.ctx{padding:8px 14px;background:var(--g100);border-color:transparent;box-shadow:none}
-  .gpill.ctx:empty,.gpill.ctx.hide{display:none}
-  .ctx .sub{font-size:11px;color:var(--g600);font-weight:700;line-height:1;max-width:340px;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  @media(max-width:980px){.gpill.ctx{display:none}}
+  /* marca · seletor · novo — itens flutuantes separados (desagrupados) */
+  .brandfloat{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .brandfloat .mark{width:42px;height:42px;border-radius:50%;background:var(--grad-brand);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .selpill{display:flex;align-items:center;gap:5px;background:var(--white);border:1px solid var(--g200);
+    box-shadow:var(--shadow-card);border-radius:var(--pill);padding:9px 9px 9px 16px}
+  .selpill select{font-family:inherit;font-size:15px;font-weight:800;color:var(--ink);border:none;background:transparent;
+    cursor:pointer;outline:none;letter-spacing:-.03em;max-width:260px;padding:0;margin:0;-webkit-appearance:none;appearance:none}
+  .selpill .caret{display:flex;color:var(--g400);pointer-events:none}
+  .selpill .caret svg{width:15px;height:15px}
+  .pico{width:40px;height:40px;border-radius:50%;border:1px solid var(--g200);background:var(--white);color:var(--g600);
+    display:grid;place-items:center;cursor:pointer;flex:0 0 auto;box-shadow:var(--shadow-card);transition:.15s var(--ease)}
+  .pico:hover{color:var(--brand-purple);border-color:var(--brand-purple);transform:translateY(-1px)}
+  .pico svg{width:16px;height:16px}
   .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
   .actions .gpill{gap:6px}
   .btn{font-family:inherit;font-size:12px;font-weight:700;letter-spacing:-.01em;border-radius:var(--pill);
@@ -92,20 +82,14 @@
   .empty{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:40px;text-align:center;margin-top:30px}
   .empty h2{font-size:22px;margin-bottom:8px}
   .empty p{font-size:13.5px;margin-bottom:18px}
-  .linkbar{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
-  .linkchip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
-    background:#fff;border:1px solid var(--g200);color:var(--ink);font-size:12px;font-weight:700;
-    letter-spacing:-.01em;text-decoration:none;line-height:1;transition:border-color .15s,background .15s}
-  .linkchip svg{width:13px;height:13px;color:var(--g500)}
-  .linkchip:hover{border-color:var(--brand-purple);background:var(--g100)}
   .cols{display:grid;grid-template-columns:268px minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
   @media(max-width:1200px){.cols{grid-template-columns:1fr 1fr}}
   @media(max-width:820px){.cols{grid-template-columns:1fr}}
 
   .coltitle{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;text-transform:uppercase;
     letter-spacing:.05em;color:var(--g500);margin:2px 0 11px}
-  .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--ink);color:#fff;display:grid;
-    place-items:center;font-size:10px;font-weight:800}
+  .coltitle .n{width:18px;height:18px;border-radius:6px;background:var(--grad-brand);color:#fff;display:grid;
+    place-items:center;font-size:10px;font-weight:800;box-shadow:var(--shadow-brand)}
 
   .card{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
   .card+.card{margin-top:13px}
@@ -115,8 +99,8 @@
   .kv .k{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g400)}
   .kv .v{font-size:12px;font-weight:600;color:var(--ink);white-space:pre-wrap;line-height:1.35}
   .card-h{display:flex;align-items:center;gap:8px;margin-bottom:11px}
-  .card-h .ic{width:26px;height:26px;border-radius:8px;background:var(--tint-lav);color:var(--brand-purple);
-    display:grid;place-items:center;flex:0 0 auto}
+  .card-h .ic{width:28px;height:28px;border-radius:9px;background:var(--grad-brand);color:#fff;
+    display:grid;place-items:center;flex:0 0 auto;box-shadow:var(--shadow-brand)}
   .card-h .ic svg{width:15px;height:15px}
   .card-h h3{font-size:13.5px}
   .slogan{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--g150)}
@@ -128,20 +112,25 @@
   .slogan .mini:hover{color:var(--brand-purple)}
   .slogan .mini svg{width:13px;height:13px}
 
-  .fx{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
-  .fx+.fx{margin-top:14px}
-  .fx-top{display:flex;align-items:center;gap:10px;padding:12px 14px 11px;border-bottom:1px solid var(--g150)}
-  .fx-num{width:30px;height:30px;border-radius:10px;background:var(--grad-brand);color:#fff;display:grid;
-    place-items:center;font-weight:800;font-size:14px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
-  .fx-top .lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g400)}
-  .fx-top .tema{font-size:14.5px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
-  .fx-body{padding:13px 14px}
-  .fx-legenda{font-size:11.5px;color:var(--g700);white-space:pre-wrap;line-height:1.5;font-weight:500}
-  .fx-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--g200)}
-  .fx-tags .t{font-size:10.5px;font-weight:700;color:var(--brand-purple);background:var(--tint-lav);
-    border-radius:var(--pill);padding:3px 9px;letter-spacing:-.01em}
+  .fx{position:relative;background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden;transition:.2s var(--ease)}
+  .fx::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-rainbow);z-index:1}
+  .fx:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .fx+.fx{margin-top:16px}
+  .fx-top{display:flex;align-items:center;gap:11px;padding:15px 15px 12px;border-bottom:1px solid var(--g150)}
+  .fx-num{width:34px;height:34px;border-radius:11px;background:var(--grad-brand);color:#fff;display:grid;
+    place-items:center;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .fx-top .lbl{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--brand-purple)}
+  .fx-top .lbl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--brand-purple)}
+  .fx-top .tema{font-size:15.5px;font-weight:800;color:var(--ink);letter-spacing:-.03em;margin-top:1px}
+  .fx-body{padding:14px 15px}
+  .fx-legenda{font-size:11.5px;color:var(--g700);white-space:pre-wrap;line-height:1.55;font-weight:500}
+  .fx-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--g200)}
+  .fx-tags .t{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;color:var(--brand-purple);
+    background:var(--tint-lav);border-radius:var(--pill);padding:3px 10px;letter-spacing:-.01em}
+  .fx-tags .t::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--brand-purple)}
   .copybar{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
-  .copybar .tag{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--brand-purple)}
+  .copybar .tag{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-purple)}
+  .copybar .tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--brand-purple)}
 
   .copybtn{font-family:inherit;font-size:10px;font-weight:700;letter-spacing:.01em;border:1px solid var(--g200);
     background:var(--white);color:var(--g600);border-radius:var(--pill);padding:4px 10px;cursor:pointer;
@@ -151,19 +140,29 @@
   .copybtn svg{width:12px;height:12px}
   .copybtn.done{border-color:var(--brand-green);color:#0a8f5e;background:var(--tint-mint)}
 
-  .img-card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden}
-  .img-card+.img-card{margin-top:14px}
-  .img-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--tint-lav);border-bottom:1px solid var(--g150)}
-  .img-head .n{width:24px;height:24px;border-radius:7px;background:var(--brand-purple);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:0 0 auto}
-  .img-head .t{font-size:12.5px;font-weight:800;color:var(--ink)}
-  .img-body{padding:13px 14px;display:flex;flex-direction:column;gap:10px}
+  /* coluna 3 — preview de post (estilo painel de evidência do design) */
+  .img-card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);overflow:hidden;transition:.2s var(--ease)}
+  .img-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .img-card+.img-card{margin-top:16px}
+  .img-head{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--g150)}
+  .img-head .avatar{width:30px;height:30px;border-radius:50%;background:var(--grad-brand);color:#fff;display:grid;
+    place-items:center;font-weight:800;font-size:11px;flex:0 0 auto;box-shadow:var(--shadow-brand)}
+  .img-head .who{display:flex;flex-direction:column;line-height:1.18;min-width:0}
+  .img-head .who .nm{font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+  .img-head .who .sub{font-size:9.5px;color:var(--g500);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .img-head .dots{margin-left:auto;display:flex;gap:3px;color:var(--g400)}
+  .img-head .dots i{width:3.5px;height:3.5px;border-radius:50%;background:currentColor}
+  .img-stage{padding:16px 15px;background:linear-gradient(180deg,#FBF6FF,#fff);display:flex;flex-direction:column;gap:10px}
+  .img-foot{display:flex;align-items:center;gap:8px;padding:10px 13px;border-top:1px solid var(--g150)}
+  .img-foot .ig-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .img-foot .ig-tag svg{width:14px;height:14px;color:var(--brand-purple)}
   .field .flbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);margin-bottom:3px}
-  .field .chamada{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--brand-orange-deep)}
-  .field .titulo{font-size:14px;font-weight:800;color:var(--ink);line-height:1.18;letter-spacing:-.03em}
+  .field .chamada{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--brand-orange-deep)}
+  .field .titulo{font-size:15px;font-weight:800;color:var(--ink);line-height:1.16;letter-spacing:-.035em}
   .field .apoio{font-size:11.5px;color:var(--g700);font-weight:500;line-height:1.45}
   .destaques{display:flex;flex-direction:column;gap:5px}
-  .destaques .d{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--g100);border-radius:9px;padding:6px 9px;line-height:1.3}
-  .arte-full{font-size:11.5px;color:var(--ink);font-weight:500;line-height:1.5;white-space:pre-wrap}
+  .destaques .d{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--g150);
+    box-shadow:var(--shadow-xs);border-radius:10px;padding:7px 10px;line-height:1.3}
 
   .below{margin-top:22px}
   .below .sec-h{display:flex;align-items:center;gap:9px;margin:0 0 14px}
@@ -171,13 +170,16 @@
   .below .sec-h h2{font-size:19px}
   .prompts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   @media(max-width:1100px){.prompts-grid{grid-template-columns:1fr}}
-  .pcard{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px}
+  .pcard{position:relative;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:16px 14px 14px;overflow:hidden;transition:.2s var(--ease)}
+  .pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-rainbow)}
+  .pcard:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
   .pcard h4{font-size:13px;margin-bottom:3px}
   .pcard .pf{font-size:11px;color:var(--g500);font-weight:600;margin-bottom:10px}
   .pblock{border-top:1px solid var(--g150);padding-top:10px;margin-top:10px}
   .pblock:first-of-type{border-top:none;padding-top:0;margin-top:0}
   .pblock .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-  .pblock .ph .pl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--brand-purple)}
+  .pblock .ph .pl{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-purple)}
+  .pblock .ph .pl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--brand-purple)}
   .pblock .pt{font-size:10.5px;color:var(--g600);line-height:1.5;font-weight:500;white-space:pre-wrap}
   .pblock .dir{color:var(--g700)}
   .flowlink{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--brand-purple);
@@ -236,9 +238,7 @@
   .pv-fx:first-of-type{border-top:none}
   .pv-fx .pv-fh{display:flex;align-items:center;gap:10px;margin-bottom:11px}
   .pv-fx .pv-tema{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
-  .pv-fx .pv-legenda{font-size:14px;color:#222;line-height:1.6;font-weight:400}
-  .pv-fx .pv-legenda p{margin:0 0 10px}
-  .pv-fx .pv-legenda p:last-child{margin-bottom:0}
+  .pv-fx .pv-legenda{font-size:14px;color:#222;line-height:1.6;white-space:pre-wrap;font-weight:400}
   .pv-copy{margin-left:auto}
 
   @media print{
@@ -255,24 +255,17 @@
 
 <header class="topbar">
   <div class="topbar-in">
-    <!-- pílula: marca -->
-    <div class="gpill brand">
+    <!-- marca · seletor · novo — flutuantes, desagrupados -->
+    <div class="brandfloat">
       <div class="mark" id="mark">SV</div>
-      <span class="wm">Solutudo<i class="sep"></i>Fixados</span>
-    </div>
-
-    <!-- pílula: seletor de cliente -->
-    <div class="gpill clientsel">
-      <span class="cs-lbl">Cliente</span>
-      <select id="clientSel" title="Selecionar cliente"></select>
-      <span class="caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      <div class="selpill">
+        <select id="clientSel" title="Selecionar cliente"></select>
+        <span class="caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
       <button class="pico" id="btnNew" title="Cadastrar novo cliente">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
-
-    <!-- pílula: contexto do cliente (cidade · segmento) -->
-    <div class="gpill ctx" id="ctxPill"><span class="sub" id="cliSub"></span></div>
 
     <div class="actions">
       <!-- grupo: gestão de conteúdo -->
@@ -294,8 +287,20 @@
         </button>
         <button class="btn btn-grad" id="btnPdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
-          Gerar entrega
+          Gerar PDF
         </button>
+      </div>
+      <!-- grupo: backup dos dados -->
+      <div class="gpill">
+        <button class="btn" id="btnBackup" title="Baixar um arquivo com todos os clientes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Backup
+        </button>
+        <button class="btn" id="btnRestore" title="Restaurar a partir de um arquivo de backup">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4M7 14l5-5 5 5M12 9v12"/></svg>
+          Restaurar
+        </button>
+        <input type="file" id="restoreFile" accept="application/json,.json" hidden>
       </div>
     </div>
   </div>
@@ -322,8 +327,6 @@
         <label class="fld">WhatsApp principal<input id="fWpp" placeholder="(79) 99106-7263"></label>
         <label class="fld">Telefone fixo<input id="fTel" placeholder="(79) 3246-3084"></label>
         <label class="fld">Site<input id="fSite" placeholder="servacontabilidade.com"></label>
-        <label class="fld">Instagram<input id="fInsta" placeholder="@usuario ou link"></label>
-        <label class="fld">Solutudo<input id="fSol" placeholder="link do perfil na Solutudo"></label>
         <label class="fld">Atendimento<input id="fHor" placeholder="Seg a qui: 9h–18h · Sex: até 17h"></label>
         <label class="fld full">Diferencial<textarea id="fDif" rows="2" placeholder="Fator único da empresa"></textarea></label>
         <label class="fld full">CTA padrão<textarea id="fCta" rows="3" placeholder="📍 ...&#10;📊 ...&#10;📲 WhatsApp: ..."></textarea></label>
@@ -368,9 +371,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Voltar
       </button>
-      <button class="btn btn-grad" id="pvWord">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13l1.5 5 1.5-4 1.5 4L14 13"/></svg>
-        Salvar como Word
+      <button class="btn btn-grad" id="pvPrint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+        Salvar como PDF
       </button>
     </div>
   </div>
@@ -387,11 +390,8 @@ const I={
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
   building:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/></svg>',
   bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>',
-  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
-  insta:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
-  star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .8-5.2 4.7 1.5 6.9L12 17.8 5.2 20.9l1.5-6.9L1.5 9.3l7-.8z"/></svg>',
-  wpp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>',
 };
 
 /* ===================== PERSISTÊNCIA ===================== */
@@ -462,23 +462,6 @@ function buildEmpresa(c){
   return out;
 }
 function buildSub(c){const d=c.dados||{};return [d.cidade,d.segmento,d.atuacao].filter(Boolean).join(' · ');}
-/* normaliza um valor em URL absoluta conforme o tipo de link */
-function normUrl(kind,v){
-  v=String(v||'').trim(); if(!v)return'';
-  if(kind==='whatsapp'){const d=v.replace(/\D/g,'');return d?'https://wa.me/'+(d.length<=11?'55'+d:d):'';}
-  if(kind==='instagram'){if(/^https?:/i.test(v))return v;return 'https://instagram.com/'+v.replace(/^@/,'');}
-  if(/^https?:/i.test(v))return v;
-  return 'https://'+v;
-}
-/* links principais da empresa, em barra compacta no topo */
-function buildLinks(c){
-  const d=c.dados||{}; const out=[];
-  const add=(label,icon,href)=>{if(href)out.push({label,icon,href});};
-  add('Site',I.globe,normUrl('site',d.site));
-  add('Solutudo',I.star,normUrl('site',d.solutudo));
-  add('Instagram',I.insta,normUrl('instagram',d.instagram));
-  return out;
-}
 function toast(m,err){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m||'Copiado!';
   t.classList.toggle('err',!!err);t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),err?2600:1500);}
 async function copy(text,btn,msg){
@@ -487,18 +470,9 @@ async function copy(text,btn,msg){
   toast(msg);
   if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML=I.check+'Copiado';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},1200);}
 }
-/* texto da arte: usa o conteúdo íntegro enviado; fallback p/ campos estruturados */
-function arteText(f){return f.arte||`${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
-/* remove marcação markdown de negrito (**), que não é interpretada ao colar */
-function semMd(s){return String(s||'').replace(/\*\*/g,'');}
+function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
-function legendaFull(f){return semMd((f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:''));}
-/* legenda em parágrafos reais p/ a visão de entrega/PDF — evita que o
-   copiar/colar do PDF salvo herde quebras de linha indevidas do pre-wrap */
-function legendaHtml(f){
-  return legendaFull(f).trim().split(/\n{2,}/).map(p=>
-    `<p>${esc(p.trim()).replace(/\n/g,'<br>')}</p>`).join('');
-}
+function legendaFull(f){return (f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:'');}
 function fixadoText(f,n){return `FIXADO ${n} · ${f.tema}\n\n— LEGENDA —\n${legendaFull(f)}\n\n— TEXTO DA IMAGEM —\n${arteText(f)}\n\n— DIREÇÃO VISUAL —\n${f.direcao||''}\n\n— PROMPT 1 —\n${(f.prompts||[])[0]||''}\n\n— PROMPT 2 —\n${(f.prompts||[])[1]||''}`;}
 
 /* ===================== RENDER ===================== */
@@ -510,9 +484,7 @@ function render(){
   renderClientSelect();
   const c=active();
   document.getElementById('mark').textContent=c.iniciais||inits(c.nome);
-  const sub=buildSub(c);
-  document.getElementById('cliSub').textContent=sub;
-  document.getElementById('ctxPill').classList.toggle('hide',!sub);
+  const _sub=document.getElementById('cliSub'); if(_sub)_sub.textContent=buildSub(c);
   const wrap=document.getElementById('wrap');
   const fixados=c.fixados||[];
   if(!fixados.length){
@@ -522,10 +494,7 @@ function render(){
     return;
   }
   const empresa=buildEmpresa(c);
-  const links=buildLinks(c);
   wrap.innerHTML=`
-  ${links.length?`<div class="linkbar">${links.map(l=>
-    `<a class="linkchip" href="${esc(l.href)}" target="_blank" rel="noopener">${l.icon}${esc(l.label)}</a>`).join('')}</div>`:''}
   <div class="cols">
     <div>
       <div class="coltitle"><span class="n">1</span> Empresa & slogans</div>
@@ -547,7 +516,7 @@ function render(){
             <button class="copybtn" style="margin-left:auto" data-fx="${i}" data-kind="full">${I.copy}Tudo</button></div>
           <div class="fx-body">
             <div class="copybar"><span class="tag">Legenda</span><button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar legenda</button></div>
-            <div class="fx-legenda">${esc(semMd(f.legenda))}</div>
+            <div class="fx-legenda">${esc(f.legenda)}</div>
             ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar hashtags</button></div>
             <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
           </div>
@@ -557,14 +526,20 @@ function render(){
       <div class="coltitle"><span class="n">3</span> Texto da imagem</div>
       ${fixados.map((f,i)=>`
         <div class="img-card">
-          <div class="img-head"><span class="n">${i+1}</span><span class="t">${esc(f.tema)}</span>
-            <button class="copybtn" style="margin-left:auto" data-art="${i}">${I.copy}Copiar arte</button></div>
-          <div class="img-body">
-            ${f.arte?`<div class="arte-full">${esc(f.arte)}</div>`:`
+          <div class="img-head">
+            <span class="avatar">${esc(c.iniciais||inits(c.nome))}</span>
+            <span class="who"><span class="nm">${esc(c.nome)}</span><span class="sub">Fixado ${i+1} · arte</span></span>
+            <span class="dots"><i></i><i></i><i></i></span>
+          </div>
+          <div class="img-stage">
             <div class="field"><div class="flbl">Chamada superior</div><div class="chamada">${esc(f.chamada)}</div></div>
             <div class="field"><div class="flbl">Título principal</div><div class="titulo">${esc(f.titulo)}</div></div>
             <div class="field"><div class="flbl">Texto de apoio</div><div class="apoio">${esc(f.apoio)}</div></div>
-            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>`}
+            <div class="field"><div class="flbl">Destaques</div><div class="destaques">${(f.destaques||[]).map(d=>`<span class="d">${esc(d)}</span>`).join('')}</div></div>
+          </div>
+          <div class="img-foot">
+            <span class="ig-tag">${I.pin||''}${esc(f.tema)}</span>
+            <button class="copybtn" style="margin-left:auto" data-art="${i}">${I.copy}Copiar arte</button>
           </div>
         </div>`).join('')}
     </div>
@@ -617,8 +592,7 @@ function openEdit(isNew){
   const d=c.dados||{};
   fNome.value=c.nome||''; fInit.value=c.iniciais||''; fCidade.value=d.cidade||''; fSeg.value=d.segmento||'';
   fAtu.value=d.atuacao||''; fEnd.value=d.endereco||''; fWpp.value=d.whatsapp||''; fTel.value=d.telefone||'';
-  fSite.value=d.site||''; fInsta.value=d.instagram||''; fSol.value=d.solutudo||'';
-  fHor.value=d.atendimento||''; fDif.value=d.diferencial||''; fCta.value=d.cta||'';
+  fSite.value=d.site||''; fHor.value=d.atendimento||''; fDif.value=d.diferencial||''; fCta.value=d.cta||'';
   fSlog.value=(c.slogans||[]).join('\n');
   openOv('ovEdit');
 }
@@ -628,7 +602,6 @@ document.getElementById('btnSave').addEventListener('click',()=>{
   const nome=fNome.value.trim(); if(!nome){toast('Informe o nome da empresa',true);return;}
   const dados={cidade:fCidade.value.trim(),segmento:fSeg.value.trim(),atuacao:fAtu.value.trim(),
     endereco:fEnd.value.trim(),whatsapp:fWpp.value.trim(),telefone:fTel.value.trim(),site:fSite.value.trim(),
-    instagram:fInsta.value.trim(),solutudo:fSol.value.trim(),
     atendimento:fHor.value.trim(),diferencial:fDif.value.trim(),cta:fCta.value.trim()};
   const slogans=fSlog.value.split('\n').map(s=>s.trim()).filter(Boolean);
   const iniciais=(fInit.value.trim()||inits(nome)).toUpperCase();
@@ -685,13 +658,6 @@ function parseImport(text){
   };
   const startsEmoji=(s)=>/^[←-⇿⌀-➿⬀-⯿☀-⛿\u{1F000}-\u{1FAFF}]/u.test(s.trim());
   const clean=s=>s.replace(/^\*\*|\*\*$/g,'').trim();
-  // extrai a URL de um valor: markdown [txt](url), URL crua ou texto simples
-  const urlOf=v=>{
-    v=String(v||'').trim();
-    const md=v.match(/\(\s*(https?:\/\/[^)\s]+)\s*\)/i); if(md)return md[1];
-    const u=v.match(/https?:\/\/[^\s)\]]+/i); if(u)return u[0];
-    return clean(v).replace(/^\[|\]$/g,'');
-  };
 
   const all=text;
   // ---- empresa ----
@@ -702,9 +668,7 @@ function parseImport(text){
     endereco:clean(lblVal(all,'Endereço')),
     whatsapp:clean(lblVal(all,'WhatsApp principal')||lblVal(all,'Celular/WhatsApp principal')||lblVal(all,'WhatsApp')),
     telefone:clean(lblVal(all,'Telefone')),
-    site:urlOf(lblVal(all,'Site oficial')||lblVal(all,'Site')),
-    instagram:urlOf(lblVal(all,'Instagram')||lblVal(all,'Insta')),
-    solutudo:urlOf(lblVal(all,'Página na Solutudo')||lblVal(all,'Solutudo')),
+    site:clean(lblVal(all,'Site')),
     atendimento:clean(lblVal(all,'Horário de atendimento')||lblVal(all,'Horário')),
     diferencial:'', cta:''
   };
@@ -769,13 +733,7 @@ function parseImport(text){
   const imgs={};
   [...imgBlock.matchAll(/###[^\n]*?Fixado\s*(\d+)[^\n]*\n([\s\S]*?)(?=\n###|\n##|$)/gi)].forEach(m=>{
     const b=m[2];
-    // texto da arte na íntegra, exatamente como enviado (até a Direção visual),
-    // só removendo a marcação ** e linhas de separador ---
-    const arte=b.split(/\n\s*\*{0,2}\s*Direção visual/i)[0]
-      .replace(/^\s*-{3,}\s*$/gm,'').replace(/\*\*/g,'')
-      .replace(/\n{3,}/g,'\n\n').trim();
     imgs[+m[1]]={
-      arte,
       chamada:clean(lblVal(b,'Chamada superior')),
       titulo:clean(lblVal(b,'Título principal')),
       apoio:clean(lblVal(b,'Texto de apoio')||lblVal(b,'Texto complementar')),
@@ -799,12 +757,39 @@ function parseImport(text){
   const fixados=nums.map(n=>{
     const L=legs[n]||{},Im=imgs[n]||{},P=prompts[n]||['',''];
     return {tema:L.tema||Im.titulo||('Fixado '+n),legenda:L.legenda||'',hashtags:L.hashtags||defTags||'',
-      arte:Im.arte||'',chamada:Im.chamada||'',titulo:Im.titulo||'',apoio:Im.apoio||'',destaques:Im.destaques||[],
+      chamada:Im.chamada||'',titulo:Im.titulo||'',apoio:Im.apoio||'',destaques:Im.destaques||[],
       direcao:Im.direcao||'',prompts:[P[0]||'',P[1]||'']};
   });
 
   return {nome,dados,slogans,fixados};
 }
+
+/* ===================== BACKUP / RESTAURAR ===================== */
+document.getElementById('btnBackup').addEventListener('click',()=>{
+  const data={app:'solutudo-fixados',version:1,exportadoEm:new Date().toISOString(),clientes:CLIENTES,activeId};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  const d=new Date().toISOString().slice(0,10);
+  a.href=URL.createObjectURL(blob); a.download=`backup-fixados-${d}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  toast(`Backup de ${CLIENTES.length} cliente(s) baixado`);
+});
+document.getElementById('btnRestore').addEventListener('click',()=>document.getElementById('restoreFile').click());
+document.getElementById('restoreFile').addEventListener('change',e=>{
+  const file=e.target.files[0]; if(!file)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    let data; try{data=JSON.parse(rd.result);}catch(err){toast('Arquivo inválido',true);return;}
+    const lista=Array.isArray(data)?data:(data&&data.clientes);
+    if(!Array.isArray(lista)||!lista.length){toast('Backup sem clientes',true);return;}
+    if(!confirm(`Restaurar ${lista.length} cliente(s) deste backup? Isso substitui os dados atuais deste navegador.`)){e.target.value='';return;}
+    CLIENTES=lista; activeId=(data&&data.activeId&&lista.some(c=>c.id===data.activeId))?data.activeId:lista[0].id;
+    save(); render(); toast('Backup restaurado ✓');
+    e.target.value='';
+  };
+  rd.readAsText(file);
+});
 
 /* ===================== AÇÕES TOPO ===================== */
 document.getElementById('btnAll').addEventListener('click',()=>{
@@ -824,7 +809,7 @@ function openPdf(){
           <span class="fx-num">${i+1}</span><span class="pv-tema">${esc(f.tema)}</span>
           <button class="copybtn pv-copy" data-pv="${i}">${I.copy}Copiar legenda</button>
         </div>
-        <div class="pv-legenda">${legendaHtml(f)}</div>
+        <div class="pv-legenda">${esc(legendaFull(f))}</div>
       </div>`).join('')}`;
   document.getElementById('pdfView').classList.add('open');
   document.body.style.overflow='hidden';
@@ -832,102 +817,10 @@ function openPdf(){
 function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('btnPdf').addEventListener('click',openPdf);
 document.getElementById('pvBack').addEventListener('click',closePdf);
-/* ---- gerador de DOCX (OOXML) nativo, sem dependências externas ---- */
-function crc32(bytes){
-  let c=~0;
-  for(let i=0;i<bytes.length;i++){
-    c^=bytes[i];
-    for(let k=0;k<8;k++) c=(c>>>1)^(0xEDB88320 & -(c&1));
-  }
-  return ~c>>>0;
-}
-function zipDocx(files){ // files: [{name, data:Uint8Array}] — método "store" (sem compressão)
-  const local=[], central=[]; let offset=0;
-  for(const f of files){
-    const nameBytes=new TextEncoder().encode(f.name);
-    const crc=crc32(f.data), size=f.data.length;
-    const lh=new Uint8Array(30+nameBytes.length), lv=new DataView(lh.buffer);
-    lv.setUint32(0,0x04034b50,true); lv.setUint16(4,20,true);
-    lv.setUint32(14,crc,true); lv.setUint32(18,size,true); lv.setUint32(22,size,true);
-    lv.setUint16(26,nameBytes.length,true); lh.set(nameBytes,30);
-    local.push(lh,f.data);
-    const cd=new Uint8Array(46+nameBytes.length), cv=new DataView(cd.buffer);
-    cv.setUint32(0,0x02014b50,true); cv.setUint16(4,20,true); cv.setUint16(6,20,true);
-    cv.setUint32(16,crc,true); cv.setUint32(20,size,true); cv.setUint32(24,size,true);
-    cv.setUint16(28,nameBytes.length,true); cv.setUint32(42,offset,true); cd.set(nameBytes,46);
-    central.push(cd);
-    offset+=lh.length+f.data.length;
-  }
-  let cdSize=0; central.forEach(c=>cdSize+=c.length);
-  const end=new Uint8Array(22), ev=new DataView(end.buffer);
-  ev.setUint32(0,0x06054b50,true); ev.setUint16(8,files.length,true); ev.setUint16(10,files.length,true);
-  ev.setUint32(12,cdSize,true); ev.setUint32(16,offset,true);
-  return new Blob([...local,...central,end],
-    {type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
-}
-/* exporta a entrega como documento Microsoft Word (.docx) — texto estruturado
-   em parágrafos OOXML, sem as quebras indevidas do copiar/colar de PDF */
-function exportWord(){
-  const c=active(); const fx=c.fixados||[];
-  if(!fx.length){toast('Sem fixados para exportar',true);return;}
-  const xe=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const para=(text,o={})=>{
-    const rpr=(o.b||o.sz)?`<w:rPr>${o.b?'<w:b/>':''}${o.sz?`<w:sz w:val="${o.sz}"/><w:szCs w:val="${o.sz}"/>`:''}</w:rPr>`:'';
-    const ppr=(o.before!=null||o.after!=null)?`<w:pPr><w:spacing${o.before!=null?` w:before="${o.before}"`:''}${o.after!=null?` w:after="${o.after}"`:''}/></w:pPr>`:'';
-    const runs=String(text||'').split('\n').map((ln,i)=>(i?'<w:br/>':'')+`<w:t xml:space="preserve">${xe(ln)}</w:t>`).join('');
-    return `<w:p>${ppr}<w:r>${rpr}${runs}</w:r></w:p>`;
-  };
-  let body=para(c.nome,{b:true,sz:40,after:60})+para(buildSub(c),{sz:20,after:240});
-  fx.forEach((f,i)=>{
-    // remove numeração/espaço já existentes no tema p/ não duplicar nem bugar
-    const tema=String(f.tema||'').replace(/^\s*\d+\s*[.)\-–—]\s+/,'').trim();
-    body+=para(`${i+1}. ${tema}`,{b:true,sz:28,before:240,after:120});
-    // legenda inteira em um parágrafo: cada \n vira quebra de linha (w:br),
-    // preservando as linhas em branco ao copiar/colar
-    body+=para(legendaFull(f).trim(),{sz:22,after:120});
-  });
-  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`+
-    `<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}`+
-    `<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
-  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`+
-    `<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">`+
-    `<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>`+
-    `<Default Extension="xml" ContentType="application/xml"/>`+
-    `<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
-  const rels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`+
-    `<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">`+
-    `<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
-  const enc=new TextEncoder();
-  const blob=zipDocx([
-    {name:'[Content_Types].xml',data:enc.encode(contentTypes)},
-    {name:'_rels/.rels',data:enc.encode(rels)},
-    {name:'word/document.xml',data:enc.encode(documentXml)},
-  ]);
-  saveBlob(blob,`Legendas.docx`);
-}
-/* salva o blob deixando o usuário escolher a pasta (File System Access API),
-   com fallback p/ download automático em navegadores sem suporte */
-async function saveBlob(blob,nome){
-  if(window.showSaveFilePicker){
-    try{
-      const handle=await window.showSaveFilePicker({
-        suggestedName:nome,
-        types:[{description:'Documento Word',accept:{'application/vnd.openxmlformats-officedocument.wordprocessingml.document':['.docx']}}]
-      });
-      const w=await handle.createWritable();
-      await w.write(blob); await w.close();
-      toast('Word salvo');
-      return;
-    }catch(e){ if(e&&e.name==='AbortError') return; } // usuário cancelou
-  }
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download=nome;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-  toast('Word exportado');
-}
-document.getElementById('pvWord').addEventListener('click',exportWord);
+document.getElementById('pvPrint').addEventListener('click',()=>{
+  document.body.classList.add('pdf-mode'); window.print();
+  setTimeout(()=>document.body.classList.remove('pdf-mode'),300);
+});
 document.getElementById('pvDoc').addEventListener('click',e=>{
   const b=e.target.closest('[data-pv]'); if(!b)return;
   // copia a legenda (com hashtags) como texto corrido — apenas quebras de parágrafo
