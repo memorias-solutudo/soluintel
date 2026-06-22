@@ -43,6 +43,9 @@
   @keyframes solFlow{0%{background-position:0 0}100%{background-position:300% 0}}
   @keyframes solShine{0%{transform:translateX(-160%)}100%{transform:translateX(420%)}}
   @keyframes solFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes ckPop{0%{transform:scale(.3);opacity:0}45%{transform:scale(1.18);opacity:1}100%{transform:scale(1)}}
+  .ckpop{display:inline-flex;align-items:center;justify-content:center;animation:ckPop .26s var(--ease);color:var(--brand-green)}
+  .ckpop svg{stroke:#0a8f5e}
 
   .shell{max-width:1340px;margin:0 auto;padding:26px 28px 70px}
   .appbar{display:flex;align-items:center;justify-content:space-between;gap:13px;flex-wrap:wrap;margin-bottom:14px}
@@ -493,7 +496,7 @@ async function copy(text,btn,msg){
   try{await navigator.clipboard.writeText(text);}
   catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
   toast(msg);
-  if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML=I.check+'Copiado';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},1200);}
+  if(btn){const o=btn.innerHTML;btn.classList.add('done');btn.innerHTML='<span class="ckpop">'+I.check+'</span>';clearTimeout(btn._ck);btn._ck=setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o;},850);}
 }
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
