@@ -500,7 +500,16 @@ async function copy(text,btn,msg){
 }
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
-function legendaFull(f){return (f.legenda||'')+(f.hashtags?'\n\n'+f.hashtags:'');}
+function legBody(f){
+  let b=String(f.legenda||'').replace(/\r/g,'').replace(/[ \t]+$/gm,'').trimEnd();
+  const hasTags=(f.hashtags||'').trim().length>0; let prev;
+  do{prev=b;
+    b=b.replace(/(?:\n|^)[ \t]*[-–—]{2,}[ \t]*$/,'').trimEnd();
+    if(hasTags)b=b.replace(/(?:\n[ \t]*)+#[^\n]*$/,'').trimEnd();
+  }while(b!==prev);
+  return b.trim();
+}
+function legendaFull(f){const b=legBody(f);return b+((f.hashtags||'').trim()?'\n\n'+f.hashtags.trim():'');}
 function fixadoText(f,n){return `FIXADO ${n} · ${f.tema}\n\n— LEGENDA —\n${legendaFull(f)}\n\n— TEXTO DA IMAGEM —\n${arteText(f)}\n\n— DIREÇÃO VISUAL —\n${f.direcao||''}\n\n— PROMPT 1 —\n${(f.prompts||[])[0]||''}\n\n— PROMPT 2 —\n${(f.prompts||[])[1]||''}`;}
 
 /* ===================== RENDER ===================== */
@@ -552,7 +561,7 @@ function renderFixadoContent(f,i){
     <section class="fc-sec">
       <div class="fc-h"><div class="lft"><span class="fc-ic" style="background:${acs};color:${ac}">${I.chat}</span><span class="fc-t">Legenda</span></div>
         <button class="fc-cp" data-fx="${i}" data-kind="legenda" style="color:${ac}">${I.copy}Copiar</button></div>
-      ${legParas(f.legenda).map(p=>`<p class="fc-p">${esc(p)}</p>`).join('')}
+      ${legParas(legBody(f)).map(p=>`<p class="fc-p">${esc(p)}</p>`).join('')}
       ${f.hashtags?`<p class="fc-p" style="color:${ac};font-weight:600">${esc(f.hashtags)}</p>`:''}
     </section>
     <section class="fc-sec">
@@ -886,7 +895,7 @@ function openPdf(){
         <div class="pv-fh"><div class="lft"><span class="pv-fn" style="background:${ac}">${i+1}</span><span class="pv-ft">${esc(f.tema)}</span></div>
           <button class="copychip pv-copy no-print" data-pv="${i}">${I.copy}Copiar legenda</button></div>
         <div class="pv-body">
-          ${legParas(f.legenda).map(p=>`<p class="pv-p">${esc(p)}</p>`).join('')}
+          ${legParas(legBody(f)).map(p=>`<p class="pv-p">${esc(p)}</p>`).join('')}
           ${f.hashtags?`<div class="pv-tags" style="color:${ac}">${esc(f.hashtags)}</div>`:''}
         </div>
       </section>`;}).join('')}`;
