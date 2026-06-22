@@ -111,8 +111,9 @@
   .fc-lbl{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;color:var(--g300)}
   .fc-chamada{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--g700)}
   .fc-titulo{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
-  .fldhead{display:flex;align-items:center;gap:6px;margin-bottom:5px}
-  .fldhead .fc-lbl{margin-bottom:0}
+  .valrow{display:flex;align-items:flex-start;gap:8px}
+  .valrow>div{min-width:0}
+  .valrow .icp{margin-top:1px}
   .icp{flex:none;width:20px;height:20px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.55;transition:.14s;padding:0}
   .icp:hover{opacity:1;background:var(--g100)}
   .icp svg{width:13px;height:13px}
@@ -528,7 +529,7 @@ function renderFixadoContent(f,i){
   <section class="fc-sec">
     <div class="fc-h"><div class="lft"><span class="fc-ic" style="background:${acs};color:${ac}">${I.cam}</span><span class="fc-t">O que vai na imagem</span></div>
       <button class="fc-cp" data-art="${i}" style="color:${ac}">${I.copy}Copiar</button></div>
-    <div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Chamada superior</span><button class="icp" data-fxt="${i}-chamada" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-chamada">${esc(f.chamada)}</div></div>
+    <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Chamada superior</div><div class="valrow"><button class="icp" data-fxt="${i}-chamada" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-chamada">${esc(f.chamada)}</div></div></div>
     ${(i===0&&slog.length)?`<div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal · slogan</div>
       <div class="slidebox">
         <div class="slidephrase" id="slogPhrase">${esc(slog[si])}</div>
@@ -538,8 +539,8 @@ function renderFixadoContent(f,i){
           <button class="snav" data-slide="next" title="Próximo slogan">${I.chevR}</button>
           <button class="fc-dcopy" data-slogcopy title="Copiar slogan" style="color:${ac};margin-left:4px">${I.copy}</button>
         </div>
-      </div></div>`:`<div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Título principal</span><button class="icp" data-fxt="${i}-titulo" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-titulo">${esc(f.titulo)}</div></div>`}
-    <div class="fc-field"><div class="fldhead"><span class="fc-lbl" style="color:${ac}">Texto de apoio</span><button class="icp" data-fxt="${i}-apoio" title="Copiar" style="color:${ac}">${I.copy}</button></div><div class="fc-apoio">${esc(f.apoio)}</div></div>
+      </div></div>`:`<div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal</div><div class="valrow"><button class="icp" data-fxt="${i}-titulo" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-titulo">${esc(f.titulo)}</div></div></div>`}
+    <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Texto de apoio</div><div class="valrow"><button class="icp" data-fxt="${i}-apoio" title="Copiar" style="color:${ac}">${I.copy}</button><div class="fc-apoio">${esc(f.apoio)}</div></div></div>
     ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map((d,j)=>{const sd=splitDest(d);return `<li><span class="dt"><span class="dtrow"><button class="fc-dcopy" data-destt="${i}-${j}" title="Copiar título" style="color:${ac}">${I.copy}</button><span class="dtt">${esc(sd.t)}</span></span>${sd.d?`<span class="dtrow"><button class="fc-dcopy" data-destd="${i}-${j}" title="Copiar descrição" style="color:${ac}">${I.copy}</button><span class="dtd">${esc(sd.d)}</span></span>`:''}</span></li>`;}).join('')}</ul></div>`:''}
     ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}</button><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div></li>`).join('')}</ul></div>`:''}
   </section>
