@@ -568,9 +568,7 @@ function render(){
         <div class="card">
           <div class="card-h"><span class="ic">${I.quote}</span><h3>Legenda</h3>
             <button class="copybtn" data-fx="${i}" data-kind="legenda">${I.copy}Copiar</button></div>
-          <div class="fx-legenda">${esc(f.legenda)}</div>
-          ${f.hashtags?`<div class="copybar" style="margin:11px 0 0"><span class="tag">Hashtags</span><button class="copybtn" data-fx="${i}" data-kind="hashtags">${I.copy}Copiar</button></div>
-          <div class="fx-tags">${f.hashtags.split(/\s+/).filter(Boolean).map(h=>`<span class="t">${esc(h)}</span>`).join('')}</div>`:''}
+          <div class="fx-legenda">${esc(legendaFull(f))}</div>
         </div>
 
         <div class="card">
