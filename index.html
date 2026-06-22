@@ -113,12 +113,13 @@
   .fc-titulo{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
   .fc-apoio{font-size:14px;line-height:1.55;color:var(--g600)}
   .fc-dl{list-style:none;display:flex;flex-direction:column;gap:2px}
-  .fc-dl li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--g100)}
+  .fc-dl li{display:block;padding:10px 0;border-bottom:1px solid var(--g100)}
   .fc-dl li:last-child{border-bottom:none}
-  .fc-dl .fc-dcopy{flex:none;width:22px;height:22px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.65;transition:.14s;margin-top:1px}
+  .fc-dl .dtrow{display:flex;align-items:flex-start;gap:8px;min-width:0}
+  .fc-dl .fc-dcopy{flex:none;width:20px;height:20px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.6;transition:.14s;margin-top:1px}
   .fc-dl .fc-dcopy:hover{opacity:1;background:var(--g100)}
-  .fc-dl .fc-dcopy svg{width:13px;height:13px}
-  .fc-dl .dt{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .fc-dl .fc-dcopy svg{width:12px;height:12px}
+  .fc-dl .dt{display:flex;flex-direction:column;gap:6px;min-width:0}
   .fc-dl .dtt{font-size:14px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-.01em}
   .fc-dl .dtd{font-size:13px;font-weight:500;color:var(--g600);line-height:1.4}
   .fc-tel{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:2px}
@@ -126,9 +127,9 @@
   .fc-tel .tinfo{display:flex;flex-direction:column;gap:1px;margin-right:auto;min-width:0}
   .fc-tel .tlbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g400)}
   .fc-tel .tnum{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
-  .fc-tel .fc-tcopy{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--g200);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;font-weight:600;padding:6px 11px;border-radius:var(--pill);cursor:pointer;transition:.14s}
-  .fc-tel .fc-tcopy:hover{border-color:currentColor}
-  .fc-tel .fc-tcopy svg{width:12px;height:12px}
+  .fc-tel .fc-tcopy{flex:none;width:28px;height:28px;border:none;background:transparent;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.6;transition:.14s}
+  .fc-tel .fc-tcopy:hover{opacity:1;background:var(--g100)}
+  .fc-tel .fc-tcopy svg{width:15px;height:15px}
   .fc-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
   @media(max-width:1100px){.fc-row{grid-template-columns:1fr}}
   .fc-p{margin:0 0 13px;font-size:14px;line-height:1.62;color:var(--g600)}
@@ -490,7 +491,7 @@ function renderClientSelect(){
 }
 function legParas(s){return String(s||'').split(/\n{2,}/).map(x=>x.trim()).filter(Boolean);}
 function splitDest(s){const p=String(s||'').split(/\s*[—–]\s*/);return p.length>=2?{t:p[0].trim(),d:p.slice(1).join(' — ').trim()}:{t:String(s||'').trim(),d:''};}
-function phonesOf(c){const d=c.dados||{};const out=[];if(d.whatsapp)out.push({label:'WhatsApp (principal)',num:d.whatsapp});if(d.telefone)out.push({label:'Telefone fixo',num:d.telefone});(d.telefones||'').split(/[\n;]+/).map(x=>x.trim()).filter(Boolean).forEach(t=>out.push({label:'Telefone',num:t}));return out;}
+function phonesOf(c){const d=c.dados||{};const out=[];if(d.whatsapp)out.push({label:'WhatsApp',num:d.whatsapp});(d.whatsapp2||d.whatsappExtra||'').split(/[\n;,]+/).map(x=>x.trim()).filter(Boolean).forEach(t=>out.push({label:'WhatsApp',num:t}));return out;}
 function empresaSection(c){
   const d=c.dados||{};
   const cell=(k,v,full)=>v&&String(v).trim()?`<div${full?' class="full"':''}><div class="fldk">${esc(k)}</div><div class="fldv">${esc(v)}</div></div>`:'';
@@ -515,8 +516,8 @@ function renderFixadoContent(f,i){
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Chamada superior</div><div class="fc-chamada">${esc(f.chamada)}</div></div>
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Título principal</div><div class="fc-titulo">${esc(f.titulo)}</div></div>
     <div class="fc-field"><div class="fc-lbl" style="color:${ac}">Texto de apoio</div><div class="fc-apoio">${esc(f.apoio)}</div></div>
-    ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map((d,j)=>{const sd=splitDest(d);return `<li><button class="fc-dcopy" data-dest="${i}-${j}" title="Copiar destaque" style="color:${ac}">${I.copy}</button><span class="dt"><span class="dtt">${esc(sd.t)}</span>${sd.d?`<span class="dtd">${esc(sd.d)}</span>`:''}</span></li>`;}).join('')}</ul></div>`:''}
-    ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}Copiar</button></li>`).join('')}</ul></div>`:''}
+    ${dest.length?`<div><div class="fc-lbl" style="color:${ac}">Destaques</div><ul class="fc-dl">${dest.map((d,j)=>{const sd=splitDest(d);return `<li><span class="dt"><span class="dtrow"><button class="fc-dcopy" data-destt="${i}-${j}" title="Copiar título" style="color:${ac}">${I.copy}</button><span class="dtt">${esc(sd.t)}</span></span>${sd.d?`<span class="dtrow"><button class="fc-dcopy" data-destd="${i}-${j}" title="Copiar descrição" style="color:${ac}">${I.copy}</button><span class="dtd">${esc(sd.d)}</span></span>`:''}</span></li>`;}).join('')}</ul></div>`:''}
+    ${phones.length?`<div style="margin-top:18px"><div class="fc-lbl" style="color:${ac}">Telefones</div><ul class="fc-tel">${phones.map(p=>`<li><div class="tinfo"><span class="tlbl">${esc(p.label)}</span><span class="tnum">${esc(p.num)}</span></div><button class="fc-tcopy" data-tel="${esc(p.num)}" title="Copiar telefone" style="color:${ac}">${I.copy}</button></li>`).join('')}</ul></div>`:''}
   </section>
   <div class="fc-row">
     <section class="fc-sec">
@@ -604,7 +605,8 @@ document.getElementById('wrap').addEventListener('click',e=>{
   const fx=e.target.closest('[data-fx]'); if(fx){const f=c.fixados[+fx.dataset.fx],n=+fx.dataset.fx+1,k=fx.dataset.kind;
     if(k==='legenda')copy(legendaFull(f),fx,'Legenda copiada');
     else copy(fixadoText(f,n),fx,`Fixado ${n} copiado`);return;}
-  const dd=e.target.closest('[data-dest]'); if(dd){const pr=dd.dataset.dest.split('-').map(Number),f=c.fixados[pr[0]];copy((f.destaques||[])[pr[1]]||'',dd,'Destaque copiado');return;}
+  const dt=e.target.closest('[data-destt]'); if(dt){const pr=dt.dataset.destt.split('-').map(Number);copy(splitDest((c.fixados[pr[0]].destaques||[])[pr[1]]).t,dt,'Título copiado');return;}
+  const dz=e.target.closest('[data-destd]'); if(dz){const pr=dz.dataset.destd.split('-').map(Number);copy(splitDest((c.fixados[pr[0]].destaques||[])[pr[1]]).d,dz,'Descrição copiada');return;}
   const tl=e.target.closest('[data-tel]'); if(tl){copy(tl.dataset.tel,tl,'Telefone copiado');return;}
   const ar=e.target.closest('[data-art]'); if(ar){copy(arteText(c.fixados[+ar.dataset.art]),ar,'Texto da arte copiado');return;}
   const p=e.target.closest('[data-p]'); if(p){const f=c.fixados[+p.dataset.p];
