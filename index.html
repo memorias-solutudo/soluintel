@@ -308,8 +308,7 @@
       <div class="actpill">
         <button class="btn btn-sec btn-sm" id="btnEdit">Editar</button>
         <button class="btn btn-sec btn-sm" id="btnAll">Copiar tudo</button>
-        <button class="btn btn-sec btn-sm" id="btnDocx">Gerar Word</button>
-        <button class="btn btn-primary btn-sm" id="btnPdf">Gerar PDF</button>
+        <button class="btn btn-primary btn-sm" id="btnBaixar">Baixar legenda</button>
       </div>
     </div>
   </header>
@@ -372,21 +371,6 @@
       <button class="btn btn-grad" id="btnDoImport">Organizar e publicar</button>
     </div>
   </div>
-</div>
-
-<!-- ===== VISÃO DE ENTREGA / PDF ===== -->
-<div class="pdfview" id="pdfView">
-  <div class="pv-bar no-print">
-    <div class="pv-bar-in">
-      <div class="pv-brand"><img class="mk" src="assets/mark-heart.png" alt="Solutudo"><span class="tt">Entrega · Fixados</span></div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <button class="btn btn-sec btn-sm" id="pvBack">← Voltar</button>
-        <button class="btn btn-sec btn-sm" id="pvDocx">Baixar Word</button>
-        <button class="btn btn-primary btn-sm" id="pvPrint">Salvar como PDF</button>
-      </div>
-    </div>
-  </div>
-  <div class="pv-doc" id="pvDoc"></div>
 </div>
 
 <div class="toast" id="toast">
@@ -515,6 +499,16 @@ async function copy(text,btn,msg){
 }
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
+function fmtLeg(s){
+  var lines=String(s||'').replace(/\r/g,'').split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length;});
+  var isCTA=function(l){return /^[←-⇿⌀-➿⬀-⯿\u{1F000}-\u{1FAFF}]/u.test(l);};
+  var out='';
+  for(var i=0;i<lines.length;i++){
+    if(i===0){out=lines[i];}
+    else{out+=((isCTA(lines[i])&&isCTA(lines[i-1]))?'\n':'\n\n')+lines[i];}
+  }
+  return out;
+}
 function legBody(f){
   let b=String(f.legenda||'').replace(/\r/g,'').replace(/[ \t]+$/gm,'').trimEnd();
   const hasTags=(f.hashtags||'').trim().length>0; let prev;
@@ -522,7 +516,7 @@ function legBody(f){
     b=b.replace(/(?:\n|^)[ \t]*[-–—]{2,}[ \t]*$/,'').trimEnd();
     if(hasTags)b=b.replace(/(?:\n[ \t]*)+#[^\n]*$/,'').trimEnd();
   }while(b!==prev);
-  return b.trim();
+  return fmtLeg(b.trim());
 }
 function legendaFull(f){const b=legBody(f);return b+((f.hashtags||'').trim()?'\n\n'+f.hashtags.trim():'');}
 function fixadoText(f,n){return `FIXADO ${n} · ${f.tema}\n\n— LEGENDA —\n${legendaFull(f)}\n\n— TEXTO DA IMAGEM —\n${arteText(f)}\n\n— DIREÇÃO VISUAL —\n${f.direcao||''}\n\n— PROMPT 1 —\n${(f.prompts||[])[0]||''}\n\n— PROMPT 2 —\n${(f.prompts||[])[1]||''}`;}
@@ -920,75 +914,46 @@ function _xe(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 function _run(t,o){o=o||{};const rpr=`<w:rPr>${o.b?'<w:b/>':''}${o.sz?`<w:sz w:val="${o.sz}"/><w:szCs w:val="${o.sz}"/>`:''}${o.color?`<w:color w:val="${o.color}"/>`:''}</w:rPr>`;
   const runT=String(t==null?'':t).split('\n').map((ln,idx)=>`${idx?'<w:br/>':''}<w:t xml:space="preserve">${_xe(ln)}</w:t>`).join('');
   return `<w:r>${rpr}${runT}</w:r>`;}
-function _para(runs,o){o=o||{};return `<w:p><w:pPr><w:spacing w:after="${o.after==null?120:o.after}"/>${o.align?`<w:jc w:val="${o.align}"/>`:''}</w:pPr>${runs}</w:p>`;}
-function docxBytes(c){
+function _para(runs,o){o=o||{};const pPr='<w:pPr>'+(o.pbb?'<w:pageBreakBefore/>':'')+`<w:spacing w:after="${o.after==null?120:o.after}" w:line="276" w:lineRule="auto"/>`+(o.align?`<w:jc w:val="${o.align}"/>`:'')+'</w:pPr>';return `<w:p>${pPr}${runs}</w:p>`;}
+const FX_LABELS=['Sobre a empresa','Serviços','Contato'];
+function docxBytes(c,logo,lw,lh){
   const fx=c.fixados||[];let body='';
-  body+=_para(_run(c.nome,{b:true,sz:36}),{after:40});
+  if(logo&&lw&&lh){
+    const cx=Math.round(150*12700), cy=Math.round(150*(lh/lw)*12700);
+    const draw='<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">'
+      +`<wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="1" name="logo"/>`
+      +'<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+      +'<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="1" name="logo"/><pic:cNvPicPr/></pic:nvPicPr>'
+      +'<pic:blipFill><a:blip r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+      +`<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>`
+      +'</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r>';
+    body+=`<w:p><w:pPr><w:spacing w:after="160"/></w:pPr>${draw}</w:p>`;
+  }
+  body+=_para(_run(c.nome,{b:true,sz:40}),{after:40});
   body+=_para(_run(buildSub(c),{sz:20,color:'888888'}),{after:300});
   fx.forEach((f,i)=>{
-    body+=_para(_run('──────────  LEGENDA '+(i+1)+'  ──────────',{b:true,sz:20,color:'A701FD'}),{after:160,align:'center'});
-    legParas(legBody(f)).forEach(p=>{body+=_para(_run(p,{sz:24}),{after:160});});
-    if((f.hashtags||'').trim())body+=_para(_run(f.hashtags.trim(),{sz:22,color:'A701FD'}),{after:120});
-    body+=_para(_run('',{}),{after:200});
+    body+=_para(_run('Fixado '+(i+1)+': '+(FX_LABELS[i]||f.tema||('Fixado '+(i+1))),{b:true,sz:40}),{after:160,pbb:(i>0)});
+    body+=_para(_run(legendaFull(f),{sz:24}),{after:200});
   });
-  const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
-  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+  const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
+  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
   const rels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
-  return _zip([{name:'[Content_Types].xml',data:ct},{name:'_rels/.rels',data:rels},{name:'word/document.xml',data:doc}]);
+  const drels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image1.png"/></Relationships>`;
+  const files=[{name:'[Content_Types].xml',data:ct},{name:'_rels/.rels',data:rels},{name:'word/document.xml',data:doc}];
+  if(logo&&lw&&lh){files.push({name:'word/_rels/document.xml.rels',data:drels});files.push({name:'word/media/image1.png',data:logo});}
+  return _zip(files);
 }
-function exportDocx(){
-  const c=active();const fx=c.fixados||[];if(!fx.length){toast('Sem fixados para exportar',true);return;}
-  const blob=new Blob([docxBytes(c)],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+async function exportDocx(){
+  const c=active();const fx=c.fixados||[];if(!fx.length){toast('Sem fixados para baixar',true);return;}
+  let logo=null,lw=0,lh=0;
+  try{const r=await fetch('assets/logo-solutudo.png');const ab=await r.arrayBuffer();logo=new Uint8Array(ab);
+    lw=(logo[16]<<24|logo[17]<<16|logo[18]<<8|logo[19])>>>0; lh=(logo[20]<<24|logo[21]<<16|logo[22]<<8|logo[23])>>>0;}catch(e){logo=null;}
+  const blob=new Blob([docxBytes(c,logo,lw,lh)],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='legendas-'+slug(c.nome)+'.docx';
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
-  toast('Word (.docx) baixado ✓');
+  toast('Legenda (.docx) baixada ✓');
 }
-function startLoad(then){const lb=document.getElementById('loadbar');if(!lb){then&&then();return;}lb.classList.add('loading');clearTimeout(window._lb);window._lb=setTimeout(()=>{lb.classList.remove('loading');then&&then();},900);}
-function openPdf(){
-  const c=active(); const fx=c.fixados||[];
-  if(!fx.length){toast('Sem fixados para gerar PDF',true);return;}
-  const FXL=['Sobre a empresa','Serviços','Contato'];
-  document.getElementById('pvDoc').innerHTML=`
-    <section class="pv-page pv-cover">
-      <div class="pv-coverhead">
-        <img class="pv-logo" src="assets/logo-solutudo.png" alt="Solutudo">
-      </div>
-      <h1 class="pv-emp">${esc(c.nome)}</h1>
-      <div class="pv-sub">${esc(buildSub(c))}</div>
-      <div class="pv-orient">
-        <div class="pv-orient-t">Como usar</div>
-        <p>Copie a legenda de cada fixado e publique na <b>ordem</b> no seu Instagram. Cada página traz uma legenda pronta para copiar e colar.</p>
-      </div>
-    </section>
-    ${fx.map((f,i)=>{const ac=accentOf(i)[0];return `
-      <section class="pv-page pv-fx">
-        <div class="pv-fh">
-          <div class="lft"><span class="pv-fn" style="background:${ac}">${i+1}</span><span class="pv-ft">Fixado ${i+1}: ${esc(FXL[i]||f.tema||('Fixado '+(i+1)))}</span></div>
-          <button class="pv-copybig no-print" data-pv="${i}" style="background:${ac}">${I.copy}Copiar legenda</button>
-        </div>
-        <div class="pv-body">
-          ${legParas(legBody(f)).map(p=>`<p class="pv-p">${esc(p)}</p>`).join('')}
-          ${f.hashtags?`<p class="pv-p">${esc(f.hashtags)}</p>`:''}
-        </div>
-      </section>`;}).join('')}`;
-  document.getElementById('pdfView').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('btnPdf').addEventListener('click',()=>startLoad(openPdf));
-document.getElementById('btnDocx').addEventListener('click',exportDocx);
-document.getElementById('pvDocx').addEventListener('click',exportDocx);
-document.getElementById('pvBack').addEventListener('click',closePdf);
-document.getElementById('pvPrint').addEventListener('click',()=>{
-  document.body.classList.add('pdf-mode'); window.print();
-  setTimeout(()=>document.body.classList.remove('pdf-mode'),400);
-});
-document.getElementById('pvDoc').addEventListener('click',e=>{
-  const b=e.target.closest('[data-pv]'); if(!b)return;
-  // copia SÓ a legenda (corpo + hashtags), sem o título do fixado, preservando quebras e ícones
-  const leg=legendaFull(active().fixados[+b.dataset.pv]).replace(/[ \t]+\n/g,'\n').trim();
-  copy(leg,b,'Legenda copiada');
-});
+document.getElementById('btnBaixar').addEventListener('click',exportDocx);
 
 /* ===================== INIT ===================== */
 load(); render();
