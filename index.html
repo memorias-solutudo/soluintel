@@ -499,13 +499,28 @@ async function copy(text,btn,msg){
 }
 function arteText(f){return `${f.chamada}\n\n${f.titulo}\n\n${f.apoio}\n\n${(f.destaques||[]).join('\n')}`;}
 /* legenda pronta p/ Instagram: texto corrido + hashtags ao final */
+function stripMd(t){
+  t=String(t||'').replace(/\r/g,'');
+  t=t.replace(/\*\*([^\n*]+)\*\*/g,'$1').replace(/__([^\n_]+)__/g,'$1');
+  t=t.replace(/(^|[^\w*])\*([^\n*]+)\*(?=[^\w*]|$)/g,'$1$2');
+  t=t.replace(/\*\*/g,'').replace(/(^|\n)[ \t]*#{1,6}[ \t]+/g,'$1').replace(/(^|\n)[ \t]*>[ \t]?/g,'$1');
+  return t;
+}
 function fmtLeg(s){
-  var lines=String(s||'').replace(/\r/g,'').split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length;});
+  var t=stripMd(s);
+  var lines=t.split('\n').map(function(l){return l.replace(/^[ \t]+|[ \t]+$/g,'');});
+  while(lines.length&&!lines[0])lines.shift();
+  while(lines.length&&!lines[lines.length-1])lines.pop();
+  // se a fonte já tem parágrafos (linhas em branco), respeita as quebras; só colapsa 2+ vazias em 1
+  var hasBlank=lines.some(function(l,i){return i>0&&!l&&lines[i-1];});
+  if(hasBlank)return lines.join('\n').replace(/\n{3,}/g,'\n\n');
+  // fonte "achatada" (tudo grudado): reconstrói — linha em branco entre parágrafos, bloco de contato (emoji) junto
   var isCTA=function(l){return /^[←-⇿⌀-➿⬀-⯿\u{1F000}-\u{1FAFF}]/u.test(l);};
+  var arr=lines.filter(function(l){return l;});
   var out='';
-  for(var i=0;i<lines.length;i++){
-    if(i===0){out=lines[i];}
-    else{out+=((isCTA(lines[i])&&isCTA(lines[i-1]))?'\n':'\n\n')+lines[i];}
+  for(var i=0;i<arr.length;i++){
+    if(i===0){out=arr[i];}
+    else{out+=((isCTA(arr[i])&&isCTA(arr[i-1]))?'\n':'\n\n')+arr[i];}
   }
   return out;
 }
