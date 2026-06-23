@@ -295,7 +295,7 @@
       <div class="actpill">
         <button class="btn btn-sec btn-sm" id="btnEdit">Editar</button>
         <button class="btn btn-sec btn-sm" id="btnAll">Copiar tudo</button>
-        <button class="btn btn-primary btn-sm" id="btnPdf">Gerar PDF</button>
+        <button class="btn btn-primary btn-sm" id="btnPdf">Gerar Word</button>
       </div>
     </div>
   </header>
@@ -367,7 +367,7 @@
       <div class="pv-brand"><img class="mk" src="assets/mark-heart.png" alt="Solutudo"><span class="tt">Entrega · Fixados</span></div>
       <div style="display:flex;gap:10px;align-items:center">
         <button class="btn btn-sec btn-sm" id="pvBack">← Voltar</button>
-        <button class="btn btn-primary btn-sm" id="pvPrint">Salvar como PDF</button>
+        <button class="btn btn-primary btn-sm" id="pvPrint">Baixar Word (.docx)</button>
       </div>
     </div>
   </div>
@@ -882,6 +882,52 @@ document.getElementById('btnAll').addEventListener('click',()=>{
   const all=c.fixados.map((f,i)=>fixadoText(f,i+1)).join('\n\n'+'═'.repeat(30)+'\n\n');
   copy(`${c.nome} · Fixados do Instagram\n\n${all}`,null,'Tudo copiado');});
 /* ---- visão de entrega / PDF ---- */
+/* ---- exportar Word (.docx) — sem dependências ---- */
+function _crc32(b){let c,crc=0xFFFFFFFF;for(let i=0;i<b.length;i++){c=(crc^b[i])&0xFF;for(let k=0;k<8;k++)c=c&1?(c>>>1)^0xEDB88320:c>>>1;crc=(crc>>>8)^c;}return (crc^0xFFFFFFFF)>>>0;}
+function _zip(files){
+  const enc=new TextEncoder();const u16=n=>[n&255,(n>>8)&255];const u32=n=>[n&255,(n>>8)&255,(n>>16)&255,(n>>24)&255];
+  const locals=[],central=[];let offset=0;
+  files.forEach(f=>{
+    const data=typeof f.data==='string'?enc.encode(f.data):f.data;const name=enc.encode(f.name);const crc=_crc32(data);
+    const lh=[].concat(u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0));
+    const local=new Uint8Array(lh.length+name.length+data.length);local.set(lh,0);local.set(name,lh.length);local.set(data,lh.length+name.length);
+    locals.push(local);
+    const cd=[].concat(u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset));
+    const cen=new Uint8Array(cd.length+name.length);cen.set(cd,0);cen.set(name,cd.length);central.push(cen);
+    offset+=local.length;
+  });
+  const cSize=central.reduce((a,c)=>a+c.length,0);
+  const end=new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(cSize),u32(offset),u16(0)));
+  const parts=locals.concat(central,[end]);const total=parts.reduce((a,p)=>a+p.length,0);
+  const out=new Uint8Array(total);let p=0;parts.forEach(x=>{out.set(x,p);p+=x.length;});return out;
+}
+function _xe(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function _run(t,o){o=o||{};const rpr=`<w:rPr>${o.b?'<w:b/>':''}${o.sz?`<w:sz w:val="${o.sz}"/><w:szCs w:val="${o.sz}"/>`:''}${o.color?`<w:color w:val="${o.color}"/>`:''}</w:rPr>`;
+  const runT=String(t==null?'':t).split('\n').map((ln,idx)=>`${idx?'<w:br/>':''}<w:t xml:space="preserve">${_xe(ln)}</w:t>`).join('');
+  return `<w:r>${rpr}${runT}</w:r>`;}
+function _para(runs,o){o=o||{};return `<w:p><w:pPr><w:spacing w:after="${o.after==null?120:o.after}"/>${o.align?`<w:jc w:val="${o.align}"/>`:''}</w:pPr>${runs}</w:p>`;}
+function docxBytes(c){
+  const fx=c.fixados||[];let body='';
+  body+=_para(_run(c.nome,{b:true,sz:36}),{after:40});
+  body+=_para(_run(buildSub(c),{sz:20,color:'888888'}),{after:300});
+  fx.forEach((f,i)=>{
+    body+=_para(_run('──────────  LEGENDA '+(i+1)+'  ──────────',{b:true,sz:20,color:'A701FD'}),{after:160,align:'center'});
+    legParas(legBody(f)).forEach(p=>{body+=_para(_run(p,{sz:24}),{after:160});});
+    if((f.hashtags||'').trim())body+=_para(_run(f.hashtags.trim(),{sz:22,color:'A701FD'}),{after:120});
+    body+=_para(_run('',{}),{after:200});
+  });
+  const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
+  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+  const rels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  return _zip([{name:'[Content_Types].xml',data:ct},{name:'_rels/.rels',data:rels},{name:'word/document.xml',data:doc}]);
+}
+function exportDocx(){
+  const c=active();const fx=c.fixados||[];if(!fx.length){toast('Sem fixados para exportar',true);return;}
+  const blob=new Blob([docxBytes(c)],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='legendas-'+slug(c.nome)+'.docx';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  toast('Word (.docx) baixado ✓');
+}
 function startLoad(then){const lb=document.getElementById('loadbar');if(!lb){then&&then();return;}lb.classList.add('loading');clearTimeout(window._lb);window._lb=setTimeout(()=>{lb.classList.remove('loading');then&&then();},900);}
 function openPdf(){
   const c=active(); const fx=c.fixados||[];
@@ -905,10 +951,7 @@ function openPdf(){
 function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('btnPdf').addEventListener('click',()=>startLoad(openPdf));
 document.getElementById('pvBack').addEventListener('click',closePdf);
-document.getElementById('pvPrint').addEventListener('click',()=>{
-  document.body.classList.add('pdf-mode'); window.print();
-  setTimeout(()=>document.body.classList.remove('pdf-mode'),300);
-});
+document.getElementById('pvPrint').addEventListener('click',exportDocx);
 document.getElementById('pvDoc').addEventListener('click',e=>{
   const b=e.target.closest('[data-pv]'); if(!b)return;
   const leg=legendaFull(active().fixados[+b.dataset.pv]).replace(/[ \t]+\n/g,'\n').trim();
