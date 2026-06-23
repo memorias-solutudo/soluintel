@@ -242,18 +242,27 @@
   .pv-brand{display:flex;align-items:center;gap:10px}
   .pv-brand .mk{width:24px;height:24px;object-fit:contain;flex:none}
   .pv-brand .tt{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g500)}
-  .pv-doc{max-width:820px;margin:0 auto;padding:52px 28px 90px}
+  .pv-doc{max-width:820px;margin:0 auto;padding:40px 28px 90px}
+  .pv-page{max-width:760px;margin:0 auto;min-height:60vh}
+  .pv-page+.pv-page{border-top:1px solid #EEE;margin-top:36px;padding-top:40px}
+  .pv-cover{padding-top:12px}
+  .pv-coverhead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}
+  .pv-logo{width:180px;height:auto;display:block}
+  .pv-pill{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:13px;padding:9px 17px;border-radius:var(--pill);white-space:nowrap}
   .pv-emp{margin:0;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
   .pv-sub{margin-top:9px;font-size:14.5px;color:var(--g500);line-height:1.5}
-  .pv-rule{height:1px;background:#EEE;margin:30px 0 8px}
-  .pv-fx{padding:30px 0;border-bottom:1px solid #EEE}
-  .pv-fh{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+  .pv-orient{margin-top:28px;background:var(--g100);border:1px solid var(--g150);border-radius:14px;padding:18px 20px}
+  .pv-orient-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-purple);margin-bottom:6px}
+  .pv-orient p{font-size:14px;line-height:1.6;color:var(--g700)}
+  .pv-fh{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
   .pv-fh .lft{display:flex;align-items:center;gap:13px}
   .pv-fn{width:32px;height:32px;border-radius:9px;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:none}
-  .pv-ft{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
-  .pv-body{padding-left:45px}
+  .pv-ft{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .pv-copybig{display:inline-flex;align-items:center;gap:8px;border:none;color:#fff;font-family:inherit;font-size:14px;font-weight:700;padding:11px 20px;border-radius:var(--pill);cursor:pointer;box-shadow:var(--shadow-md);flex:none}
+  .pv-copybig svg{width:16px;height:16px}
+  .pv-copybig:active{transform:scale(.97)}
+  .pv-body{padding-left:0}
   .pv-p{margin:0 0 14px;font-size:15px;line-height:1.66;color:#3A3A3A;white-space:pre-line}
-  .pv-tags{margin-top:16px;font-size:14px;font-weight:600;line-height:1.6;word-spacing:2px}
 
   @media print{
     @page{margin:16mm}
@@ -262,7 +271,10 @@
     body.pdf-mode .loadbar,body.pdf-mode .shell,body.pdf-mode .overlay,body.pdf-mode .toast{display:none!important}
     body.pdf-mode .pdfview{position:static;display:block;overflow:visible}
     body.pdf-mode .pv-bar{display:none!important}
-    .pv-fx{page-break-inside:avoid}
+    .pv-doc{padding-top:0}
+    .pv-page{min-height:0;page-break-after:always;page-break-inside:avoid}
+    .pv-page:last-child{page-break-after:auto}
+    .pv-page+.pv-page{border-top:none;margin-top:0;padding-top:0}
   }
 </style>
 </head>
@@ -295,7 +307,8 @@
       <div class="actpill">
         <button class="btn btn-sec btn-sm" id="btnEdit">Editar</button>
         <button class="btn btn-sec btn-sm" id="btnAll">Copiar tudo</button>
-        <button class="btn btn-primary btn-sm" id="btnPdf">Gerar Word</button>
+        <button class="btn btn-sec btn-sm" id="btnDocx">Gerar Word</button>
+        <button class="btn btn-primary btn-sm" id="btnPdf">Gerar PDF</button>
       </div>
     </div>
   </header>
@@ -367,7 +380,8 @@
       <div class="pv-brand"><img class="mk" src="assets/mark-heart.png" alt="Solutudo"><span class="tt">Entrega · Fixados</span></div>
       <div style="display:flex;gap:10px;align-items:center">
         <button class="btn btn-sec btn-sm" id="pvBack">← Voltar</button>
-        <button class="btn btn-primary btn-sm" id="pvPrint">Baixar Word (.docx)</button>
+        <button class="btn btn-sec btn-sm" id="pvDocx">Baixar Word</button>
+        <button class="btn btn-primary btn-sm" id="pvPrint">Salvar como PDF</button>
       </div>
     </div>
   </div>
@@ -932,17 +946,29 @@ function startLoad(then){const lb=document.getElementById('loadbar');if(!lb){the
 function openPdf(){
   const c=active(); const fx=c.fixados||[];
   if(!fx.length){toast('Sem fixados para gerar PDF',true);return;}
+  const FXL=['Sobre a empresa','Serviços','Contato'];
   document.getElementById('pvDoc').innerHTML=`
-    <h1 class="pv-emp">${esc(c.nome)}</h1>
-    <div class="pv-sub">${esc(buildSub(c))}</div>
-    <div class="pv-rule"></div>
+    <section class="pv-page pv-cover">
+      <div class="pv-coverhead">
+        <img class="pv-logo" src="assets/logo-solutudo.png" alt="Solutudo">
+        <span class="pv-pill">solutudo.com.br</span>
+      </div>
+      <h1 class="pv-emp">${esc(c.nome)}</h1>
+      <div class="pv-sub">${esc(buildSub(c))}</div>
+      <div class="pv-orient">
+        <div class="pv-orient-t">Como usar</div>
+        <p>Copie a legenda de cada fixado e publique na <b>ordem</b> no seu Instagram. Cada página traz uma legenda pronta — clique em <b>Copiar legenda</b> e cole direto no app.</p>
+      </div>
+    </section>
     ${fx.map((f,i)=>{const ac=accentOf(i)[0];return `
-      <section class="pv-fx">
-        <div class="pv-fh"><div class="lft"><span class="pv-fn" style="background:${ac}">${i+1}</span><span class="pv-ft">${esc(f.tema)}</span></div>
-          <button class="copychip pv-copy no-print" data-pv="${i}">${I.copy}Copiar legenda</button></div>
+      <section class="pv-page pv-fx">
+        <div class="pv-fh">
+          <div class="lft"><span class="pv-fn" style="background:${ac}">${i+1}</span><span class="pv-ft">Fixado ${i+1}: ${esc(FXL[i]||f.tema||('Fixado '+(i+1)))}</span></div>
+          <button class="pv-copybig no-print" data-pv="${i}" style="background:${ac}">${I.copy}Copiar legenda</button>
+        </div>
         <div class="pv-body">
           ${legParas(legBody(f)).map(p=>`<p class="pv-p">${esc(p)}</p>`).join('')}
-          ${f.hashtags?`<div class="pv-tags" style="color:${ac}">${esc(f.hashtags)}</div>`:''}
+          ${f.hashtags?`<p class="pv-p">${esc(f.hashtags)}</p>`:''}
         </div>
       </section>`;}).join('')}`;
   document.getElementById('pdfView').classList.add('open');
@@ -950,10 +976,16 @@ function openPdf(){
 }
 function closePdf(){document.getElementById('pdfView').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('btnPdf').addEventListener('click',()=>startLoad(openPdf));
+document.getElementById('btnDocx').addEventListener('click',exportDocx);
+document.getElementById('pvDocx').addEventListener('click',exportDocx);
 document.getElementById('pvBack').addEventListener('click',closePdf);
-document.getElementById('pvPrint').addEventListener('click',exportDocx);
+document.getElementById('pvPrint').addEventListener('click',()=>{
+  document.body.classList.add('pdf-mode'); window.print();
+  setTimeout(()=>document.body.classList.remove('pdf-mode'),400);
+});
 document.getElementById('pvDoc').addEventListener('click',e=>{
   const b=e.target.closest('[data-pv]'); if(!b)return;
+  // copia SÓ a legenda (corpo + hashtags), sem o título do fixado, preservando quebras e ícones
   const leg=legendaFull(active().fixados[+b.dataset.pv]).replace(/[ \t]+\n/g,'\n').trim();
   copy(leg,b,'Legenda copiada');
 });
