@@ -948,7 +948,10 @@ function docxBytes(c,logo,lw,lh){
   body+=_para(_run(buildSub(c),{sz:20,color:'888888'}),{after:300});
   fx.forEach((f,i)=>{
     body+=_para(_run('Fixado '+(i+1)+': '+(FX_LABELS[i]||f.tema||('Fixado '+(i+1))),{b:true,sz:40}),{after:160,pbb:(i>0)});
-    body+=_para(_run(legendaFull(f),{sz:24}),{after:200});
+    // no .docx as hashtags vão uma por linha (cada # abaixo da outra)
+    const tagsLn=String(f.hashtags||'').trim().split(/\s+/).filter(Boolean).join('\n');
+    const legTxt=legBody(f)+(tagsLn?'\n\n'+tagsLn:'');
+    body+=_para(_run(legTxt,{sz:24}),{after:200});
   });
   const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
   const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
