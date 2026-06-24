@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="si" x1="6" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD13C"/>
+      <stop offset="0.30" stop-color="#F54A07"/>
+      <stop offset="0.60" stop-color="#D901AA"/>
+      <stop offset="1" stop-color="#A701FD"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#si)"/>
+  <text x="32" y="34" text-anchor="middle" dominant-baseline="central"
+        font-family="'DM Sans','Segoe UI',Arial,sans-serif" font-weight="800"
+        font-size="30" letter-spacing="-1.5" fill="#ffffff">SI</text>
+</svg>
