@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Artefato — Sobre a Empresa & FAQ · New Rock Expresso</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
 <style>
   :root{
     --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
@@ -17,7 +17,6 @@
     --shadow-card:0 8px 28px rgba(21,21,21,.06); --shadow-md:0 12px 32px rgba(21,21,21,.10);
     --r-md:16px; --r-lg:20px; --pill:999px;
     --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    --display:'Playfair Display',Georgia,serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--font);background:var(--g100);color:var(--ink);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.45}
@@ -44,7 +43,7 @@
 
   /* cabeçalho de seção */
   .lead{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-bottom:18px}
-  .lead h2{font-family:var(--display);font-style:italic;font-size:26px;font-weight:700;margin-bottom:6px}
+  .lead h2{font-family:var(--font);font-weight:800;font-size:26px;font-weight:700;margin-bottom:6px}
   .lead p{color:var(--g600);font-size:14.5px;max-width:760px}
   .badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:var(--pill);font-size:12px;font-weight:800;letter-spacing:-.01em}
   .badge.warn{background:var(--tint-peach);color:var(--brand-orange-deep)}
@@ -59,7 +58,14 @@
   .doc.before h3{color:var(--brand-orange-deep)}
   .doc.after h3{color:#06845a}
   .doc p{font-size:14px;color:var(--g700);margin-bottom:11px}
-  .doc .ttl{font-family:var(--display);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:10px}
+  .doc .ttl{font-family:var(--font);font-weight:800;font-size:18px;color:var(--ink);margin-bottom:10px}
+  .doc h5{font-size:13px;font-weight:800;color:var(--ink);margin:15px 0 6px;letter-spacing:-.01em}
+  .doc ul.svc{list-style:none;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px;font-size:13.5px;color:var(--g700)}
+  .doc ul.svc li{padding-left:16px;position:relative}
+  .doc ul.svc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-purple)}
+  .doc ul.svc li b{color:var(--ink)}
+  .doc .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
+  .simbanner{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:var(--pill);font-size:11.5px;font-weight:800;background:var(--tint-lav);color:var(--brand-purple);margin-bottom:12px}
 
   /* marcações inline (no local do texto) */
   mark{border-radius:5px;padding:0 3px;font-weight:600}
@@ -82,7 +88,7 @@
 
   /* tabela lacunas */
   .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-top:20px}
-  .card h3.t{font-family:var(--display);font-style:italic;font-size:21px;margin-bottom:4px}
+  .card h3.t{font-family:var(--font);font-weight:800;font-size:21px;margin-bottom:4px}
   .card .sub{color:var(--g500);font-size:13.5px;margin-bottom:14px}
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--g150);vertical-align:top}
@@ -163,17 +169,32 @@
       </div>
 
       <div class="doc after">
-        <h3>● Como poderia ser (2.0)</h3>
+        <h3>● Como poderia ser (2.0) — versão site / "Sobre nós"</h3>
+        <span class="simbanner">Exemplo simulado · números ilustrativos a confirmar com o cliente</span>
         <div class="ttl">Sobre a New Rock Expresso</div>
-        <p>A New Rock Expresso é <mark class="m-good">especializada em lavagem, polimento e restauração de mármores e granitos<sup class="ref">2</sup></mark>
-        no Rio de Janeiro, RJ. Atua <mark class="m-fill">desde [ano de fundação]<sup class="ref">3</sup></mark> e atende
-        residências, comércios e condomínios <mark class="m-fill">em [bairros/zonas atendidas — ex.: Zona Sul, Barra, Tijuca]<sup class="ref">1</sup></mark>.</p>
-        <p>Os serviços incluem <mark class="m-fill">[polimento, cristalização, impermeabilização e restauração de bancadas, pisos e escadas]<sup class="ref">4</sup></mark>,
-        executados com <mark class="m-fill">[processo/equipamento real — ex.: polimento a seco com discos diamantados]<sup class="ref">5</sup></mark>
-        em <mark class="m-fill">[tipos de pedra: mármore, granito, quartzo, porcelanato]<sup class="ref">6</sup></mark>.</p>
-        <p>A empresa oferece <mark class="m-fill">[garantia de N meses no resultado]<sup class="ref">8</sup></mark>,
-        <mark class="m-fill">[orçamento sem custo e visita técnica em até X h]<sup class="ref">9</sup></mark> e já realizou
-        <mark class="m-fill">[nº de obras / anos de experiência]<sup class="ref">10</sup></mark> no Rio de Janeiro.</p>
+        <p>A New Rock Expresso é uma empresa especializada em <mark class="m-good">lavagem, polimento, cristalização e restauração de mármores e granitos</mark>, com sede no Rio de Janeiro e atuação em <mark class="m-good">Zona Sul, Barra da Tijuca, Recreio e Tijuca</mark>. <mark class="m-good">Desde 2014</mark>, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+
+        <h5>O que fazemos</h5>
+        <p>Trabalhamos com os principais materiais do mercado — <mark class="m-good">mármore, granito, quartzo, porcelanato e granilite</mark> — aplicando o método certo para cada pedra:</p>
+        <ul class="svc">
+          <li><b>Polimento e lustro:</b> recupera o brilho original, remove riscos superficiais e marcas de uso.</li>
+          <li><b>Cristalização:</b> cria uma camada de proteção que prolonga o brilho e facilita a limpeza.</li>
+          <li><b>Impermeabilização:</b> reduz a porosidade e protege contra manchas de água, óleo e vinho.</li>
+          <li><b>Restauração:</b> corrige desgaste, manchas profundas, juntas abertas e pequenas quebras.</li>
+        </ul>
+
+        <h5>Como trabalhamos</h5>
+        <p>Usamos <mark class="m-good">polimento a seco com discos diamantados</mark>, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma <mark class="m-good">avaliação técnica gratuita</mark> da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
+
+        <h5>Por que a New Rock</h5>
+        <ul class="svc">
+          <li><b>Orçamento sem custo</b> e visita técnica em até <mark class="m-good">24h</mark>.</li>
+          <li><b>Garantia de <mark class="m-good">6 meses</mark></b> no resultado, com guia de manutenção para prolongar o brilho.</li>
+          <li><b>Equipe própria e treinada</b>, com mais de <mark class="m-good">10 anos de experiência</mark> e <mark class="m-good">+1.200 obras</mark> realizadas no Rio.</li>
+          <li>Atendimento rápido pela proximidade regional, com soluções sob medida para cada imóvel.</li>
+        </ul>
+
+        <p class="cta">Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita. →</p>
       </div>
     </div>
 
@@ -237,6 +258,27 @@
         <div class="why">Nenhum número. "Nº de obras realizadas" ou "X anos no Rio" ancoram confiabilidade e dão à IA um dado concreto para citar.</div>
         <div class="pair"><span class="chip good">[nº de obras / anos de experiência]</span><span class="chip who">insumo do cliente</span></div>
       </div></div>
+    </div>
+
+    <!-- mesma essência por canal -->
+    <div class="card">
+      <h3 class="t">Mesma essência, adaptada por canal</h3>
+      <div class="sub">O "Sobre nós" longo acima é a base. Dele saem as versões curtas — sem reescrever do zero (é o que resolve o item de Consistência "mesma essência, adaptada por canal"). Exemplo simulado.</div>
+      <div class="cols">
+        <div class="doc">
+          <h3 style="color:var(--brand-orange-deep)">● Google Meu Negócio <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤700, factual, sem telefone/link/CTA</span></h3>
+          <p style="font-size:13.5px;color:var(--g700)">A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.</p>
+          <div style="font-size:12px;color:var(--g500);margin-top:8px">≈ 560 caracteres</div>
+        </div>
+        <div class="doc">
+          <h3 style="color:var(--brand-purple)">● Bio Instagram <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤150, direto</span></h3>
+          <p style="font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.5">Polimento e restauração de mármores e granitos no Rio • Zona Sul, Barra e Tijuca • Avaliação grátis • Brilho que dura</p>
+          <div style="font-size:12px;color:var(--g500);margin-top:8px">≈ 116 caracteres</div>
+          <h3 style="color:var(--brand-purple);margin-top:16px">● Título SEO <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤60</span></h3>
+          <p style="font-size:13.5px;color:var(--g700)">Polimento de Mármore e Granito no Rio de Janeiro | New Rock</p>
+          <div style="font-size:12px;color:var(--g500);margin-top:4px">59 caracteres</div>
+        </div>
+      </div>
     </div>
 
     <!-- lacunas / schema -->
