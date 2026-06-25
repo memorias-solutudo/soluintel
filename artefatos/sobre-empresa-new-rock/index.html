@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Artefato — Sobre a Empresa & FAQ · New Rock Expresso</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" />
+<style>
+  :root{
+    --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
+    --brand-yellow:#FFC700; --brand-cyan:#20CCEF; --brand-green:#00FFAD;
+    --ink:#151515; --slate:#58476C; --g700:#4D4D4D; --g600:#656565; --g500:#888888;
+    --g400:#9D9D9D; --g300:#ACACAC; --g200:#DCDCDC; --g150:#E3E3E3; --g100:#F2F2F2; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-lav2:#E7D0FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-yellow:#FFF1D0; --tint-pink:#FFE3F1;
+    --grad-brand:linear-gradient(248deg,#FFD13C -9%,#F54A07 22%,#D901AA 55%,#A701FD 114%);
+    --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
+    --shadow-card:0 8px 28px rgba(21,21,21,.06); --shadow-md:0 12px 32px rgba(21,21,21,.10);
+    --r-md:16px; --r-lg:20px; --pill:999px;
+    --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --display:'Playfair Display',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--g100);color:var(--ink);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 22px 80px}
+  a{color:var(--brand-purple)}
+
+  /* topo */
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:18px}
+  .logo .heart{width:14px;height:14px;border-radius:50%;background:var(--grad-cta);display:inline-block}
+  .top h1{font-size:16px;font-weight:700;color:var(--g600)}
+  .top .crumb{font-size:12.5px;color:var(--g500);margin-left:auto}
+
+  /* pílula toggle */
+  .pillbar{display:flex;justify-content:center;margin:8px 0 26px}
+  .seg{display:inline-flex;gap:4px;background:var(--white);border-radius:var(--pill);padding:5px;box-shadow:var(--shadow-card)}
+  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:10px 26px;font:inherit;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button.on{color:#fff;background:var(--ink)}
+  .seg button.on.desc{background:var(--grad-cta)}
+
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .25s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* cabeçalho de seção */
+  .lead{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-bottom:18px}
+  .lead h2{font-family:var(--display);font-style:italic;font-size:26px;font-weight:700;margin-bottom:6px}
+  .lead p{color:var(--g600);font-size:14.5px;max-width:760px}
+  .badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:var(--pill);font-size:12px;font-weight:800;letter-spacing:-.01em}
+  .badge.warn{background:var(--tint-peach);color:var(--brand-orange-deep)}
+  .badge.ok{background:var(--tint-mint);color:#06845a}
+  .badge.purple{background:var(--tint-lav);color:var(--brand-purple)}
+
+  /* lado a lado */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:880px){.cols{grid-template-columns:1fr}}
+  .doc{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px}
+  .doc h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .doc.before h3{color:var(--brand-orange-deep)}
+  .doc.after h3{color:#06845a}
+  .doc p{font-size:14px;color:var(--g700);margin-bottom:11px}
+  .doc .ttl{font-family:var(--display);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:10px}
+
+  /* marcações inline (no local do texto) */
+  mark{border-radius:5px;padding:0 3px;font-weight:600}
+  .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
+  .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
+  .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 var(--brand-green)}
+  sup.ref{font-size:10px;font-weight:800;color:var(--brand-purple);background:var(--tint-lav);border-radius:4px;padding:0 4px;margin-left:2px;vertical-align:super}
+
+  /* anotações */
+  .notes{margin-top:18px}
+  .note{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px 16px;margin-bottom:10px}
+  .note .n{width:28px;height:28px;border-radius:50%;background:var(--grad-cta);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .note h4{font-size:14px;font-weight:800;margin-bottom:3px}
+  .note .why{font-size:13px;color:var(--g600)}
+  .note .pair{font-size:12.5px;margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-block;padding:3px 9px;border-radius:var(--pill);font-size:11.5px;font-weight:700}
+  .chip.bad{background:var(--tint-peach);color:var(--brand-orange-deep)}
+  .chip.good{background:var(--tint-mint);color:#06845a}
+  .chip.who{background:var(--g100);color:var(--g600)}
+
+  /* tabela lacunas */
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-top:20px}
+  .card h3.t{font-family:var(--display);font-style:italic;font-size:21px;margin-bottom:4px}
+  .card .sub{color:var(--g500);font-size:13.5px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--g150);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--g500)}
+  td b{color:var(--ink)}
+
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--g700)}
+  ul.clean li{padding-left:18px;position:relative}
+  ul.clean li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--grad-cta)}
+
+  /* FAQ accordion */
+  .faq{display:flex;flex-direction:column;gap:10px}
+  .qa{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);overflow:hidden}
+  .qa>button{width:100%;border:none;background:transparent;cursor:pointer;font:inherit;text-align:left;padding:15px 18px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;color:var(--ink)}
+  .qa>button .plus{margin-left:auto;color:var(--brand-purple);font-size:20px;font-weight:800;transition:transform .2s}
+  .qa.open>button .plus{transform:rotate(45deg)}
+  .qa .body{display:none;padding:0 18px 16px 18px}
+  .qa.open .body{display:block}
+  .qa .body p{font-size:14px;color:var(--g700);margin-bottom:8px}
+  .tag{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:var(--pill);background:var(--tint-lav);color:var(--brand-purple);font-size:11.5px;font-weight:700}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--g600);margin:10px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+  .foot{margin-top:30px;font-size:12.5px;color:var(--g500);text-align:center}
+  .foot a{font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <span class="logo"><span class="heart"></span>Solutudo</span>
+    <h1>Artefato · Sobre a Empresa &amp; FAQ — New Rock Expresso</h1>
+    <span class="crumb">Marmoraria · Polimento de mármores e granitos · Rio de Janeiro/RJ</span>
+  </div>
+
+  <div class="pillbar">
+    <div class="seg">
+      <button id="t-desc" class="on desc" onclick="show('desc')">Descrição</button>
+      <button id="t-faq" onclick="show('faq')">FAQ</button>
+    </div>
+  </div>
+
+  <!-- ===================== DESCRIÇÃO ===================== -->
+  <section id="p-desc" class="panel on">
+
+    <div class="lead">
+      <span class="badge warn">Diagnóstico: genérica — não passaria na nota</span>
+      <h2>Sobre a Empresa — antes &amp; depois</h2>
+      <p>A descrição atual acerta a <b>casca</b> (entidade, categoria, cidade, público), mas o miolo —
+      <b>fatos verificáveis</b> — não existe. Abaixo, os dois textos lado a lado: à esquerda o atual com os
+      pontos genéricos marcados; à direita como ficaria no nosso schema, com cada <b>campo concreto</b> destacado
+      no próprio lugar. As anotações explicam <b>por que cada elemento importa</b>.</p>
+    </div>
+
+    <div class="legend">
+      <span><i class="sw" style="background:var(--tint-peach);box-shadow:inset 0 -2px 0 var(--brand-orange)"></i> genérico / sem prova</span>
+      <span><i class="sw" style="background:var(--tint-lav);box-shadow:inset 0 -2px 0 var(--brand-purple)"></i> campo a coletar (fato real)</span>
+      <span><i class="sw" style="background:var(--tint-mint);box-shadow:inset 0 -2px 0 var(--brand-green)"></i> fato concreto / citável</span>
+    </div>
+
+    <div class="cols">
+      <div class="doc before">
+        <h3>● Texto atual</h3>
+        <div class="ttl">Sobre a empresa</div>
+        <p>A New Rock Expresso – Lavagem e Polimento de Mármores e Granitos
+        <mark class="m-bad">nasceu no Rio de Janeiro, RJ<sup class="ref">1</sup></mark>, com o propósito de
+        <mark class="m-bad">restaurar superfícies nobres e devolver brilho, proteção e valorização aos ambientes<sup class="ref">2</sup></mark>.
+        <mark class="m-bad">Desde o início<sup class="ref">3</sup></mark>, a empresa se especializou em
+        <mark class="m-bad">Polimento técnico<sup class="ref">4</sup></mark>, unindo
+        <mark class="m-bad">conhecimento prático, equipamentos profissionais e atenção aos detalhes<sup class="ref">5</sup></mark>
+        para atender residências, comércios e condomínios em toda a cidade do Rio de Janeiro.</p>
+        <p>Entre os diferenciais competitivos da New Rock Expresso no mercado carioca estão
+        <mark class="m-bad">o atendimento ágil, a avaliação personalizada de cada superfície e o uso de métodos adequados a cada tipo de pedra<sup class="ref">6</sup></mark>.
+        Atuando no <mark class="m-bad">Rio de Janeiro, RJ<sup class="ref">7</sup></mark>, a empresa prioriza
+        <mark class="m-bad">processos seguros, sem agressões ao material, com foco em durabilidade do resultado, redução de porosidade e facilidade de manutenção<sup class="ref">8</sup></mark>.
+        <mark class="m-bad">A proximidade regional permite respostas rápidas e soluções sob medida<sup class="ref">9</sup></mark>.</p>
+      </div>
+
+      <div class="doc after">
+        <h3>● Como poderia ser (2.0)</h3>
+        <div class="ttl">Sobre a New Rock Expresso</div>
+        <p>A New Rock Expresso é <mark class="m-good">especializada em lavagem, polimento e restauração de mármores e granitos<sup class="ref">2</sup></mark>
+        no Rio de Janeiro, RJ. Atua <mark class="m-fill">desde [ano de fundação]<sup class="ref">3</sup></mark> e atende
+        residências, comércios e condomínios <mark class="m-fill">em [bairros/zonas atendidas — ex.: Zona Sul, Barra, Tijuca]<sup class="ref">1</sup></mark>.</p>
+        <p>Os serviços incluem <mark class="m-fill">[polimento, cristalização, impermeabilização e restauração de bancadas, pisos e escadas]<sup class="ref">4</sup></mark>,
+        executados com <mark class="m-fill">[processo/equipamento real — ex.: polimento a seco com discos diamantados]<sup class="ref">5</sup></mark>
+        em <mark class="m-fill">[tipos de pedra: mármore, granito, quartzo, porcelanato]<sup class="ref">6</sup></mark>.</p>
+        <p>A empresa oferece <mark class="m-fill">[garantia de N meses no resultado]<sup class="ref">8</sup></mark>,
+        <mark class="m-fill">[orçamento sem custo e visita técnica em até X h]<sup class="ref">9</sup></mark> e já realizou
+        <mark class="m-fill">[nº de obras / anos de experiência]<sup class="ref">10</sup></mark> no Rio de Janeiro.</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note"><div class="n">1</div><div>
+        <h4>Localização específica &gt; "toda a cidade"</h4>
+        <div class="why">"Toda a cidade do Rio" não posiciona em nada. Bairros/zonas reais ranqueiam buscas locais ("polimento de mármore na Barra") e dizem à IA <i>onde</i> a empresa atende.</div>
+        <div class="pair"><span class="chip bad">toda a cidade do Rio</span><span class="chip good">[bairros/zonas reais]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">2</div><div>
+        <h4>O que faz, em fato — não em propósito</h4>
+        <div class="why">"Restaurar superfícies nobres e devolver brilho" é propósito poético. O fato útil é o <b>serviço</b>: lavagem, polimento e restauração de mármore e granito. Isso é o que o Google e a IA indexam como atividade.</div>
+        <div class="pair"><span class="chip bad">devolver brilho, proteção e valorização</span><span class="chip good">lavagem, polimento e restauração de mármores e granitos</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">3</div><div>
+        <h4>"Desde o início" → ano real</h4>
+        <div class="why">Tempo de mercado é prova de confiabilidade (um dos pilares). "Desde o início" não diz nada; "desde 2014" vira fato citável e schema (foundingDate).</div>
+        <div class="pair"><span class="chip bad">Desde o início</span><span class="chip good">desde [ano]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">4</div><div>
+        <h4>"Polimento técnico" é slot de template → serviços reais</h4>
+        <div class="why">A maiúscula no meio da frase denuncia um campo de gerador antigo. Troque por uma <b>lista de serviços</b> com termos que o cliente realmente busca (cristalização, impermeabilização, restauração de bancada).</div>
+        <div class="pair"><span class="chip bad">Polimento técnico</span><span class="chip good">[polimento · cristalização · impermeabilização · restauração]</span><span class="chip who">cliente + nós</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">5</div><div>
+        <h4>Adjetivo vazio → diferencial verificável</h4>
+        <div class="why">"Conhecimento prático, equipamentos profissionais e atenção aos detalhes" cabe em qualquer empresa do mundo. Substitua por <b>algo que só a New Rock faz</b>: processo a seco, produto/selante usado, equipe própria.</div>
+        <div class="pair"><span class="chip bad">equipamentos profissionais e atenção aos detalhes</span><span class="chip good">[processo/equipamento real]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">6</div><div>
+        <h4>"Cada tipo de pedra" → nomear as pedras</h4>
+        <div class="why">Dizer "métodos adequados a cada tipo" sem nomear nenhum não ajuda busca nem IA. Liste: mármore, granito, quartzo, porcelanato — são termos de cauda longa reais.</div>
+        <div class="pair"><span class="chip bad">métodos adequados a cada tipo de pedra</span><span class="chip good">[mármore, granito, quartzo, porcelanato]</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">7</div><div>
+        <h4>Localização repetida ~5× = stuffing</h4>
+        <div class="why">"Rio de Janeiro" aparece 5 vezes no texto. SEO atual não premia densidade — premia fato. Mencione cidade 1–2× de forma natural e use o espaço para diferenciais.</div>
+        <div class="pair"><span class="chip bad">Rio de Janeiro (×5)</span><span class="chip good">cidade 1–2× + bairros reais</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">8</div><div>
+        <h4>Promessas sem prova → garantia concreta</h4>
+        <div class="why">"Durabilidade", "redução de porosidade", "processos seguros" são promessas que toda marmoraria faz. O que converte é prova: <b>garantia de N meses</b>, prazo, antes/depois.</div>
+        <div class="pair"><span class="chip bad">foco em durabilidade do resultado</span><span class="chip good">[garantia de N meses]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">9</div><div>
+        <h4>"Respostas rápidas" → prazo mensurável</h4>
+        <div class="why">"Atendimento ágil / respostas rápidas" é genérico. "Orçamento grátis e visita em até 24h" é um fato que decide a contratação — e é o que o setor anuncia (orçamento grátis é padrão no nicho).</div>
+        <div class="pair"><span class="chip bad">respostas rápidas e soluções sob medida</span><span class="chip good">[orçamento grátis · visita em até X h]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+
+      <div class="note"><div class="n">10</div><div>
+        <h4>Falta prova social / volume</h4>
+        <div class="why">Nenhum número. "Nº de obras realizadas" ou "X anos no Rio" ancoram confiabilidade e dão à IA um dado concreto para citar.</div>
+        <div class="pair"><span class="chip good">[nº de obras / anos de experiência]</span><span class="chip who">insumo do cliente</span></div>
+      </div></div>
+    </div>
+
+    <!-- lacunas / schema -->
+    <div class="card">
+      <h3 class="t">O que falta para entrar no schema</h3>
+      <div class="sub">Cada lacuna vira uma pendência do checklist, já com o dono. Sem esses fatos, o gerador devolve nota baixa em vez de encher de adjetivo.</div>
+      <table>
+        <thead><tr><th>Campo do schema</th><th>O que falta</th><th>Dono</th></tr></thead>
+        <tbody>
+          <tr><td><b>entidade.nome</b></td><td>Travar o nome exato — "New Rock Expresso" × "New Rock Marmoraria" (NAP / consistência)</td><td>nós + cliente</td></tr>
+          <tr><td><b>entidade.fundacao</b></td><td>Ano de início ("desde o início" é vago)</td><td>cliente</td></tr>
+          <tr><td><b>entidade.area_atendida</b></td><td>Bairros / zonas reais (não "toda a cidade")</td><td>cliente</td></tr>
+          <tr><td><b>servicos[]</b></td><td>Lista real (polimento, cristalização, impermeabilização, restauração) + termo de busca + preço/faixa</td><td>cliente + nós</td></tr>
+          <tr><td><b>materiais</b></td><td>Pedras atendidas: mármore, granito, quartzo, porcelanato…</td><td>cliente</td></tr>
+          <tr><td><b>diferenciais</b></td><td>Algo concreto: processo a seco, selante usado, garantia, prazo, equipe própria</td><td>cliente</td></tr>
+          <tr><td><b>provas[]</b></td><td>Tempo de mercado, nº de obras, avaliações, certificações — hoje zero</td><td>cliente</td></tr>
+          <tr><td><b>tom_de_marca</b></td><td>Não definido</td><td>nós</td></tr>
+          <tr><td><b>por_canal + seo</b></td><td>Variações (Google ≤700 sem CTA · Solusite com lista · bio ≤150) + título ≤60 + meta ≤155</td><td>nós</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- pesquisa do setor -->
+    <div class="card">
+      <h3 class="t">Pesquisa do setor — o que uma descrição relevante precisa ter</h3>
+      <div class="sub">Padrões do nicho de polimento de mármore/granito no RJ (confirmados em concorrentes do setor).</div>
+      <div class="cols" style="gap:22px">
+        <div>
+          <p style="font-weight:800;margin-bottom:8px">Serviços que o cliente busca</p>
+          <ul class="clean">
+            <li>Polimento e <b>cristalização</b> de mármore/granito</li>
+            <li><b>Impermeabilização</b> (reduz mancha/porosidade)</li>
+            <li>Restauração de <b>bancadas, pisos, escadas, soleiras</b></li>
+            <li>Remoção de riscos, manchas e opacidade</li>
+            <li>Tipos: mármore, granito, <b>quartzo, porcelanato</b>, granilite</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:800;margin-bottom:8px">Diferenciais que decidem a contratação</p>
+          <ul class="clean">
+            <li><b>Orçamento grátis</b> + visita técnica (padrão do nicho)</li>
+            <li><b>Garantia</b> do serviço (prazo claro)</li>
+            <li>Processo <b>a seco</b> / pouca sujeira / uso no mesmo dia</li>
+            <li>Antes/depois reais e <b>avaliações</b></li>
+            <li>Atendimento por <b>região</b> com prazo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sub" style="margin-top:14px">Fontes (setor): exemplos de concorrentes que estruturam serviços, tipos de pedra e orçamento grátis —
+        <a href="http://www.newmarmores.com.br/servicos.html" target="_blank" rel="noopener">newmarmores</a>,
+        <a href="https://polimentodemarmorerj.com.br/" target="_blank" rel="noopener">polimentodemarmorerj</a>,
+        <a href="https://www.freixopolimento.com.br/" target="_blank" rel="noopener">freixopolimento</a>,
+        <a href="https://polixpedras.com.br/" target="_blank" rel="noopener">polixpedras</a>,
+        <a href="https://casadosintecorj.com.br/nossos-servicos/polimento-marmore-granito/" target="_blank" rel="noopener">casadosintecorj</a>.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section id="p-faq" class="panel">
+
+    <div class="lead">
+      <span class="badge purple">Em construção · base do nicho</span>
+      <h2>FAQ — perguntas que sustentam SEO e citação por IA</h2>
+      <p>O FAQ não é enfeite: ele responde dúvidas reais (alimentadas pelo Digisac), vira <b>FAQPage (schema.org)</b>
+      no site e é o formato que a IA mais cita. Regra é a mesma da descrição: <b>resposta ancorada em fato</b> —
+      onde precisa do dado do cliente, está marcado. Abaixo, um ponto de partida com as perguntas mais buscadas no setor.</p>
+    </div>
+
+    <div class="faq" id="faqlist">
+      <div class="qa"><button onclick="qa(this)">Quanto tempo dura o serviço de polimento? <span class="plus">+</span></button>
+        <div class="body"><p>Depende da metragem e do estado da pedra. Em média, [X m²/dia]. Numa bancada comum, [tempo]; em pisos, [tempo].</p><span class="tag">precisa do cliente: produtividade média (m²/dia)</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">O polimento remove riscos e manchas profundas? <span class="plus">+</span></button>
+        <div class="body"><p>O polimento recupera brilho e remove riscos superficiais e manchas leves. Para danos profundos, fazemos [restauração/retífica]. Avaliamos na visita antes de garantir o resultado.</p><span class="tag">precisa do cliente: o que faz e não faz</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Qual a diferença entre polimento, cristalização e impermeabilização? <span class="plus">+</span></button>
+        <div class="body"><p>Polimento recupera o brilho; cristalização cria uma camada de proteção e brilho mais duradouro; impermeabilização reduz a porosidade e protege contra manchas. A New Rock indica o ideal para cada pedra na avaliação.</p><span class="tag">resposta padrão do setor — confirmar quais oferece</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Posso usar o ambiente no mesmo dia? <span class="plus">+</span></button>
+        <div class="body"><p>Na maioria dos casos sim. O processo [a seco/úmido] permite liberar o ambiente em [tempo de cura]. Informamos o prazo exato conforme o serviço.</p><span class="tag">precisa do cliente: processo e tempo de cura</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">O serviço suja muito a casa? <span class="plus">+</span></button>
+        <div class="body"><p>Trabalhamos com [processo a seco / aspiração], minimizando poeira e resíduos. Protegemos o entorno e entregamos o ambiente limpo.</p><span class="tag">precisa do cliente: método (a seco?)</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Quais tipos de pedra vocês atendem? <span class="plus">+</span></button>
+        <div class="body"><p>Atendemos [mármore, granito, quartzo, porcelanato, granilite]. Cada material recebe método e produto específicos.</p><span class="tag">precisa do cliente: lista real de materiais</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Atendem qual região do Rio? Tem taxa de deslocamento? <span class="plus">+</span></button>
+        <div class="body"><p>Atendemos [bairros/zonas]. Para [regiões X] o deslocamento é [grátis/incluso]; demais, [regra].</p><span class="tag">precisa do cliente: região e política de deslocamento</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Como funciona o orçamento? É grátis? <span class="plus">+</span></button>
+        <div class="body"><p>O orçamento é [grátis] e feito após [visita técnica/fotos]. Avaliamos a pedra e o estado para passar um valor justo, sem surpresa.</p><span class="tag">precisa do cliente: orçamento grátis? como é feito</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Qual a garantia do serviço? <span class="plus">+</span></button>
+        <div class="body"><p>Oferecemos garantia de [N meses] no resultado, com orientação de manutenção para prolongar o brilho.</p><span class="tag">precisa do cliente: prazo de garantia</span></div></div>
+
+      <div class="qa"><button onclick="qa(this)">Como manter o brilho depois do polimento? <span class="plus">+</span></button>
+        <div class="body"><p>Limpeza com [produto neutro], evitando [ácidos/abrasivos]. Recomendamos [reaplicação/manutenção a cada período]. Entregamos um guia simples ao final.</p><span class="tag">resposta padrão — confirmar recomendação da empresa</span></div></div>
+    </div>
+
+    <div class="card">
+      <h3 class="t">Por que esse FAQ importa</h3>
+      <ul class="clean">
+        <li><b>SEO:</b> vira <b>FAQPage (schema.org)</b> e pode aparecer como rich result no Google.</li>
+        <li><b>IA:</b> perguntas e respostas atômicas são o formato que LLMs mais citam.</li>
+        <li><b>Confiabilidade:</b> responde objeção antes do contato — encurta a decisão.</li>
+        <li><b>Fonte viva:</b> as perguntas saem do <b>Digisac</b> (dúvidas reais) → o FAQ se atualiza sozinho com o que os clientes perguntam.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    Artefato vivo da inteligência Solutudo · <a href="../../checklist/">voltar ao checklist</a> ·
+    pareado com <code>docs/inteligencia-solutudo.md</code> (card "Sobre a Empresa 2.0")
+  </div>
+
+</div>
+
+<script>
+  function show(which){
+    document.getElementById('p-desc').classList.toggle('on', which==='desc');
+    document.getElementById('p-faq').classList.toggle('on', which==='faq');
+    var d=document.getElementById('t-desc'), f=document.getElementById('t-faq');
+    d.classList.toggle('on', which==='desc'); d.classList.toggle('desc', which==='desc');
+    f.classList.toggle('on', which==='faq');
+    history.replaceState(null,'',which==='faq'?'#faq':'#descricao');
+  }
+  function qa(btn){ btn.parentElement.classList.toggle('open'); }
+  if(location.hash==='#faq') show('faq');
+</script>
+</body>
+</html>
