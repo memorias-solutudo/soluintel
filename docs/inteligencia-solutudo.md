@@ -125,8 +125,9 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
 
 ## Card — Considerações de SEO + IA (server-render, 3 camadas, JSON-LD)
 
-Fonte: doc técnico de recuperação de indexação (Google + IA) e recomendações de
-design, jun/2026. Diagnóstico: a Solutudo perdeu ~17 mi de páginas indexadas
+Fontes (analisados os DOIS documentos): (1) doc técnico do time de desenvolvimento
+(Kimura, Rielo, Sonoda) — "recuperação de indexação e visibilidade (Google + IA)";
+(2) doc de "recomendações de design — a página de detalhe". Jun/2026. Diagnóstico: a Solutudo perdeu ~17 mi de páginas indexadas
 porque **conteúdo preso em JS/imagem é ilegível para Google e IA** (o ChatGPT-User
 vê casca vazia; HTML estático lê ~94%, via JS ~23%). A busca por IA do ChatGPT roda
 sobre o **índice do Bing** — estar indexado no Bing é pré-requisito.

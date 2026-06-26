@@ -208,11 +208,11 @@
     <div class="deslayout">
       <div class="left">
     <div class="card" style="border-left:4px solid var(--brand-orange-deep)">
-      <span class="badge warn">Não podemos deixar passar · SEO + IA</span>
-      <h3 class="t" style="margin-top:8px">Considerações técnicas que regem este conteúdo</h3>
-      <div class="sub">A descrição e o FAQ acima só funcionam se a PÁGINA respeitar isto. Diagnóstico: a Solutudo perdeu ~17 mi de páginas indexadas porque conteúdo preso em JS/imagem é ilegível para Google e IA. Régua nova: <b>design a serviço de ser encontrado</b>.</div>
+      <span class="badge warn">Consolidado dos 2 documentos · técnico (dev) + design</span>
+      <h3 class="t" style="margin-top:8px">Considerações que regem este conteúdo (doc técnico + doc de design)</h3>
+      <div class="sub"><b>Analisei os dois .MD recebidos</b> e cruzei o que cada um exige: o <b>documento técnico do time de desenvolvimento</b> (Kimura, Rielo, Sonoda — recuperação de indexação Google + IA) e o <b>documento de recomendações de design</b>. A descrição e o FAQ acima só funcionam se a PÁGINA respeitar os dois. Diagnóstico comum aos dois: a Solutudo perdeu ~17 mi de páginas indexadas porque conteúdo preso em JS/imagem é ilegível para Google e IA. Régua nova (design): <b>design a serviço de ser encontrado</b>; regra de ouro (dev): <b>todo conteúdo essencial server-rendered no HTML</b>.</div>
 
-      <p style="font-weight:800;margin:6px 0 4px">1 · Legibilidade pela máquina (decide vida/morte da página)</p>
+      <p style="font-weight:800;margin:6px 0 4px">1 · Legibilidade pela máquina <span style="font-weight:600;color:var(--g500);font-size:11.5px">— dev + design</span></p>
       <ul class="clean">
         <li><b>Server-render:</b> o conteúdo essencial nasce no HTML servido, nunca injetado por JS. Teste: desligou o JS e sumiu? → errado. (HTML estático lê ~94%; via JS, ~23%; o ChatGPT-User vê casca vazia.)</li>
         <li><b>Texto é texto, não imagem:</b> nome, telefone, endereço, horário e descrição = texto real selecionável.</li>
@@ -221,29 +221,29 @@
         <li><b>aggregateRating só com avaliação real</b> — nunca inventar (Google e IA detectam; spam update 2026).</li>
       </ul>
 
-      <p style="font-weight:800;margin:12px 0 4px">2 · Densidade &gt; conteúdo fino (3 camadas)</p>
+      <p style="font-weight:800;margin:12px 0 4px">2 · Densidade &gt; conteúdo fino — 3 camadas <span style="font-weight:600;color:var(--g500);font-size:11.5px">— dev + design</span></p>
       <ul class="clean">
         <li><b>Consumo</b> (contato: telefone, WhatsApp, horário) → <b>Profundidade de dado</b> (dossiê CNPJ/Receita) → <b>Confiança</b> (avaliações, selo, frescor, conteúdo do dono).</li>
         <li>Página fina morre; densa sobrevive — mesmo com dado público, desde que renderizada. A camada de Confiança é o nosso fosso (só a Solutudo gera).</li>
       </ul>
 
-      <p style="font-weight:800;margin:12px 0 4px">3 · Frescor (página viva)</p>
+      <p style="font-weight:800;margin:12px 0 4px">3 · Frescor — página viva <span style="font-weight:600;color:var(--g500);font-size:11.5px">— dev</span></p>
       <ul class="clean">
         <li>"Atualizado em DD/MM/AAAA" visível + <code>dateModified</code> no JSON-LD + frescor no <code>&lt;title&gt;</code>. Disparar <b>IndexNow</b> ao mudar (propaga ao Bing — base do ChatGPT).</li>
       </ul>
 
-      <p style="font-weight:800;margin:12px 0 4px">4 · Performance &amp; mobile</p>
+      <p style="font-weight:800;margin:12px 0 4px">4 · Performance &amp; mobile <span style="font-weight:600;color:var(--g500);font-size:11.5px">— dev + design</span></p>
       <ul class="clean">
         <li>Velocidade é critério de design: CSS crítico inline, lazy-load abaixo da dobra, cortar JS do núcleo. FCP baixo (&lt;~0,4s) = muito mais citação por IA.</li>
         <li><b>Mobile-first</b> (70% no celular): alvos de toque ≥44px, contraste ≥4,5:1, HTML semântico, <code>alt</code> nas imagens.</li>
       </ul>
 
-      <p style="font-weight:800;margin:12px 0 4px">5 · Indexação</p>
+      <p style="font-weight:800;margin:12px 0 4px">5 · Indexação <span style="font-weight:600;color:var(--g500);font-size:11.5px">— dev</span></p>
       <ul class="clean">
         <li><code>meta-robots index,follow,max-snippet:-1,max-image-preview:large</code>; <code>canonical</code> correto; sitemap segmentado; <code>noindex</code>/consolidar cascas.</li>
         <li>Liberar no robots.txt: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot, PerplexityBot, ClaudeBot, Google-Extended.</li>
       </ul>
-      <div class="sub" style="margin:12px 0 0">Fonte: doc técnico de recuperação de indexação (Google + IA) + recomendações de design, jun/2026.</div>
+      <div class="sub" style="margin:12px 0 0"><b>Fontes (os dois documentos):</b> (1) doc técnico do time de desenvolvimento — Kimura, Rielo, Sonoda — "recuperação de indexação e visibilidade (Google + IA)"; (2) "recomendações de design — a página de detalhe". Jun/2026.</div>
     </div>
 
 <div class="explica">
