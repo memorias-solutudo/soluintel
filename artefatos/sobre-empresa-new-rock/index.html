@@ -36,6 +36,9 @@
   .testbox{margin-top:14px;background:var(--g100);border-radius:12px;padding:12px 14px}
   .testbox summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--ink)}
   .testbox .tb{margin-top:10px;font-size:12.5px;color:var(--g700);white-space:pre-wrap;line-height:1.55}
+  .srcdoc{margin-top:8px;background:var(--g100);border-radius:12px;padding:10px 14px}
+  .srcdoc summary{cursor:pointer;font-weight:800;font-size:13px;color:var(--ink)}
+  .srcbody{margin-top:10px;max-height:440px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.55;color:var(--g700);background:var(--white);border-radius:10px;padding:14px;border:1px solid var(--g150)}
   a{color:var(--brand-purple)}
 
   /* topo */
@@ -244,6 +247,221 @@
         <li>Liberar no robots.txt: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot, PerplexityBot, ClaudeBot, Google-Extended.</li>
       </ul>
       <div class="sub" style="margin:12px 0 0"><b>Fontes (os dois documentos):</b> (1) doc técnico do time de desenvolvimento — Kimura, Rielo, Sonoda — "recuperação de indexação e visibilidade (Google + IA)"; (2) "recomendações de design — a página de detalhe". Jun/2026.</div>
+      <div class="sub" style="margin:14px 0 6px"><b>Leitura na íntegra — consumimos destas fontes:</b></div>
+      <details class="srcdoc"><summary>📄 Documento técnico (dev) — recuperação de indexação (Google + IA)</summary><div class="srcbody"># Documento técnico — recuperação de indexação e visibilidade (Google + IA)
+
+**Para:** time de desenvolvimento (Kimura, Rielo, Sonoda) · **Junho/2026**
+**O que é:** a consolidação técnica completa do diagnóstico e das recomendações. Substitui e expande o plano anterior. Quem ler isto entende *o problema*, *por que acontece* e *exatamente o que mexer*.
+
+---
+
+## 1. Diagnóstico em uma frase
+
+A Solutudo perdeu ~17 milhões de páginas indexadas (de ~45 mi para ~28 mi entre mar–jun/2026), e isso é a queda de ~10% ao mês de audiência. **A desindexação no Google e a invisibilidade na IA têm a mesma raiz**: páginas que os robôs não conseguem ler bem (JS/assíncrono) e/ou páginas finas demais para valerem indexação. Não são dois problemas — é um, com uma única estratégia de correção.
+
+---
+
+## 2. Como a busca por IA realmente funciona (o que o time precisa saber)
+
+A busca local do ChatGPT **roda sobre o índice do Bing**, não do Google. O fluxo tem dois estágios independentes:
+
+- **Descoberta** — o ChatGPT consulta o índice do Bing e recupera ~20–30 páginas. Se você não está no índice do Bing, você não existe para o ChatGPT, por melhor que ranqueie no Google.
+- **Seleção** — o modelo lê essas páginas e cita ~15% delas. Estar indexado é necessário; ser citado depende de o conteúdo ser legível e útil.
+
+Bots que importam (para grep de log e robots.txt): `Bingbot` (alimenta o índice), `OAI-SearchBot` (rastreador do ChatGPT), `ChatGPT-User` (busca a página ao vivo), além de `GPTBot`, `PerplexityBot`, `ClaudeBot`, `Google-Extended`.
+
+**O fato técnico que decide tudo:** leitura de HTML estático com schema funciona a ~94%; conteúdo renderizado por JavaScript, a ~23%. O Bingbot até renderiza JS, mas o **ChatGPT-User vê uma casca vazia** quando a página depende de JS. Conclusão: o conteúdo essencial precisa estar no HTML servido.
+
+---
+
+## 3. As causas, em ordem de peso
+
+1. **Conteúdo fino/derivativo em escala** (dominante). Milhões de páginas quase-idênticas com pouco dado único (ex.: a página grátis sem telefone nem endereço), batendo nos core/spam updates de 2026 do Google, que miram justamente "scaled content abuse" e páginas derivativas. Sites programáticos com páginas de localização quase-duplicadas são o alvo número um.
+2. **JS/assíncrono escondendo conteúdo** (primário para a IA, secundário para o Google). O Googlebot renderiza JS, mas adiciona custo/risco; o ChatGPT-User não renderiza.
+3. **Crawl budget** desperdiçado em 45 mi de páginas, a maioria de baixo valor.
+4. **Catastrófico (descartar primeiro):** ação manual ou problema de segurança no Search Console. Improvável, mas há casos de site programático totalmente desindexado por hack que marcou o domínio como spam.
+
+**Aprendizado dos concorrentes que crescem** (TodosNegocios, Guia Fácil, Econodata): nenhum deles é "menos programático" que a Solutudo. A diferença é **densidade + execução técnica**. O Guia Fácil expõe NAP+CNAE de registro público nas páginas grátis (páginas "vivas"). O Econodata serve o dossiê completo de CNPJ, **renderizado no servidor mesmo sendo um SPA Vue**, com frescor no título e schema rico. A regra real: *fino morre, denso sobrevive — mesmo em dado público — desde que renderizado e bem executado.*
+
+---
+
+## 4. Pontos técnicos — itemizados e analisados
+
+### 4.1 Renderização no servidor (a regra de ouro)
+**O quê:** todo conteúdo essencial nasce no HTML entregue pelo servidor; nunca injetado por JS depois do load. Se o site é SPA, usar SSR (o Econodata faz isso com Vue 3 — prova de que "é app" não é desculpa).
+**Precisa estar no HTML servido:** nome (H1), categoria, telefone (`tel:`), WhatsApp (`wa.me`), endereço, horário, descrição, serviços/CNAE, dossiê cadastral, breadcrumb, "atualizado em", JSON-LD.
+**Pode ficar em JS (secundário):** galeria com carrossel, mapa interativo, widgets dinâmicos.
+**Como verificar:** `Ctrl+U` (ver código-fonte) ou `curl` na URL, ou DevTools → desativar JavaScript → recarregar. Se o conteúdo sumir, depende de JS e precisa ir para o server-render.
+
+### 4.2 Bloco de contato (camada de consumo)
+**O quê:** telefone em **texto, visível, clicável** (`&lt;a href="tel:+55..."&gt;`), nunca atrás de "ver telefone"; WhatsApp como `&lt;a href="https://wa.me/55..."&gt;` com mensagem pré-preenchida; endereço em `&lt;address&gt;` + link de mapa; horário em lista estruturada sempre visível.
+**Por quê:** é o caminho de contratação (intenção central da Solutudo) e, junto, é dado que Google e IA leem.
+
+### 4.3 Dados estruturados (JSON-LD), no `&lt;head&gt;`, server-rendered
+**O quê:** usar o `@type` específico por categoria (sinal mais forte que o genérico):
+
+| Categoria | `@type` |
+|---|---|
+| Encanador | `Plumber` · Eletricista `Electrician` · Oficina `AutoRepair` |
+| Dentista `Dentist` | Advogado `Attorney` · Contador `AccountingService` |
+| Construtora `GeneralContractor` | Padaria `Bakery` · Restaurante `Restaurant` |
+| Treinamento/consultoria `ProfessionalService` | **Fallback** `LocalBusiness` |
+
+Campos ricos a preencher (os cadastrais vêm da Receita; os de contato, do cadastro Solutudo): `name`, `legalName`, `taxID`, `url`, `telephone`, `image`, `address`(completo), `geo`, `openingHoursSpecification`, `areaServed`, `knowsAbout`, `foundingDate`, `founder`, `aggregateRating` (**só quando houver avaliação real — não inventar**), `dateModified`.
+**Como verificar:** Rich Results Test do Google na URL.
+
+### 4.4 Profundidade de dado — enriquecimento + arquitetura de 3 camadas
+**O quê:** ir além de NAP+CNAE. Puxar o **dossiê completo de CNPJ** da Receita (open data): razão social, nome fantasia, CNPJ, situação cadastral, data de abertura, porte, natureza jurídica, CNAE principal + secundários, quadro societário (QSA), matriz/filiais, setor.
+**A arquitetura da página** combina três camadas que nenhum concorrente tem juntas:
+1. **Consumo** — telefone, WhatsApp, horário, serviços (caminho de contratar).
+2. **Profundidade de dado** — o dossiê da Receita (sobrevivência + captura de intenção de pesquisa).
+3. **Confiança própria** — recomendações/avaliações, selo de verificação, conteúdo do dono, frescor (o que só a Solutudo gera; é o fosso durável).
+**Ferramentas já disponíveis:** Google Places API, DataForSEO, IBGE/CONCLA, e a ferramenta de enriquecimento do Renan.
+**Ressalva:** dossiê de CNPJ captura tráfego de *pesquisa* ("CNPJ da empresa X"), não de *contratação* — é aditivo, não substitui a camada de consumo. Combinar, não trocar.
+
+### 4.5 Frescor (sinal de página viva)
+**O quê:** "Atualizado em DD/MM/AAAA" **visível** no corpo; `dateModified` no JSON-LD; e — tática Econodata — também no `&lt;title&gt;` ("Atualizado em [mês] de [ano]"). Disparar **IndexNow** sempre que a página muda, para propagar ao Bing rápido.
+**Por quê:** conteúdo recente recebe muito mais citação em IA e segura melhor o ranking.
+
+### 4.6 Diretivas de indexação
+**O quê:** `meta-robots` com `index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1` (tática Econodata — libera snippet e preview cheios para busca/IA). `canonical` correto em toda página.
+
+### 4.7 Velocidade / Core Web Vitals
+**O quê:** CSS crítico inline; `lazy-load` em imagens só abaixo da dobra; remover JS pesado/assíncrono do núcleo de conteúdo; respeitar o limite de INP e mirar FCP baixo.
+**Por quê:** o rastreador da IA tem timeout — página lenta é página não-citada (FCP &lt; ~0,4s correlaciona com muito mais citações; &gt; ~1,1s, bem menos).
+
+### 4.8 Linkagem interna
+**O quê:** entidade → CNAE/categoria → empresas similares, com links de verdade. Toda página que importa deve receber link de outra (página órfã é invisível ao rastreador). Constrói trilha de rastreio e autoridade temática.
+
+---
+
+## 5. Gestão de índice (triagem) — antes de consertar, decidir o que manter
+
+### 5.1 Não confie no número agregado. Amostre.
+Pegar 20–30 URLs (mix: pagas, grátis com dado, cascas) e rodar na **Inspeção de URL**. Classificar:
+
+| Status no Search Console | Balde | É problema? |
+|---|---|---|
+| Rastreada/Descoberta, não indexada | Qualidade/crawl | **Sim — o alvo** |
+| Duplicada, Google escolheu outra canônica · Página alternativa com canônica adequada | Consolidação | Em geral não |
+| Indexada (mas some da busca) | Perda de ranking | Outro problema |
+
+### 5.2 Matriz brigar / fortalecer / soltar
+
+| | **Tem dado proprietário** | **Só dado de registro** |
+|---|---|---|
+| **Tem demanda** | **BRIGAR** (fortalecer ao máximo, prioridade de indexação/IndexNow) | **FORTALECER** (enriquecer + provocar dado proprietário) |
+| **Sem demanda** | Manter, baixa prioridade | **SOLTAR** (`noindex` ou consolidar) |
+
+*A decisão dos quadrantes por cidade×categoria é de negócio (Rafael + Bruno + Dalton), não técnica.*
+
+### 5.3 Como soltar e higienizar
+`noindex, follow` nas páginas sem demanda nem dado; consolidação via canônica para quase-duplicatas; retirar do sitemap tudo com `noindex`; segmentar sitemaps (um só das páginas "brigar/fortalecer") para o crawl budget ir ao que importa.
+
+---
+
+## 6. Instrumentos de medição (saem do escuro em dias)
+
+- **Logs de acesso:** grep dos UAs (seção 2) + adicionar o campo `$http_accept` ao formato de log. Responde: os bots chegam? Em páginas pagas vs cascas?
+- **Bing Webmaster Tools + AI Performance report** (lançado em fev/2026): submeter sitemap; o relatório mostra citações por URL, as frases que a IA usou e tendência no tempo. Como o ChatGPT roda sobre o Bing, é o indicador antecedente mais próximo de citação.
+- **Painel de consultas anônimas:** lista fixa de cidade×categoria, rodada deslogado/incógnito, semanal, registrada. Mede o resultado (aparecemos como fonte? o cliente aparece? qual concorrente aparece?).
+- **robots.txt:** confirmar que não bloqueia nenhum dos crawlers da seção 2.
+
+---
+
+## 7. Validação página a página
+
+1. Conteúdo no HTML cru (ver código-fonte / `curl` / DevTools sem JS).
+2. JSON-LD válido (Rich Results Test).
+3. O que o Google vê: Inspeção de URL → "Testar URL ativa" → conferir HTML renderizado → "Solicitar indexação" nas páginas fortalecidas.
+4. Leitura por IA: pedir ao ChatGPT/Claude para resumir a URL e conferir o UA no log.
+
+---
+
+## 8. Sequência de execução
+
+| # | Ação | Responsável | Esforço | Impacto | Quando |
+|---|---|---|---|---|---|
+| 1 | Amostragem na Inspeção + descartar ação manual/segurança | Kimura | Baixo | Define tudo | Esta semana |
+| 2 | Submeter sitemap no Bing + ligar AI Performance report | Kimura/Rielo | Baixo | Alto (medição) | Esta semana |
+| 3 | Grep de logs (UAs + Accept) | Rielo | Baixo | Alto (diagnóstico) | Esta semana |
+| 4 | Template: NAP server-rendered + JSON-LD + frescor + snippet directives | Kimura | Médio | Alto (conserta milhões de uma vez) | 2 semanas |
+| 5 | Enriquecimento (dossiê CNPJ) nas páginas "fortalecer/brigar" | Renan/Kimura | Médio | Alto | 2–4 semanas |
+| 6 | `noindex`/consolidar cascas + limpar/segmentar sitemap | Rielo | Médio | Alto (densidade) | 2–3 semanas |
+| 7 | Velocidade (CSS crítico, lazy-load, cortar JS do núcleo) | Kimura | Médio | Médio-alto | 3–4 semanas |
+| 8 | Linkagem interna entidade↔CNAE↔similares | Sonoda | Médio | Médio (composto) | Contínuo |
+
+---
+
+## 9. O que NÃO fazer
+
+- Não deletar em massa por pânico — soltar é `noindex`/consolidação criteriosa.
+- Não investir em markdown/acceptmarkdown como jogada de IA: o ChatGPT (browse) busca **só HTML**; é canal errado para esse objetivo.
+- Não inventar `aggregateRating` nem avaliação — Google e IA detectam, e o spam update de 2026 mira conteúdo escalado sem valor.
+- Não esperar recuperação instantânea: reindexação e reavaliação de qualidade levam **3 a 6 meses**. O relógio só começa quando o conserto sobe.
+
+---
+
+*Referência visual de implementação: `solutudo-pagina-detalhe-v2-tres-camadas.html`.*</div></details>
+      <details class="srcdoc"><summary>🎨 Documento de design — recomendações da página de detalhe</summary><div class="srcbody"># Recomendações de design — a página de detalhe (e o que mudou)
+
+**Para:** nosso designer · **Junho/2026**
+
+Antes de qualquer pixel, o contexto — e ele é importante, porque muda a régua do seu trabalho.
+
+## A virada
+
+Até aqui, a gente acertou em fazer páginas bonitas. Mas tem uma verdade que precisamos encarar juntos: o nosso foco no visual, sozinho, virou um problema. Páginas muito visuais, pesadas e cheias de JavaScript e carregamento assíncrono ficaram **ilegíveis para o Google e para as IAs** — eles não conseguem ler o que está escondido atrás de imagem, de interação ou de carregamento. O resultado foi concreto: o Google desindexou milhões das nossas páginas e a audiência vem caindo. Bonito, mas invisível.
+
+Então a régua nova é simples: **design a serviço de ser encontrado.** A página mais bonita, daqui pra frente, é a que faz a empresa ser achada e contatada. Beleza e legibilidade não brigam — o seu trabalho é fazer as duas andarem juntas, dentro da nossa identidade.
+
+Isso não diminui o seu papel. Aumenta. É design com uma restrição a mais (a máquina também precisa ler), que é justamente onde está o ofício.
+
+## O briefing em uma frase
+
+Clareza + velocidade + conteúdo que a máquina lê — sem abrir mão da marca.
+
+## Princípios inegociáveis
+
+Estes não são preferências estéticas; são o que decide se a página vive ou some do Google.
+
+- **Conteúdo é texto, não imagem.** Telefone, nome, endereço, horário, dados da empresa — tudo precisa ser texto real, selecionável, na tela. Nunca embutido dentro de uma imagem ou de um gráfico bonito. A máquina não lê texto que virou figura.
+- **Telefone e WhatsApp visíveis e clicáveis.** Nunca atrás de hover, de clique, de "ver telefone" ou de um botão que abre depois. O número aparece, grande, de cara.
+- **Nada essencial atrás de interação ou de carregamento.** Teste mental: se você desligar o JavaScript e a informação sumir, está errado. O conteúdo principal tem que estar lá na hora.
+- **Velocidade é critério de design agora.** Hero gigante, vídeo em autoplay, animação pesada, excesso de fontes — tudo isso pesa e atrasa a página, e página lenta perde indexação e citação. Trate performance como você trata alinhamento e cor: um requisito, não um detalhe.
+- **Mobile primeiro.** 70% de quem busca está no celular. A decisão começa no mobile e sobe pro desktop, não o contrário.
+- **Hierarquia em segundos.** Quem abre precisa ver, em segundos: o que é a empresa, como falar com ela (a ação), e por que confiar. Ação em primeiro, dado escaneável, confiança visível.
+- **Acessível = legível pra humano e pra máquina.** HTML semântico, `alt` nas imagens, contraste mínimo 4.5:1, alvos de toque ≥ 44px. O que ajuda quem tem dificuldade de leitura ajuda o robô a entender também.
+
+## As três camadas (o que sempre precisa estar na página)
+
+Toda página de detalhe combina três blocos, nesta prioridade visual:
+
+1. **Consumo (contratar)** — no topo: nome, o que faz, telefone, WhatsApp, endereço, horário. É o caminho de ação.
+2. **Confiança** — recomendações/avaliações, selo de verificação, "atualizado em". É o que faz acreditar.
+3. **Dado** — informações cadastrais da empresa (CNPJ, situação, sócios etc.). É denso, fica mais abaixo, mas precisa estar limpo e escaneável.
+
+Seu trabalho é fazer essas três camadas coexistirem com respiro e hierarquia, sem virar dump de informação e sem esconder a ação.
+
+## A referência
+
+A página `solutudo-pagina-detalhe-v2-tres-camadas.html` é o norte — abra e use como base. Ela já aplica o **design system v0.2** (DM Sans, roxo #7B2FF2, gradiente só como acento, fundo claro, cards com borda e sombra, cantos arredondados, marca heart-knot). Siga os tokens do design system; não invente cor nem fonte. Quando precisar estender para outras categorias (oficina, advogado, restaurante…), mantenha estes mesmos princípios — é assim que a gente não recria o problema antigo.
+
+E uma inspiração honesta, fora da nossa marca: dá uma olhada nas páginas do Econodata. São páginas densas de dado, e ainda assim limpas, rápidas e organizadas. É a prova de que dá pra ser informativo e bonito ao mesmo tempo — exatamente o que a gente quer.
+
+## Checklist de bolso (antes de entregar qualquer página)
+
+- O telefone está visível, grande e clicável — sem clique pra revelar?
+- Se eu desligar o JavaScript, o conteúdo principal continua na tela?
+- Todo texto importante é texto de verdade, não imagem?
+- A ação principal (contato) é a primeira coisa que se lê?
+- A página é leve e rápida — sem hero/vídeo/animação que pesem?
+- Funciona lindo no celular, com alvos de toque confortáveis?
+- Segui os tokens do design system v0.2 (cor, fonte, espaçamento, raios)?
+- As três camadas estão presentes, com hierarquia clara?
+
+Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o novo padrão.</div></details>
+
     </div>
 
 <div class="explica">
