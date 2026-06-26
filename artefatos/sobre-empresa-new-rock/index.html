@@ -464,59 +464,55 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
   "lacunas": [ { "o_que": "...", "dono": "cliente | nos" } ],
   "claims_evitados": ["..."]
 }</pre>
-      <details class="testbox">
-        <summary>Teste do prompt com uma empresa fictícia (validação do formato)</summary>
-        <div class="tb">Empresa fictícia (apenas para validar o formato — outro segmento):
-VerdeVivo Paisagismo · paisagismo e jardinagem · Campinas/SP.
+      <details class="testbox" open>
+        <summary>Teste do prompt com a New Rock (referência — confere com o de cima)</summary>
+        <div class="tb"><b>Entrada (base canônica · números simulados):</b>
 
-— descricao_completa —
-A VerdeVivo Paisagismo é uma empresa de paisagismo e jardinagem em Campinas/SP, com
-atuação em [Cambuí, Taquaral, Barão Geraldo e região]. Desde [2016], cria e mantém
-jardins para residências, condomínios e empresas.
+{ "empresa":"New Rock Expresso",
+  "categoria":"Lavagem e polimento de mármores e granitos",
+  "cidade":"Rio de Janeiro","uf":"RJ",
+  "area_atendida":["Zona Sul","Barra da Tijuca","Recreio","Tijuca"],
+  "fundacao":"2014",
+  "servicos":[{"nome":"Polimento e lustro","o_que_resolve":"recupera o brilho, remove riscos e marcas"},
+              {"nome":"Cristalização","o_que_resolve":"proteção que prolonga o brilho e facilita a limpeza"},
+              {"nome":"Impermeabilização","o_que_resolve":"reduz porosidade, protege de manchas"},
+              {"nome":"Restauração","o_que_resolve":"corrige desgaste, manchas profundas, juntas e quebras"}],
+  "materiais_ou_produtos":["mármore","granito","quartzo","porcelanato","granilite"],
+  "diferenciais":["polimento a seco com discos diamantados","avaliação técnica gratuita","equipe própria"],
+  "provas":["+10 anos","+1.200 obras","desde 2014"],
+  "atendimento":["orçamento sem custo","visita em até 24h","proximidade regional"],
+  "garantia":"6 meses","publico":["residências","comércios","condomínios"],
+  "claims_proibidos":["melhor","líder","nº 1"] }
 
-O que fazemos
-Cuidamos do jardim do projeto à manutenção:
-- Projeto paisagístico: planejamento de canteiros, espécies e iluminação.
-- Implantação: preparo de solo, plantio, grama e forrações.
-- Manutenção mensal: poda, adubação, controle de pragas e limpeza.
-- Irrigação automatizada: instalação e ajuste de sistemas.
+SAÍDA DO PROMPT (executado com a entrada acima):
 
-Como trabalhamos
-Fazemos uma visita técnica gratuita para entender o espaço e o uso antes do orçamento, e
-entregamos um plano com espécies adequadas ao clima de Campinas. A manutenção segue um
-cronograma fixo, com a mesma equipe a cada visita.
+• descricao_completa → IDÊNTICA ao "depois" da comparação e aos toggles
+  Solutudo/Solusite acima (entidade na 1a frase → "O que fazemos" + lista →
+  "Como trabalhamos" → "Por que a New Rock" com os 4 itens, incluindo
+  atendimento → CTA).
 
-Por que a VerdeVivo
-- Orçamento sem custo e visita técnica em até [48h].
-- Contrato de manutenção mensal com cronograma e relatório por visita.
-- Equipe própria, com [+8 anos] de experiência e [+300 jardins] entregues.
-- Atendimento próximo, com soluções sob medida para cada espaço.
+• google (≈560 car.): "A New Rock Expresso é especializada em lavagem,
+  polimento, cristalização, impermeabilização e restauração de mármores e
+  granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e
+  Tijuca, atendendo residências, comércios e condomínios..."
 
-Precisa criar um jardim do zero ou manter o que já tem? Fale com a VerdeVivo e agende
-sua visita gratuita.
+• instagram_bio (≈135 car.): "💎 Polimento &amp; restauração de mármore e granito
+  / 📍 Rio de Janeiro — Zona Sul, Barra e Tijuca / ✨ Avaliação grátis • brilho
+  que dura / 🗓️ Orçamento em 24h"
 
-— google (≈540 car.) —
-A VerdeVivo Paisagismo faz projeto, implantação e manutenção de jardins em Campinas/SP,
-atendendo Cambuí, Taquaral, Barão Geraldo e região. Trabalha com canteiros, grama,
-forrações e irrigação automatizada para residências, condomínios e empresas. A visita
-técnica é gratuita e a manutenção segue cronograma mensal com a mesma equipe. Atua
-desde 2016, com mais de 300 jardins entregues.
+• seo.title (59): "Polimento de Mármore e Granito no Rio de Janeiro | New Rock"
+• seo.meta_description (≤155): "Polimento, cristalização e restauração de
+  mármores e granitos no Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e
+  garantia de 6 meses."
 
-— instagram_bio (≈128 car.) —
-🌿 Projeto e manutenção de jardins em Campinas
-📍 Cambuí, Taquaral e Barão Geraldo
-🗓️ Visita grátis • manutenção mensal
+• lacunas: fundação, bairros exatos, garantia, nº de obras/anos (todos
+  SIMULADOS neste teste → virariam pendência até o cliente confirmar).
+• claims_evitados: "melhor", "líder", "nº 1".
 
-— seo —
-title: Paisagismo e Jardinagem em Campinas/SP | VerdeVivo
-meta_description: Projeto, implantação e manutenção de jardins em Campinas. Visita grátis e equipe própria. Atendemos Cambuí, Taquaral e região.
-
-— lacunas (a confirmar com o cliente) —
-fundação (ano) · bairros exatos · prazo de visita · nº real de jardins/anos · contrato.
-
-Resultado: mesma estrutura da New Rock (entidade na 1a frase, lista de serviços, "como
-trabalhamos", "por que" com 4 itens incluindo atendimento, CTA, Google factual, bio com
-emojis e SEO) — provando que o prompt é genérico e independe do segmento.</div>
+CONCLUSÃO: rodando o prompt com a New Rock, a saída reproduz exatamente a
+descrição que está acima — validando o prompt contra a referência.
+Também testado com uma empresa fictícia de outro segmento (VerdeVivo
+Paisagismo, Campinas) com a mesma estrutura — confirmando que é genérico.</div>
       </details>
     </div>
 
