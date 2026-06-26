@@ -27,6 +27,11 @@
   .deslayout .right{position:sticky;top:16px}
   .deslayout .right .card{margin-top:0}
   @media(max-width:1040px){.deslayout .right{position:static}}
+  /* FAQ em 2 colunas: restante à esquerda, perguntas à direita */
+  .faqlayout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  @media(max-width:1040px){.faqlayout{grid-template-columns:1fr}}
+  .faqlayout .faqleft{position:sticky;top:16px}
+  @media(max-width:1040px){.faqlayout .faqleft{position:static}}
   a{color:var(--brand-purple)}
 
   /* topo */
@@ -398,6 +403,7 @@
         <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Destaque Solutudo · descrição completa</div>
         <p>A New Rock Expresso é uma empresa especializada em lavagem, polimento, cristalização e restauração de mármores e granitos, com sede no Rio de Janeiro e atuação em Zona Sul, Barra da Tijuca, Recreio e Tijuca. Desde 2014, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+
         <h5>O que fazemos</h5>
         <p>Trabalhamos com os principais materiais do mercado — mármore, granito, quartzo, porcelanato e granilite — aplicando o método certo para cada pedra:</p>
         <ul class="svc">
@@ -406,15 +412,19 @@
           <li><b>Impermeabilização:</b> reduz a porosidade e protege contra manchas de água, óleo e vinho.</li>
           <li><b>Restauração:</b> corrige desgaste, manchas profundas, juntas abertas e pequenas quebras.</li>
         </ul>
+
         <h5>Como trabalhamos</h5>
-        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície, sempre respeitando o material.</p>
+        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
+
         <h5>Por que a New Rock</h5>
         <ul class="svc">
-          <li>Orçamento sem custo e visita técnica em até 24h.</li>
-          <li>Garantia de 6 meses no resultado, com guia de manutenção.</li>
-          <li>Equipe própria e treinada, com +10 anos de experiência e +1.200 obras no Rio.</li>
+          <li><b>Orçamento sem custo</b> e visita técnica em até 24h.</li>
+          <li><b>Garantia de 6 meses</b> no resultado, com guia de manutenção para prolongar o brilho.</li>
+          <li><b>Equipe própria e treinada</b>, com mais de 10 anos de experiência e +1.200 obras realizadas no Rio.</li>
+          <li>Atendimento rápido pela proximidade regional, com soluções sob medida para cada imóvel.</li>
         </ul>
-        <p class="cta">Agende sua avaliação gratuita com a New Rock Expresso. →</p>
+
+        <p class="cta">Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita. →</p>
         <div class="chmeta">Mesmo texto usado no Solusite.</div>
       </div>
 
@@ -422,6 +432,7 @@
         <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Solusite · mesma descrição da Solutudo</div>
         <p>A New Rock Expresso é uma empresa especializada em lavagem, polimento, cristalização e restauração de mármores e granitos, com sede no Rio de Janeiro e atuação em Zona Sul, Barra da Tijuca, Recreio e Tijuca. Desde 2014, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+
         <h5>O que fazemos</h5>
         <p>Trabalhamos com os principais materiais do mercado — mármore, granito, quartzo, porcelanato e granilite — aplicando o método certo para cada pedra:</p>
         <ul class="svc">
@@ -430,15 +441,19 @@
           <li><b>Impermeabilização:</b> reduz a porosidade e protege contra manchas de água, óleo e vinho.</li>
           <li><b>Restauração:</b> corrige desgaste, manchas profundas, juntas abertas e pequenas quebras.</li>
         </ul>
+
         <h5>Como trabalhamos</h5>
-        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície, sempre respeitando o material.</p>
+        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
+
         <h5>Por que a New Rock</h5>
         <ul class="svc">
-          <li>Orçamento sem custo e visita técnica em até 24h.</li>
-          <li>Garantia de 6 meses no resultado, com guia de manutenção.</li>
-          <li>Equipe própria e treinada, com +10 anos de experiência e +1.200 obras no Rio.</li>
+          <li><b>Orçamento sem custo</b> e visita técnica em até 24h.</li>
+          <li><b>Garantia de 6 meses</b> no resultado, com guia de manutenção para prolongar o brilho.</li>
+          <li><b>Equipe própria e treinada</b>, com mais de 10 anos de experiência e +1.200 obras realizadas no Rio.</li>
+          <li>Atendimento rápido pela proximidade regional, com soluções sob medida para cada imóvel.</li>
         </ul>
-        <p class="cta">Agende sua avaliação gratuita com a New Rock Expresso. →</p>
+
+        <p class="cta">Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita. →</p>
         <div class="chmeta"><b>Título SEO (≤60):</b> Polimento de Mármore e Granito no Rio de Janeiro | New Rock<br><b>Meta description (≤155):</b> Polimento, cristalização e restauração de mármores e granitos no Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e garantia de 6 meses.</div>
       </div>
 
@@ -462,8 +477,9 @@
 
   <!-- ===================== FAQ ===================== -->
   <section id="p-faq" class="panel">
-
-    <div class="lead">
+    <div class="faqlayout">
+      <div class="faqleft">
+<div class="lead">
       <span class="badge purple">Em construção · base do nicho</span>
       <h2>FAQ — perguntas que sustentam SEO e citação por IA</h2>
       <p>O FAQ não é enfeite: ele responde dúvidas reais (alimentadas pelo Digisac), vira <b>FAQPage (schema.org)</b>
@@ -477,7 +493,19 @@
       <div class="stat"><div class="big">12,4%</div><div class="lbl">dos sites usam dado estruturado — <b>janela de vantagem</b> de quem chega antes</div><div class="src">Fonte: <a href="https://www.frase.io/blog/faq-schema-ai-search-geo-aeo" target="_blank" rel="noopener">Frase.io</a></div></div>
     </div>
 
-    <div class="faq" id="faqlist">
+    <div class="card">
+      <h3 class="t">Por que esse FAQ importa — o panorama</h3>
+      <ul class="clean">
+        <li><b>Mudou o jogo (2023):</b> o Google <b>aposentou os rich results de FAQ</b> para empresas comuns (só gov/saúde). FAQ no site deixou de ser por "estrelinha no Google" e passou a valer por <b>IA, PAA, voz e conversão na página</b> (<a href="https://searchengineland.com/faq-schema-rise-fall-seo-today-463993" target="_blank" rel="noopener">Search Engine Land</a>).</li>
+        <li><b>IA:</b> FAQPage dá <b>3,2× mais chance</b> de aparecer no AI Overview; perguntas/respostas atômicas são o formato que ChatGPT, Perplexity e o Google AI mais citam (<a href="https://www.frase.io/blog/faq-schema-ai-search-geo-aeo" target="_blank" rel="noopener">Frase</a>).</li>
+        <li><b>Local:</b> as perguntas de região/orçamento pegam a intenção que mais converte — <b>76%</b> de quem busca "perto de mim" visita em 1 dia (<a href="https://backlinko.com/local-seo-stats" target="_blank" rel="noopener">Backlinko</a>).</li>
+        <li><b>Voz:</b> <b>70%+</b> das respostas por voz saem de snippet/PAA — e FAQ é o formato natural para isso (<a href="https://www.webfx.com/blog/seo/voice-search-statistics/" target="_blank" rel="noopener">WebFX</a>).</li>
+        <li><b>Fonte viva:</b> as perguntas saem do <b>Digisac</b> (dúvidas reais) → o FAQ se atualiza com o que os clientes realmente perguntam.</li>
+      </ul>
+    </div>
+      </div>
+      <div class="faqright">
+<div class="faq" id="faqlist">
       <div class="qa"><button onclick="qa(this)">Quanto tempo dura o serviço de polimento? <span class="plus">+</span></button>
         <div class="body"><p>Depende da metragem e do estado da pedra. Em média, [X m²/dia]. Numa bancada comum, [tempo]; em pisos, [tempo].</p><span class="tag">precisa do cliente: produtividade média (m²/dia)</span>
           <div class="rat"><div class="rtags"><span class="rt ia">IA</span><span class="rt seo">SEO</span></div>
@@ -549,16 +577,7 @@
             <div class="src">Fonte: <a href="https://otterly.ai/blog/schema-markup-real-impact-ai-search/" target="_blank" rel="noopener">OtterlyAI</a> · <a href="https://www.globalreach.com/global-reach-media/blog/2025/10/16/why-faqs-matter-for-seo-ai-search" target="_blank" rel="noopener">Global Reach</a></div></div>
         </div></div>
     </div>
-
-    <div class="card">
-      <h3 class="t">Por que esse FAQ importa — o panorama</h3>
-      <ul class="clean">
-        <li><b>Mudou o jogo (2023):</b> o Google <b>aposentou os rich results de FAQ</b> para empresas comuns (só gov/saúde). FAQ no site deixou de ser por "estrelinha no Google" e passou a valer por <b>IA, PAA, voz e conversão na página</b> (<a href="https://searchengineland.com/faq-schema-rise-fall-seo-today-463993" target="_blank" rel="noopener">Search Engine Land</a>).</li>
-        <li><b>IA:</b> FAQPage dá <b>3,2× mais chance</b> de aparecer no AI Overview; perguntas/respostas atômicas são o formato que ChatGPT, Perplexity e o Google AI mais citam (<a href="https://www.frase.io/blog/faq-schema-ai-search-geo-aeo" target="_blank" rel="noopener">Frase</a>).</li>
-        <li><b>Local:</b> as perguntas de região/orçamento pegam a intenção que mais converte — <b>76%</b> de quem busca "perto de mim" visita em 1 dia (<a href="https://backlinko.com/local-seo-stats" target="_blank" rel="noopener">Backlinko</a>).</li>
-        <li><b>Voz:</b> <b>70%+</b> das respostas por voz saem de snippet/PAA — e FAQ é o formato natural para isso (<a href="https://www.webfx.com/blog/seo/voice-search-statistics/" target="_blank" rel="noopener">WebFX</a>).</li>
-        <li><b>Fonte viva:</b> as perguntas saem do <b>Digisac</b> (dúvidas reais) → o FAQ se atualiza com o que os clientes realmente perguntam.</li>
-      </ul>
+      </div>
     </div>
   </section>
 
