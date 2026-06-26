@@ -50,6 +50,9 @@
   .chpanel .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
   .chpanel .chmeta{font-size:12px;color:var(--g500);margin-top:10px;line-height:1.5}
   .chpanel .chtt{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g500);margin-bottom:8px}
+  .copybtn{float:right;border:none;cursor:pointer;border-radius:var(--pill);background:var(--ink);color:#fff;font:inherit;font-weight:700;font-size:12px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px;margin:-2px 0 2px 10px;transition:background .15s,opacity .15s}
+  .copybtn:hover{opacity:.9}
+  .copybtn.done{background:#06845a}
 
   .panel{display:none}
   .panel.on{display:block;animation:fade .25s ease both}
@@ -202,12 +205,14 @@
       </div>
 
       <div class="chpanel on" data-ch="sol">
+        <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Destaque Solutudo · perfil institucional</div>
         <p>A New Rock Expresso é especializada em lavagem, polimento, cristalização e restauração de mármores e granitos no Rio de Janeiro, atendendo residências, comércios e condomínios na Zona Sul, Barra da Tijuca, Recreio e Tijuca. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Cada superfície passa por uma avaliação técnica gratuita antes do orçamento. No mercado desde 2014, a empresa tem equipe própria, garantia de 6 meses no resultado e mais de 1.200 obras realizadas no Rio.</p>
         <div class="chmeta">≈ 95 palavras</div>
       </div>
 
       <div class="chpanel" data-ch="site">
+        <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Solusite · "Sobre nós" do site</div>
         <p>A New Rock Expresso é uma empresa especializada em lavagem, polimento, cristalização e restauração de mármores e granitos, com sede no Rio de Janeiro e atuação em Zona Sul, Barra da Tijuca, Recreio e Tijuca. Desde 2014, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
         <h5>O que fazemos</h5>
@@ -231,12 +236,14 @@
       </div>
 
       <div class="chpanel" data-ch="goo">
+        <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Google Meu Negócio · factual, sem telefone/link/CTA</div>
         <p>A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.</p>
         <div class="chmeta">≈ 560 caracteres · respeita a política do Google (sem telefone, URL ou CTA promocional)</div>
       </div>
 
       <div class="chpanel" data-ch="ig">
+        <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Bio Instagram · ≤150, direto</div>
         <p style="font-weight:600;color:var(--ink);font-size:15px;line-height:1.5">Polimento e restauração de mármores e granitos no Rio • Zona Sul, Barra e Tijuca • Avaliação grátis • Brilho que dura</p>
         <div class="chmeta">≈ 116 caracteres</div>
@@ -539,6 +546,23 @@
     history.replaceState(null,'',which==='faq'?'#faq':'#descricao');
   }
   function qa(btn){ btn.parentElement.classList.toggle('open'); }
+  function copyCh(btn){
+    var panel = btn.closest('.chpanel');
+    var clone = panel.cloneNode(true);
+    clone.querySelectorAll('.chtt,.chmeta,.copybtn').forEach(function(e){ e.remove(); });
+    clone.style.position='fixed'; clone.style.left='-9999px'; clone.style.top='0'; clone.style.display='block';
+    document.body.appendChild(clone);
+    var text = (clone.innerText || clone.textContent || '').replace(/\n{3,}/g,'\n\n').trim();
+    document.body.removeChild(clone);
+    var done = function(){ var o=btn.querySelector('svg')?btn.lastChild:btn; btn.classList.add('done'); var save=btn.innerHTML; btn.innerHTML='✓ Copiado!'; setTimeout(function(){ btn.innerHTML=save; btn.classList.remove('done'); },1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
+    } else { fallbackCopy(text); done(); }
+  }
+  function fallbackCopy(text){
+    var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px';
+    document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
+  }
   function ch(which, btn){
     document.querySelectorAll('.chpanel').forEach(function(p){ p.classList.toggle('on', p.dataset.ch===which); });
     var sib=btn.parentElement.querySelectorAll('button');
