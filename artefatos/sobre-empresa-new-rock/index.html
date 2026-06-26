@@ -32,6 +32,10 @@
   @media(max-width:1040px){.faqlayout{grid-template-columns:1fr}}
   .faqlayout .faqleft{position:sticky;top:16px}
   @media(max-width:1040px){.faqlayout .faqleft{position:static}}
+  .promptbox{white-space:pre-wrap;word-break:break-word;background:#101015;color:#e8e8ea;border-radius:14px;padding:16px 18px;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:6px}
+  .testbox{margin-top:14px;background:var(--g100);border-radius:12px;padding:12px 14px}
+  .testbox summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--ink)}
+  .testbox .tb{margin-top:10px;font-size:12.5px;color:var(--g700);white-space:pre-wrap;line-height:1.55}
   a{color:var(--brand-purple)}
 
   /* topo */
@@ -386,6 +390,136 @@
         <a href="https://casadosintecorj.com.br/nossos-servicos/polimento-marmore-granito/" target="_blank" rel="noopener">casadosintecorj</a>.
       </div>
     </div>
+    <div class="card promptcard">
+      <button class="copybtn" onclick="copyPrompt(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar prompt</button>
+      <h3 class="t">Prompt gerador — Descrição 2.0 (genérico, qualquer empresa)</h3>
+      <div class="sub">O prompt exato que produz tudo acima a partir dos dados estruturados de <b>qualquer cliente</b> — sem citar empresa específica. Cole no seu fluxo de IA e alimente com o JSON da base canônica.</div>
+      <pre class="promptbox">PAPEL
+Você é o redator de "Sobre a Empresa" da Solutudo. A partir dos DADOS REAIS de um negócio
+local (qualquer segmento), produz a descrição institucional e suas versões por canal. O
+texto serve a dois leitores ao mesmo tempo: buscadores (SEO local) e modelos de IA que
+citam negócios. Não é copy genérica.
+
+REGRAS INQUEBRÁVEIS (verdade primeiro)
+- Use SOMENTE fatos da entrada com "confirmado": true. É proibido inventar anos, números,
+  prêmios, certificações, serviços, bairros ou diferenciais.
+- Cada afirmação deve ser sustentada por um fato; registre os ids em "fatos_usados".
+- Se faltar insumo, NÃO preencha com genérico ("qualidade, excelência, compromisso,
+  atenção aos detalhes"). Registre em "lacunas" o que falta e de quem é (nos | cliente).
+- Sem superlativos não comprovados ("melhor", "líder", "nº 1") e sem itens de
+  "claims_proibidos". Sem emoji (exceto na bio do Instagram). Português correto.
+
+PRINCÍPIOS (valem para SEO e IA ao mesmo tempo)
+- Entidade primeiro: a 1a frase diz, sem ambiguidade, O QUE a empresa é + categoria +
+  cidade/UF. Ex.: "A [Empresa] é [categoria] em [cidade]/[UF] ...".
+- Frases atômicas e autossuficientes (um fato por frase) — é assim que a IA extrai e cita.
+- Especificidade &gt; volume: 1 diferencial concreto e verificável vale mais que 3 adjetivos.
+- Localização natural (cidade + bairros/região), sem repetir por cota (nada de stuffing).
+- Escaneável: parágrafos curtos; no "Sobre" longo, use subtítulos e listas.
+- Compatível com schema.org/LocalBusiness: priorize fatos que mapeiam a propriedades
+  (nome, categoria, área atendida, fundação, serviços) — eles também alimentam o JSON-LD.
+
+ENTRADA (JSON da base canônica do cliente)
+{
+  "empresa": "...", "categoria": "...", "cidade": "...", "uf": "...",
+  "area_atendida": ["bairros/regiões reais"],
+  "fundacao": "ano ou null",
+  "fatos": [ { "id", "campo", "valor", "origem", "confianca", "confirmado" } ],
+  "servicos": [ { "nome", "o_que_resolve", "preco_ou_faixa" } ],
+  "materiais_ou_produtos": ["..."],
+  "diferenciais": ["concretos: processo, equipamento, garantia, prazo, equipe própria..."],
+  "provas": ["tempo de mercado, nº de obras/clientes, prêmios, certificações..."],
+  "atendimento": ["orçamento, visita, prazo, formas de contato, proximidade..."],
+  "tom_de_marca": "...",
+  "claims_proibidos": ["..."]
+}
+Use apenas fatos com "confirmado": true. Onde faltar, gere lacuna em vez de inventar.
+
+TAREFA — gere UMA essência e as versões por canal, todas com a MESMA essência:
+- essencia: 2 a 4 frases (a verdade-núcleo reutilizável).
+- descricao_completa (Solutudo e Solusite usam o MESMO texto): estrutura fixa —
+  1) Abertura: entidade + categoria + cidade + área atendida + "desde [ano]" + público.
+  2) "O que fazemos": materiais/produtos + LISTA de serviços (cada um com o que resolve).
+  3) "Como trabalhamos": processo/equipamento real + avaliação/visita + orçamento.
+  4) "Por que a [Empresa]": LISTA com orçamento, garantia/prazo, equipe/prova social e
+     atendimento/proximidade.
+  5) CTA curto e específico ao serviço.
+- google (Google Meu Negócio): até 700 caracteres; factual; SEM telefone, SEM URL e SEM
+  CTA promocional (política do Google); foco no que é, no que oferece e onde atende.
+- instagram_bio: até 150 caracteres; COM emojis e quebras de linha; o que faz + cidade/
+  bairros + 1 diferencial + chamada curta.
+- seo: title até 60 caracteres (benefício + cidade) e meta_description até 155 (factual,
+  com termo natural).
+
+SAÍDA — responda SOMENTE com JSON válido neste formato:
+{
+  "essencia": "...",
+  "descricao_completa": "...(texto com subtítulos e listas)...",
+  "por_canal": {
+    "google": { "texto": "...", "caracteres": N },
+    "instagram_bio": { "texto": "...", "caracteres": N }
+  },
+  "seo": { "title": "...", "meta_description": "..." },
+  "fatos_usados": ["..."],
+  "lacunas": [ { "o_que": "...", "dono": "cliente | nos" } ],
+  "claims_evitados": ["..."]
+}</pre>
+      <details class="testbox">
+        <summary>Teste do prompt com uma empresa fictícia (validação do formato)</summary>
+        <div class="tb">Empresa fictícia (apenas para validar o formato — outro segmento):
+VerdeVivo Paisagismo · paisagismo e jardinagem · Campinas/SP.
+
+— descricao_completa —
+A VerdeVivo Paisagismo é uma empresa de paisagismo e jardinagem em Campinas/SP, com
+atuação em [Cambuí, Taquaral, Barão Geraldo e região]. Desde [2016], cria e mantém
+jardins para residências, condomínios e empresas.
+
+O que fazemos
+Cuidamos do jardim do projeto à manutenção:
+- Projeto paisagístico: planejamento de canteiros, espécies e iluminação.
+- Implantação: preparo de solo, plantio, grama e forrações.
+- Manutenção mensal: poda, adubação, controle de pragas e limpeza.
+- Irrigação automatizada: instalação e ajuste de sistemas.
+
+Como trabalhamos
+Fazemos uma visita técnica gratuita para entender o espaço e o uso antes do orçamento, e
+entregamos um plano com espécies adequadas ao clima de Campinas. A manutenção segue um
+cronograma fixo, com a mesma equipe a cada visita.
+
+Por que a VerdeVivo
+- Orçamento sem custo e visita técnica em até [48h].
+- Contrato de manutenção mensal com cronograma e relatório por visita.
+- Equipe própria, com [+8 anos] de experiência e [+300 jardins] entregues.
+- Atendimento próximo, com soluções sob medida para cada espaço.
+
+Precisa criar um jardim do zero ou manter o que já tem? Fale com a VerdeVivo e agende
+sua visita gratuita.
+
+— google (≈540 car.) —
+A VerdeVivo Paisagismo faz projeto, implantação e manutenção de jardins em Campinas/SP,
+atendendo Cambuí, Taquaral, Barão Geraldo e região. Trabalha com canteiros, grama,
+forrações e irrigação automatizada para residências, condomínios e empresas. A visita
+técnica é gratuita e a manutenção segue cronograma mensal com a mesma equipe. Atua
+desde 2016, com mais de 300 jardins entregues.
+
+— instagram_bio (≈128 car.) —
+🌿 Projeto e manutenção de jardins em Campinas
+📍 Cambuí, Taquaral e Barão Geraldo
+🗓️ Visita grátis • manutenção mensal
+
+— seo —
+title: Paisagismo e Jardinagem em Campinas/SP | VerdeVivo
+meta_description: Projeto, implantação e manutenção de jardins em Campinas. Visita grátis e equipe própria. Atendemos Cambuí, Taquaral e região.
+
+— lacunas (a confirmar com o cliente) —
+fundação (ano) · bairros exatos · prazo de visita · nº real de jardins/anos · contrato.
+
+Resultado: mesma estrutura da New Rock (entidade na 1a frase, lista de serviços, "como
+trabalhamos", "por que" com 4 itens incluindo atendimento, CTA, Google factual, bio com
+emojis e SEO) — provando que o prompt é genérico e independe do segmento.</div>
+      </details>
+    </div>
+
       </div>
       <div class="right">
 <!-- versão final por canal (toggle) -->
@@ -610,6 +744,13 @@
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
     } else { fallbackCopy(text); done(); }
+  }
+  function copyPrompt(btn){
+    var box = btn.closest('.card').querySelector('.promptbox');
+    var text = box.innerText || box.textContent || '';
+    var done = function(){ btn.classList.add('done'); var save=btn.innerHTML; btn.innerHTML='✓ Copiado!'; setTimeout(function(){ btn.innerHTML=save; btn.classList.remove('done'); },1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); }); }
+    else { fallbackCopy(text); done(); }
   }
   function fallbackCopy(text){
     var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px';
