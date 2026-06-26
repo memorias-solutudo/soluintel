@@ -20,7 +20,13 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--font);background:var(--g100);color:var(--ink);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.45}
-  .wrap{max-width:1180px;margin:0 auto;padding:24px 22px 80px}
+  .wrap{max-width:none;margin:0;padding:22px 30px 70px}
+  /* layout 2 colunas: conteúdo à esquerda, canais à direita */
+  .deslayout{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:22px;align-items:start}
+  @media(max-width:1040px){.deslayout{grid-template-columns:1fr}}
+  .deslayout .right{position:sticky;top:16px}
+  .deslayout .right .card{margin-top:0}
+  @media(max-width:1040px){.deslayout .right{position:static}}
   a{color:var(--brand-purple)}
 
   /* topo */
@@ -190,10 +196,9 @@
 
   <!-- ===================== DESCRIÇÃO ===================== -->
   <section id="p-desc" class="panel on">
-
-    
-
-    <div class="explica">
+    <div class="deslayout">
+      <div class="left">
+<div class="explica">
       <h2>Explicando a Descrição 2.0</h2>
       <div class="madefor">Feito para:
         <span class="tg">Pessoas</span>
@@ -319,7 +324,66 @@
       </div></div>
     </div>
 
-    <!-- versão final por canal (toggle) -->
+    <!-- lacunas / schema -->
+    <div class="card">
+      <h3 class="t">O que já temos × o que falta no schema</h3>
+      <div class="sub">Status de cada campo da fonte da verdade. <span class="st ok">Temos</span> já dá para usar · <span class="st par">Parcial</span> existe mas genérico/incompleto · <span class="st no">Falta</span> precisa coletar. Cada lacuna vira pendência do checklist, com o dono.</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Campo do schema</th><th>Status</th><th>Já temos</th><th>O que falta</th><th>Dono</th></tr></thead>
+        <tbody>
+          <tr><td><b>entidade.nome</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"New Rock Expresso – Lavagem e Polimento de Mármores e Granitos"</span></td><td><span class="miss">Travar o nome exato (varia "Expresso" × "Marmoraria") — NAP/consistência</span></td><td>nós + cliente</td></tr>
+          <tr><td><b>entidade.categoria</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Marmoraria · polimento de mármores e granitos</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>entidade.local</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Rio de Janeiro / RJ</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>publico</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Residências, comércios e condomínios</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>entidade.fundacao</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Ano de início ("desde o início" é vago)</span></td><td>cliente</td></tr>
+          <tr><td><b>entidade.area_atendida</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"toda a cidade do Rio" (genérico)</span></td><td><span class="miss">Bairros / zonas reais</span></td><td>cliente</td></tr>
+          <tr><td><b>servicos[]</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Menção genérica (lavagem, polimento, restauração)</span></td><td><span class="miss">Lista real + termo de busca + preço/faixa</span></td><td>cliente + nós</td></tr>
+          <tr><td><b>materiais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"cada tipo de pedra" (não nomeia)</span></td><td><span class="miss">Nomear: mármore, granito, quartzo, porcelanato…</span></td><td>cliente</td></tr>
+          <tr><td><b>diferenciais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Só adjetivos ("ágil", "atenção aos detalhes")</span></td><td><span class="miss">Algo verificável: processo a seco, selante, garantia, prazo</span></td><td>cliente</td></tr>
+          <tr><td><b>provas[]</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Tempo de mercado, nº de obras, avaliações, certificações</span></td><td>cliente</td></tr>
+          <tr><td><b>tom_de_marca</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Definir</span></td><td>nós</td></tr>
+          <tr><td><b>por_canal + seo</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Variações (Google ≤700 · Solusite · bio ≤150) + título ≤60 + meta ≤155</span></td><td>nós</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+<!-- pesquisa do setor -->
+    <div class="card">
+      <h3 class="t">Pesquisa do setor — o que uma descrição relevante precisa ter</h3>
+      <div class="sub">Padrões do nicho de polimento de mármore/granito no RJ (confirmados em concorrentes do setor).</div>
+      <div class="cols" style="gap:22px">
+        <div>
+          <p style="font-weight:800;margin-bottom:8px">Serviços que o cliente busca</p>
+          <ul class="clean">
+            <li>Polimento e <b>cristalização</b> de mármore/granito</li>
+            <li><b>Impermeabilização</b> (reduz mancha/porosidade)</li>
+            <li>Restauração de <b>bancadas, pisos, escadas, soleiras</b></li>
+            <li>Remoção de riscos, manchas e opacidade</li>
+            <li>Tipos: mármore, granito, <b>quartzo, porcelanato</b>, granilite</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:800;margin-bottom:8px">Diferenciais que decidem a contratação</p>
+          <ul class="clean">
+            <li><b>Orçamento grátis</b> + visita técnica (padrão do nicho)</li>
+            <li><b>Garantia</b> do serviço (prazo claro)</li>
+            <li>Processo <b>a seco</b> / pouca sujeira / uso no mesmo dia</li>
+            <li>Antes/depois reais e <b>avaliações</b></li>
+            <li>Atendimento por <b>região</b> com prazo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sub" style="margin-top:14px">Fontes (setor): exemplos de concorrentes que estruturam serviços, tipos de pedra e orçamento grátis —
+        <a href="http://www.newmarmores.com.br/servicos.html" target="_blank" rel="noopener">newmarmores</a>,
+        <a href="https://polimentodemarmorerj.com.br/" target="_blank" rel="noopener">polimentodemarmorerj</a>,
+        <a href="https://www.freixopolimento.com.br/" target="_blank" rel="noopener">freixopolimento</a>,
+        <a href="https://polixpedras.com.br/" target="_blank" rel="noopener">polixpedras</a>,
+        <a href="https://casadosintecorj.com.br/nossos-servicos/polimento-marmore-granito/" target="_blank" rel="noopener">casadosintecorj</a>.
+      </div>
+    </div>
+      </div>
+      <div class="right">
+<!-- versão final por canal (toggle) -->
     <div class="card">
       <h3 class="t">Versão final por canal</h3>
       <div class="sub">Um "Sobre" → várias saídas, mesma essência adaptada por canal (resolve o item de Consistência). Por padrão, a versão Solutudo; alterne nos demais. Exemplo simulado.</div>
@@ -392,65 +456,8 @@
         <div class="chmeta">≈ 135 caracteres · emojis e quebras de linha (cole direto na bio)</div>
       </div>
     </div>
-
-    <!-- lacunas / schema -->
-    <div class="card">
-      <h3 class="t">O que já temos × o que falta no schema</h3>
-      <div class="sub">Status de cada campo da fonte da verdade. <span class="st ok">Temos</span> já dá para usar · <span class="st par">Parcial</span> existe mas genérico/incompleto · <span class="st no">Falta</span> precisa coletar. Cada lacuna vira pendência do checklist, com o dono.</div>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Campo do schema</th><th>Status</th><th>Já temos</th><th>O que falta</th><th>Dono</th></tr></thead>
-        <tbody>
-          <tr><td><b>entidade.nome</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"New Rock Expresso – Lavagem e Polimento de Mármores e Granitos"</span></td><td><span class="miss">Travar o nome exato (varia "Expresso" × "Marmoraria") — NAP/consistência</span></td><td>nós + cliente</td></tr>
-          <tr><td><b>entidade.categoria</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Marmoraria · polimento de mármores e granitos</span></td><td><span class="dash">—</span></td><td>—</td></tr>
-          <tr><td><b>entidade.local</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Rio de Janeiro / RJ</span></td><td><span class="dash">—</span></td><td>—</td></tr>
-          <tr><td><b>publico</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Residências, comércios e condomínios</span></td><td><span class="dash">—</span></td><td>—</td></tr>
-          <tr><td><b>entidade.fundacao</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Ano de início ("desde o início" é vago)</span></td><td>cliente</td></tr>
-          <tr><td><b>entidade.area_atendida</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"toda a cidade do Rio" (genérico)</span></td><td><span class="miss">Bairros / zonas reais</span></td><td>cliente</td></tr>
-          <tr><td><b>servicos[]</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Menção genérica (lavagem, polimento, restauração)</span></td><td><span class="miss">Lista real + termo de busca + preço/faixa</span></td><td>cliente + nós</td></tr>
-          <tr><td><b>materiais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"cada tipo de pedra" (não nomeia)</span></td><td><span class="miss">Nomear: mármore, granito, quartzo, porcelanato…</span></td><td>cliente</td></tr>
-          <tr><td><b>diferenciais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Só adjetivos ("ágil", "atenção aos detalhes")</span></td><td><span class="miss">Algo verificável: processo a seco, selante, garantia, prazo</span></td><td>cliente</td></tr>
-          <tr><td><b>provas[]</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Tempo de mercado, nº de obras, avaliações, certificações</span></td><td>cliente</td></tr>
-          <tr><td><b>tom_de_marca</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Definir</span></td><td>nós</td></tr>
-          <tr><td><b>por_canal + seo</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Variações (Google ≤700 · Solusite · bio ≤150) + título ≤60 + meta ≤155</span></td><td>nós</td></tr>
-        </tbody>
-      </table></div>
-    </div>
-
-<!-- pesquisa do setor -->
-    <div class="card">
-      <h3 class="t">Pesquisa do setor — o que uma descrição relevante precisa ter</h3>
-      <div class="sub">Padrões do nicho de polimento de mármore/granito no RJ (confirmados em concorrentes do setor).</div>
-      <div class="cols" style="gap:22px">
-        <div>
-          <p style="font-weight:800;margin-bottom:8px">Serviços que o cliente busca</p>
-          <ul class="clean">
-            <li>Polimento e <b>cristalização</b> de mármore/granito</li>
-            <li><b>Impermeabilização</b> (reduz mancha/porosidade)</li>
-            <li>Restauração de <b>bancadas, pisos, escadas, soleiras</b></li>
-            <li>Remoção de riscos, manchas e opacidade</li>
-            <li>Tipos: mármore, granito, <b>quartzo, porcelanato</b>, granilite</li>
-          </ul>
-        </div>
-        <div>
-          <p style="font-weight:800;margin-bottom:8px">Diferenciais que decidem a contratação</p>
-          <ul class="clean">
-            <li><b>Orçamento grátis</b> + visita técnica (padrão do nicho)</li>
-            <li><b>Garantia</b> do serviço (prazo claro)</li>
-            <li>Processo <b>a seco</b> / pouca sujeira / uso no mesmo dia</li>
-            <li>Antes/depois reais e <b>avaliações</b></li>
-            <li>Atendimento por <b>região</b> com prazo</li>
-          </ul>
-        </div>
-      </div>
-      <div class="sub" style="margin-top:14px">Fontes (setor): exemplos de concorrentes que estruturam serviços, tipos de pedra e orçamento grátis —
-        <a href="http://www.newmarmores.com.br/servicos.html" target="_blank" rel="noopener">newmarmores</a>,
-        <a href="https://polimentodemarmorerj.com.br/" target="_blank" rel="noopener">polimentodemarmorerj</a>,
-        <a href="https://www.freixopolimento.com.br/" target="_blank" rel="noopener">freixopolimento</a>,
-        <a href="https://polixpedras.com.br/" target="_blank" rel="noopener">polixpedras</a>,
-        <a href="https://casadosintecorj.com.br/nossos-servicos/polimento-marmore-granito/" target="_blank" rel="noopener">casadosintecorj</a>.
       </div>
     </div>
-
   </section>
 
   <!-- ===================== FAQ ===================== -->
