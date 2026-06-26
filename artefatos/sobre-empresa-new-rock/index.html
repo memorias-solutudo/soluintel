@@ -79,9 +79,10 @@
   mark[data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
   sup.ref{font-size:10px;font-weight:800;color:var(--brand-purple);background:var(--tint-lav);border-radius:4px;padding:0 4px;margin-left:2px;vertical-align:super}
 
-  /* anotações */
-  .notes{margin-top:18px}
-  .note{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px 16px;margin-bottom:10px}
+  /* anotações — cards em colunas */
+  .notes{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  @media(max-width:760px){.notes{grid-template-columns:1fr}}
+  .note{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px 16px}
   .note .n{width:28px;height:28px;border-radius:50%;background:var(--grad-cta);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
   .note h4{font-size:14px;font-weight:800;margin-bottom:3px}
   .note .why{font-size:13px;color:var(--g600)}
