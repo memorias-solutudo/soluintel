@@ -34,8 +34,22 @@
   .pillbar{display:flex;justify-content:center;margin:8px 0 26px}
   .seg{display:inline-flex;gap:4px;background:var(--white);border-radius:var(--pill);padding:5px;box-shadow:var(--shadow-card)}
   .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:10px 26px;font:inherit;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
-  .seg button.on{color:#fff;background:var(--ink)}
-  .seg button.on.desc{background:var(--grad-cta)}
+  .seg button.on{color:#fff;background:var(--grad-cta)}
+  /* toggle de canais (ativo preto) */
+  .chseg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px;margin:8px 0 16px;flex-wrap:wrap}
+  .chseg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 18px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.01em;color:var(--g600);background:transparent;transition:color .15s}
+  .chseg button.on{color:#fff;background:var(--ink)}
+  .chpanel{display:none}
+  .chpanel.on{display:block;animation:fade .2s ease both}
+  .chpanel p{font-size:14px;color:var(--g700);margin-bottom:10px}
+  .chpanel h5{font-size:13px;font-weight:800;color:var(--ink);margin:14px 0 6px;letter-spacing:-.01em}
+  .chpanel ul.svc{list-style:none;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px;font-size:13.5px;color:var(--g700)}
+  .chpanel ul.svc li{padding-left:16px;position:relative}
+  .chpanel ul.svc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-purple)}
+  .chpanel ul.svc li b{color:var(--ink)}
+  .chpanel .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
+  .chpanel .chmeta{font-size:12px;color:var(--g500);margin-top:10px;line-height:1.5}
+  .chpanel .chtt{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g500);margin-bottom:8px}
 
   .panel{display:none}
   .panel.on{display:block;animation:fade .25s ease both}
@@ -164,10 +178,61 @@
     <div class="lead">
       <span class="badge warn">Diagnóstico: genérica — não passaria na nota</span>
       <h2>Sobre a Empresa — antes &amp; depois</h2>
-      <p>A descrição atual acerta a <b>casca</b> (entidade, categoria, cidade, público), mas o miolo —
-      <b>fatos verificáveis</b> — não existe. Abaixo, os dois textos lado a lado: à esquerda o atual com os
-      pontos genéricos marcados; à direita como ficaria no nosso schema, com cada <b>campo concreto</b> destacado
-      no próprio lugar. As anotações explicam <b>por que cada elemento importa</b>.</p>
+      <p>Primeiro, a <b>versão final por canal</b> (o que vai pro ar). Logo abaixo, o <b>porquê</b>: o texto atual e a
+      versão 2.0 lado a lado, com cada ponto marcado <b>no próprio lugar</b> — passe o mouse para ver a explicação.</p>
+    </div>
+
+    <!-- versão final por canal (toggle) -->
+    <div class="card">
+      <h3 class="t">Versão final por canal</h3>
+      <div class="sub">Um "Sobre" → várias saídas, mesma essência adaptada por canal (resolve o item de Consistência). Por padrão, a versão Solutudo; alterne nos demais. Exemplo simulado.</div>
+      <div class="chseg">
+        <button class="on" onclick="ch('sol',this)">Solutudo</button>
+        <button onclick="ch('site',this)">Solusite</button>
+        <button onclick="ch('goo',this)">Google</button>
+        <button onclick="ch('ig',this)">Instagram</button>
+      </div>
+
+      <div class="chpanel on" data-ch="sol">
+        <div class="chtt">Destaque Solutudo · perfil institucional</div>
+        <p>A New Rock Expresso é especializada em lavagem, polimento, cristalização e restauração de mármores e granitos no Rio de Janeiro, atendendo residências, comércios e condomínios na Zona Sul, Barra da Tijuca, Recreio e Tijuca. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Cada superfície passa por uma avaliação técnica gratuita antes do orçamento. No mercado desde 2014, a empresa tem equipe própria, garantia de 6 meses no resultado e mais de 1.200 obras realizadas no Rio.</p>
+        <div class="chmeta">≈ 95 palavras</div>
+      </div>
+
+      <div class="chpanel" data-ch="site">
+        <div class="chtt">Solusite · "Sobre nós" do site</div>
+        <p>A New Rock Expresso é uma empresa especializada em lavagem, polimento, cristalização e restauração de mármores e granitos, com sede no Rio de Janeiro e atuação em Zona Sul, Barra da Tijuca, Recreio e Tijuca. Desde 2014, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+        <h5>O que fazemos</h5>
+        <p>Trabalhamos com os principais materiais do mercado — mármore, granito, quartzo, porcelanato e granilite — aplicando o método certo para cada pedra:</p>
+        <ul class="svc">
+          <li><b>Polimento e lustro:</b> recupera o brilho original, remove riscos superficiais e marcas de uso.</li>
+          <li><b>Cristalização:</b> cria uma camada de proteção que prolonga o brilho e facilita a limpeza.</li>
+          <li><b>Impermeabilização:</b> reduz a porosidade e protege contra manchas de água, óleo e vinho.</li>
+          <li><b>Restauração:</b> corrige desgaste, manchas profundas, juntas abertas e pequenas quebras.</li>
+        </ul>
+        <h5>Como trabalhamos</h5>
+        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície, sempre respeitando o material.</p>
+        <h5>Por que a New Rock</h5>
+        <ul class="svc">
+          <li>Orçamento sem custo e visita técnica em até 24h.</li>
+          <li>Garantia de 6 meses no resultado, com guia de manutenção.</li>
+          <li>Equipe própria e treinada, com +10 anos de experiência e +1.200 obras no Rio.</li>
+        </ul>
+        <p class="cta">Agende sua avaliação gratuita com a New Rock Expresso. →</p>
+        <div class="chmeta"><b>Título SEO (≤60):</b> Polimento de Mármore e Granito no Rio de Janeiro | New Rock<br><b>Meta description (≤155):</b> Polimento, cristalização e restauração de mármores e granitos no Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e garantia de 6 meses.</div>
+      </div>
+
+      <div class="chpanel" data-ch="goo">
+        <div class="chtt">Google Meu Negócio · factual, sem telefone/link/CTA</div>
+        <p>A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.</p>
+        <div class="chmeta">≈ 560 caracteres · respeita a política do Google (sem telefone, URL ou CTA promocional)</div>
+      </div>
+
+      <div class="chpanel" data-ch="ig">
+        <div class="chtt">Bio Instagram · ≤150, direto</div>
+        <p style="font-weight:600;color:var(--ink);font-size:15px;line-height:1.5">Polimento e restauração de mármores e granitos no Rio • Zona Sul, Barra e Tijuca • Avaliação grátis • Brilho que dura</p>
+        <div class="chmeta">≈ 116 caracteres</div>
+      </div>
     </div>
 
     <div class="legend">
@@ -285,27 +350,6 @@
         <div class="why">Nenhum número. "Nº de obras realizadas" ou "X anos no Rio" ancoram confiabilidade e dão à IA um dado concreto para citar.</div>
         <div class="pair"><span class="chip good">[nº de obras / anos de experiência]</span><span class="chip who">insumo do cliente</span></div>
       </div></div>
-    </div>
-
-    <!-- mesma essência por canal -->
-    <div class="card">
-      <h3 class="t">Mesma essência, adaptada por canal</h3>
-      <div class="sub">O "Sobre nós" longo acima é a base. Dele saem as versões curtas — sem reescrever do zero (é o que resolve o item de Consistência "mesma essência, adaptada por canal"). Exemplo simulado.</div>
-      <div class="cols">
-        <div class="doc">
-          <h3 style="color:var(--brand-orange-deep)">● Google Meu Negócio <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤700, factual, sem telefone/link/CTA</span></h3>
-          <p style="font-size:13.5px;color:var(--g700)">A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.</p>
-          <div style="font-size:12px;color:var(--g500);margin-top:8px">≈ 560 caracteres</div>
-        </div>
-        <div class="doc">
-          <h3 style="color:var(--brand-purple)">● Bio Instagram <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤150, direto</span></h3>
-          <p style="font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.5">Polimento e restauração de mármores e granitos no Rio • Zona Sul, Barra e Tijuca • Avaliação grátis • Brilho que dura</p>
-          <div style="font-size:12px;color:var(--g500);margin-top:8px">≈ 116 caracteres</div>
-          <h3 style="color:var(--brand-purple);margin-top:16px">● Título SEO <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--g500)">— ≤60</span></h3>
-          <p style="font-size:13.5px;color:var(--g700)">Polimento de Mármore e Granito no Rio de Janeiro | New Rock</p>
-          <div style="font-size:12px;color:var(--g500);margin-top:4px">59 caracteres</div>
-        </div>
-      </div>
     </div>
 
     <!-- lacunas / schema -->
@@ -484,6 +528,12 @@
     history.replaceState(null,'',which==='faq'?'#faq':'#descricao');
   }
   function qa(btn){ btn.parentElement.classList.toggle('open'); }
+  function ch(which, btn){
+    document.querySelectorAll('.chpanel').forEach(function(p){ p.classList.toggle('on', p.dataset.ch===which); });
+    var sib=btn.parentElement.querySelectorAll('button');
+    sib.forEach(function(b){ b.classList.remove('on'); });
+    btn.classList.add('on');
+  }
   if(location.hash==='#faq') show('faq');
 </script>
 </body>
