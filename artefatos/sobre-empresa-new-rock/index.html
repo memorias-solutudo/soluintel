@@ -42,8 +42,8 @@
   .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:10px 26px;font:inherit;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
   .seg button.on{color:#fff;background:var(--grad-cta)}
   /* toggle de canais (ativo preto) */
-  .chseg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px;margin:8px 0 16px;flex-wrap:wrap}
-  .chseg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 18px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.01em;color:var(--g600);background:transparent;transition:color .15s}
+  .chseg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--g100);border-radius:16px;padding:4px;margin:8px 0 16px}
+  .chseg button{border:none;cursor:pointer;border-radius:999px;padding:9px 8px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.01em;color:var(--g600);background:transparent;transition:color .15s;text-align:center}
   .chseg button.on{color:#fff;background:var(--ink)}
   .chpanel{display:none}
   .chpanel.on{display:block;animation:fade .2s ease both}
