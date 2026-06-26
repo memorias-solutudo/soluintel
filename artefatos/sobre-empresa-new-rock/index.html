@@ -105,6 +105,14 @@
   .chip.bad{background:var(--tint-peach);color:var(--brand-orange-deep)}
   .chip.good{background:var(--tint-mint);color:#06845a}
   .chip.who{background:var(--g100);color:var(--g600)}
+  .st{display:inline-block;padding:2px 9px;border-radius:var(--pill);font-size:11px;font-weight:800;white-space:nowrap;letter-spacing:.01em}
+  .st.ok{background:var(--tint-mint);color:#06845a}
+  .st.par{background:var(--tint-yellow);color:#9a6a00}
+  .st.no{background:var(--tint-peach);color:var(--brand-orange-deep)}
+  .tablewrap{overflow-x:auto}
+  td .have{color:var(--g700)}
+  td .miss{color:var(--g600)}
+  td .dash{color:var(--g300)}
 
   /* tabela lacunas */
   .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-top:20px}
@@ -352,27 +360,30 @@
       </div></div>
     </div>
 
-    <!-- lacunas / schema -->
+        <!-- lacunas / schema -->
     <div class="card">
-      <h3 class="t">O que falta para entrar no schema</h3>
-      <div class="sub">Cada lacuna vira uma pendência do checklist, já com o dono. Sem esses fatos, o gerador devolve nota baixa em vez de encher de adjetivo.</div>
-      <table>
-        <thead><tr><th>Campo do schema</th><th>O que falta</th><th>Dono</th></tr></thead>
+      <h3 class="t">O que já temos × o que falta no schema</h3>
+      <div class="sub">Status de cada campo da fonte da verdade. <span class="st ok">Temos</span> já dá para usar · <span class="st par">Parcial</span> existe mas genérico/incompleto · <span class="st no">Falta</span> precisa coletar. Cada lacuna vira pendência do checklist, com o dono.</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Campo do schema</th><th>Status</th><th>Já temos</th><th>O que falta</th><th>Dono</th></tr></thead>
         <tbody>
-          <tr><td><b>entidade.nome</b></td><td>Travar o nome exato — "New Rock Expresso" × "New Rock Marmoraria" (NAP / consistência)</td><td>nós + cliente</td></tr>
-          <tr><td><b>entidade.fundacao</b></td><td>Ano de início ("desde o início" é vago)</td><td>cliente</td></tr>
-          <tr><td><b>entidade.area_atendida</b></td><td>Bairros / zonas reais (não "toda a cidade")</td><td>cliente</td></tr>
-          <tr><td><b>servicos[]</b></td><td>Lista real (polimento, cristalização, impermeabilização, restauração) + termo de busca + preço/faixa</td><td>cliente + nós</td></tr>
-          <tr><td><b>materiais</b></td><td>Pedras atendidas: mármore, granito, quartzo, porcelanato…</td><td>cliente</td></tr>
-          <tr><td><b>diferenciais</b></td><td>Algo concreto: processo a seco, selante usado, garantia, prazo, equipe própria</td><td>cliente</td></tr>
-          <tr><td><b>provas[]</b></td><td>Tempo de mercado, nº de obras, avaliações, certificações — hoje zero</td><td>cliente</td></tr>
-          <tr><td><b>tom_de_marca</b></td><td>Não definido</td><td>nós</td></tr>
-          <tr><td><b>por_canal + seo</b></td><td>Variações (Google ≤700 sem CTA · Solusite com lista · bio ≤150) + título ≤60 + meta ≤155</td><td>nós</td></tr>
+          <tr><td><b>entidade.nome</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"New Rock Expresso – Lavagem e Polimento de Mármores e Granitos"</span></td><td><span class="miss">Travar o nome exato (varia "Expresso" × "Marmoraria") — NAP/consistência</span></td><td>nós + cliente</td></tr>
+          <tr><td><b>entidade.categoria</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Marmoraria · polimento de mármores e granitos</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>entidade.local</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Rio de Janeiro / RJ</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>publico</b></td><td><span class="st ok">Temos</span></td><td><span class="have">Residências, comércios e condomínios</span></td><td><span class="dash">—</span></td><td>—</td></tr>
+          <tr><td><b>entidade.fundacao</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Ano de início ("desde o início" é vago)</span></td><td>cliente</td></tr>
+          <tr><td><b>entidade.area_atendida</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"toda a cidade do Rio" (genérico)</span></td><td><span class="miss">Bairros / zonas reais</span></td><td>cliente</td></tr>
+          <tr><td><b>servicos[]</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Menção genérica (lavagem, polimento, restauração)</span></td><td><span class="miss">Lista real + termo de busca + preço/faixa</span></td><td>cliente + nós</td></tr>
+          <tr><td><b>materiais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">"cada tipo de pedra" (não nomeia)</span></td><td><span class="miss">Nomear: mármore, granito, quartzo, porcelanato…</span></td><td>cliente</td></tr>
+          <tr><td><b>diferenciais</b></td><td><span class="st par">Parcial</span></td><td><span class="have">Só adjetivos ("ágil", "atenção aos detalhes")</span></td><td><span class="miss">Algo verificável: processo a seco, selante, garantia, prazo</span></td><td>cliente</td></tr>
+          <tr><td><b>provas[]</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Tempo de mercado, nº de obras, avaliações, certificações</span></td><td>cliente</td></tr>
+          <tr><td><b>tom_de_marca</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Definir</span></td><td>nós</td></tr>
+          <tr><td><b>por_canal + seo</b></td><td><span class="st no">Falta</span></td><td><span class="dash">—</span></td><td><span class="miss">Variações (Google ≤700 · Solusite · bio ≤150) + título ≤60 + meta ≤155</span></td><td>nós</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
-    <!-- pesquisa do setor -->
+<!-- pesquisa do setor -->
     <div class="card">
       <h3 class="t">Pesquisa do setor — o que uma descrição relevante precisa ter</h3>
       <div class="sub">Padrões do nicho de polimento de mármore/granito no RJ (confirmados em concorrentes do setor).</div>
