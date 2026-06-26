@@ -207,6 +207,45 @@
   <section id="p-desc" class="panel on">
     <div class="deslayout">
       <div class="left">
+    <div class="card" style="border-left:4px solid var(--brand-orange-deep)">
+      <span class="badge warn">Não podemos deixar passar · SEO + IA</span>
+      <h3 class="t" style="margin-top:8px">Considerações técnicas que regem este conteúdo</h3>
+      <div class="sub">A descrição e o FAQ acima só funcionam se a PÁGINA respeitar isto. Diagnóstico: a Solutudo perdeu ~17 mi de páginas indexadas porque conteúdo preso em JS/imagem é ilegível para Google e IA. Régua nova: <b>design a serviço de ser encontrado</b>.</div>
+
+      <p style="font-weight:800;margin:6px 0 4px">1 · Legibilidade pela máquina (decide vida/morte da página)</p>
+      <ul class="clean">
+        <li><b>Server-render:</b> o conteúdo essencial nasce no HTML servido, nunca injetado por JS. Teste: desligou o JS e sumiu? → errado. (HTML estático lê ~94%; via JS, ~23%; o ChatGPT-User vê casca vazia.)</li>
+        <li><b>Texto é texto, não imagem:</b> nome, telefone, endereço, horário e descrição = texto real selecionável.</li>
+        <li><b>Telefone/WhatsApp visíveis e clicáveis</b> (<code>tel:</code>, <code>wa.me</code>) — nunca atrás de "ver telefone"/hover.</li>
+        <li><b>JSON-LD server-rendered</b> com <code>@type</code> específico por categoria (Restaurant, Plumber, Dentist… fallback LocalBusiness) + <b>FAQPage</b> para o FAQ.</li>
+        <li><b>aggregateRating só com avaliação real</b> — nunca inventar (Google e IA detectam; spam update 2026).</li>
+      </ul>
+
+      <p style="font-weight:800;margin:12px 0 4px">2 · Densidade &gt; conteúdo fino (3 camadas)</p>
+      <ul class="clean">
+        <li><b>Consumo</b> (contato: telefone, WhatsApp, horário) → <b>Profundidade de dado</b> (dossiê CNPJ/Receita) → <b>Confiança</b> (avaliações, selo, frescor, conteúdo do dono).</li>
+        <li>Página fina morre; densa sobrevive — mesmo com dado público, desde que renderizada. A camada de Confiança é o nosso fosso (só a Solutudo gera).</li>
+      </ul>
+
+      <p style="font-weight:800;margin:12px 0 4px">3 · Frescor (página viva)</p>
+      <ul class="clean">
+        <li>"Atualizado em DD/MM/AAAA" visível + <code>dateModified</code> no JSON-LD + frescor no <code>&lt;title&gt;</code>. Disparar <b>IndexNow</b> ao mudar (propaga ao Bing — base do ChatGPT).</li>
+      </ul>
+
+      <p style="font-weight:800;margin:12px 0 4px">4 · Performance &amp; mobile</p>
+      <ul class="clean">
+        <li>Velocidade é critério de design: CSS crítico inline, lazy-load abaixo da dobra, cortar JS do núcleo. FCP baixo (&lt;~0,4s) = muito mais citação por IA.</li>
+        <li><b>Mobile-first</b> (70% no celular): alvos de toque ≥44px, contraste ≥4,5:1, HTML semântico, <code>alt</code> nas imagens.</li>
+      </ul>
+
+      <p style="font-weight:800;margin:12px 0 4px">5 · Indexação</p>
+      <ul class="clean">
+        <li><code>meta-robots index,follow,max-snippet:-1,max-image-preview:large</code>; <code>canonical</code> correto; sitemap segmentado; <code>noindex</code>/consolidar cascas.</li>
+        <li>Liberar no robots.txt: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot, PerplexityBot, ClaudeBot, Google-Extended.</li>
+      </ul>
+      <div class="sub" style="margin:12px 0 0">Fonte: doc técnico de recuperação de indexação (Google + IA) + recomendações de design, jun/2026.</div>
+    </div>
+
 <div class="explica">
       <h2>Explicando a Descrição 2.0</h2>
       <div class="madefor">Feito para:
@@ -408,6 +447,7 @@ REGRAS INQUEBRÁVEIS (verdade primeiro)
   atenção aos detalhes"). Registre em "lacunas" o que falta e de quem é (nos | cliente).
 - Sem superlativos não comprovados ("melhor", "líder", "nº 1") e sem itens de
   "claims_proibidos". Sem emoji (exceto na bio do Instagram). Português correto.
+- aggregateRating / nota só com avaliação REAL — nunca inventar (Google e IA detectam).
 
 PRINCÍPIOS (valem para SEO e IA ao mesmo tempo)
 - Entidade primeiro: a 1a frase diz, sem ambiguidade, O QUE a empresa é + categoria +
@@ -461,6 +501,10 @@ TAREFA — gere UMA essência e as versões por canal, todas com a MESMA essênc
   o que faz + cidade/bairros + 1 diferencial + chamada curta.
 - seo: title até 60 caracteres (benefício + cidade) e meta_description até 155 (factual,
   com termo natural).
+- json_ld: gere o JSON-LD da empresa com o @type ESPECÍFICO da categoria (ex.: Restaurant,
+  Plumber, Dentist, GeneralContractor; fallback LocalBusiness), com name, telephone (tel:),
+  address, geo, openingHoursSpecification, areaServed, foundingDate e dateModified.
+  aggregateRating SÓ se houver avaliação real. O FAQ usa um FAQPage à parte.
 
 EXEMPLO DE SAÍDA (formato de referência — empresa FICTÍCIA, não copie o conteúdo, só o formato):
 "descricao_completa":
@@ -489,6 +533,10 @@ Por que a VerdeVivo
 Precisa criar um jardim do zero, renovar canteiros ou manter a área externa do condomínio?
 Fale com a VerdeVivo e agende sua visita gratuita."
 
+ENTREGA (técnico, inegociável): o texto e o JSON-LD vão no HTML SERVIDO (server-rendered),
+nunca injetados por JS — senão Google e o ChatGPT leem uma casca vazia. Texto é texto real
+(não imagem); telefone e WhatsApp clicáveis (tel: / wa.me), sempre visíveis.
+
 SAÍDA — responda SOMENTE com JSON válido neste formato:
 {
   "essencia": "...",
@@ -498,6 +546,7 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
     "instagram_bio": { "texto": "...", "caracteres": N }
   },
   "seo": { "title": "...", "meta_description": "..." },
+  "json_ld": { "@type": "LocalBusiness ou tipo específico", "name": "...", "telephone": "...", "address": {}, "areaServed": [], "foundingDate": "...", "dateModified": "..." },
   "fatos_usados": ["..."],
   "lacunas": [ { "o_que": "...", "dono": "cliente | nos" } ],
   "claims_evitados": ["..."]

@@ -120,3 +120,45 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
 - Fechar o **contrato de dados** (schema canônico completo + camada de briefing/
   reunião/Digisac/mídias com proveniência e confiança).
 - Mapa *item do checklist → regra de derivação → dono da lacuna*.
+
+---
+
+## Card — Considerações de SEO + IA (server-render, 3 camadas, JSON-LD)
+
+Fonte: doc técnico de recuperação de indexação (Google + IA) e recomendações de
+design, jun/2026. Diagnóstico: a Solutudo perdeu ~17 mi de páginas indexadas
+porque **conteúdo preso em JS/imagem é ilegível para Google e IA** (o ChatGPT-User
+vê casca vazia; HTML estático lê ~94%, via JS ~23%). A busca por IA do ChatGPT roda
+sobre o **índice do Bing** — estar indexado no Bing é pré-requisito.
+
+**Regras que regem TODO conteúdo que a inteligência gera (não negociáveis):**
+
+1. **Server-render.** Texto e JSON-LD vão no HTML servido, nunca injetados por JS.
+   Teste: desligou o JS e sumiu? → errado.
+2. **Texto é texto, não imagem.** Nome, telefone, endereço, horário, descrição =
+   texto real selecionável. Telefone/WhatsApp **clicáveis** (`tel:` / `wa.me`),
+   visíveis, sem "ver telefone".
+3. **JSON-LD por `@type` específico** (Restaurant, Plumber, Dentist, GeneralContractor…
+   fallback LocalBusiness) + **FAQPage** para o FAQ. Campos: name, legalName, taxID,
+   telephone, address, geo, openingHoursSpecification, areaServed, knowsAbout,
+   foundingDate, dateModified. **`aggregateRating` só com avaliação real — nunca inventar.**
+4. **3 camadas na página:** Consumo (contato) → Profundidade de dado (dossiê CNPJ/Receita)
+   → Confiança (avaliações, selo, frescor, conteúdo do dono = nosso fosso).
+5. **Frescor:** "Atualizado em DD/MM/AAAA" visível + `dateModified` + frescor no `<title>`;
+   disparar **IndexNow** ao mudar (propaga ao Bing).
+6. **Performance/mobile:** CSS crítico inline, lazy-load abaixo da dobra, cortar JS do
+   núcleo (FCP < ~0,4s = muito mais citação); mobile-first, toque ≥44px, contraste ≥4,5:1.
+7. **Indexação:** `meta-robots index,follow,max-snippet:-1,max-image-preview:large`;
+   `canonical`; sitemap segmentado; `noindex`/consolidar cascas. Liberar bots: Bingbot,
+   OAI-SearchBot, ChatGPT-User, GPTBot, PerplexityBot, ClaudeBot, Google-Extended.
+
+**Impacto no schema canônico:** a base canônica passa a precisar também de
+`dossie_cnpj` (Receita: razão social, CNPJ, situação, abertura, porte, natureza,
+CNAE principal+secundários, QSA, matriz/filiais) e de um bloco `entrega`
+(server_rendered: true, json_ld por @type, dateModified, indexnow). A saída da
+inteligência (descrição, FAQ) deve vir acompanhada do **JSON-LD pronto** para o
+HTML servido — não só o texto.
+
+**Impacto no prompt "Sobre a Empresa 2.0":** já ajustado — agora emite também
+`json_ld` (com @type específico, sem aggregateRating inventado) e traz a regra de
+ENTREGA server-rendered. Ver card "Sobre a Empresa 2.0".
