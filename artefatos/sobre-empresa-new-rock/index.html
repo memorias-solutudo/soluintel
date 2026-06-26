@@ -424,6 +424,7 @@ ENTRADA (JSON da base canônica do cliente)
   "empresa": "...", "categoria": "...", "cidade": "...", "uf": "...",
   "area_atendida": ["bairros/regiões reais"],
   "fundacao": "ano ou null",
+  "superficies_ou_aplicacoes": ["onde o serviço é aplicado: pisos, bancadas, fachadas..."],
   "fatos": [ { "id", "campo", "valor", "origem", "confianca", "confirmado" } ],
   "servicos": [ { "nome", "o_que_resolve", "preco_ou_faixa" } ],
   "materiais_ou_produtos": ["..."],
@@ -437,19 +438,56 @@ Use apenas fatos com "confirmado": true. Onde faltar, gere lacuna em vez de inve
 
 TAREFA — gere UMA essência e as versões por canal, todas com a MESMA essência:
 - essencia: 2 a 4 frases (a verdade-núcleo reutilizável).
-- descricao_completa (Solutudo e Solusite usam o MESMO texto): estrutura fixa —
-  1) Abertura: entidade + categoria + cidade + área atendida + "desde [ano]" + público.
-  2) "O que fazemos": materiais/produtos + LISTA de serviços (cada um com o que resolve).
-  3) "Como trabalhamos": processo/equipamento real + avaliação/visita + orçamento.
-  4) "Por que a [Empresa]": LISTA com orçamento, garantia/prazo, equipe/prova social e
-     atendimento/proximidade.
-  5) CTA curto e específico ao serviço.
+- descricao_completa (Solutudo e Solusite usam o MESMO texto). Estrutura OBRIGATÓRIA,
+  nesta ordem e com estes subtítulos:
+  1) Abertura (1 parágrafo): entidade + categoria + cidade + área atendida + "desde [ano]".
+     Em seguida, na mesma abertura, diga o BENEFÍCIO entregue nas SUPERFÍCIES/APLICAÇÕES
+     reais (ex.: "devolvemos brilho, proteção e durabilidade a pisos, bancadas, fachadas...")
+     e para qual PÚBLICO (residências, comércios, condomínios).
+  2) Subtítulo "O que fazemos": cite materiais/produtos e traga uma LISTA de serviços —
+     cada item no formato "Nome do serviço: o que resolve" (1 linha por serviço).
+  3) Subtítulo "Como trabalhamos": descreva o PROCESSO/equipamento real e suas vantagens
+     práticas (ex.: menos poeira, uso no mesmo dia, sem obra suja — quando houver fato),
+     mencione a avaliação/visita (gratuita, se for o caso) antes do orçamento e o cuidado
+     com o material (sem produtos agressivos).
+  4) Subtítulo "Por que a [Empresa]": LISTA com 3 a 4 itens cobrindo, quando houver fato:
+     orçamento + prazo de visita; garantia/prazo + manutenção; equipe + prova social
+     (anos/obras); e atendimento/proximidade.
+  5) CTA (1 frase): curto e ESPECÍFICO ao serviço, citando 2–3 aplicações reais
+     (ex.: "renovar uma bancada, recuperar o piso da sala ou tratar a fachada").
 - google (Google Meu Negócio): até 700 caracteres; factual; SEM telefone, SEM URL e SEM
   CTA promocional (política do Google); foco no que é, no que oferece e onde atende.
-- instagram_bio: até 150 caracteres; COM emojis e quebras de linha; o que faz + cidade/
-  bairros + 1 diferencial + chamada curta.
+- instagram_bio: até 150 caracteres; COM emojis e quebras de linha (1 ideia por linha);
+  o que faz + cidade/bairros + 1 diferencial + chamada curta.
 - seo: title até 60 caracteres (benefício + cidade) e meta_description até 155 (factual,
   com termo natural).
+
+EXEMPLO DE SAÍDA (formato de referência — empresa FICTÍCIA, não copie o conteúdo, só o formato):
+"descricao_completa":
+"A VerdeVivo Paisagismo é uma empresa de paisagismo e jardinagem em Campinas/SP, com
+atuação no Cambuí, Taquaral e Barão Geraldo. Desde 2016, criamos e mantemos jardins —
+canteiros, gramados, vasos e áreas externas — para residências, condomínios e empresas.
+
+O que fazemos
+Cuidamos do jardim do projeto à manutenção:
+- Projeto paisagístico: planeja canteiros, espécies e iluminação.
+- Implantação: prepara o solo, planta e instala grama e forrações.
+- Manutenção mensal: poda, aduba, controla pragas e limpa.
+- Irrigação automatizada: instala e ajusta o sistema.
+
+Como trabalhamos
+Fazemos uma visita técnica gratuita para entender o espaço antes do orçamento e
+entregamos um plano com espécies adequadas ao clima da cidade. A manutenção segue um
+cronograma fixo, com a mesma equipe a cada visita.
+
+Por que a VerdeVivo
+- Orçamento sem custo e visita técnica em até 48h.
+- Contrato de manutenção mensal com cronograma e relatório por visita.
+- Equipe própria, com mais de 8 anos de experiência e mais de 300 jardins entregues.
+- Atendimento próximo, com soluções sob medida para cada espaço.
+
+Precisa criar um jardim do zero, renovar canteiros ou manter a área externa do condomínio?
+Fale com a VerdeVivo e agende sua visita gratuita."
 
 SAÍDA — responda SOMENTE com JSON válido neste formato:
 {
