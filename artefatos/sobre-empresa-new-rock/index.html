@@ -72,6 +72,11 @@
   .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
   .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
   .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 var(--brand-green)}
+  /* tooltip próprio (mostra o porquê na hora, sem depender do title nativo) */
+  mark[data-tip]{position:relative}
+  mark[data-tip]:hover{z-index:60}
+  mark[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:300px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
+  mark[data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
   sup.ref{font-size:10px;font-weight:800;color:var(--brand-purple);background:var(--tint-lav);border-radius:4px;padding:0 4px;margin-left:2px;vertical-align:super}
 
   /* anotações */
@@ -176,27 +181,27 @@
         <h3>● Texto atual</h3>
         <div class="ttl">Sobre a empresa</div>
         <p>A New Rock Expresso – Lavagem e Polimento de Mármores e Granitos
-        <mark class="m-bad" title="Localização genérica: 'toda a cidade' não posiciona — faltam bairros/zonas reais.">nasceu no Rio de Janeiro, RJ<sup class="ref">1</sup></mark>, com o propósito de
-        <mark class="m-bad" title="Propósito poético, não fato — diga o serviço real (lavagem, polimento, restauração).">restaurar superfícies nobres e devolver brilho, proteção e valorização aos ambientes<sup class="ref">2</sup></mark>.
-        <mark class="m-bad" title="Vago — troque pelo ano real (ex.: desde 2014). Tempo de mercado é prova.">Desde o início<sup class="ref">3</sup></mark>, a empresa se especializou em
-        <mark class="m-bad" title="Slot de template (maiúscula no meio) — vire uma lista de serviços reais.">Polimento técnico<sup class="ref">4</sup></mark>, unindo
-        <mark class="m-bad" title="Adjetivo vazio que cabe em qualquer empresa — troque por diferencial verificável.">conhecimento prático, equipamentos profissionais e atenção aos detalhes<sup class="ref">5</sup></mark>
+        <mark class="m-bad" data-tip="Localização genérica: 'toda a cidade' não posiciona — faltam bairros/zonas reais.">nasceu no Rio de Janeiro, RJ<sup class="ref">1</sup></mark>, com o propósito de
+        <mark class="m-bad" data-tip="Propósito poético, não fato — diga o serviço real (lavagem, polimento, restauração).">restaurar superfícies nobres e devolver brilho, proteção e valorização aos ambientes<sup class="ref">2</sup></mark>.
+        <mark class="m-bad" data-tip="Vago — troque pelo ano real (ex.: desde 2014). Tempo de mercado é prova.">Desde o início<sup class="ref">3</sup></mark>, a empresa se especializou em
+        <mark class="m-bad" data-tip="Slot de template (maiúscula no meio) — vire uma lista de serviços reais.">Polimento técnico<sup class="ref">4</sup></mark>, unindo
+        <mark class="m-bad" data-tip="Adjetivo vazio que cabe em qualquer empresa — troque por diferencial verificável.">conhecimento prático, equipamentos profissionais e atenção aos detalhes<sup class="ref">5</sup></mark>
         para atender residências, comércios e condomínios em toda a cidade do Rio de Janeiro.</p>
         <p>Entre os diferenciais competitivos da New Rock Expresso no mercado carioca estão
-        <mark class="m-bad" title="Diferenciais genéricos sem prova — precisam virar fatos (garantia, prazo, processo).">o atendimento ágil, a avaliação personalizada de cada superfície e o uso de métodos adequados a cada tipo de pedra<sup class="ref">6</sup></mark>.
-        Atuando no <mark class="m-bad" title="Localizacao repetida ~5x = keyword stuffing; mencione 1-2x + bairros.">Rio de Janeiro, RJ<sup class="ref">7</sup></mark>, a empresa prioriza
-        <mark class="m-bad" title="Promessas sem prova — troque por garantia concreta (ex.: N meses).">processos seguros, sem agressões ao material, com foco em durabilidade do resultado, redução de porosidade e facilidade de manutenção<sup class="ref">8</sup></mark>.
-        <mark class="m-bad" title="Generico — vire prazo mensuravel (orcamento gratis, visita em 24h).">A proximidade regional permite respostas rápidas e soluções sob medida<sup class="ref">9</sup></mark>.</p>
+        <mark class="m-bad" data-tip="Diferenciais genéricos sem prova — precisam virar fatos (garantia, prazo, processo).">o atendimento ágil, a avaliação personalizada de cada superfície e o uso de métodos adequados a cada tipo de pedra<sup class="ref">6</sup></mark>.
+        Atuando no <mark class="m-bad" data-tip="Localizacao repetida ~5x = keyword stuffing; mencione 1-2x + bairros.">Rio de Janeiro, RJ<sup class="ref">7</sup></mark>, a empresa prioriza
+        <mark class="m-bad" data-tip="Promessas sem prova — troque por garantia concreta (ex.: N meses).">processos seguros, sem agressões ao material, com foco em durabilidade do resultado, redução de porosidade e facilidade de manutenção<sup class="ref">8</sup></mark>.
+        <mark class="m-bad" data-tip="Generico — vire prazo mensuravel (orcamento gratis, visita em 24h).">A proximidade regional permite respostas rápidas e soluções sob medida<sup class="ref">9</sup></mark>.</p>
       </div>
 
       <div class="doc after">
         <h3>● Como poderia ser (2.0) — versão site / "Sobre nós"</h3>
         <span class="simbanner">Exemplo simulado · números ilustrativos a confirmar com o cliente</span>
         <div class="ttl">Sobre a New Rock Expresso</div>
-        <p>A New Rock Expresso é uma empresa especializada em <mark class="m-good" title="Fato: o que a empresa faz, em termos reais — indexável por Google e IA.">lavagem, polimento, cristalização e restauração de mármores e granitos</mark>, com sede no Rio de Janeiro e atuação em <mark class="m-good" title="Bairros reais ranqueiam a busca local e dizem à IA onde a empresa atende.">Zona Sul, Barra da Tijuca, Recreio e Tijuca</mark>. <mark class="m-good" title="Ano real = prova de tempo de mercado (vira foundingDate no schema).">Desde 2014</mark>, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+        <p>A New Rock Expresso é uma empresa especializada em <mark class="m-good" data-tip="Fato: o que a empresa faz, em termos reais — indexável por Google e IA.">lavagem, polimento, cristalização e restauração de mármores e granitos</mark>, com sede no Rio de Janeiro e atuação em <mark class="m-good" data-tip="Bairros reais ranqueiam a busca local e dizem à IA onde a empresa atende.">Zona Sul, Barra da Tijuca, Recreio e Tijuca</mark>. <mark class="m-good" data-tip="Ano real = prova de tempo de mercado (vira foundingDate no schema).">Desde 2014</mark>, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
 
         <h5>O que fazemos</h5>
-        <p>Trabalhamos com os principais materiais do mercado — <mark class="m-good" title="Materiais nomeados = cauda longa real + fatos concretos para a IA citar.">mármore, granito, quartzo, porcelanato e granilite</mark> — aplicando o método certo para cada pedra:</p>
+        <p>Trabalhamos com os principais materiais do mercado — <mark class="m-good" data-tip="Materiais nomeados = cauda longa real + fatos concretos para a IA citar.">mármore, granito, quartzo, porcelanato e granilite</mark> — aplicando o método certo para cada pedra:</p>
         <ul class="svc">
           <li><b>Polimento e lustro:</b> recupera o brilho original, remove riscos superficiais e marcas de uso.</li>
           <li><b>Cristalização:</b> cria uma camada de proteção que prolonga o brilho e facilita a limpeza.</li>
@@ -205,13 +210,13 @@
         </ul>
 
         <h5>Como trabalhamos</h5>
-        <p>Usamos <mark class="m-good" title="Diferencial verificável de processo — algo que distingue a empresa.">polimento a seco com discos diamantados</mark>, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma <mark class="m-good" title="Fato que decide a contratação (orçamento grátis é padrão do nicho).">avaliação técnica gratuita</mark> da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
+        <p>Usamos <mark class="m-good" data-tip="Diferencial verificável de processo — algo que distingue a empresa.">polimento a seco com discos diamantados</mark>, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma <mark class="m-good" data-tip="Fato que decide a contratação (orçamento grátis é padrão do nicho).">avaliação técnica gratuita</mark> da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
 
         <h5>Por que a New Rock</h5>
         <ul class="svc">
-          <li><b>Orçamento sem custo</b> e visita técnica em até <mark class="m-good" title="Prazo mensurável vale mais que 'respostas rápidas'.">24h</mark>.</li>
-          <li><b>Garantia de <mark class="m-good" title="Garantia concreta = prova de confiabilidade.">6 meses</mark></b> no resultado, com guia de manutenção para prolongar o brilho.</li>
-          <li><b>Equipe própria e treinada</b>, com mais de <mark class="m-good" title="Prova de tempo de mercado, citável pela IA.">10 anos de experiência</mark> e <mark class="m-good" title="Número concreto de prova social — a IA cita dado, não adjetivo.">+1.200 obras</mark> realizadas no Rio.</li>
+          <li><b>Orçamento sem custo</b> e visita técnica em até <mark class="m-good" data-tip="Prazo mensurável vale mais que 'respostas rápidas'.">24h</mark>.</li>
+          <li><b>Garantia de <mark class="m-good" data-tip="Garantia concreta = prova de confiabilidade.">6 meses</mark></b> no resultado, com guia de manutenção para prolongar o brilho.</li>
+          <li><b>Equipe própria e treinada</b>, com mais de <mark class="m-good" data-tip="Prova de tempo de mercado, citável pela IA.">10 anos de experiência</mark> e <mark class="m-good" data-tip="Número concreto de prova social — a IA cita dado, não adjetivo.">+1.200 obras</mark> realizadas no Rio.</li>
           <li>Atendimento rápido pela proximidade regional, com soluções sob medida para cada imóvel.</li>
         </ul>
 
