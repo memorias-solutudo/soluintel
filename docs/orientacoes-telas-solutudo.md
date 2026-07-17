@@ -37,17 +37,20 @@ e sem esconder a ação.
 
 - JSON-LD no `<head>`, **server-rendered**, com `@type` **específico** da categoria
   (Restaurant, Plumber, Dentist, Electrician, AutoRepair, Attorney, AccountingService,
-  GeneralContractor, Bakery, ProfessionalService… fallback `LocalBusiness`).
+  GeneralContractor, HomeAndConstructionBusiness, Bakery, ProfessionalService…
+  fallback `LocalBusiness`). Sem tipo dedicado? Usar o pai mais próximo
+  (ex.: marmoraria → `HomeAndConstructionBusiness`).
 - Campos a preencher: `name`, `legalName`, `taxID`, `url`, `telephone`, `image`,
   `address`, `geo`, `openingHoursSpecification`, `areaServed`, `knowsAbout`,
-  `foundingDate`, `founder`, `dateModified`.
+  `foundingDate`, `founder`. Obrigatórios: `name` + `address`.
+- `dateModified` **não** entra no nó do negócio: vai no nó **`WebPage`** do JSON-LD.
 - FAQ da página usa um **`FAQPage`** à parte.
 - **`aggregateRating` só com avaliação real — nunca inventar.**
 
 ## 5. Frescor (página viva)
 
 - "**Atualizado em DD/MM/AAAA**" visível no corpo da página.
-- `dateModified` no JSON-LD e frescor também no `<title>`.
+- `dateModified` no nó `WebPage` do JSON-LD e frescor também no `<title>`.
 - Disparar **IndexNow** sempre que a página mudar.
 
 ## 6. Performance e mobile (critérios de design, não detalhes)
@@ -96,7 +99,7 @@ e sem esconder a ação.
 |---|---|
 | **Solutudo (Destaque)** | Descrição completa, com subtítulos e listas |
 | **Solusite** | Mesmo texto da Solutudo + título SEO (≤60) e meta description (≤155) |
-| **Google Meu Negócio** | Até 700 caracteres, factual, **sem telefone, sem URL, sem CTA** |
+| **Google Meu Negócio** | Até 750 caracteres com o **essencial nos ~250 primeiros**; factual; **sem URL, sem foco promocional**; telefone fica no campo do perfil |
 | **Instagram (bio)** | Até 150 caracteres, **com emojis** e quebras de linha (1 ideia por linha) |
 
 - Toda saída de conteúdo vem acompanhada do **JSON-LD pronto** para o HTML servido.
@@ -106,6 +109,7 @@ e sem esconder a ação.
 - As perguntas vêm de dúvidas reais (Digisac) + perguntas padrão do nicho.
 - Resposta **ancorada em fato**; onde falta dado do cliente, marcar a lacuna com dono.
 - Formato pergunta-resposta atômico e direto; marcar com **FAQPage** no JSON-LD.
+  O que a IA cita é o **conteúdo** limpo — a marcação ajuda o parsing; manter os dois.
 - Cobrir os eixos: prazo/duração · capacidade (o que resolve e o que não) ·
   diferenças entre serviços · uso do ambiente/logística · sujeira/incômodo ·
   materiais atendidos · região e deslocamento · orçamento · garantia · manutenção pós.

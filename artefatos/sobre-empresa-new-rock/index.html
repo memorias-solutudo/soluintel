@@ -3,161 +3,194 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Artefato — Sobre a Empresa & FAQ · New Rock Expresso</title>
+<title>Artefato — Sobre a Empresa &amp; FAQ · New Rock Expresso</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
 <style>
   :root{
     --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
-    --brand-yellow:#FFC700; --brand-cyan:#20CCEF; --brand-green:#00FFAD;
-    --ink:#151515; --slate:#58476C; --g700:#4D4D4D; --g600:#656565; --g500:#888888;
-    --g400:#9D9D9D; --g300:#ACACAC; --g200:#DCDCDC; --g150:#E3E3E3; --g100:#F2F2F2; --white:#fff;
-    --tint-lav:#F3E8FF; --tint-lav2:#E7D0FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-yellow:#FFF1D0; --tint-pink:#FFE3F1;
-    --grad-brand:linear-gradient(248deg,#FFD13C -9%,#F54A07 22%,#D901AA 55%,#A701FD 114%);
+    --brand-green:#00FFAD;
+    --ink:#151515; --g700:#4D4D4D; --g600:#656565; --g500:#888888; --g400:#9D9D9D; --g300:#ACACAC;
+    --g200:#DCDCDC; --g150:#E3E3E3; --g100:#F2F2F2; --bg:#F5F4F8; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-yellow:#FFF1D0; --tint-pink:#FFE3F1; --tint-cyan:#DCF6FC;
     --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
-    --shadow-card:0 8px 28px rgba(21,21,21,.06); --shadow-md:0 12px 32px rgba(21,21,21,.10);
+    --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
+    --shadow-md:0 12px 32px rgba(21,21,21,.12);
+    --line:1px solid rgba(21,21,21,.06);
     --r-md:16px; --r-lg:20px; --pill:999px;
     --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font);background:var(--g100);color:var(--ink);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.45}
-  .wrap{max-width:none;margin:0;padding:22px 30px 70px}
-  /* layout 2 colunas: conteúdo à esquerda, canais à direita */
-  .deslayout{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:22px;align-items:start}
-  @media(max-width:1040px){.deslayout{grid-template-columns:1fr}}
-  .deslayout .right{position:sticky;top:16px}
-  .deslayout .right .card{margin-top:0}
-  @media(max-width:1040px){.deslayout .right{position:static}}
-  /* FAQ em 2 colunas: restante à esquerda, perguntas à direita */
-  .faqlayout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-  @media(max-width:1040px){.faqlayout{grid-template-columns:1fr}}
-  .faqlayout .faqleft{position:sticky;top:16px}
-  @media(max-width:1040px){.faqlayout .faqleft{position:static}}
-  .promptbox{white-space:pre-wrap;word-break:break-word;background:#101015;color:#e8e8ea;border-radius:14px;padding:16px 18px;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:6px}
-  .testbox{margin-top:14px;background:var(--g100);border-radius:12px;padding:12px 14px}
-  .testbox summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--ink)}
-  .testbox .tb{margin-top:10px;font-size:12.5px;color:var(--g700);white-space:pre-wrap;line-height:1.55}
-  .srcdoc{margin-top:8px;background:var(--g100);border-radius:12px;padding:10px 14px}
-  .srcdoc summary{cursor:pointer;font-weight:800;font-size:13px;color:var(--ink)}
-  .srcbody{margin-top:10px;max-height:440px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.55;color:var(--g700);background:var(--white);border-radius:10px;padding:14px;border:1px solid var(--g150)}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.5}
   a{color:var(--brand-purple)}
+  button:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
 
-  /* topo */
-  .top{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:18px}
-  .logo .heart{width:14px;height:14px;border-radius:50%;background:var(--grad-cta);display:inline-block}
-  .top h1{font-size:16px;font-weight:700;color:var(--g600)}
-  .top .crumb{font-size:12.5px;color:var(--g500);margin-left:auto}
-
-  /* pílula toggle */
-  .pillbar{display:flex;justify-content:center;margin:8px 0 26px}
-  .seg{display:inline-flex;gap:4px;background:var(--white);border-radius:var(--pill);padding:5px;box-shadow:var(--shadow-card)}
-  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:10px 26px;font:inherit;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  /* ===== topbar fixa: logo + abas + frescor ===== */
+  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
+  .tb-in{max-width:1560px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
+  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta);display:inline-block}
+  .tb-right{display:flex;justify-content:flex-end;align-items:center;gap:12px}
+  .upchip{font-size:11.5px;font-weight:800;color:#06845a;background:var(--tint-mint);padding:5px 12px;border-radius:var(--pill);white-space:nowrap}
+  .v1link{font-size:12.5px;font-weight:700;white-space:nowrap}
+  .seg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px}
+  .seg button{display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;border-radius:var(--pill);padding:8px 20px;font:inherit;font-weight:800;font-size:13.5px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button svg{opacity:.7}
   .seg button.on{color:#fff;background:var(--grad-cta)}
-  /* toggle de canais (ativo preto) */
-  .chseg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--g100);border-radius:16px;padding:4px;margin:8px 0 16px}
-  .chseg button{border:none;cursor:pointer;border-radius:999px;padding:9px 8px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.01em;color:var(--g600);background:transparent;transition:color .15s;text-align:center}
-  .chseg button.on{color:#fff;background:var(--ink)}
-  .chpanel{display:none}
-  .chpanel.on{display:block;animation:fade .2s ease both}
-  .chpanel p{font-size:14px;color:var(--g700);margin-bottom:10px}
-  .chpanel h5{font-size:13px;font-weight:800;color:var(--ink);margin:14px 0 6px;letter-spacing:-.01em}
-  .chpanel ul.svc{list-style:none;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px;font-size:13.5px;color:var(--g700)}
-  .chpanel ul.svc li{padding-left:16px;position:relative}
-  .chpanel ul.svc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-purple)}
-  .chpanel ul.svc li b{color:var(--ink)}
-  .chpanel .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
-  .chpanel .chmeta{font-size:12px;color:var(--g500);margin-top:10px;line-height:1.5}
-  .chpanel .chtt{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g500);margin-bottom:8px}
-  .copybtn{float:right;border:none;cursor:pointer;border-radius:var(--pill);background:var(--ink);color:#fff;font:inherit;font-weight:700;font-size:12px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px;margin:-2px 0 2px 10px;transition:background .15s,opacity .15s}
-  .copybtn:hover{opacity:.9}
-  .copybtn.done{background:#06845a}
+  .seg button.on svg{opacity:1}
+  @media(max-width:940px){
+    .tb-in{grid-template-columns:1fr auto}
+    .tb-right{display:none}
+    .seg{grid-column:1/-1;order:3;justify-self:center;margin-top:2px}
+  }
 
+  /* ===== hero ===== */
+  .hero{text-align:center;padding:32px 22px 4px;max-width:940px;margin:0 auto}
+  .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .hero h1{font-size:30px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.12}
+  .hero .crumbs{color:var(--g500);font-size:13.5px;margin-top:7px;font-weight:600}
+
+  .wrap{max-width:1560px;margin:0 auto;padding:16px 26px 70px}
+
+  /* ===== painéis / abas ===== */
   .panel{display:none}
   .panel.on{display:block;animation:fade .25s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  /* cabeçalho de seção */
-  .lead{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-bottom:18px}
-  .lead h2{font-family:var(--font);font-weight:800;font-size:26px;font-weight:700;margin-bottom:6px}
-  .lead p{color:var(--g600);font-size:14.5px;max-width:760px}
+  /* ===== cabeçalhos de seção (eyebrow numerado) ===== */
+  .sec{margin:38px 0 14px}
+  .sec.first{margin-top:10px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px 5px 6px;border-radius:var(--pill)}
+  .eyebrow b{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border-radius:50%;background:var(--grad-cta);color:#fff;font-size:10.5px;letter-spacing:0}
+  .sec h2{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-top:11px;line-height:1.15}
+  .sec .secsub{color:var(--g600);font-size:14px;margin-top:5px;max-width:680px}
+  .madefor{margin-top:13px;font-size:13px;font-weight:700;color:var(--g500);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tg{background:var(--ink);color:#fff;border-radius:var(--pill);padding:5px 14px;font-size:12.5px;font-weight:800;letter-spacing:-.01em}
+
+  /* ===== layout Descrição: 2 colunas ===== */
+  .deslayout{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:24px;align-items:start}
+  @media(max-width:1040px){.deslayout{grid-template-columns:1fr}}
+  .deslayout .right{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px 2px 8px;border-radius:var(--r-lg)}
+  .deslayout .right::-webkit-scrollbar{width:8px}
+  .deslayout .right::-webkit-scrollbar-thumb{background:var(--g200);border-radius:var(--pill)}
+  .deslayout .right::-webkit-scrollbar-track{background:transparent}
+  @media(max-width:1040px){.deslayout .right{position:static;max-height:none;overflow:visible}}
+  .deslayout .right .card{margin-top:0}
+  .deslayout .right .card::before{content:"";display:block;height:4px;border-radius:var(--pill);background:var(--grad-cta);margin:-4px 0 14px}
+
+  /* ===== cards ===== */
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);border:var(--line);padding:20px 22px;margin-top:14px}
+  .card h3.t{font-weight:800;font-size:20px;letter-spacing:-.025em;margin-bottom:4px}
+  .card .sub{color:var(--g500);font-size:13.5px;margin-bottom:14px}
+  .lead{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);border:var(--line);padding:22px 24px;margin-bottom:16px}
+  .lead h2{font-weight:800;font-size:24px;letter-spacing:-.03em;margin-bottom:7px;line-height:1.15}
+  .lead p{color:var(--g600);font-size:14.5px;max-width:860px}
   .badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:var(--pill);font-size:12px;font-weight:800;letter-spacing:-.01em}
   .badge.warn{background:var(--tint-peach);color:var(--brand-orange-deep)}
   .badge.ok{background:var(--tint-mint);color:#06845a}
   .badge.purple{background:var(--tint-lav);color:var(--brand-purple)}
-  /* título divisor entre canais e antes×depois */
-  .explica{margin:34px 0 16px}
-  .explica h2{font-size:30px;font-weight:800;letter-spacing:-.035em;color:var(--ink);line-height:1.1}
-  .explica .madefor{margin-top:10px;font-size:13px;font-weight:700;color:var(--g500);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .explica .tg{background:var(--ink);color:#fff;border-radius:var(--pill);padding:5px 14px;font-size:12.5px;font-weight:800;letter-spacing:-.01em}
 
-  /* lado a lado */
+  /* ===== legenda ===== */
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--g600);margin:14px 0 14px;background:var(--white);border:var(--line);border-radius:var(--pill);padding:9px 16px;box-shadow:var(--shadow-card);width:fit-content}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+
+  /* ===== comparativo antes × depois ===== */
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:880px){.cols{grid-template-columns:1fr}}
-  .doc{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px}
-  .doc h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-  .doc.before h3{color:var(--brand-orange-deep)}
-  .doc.after h3{color:#06845a}
+  .doc{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);border:var(--line);padding:20px 22px}
+  .doc h3{margin:-20px -22px 16px;padding:13px 22px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;display:flex;align-items:center;gap:8px;border-bottom:var(--line);border-radius:var(--r-lg) var(--r-lg) 0 0}
+  .doc.before h3{color:var(--brand-orange-deep);background:rgba(252,98,0,.06)}
+  .doc.after h3{color:#06845a;background:rgba(0,170,115,.07)}
   .doc p{font-size:14px;color:var(--g700);margin-bottom:11px}
-  .doc .ttl{font-family:var(--font);font-weight:800;font-size:18px;color:var(--ink);margin-bottom:10px}
+  .doc .ttl{font-weight:800;font-size:18px;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em}
   .doc h5{font-size:13px;font-weight:800;color:var(--ink);margin:15px 0 6px;letter-spacing:-.01em}
-  .doc ul.svc{list-style:none;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px;font-size:13.5px;color:var(--g700)}
-  .doc ul.svc li{padding-left:16px;position:relative}
-  .doc ul.svc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-purple)}
-  .doc ul.svc li b{color:var(--ink)}
-  .doc .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
+  .doc ul.svc,.chpanel ul.svc{list-style:none;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px;font-size:13.5px;color:var(--g700)}
+  .doc ul.svc li,.chpanel ul.svc li{padding-left:16px;position:relative}
+  .doc ul.svc li:before,.chpanel ul.svc li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--brand-purple)}
+  .doc ul.svc li b,.chpanel ul.svc li b{color:var(--ink)}
+  .doc .cta,.chpanel .cta{margin-top:12px;font-weight:700;color:var(--brand-purple);font-size:13.5px}
   .simbanner{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:var(--pill);font-size:11.5px;font-weight:800;background:var(--tint-lav);color:var(--brand-purple);margin-bottom:12px}
 
-  /* marcações inline (no local do texto) */
+  /* marcações inline + tooltip do porquê */
   mark{border-radius:5px;padding:0 3px;font-weight:600;cursor:help}
   .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
   .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
   .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 var(--brand-green)}
-  /* tooltip próprio (mostra o porquê na hora, sem depender do title nativo) */
   mark[data-tip]{position:relative}
   mark[data-tip]:hover{z-index:60}
   mark[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:300px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
   mark[data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
   sup.ref{font-size:10px;font-weight:800;color:var(--brand-purple);background:var(--tint-lav);border-radius:4px;padding:0 4px;margin-left:2px;vertical-align:super}
 
-  /* anotações — cards em colunas */
-  .notes{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  /* ===== anotações (o porquê, marca a marca) ===== */
+  .notes{margin-top:4px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
   @media(max-width:760px){.notes{grid-template-columns:1fr}}
-  .note{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:14px 16px}
+  .note{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);border:var(--line);padding:14px 16px}
   .note .n{width:28px;height:28px;border-radius:50%;background:var(--grad-cta);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
   .note h4{font-size:14px;font-weight:800;margin-bottom:3px}
   .note .why{font-size:13px;color:var(--g600)}
-  .note .pair{font-size:12.5px;margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+  .note .pair{font-size:12.5px;margin-top:7px;display:flex;flex-wrap:wrap;gap:6px}
   .chip{display:inline-block;padding:3px 9px;border-radius:var(--pill);font-size:11.5px;font-weight:700}
   .chip.bad{background:var(--tint-peach);color:var(--brand-orange-deep)}
   .chip.good{background:var(--tint-mint);color:#06845a}
   .chip.who{background:var(--g100);color:var(--g600)}
+
+  /* ===== tabela de lacunas ===== */
   .st{display:inline-block;padding:2px 9px;border-radius:var(--pill);font-size:11px;font-weight:800;white-space:nowrap;letter-spacing:.01em}
   .st.ok{background:var(--tint-mint);color:#06845a}
   .st.par{background:var(--tint-yellow);color:#9a6a00}
   .st.no{background:var(--tint-peach);color:var(--brand-orange-deep)}
   .tablewrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:10px;border-bottom:1px solid var(--g150);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--g500)}
+  tbody tr:hover{background:#FBFAFD}
+  td b{color:var(--ink)}
   td .have{color:var(--g700)}
   td .miss{color:var(--g600)}
   td .dash{color:var(--g300)}
-
-  /* tabela lacunas */
-  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:20px 22px;margin-top:20px}
-  .card h3.t{font-family:var(--font);font-weight:800;font-size:21px;margin-bottom:4px}
-  .card .sub{color:var(--g500);font-size:13.5px;margin-bottom:14px}
-  table{width:100%;border-collapse:collapse;font-size:13.5px}
-  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--g150);vertical-align:top}
-  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--g500)}
-  td b{color:var(--ink)}
 
   ul.clean{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--g700)}
   ul.clean li{padding-left:18px;position:relative}
   ul.clean li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--grad-cta)}
 
-  /* FAQ accordion */
+  /* ===== prompt ===== */
+  .promptbox{white-space:pre-wrap;word-break:break-word;background:#101015;color:#e8e8ea;border-radius:14px;padding:16px 18px;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:6px}
+  .testbox{margin-top:14px;background:var(--g100);border-radius:12px;padding:12px 14px}
+  .testbox summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--ink)}
+  .testbox .tb{margin-top:10px;font-size:12.5px;color:var(--g700);white-space:pre-wrap;line-height:1.55}
+  .copybtn{float:right;border:none;cursor:pointer;border-radius:var(--pill);background:var(--ink);color:#fff;font:inherit;font-weight:700;font-size:12px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px;margin:-2px 0 2px 10px;transition:background .15s,opacity .15s}
+  .copybtn:hover{opacity:.9}
+  .copybtn.done{background:#06845a}
+
+  /* ===== canais (coluna direita) ===== */
+  .chseg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--g100);border-radius:16px;padding:4px;margin:8px 0 16px}
+  .chseg button{border:none;cursor:pointer;border-radius:var(--pill);padding:9px 8px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.01em;color:var(--g600);background:transparent;transition:color .15s;text-align:center}
+  .chseg button.on{color:#fff;background:var(--ink)}
+  .chpanel{display:none}
+  .chpanel.on{display:block;animation:fade .2s ease both}
+  .chpanel p{font-size:14px;color:var(--g700);margin-bottom:10px}
+  .chpanel h5{font-size:13px;font-weight:800;color:var(--ink);margin:14px 0 6px;letter-spacing:-.01em}
+  .chpanel .chmeta{font-size:12px;color:var(--g500);margin-top:10px;line-height:1.5;border-top:var(--line);padding-top:10px}
+  .chpanel .chtt{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--g500);margin-bottom:8px}
+
+  /* ===== FAQ ===== */
+  .faqlayout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px;align-items:start;margin-top:10px}
+  @media(max-width:1040px){.faqlayout{grid-template-columns:1fr}}
+  .faqlayout .faqleft{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px}
+  .faqlayout .faqleft::-webkit-scrollbar{width:8px}
+  .faqlayout .faqleft::-webkit-scrollbar-thumb{background:var(--g200);border-radius:var(--pill)}
+  @media(max-width:1040px){.faqlayout .faqleft{position:static;max-height:none;overflow:visible}}
+  .faqlayout .statband{grid-template-columns:1fr;gap:10px;margin-bottom:16px}
+  .faqlayout .stat{display:grid;grid-template-columns:96px 1fr;align-items:center;column-gap:16px}
+  .faqlayout .stat .src{grid-column:2}
   .faq{display:flex;flex-direction:column;gap:10px}
-  .qa{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);overflow:hidden}
+  .qa{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);border:var(--line);overflow:hidden;transition:box-shadow .2s}
   .qa>button{width:100%;border:none;background:transparent;cursor:pointer;font:inherit;text-align:left;padding:15px 18px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;color:var(--ink)}
   .qa>button .plus{margin-left:auto;color:var(--brand-purple);font-size:20px;font-weight:800;transition:transform .2s}
+  .qa.open{box-shadow:var(--shadow-md)}
   .qa.open>button .plus{transform:rotate(45deg)}
   .qa .body{display:none;padding:0 18px 16px 18px}
   .qa.open .body{display:block}
@@ -169,42 +202,38 @@
   .rt.seo{background:var(--tint-mint);color:#06845a}
   .rt.ia{background:var(--tint-lav);color:var(--brand-purple)}
   .rt.conv{background:var(--tint-peach);color:var(--brand-orange-deep)}
-  .rt.local{background:#DCF6FC;color:#0a7ea0}
+  .rt.local{background:var(--tint-cyan);color:#0a7ea0}
   .rt.voz{background:var(--tint-yellow);color:#9a6a00}
   .rat .pq{font-size:12.5px;color:var(--g700);margin-bottom:7px;line-height:1.45}
   .rat .data{font-size:12.5px;font-weight:700;color:var(--ink);display:flex;gap:7px;align-items:flex-start}
   .rat .data .ic{flex:0 0 auto}
   .rat .src{font-size:11px;color:var(--g500);margin-top:5px}
   .rat .src a{color:var(--brand-purple);font-weight:600}
-  .statband{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+
+  /* ===== stats ===== */
+  .statband{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
   @media(max-width:760px){.statband{grid-template-columns:1fr}}
-  .stat{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:15px 16px}
+  .stat{background:var(--white);border-radius:var(--r-md);box-shadow:var(--shadow-card);border:var(--line);padding:15px 16px}
   .stat .big{font-size:26px;font-weight:800;letter-spacing:-.03em;background:var(--grad-cta);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .stat .lbl{font-size:12.5px;color:var(--g600);margin-top:2px;line-height:1.35}
   .stat .src{font-size:10.5px;color:var(--g400);margin-top:5px}
   .stat .src a{color:var(--g500)}
-  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--g600);margin:10px 0 18px}
-  .legend span{display:inline-flex;align-items:center;gap:6px}
-  .sw{width:14px;height:14px;border-radius:4px;display:inline-block}
-  .foot{margin-top:30px;font-size:12.5px;color:var(--g500);text-align:center}
-  .foot a{font-weight:700}
 
-  /* ===== painel Indexação ===== */
-  .idxwrap{max-width:1080px;margin:0 auto}
-  .idxgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;align-items:start}
+  /* ===== Indexação ===== */
+  .idxwrap{max-width:1100px;margin:10px auto 0}
+  .idxgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;align-items:start}
   @media(max-width:880px){.idxgrid{grid-template-columns:1fr}}
-  .idxcard{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:18px 20px}
+  .idxcard{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);border:var(--line);padding:18px 20px}
   .idxcard .ihead{display:flex;align-items:center;gap:10px;margin-bottom:11px}
   .idxcard .inum{width:28px;height:28px;flex:0 0 auto;border-radius:50%;background:var(--grad-cta);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
   .idxcard .ihead h3{font-size:16px;font-weight:800;letter-spacing:-.015em;margin-right:auto;line-height:1.15}
   .who-tags{display:flex;gap:5px;flex:0 0 auto}
   .src-tag{padding:2px 9px;border-radius:var(--pill);font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
-  .src-tag.dev{background:#DCF6FC;color:#0a7ea0}
+  .src-tag.dev{background:var(--tint-cyan);color:#0a7ea0}
   .src-tag.dsg{background:var(--tint-pink);color:var(--brand-pink)}
   .idxcard ul.clean{font-size:13px;gap:7px}
   .idxcard ul.clean li{padding-left:16px}
   .idxcard ul.clean li:before{top:7px;width:6px;height:6px}
-  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em;color:var(--ink)}
   .camadas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:6px}
   @media(max-width:760px){.camadas{grid-template-columns:1fr}}
   .cam{background:var(--g100);border-radius:var(--r-md);padding:14px 16px}
@@ -218,46 +247,59 @@
   @media(max-width:760px){.checkgrid{grid-template-columns:1fr}}
   .ck{display:flex;gap:9px;font-size:13.5px;color:var(--g700);align-items:flex-start}
   .ck .cic{flex:0 0 auto;color:#06845a;font-weight:800;font-size:14px}
+  .srcdoc{margin-top:8px;background:var(--g100);border-radius:12px;padding:10px 14px}
+  .srcdoc summary{cursor:pointer;font-weight:800;font-size:13px;color:var(--ink)}
+  .srcbody{margin-top:10px;max-height:440px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.55;color:var(--g700);background:var(--white);border-radius:10px;padding:14px;border:1px solid var(--g150)}
+
+  .foot{margin-top:36px;font-size:12.5px;color:var(--g500);text-align:center}
+  .foot a{font-weight:700}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="top">
+<header class="topbar">
+  <div class="tb-in">
     <span class="logo"><span class="heart"></span>Solutudo</span>
-    <h1>Artefato · Sobre a Empresa &amp; FAQ — New Rock Expresso</h1>
-    <span class="crumb">Marmoraria · Polimento de mármores e granitos · Rio de Janeiro/RJ · <a href="v2/" style="font-weight:700">ver proposta V2 →</a></span>
+    <nav class="seg" aria-label="Seções do artefato">
+      <button id="t-desc" class="on" onclick="show('desc')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Descrição</button>
+      <button id="t-faq" onclick="show('faq')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</button>
+      <button id="t-index" onclick="show('index')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Indexação</button>
+    </nav>
+    <span class="tb-right"><span class="upchip">Atualizado em 17/07/2026</span></span>
   </div>
+</header>
 
-  <div class="pillbar">
-    <div class="seg">
-      <button id="t-desc" class="on desc" onclick="show('desc')">Descrição</button>
-      <button id="t-faq" onclick="show('faq')">FAQ</button>
-      <button id="t-index" onclick="show('index')">Indexação</button>
-    </div>
-  </div>
+<div class="hero">
+  <span class="vbadge">Artefato vivo · formato único</span>
+  <h1>Sobre a Empresa &amp; FAQ — New Rock Expresso</h1>
+  <p class="crumbs">Marmoraria · Polimento de mármores e granitos · Rio de Janeiro/RJ</p>
+</div>
+
+<div class="wrap">
 
   <!-- ===================== DESCRIÇÃO ===================== -->
   <section id="p-desc" class="panel on">
     <div class="deslayout">
       <div class="left">
-<div class="explica">
-      <h2>Explicando a Descrição 2.0</h2>
-      <div class="madefor">Feito para:
-        <span class="tg">Pessoas</span>
-        <span class="tg">SEO</span>
-        <span class="tg">IAs</span>
-      </div>
-    </div>
 
-    <div class="legend">
+        <div class="sec first">
+          <span class="eyebrow"><b>01</b>Comparativo</span>
+          <h2>Explicando a Descrição 2.0</h2>
+          <p class="secsub">O texto atual e como ele poderia ser, lado a lado — cada marcação no próprio texto explica o porquê da mudança (passe o mouse).</p>
+          <div class="madefor">Feito para:
+            <span class="tg">Pessoas</span>
+            <span class="tg">SEO</span>
+            <span class="tg">IAs</span>
+          </div>
+        </div>
+
+        <div class="legend">
       <span><i class="sw" style="background:var(--tint-peach);box-shadow:inset 0 -2px 0 var(--brand-orange)"></i> genérico / sem prova</span>
       <span><i class="sw" style="background:var(--tint-lav);box-shadow:inset 0 -2px 0 var(--brand-purple)"></i> campo a coletar (fato real)</span>
       <span><i class="sw" style="background:var(--tint-mint);box-shadow:inset 0 -2px 0 var(--brand-green)"></i> fato concreto / citável</span>
       <span style="color:var(--g500)">— passe o mouse sobre as marcações para ver o porquê</span>
     </div>
-
-    <div class="cols">
+        <div class="cols">
       <div class="doc before">
         <h3>● Texto atual</h3>
         <div class="ttl">Sobre a empresa</div>
@@ -305,7 +347,12 @@
       </div>
     </div>
 
-    <div class="notes">
+        <div class="sec">
+          <span class="eyebrow"><b>02</b>O porquê, marca a marca</span>
+          <h2>Por que cada trecho mudou</h2>
+          <p class="secsub">Cada card corresponde a uma marcação numerada da comparação acima — o antes, o depois e de quem é o insumo.</p>
+        </div>
+        <div class="notes">
       <div class="note"><div class="n">1</div><div>
         <h4>Localização específica &gt; "toda a cidade"</h4>
         <div class="why">"Toda a cidade do Rio" não posiciona em nada. Bairros/zonas reais ranqueiam buscas locais ("polimento de mármore na Barra") e dizem à IA <i>onde</i> a empresa atende.</div>
@@ -367,8 +414,8 @@
       </div></div>
     </div>
 
-    <!-- lacunas / schema -->
-    <div class="card">
+        <div class="sec"><span class="eyebrow"><b>03</b>Schema — temos × falta</span></div>
+        <div class="card">
       <h3 class="t">O que já temos × o que falta no schema</h3>
       <div class="sub">Status de cada campo da fonte da verdade. <span class="st ok">Temos</span> já dá para usar · <span class="st par">Parcial</span> existe mas genérico/incompleto · <span class="st no">Falta</span> precisa coletar. Cada lacuna vira pendência do checklist, com o dono.</div>
       <div class="tablewrap"><table>
@@ -390,8 +437,8 @@
       </table></div>
     </div>
 
-<!-- pesquisa do setor -->
-    <div class="card">
+        <div class="sec"><span class="eyebrow"><b>04</b>Pesquisa do setor</span></div>
+        <div class="card">
       <h3 class="t">Pesquisa do setor — o que uma descrição relevante precisa ter</h3>
       <div class="sub">Padrões do nicho de polimento de mármore/granito no RJ (confirmados em concorrentes do setor).</div>
       <div class="cols" style="gap:22px">
@@ -424,7 +471,9 @@
         <a href="https://casadosintecorj.com.br/nossos-servicos/polimento-marmore-granito/" target="_blank" rel="noopener">casadosintecorj</a>.
       </div>
     </div>
-    <div class="card promptcard">
+
+        <div class="sec"><span class="eyebrow"><b>05</b>Prompt gerador</span></div>
+        <div class="card promptcard">
       <button class="copybtn" onclick="copyPrompt(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar prompt</button>
       <h3 class="t">Prompt gerador — Descrição 2.0 (genérico, qualquer empresa)</h3>
       <div class="sub">O prompt exato que produz tudo acima a partir dos dados estruturados de <b>qualquer cliente</b> — sem citar empresa específica. Cole no seu fluxo de IA e alimente com o JSON da base canônica.</div>
@@ -490,16 +539,19 @@ TAREFA — gere UMA essência e as versões por canal, todas com a MESMA essênc
      (anos/obras); e atendimento/proximidade.
   5) CTA (1 frase): curto e ESPECÍFICO ao serviço, citando 2–3 aplicações reais
      (ex.: "renovar uma bancada, recuperar o piso da sala ou tratar a fachada").
-- google (Google Meu Negócio): até 700 caracteres; factual; SEM telefone, SEM URL e SEM
-  CTA promocional (política do Google); foco no que é, no que oferece e onde atende.
+- google (Google Meu Negócio): até 750 caracteres; o ESSENCIAL nos ~250 primeiros (é o
+  que aparece antes do "Mais"); factual; SEM URL e SEM foco promocional (política do
+  Google); sem telefone (vai no campo próprio do perfil); o que é, o que oferece, onde atende.
 - instagram_bio: até 150 caracteres; COM emojis e quebras de linha (1 ideia por linha);
   o que faz + cidade/bairros + 1 diferencial + chamada curta.
 - seo: title até 60 caracteres (benefício + cidade) e meta_description até 155 (factual,
   com termo natural).
 - json_ld: gere o JSON-LD da empresa com o @type ESPECÍFICO da categoria (ex.: Restaurant,
-  Plumber, Dentist, GeneralContractor; fallback LocalBusiness), com name, telephone (tel:),
-  address, geo, openingHoursSpecification, areaServed, foundingDate e dateModified.
-  aggregateRating SÓ se houver avaliação real. O FAQ usa um FAQPage à parte.
+  Plumber, Dentist, GeneralContractor, HomeAndConstructionBusiness; fallback LocalBusiness),
+  com name, telephone (tel:), address, geo, openingHoursSpecification, areaServed e
+  foundingDate. dateModified NÃO vai no LocalBusiness: pertence ao nó WebPage do JSON-LD
+  (a página que contém a entidade). aggregateRating SÓ se houver avaliação real. O FAQ usa
+  um FAQPage à parte.
 
 EXEMPLO DE SAÍDA (formato de referência — empresa FICTÍCIA, não copie o conteúdo, só o formato):
 "descricao_completa":
@@ -541,7 +593,8 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
     "instagram_bio": { "texto": "...", "caracteres": N }
   },
   "seo": { "title": "...", "meta_description": "..." },
-  "json_ld": { "@type": "LocalBusiness ou tipo específico", "name": "...", "telephone": "...", "address": {}, "areaServed": [], "foundingDate": "...", "dateModified": "..." },
+  "json_ld": { "@type": "tipo específico ou LocalBusiness", "name": "...", "telephone": "...", "address": {}, "areaServed": [], "foundingDate": "..." },
+  "json_ld_webpage": { "@type": "WebPage", "dateModified": "..." },
   "fatos_usados": ["..."],
   "lacunas": [ { "o_que": "...", "dono": "cliente | nos" } ],
   "claims_evitados": ["..."]
@@ -605,7 +658,7 @@ Por que a New Rock
 Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do
 condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita.
 
-por_canal.google (≈560 car. · sem telefone/link/CTA):
+por_canal.google (≈530 car. · limite 750 · sem link/foco promocional):
 A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização
 e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca,
 Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore,
@@ -613,14 +666,14 @@ granito, quartzo, porcelanato e granilite, usando polimento a seco com discos di
 menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do
 orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.
 
-por_canal.instagram_bio (≈135 car.):
+por_canal.instagram_bio (150 car. — no limite de 150):
 💎 Polimento &amp; restauração de mármore e granito
 📍 Rio de Janeiro — Zona Sul, Barra e Tijuca
 ✨ Avaliação grátis • brilho que dura
 🗓️ Orçamento em 24h
 
 seo.title (59): Polimento de Mármore e Granito no Rio de Janeiro | New Rock
-seo.meta_description (135): Polimento, cristalização e restauração de mármores e granitos no
+seo.meta_description (136): Polimento, cristalização e restauração de mármores e granitos no
 Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e garantia de 6 meses.
 
 fatos_usados: categoria · cidade · area_atendida · fundacao · superficies · servicos ·
@@ -639,8 +692,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
 
       </div>
       <div class="right">
-<!-- versão final por canal (toggle) -->
-    <div class="card">
+        <div class="card">
       <h3 class="t">Versão final por canal</h3>
       <div class="sub">Um "Sobre" → várias saídas, mesma essência adaptada por canal (resolve o item de Consistência). Por padrão, a versão Solutudo; alterne nos demais. Exemplo simulado.</div>
       <div class="chseg">
@@ -712,14 +764,14 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Google Meu Negócio · factual, sem telefone/link/CTA</div>
         <p>A New Rock Expresso é especializada em lavagem, polimento, cristalização, impermeabilização e restauração de mármores e granitos no Rio de Janeiro. Atua na Zona Sul, Barra da Tijuca, Recreio e Tijuca, atendendo residências, comércios e condomínios. Trabalha com mármore, granito, quartzo, porcelanato e granilite, usando polimento a seco com discos diamantados — menos poeira e ambiente liberado no mesmo dia. Faz avaliação técnica gratuita antes do orçamento. Atua desde 2014, com equipe própria e mais de 1.200 obras realizadas.</p>
-        <div class="chmeta">≈ 560 caracteres · respeita a política do Google (sem telefone, URL ou CTA promocional)</div>
+        <div class="chmeta">≈530 de 750 caracteres · o essencial nos ~250 primeiros (o que aparece antes do "Mais") · sem URL nem foco promocional (política do Google); telefone fica no campo próprio do perfil</div>
       </div>
 
       <div class="chpanel" data-ch="ig">
         <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
         <div class="chtt">Bio Instagram · ≤150, com emojis</div>
         <p style="font-weight:600;color:var(--ink);font-size:15px;line-height:1.75">💎 Polimento &amp; restauração de mármore e granito<br>📍 Rio de Janeiro — Zona Sul, Barra e Tijuca<br>✨ Avaliação grátis • brilho que dura<br>🗓️ Orçamento em 24h</p>
-        <div class="chmeta">≈ 135 caracteres · emojis e quebras de linha (cole direto na bio)</div>
+        <div class="chmeta">150/150 caracteres — exatamente no limite · emojis e quebras de linha (cole direto na bio)</div>
       </div>
     </div>
       </div>
@@ -730,21 +782,19 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
   <section id="p-faq" class="panel">
     <div class="faqlayout">
       <div class="faqleft">
-<div class="lead">
+        <div class="lead">
       <span class="badge purple">Em construção · base do nicho</span>
       <h2>FAQ — perguntas que sustentam SEO e citação por IA</h2>
       <p>O FAQ não é enfeite: ele responde dúvidas reais (alimentadas pelo Digisac), vira <b>FAQPage (schema.org)</b>
       no site e é o formato que a IA mais cita. Regra é a mesma da descrição: <b>resposta ancorada em fato</b> —
       onde precisa do dado do cliente, está marcado. Abaixo, um ponto de partida com as perguntas mais buscadas no setor.</p>
     </div>
-
         <div class="statband">
       <div class="stat"><div class="big">3,2×</div><div class="lbl">mais chance de aparecer no AI Overview do Google com marcação <b>FAQPage</b></div><div class="src">Fonte: <a href="https://www.frase.io/blog/faq-schema-ai-search-geo-aeo" target="_blank" rel="noopener">Frase.io</a></div></div>
       <div class="stat"><div class="big">76%</div><div class="lbl">de quem busca <b>"perto de mim"</b> visita um negócio em até <b>1 dia</b></div><div class="src">Fonte: <a href="https://backlinko.com/local-seo-stats" target="_blank" rel="noopener">Backlinko</a> (Google)</div></div>
       <div class="stat"><div class="big">12,4%</div><div class="lbl">dos sites usam dado estruturado — <b>janela de vantagem</b> de quem chega antes</div><div class="src">Fonte: <a href="https://www.frase.io/blog/faq-schema-ai-search-geo-aeo" target="_blank" rel="noopener">Frase.io</a></div></div>
     </div>
-
-    <div class="card">
+        <div class="card">
       <h3 class="t">Por que esse FAQ importa — o panorama</h3>
       <ul class="clean">
         <li><b>Mudou o jogo (2023):</b> o Google <b>aposentou os rich results de FAQ</b> para empresas comuns (só gov/saúde). FAQ no site deixou de ser por "estrelinha no Google" e passou a valer por <b>IA, PAA, voz e conversão na página</b> (<a href="https://searchengineland.com/faq-schema-rise-fall-seo-today-463993" target="_blank" rel="noopener">Search Engine Land</a>).</li>
@@ -756,7 +806,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
     </div>
       </div>
       <div class="faqright">
-<div class="faq" id="faqlist">
+        <div class="faq" id="faqlist">
       <div class="qa"><button onclick="qa(this)">Quanto tempo dura o serviço de polimento? <span class="plus">+</span></button>
         <div class="body"><p>Depende da metragem e do estado da pedra. Em média, [X m²/dia]. Numa bancada comum, [tempo]; em pisos, [tempo].</p><span class="tag">precisa do cliente: produtividade média (m²/dia)</span>
           <div class="rat"><div class="rtags"><span class="rt ia">IA</span><span class="rt seo">SEO</span></div>
@@ -835,19 +885,16 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
   <!-- ===================== INDEXAÇÃO ===================== -->
   <section id="p-index" class="panel">
     <div class="idxwrap">
-
       <div class="lead">
         <span class="badge warn">Consolidado dos 2 documentos · técnico (dev) + design</span>
         <h2 style="margin-top:8px">Indexação — ser encontrado pelo Google e citado pela IA</h2>
         <p>A descrição e o FAQ acima só geram resultado se a <b>página</b> respeitar as regras de máquina. <b>Analisei os dois .MD recebidos</b> e cruzei o que cada um exige: o <b>documento técnico do time de desenvolvimento</b> (Kimura, Rielo, Sonoda — recuperação de indexação Google + IA) e o <b>documento de recomendações de design</b>. Diagnóstico comum aos dois: a Solutudo perdeu ~17 mi de páginas indexadas porque conteúdo preso em JS/imagem é ilegível para Google e IA. Régua nova (design): <b>design a serviço de ser encontrado</b>. Regra de ouro (dev): <b>todo conteúdo essencial server-rendered no HTML</b>.</p>
       </div>
-
       <div class="statband">
         <div class="stat"><div class="big">94% × 23%</div><div class="lbl">leitura de <b>HTML estático</b> vs. conteúdo via <b>JavaScript</b> — o ChatGPT-User vê casca vazia</div><div class="src">Fonte: doc técnico (dev)</div></div>
         <div class="stat"><div class="big">~17 mi</div><div class="lbl">páginas que a Solutudo <b>perdeu do índice</b> (≈45→28 mi, mar–jun/2026)</div><div class="src">Fonte: doc técnico (dev)</div></div>
         <div class="stat"><div class="big">Bing</div><div class="lbl">a busca do <b>ChatGPT roda sobre o índice do Bing</b> — estar no Bing é pré-requisito</div><div class="src">Fonte: doc técnico (dev)</div></div>
       </div>
-
       <div class="idxgrid">
 
         <div class="idxcard">
@@ -856,7 +903,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
             <li><b>Server-render:</b> o conteúdo essencial nasce no HTML servido, nunca injetado por JS. Teste: desligou o JS e sumiu? → errado.</li>
             <li><b>Texto é texto, não imagem:</b> nome, telefone, endereço, horário e descrição = texto real selecionável.</li>
             <li><b>Telefone/WhatsApp visíveis e clicáveis</b> (<code>tel:</code>, <code>wa.me</code>) — nunca atrás de "ver telefone"/hover.</li>
-            <li><b>JSON-LD server-rendered</b> com <code>@type</code> específico (Restaurant, Plumber, Dentist… fallback LocalBusiness) + <b>FAQPage</b>.</li>
+            <li><b>JSON-LD server-rendered</b> com <code>@type</code> específico (Restaurant, Plumber, Dentist, HomeAndConstructionBusiness… fallback LocalBusiness) + <b>FAQPage</b>.</li>
             <li><b>aggregateRating só com avaliação real</b> — nunca inventar (Google e IA detectam; spam update 2026).</li>
           </ul>
         </div>
@@ -873,7 +920,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         <div class="idxcard">
           <div class="ihead"><span class="inum">3</span><h3>Frescor — página viva</h3><span class="who-tags"><span class="src-tag dev">dev</span></span></div>
           <ul class="clean">
-            <li><b>"Atualizado em DD/MM/AAAA" visível</b> no corpo + <code>dateModified</code> no JSON-LD + frescor no <code>&lt;title&gt;</code>.</li>
+            <li><b>"Atualizado em DD/MM/AAAA" visível</b> no corpo + <code>dateModified</code> no nó <b>WebPage</b> do JSON-LD (não no LocalBusiness) + frescor no <code>&lt;title&gt;</code>.</li>
             <li>Disparar <b>IndexNow</b> sempre que a página muda — propaga ao Bing (base do ChatGPT).</li>
             <li>Conteúdo recente recebe <b>muito mais citação por IA</b> e segura melhor o ranking.</li>
           </ul>
@@ -907,7 +954,6 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         </div>
 
       </div>
-
       <div class="card">
         <h3 class="t">As 3 camadas da página</h3>
         <div class="sub">A arquitetura que nenhum concorrente tem junta — nesta prioridade visual. Página fina morre; estas três, renderizadas, sobrevivem.</div>
@@ -917,7 +963,6 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
           <div class="cam moat"><span class="camn">3</span><b>Confiança</b><p>Avaliações, selo de verificação, "atualizado em", conteúdo do dono. É o que faz acreditar.<span class="moatlbl">nosso fosso · só a Solutudo gera</span></p></div>
         </div>
       </div>
-
       <div class="card">
         <h3 class="t">Checklist de bolso — antes de publicar qualquer página</h3>
         <div class="sub">Do documento de design: se todas tiverem "sim", a página é bonita <b>e</b> vai ser encontrada.</div>
@@ -932,6 +977,32 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
           <div class="ck"><span class="cic">✓</span><span>As <b>3 camadas</b> presentes, com hierarquia clara?</span></div>
         </div>
         <div class="sub" style="margin:14px 0 0">Referência de implementação citada nos dois documentos: <code>solutudo-pagina-detalhe-v2-tres-camadas.html</code>.</div>
+      </div>
+      <div class="card">
+        <span class="badge ok">Conferido · 17/07/2026</span>
+        <h3 class="t" style="margin-top:8px">Conferência — schema.org, Google e limites dos canais</h3>
+        <div class="sub">Validamos a descrição, o FAQ e as regras deste artefato contra o schema.org, a documentação do Google e as políticas de cada canal. O que bateu, ficou; o que divergia, já foi corrigido acima.</div>
+        <div class="cols" style="gap:22px">
+          <div>
+            <p style="font-weight:800;margin-bottom:8px">✓ Confirmado</p>
+            <ul class="clean">
+              <li><b>LocalBusiness:</b> obrigatórios <code>name</code> + <code>address</code>; recomendados <code>telephone</code>, <code>geo</code>, <code>openingHoursSpecification</code>, <code>url</code>, <code>image</code> — nosso conjunto cobre todos.</li>
+              <li><b>@type mais específico possível</b> é a recomendação oficial. Para marmoraria não há tipo dedicado → usar <code>HomeAndConstructionBusiness</code> (fallback <code>GeneralContractor</code>/<code>LocalBusiness</code>).</li>
+              <li><b>aggregateRating só com avaliação real</b> — confirmado nas diretrizes.</li>
+              <li><b>FAQPage:</b> tipo válido; rich results restritos a gov/saúde desde ago/2023 (como já dizíamos). A IA cita o <b>conteúdo</b> pergunta-resposta limpo; a marcação ajuda o parsing (Bing/Copilot) — manter os dois.</li>
+              <li><b>Descrição New Rock validada:</b> entidade na 1ª frase · "Rio" 2× (sem stuffing) · Google ≈530 de 750 · title 59 de 60 · meta 136 · bio 150/150.</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-weight:800;margin-bottom:8px">⚠ Corrigido nesta conferência</p>
+            <ul class="clean">
+              <li><b>Limite do Google é 750</b> caracteres (dizíamos 700) — e os <b>~250 primeiros</b> são o que aparece antes do "Mais": o essencial vai neles.</li>
+              <li><b><code>dateModified</code> não é propriedade de LocalBusiness</b> (é de CreativeWork) → vai no nó <b>WebPage</b> do JSON-LD, apontando para a entidade.</li>
+              <li><b>Telefone na descrição do Google:</b> a política proíbe URL e foco promocional; telefone é <b>boa prática</b> deixar de fora (tem campo próprio no perfil) — ajustamos o enunciado.</li>
+            </ul>
+            <div class="sub" style="margin:12px 0 0">Fontes da conferência: schema.org (LocalBusiness, dateModified, HomeAndConstructionBusiness) · Google Search Central (dados estruturados de negócio local; mudanças de FAQ ago/2023) · diretrizes do Perfil de Empresa no Google (750/250, sem links) · limites: Instagram 150 · title ~60 · meta 140–160.</div>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -1151,12 +1222,12 @@ E uma inspiração honesta, fora da nossa marca: dá uma olhada nas páginas do 
 
 Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o novo padrão.</div></details>
       </div>
-
     </div>
   </section>
 
   <div class="foot">
-    Artefato vivo da inteligência Solutudo · <a href="../../checklist/">voltar ao checklist</a> ·
+    Artefato vivo da inteligência Solutudo ·
+    <a href="../../checklist/">voltar ao checklist</a> ·
     pareado com <code>docs/inteligencia-solutudo.md</code> (card "Sobre a Empresa 2.0")
   </div>
 
@@ -1164,14 +1235,12 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
 <script>
   function show(which){
-    document.getElementById('p-desc').classList.toggle('on', which==='desc');
-    document.getElementById('p-faq').classList.toggle('on', which==='faq');
-    document.getElementById('p-index').classList.toggle('on', which==='index');
-    var d=document.getElementById('t-desc'), f=document.getElementById('t-faq'), i=document.getElementById('t-index');
-    d.classList.toggle('on', which==='desc'); d.classList.toggle('desc', which==='desc');
-    f.classList.toggle('on', which==='faq');
-    i.classList.toggle('on', which==='index');
+    ['desc','faq','index'].forEach(function(k){
+      document.getElementById('p-'+k).classList.toggle('on', which===k);
+      document.getElementById('t-'+k).classList.toggle('on', which===k);
+    });
     history.replaceState(null,'',which==='faq'?'#faq':which==='index'?'#indexacao':'#descricao');
+    window.scrollTo({top:0,behavior:'smooth'});
   }
   function qa(btn){ btn.parentElement.classList.toggle('open'); }
   function copyCh(btn){
@@ -1182,7 +1251,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     document.body.appendChild(clone);
     var text = (clone.innerText || clone.textContent || '').replace(/\n{3,}/g,'\n\n').trim();
     document.body.removeChild(clone);
-    var done = function(){ var o=btn.querySelector('svg')?btn.lastChild:btn; btn.classList.add('done'); var save=btn.innerHTML; btn.innerHTML='✓ Copiado!'; setTimeout(function(){ btn.innerHTML=save; btn.classList.remove('done'); },1500); };
+    var done = function(){ btn.classList.add('done'); var save=btn.innerHTML; btn.innerHTML='✓ Copiado!'; setTimeout(function(){ btn.innerHTML=save; btn.classList.remove('done'); },1500); };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
     } else { fallbackCopy(text); done(); }
@@ -1200,8 +1269,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   }
   function ch(which, btn){
     document.querySelectorAll('.chpanel').forEach(function(p){ p.classList.toggle('on', p.dataset.ch===which); });
-    var sib=btn.parentElement.querySelectorAll('button');
-    sib.forEach(function(b){ b.classList.remove('on'); });
+    btn.parentElement.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
     btn.classList.add('on');
   }
   if(location.hash==='#faq') show('faq');

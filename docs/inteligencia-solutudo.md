@@ -76,9 +76,10 @@ MESMA essência, mudando só forma e limite:
 - solutudo (perfil Destaque): 90 a 140 palavras; institucional e claro.
 - solusite ("Sobre nós" do site): 150 a 250 palavras; pode ter 1 a 2 subtítulos
   e uma lista; CTA leve permitido só no final.
-- google (descrição do Google Meu Negócio): até 700 caracteres; factual; SEM
-  telefone, SEM URL e SEM CTA promocional (política do Google); foco no que é,
-  no que oferece e onde atende.
+- google (descrição do Google Meu Negócio): até 750 caracteres, com o essencial
+  nos ~250 primeiros (o que aparece antes do "Mais"); factual; SEM URL e SEM foco
+  promocional (política do Google); sem telefone (campo próprio do perfil); foco
+  no que é, no que oferece e onde atende.
 - instagram_bio: extraia o essencial em até 150 caracteres: o que faz + cidade
   + 1 diferencial real; tom direto.
 
@@ -107,7 +108,7 @@ SAÍDA — responda SOMENTE com JSON válido neste formato:
   garantindo verdade e rastreabilidade.
 - **Um texto, quatro saídas** — resolve o item de Consistência *"mesma essência,
   adaptada por canal"* de uma vez.
-- **Respeita a regra de cada superfície** — Google sem telefone/URL/CTA (política);
+- **Respeita a regra de cada superfície** — Google ≤750, sem URL/foco promocional (política), sem telefone (boa prática);
   Solusite com subtítulo/lista/CTA; bio micro.
 - **Otimizado para IA também** — entidade na 1ª frase + frases atômicas é o que faz
   um LLM citar o negócio corretamente, não só o Google rankear.
@@ -142,7 +143,8 @@ sobre o **índice do Bing** — estar indexado no Bing é pré-requisito.
 3. **JSON-LD por `@type` específico** (Restaurant, Plumber, Dentist, GeneralContractor…
    fallback LocalBusiness) + **FAQPage** para o FAQ. Campos: name, legalName, taxID,
    telephone, address, geo, openingHoursSpecification, areaServed, knowsAbout,
-   foundingDate, dateModified. **`aggregateRating` só com avaliação real — nunca inventar.**
+   foundingDate. `dateModified` vai no nó **WebPage** do JSON-LD (é propriedade de
+   CreativeWork, não de LocalBusiness). **`aggregateRating` só com avaliação real — nunca inventar.**
 4. **3 camadas na página:** Consumo (contato) → Profundidade de dado (dossiê CNPJ/Receita)
    → Confiança (avaliações, selo, frescor, conteúdo do dono = nosso fosso).
 5. **Frescor:** "Atualizado em DD/MM/AAAA" visível + `dateModified` + frescor no `<title>`;
@@ -163,3 +165,17 @@ HTML servido — não só o texto.
 **Impacto no prompt "Sobre a Empresa 2.0":** já ajustado — agora emite também
 `json_ld` (com @type específico, sem aggregateRating inventado) e traz a regra de
 ENTREGA server-rendered. Ver card "Sobre a Empresa 2.0".
+
+---
+
+## Card — Conferência (schema.org + Google + canais) · 17/07/2026
+
+Validação das regras deste doc e do artefato contra schema.org, Google Search
+Central e as políticas dos canais. **Confirmado:** obrigatórios `name`+`address`;
+@type mais específico possível (marmoraria → `HomeAndConstructionBusiness`);
+aggregateRating só real; FAQPage válido (rich results só gov/saúde desde ago/2023 —
+a IA cita o conteúdo Q&A; a marcação ajuda o parsing); limites Instagram 150,
+title ~60, meta 140–160. **Corrigido:** limite do Google Meu Negócio é **750**
+caracteres (não 700), com o essencial nos ~250 primeiros; `dateModified` pertence
+ao nó **WebPage**, não ao LocalBusiness; telefone fora da descrição do Google é
+boa prática (não proibição) — URL e foco promocional é que são política.
