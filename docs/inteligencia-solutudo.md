@@ -57,6 +57,13 @@ PRINCÍPIOS DE ESCRITA (valem para SEO e IA juntos)
 - Compatível com schema.org/LocalBusiness: priorize fatos que mapeiam a
   propriedades (nome, categoria, área atendida, fundação, especialidades) — eles
   também alimentam o JSON-LD da página.
+- Único e denso (sobrevive à indexação): cada descrição carrega fatos ESPECÍFICOS do
+  negócio que a tornam distinta — nunca um molde onde só muda nome e cidade. Conteúdo
+  fino/quase-duplicado é o que o Google desindexa em escala (scaled content abuse);
+  densidade de fato próprio é o fosso que agregador de dado público não copia.
+- Extraível fora de contexto: a IA lê o HTML cru e cita frase a frase — cada frase ancora
+  a entidade. Categoria + cidade cedo (1a frase e ~250 primeiros caracteres) e no title/H1
+  — o Bing, porta do ChatGPT, pondera esses sinais clássicos.
 
 ENTRADA (JSON da base canônica)
 {

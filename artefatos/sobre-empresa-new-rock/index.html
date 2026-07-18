@@ -502,6 +502,13 @@ PRINCÍPIOS (valem para SEO e IA ao mesmo tempo)
 - Escaneável: parágrafos curtos; no "Sobre" longo, use subtítulos e listas.
 - Compatível com schema.org/LocalBusiness: priorize fatos que mapeiam a propriedades
   (nome, categoria, área atendida, fundação, serviços) — eles também alimentam o JSON-LD.
+- Único e denso (sobrevive à indexação): cada descrição carrega fatos ESPECÍFICOS do
+  negócio (serviços, bairros, provas reais) que a tornam distinta — nunca um molde onde só
+  muda nome e cidade. Conteúdo fino/quase-duplicado é o que o Google desindexa em escala;
+  densidade de fato próprio é o fosso que agregador de dado público não copia.
+- Extraível fora de contexto: a IA lê o HTML cru e cita frase a frase — cada frase ancora a
+  entidade ou é inequívoca sozinha. Categoria + cidade aparecem cedo (1a frase e nos ~250
+  primeiros caracteres) e no title/H1 — é o que o Bing (porta do ChatGPT) mais pondera.
 
 ENTRADA (JSON da base canônica do cliente)
 {
@@ -1029,6 +1036,24 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
+        <span class="badge purple">Correlação · GEO · SEO · IA · Google · Bing</span>
+        <h3 class="t" style="margin-top:8px">O que os dois .MD mudam na descrição e no FAQ</h3>
+        <div class="sub">Os documentos falam da PÁGINA, mas seus achados reescrevem também o TEXTO. Cada aprendizado → o que muda no conteúdo gerado → quem lê. (Já refletido no prompt e nas orientações.)</div>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Aprendizado (MDs + conferência)</th><th>O que muda na descrição / FAQ</th><th>Leitor</th></tr></thead>
+          <tbody>
+            <tr><td><b>Google desindexa conteúdo fino/quase-duplicado</b> — páginas que só trocam a cidade</td><td>Descrição <b>única e densa</b>: fatos próprios (serviços, bairros, provas reais), nunca molde. A densidade de fato é o fosso.</td><td><span class="rt seo">Google</span> <span class="rt local">Bing</span></td></tr>
+            <tr><td><b>IA lê o HTML cru e cita frase a frase</b> (não renderiza JS)</td><td>Frases <b>atômicas e autossuficientes</b>, entidade ancorada em cada bloco; texto no HTML servido (não em imagem/JS).</td><td><span class="rt ia">IAs · GEO</span></td></tr>
+            <tr><td><b>Bing é a porta do ChatGPT</b> e pondera sinais clássicos</td><td>Categoria + cidade <b>cedo</b> (1ª frase e ~250 primeiros caracteres) e no <b>title/H1</b>.</td><td><span class="rt local">Bing</span> <span class="rt ia">ChatGPT</span></td></tr>
+            <tr><td><b>Entidade primeiro</b> é como a IA identifica e cita o negócio</td><td>1ª frase: o que é + categoria + cidade/UF, sem ambiguidade.</td><td><span class="rt ia">IA</span> <span class="rt seo">Google</span></td></tr>
+            <tr><td><b>Rating/estatística inventada é detectada</b> (spam update)</td><td><b>Zero invenção</b> no texto e no FAQ; sem nota ou número sem fonte; falta vira lacuna com dono.</td><td><span class="rt seo">Google</span> <span class="rt ia">IA</span></td></tr>
+            <tr><td><b>FAQ rich result morreu</b>; vale por IA, PAA, voz e conversão</td><td>FAQ <b>resposta-primeiro</b> (a 1ª frase responde direto), atômica e citável sozinha; perguntas do Digisac (frescor).</td><td><span class="rt ia">IA</span> <span class="rt voz">Voz/PAA</span></td></tr>
+            <tr><td><b>Frescor = mais citação</b></td><td>No texto, datação <b>durável</b> ("desde [ano]"), sem "novo em 2024" que apodrece; "atualizado em"/dateModified é da página.</td><td><span class="rt ia">IA</span> <span class="rt seo">Google</span></td></tr>
+          </tbody>
+        </table></div>
       </div>
 
       <div class="card">

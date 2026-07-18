@@ -88,6 +88,9 @@ e sem esconder a ação.
   adjetivos. Nomear serviços, materiais e provas (ano de fundação, nº de obras,
   garantia, prazo).
 - **Localização natural:** cidade 1–2× + bairros/zonas reais. Nada de repetir por cota.
+- **Único e denso:** carregar fatos próprios do negócio (serviços, bairros, provas reais)
+  que tornem a descrição distinta — nunca um molde onde só muda nome e cidade (é o que o
+  Google desindexa em escala). A densidade de fato é o que sobrevive e o que a IA cita.
 - Escaneável: parágrafos curtos; no texto longo, subtítulos e listas.
 - Estrutura da descrição completa: Abertura (entidade + área + desde [ano] + público)
   → "O que fazemos" (lista de serviços: nome + o que resolve) → "Como trabalhamos"
@@ -109,6 +112,8 @@ e sem esconder a ação.
 
 - As perguntas vêm de dúvidas reais (Digisac) + perguntas padrão do nicho.
 - Resposta **ancorada em fato**; onde falta dado do cliente, marcar a lacuna com dono.
+- **Resposta-primeiro:** a 1ª frase responde direto à pergunta (é o que voz, IA e PAA
+  extraem); o detalhe vem depois. Cada resposta é autossuficiente e citável sozinha.
 - Formato pergunta-resposta atômico e direto; marcar com **FAQPage** no JSON-LD.
   O que a IA cita é o **conteúdo** limpo — a marcação ajuda o parsing; manter os dois.
 - Cobrir os eixos: prazo/duração · capacidade (o que resolve e o que não) ·
