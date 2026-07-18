@@ -1003,6 +1003,32 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
             <div class="sub" style="margin:12px 0 0">Fontes da conferência: schema.org (LocalBusiness, dateModified, HomeAndConstructionBusiness) · Google Search Central (dados estruturados de negócio local; mudanças de FAQ ago/2023) · diretrizes do Perfil de Empresa no Google (750/250, sem links) · limites: Instagram 150 · title ~60 · meta 140–160.</div>
           </div>
         </div>
+        <div style="margin-top:18px;border-top:1px solid var(--g150);padding-top:16px">
+          <p style="font-weight:800;margin-bottom:8px">✓ Os dois .MD (fontes abaixo) também foram auditados</p>
+          <div class="cols" style="gap:22px">
+            <div>
+              <p style="font-weight:800;font-size:13px;margin-bottom:6px;color:#06845a">Afirmações confirmadas em fontes públicas</p>
+              <ul class="clean">
+                <li><b>ChatGPT busca sobre o índice do Bing</b> (descoberta) + <b>OAI-SearchBot</b> complementa; bloqueá-lo te tira do ChatGPT Search. Nuance: o crawl próprio da OpenAI ~triplicou desde ago/2025 — o Bing segue pré-requisito, mas o índice próprio cresce.</li>
+                <li><b>Crawlers de IA não executam JavaScript</b> — estudo Vercel + MERJ (500 mi+ fetches do GPTBot, zero execução de JS): ChatGPT, Claude e Perplexity leem só o HTML cru → a "casca vazia" é real. Googlebot renderiza, com custo/fila — como o doc diz.</li>
+                <li><b>AI Performance do Bing Webmaster Tools</b>: lançado em 9/fev/2026 (public preview), citações por URL e consultas; em jun/2026 ganhou Intents, Topics e Citation Share — o doc acertou até o mês.</li>
+                <li><b>Velocidade ↔ citação</b>: estudo público — FCP &lt;0,4s ≈ 6,7 citações vs 2,1 nas lentas (~3× mais); TTFB &lt;200ms favorece. Compatível com o "&lt;0,4s muito mais; &gt;1,1s bem menos" do doc.</li>
+                <li><b>Conteúdo escalado quase-duplicado é o alvo nº 1</b>: política de "scaled content abuse" (mar/2024) + spam updates de 2025–2026 derrubando redes de páginas de localização que só trocam o nome da cidade — o diagnóstico do doc bate com a realidade.</li>
+                <li><b>Bots e IndexNow</b>: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot, PerplexityBot, ClaudeBot são UAs reais; IndexNow propaga ao Bing (Google não usa) ✓. WCAG 4,5:1 e toque ≥44px do doc de design conferem.</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-weight:800;font-size:13px;margin-bottom:6px;color:var(--brand-orange-deep)">Ressalvas registradas (não invalidam, mas precisam constar)</p>
+              <ul class="clean">
+                <li><b>Google-Extended não é um crawler</b>: é um token de robots.txt que controla treino/grounding do Gemini; não busca páginas (não aparece em log de acesso) e não afeta indexação nem AI Overviews. Manter liberado, mas tirá-lo da lista de "grep de log".</li>
+                <li><b>"94% × 23%"</b>: a direção é confirmada (JS é invisível para os crawlers de IA), mas os números exatos não foram localizados em fonte pública — tratar como estimativa ilustrativa, não como dado citável.</li>
+                <li><b>"lê ~20–30 páginas e cita ~15%"</b>: plausível e coerente com estudos do setor, porém sem fonte pública localizada — estimativa.</li>
+                <li><b>Números internos</b> (~17 mi perdidas, 45→28 mi, −10%/mês): não verificáveis externamente — dados do Search Console da Solutudo; coerentes entre si.</li>
+              </ul>
+              <div class="sub" style="margin:12px 0 0">Fontes da auditoria: Vercel/MERJ ("The rise of the AI crawler") · Bing Blogs (AI Performance, fev e jun/2026) · Google Search Central (spam policies / scaled content abuse) · Yoast e análises do setor (arquitetura do ChatGPT Search) · documentação do Google-Extended.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="card">

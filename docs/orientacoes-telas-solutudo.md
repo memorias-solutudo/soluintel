@@ -70,7 +70,8 @@ e sem esconder a ação.
 - `canonical` correto em toda página; sitemap segmentado (só o que importa);
   `noindex`/consolidar páginas-casca.
 - robots.txt liberado para: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot,
-  PerplexityBot, ClaudeBot, Google-Extended.
+  PerplexityBot, ClaudeBot, Google-Extended (este último é um token de controle
+  do Gemini, não um crawler — não aparece em logs de acesso).
 - Linkagem interna real: entidade → categoria/CNAE → empresas similares; nenhuma
   página importante pode ficar órfã.
 
