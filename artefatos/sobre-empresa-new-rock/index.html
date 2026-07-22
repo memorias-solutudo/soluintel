@@ -73,10 +73,8 @@
   /* ===== layout Descrição: 2 colunas ===== */
   .deslayout{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:24px;align-items:start}
   @media(max-width:1040px){.deslayout{grid-template-columns:1fr}}
-  .deslayout .right{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px 2px 8px;border-radius:var(--r-lg)}
-  .deslayout .right::-webkit-scrollbar{width:8px}
-  .deslayout .right::-webkit-scrollbar-thumb{background:var(--g200);border-radius:var(--pill)}
-  .deslayout .right::-webkit-scrollbar-track{background:transparent}
+  .deslayout .right{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px 2px 8px;border-radius:var(--r-lg);scrollbar-width:none;-ms-overflow-style:none}
+  .deslayout .right::-webkit-scrollbar{display:none}
   @media(max-width:1040px){.deslayout .right{position:static;max-height:none;overflow:visible}}
   .deslayout .right .card{margin-top:0}
   .deslayout .right .card::before{content:"";display:block;height:4px;border-radius:var(--pill);background:var(--grad-cta);margin:-4px 0 14px}
@@ -181,9 +179,8 @@
   /* ===== FAQ ===== */
   .faqlayout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px;align-items:start;margin-top:10px}
   @media(max-width:1040px){.faqlayout{grid-template-columns:1fr}}
-  .faqlayout .faqleft{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px}
-  .faqlayout .faqleft::-webkit-scrollbar{width:8px}
-  .faqlayout .faqleft::-webkit-scrollbar-thumb{background:var(--g200);border-radius:var(--pill)}
+  .faqlayout .faqleft{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain;padding:2px;scrollbar-width:none;-ms-overflow-style:none}
+  .faqlayout .faqleft::-webkit-scrollbar{display:none}
   @media(max-width:1040px){.faqlayout .faqleft{position:static;max-height:none;overflow:visible}}
   .faqlayout .statband{grid-template-columns:1fr;gap:10px;margin-bottom:16px}
   .faqlayout .stat{display:grid;grid-template-columns:96px 1fr;align-items:center;column-gap:16px}
