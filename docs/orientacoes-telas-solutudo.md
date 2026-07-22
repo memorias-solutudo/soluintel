@@ -102,11 +102,12 @@ e sem esconder a ação.
 | Canal | Regra |
 |---|---|
 | **Solutudo (Destaque)** | Descrição completa, com subtítulos e listas |
-| **Solusite** | Mesmo texto da Solutudo + título SEO (≤60) e meta description (≤155) |
+| **Solusite** | Mesma base de fatos, **narrativa própria** (V3 — não copiar o texto da Solutudo) + título SEO (≤60) e meta description (≤155) |
 | **Google Meu Negócio** | Até 750 caracteres com o **essencial nos ~250 primeiros**; factual; **sem URL, sem foco promocional**; telefone fica no campo do perfil |
 | **Instagram (bio)** | Até 150 caracteres, **com emojis** e quebras de linha (1 ideia por linha) |
 
-- Toda saída de conteúdo vem acompanhada do **JSON-LD pronto** para o HTML servido.
+- O **JSON-LD é gerado pela aplicação**, por código, a partir da mesma base de fatos
+  do texto — nunca pela LLM (V3).
 
 ## 10. FAQ nas telas
 
@@ -119,6 +120,8 @@ e sem esconder a ação.
 - Cobrir os eixos: prazo/duração · capacidade (o que resolve e o que não) ·
   diferenças entre serviços · uso do ambiente/logística · sujeira/incômodo ·
   materiais atendidos · região e deslocamento · orçamento · garantia · manutenção pós.
+- Publicar pergunta **só com resposta específica da empresa** — nunca a mesma lista
+  genérica replicada em milhares de páginas (V3).
 
 ## 11. Checklist de bolso — antes de entregar qualquer tela
 

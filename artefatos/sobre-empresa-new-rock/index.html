@@ -264,7 +264,7 @@
       <button id="t-faq" onclick="show('faq')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</button>
       <button id="t-index" onclick="show('index')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Indexação</button>
     </nav>
-    <span class="tb-right"><span class="upchip">Atualizado em 17/07/2026</span></span>
+    <span class="tb-right"><span class="upchip">Atualizado em 22/07/2026</span></span>
   </div>
 </header>
 
@@ -283,7 +283,7 @@
 
         <div class="sec first">
           <span class="eyebrow"><b>01</b>Comparativo</span>
-          <h2>Explicando a Descrição 2.0</h2>
+          <h2>Explicando a Descrição 3.0</h2>
           <p class="secsub">O texto atual e como ele poderia ser, lado a lado — cada marcação no próprio texto explica o porquê da mudança (passe o mouse).</p>
           <div class="madefor">Feito para:
             <span class="tg">Pessoas</span>
@@ -317,8 +317,8 @@
       </div>
 
       <div class="doc after">
-        <h3>● Como poderia ser (2.0) — versão site / "Sobre nós"</h3>
-        <span class="simbanner">Exemplo simulado · números ilustrativos a confirmar com o cliente</span>
+        <h3>● Como poderia ser (Descrição 3.0) — perfil Solutudo</h3>
+        <span class="simbanner">Exemplo simulado · números ilustrativos — NÃO PUBLICAR sem confirmação do cliente</span>
         <div class="ttl">Sobre a New Rock Expresso</div>
         <p>A New Rock Expresso é uma empresa especializada em <mark class="m-good" data-tip="Fato: o que a empresa faz, em termos reais — indexável por Google e IA.">lavagem, polimento, cristalização e restauração de mármores e granitos</mark>, com sede no Rio de Janeiro e atuação em <mark class="m-good" data-tip="Bairros reais ranqueiam a busca local e dizem à IA onde a empresa atende.">Zona Sul, Barra da Tijuca, Recreio e Tijuca</mark>. <mark class="m-good" data-tip="Ano real = prova de tempo de mercado (vira foundingDate no schema).">Desde 2014</mark>, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
 
@@ -474,139 +474,78 @@
         <div class="sec"><span class="eyebrow"><b>05</b>Prompt gerador</span></div>
         <div class="card promptcard">
       <button class="copybtn" onclick="copyPrompt(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar prompt</button>
-      <h3 class="t">Prompt gerador — Descrição 2.0 (genérico, qualquer empresa)</h3>
-      <div class="sub">O prompt exato que produz tudo acima a partir dos dados estruturados de <b>qualquer cliente</b> — sem citar empresa específica. Cole no seu fluxo de IA e alimente com o JSON da base canônica.</div>
+      <h3 class="t">Prompt gerador — Descrição 3.0 (V3 · genérico, qualquer arquétipo)</h3>
+      <div class="sub">Versão 3.0 — absorve a revisão externa auditada: a LLM recebe só <b>fatos aprovados</b> (confirmados + com direito de publicação + no escopo da unidade) e devolve só <b>prosa + relatório</b>. JSON-LD, contagens e indexação são da aplicação, por código. Módulos por arquétipo; nada é forçado sem fato.</div>
       <pre class="promptbox">PAPEL
-Você é o redator de "Sobre a Empresa" da Solutudo. A partir dos DADOS REAIS de um negócio
-local (qualquer segmento), produz a descrição institucional e suas versões por canal. O
-texto serve a dois leitores ao mesmo tempo: buscadores (SEO local) e modelos de IA que
-citam negócios. Não é copy genérica.
+Você redige o conteúdo factual dos perfis de empresas da Solutudo (Descrição 3.0).
+Transforma FATOS APROVADOS em texto útil para pessoas — legível também por buscadores
+e sistemas de IA. Você não completa lacunas e não inventa nada.
 
-REGRAS INQUEBRÁVEIS (verdade primeiro)
-- Use SOMENTE fatos da entrada com "confirmado": true. É proibido inventar anos, números,
-  prêmios, certificações, serviços, bairros ou diferenciais.
-- Cada afirmação deve ser sustentada por um fato; registre os ids em "fatos_usados".
-- Se faltar insumo, NÃO preencha com genérico ("qualidade, excelência, compromisso,
-  atenção aos detalhes"). Registre em "lacunas" o que falta e de quem é (nos | cliente).
-- Sem superlativos não comprovados ("melhor", "líder", "nº 1") e sem itens de
-  "claims_proibidos". Sem emoji (exceto na bio do Instagram). Português correto.
-- aggregateRating / nota só com avaliação REAL — nunca inventar (Google e IA detectam).
-
-PRINCÍPIOS (valem para SEO e IA ao mesmo tempo)
-- Entidade primeiro: a 1a frase diz, sem ambiguidade, O QUE a empresa é + categoria +
-  cidade/UF. Ex.: "A [Empresa] é [categoria] em [cidade]/[UF] ...".
-- Frases atômicas e autossuficientes (um fato por frase) — é assim que a IA extrai e cita.
-- Especificidade &gt; volume: 1 diferencial concreto e verificável vale mais que 3 adjetivos.
-- Localização natural (cidade + bairros/região), sem repetir por cota (nada de stuffing).
-- Escaneável: parágrafos curtos; no "Sobre" longo, use subtítulos e listas.
-- Compatível com schema.org/LocalBusiness: priorize fatos que mapeiam a propriedades
-  (nome, categoria, área atendida, fundação, serviços) — eles também alimentam o JSON-LD.
-- Único e denso (sobrevive à indexação): cada descrição carrega fatos ESPECÍFICOS do
-  negócio (serviços, bairros, provas reais) que a tornam distinta — nunca um molde onde só
-  muda nome e cidade. Conteúdo fino/quase-duplicado é o que o Google desindexa em escala;
-  densidade de fato próprio é o fosso que agregador de dado público não copia.
-- Extraível fora de contexto: a IA lê o HTML cru e cita frase a frase — cada frase ancora a
-  entidade ou é inequívoca sozinha. Categoria + cidade aparecem cedo (1a frase e nos ~250
-  primeiros caracteres) e no title/H1 — é o que o Bing (porta do ChatGPT) mais pondera.
-
-ENTRADA (JSON da base canônica do cliente)
+ENTRADA (da base canônica; todo fato tem envelope de governança)
 {
-  "empresa": "...", "categoria": "...", "cidade": "...", "uf": "...",
-  "area_atendida": ["bairros/regiões reais"],
-  "fundacao": "ano ou null",
-  "superficies_ou_aplicacoes": ["onde o serviço é aplicado: pisos, bancadas, fachadas..."],
-  "fatos": [ { "id", "campo", "valor", "origem", "confianca", "confirmado" } ],
-  "servicos": [ { "nome", "o_que_resolve", "preco_ou_faixa" } ],
-  "materiais_ou_produtos": ["..."],
-  "diferenciais": ["concretos: processo, equipamento, garantia, prazo, equipe própria..."],
-  "provas": ["tempo de mercado, nº de obras/clientes, prêmios, certificações..."],
-  "atendimento": ["orçamento, visita, prazo, formas de contato, proximidade..."],
-  "tom_de_marca": "...",
-  "claims_proibidos": ["..."]
+  "entity_id": "...", "location_id": "...",
+  "archetype": "prestador_area_atendimento | estabelecimento_fisico | restaurante |
+                profissional_regulado | industria_b2b | ecommerce_hibrido",
+  "facts": [ { "id", "field", "value", "source_type", "source_ref", "verified_at",
+               "valid_until", "confidence", "confirmed", "publication_allowed",
+               "location_scope" } ],
+  "claims_prohibited": ["..."], "compliance_tags": ["..."],
+  "channel_requirements": { ... }
 }
-Use apenas fatos com "confirmado": true. Onde faltar, gere lacuna em vez de inventar.
 
-TAREFA — gere UMA essência e as versões por canal, todas com a MESMA essência:
-- essencia: 2 a 4 frases (a verdade-núcleo reutilizável).
-- descricao_completa (Solutudo e Solusite usam o MESMO texto). Estrutura OBRIGATÓRIA,
-  nesta ordem e com estes subtítulos:
-  1) Abertura (1 parágrafo): entidade + categoria + cidade + área atendida + "desde [ano]".
-     Em seguida, na mesma abertura, diga o BENEFÍCIO entregue nas SUPERFÍCIES/APLICAÇÕES
-     reais (ex.: "devolvemos brilho, proteção e durabilidade a pisos, bancadas, fachadas...")
-     e para qual PÚBLICO (residências, comércios, condomínios).
-  2) Subtítulo "O que fazemos": cite materiais/produtos e traga uma LISTA de serviços —
-     cada item no formato "Nome do serviço: o que resolve" (1 linha por serviço).
-  3) Subtítulo "Como trabalhamos": descreva o PROCESSO/equipamento real e suas vantagens
-     práticas (ex.: menos poeira, uso no mesmo dia, sem obra suja — quando houver fato),
-     mencione a avaliação/visita (gratuita, se for o caso) antes do orçamento e o cuidado
-     com o material (sem produtos agressivos).
-  4) Subtítulo "Por que a [Empresa]": LISTA com 3 a 4 itens cobrindo, quando houver fato:
-     orçamento + prazo de visita; garantia/prazo + manutenção; equipe + prova social
-     (anos/obras); e atendimento/proximidade.
-  5) CTA (1 frase): curto e ESPECÍFICO ao serviço, citando 2–3 aplicações reais
-     (ex.: "renovar uma bancada, recuperar o piso da sala ou tratar a fachada").
-- google (Google Meu Negócio): até 750 caracteres; o ESSENCIAL nos ~250 primeiros (é o
-  que aparece antes do "Mais"); factual; SEM URL e SEM foco promocional (política do
-  Google); sem telefone (vai no campo próprio do perfil); o que é, o que oferece, onde atende.
-- instagram_bio: até 150 caracteres; COM emojis e quebras de linha (1 ideia por linha);
-  o que faz + cidade/bairros + 1 diferencial + chamada curta.
-- seo: title até 60 caracteres (benefício + cidade) e meta_description até 155 (factual,
-  com termo natural).
-- json_ld: gere o JSON-LD da empresa com o @type ESPECÍFICO da categoria (ex.: Restaurant,
-  Plumber, Dentist, GeneralContractor, HomeAndConstructionBusiness; fallback LocalBusiness),
-  com name, telephone (tel:), address, geo, openingHoursSpecification, areaServed e
-  foundingDate. dateModified NÃO vai no LocalBusiness: pertence ao nó WebPage do JSON-LD
-  (a página que contém a entidade). aggregateRating SÓ se houver avaliação real. O FAQ usa
-  um FAQPage à parte.
+REGRAS INQUEBRÁVEIS (verdade E direito de publicação)
+1. Use somente fatos com confirmed=true E publication_allowed=true E escopo compatível
+   com a unidade atual (location_scope). Fato verdadeiro sem direito de publicação NÃO entra.
+2. Toda afirmação lista os ids que a sustentam em fatos_usados.
+3. NÃO infira do CNPJ: CNAE não é serviço atual; data de abertura não é fundação;
+   endereço fiscal não é local de atendimento.
+4. Não invente números, bairros, preços, horários, certificações, avaliações, garantias,
+   especialidades, resultados ou diferenciais. Sem superlativos sem evidência aprovada.
+   Respeite claims_prohibited.
+5. Módulo sem fato útil é OMITIDO — nunca preenchido com genérico ("qualidade,
+   excelência, compromisso") — e vira lacuna com dono.
+6. Sinalize needs_human_review=true para setor regulado, conflito de fontes ou
+   alegação sensível.
+7. NÃO gere JSON-LD, HTML técnico, canonical, robots ou sitemap — isso a aplicação
+   gera por código, a partir dos mesmos fatos.
 
-EXEMPLO DE SAÍDA (formato de referência — empresa FICTÍCIA, não copie o conteúdo, só o formato):
-"descricao_completa":
-"A VerdeVivo Paisagismo é uma empresa de paisagismo e jardinagem em Campinas/SP, com
-atuação no Cambuí, Taquaral e Barão Geraldo. Desde 2016, criamos e mantemos jardins —
-canteiros, gramados, vasos e áreas externas — para residências, condomínios e empresas.
+ESTILO DA CASA (heurísticas editoriais assumidas — não são fatores oficiais de
+ranking; são o nosso padrão de clareza para pessoas, buscadores e IA)
+- Entidade primeiro: a 1ª frase diz o que a empresa é + categoria + cidade/UF.
+- Frases atômicas e autossuficientes: um fato por frase, sem "isso/aquilo".
+- Único e denso: fatos específicos DESTE negócio — nunca molde que só troca nome
+  e cidade (é o que buscador desindexa em escala).
+- Essencial no início: abertura, títulos e descrição do Google começam pelo que decide.
+- Localização natural (cidade 1–2x + bairros reais confirmados); sem repetição por cota.
+- Listas e subtítulos só quando ajudarem a leitura. "Desde [ano]" em vez de datas
+  que envelhecem.
 
-O que fazemos
-Cuidamos do jardim do projeto à manutenção:
-- Projeto paisagístico: planeja canteiros, espécies e iluminação.
-- Implantação: prepara o solo, planta e instala grama e forrações.
-- Manutenção mensal: poda, aduba, controla pragas e limpa.
-- Irrigação automatizada: instala e ajusta o sistema.
+MÓDULOS (montar conforme o archetype; nenhum é obrigatório sem fato útil)
+identidade · oferta · atendimento · processo · evidências · políticas · CTA factual
 
-Como trabalhamos
-Fazemos uma visita técnica gratuita para entender o espaço antes do orçamento e
-entregamos um plano com espécies adequadas ao clima da cidade. A manutenção segue um
-cronograma fixo, com a mesma equipe a cada visita.
+SAÍDAS
+- essencia: resumo factual reutilizável.
+- descricao_solutudo: { texto, modulos_incluidos } — perfil factual e comparável.
+- descricao_solusite: { pauta, texto } — MESMA base de fatos, narrativa própria de
+  primeira parte; não copiar o texto da Solutudo.
+- por_canal.google_business_profile: até 750 caracteres, essencial no início; sem URL,
+  promoção ou preço; telefone fica no campo próprio do perfil.
+- por_canal.instagram_bio: até 150 caracteres (a aplicação reconta).
+- seo.title (~50–60, alvo editorial) e seo.meta_description (~140–160, alvo editorial)
+  — o Google pode reescrever ambos.
+- fatos_usados: [ { claim, fact_ids } ]
+- lacunas: [ { campo, impacto, dono: "cliente | nos" } ]
+- claims_evitados · needs_human_review · review_reasons
 
-Por que a VerdeVivo
-- Orçamento sem custo e visita técnica em até 48h.
-- Contrato de manutenção mensal com cronograma e relatório por visita.
-- Equipe própria, com mais de 8 anos de experiência e mais de 300 jardins entregues.
-- Atendimento próximo, com soluções sob medida para cada espaço.
+FORMATO
+Responda SOMENTE com JSON válido conforme o contrato de saída da aplicação.
 
-Precisa criar um jardim do zero, renovar canteiros ou manter a área externa do condomínio?
-Fale com a VerdeVivo e agende sua visita gratuita."
-
-ENTREGA (técnico, inegociável): o texto e o JSON-LD vão no HTML SERVIDO (server-rendered),
-nunca injetados por JS — senão Google e o ChatGPT leem uma casca vazia. Texto é texto real
-(não imagem); telefone e WhatsApp clicáveis (tel: / wa.me), sempre visíveis.
-
-SAÍDA — responda SOMENTE com JSON válido neste formato:
-{
-  "essencia": "...",
-  "descricao_completa": "...(texto com subtítulos e listas)...",
-  "por_canal": {
-    "google": { "texto": "...", "caracteres": N },
-    "instagram_bio": { "texto": "...", "caracteres": N }
-  },
-  "seo": { "title": "...", "meta_description": "..." },
-  "json_ld": { "@type": "tipo específico ou LocalBusiness", "name": "...", "telephone": "...", "address": {}, "areaServed": [], "foundingDate": "..." },
-  "json_ld_webpage": { "@type": "WebPage", "dateModified": "..." },
-  "fatos_usados": ["..."],
-  "lacunas": [ { "o_que": "...", "dono": "cliente | nos" } ],
-  "claims_evitados": ["..."]
-}</pre>
+VALIDAÇÃO POSTERIOR (da aplicação, não sua): schema fechado; recontagem de caracteres
+em código; fact_ids existentes, publicáveis e no escopo; detector de nomes/números/
+localidades fora dos fatos; similaridade anti-molde entre páginas; revisão humana
+quando marcada. Só depois disso a página passa pelo gate de indexabilidade.</pre>
       <details class="testbox" open>
-        <summary>Prova: saída do prompt rodado com a New Rock (confere com o de cima)</summary>
+        <summary>Prova (gerada na V2 com a New Rock — a prosa Solutudo permanece válida na V3; o contrato de saída mudou: sem json_ld, com needs_human_review e pauta própria do Solusite)</summary>
         <div class="tb">ENTRADA (base canônica · números simulados, a confirmar com o cliente):
 { "empresa":"New Rock Expresso",
   "categoria":"Lavagem e polimento de mármores e granitos",
@@ -696,11 +635,38 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
       </details>
     </div>
 
+        <div class="sec"><span class="eyebrow"><b>06</b>Da 2.0 → 3.0</span></div>
+        <div class="card">
+          <span class="badge purple">V3 · revisão externa (spec 2.1) auditada e absorvida</span>
+          <h3 class="t" style="margin-top:8px">O que muda da Descrição 2.0 para a 3.0</h3>
+          <div class="sub">A spec 2.1 (revisão do ChatGPT) foi auditada afirmação por afirmação contra fontes oficiais — o que passou entrou na V3; o que era decisão de produto está marcado. A prosa da descrição (comparativo acima) permanece: a V3 muda a <b>governança em volta</b> dela.</div>
+          <div class="tablewrap"><table>
+            <thead><tr><th>Tema</th><th>V2 (anterior)</th><th>V3 (agora)</th></tr></thead>
+            <tbody>
+              <tr><td><b>Fato publicável</b></td><td><code>confirmado: true</code> bastava</td><td>+ <code>publication_allowed</code> (direito de uso/LGPD) + <code>location_scope</code> por unidade + validade — fato verdadeiro sem direito de publicação não entra</td></tr>
+              <tr><td><b>CNPJ / Receita</b></td><td>Tratado como fato confirmado</td><td>Vira <b>pista cadastral</b>: CNAE ≠ serviço atual · abertura ≠ fundação · endereço fiscal ≠ local de atendimento</td></tr>
+              <tr><td><b>Google Places</b></td><td>Fonte do enriquecimento automático</td><td><b>Bloqueado por padrão</b> — os termos do Maps proíbem alimentar diretório; libera só com parecer jurídico</td></tr>
+              <tr><td><b>JSON-LD</b></td><td>A LLM emitia <code>json_ld</code> na saída</td><td>Gerado <b>por código</b> pela aplicação (grafo WebPage + negócio, mesmos fatos da página); a LLM só escreve prosa + relatório</td></tr>
+              <tr><td><b>Estrutura do texto</b></td><td>5 blocos obrigatórios (moldados p/ prestador de serviço)</td><td><b>Módulos por arquétipo</b> (6 tipos: prestador, loja, restaurante, regulado, B2B, e-commerce); módulo sem fato é omitido</td></tr>
+              <tr><td><b>Solusite</b></td><td>Mesmo texto da Solutudo</td><td>Mesma base de fatos, <b>narrativa própria</b> (texto idêntico em 2 domínios compete consigo) — <b>reversão de decisão anterior, a validar</b></td></tr>
+              <tr><td><b>aggregateRating</b></td><td>"Só com avaliação real"</td><td>Só avaliações <b>nativas da Solutudo</b>, visíveis e ligadas à unidade; não remarcar nota do Google/terceiros. <b>Novo (verificação):</b> no Solusite do cliente, não marcar aggregateRating de si mesmo (review <i>self-serving</i> é inelegível — regra Google 2019)</td></tr>
+              <tr><td><b>Regra × heurística</b></td><td>Tudo apresentado como regra</td><td>3 níveis: <b>obrigatório</b> (política/integridade) · <b>recomendado</b> · <b>estilo da casa</b> (atômicas, essencial-no-início, resposta-primeiro = heurísticas assumidas, não fatores oficiais)</td></tr>
+              <tr><td><b>Números observacionais</b></td><td>94%×23% e FCP↔citação como argumento</td><td>Rotulados como <b>estimativa</b>; a meta oficial de velocidade vira Core Web Vitals (LCP ≤2,5s · INP ≤200ms · CLS ≤0,1)</td></tr>
+              <tr><td><b>FAQ</b></td><td>Base do nicho como ponto de partida</td><td>Pauta do nicho OK, mas publica <b>só com resposta específica da empresa</b> — nunca a mesma lista genérica em milhares de páginas</td></tr>
+              <tr><td><b>Exemplo New Rock</b></td><td>Parecia pronto para publicar</td><td>Simulação explícita — <b>não publicar sem confirmar</b>; testes automatizados usam fixtures "DADOS FICTÍCIOS"</td></tr>
+              <tr><td><b>Gate de publicação</b></td><td>Densidade de fatos</td><td><b>Utilidade decisória</b> + condições duras (direito de publicar, contato válido, entidade resolvida) — mesmo gate para gratuito e pago</td></tr>
+            </tbody>
+          </table></div>
+          <p style="font-weight:800;margin:14px 0 6px">O que NÃO mudou (o coração da 2.0 sobrevive)</p>
+          <div class="sub" style="margin-bottom:0">Verdade primeiro e lacuna com dono · entidade primeiro · único e denso (anti-molde) · Google ≤750 com essencial no início · Instagram ≤150 · sem stuffing de localização · FAQ ancorado em fato · server-render como baseline da página.</div>
+          <div class="sub" id="v3-verif" style="margin:12px 0 0"><b>Verificação independente da spec 2.1 (22/07/2026 · 9 agentes · fontes oficiais): 8 confirmadas, 1 nuance, 0 refutadas.</b> Confirmado: termos do Maps proíbem "listings or directory service" (§3.2.3 — sustenta o bloqueio do Places) · bots OpenAI (OAI-SearchBot/GPTBot/ChatGPT-User) e Anthropic (ClaudeBot/Claude-SearchBot/Claude-User) com papéis independentes — bloquear GPTBot não tira da busca do ChatGPT · Google "AI features": sem marcação especial, llms.txt sem efeito · ranking local = relevância + distância + proeminência · IndexNow sem o Google · CWV oficiais (LCP 2,5s · INP 200ms · CLS 0,1) · endereço físico obrigatório no rich result de LocalBusiness. <b>A nuance virou regra nova:</b> além de só 1ª parte, o Google torna inelegíveis reviews <i>self-serving</i> (empresa marcando avaliação de si no próprio site, regra de 2019). Efeito prático: a página Solutudo (plataforma avaliando terceiros) <b>é elegível</b> ao aggregateRating; o <b>Solusite do cliente não deve marcar</b> aggregateRating de si mesmo — pode exibir as avaliações, sem markup.</div>
+        </div>
+
       </div>
       <div class="right">
         <div class="card">
       <h3 class="t">Versão final por canal</h3>
-      <div class="sub">Um "Sobre" → várias saídas, mesma essência adaptada por canal (resolve o item de Consistência). Por padrão, a versão Solutudo; alterne nos demais. Exemplo simulado.</div>
+      <div class="sub">Uma base de fatos → várias saídas (V3): mesma essência; forma — e, no Solusite, também o texto — adaptados por canal. Por padrão, a versão Solutudo. Exemplo simulado — não publicar sem confirmar.</div>
       <div class="chseg">
         <button class="on" onclick="ch('sol',this)">Solutudo</button>
         <button onclick="ch('site',this)">Solusite</button>
@@ -734,36 +700,22 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         </ul>
 
         <p class="cta">Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita. →</p>
-        <div class="chmeta">Mesmo texto usado no Solusite.</div>
+        <div class="chmeta"><b>V3:</b> o Solusite usa a MESMA base de fatos com narrativa própria — alterne na aba Solusite para ver.</div>
       </div>
 
       <div class="chpanel" data-ch="site">
         <button class="copybtn" onclick="copyCh(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar texto</button>
-        <div class="chtt">Solusite · mesma descrição da Solutudo</div>
-        <p>A New Rock Expresso é uma empresa especializada em lavagem, polimento, cristalização e restauração de mármores e granitos, com sede no Rio de Janeiro e atuação em Zona Sul, Barra da Tijuca, Recreio e Tijuca. Desde 2014, devolvemos brilho, proteção e durabilidade a pisos, bancadas, escadas, soleiras e fachadas de pedra — em residências, comércios e condomínios.</p>
+        <div class="chtt">Solusite · narrativa própria (V3) — mesma base de fatos</div>
+        <p><b>Pedra boa é pedra cuidada.</b> Desde 2014, a New Rock Expresso devolve o brilho de mármores e granitos no Rio de Janeiro — da bancada da cozinha ao piso do hall do condomínio. Somos uma equipe própria e treinada, com mais de 10 anos de estrada e mais de 1.200 obras entregues na Zona Sul, Barra da Tijuca, Recreio e Tijuca.</p>
 
-        <h5>O que fazemos</h5>
-        <p>Trabalhamos com os principais materiais do mercado — mármore, granito, quartzo, porcelanato e granilite — aplicando o método certo para cada pedra:</p>
-        <ul class="svc">
-          <li><b>Polimento e lustro:</b> recupera o brilho original, remove riscos superficiais e marcas de uso.</li>
-          <li><b>Cristalização:</b> cria uma camada de proteção que prolonga o brilho e facilita a limpeza.</li>
-          <li><b>Impermeabilização:</b> reduz a porosidade e protege contra manchas de água, óleo e vinho.</li>
-          <li><b>Restauração:</b> corrige desgaste, manchas profundas, juntas abertas e pequenas quebras.</li>
-        </ul>
+        <h5>Nosso jeito de trabalhar</h5>
+        <p>Toda pedra conta uma história de uso — riscos, manchas, opacidade. Por isso o trabalho começa com uma avaliação técnica gratuita: entendemos o material (mármore, granito, quartzo, porcelanato ou granilite) e indicamos o tratamento certo — polimento e lustro, cristalização, impermeabilização ou restauração. Usamos polimento a seco com discos diamantados: menos poeira, sem obra suja e, na maioria dos casos, o ambiente liberado no mesmo dia.</p>
 
-        <h5>Como trabalhamos</h5>
-        <p>Usamos polimento a seco com discos diamantados, o que reduz a poeira e, na maioria dos casos, permite usar o ambiente no mesmo dia, sem obra suja. Antes de qualquer orçamento, fazemos uma avaliação técnica gratuita da superfície para definir o tratamento adequado e o resultado esperado — sempre respeitando o material, sem produtos agressivos.</p>
+        <h5>Compromisso com o resultado</h5>
+        <p>Entregamos com garantia de 6 meses e um guia de manutenção para o brilho durar. Visita técnica em até 24h, orçamento sem custo e atendimento próximo, região a região.</p>
 
-        <h5>Por que a New Rock</h5>
-        <ul class="svc">
-          <li><b>Orçamento sem custo</b> e visita técnica em até 24h.</li>
-          <li><b>Garantia de 6 meses</b> no resultado, com guia de manutenção para prolongar o brilho.</li>
-          <li><b>Equipe própria e treinada</b>, com mais de 10 anos de experiência e +1.200 obras realizadas no Rio.</li>
-          <li>Atendimento rápido pela proximidade regional, com soluções sob medida para cada imóvel.</li>
-        </ul>
-
-        <p class="cta">Precisa renovar uma bancada, recuperar o piso da sala ou tratar o mármore do hall do condomínio? Fale com a New Rock Expresso e agende sua avaliação gratuita. →</p>
-        <div class="chmeta"><b>Título SEO (≤60):</b> Polimento de Mármore e Granito no Rio de Janeiro | New Rock<br><b>Meta description (≤155):</b> Polimento, cristalização e restauração de mármores e granitos no Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e garantia de 6 meses.</div>
+        <p class="cta">Quer renovar a bancada, a escada ou a fachada? Fale com a New Rock e agende sua avaliação gratuita. →</p>
+        <div class="chmeta"><b>V3 — por que o texto mudou:</b> texto idêntico em dois domínios faz o buscador escolher só um; o Solusite agora é narrativa de primeira parte com a mesma base de fatos.<br><b>Título SEO (≤60):</b> Polimento de Mármore e Granito no Rio de Janeiro | New Rock<br><b>Meta description (≤155):</b> Polimento, cristalização e restauração de mármores e granitos no Rio — Zona Sul, Barra e Tijuca. Avaliação grátis e garantia de 6 meses.</div>
       </div>
 
       <div class="chpanel" data-ch="goo">

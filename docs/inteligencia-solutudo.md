@@ -13,6 +13,12 @@ duas vezes.
 
 ## Card — Sobre a Empresa 2.0
 
+> **Atualização 22/07/2026:** evoluída para a **Descrição 3.0** — ver
+> `docs/descricao-empresa-3-0.md` e o artefato (card "Da 2.0 → 3.0"). Muda a
+> governança (envelope de fatos com direito de publicação, arquétipos, JSON-LD
+> pela aplicação, Solusite com narrativa própria); os princípios editoriais abaixo
+> permanecem.
+
 **O que é:** prompt de geração do "Sobre a Empresa" desenhado para o nosso schema.
 Lê os fatos confirmados da base, escreve um "Sobre" canônico (a essência) e já
 entrega as variações por canal — **Solutudo, Solusite, Google Meu Negócio** — e a

@@ -1,5 +1,9 @@
 # Descrição da Empresa 2.0 — Dossiê completo para validação
 
+> **⚠ Substituída pela [Descrição 3.0](descricao-empresa-3-0.md) em 22/07/2026** —
+> após auditoria da revisão externa (spec 2.1). Este arquivo permanece como registro
+> histórico e detalhe editorial; as regras vigentes são as da 3.0.
+
 **Objetivo deste documento:** reunir num único lugar TUDO o que foi levantado, definido,
 conferido e corrigido sobre a nova "Descrição da Empresa" (e o FAQ que a acompanha),
 para validação externa antes de implementar na **página de detalhe de empresas
