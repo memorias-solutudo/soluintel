@@ -1273,7 +1273,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
       <div class="card">
         <span class="badge ok">Caso real nº 1 · cliente free · sem contato com o dono</span>
         <h3 class="t" style="margin-top:8px">Cantinho da Pizza — Pizzaria Delivery · Botucatu/SP</h3>
-        <div class="sub">Varredura em 22/07/2026, <b>sem dados do Google Maps/Places</b> (bloqueado por regra própria). Fontes: cadastro Solutudo, base oficial de CEP, Instagram e Facebook da empresa, e agregadores como corroboração (iFood, cardapio.menu, RestaurantGuru, TripAdvisor, BenditoGuia). Nota honesta: a própria página da Solutudo <b>não pôde ser lida por robô</b> (bloqueio/JS) — evidência viva do problema de leitura por máquina que este projeto ataca.</div>
+        <div class="sub">Varredura em 22/07/2026, <b>sem dados do Google Maps/Places</b> (bloqueado por regra própria). <b>Proveniência exata:</b> todos os fatos abaixo vêm de <b>snippets do índice de busca</b> + cadastro Solutudo + base oficial de CEP. A leitura direta das páginas (Instagram, Facebook, iFood, aiqfome, cardapio.menu) <b>não foi possível nesta sessão</b> — e a causa, verificada no proxy, foi a <b>política de egresso do ambiente</b> que hospeda este artefato, <b>não</b> um bloqueio dos sites. Portanto: Instagram e Facebook entram aqui como <b>canal confirmado por busca</b>, não como conteúdo lido; e o que está nessas páginas segue sendo material a coletar.</div>
 
         <p style="font-weight:800;margin:14px 0 6px">1 · A base de fatos coletada (envelope 3.0)</p>
         <div class="tablewrap"><table>
@@ -1286,7 +1286,8 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
             <tr><td><b>hours</b></td><td>Todos os dias, a partir das 18h</td><td>cadastro Solutudo</td><td><span class="st par">confirmado · volátil (reverificar)</span></td></tr>
             <tr><td><b>service (oferta)</b></td><td>Pizzas · esfihas · calzones</td><td>Solutudo + 2 agregadores (3 fontes)</td><td><span class="st ok">confirmado · publicável</span></td></tr>
             <tr><td><b>process</b></td><td>Pizzas assadas em <b>forno a lenha</b></td><td>logo da própria marca (foto no TripAdvisor) + avaliações</td><td><span class="st ok">confirmado · publicável</span></td></tr>
-            <tr><td><b>differentiator</b></td><td>Pizza tamanho <b>"big"</b> (gigante)</td><td>cardapio.menu + RestaurantGuru (2 fontes)</td><td><span class="st par">confiança média · entra com cautela</span></td></tr>
+            <tr><td><b>differentiator</b></td><td>Pizza <b>big, de 16 fatias</b></td><td>cardapio.menu + iFood (2 fontes independentes)</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>service_area</b></td><td>Entrega em <b>~40 bairros</b> de Botucatu (Centro, Vila Padovan, Rubião Júnior, Jd. Paraíso, Vila dos Lavradores…)</td><td>área de entrega declarada pela própria empresa na plataforma (iFood)</td><td><span class="st ok">confirmado · publicável</span></td></tr>
             <tr><td><b>presence</b></td><td>@cantinhodapizzabotucatu (Instagram) · página no Facebook</td><td>canais próprios da empresa</td><td><span class="st ok">confirmado · publicável</span></td></tr>
             <tr><td><b>rating 4,3 (180 aval.)</b></td><td>RestaurantGuru</td><td>avaliação de terceiro</td><td><span class="st no">NÃO usa — regra: só avaliação nativa</span></td></tr>
           </tbody>
@@ -1306,9 +1307,9 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
             <h3>● Descrição 3.0 (gerada só com fatos rastreáveis)</h3>
             <span class="simbanner">Gerada de fontes públicas · publicar após needs_human_review (bairro)</span>
             <div class="ttl">Cantinho da Pizza</div>
-            <p>O Cantinho da Pizza é uma pizzaria de <mark class="m-good" data-tip="Categoria real do cadastro + iFood.">delivery e retirada</mark> em Botucatu/SP, no bairro <mark class="m-good" data-tip="Bairro corrigido pela base oficial de CEP (18607-710 = Vila Padovan).">Vila Padovan</mark>. O cardápio reúne <mark class="m-good" data-tip="Oferta confirmada em 3 fontes (Solutudo + 2 agregadores).">pizzas, esfihas e calzones</mark>. As pizzas são assadas em <mark class="m-good" data-tip="Diferencial declarado no próprio logo da marca e citado nas avaliações.">forno a lenha</mark> e chegam a tamanhos grandes — até a versão <mark class="m-good" data-tip="Especialidade citada por 2 agregadores independentes; tamanho exato (16 fatias) fica como lacuna a confirmar.">big</mark>.</p>
+            <p>O Cantinho da Pizza é uma pizzaria de <mark class="m-good" data-tip="Categoria real do cadastro + iFood.">delivery e retirada</mark> em Botucatu/SP, no bairro <mark class="m-good" data-tip="Bairro corrigido pela base oficial de CEP (18607-710 = Vila Padovan).">Vila Padovan</mark>. O cardápio reúne <mark class="m-good" data-tip="Oferta confirmada em 3 fontes (Solutudo + 2 agregadores).">pizzas, esfihas e calzones</mark>. As pizzas são assadas em <mark class="m-good" data-tip="Diferencial declarado no próprio logo da marca e citado nas avaliações.">forno a lenha</mark> e chegam a tamanhos grandes — até a <mark class="m-good" data-tip="Confirmado em 2 fontes independentes (cardapio.menu e iFood): a big tem 16 fatias.">big, de 16 fatias</mark>.</p>
             <h5>Atendimento</h5>
-            <p>Aberto <mark class="m-good" data-tip="Horário do cadastro Solutudo — dado volátil, marcado para reverificação periódica.">todos os dias, a partir das 18h</mark>. Os pedidos saem da Rua Coronel José Vitoriano Villas Boas, 1122, para entrega em Botucatu — ou para retirada no local.</p>
+            <p>Aberto <mark class="m-good" data-tip="Horário do cadastro Solutudo — dado volátil, marcado para reverificação periódica.">todos os dias, a partir das 18h</mark>. Os pedidos saem da Rua Coronel José Vitoriano Villas Boas, 1122, para retirada no local ou entrega em <mark class="m-good" data-tip="Área de entrega declarada pela empresa na plataforma: ~40 bairros de Botucatu.">boa parte de Botucatu</mark> — do Centro e da Vila Padovan a bairros como Rubião Júnior, Jardim Paraíso e Vila dos Lavradores.</p>
             <h5>Pedidos</h5>
             <p>WhatsApp <mark class="m-good" data-tip="WhatsApp confirmado em fonte pública (BenditoGuia) + telefones do cadastro.">(14) 99664-9118</mark> · telefones (14) 3354-1060 e (14) 99764-8005. A pizzaria também publica o cardápio e as novidades no Instagram <mark class="m-good" data-tip="Canal próprio da empresa, ativo.">@cantinhodapizzabotucatu</mark>.</p>
             <p class="cta">Quer pizza de forno a lenha hoje? Chame no WhatsApp e peça a sua. →</p>
@@ -1329,9 +1330,8 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <thead><tr><th>Lacuna</th><th>Impacto</th><th>Dono</th></tr></thead>
           <tbody>
             <tr><td>Ano de fundação ("desde…")</td><td>Prova de tempo de mercado + foundingDate</td><td>cliente</td></tr>
-            <tr><td>Tamanhos e nº de fatias da big (16?)</td><td>Diferencial vira fato citável</td><td>cliente</td></tr>
-            <tr><td>Sabores/cardápio (e a linha "batata recheada"?)</td><td>Cauda longa real de busca</td><td>cliente</td></tr>
-            <tr><td>Área e taxa de entrega por bairro</td><td>Intenção local ("entrega no [bairro]?")</td><td>cliente</td></tr>
+                        <tr><td>Sabores/cardápio (e a linha "batata recheada"?)</td><td>Cauda longa real de busca</td><td>cliente</td></tr>
+            <tr><td><b>Taxa</b> de entrega por bairro <span class="st par">área já resolvida</span></td><td>Completa a informação de entrega</td><td>cliente</td></tr>
             <tr><td>Formas de pagamento e horário de fechamento</td><td>Decisão de pedido</td><td>cliente</td></tr>
             <tr><td>Correção do bairro no cadastro (Centro → Vila Padovan)</td><td>NAP consistente</td><td><b>nós</b></td></tr>
           </tbody>
@@ -1348,6 +1348,13 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <div class="ck"><span class="cic">✓</span><span>"Botucatu" 2× no corpo — sem stuffing</span></div>
           <div class="ck"><span class="cic">✓</span><span>Canais não contratados omitidos (gating free)</span></div>
         </div>
+        <p style="font-weight:800;margin:16px 0 6px">7 · Segunda rodada de varredura (22/07, após revisão) — o que ainda deu para achar</p>
+        <ul class="clean">
+          <li><b>Resolvidas 2 lacunas:</b> a <b>big tem 16 fatias</b> (2 fontes independentes) e a <b>área de entrega cobre ~40 bairros</b> de Botucatu (declarada pela empresa na plataforma de delivery) — ambas entraram no texto.</li>
+          <li><b>Correção de um erro nosso (registrada por transparência):</b> numa primeira leitura, atribuímos os 403 a "os sites bloqueiam robôs" e chegamos a escrever que varrer a web não funcionaria. <b>Errado</b> — o teste com navegador mostrou que os bloqueios vinham da <b>política de rede do ambiente desta sessão</b> (o proxy registra "gateway answered 403 to CONNECT" para os mesmos hosts). Nada se pode concluir daqui sobre a leitura dessas fontes em produção; isso é questão dos termos de cada plataforma, a testar em ambiente próprio. Deixamos o erro registrado porque é exatamente a falha que a 3.0 existe para evitar: <b>afirmar causa sem prova</b>.</li>
+          <li><b>Ainda inacessível:</b> preços, formas de pagamento, horário de fechamento, lista de sabores e ano de fundação — seguem como lacunas do dono.</li>
+        </ul>
+
         <div class="sub" style="margin:14px 0 0"><b>Veredito do caso:</b> mesmo no pior cenário (free, dono nunca contatado), a 3.0 produziu um perfil útil, único e denso — bairro correto, forno a lenha, big, WhatsApp clicável — usando só fato rastreável. As 6 lacunas são o roteiro exato da primeira conversa com o dono.</div>
       </div>
 
