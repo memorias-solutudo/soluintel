@@ -263,6 +263,7 @@
       <button id="t-desc" class="on" onclick="show('desc')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Descrição</button>
       <button id="t-faq" onclick="show('faq')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</button>
       <button id="t-index" onclick="show('index')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Indexação</button>
+      <button id="t-emp" onclick="show('emp')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Empresas 3.0</button>
     </nav>
     <span class="tb-right"><span class="upchip">Atualizado em 22/07/2026</span></span>
   </div>
@@ -1259,6 +1260,100 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     </div>
   </section>
 
+  <!-- ===================== EMPRESAS 3.0 ===================== -->
+  <section id="p-emp" class="panel">
+    <div class="idxwrap">
+
+      <div class="lead">
+        <span class="badge purple">3.0 em produção · casos reais</span>
+        <h2>Empresas analisadas com a Descrição 3.0</h2>
+        <p>O pipeline completo rodado em empresas reais da base: <b>varredura de fontes públicas → base de fatos com proveniência → prompt 3.0 → saídas validadas</b>. Começamos pelo cenário mais difícil: cliente free, sem nenhum contato com o dono. Tudo abaixo é rastreável — cada fato tem fonte, e o que não tem vira lacuna, nunca invenção.</p>
+      </div>
+
+      <div class="card">
+        <span class="badge ok">Caso real nº 1 · cliente free · sem contato com o dono</span>
+        <h3 class="t" style="margin-top:8px">Cantinho da Pizza — Pizzaria Delivery · Botucatu/SP</h3>
+        <div class="sub">Varredura em 22/07/2026, <b>sem dados do Google Maps/Places</b> (bloqueado por regra própria). Fontes: cadastro Solutudo, base oficial de CEP, Instagram e Facebook da empresa, e agregadores como corroboração (iFood, cardapio.menu, RestaurantGuru, TripAdvisor, BenditoGuia). Nota honesta: a própria página da Solutudo <b>não pôde ser lida por robô</b> (bloqueio/JS) — evidência viva do problema de leitura por máquina que este projeto ataca.</div>
+
+        <p style="font-weight:800;margin:14px 0 6px">1 · A base de fatos coletada (envelope 3.0)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Fato</th><th>Valor</th><th>Fonte (proveniência)</th><th>Envelope</th></tr></thead>
+          <tbody>
+            <tr><td><b>name</b></td><td>Cantinho da Pizza</td><td>Solutudo + Instagram/Facebook próprios</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>category</b></td><td>Pizzaria (delivery e retirada)</td><td>Solutudo (categoria) + iFood</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>address</b></td><td>R. Cel. José Vitoriano Villas Boas, 1122 — <b>Vila Padovan</b> — CEP 18607-710</td><td>Solutudo (rua/nº/CEP) + <b>base oficial de CEP</b> (bairro)</td><td><span class="st par">confirmado c/ correção</span></td></tr>
+            <tr><td><b>phone / whatsapp</b></td><td>(14) 3354-1060 · (14) 99764-8005 · WhatsApp (14) 99664-9118</td><td>Solutudo + BenditoGuia (WhatsApp)</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>hours</b></td><td>Todos os dias, a partir das 18h</td><td>cadastro Solutudo</td><td><span class="st par">confirmado · volátil (reverificar)</span></td></tr>
+            <tr><td><b>service (oferta)</b></td><td>Pizzas · esfihas · calzones</td><td>Solutudo + 2 agregadores (3 fontes)</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>process</b></td><td>Pizzas assadas em <b>forno a lenha</b></td><td>logo da própria marca (foto no TripAdvisor) + avaliações</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>differentiator</b></td><td>Pizza tamanho <b>"big"</b> (gigante)</td><td>cardapio.menu + RestaurantGuru (2 fontes)</td><td><span class="st par">confiança média · entra com cautela</span></td></tr>
+            <tr><td><b>presence</b></td><td>@cantinhodapizzabotucatu (Instagram) · página no Facebook</td><td>canais próprios da empresa</td><td><span class="st ok">confirmado · publicável</span></td></tr>
+            <tr><td><b>rating 4,3 (180 aval.)</b></td><td>RestaurantGuru</td><td>avaliação de terceiro</td><td><span class="st no">NÃO usa — regra: só avaliação nativa</span></td></tr>
+          </tbody>
+        </table></div>
+
+        <p style="font-weight:800;margin:16px 0 6px">2 · Conflito de fontes detectado (e é por isso que existe needs_human_review)</p>
+        <div class="sub" style="margin-bottom:0">O cadastro Solutudo diz bairro <b>"Centro"</b>; iFood e BenditoGuia dizem <b>"Vila Padovan"</b>. A base oficial de CEP resolve: a rua cruza os dois bairros e o <b>CEP 18607-710 (trecho do nº 1062 ao fim) pertence à Vila Padovan</b> — o nº 1122 está nele. A 3.0 usa o bairro correto no texto e marca <code>needs_human_review=true</code> com a correção cadastral sugerida. <b>O pipeline corrigiu um erro do cadastro atual.</b></div>
+
+        <p style="font-weight:800;margin:16px 0 6px">3 · Cadastro atual × Descrição 3.0</p>
+        <div class="cols">
+          <div class="doc before">
+            <h3>● O que a página tem hoje</h3>
+            <p style="margin-top:12px">Dados cadastrais soltos: nome, categoria, endereço (com bairro <mark class="m-bad" data-tip="Bairro incorreto no cadastro: o CEP 18607-710 pertence à Vila Padovan (base oficial de CEP).">Centro</mark>), telefones, "aberto todos os dias a partir das 18h" e a lista "Pizzas, Esfirras, Calzones".</p>
+            <p>Sem descrição própria, sem o diferencial do <b>forno a lenha</b>, sem a pizza big, sem link para os canais da empresa — e servida de um jeito que <mark class="m-bad" data-tip="A página retornou bloqueio/casca para leitura por robô — o conteúdo não é extraível por buscador/IA.">robô nenhum consegue ler</mark>.</p>
+          </div>
+          <div class="doc after">
+            <h3>● Descrição 3.0 (gerada só com fatos rastreáveis)</h3>
+            <span class="simbanner">Gerada de fontes públicas · publicar após needs_human_review (bairro)</span>
+            <div class="ttl">Cantinho da Pizza</div>
+            <p>O Cantinho da Pizza é uma pizzaria de <mark class="m-good" data-tip="Categoria real do cadastro + iFood.">delivery e retirada</mark> em Botucatu/SP, no bairro <mark class="m-good" data-tip="Bairro corrigido pela base oficial de CEP (18607-710 = Vila Padovan).">Vila Padovan</mark>. O cardápio reúne <mark class="m-good" data-tip="Oferta confirmada em 3 fontes (Solutudo + 2 agregadores).">pizzas, esfihas e calzones</mark>. As pizzas são assadas em <mark class="m-good" data-tip="Diferencial declarado no próprio logo da marca e citado nas avaliações.">forno a lenha</mark> e chegam a tamanhos grandes — até a versão <mark class="m-good" data-tip="Especialidade citada por 2 agregadores independentes; tamanho exato (16 fatias) fica como lacuna a confirmar.">big</mark>.</p>
+            <h5>Atendimento</h5>
+            <p>Aberto <mark class="m-good" data-tip="Horário do cadastro Solutudo — dado volátil, marcado para reverificação periódica.">todos os dias, a partir das 18h</mark>. Os pedidos saem da Rua Coronel José Vitoriano Villas Boas, 1122, para entrega em Botucatu — ou para retirada no local.</p>
+            <h5>Pedidos</h5>
+            <p>WhatsApp <mark class="m-good" data-tip="WhatsApp confirmado em fonte pública (BenditoGuia) + telefones do cadastro.">(14) 99664-9118</mark> · telefones (14) 3354-1060 e (14) 99764-8005. A pizzaria também publica o cardápio e as novidades no Instagram <mark class="m-good" data-tip="Canal próprio da empresa, ativo.">@cantinhodapizzabotucatu</mark>.</p>
+            <p class="cta">Quer pizza de forno a lenha hoje? Chame no WhatsApp e peça a sua. →</p>
+          </div>
+        </div>
+
+        <p style="font-weight:800;margin:16px 0 6px">4 · Demais saídas do prompt (com o gating de canais funcionando)</p>
+        <ul class="clean">
+          <li><b>essencia:</b> "O Cantinho da Pizza é uma pizzaria de delivery e retirada na Vila Padovan, em Botucatu/SP. Prepara pizzas em forno a lenha — até o tamanho big — além de esfihas e calzones, todos os dias a partir das 18h."</li>
+          <li><b>seo.title (54/60):</b> Cantinho da Pizza · Pizzaria Delivery em Botucatu (SP)</li>
+          <li><b>seo.meta_description (146):</b> Pizzas de forno a lenha, esfihas e calzones na Vila Padovan, em Botucatu. Delivery e retirada todos os dias, a partir das 18h. Peça pelo WhatsApp.</li>
+          <li><b>Canais omitidos por regra (cliente free):</b> <code>descricao_solusite</code>, <code>google_business_profile</code> e <code>instagram_bio</code> não foram gerados — <code>channel_requirements.canais = ["solutudo","seo"]</code>. O gating da rev. 22/07 funcionando: nenhum canal inexistente recebe texto.</li>
+          <li><b>needs_human_review = true</b> · motivo: bairro divergente entre cadastro ("Centro") e base oficial de CEP ("Vila Padovan") — correção cadastral sugerida.</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">5 · Lacunas registradas (viram perguntas de 1 toque via Digisac — e argumento de upgrade)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Lacuna</th><th>Impacto</th><th>Dono</th></tr></thead>
+          <tbody>
+            <tr><td>Ano de fundação ("desde…")</td><td>Prova de tempo de mercado + foundingDate</td><td>cliente</td></tr>
+            <tr><td>Tamanhos e nº de fatias da big (16?)</td><td>Diferencial vira fato citável</td><td>cliente</td></tr>
+            <tr><td>Sabores/cardápio (e a linha "batata recheada"?)</td><td>Cauda longa real de busca</td><td>cliente</td></tr>
+            <tr><td>Área e taxa de entrega por bairro</td><td>Intenção local ("entrega no [bairro]?")</td><td>cliente</td></tr>
+            <tr><td>Formas de pagamento e horário de fechamento</td><td>Decisão de pedido</td><td>cliente</td></tr>
+            <tr><td>Correção do bairro no cadastro (Centro → Vila Padovan)</td><td>NAP consistente</td><td><b>nós</b></td></tr>
+          </tbody>
+        </table></div>
+
+        <p style="font-weight:800;margin:16px 0 6px">6 · Validação mecânica da saída</p>
+        <div class="checkgrid">
+          <div class="ck"><span class="cic">✓</span><span>Entidade na 1ª frase, com cidade/UF e bairro real</span></div>
+          <div class="ck"><span class="cic">✓</span><span>Abertura inteira nos primeiros 250 caracteres (229)</span></div>
+          <div class="ck"><span class="cic">✓</span><span>title 54/60 · meta 146/160 · essência em 2 frases</span></div>
+          <div class="ck"><span class="cic">✓</span><span>Enumeração idêntica em todas as menções (pizzas · esfihas · calzones)</span></div>
+          <div class="ck"><span class="cic">✓</span><span>Zero frase genérica; toda frase termina no fato</span></div>
+          <div class="ck"><span class="cic">✓</span><span>Zero invenção: nota 4,3 de terceiro NÃO usada; 16 fatias virou lacuna</span></div>
+          <div class="ck"><span class="cic">✓</span><span>"Botucatu" 2× no corpo — sem stuffing</span></div>
+          <div class="ck"><span class="cic">✓</span><span>Canais não contratados omitidos (gating free)</span></div>
+        </div>
+        <div class="sub" style="margin:14px 0 0"><b>Veredito do caso:</b> mesmo no pior cenário (free, dono nunca contatado), a 3.0 produziu um perfil útil, único e denso — bairro correto, forno a lenha, big, WhatsApp clicável — usando só fato rastreável. As 6 lacunas são o roteiro exato da primeira conversa com o dono.</div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="foot">
     Artefato vivo da inteligência Solutudo ·
     <a href="../../checklist/">voltar ao checklist</a> ·
@@ -1269,11 +1364,11 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
 <script>
   function show(which){
-    ['desc','faq','index'].forEach(function(k){
+    ['desc','faq','index','emp'].forEach(function(k){
       document.getElementById('p-'+k).classList.toggle('on', which===k);
       document.getElementById('t-'+k).classList.toggle('on', which===k);
     });
-    history.replaceState(null,'',which==='faq'?'#faq':which==='index'?'#indexacao':'#descricao');
+    history.replaceState(null,'',which==='faq'?'#faq':which==='index'?'#indexacao':which==='emp'?'#empresas':'#descricao');
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function qa(btn){ btn.parentElement.classList.toggle('open'); }
@@ -1308,6 +1403,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   }
   if(location.hash==='#faq') show('faq');
   if(location.hash==='#indexacao') show('index');
+  if(location.hash==='#empresas') show('emp');
 </script>
 </body>
 </html>
