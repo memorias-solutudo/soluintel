@@ -28,7 +28,8 @@ elaborar qualquer tela no Claude Design e ao levar a tela para o código.
 2. **Confiança** — avaliações/recomendações, selo de verificação, "Atualizado em",
    conteúdo do dono.
 3. **Profundidade de dado** — dossiê cadastral (CNPJ, situação, abertura, porte,
-   CNAE, sócios), denso porém limpo e escaneável, mais abaixo.
+   CNAE), denso porém limpo e escaneável, mais abaixo. Sócios/dados pessoais: só
+   quando necessários à decisão e permitidos (LGPD).
 
 As três precisam coexistir com respiro e hierarquia — sem virar dump de informação
 e sem esconder a ação.
@@ -42,7 +43,8 @@ e sem esconder a ação.
   (ex.: marmoraria → `HomeAndConstructionBusiness`).
 - Campos a preencher: `name`, `legalName`, `taxID`, `url`, `telephone`, `image`,
   `address`, `geo`, `openingHoursSpecification`, `areaServed`, `knowsAbout`,
-  `foundingDate`, `founder`. Obrigatórios: `name` + `address`.
+  `foundingDate`. `founder` só com confirmação e consentimento (dado pessoal).
+  Obrigatórios: `name` + `address`.
 - `dateModified` **não** entra no nó do negócio: vai no nó **`WebPage`** do JSON-LD.
 - FAQ da página usa um **`FAQPage`** à parte.
 - **`aggregateRating` só com avaliação real — nunca inventar.**
@@ -50,13 +52,17 @@ e sem esconder a ação.
 ## 5. Frescor (página viva)
 
 - "**Atualizado em DD/MM/AAAA**" visível no corpo da página.
-- `dateModified` no nó `WebPage` do JSON-LD e frescor também no `<title>`.
-- Disparar **IndexNow** sempre que a página mudar.
+- `dateModified` no nó `WebPage` do JSON-LD, **só em mudança material** — e sem
+  data no `<title>` apenas para parecer recente.
+- **IndexNow em mudança material** (criação, alteração relevante, redirect, remoção);
+  notifica só motores participantes (Bing, Yandex… — o Google não usa) e exige um
+  **arquivo de chave hospedado no domínio**.
 
 ## 6. Performance e mobile (critérios de design, não detalhes)
 
 - CSS crítico inline; lazy-load só em imagens abaixo da dobra; cortar JS pesado do
-  núcleo de conteúdo. Mirar FCP baixo.
+  núcleo de conteúdo. Metas oficiais: **Core Web Vitals** — LCP ≤ 2,5 s · INP ≤ 200 ms ·
+  CLS ≤ 0,1 (percentil 75).
 - **Mobile-first**: a decisão de layout começa no celular e sobe para o desktop.
 - Alvos de toque **≥ 44px**; contraste **≥ 4,5:1**; HTML semântico; `alt` em toda imagem.
 - Proibido na tela: hero gigante, vídeo em autoplay, animação pesada, excesso de fontes.
@@ -67,11 +73,15 @@ e sem esconder a ação.
 ## 7. Indexação (por página)
 
 - `meta-robots`: `index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1`.
-- `canonical` correto em toda página; sitemap segmentado (só o que importa);
-  `noindex`/consolidar páginas-casca.
-- robots.txt liberado para: Bingbot, OAI-SearchBot, ChatGPT-User, GPTBot,
-  PerplexityBot, ClaudeBot, Google-Extended (este último é um token de controle
-  do Gemini, não um crawler — não aparece em logs de acesso).
+- `canonical` correto em toda página; sitemap segmentado (só o que importa) —
+  máx. **50 mil URLs / 50 MB** por arquivo: na nossa escala, usar **sitemap index**;
+  `noindex`/consolidar páginas-casca (lembrando: `noindex` não impede rastreamento,
+  e bloquear no robots.txt impede o crawler de ver o `noindex`).
+- robots.txt: **busca e treinamento são decisões separadas.** Busca (necessário p/
+  aparecer): Bingbot, OAI-SearchBot, Claude-SearchBot, PerplexityBot. Treinamento
+  (decisão própria; bloquear GPTBot NÃO tira da busca do ChatGPT): GPTBot, ClaudeBot.
+  ChatGPT-User/Claude-User são ações de usuário, não crawlers. Google-Extended é
+  token de controle do Gemini — não aparece em logs.
 - Linkagem interna real: entidade → categoria/CNAE → empresas similares; nenhuma
   página importante pode ficar órfã.
 

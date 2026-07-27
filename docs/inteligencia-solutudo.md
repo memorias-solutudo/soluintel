@@ -160,8 +160,9 @@ sobre o **índice do Bing** — estar indexado no Bing é pré-requisito.
    CreativeWork, não de LocalBusiness). **`aggregateRating` só com avaliação real — nunca inventar.**
 4. **3 camadas na página:** Consumo (contato) → Profundidade de dado (dossiê CNPJ/Receita)
    → Confiança (avaliações, selo, frescor, conteúdo do dono = nosso fosso).
-5. **Frescor:** "Atualizado em DD/MM/AAAA" visível + `dateModified` + frescor no `<title>`;
-   disparar **IndexNow** ao mudar (propaga ao Bing).
+5. **Frescor:** "Atualizado em DD/MM/AAAA" visível + `dateModified` (nó WebPage), **só
+   em mudança material**; sem data no `<title>` apenas para parecer recente; **IndexNow
+   em mudança material** (motores participantes — o Google não usa).
 6. **Performance/mobile:** CSS crítico inline, lazy-load abaixo da dobra, cortar JS do
    núcleo (FCP < ~0,4s = muito mais citação); mobile-first, toque ≥44px, contraste ≥4,5:1.
 7. **Indexação:** `meta-robots index,follow,max-snippet:-1,max-image-preview:large`;
@@ -171,13 +172,13 @@ sobre o **índice do Bing** — estar indexado no Bing é pré-requisito.
 **Impacto no schema canônico:** a base canônica passa a precisar também de
 `dossie_cnpj` (Receita: razão social, CNPJ, situação, abertura, porte, natureza,
 CNAE principal+secundários, QSA, matriz/filiais) e de um bloco `entrega`
-(server_rendered: true, json_ld por @type, dateModified, indexnow). A saída da
-inteligência (descrição, FAQ) deve vir acompanhada do **JSON-LD pronto** para o
-HTML servido — não só o texto.
+(server_rendered: true, json_ld por @type, dateModified, indexnow). O **JSON-LD é
+gerado pela aplicação**, por código, a partir da mesma base de fatos exibida na
+página — a LLM entrega só prosa + relatório (Descrição 3.0).
 
-**Impacto no prompt "Sobre a Empresa 2.0":** já ajustado — agora emite também
-`json_ld` (com @type específico, sem aggregateRating inventado) e traz a regra de
-ENTREGA server-rendered. Ver card "Sobre a Empresa 2.0".
+**Impacto no prompt:** na **Descrição 3.0**, a LLM não emite mais `json_ld` — entrega
+prosa + relatório de fatos, e a aplicação gera o JSON-LD por código (@type específico,
+sem aggregateRating inventado), server-rendered. Ver `docs/descricao-empresa-3-0.md`.
 
 ---
 

@@ -851,7 +851,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
       <div class="statband">
         <div class="stat"><div class="big">94% × 23%</div><div class="lbl">leitura de <b>HTML estático</b> vs. conteúdo via <b>JavaScript</b> — o ChatGPT-User vê casca vazia</div><div class="src">Fonte: doc técnico (dev)</div></div>
         <div class="stat"><div class="big">~17 mi</div><div class="lbl">páginas que a Solutudo <b>perdeu do índice</b> (≈45→28 mi, mar–jun/2026)</div><div class="src">Fonte: doc técnico (dev)</div></div>
-        <div class="stat"><div class="big">Bing</div><div class="lbl">a busca do <b>ChatGPT roda sobre o índice do Bing</b> — estar no Bing é pré-requisito</div><div class="src">Fonte: doc técnico (dev)</div></div>
+        <div class="stat"><div class="big">Bing</div><div class="lbl">a busca do <b>ChatGPT roda sobre o índice do Bing</b> — a porta principal (o OAI-SearchBot complementa)</div><div class="src">Fonte: doc técnico (dev)</div></div>
       </div>
       <div class="idxgrid">
 
@@ -862,7 +862,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
             <li><b>Texto é texto, não imagem:</b> nome, telefone, endereço, horário e descrição = texto real selecionável.</li>
             <li><b>Telefone/WhatsApp visíveis e clicáveis</b> (<code>tel:</code>, <code>wa.me</code>) — nunca atrás de "ver telefone"/hover.</li>
             <li><b>JSON-LD server-rendered</b> com <code>@type</code> específico (Restaurant, Plumber, Dentist, HomeAndConstructionBusiness… fallback LocalBusiness) + <b>FAQPage</b>.</li>
-            <li><b>aggregateRating só com avaliação real</b> — nunca inventar (Google e IA detectam; spam update 2026).</li>
+            <li><b>aggregateRating só com avaliação real e nativa</b> (coletada pela Solutudo) — nunca inventar nem remarcar nota de terceiros; no site do próprio cliente, sem rating de si (<i>self-serving</i>).</li>
           </ul>
         </div>
 
@@ -878,8 +878,8 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         <div class="idxcard">
           <div class="ihead"><span class="inum">3</span><h3>Frescor — página viva</h3><span class="who-tags"><span class="src-tag dev">dev</span></span></div>
           <ul class="clean">
-            <li><b>"Atualizado em DD/MM/AAAA" visível</b> no corpo + <code>dateModified</code> no nó <b>WebPage</b> do JSON-LD (não no LocalBusiness) + frescor no <code>&lt;title&gt;</code>.</li>
-            <li>Disparar <b>IndexNow</b> sempre que a página muda — propaga ao Bing (base do ChatGPT).</li>
+            <li><b>"Atualizado em DD/MM/AAAA" visível</b> no corpo + <code>dateModified</code> no nó <b>WebPage</b> do JSON-LD (não no LocalBusiness) — <b>só em mudança material</b>; sem data no <code>&lt;title&gt;</code> apenas para parecer recente (V3).</li>
+            <li><b>IndexNow em mudança material</b> — notifica só motores participantes (Bing, Yandex…; o Google não usa) e exige arquivo de chave hospedado no domínio.</li>
             <li>Conteúdo recente recebe <b>muito mais citação por IA</b> e segura melhor o ranking.</li>
           </ul>
         </div>
@@ -887,7 +887,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
         <div class="idxcard">
           <div class="ihead"><span class="inum">4</span><h3>Performance &amp; mobile</h3><span class="who-tags"><span class="src-tag dev">dev</span><span class="src-tag dsg">design</span></span></div>
           <ul class="clean">
-            <li><b>Velocidade é critério de design:</b> CSS crítico inline, lazy-load abaixo da dobra, cortar JS do núcleo. FCP &lt; ~0,4s = muito mais citação por IA.</li>
+            <li><b>Velocidade é critério de design:</b> CSS crítico inline, lazy-load abaixo da dobra, cortar JS do núcleo. Metas oficiais: <b>Core Web Vitals</b> (LCP ≤2,5s · INP ≤200ms · CLS ≤0,1, p75). O "FCP&lt;0,4s ↔ mais citação" é estudo observacional, não regra.</li>
             <li><b>Mobile-first</b> (70% no celular): alvos de toque ≥44px, contraste ≥4,5:1, HTML semântico, <code>alt</code> nas imagens.</li>
             <li>Sem hero gigante, vídeo em autoplay ou animação pesada — tudo isso atrasa e custa indexação.</li>
           </ul>
@@ -907,7 +907,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
           <ul class="clean">
             <li>A base canônica passa a precisar de <b><code>dossie_cnpj</code></b> (Receita: razão social, situação, abertura, porte, natureza, CNAE, QSA, matriz/filiais).</li>
             <li>E de um bloco <b><code>entrega</code></b>: <code>server_rendered:true</code>, <code>json_ld</code> por @type, <code>dateModified</code>, <code>indexnow</code>.</li>
-            <li>A saída da inteligência vem com o <b>JSON-LD pronto</b>, não só o texto. O prompt "Sobre a Empresa 2.0" já emite <code>json_ld</code>.</li>
+            <li>O <b>JSON-LD é gerado pela aplicação</b>, por código, a partir da mesma base de fatos do texto — a LLM só escreve prosa + relatório (Descrição 3.0).</li>
           </ul>
         </div>
 
@@ -967,7 +967,7 @@ Solutudo/Solusite acima — provando que o prompt entrega o formato 2.0.</div>
             <div>
               <p style="font-weight:800;font-size:13px;margin-bottom:6px;color:#06845a">Afirmações confirmadas em fontes públicas</p>
               <ul class="clean">
-                <li><b>ChatGPT busca sobre o índice do Bing</b> (descoberta) + <b>OAI-SearchBot</b> complementa; bloqueá-lo te tira do ChatGPT Search. Nuance: o crawl próprio da OpenAI ~triplicou desde ago/2025 — o Bing segue pré-requisito, mas o índice próprio cresce.</li>
+                <li><b>ChatGPT busca sobre o índice do Bing</b> (descoberta) + <b>OAI-SearchBot</b> complementa; bloqueá-lo te tira do ChatGPT Search. Nuance: o crawl próprio da OpenAI ~triplicou desde ago/2025 — o Bing segue a porta principal, mas o índice próprio cresce.</li>
                 <li><b>Crawlers de IA não executam JavaScript</b> — estudo Vercel + MERJ (500 mi+ fetches do GPTBot, zero execução de JS): ChatGPT, Claude e Perplexity leem só o HTML cru → a "casca vazia" é real. Googlebot renderiza, com custo/fila — como o doc diz.</li>
                 <li><b>AI Performance do Bing Webmaster Tools</b>: lançado em 9/fev/2026 (public preview), citações por URL e consultas; em jun/2026 ganhou Intents, Topics e Citation Share — o doc acertou até o mês.</li>
                 <li><b>Velocidade ↔ citação</b>: estudo público — FCP &lt;0,4s ≈ 6,7 citações vs 2,1 nas lentas (~3× mais); TTFB &lt;200ms favorece. Compatível com o "&lt;0,4s muito mais; &gt;1,1s bem menos" do doc.</li>
@@ -1230,7 +1230,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   <div class="foot">
     Artefato vivo da inteligência Solutudo ·
     <a href="../../checklist/">voltar ao checklist</a> ·
-    pareado com <code>docs/inteligencia-solutudo.md</code> (card "Sobre a Empresa 2.0")
+    pareado com <code>docs/descricao-empresa-3-0.md</code> (spec vigente)
   </div>
 
 </div>
