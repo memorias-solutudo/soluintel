@@ -261,6 +261,11 @@
   @media(max-width:760px){.empseg{grid-template-columns:1fr}}
   .emppanel{display:none}
   .emppanel.on{display:block;animation:fade .25s ease both}
+
+  .empselwrap{background:var(--white);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow-card);border:var(--line);margin-bottom:4px}
+  .empsellabel{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);margin-bottom:8px}
+  #empselect{width:100%;border:1.5px solid var(--g150);border-radius:12px;padding:12px 14px;font:inherit;font-weight:800;font-size:14.5px;letter-spacing:-.01em;color:var(--ink);background:var(--white);cursor:pointer;appearance:auto}
+  #empselect:focus{outline:2px solid var(--brand-purple);outline-offset:1px}
 </style>
 </head>
 <body>
@@ -1279,9 +1284,12 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
         <p>O pipeline completo rodado em empresas reais da base: <b>varredura de fontes públicas → base de fatos com proveniência → prompt 3.0 → saídas validadas</b>. Começamos pelo cenário mais difícil: cliente free, sem nenhum contato com o dono. Tudo abaixo é rastreável — cada fato tem fonte, e o que não tem vira lacuna, nunca invenção.</p>
       </div>
 
-            <div class="empseg">
-        <button class="on" onclick="empsel('cp',this)">🍕 Cantinho da Pizza<span class="sm">Botucatu/SP · cliente free · descoberta 100% autônoma</span></button>
-        <button onclick="empsel('hs',this)">🔩 Hidro Shock Elétrica e Hidráulica<span class="sm">Avaré/SP · parceira · descrição existente auditada</span></button>
+            <div class="empselwrap">
+        <div class="empsellabel">Empresa analisada — escolha para ver o caso completo</div>
+        <select id="empselect" onchange="empsel(this.value)">
+          <option value="cp" selected>🍕 Cantinho da Pizza — Botucatu/SP · gratuito · descoberta 100% autônoma</option>
+          <option value="hs">🔩 Hidro Shock Elétrica e Hidráulica — Avaré/SP · parceira · descrição auditada</option>
+        </select>
       </div>
 
       <div class="emppanel on" data-emp="cp">
@@ -1623,10 +1631,9 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px';
     document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
   }
-  function empsel(which, btn){
+  function empsel(which){
     document.querySelectorAll('.emppanel').forEach(function(p){ p.classList.toggle('on', p.dataset.emp===which); });
-    btn.parentElement.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
-    btn.classList.add('on');
+    var s=document.getElementById('empselect'); if(s && s.value!==which) s.value=which;
   }
   function ch(which, btn){
     document.querySelectorAll('.chpanel').forEach(function(p){ p.classList.toggle('on', p.dataset.ch===which); });
