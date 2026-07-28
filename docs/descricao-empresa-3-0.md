@@ -94,6 +94,13 @@ e sempre aciona `needs_human_review`.
 CTA factual. Nenhum módulo é preenchido para manter formato: sem fato útil → omite
 e registra lacuna.
 
+**Achado negativo não é fato (obrigatório).** "Não encontrado na varredura" significa
+**desconhecido**, nunca "não existe". Conteúdo dentro de aplicativos e áreas logadas é
+ponto cego estrutural da descoberta automática — testado em campo: concluímos que um
+cliente não estava numa plataforma de delivery e a consulta direta no app provou o
+contrário. Ausência só vira fato com confirmação do dono ou verificação humana direta,
+e nunca embasa afirmação pública nem abordagem comercial ("você não está em X").
+
 ## 5 · Prompt gerador 3.0 (íntegra)
 
 ```text
