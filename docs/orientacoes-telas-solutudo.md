@@ -107,6 +107,14 @@ e sem esconder a ação.
   (processo real + avaliação/visita) → "Por que a [Empresa]" (3–4 provas) → CTA curto
   e específico.
 
+- **Selo de procedência** ao final do bloco de descrição, com data: "Informações
+  fornecidas pela empresa · atualizadas em DD/MM/AAAA" (confirmado pelo dono) ou
+  "Resumo elaborado pela Solutudo a partir de informações públicas, sem confirmação da
+  empresa (DD/MM/AAAA). É o responsável? Confirme ou corrija." — curto, depois do
+  conteúdo, com link para o fluxo de reivindicação/correção.
+- **Sem afordância de link dentro da descrição** (nada de "→", "clique aqui"): a ação
+  de contato fica no bloco próprio da página.
+
 ## 9. Por canal (mesma essência, forma adaptada)
 
 | Canal | Regra |

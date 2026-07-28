@@ -94,6 +94,24 @@ e sempre aciona `needs_human_review`.
 CTA factual. Nenhum módulo é preenchido para manter formato: sem fato útil → omite
 e registra lacuna.
 
+**Selo de procedência (obrigatório em toda descrição publicada).** Todo bloco de
+descrição carrega uma linha curta de origem e data, escolhida pela proveniência:
+(A) confirmado pelo dono → "Informações fornecidas pela empresa · atualizadas em
+DD/MM/AAAA"; (B) montado de fontes públicas → "Resumo elaborado pela Solutudo a partir
+de informações públicas, sem confirmação da empresa (DD/MM/AAAA). Confirme horário,
+preços e condições diretamente com o estabelecimento. É o responsável? Confirme ou
+corrija." Regras: vem **depois** do conteúdo (não intercalado aos fatos, para não
+enfraquecer a extração por IA); é **curto e com data variável** — bloco jurídico longo
+e idêntico em milhões de páginas é o próprio conteúdo duplicado em escala que
+combatemos; campo volátil (horário, preço, entrega) leva data própria e SLA de
+reverificação. **O aviso não cura dado errado**: a proteção real é proveniência
+registrada + canal de correção fácil + resposta rápida ao ser notificado. Texto final,
+política de takedown e prazos → pendência jurídica.
+
+**CTA sem afordância de link no perfil Solutudo.** A descrição é texto corrido; a ação
+de contato vive no bloco próprio da página. Nada de setas ("→"), "clique aqui" ou
+âncoras dentro do texto da descrição.
+
 **Achado negativo não é fato (obrigatório).** "Não encontrado na varredura" significa
 **desconhecido**, nunca "não existe". Conteúdo dentro de aplicativos e áreas logadas é
 ponto cego estrutural da descoberta automática — testado em campo: concluímos que um
