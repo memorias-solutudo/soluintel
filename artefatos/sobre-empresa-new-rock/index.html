@@ -252,6 +252,15 @@
 
   .foot{margin-top:36px;font-size:12.5px;color:var(--g500);text-align:center}
   .foot a{font-weight:700}
+
+  /* ===== seletor de empresas (aba Empresas 3.0) ===== */
+  .empseg{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:var(--white);border-radius:18px;padding:6px;box-shadow:var(--shadow-card);border:var(--line);margin-bottom:4px}
+  .empseg button{border:none;cursor:pointer;border-radius:13px;padding:13px 12px;font:inherit;font-weight:800;font-size:14.5px;letter-spacing:-.01em;color:var(--g600);background:transparent;text-align:center;transition:color .15s}
+  .empseg button.on{color:#fff;background:var(--ink)}
+  .empseg button .sm{display:block;font-size:11px;font-weight:700;opacity:.72;margin-top:3px;letter-spacing:0}
+  @media(max-width:760px){.empseg{grid-template-columns:1fr}}
+  .emppanel{display:none}
+  .emppanel.on{display:block;animation:fade .25s ease both}
 </style>
 </head>
 <body>
@@ -1270,56 +1279,18 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
         <p>O pipeline completo rodado em empresas reais da base: <b>varredura de fontes públicas → base de fatos com proveniência → prompt 3.0 → saídas validadas</b>. Começamos pelo cenário mais difícil: cliente free, sem nenhum contato com o dono. Tudo abaixo é rastreável — cada fato tem fonte, e o que não tem vira lacuna, nunca invenção.</p>
       </div>
 
-      <div class="card">
+            <div class="empseg">
+        <button class="on" onclick="empsel('cp',this)">🍕 Cantinho da Pizza<span class="sm">Botucatu/SP · cliente free · descoberta 100% autônoma</span></button>
+        <button onclick="empsel('hs',this)">🔩 Hidro Shock Elétrica e Hidráulica<span class="sm">Avaré/SP · parceira · descrição existente auditada</span></button>
+      </div>
+
+      <div class="emppanel on" data-emp="cp">
+<div class="card">
         <span class="badge ok">Caso real nº 1 · cliente free · descoberta 100% autônoma por agentes</span>
         <h3 class="t" style="margin-top:8px">Cantinho da Pizza — Pizzaria · Botucatu/SP</h3>
         <div class="sub"><b>Sem nenhum contato com o dono.</b> Uma frota de <b>8 agentes</b> varreu a web sozinha em 7 ângulos paralelos (cardápio · horários · entrega · pagamento · identidade/CNPJ · canais próprios · reputação), fez <b>168 buscas</b> e trouxe <b>43 fatos verificados</b> — cada um com fonte e nível de confiança. Depois, um <b>verificador adversarial</b> consolidou, cruzou fontes e matou o que não se sustentava. Regra da casa respeitada: <b>nada do Google Maps/Places</b>.</div>
 
-        <p style="font-weight:800;margin:16px 0 6px">1 · O que a descoberta autônoma achou (fatos publicáveis)</p>
-        <div class="tablewrap"><table>
-          <thead><tr><th>Campo</th><th>Fato descoberto</th><th>Confiança</th></tr></thead>
-          <tbody>
-            <tr><td><b>produção</b></td><td><b>Forno a lenha</b> — não é adjetivo: está no próprio logotipo da marca e é o atributo mais citado nas avaliações</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>menu.big</b></td><td>Pizza <b>Big com 16 fatias</b>, que aceita <b>meio a meio</b>; a empresa a posiciona como "o tamanho ideal pra família e pra galera"</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>menu.esfihas</b></td><td>Sabores tradicionais: <b>carne, queijo, calabresa e frango com requeijão</b></td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>menu.combo</b></td><td>Promo de <b>40 esfirras</b> (10 de cada sabor) com <b>refrigerante 2L</b> incluso</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>menu.extras</b></td><td>Calzones · <b>borda recheada</b> · batata recheada · bebidas</td><td><span class="st par">média</span></td></tr>
-            <tr><td><b>horário</b></td><td>Todos os dias, a partir das <b>18h</b> — 7 dias por semana, sem dia de fechamento</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>entrega</b></td><td>Delivery <b>e</b> retirada; <b>~40 bairros</b> de Botucatu; ativa no <b>iFood</b>, no <b>aiqfome</b> e no <b>99Food</b></td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>pagamento</b></td><td><b>Pix</b>, dinheiro e cartões <b>Visa/Mastercard</b> (crédito e débito), com maquininha na entrega</td><td><span class="st par">média</span></td></tr>
-            <tr><td><b>canais</b></td><td>Instagram e Facebook oficiais ativos, com publicações desde <b>2021</b> (continuidade de 4+ anos)</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>ETA</b></td><td>Sem prazo fixo: o tempo "é estimado de acordo com o número de pedidos do dia" — declaração da própria empresa</td><td><span class="st par">média</span></td></tr>
-          </tbody>
-        </table></div>
-
-        <p style="font-weight:800;margin:16px 0 6px">2 · O que o verificador <span style="color:var(--brand-orange-deep)">matou</span> — e por que esta etapa é obrigatória</p>
-        <div class="sub" style="margin-bottom:8px">Este é o achado mais importante do teste. Sem a etapa de verificação, o perfil teria sido publicado com dados de <b>outra empresa</b>.</div>
-        <ul class="clean">
-          <li><b>Contaminação por homônimo (o risco nº 1 em escala):</b> dois agentes reportaram, com <b>confiança alta</b>, um site de pedidos como sendo da empresa. O verificador checou: o domínio é de um <b>"Cantinho da Pizza" de Ferraz de Vasconcelos/SP</b>, com telefone (11) e bairros de lá. <b>Descartado.</b> Outro domínio apontava para um homônimo em <b>Ilhéus/BA</b>. Foram catalogados <b>6 CNPJs homônimos</b> em outros estados como fonte de contaminação.</li>
-          <li><b>Erro de leitura numérica:</b> um agente interpretou o título truncado "…1/2 mussarel" como "12 fatias de mussarela". O verificador leu certo: <b>"1/2 mussarela" = meio a meio</b>. O número inventado morreu ali.</li>
-          <li><b>Fato estético sem lastro:</b> "massa fina" foi descartado — os elogios recorrentes são ao <b>ponto de assamento</b>, não à espessura.</li>
-          <li><b>Nota de terceiro barrada:</b> 4,3/5 no RestaurantGuru <b>não entrou</b> — além da regra de avaliação nativa, a ficha traz endereço divergente, o que compromete até a atribuição da nota.</li>
-          <li><b>Promessa comercial barrada:</b> "entrega grátis" apareceu sem condição (bairro? valor mínimo?). Publicar seria expor o cliente a <b>propaganda enganosa</b>. Virou lacuna.</li>
-          <li><b>Preços barrados:</b> um combo por R$ 34,99 foi achado em post sem data. Preço sem validade não se publica.</li>
-        </ul>
-
-        <p style="font-weight:800;margin:16px 0 6px">3 · Duas regras da 3.0 que se provaram no caso real</p>
-        <ul class="clean">
-          <li><b>"CNPJ é pista, não fato":</b> os agentes acharam um CNPJ ativo no <b>mesmo endereço</b>, com CNAE de pizzaria, aberto em <b>20/11/2018</b>. Tentador escrever "há mais de 7 anos em Botucatu" — e a 3.0 <b>proíbe</b> duas vezes: o vínculo marca↔CNPJ não está documentado (é coincidência de endereço) e <b>abertura de CNPJ não é fundação</b>. Ficou como lacuna, não como texto.</li>
-          <li><b>"Sem superlativo":</b> o slogan da casa é "o melhor custo-benefício" e há um post afirmando ser "a única pizzaria de Botucatu" com pizza tamanho família. Ambos são <b>autoafirmações da marca</b> — ficam fora do perfil factual (podem ser usados no canal do próprio cliente, atribuídos a ele).</li>
-        </ul>
-
-        <p style="font-weight:800;margin:16px 0 6px">3b · O limite da descoberta autônoma — e a regra que evitou uma mentira</p>
-        <div class="sub" style="margin-bottom:8px">Registro de um erro real da varredura, corrigido por verificação humana direta.</div>
-        <ul class="clean">
-          <li><b>O que a máquina concluiu:</b> a busca não encontrou a pizzaria no 99Food, embora concorrentes da mesma cidade tivessem páginas indexadas na plataforma. Classificamos como <b>"não localizado, confiança média"</b> — um indício de ausência.</li>
-          <li><b>O que a realidade mostrou:</b> uma consulta <b>direta no aplicativo</b> encontrou o Cantinho da Pizza no 99Food. <b>A inferência estava errada.</b></li>
-          <li><b>Por que isso não virou um erro publicado:</b> a regra da 3.0 não deixa "não localizado" virar afirmação. Se a ausência tivesse sido tratada como fato, teríamos publicado uma inverdade sobre o cliente. <b>A trava funcionou.</b></li>
-          <li><b>A regra que fica:</b> conteúdo dentro de aplicativos é um <b>ponto cego estrutural</b> da varredura — é o mesmo problema de legibilidade por máquina que este projeto combate, agora contra nós. Portanto: <b>ausência nunca é fato.</b> "Não encontrado" significa apenas desconhecido, e só o dono (ou verificação humana direta) pode transformar em ausência confirmada.</li>
-          <li><b>Consequência de produto:</b> a ideia de gerar leads comerciais a partir de "ausências detectadas" (ex.: "você não está no 99Food") <b>fica barrada</b> — o primeiro teste dela já produziria um lead falso, com dano de credibilidade na conversa com o cliente. Só vale como <b>pergunta</b> ("você está no 99Food?"), nunca como afirmação.</li>
-        </ul>
-
-        <p style="font-weight:800;margin:16px 0 6px">4 · Cadastro atual × Descrição 3.0 gerada pelos fatos descobertos</p>
+        <p style="font-weight:800;margin:16px 0 6px">1 · Cadastro atual × Descrição 3.0 gerada pelos fatos descobertos</p>
         <div class="cols">
           <div class="doc before">
             <h3>● O que a página tem hoje</h3>
@@ -1349,7 +1320,62 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           </div>
         </div>
 
-        <p style="font-weight:800;margin:16px 0 6px">5 · Demais saídas e validação mecânica</p>
+        <p style="font-weight:800;margin:16px 0 6px">2 · O que a descoberta autônoma achou (fatos publicáveis)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Campo</th><th>Fato descoberto</th><th>Confiança</th></tr></thead>
+          <tbody>
+            <tr><td><b>produção</b></td><td><b>Forno a lenha</b> — não é adjetivo: está no próprio logotipo da marca e é o atributo mais citado nas avaliações</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>menu.big</b></td><td>Pizza <b>Big com 16 fatias</b>, que aceita <b>meio a meio</b>; a empresa a posiciona como "o tamanho ideal pra família e pra galera"</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>menu.esfihas</b></td><td>Sabores tradicionais: <b>carne, queijo, calabresa e frango com requeijão</b></td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>menu.combo</b></td><td>Promo de <b>40 esfirras</b> (10 de cada sabor) com <b>refrigerante 2L</b> incluso</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>menu.extras</b></td><td>Calzones · <b>borda recheada</b> · batata recheada · bebidas</td><td><span class="st par">média</span></td></tr>
+            <tr><td><b>horário</b></td><td>Todos os dias, a partir das <b>18h</b> — 7 dias por semana, sem dia de fechamento</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>entrega</b></td><td>Delivery <b>e</b> retirada; <b>~40 bairros</b> de Botucatu; ativa no <b>iFood</b>, no <b>aiqfome</b> e no <b>99Food</b></td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>pagamento</b></td><td><b>Pix</b>, dinheiro e cartões <b>Visa/Mastercard</b> (crédito e débito), com maquininha na entrega</td><td><span class="st par">média</span></td></tr>
+            <tr><td><b>canais</b></td><td>Instagram e Facebook oficiais ativos, com publicações desde <b>2021</b> (continuidade de 4+ anos)</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>ETA</b></td><td>Sem prazo fixo: o tempo "é estimado de acordo com o número de pedidos do dia" — declaração da própria empresa</td><td><span class="st par">média</span></td></tr>
+          </tbody>
+        </table></div>
+
+        <p style="font-weight:800;margin:16px 0 6px">3 · Por que a 3.0 é melhor — leitor a leitor (neste caso concreto)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Leitor</th><th>Antes (página atual)</th><th>Com a 3.0</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rt conv">Pessoas</span></td><td>5 linhas cadastrais; não dá para decidir o pedido</td><td>Decide na hora: forno a lenha, Big de 16 fatias, sabores de esfiha, combo, apps, Pix/cartão, ~40 bairros — e o WhatsApp para agir</td></tr>
+            <tr><td><span class="rt seo">SEO (busca)</span></td><td>Sem termos reais de busca; bairro errado no cadastro (Centro)</td><td>Cauda longa real ("pizza forno a lenha Botucatu", "esfiha de calabresa", "pizzaria Vila Padovan"); bairro corrigido pela base oficial de CEP; title 59/60 e meta 148 nos alvos</td></tr>
+            <tr><td><span class="rt local">Google · Bing</span></td><td>Página fina e quase-duplicada — o perfil exato que os spam updates desindexam</td><td>Perfil único e denso (fatos que nenhuma outra pizzaria tem iguais); entidade + cidade/UF na 1ª frase e nos ~250 primeiros caracteres; Bing indexável = porta do ChatGPT</td></tr>
+            <tr><td><span class="rt ia">IAs (GEO)</span></td><td>Nada extraível para citar</td><td>Frases atômicas que se citam sozinhas ("O Cantinho da Pizza é uma pizzaria de delivery e retirada em Botucatu/SP…"); zero adjetivo = zero risco de a IA repetir marketing como fato; cada fato com fonte</td></tr>
+            <tr><td><span class="rt voz">Voz / PAA</span></td><td>Sem respostas diretas</td><td>"Abre todos os dias a partir das 18h", "aceita Pix" — respostas-primeiro prontas para extração</td></tr>
+          </tbody>
+        </table></div>
+<p style="font-weight:800;margin:16px 0 6px">4 · O que o verificador <span style="color:var(--brand-orange-deep)">matou</span> — e por que esta etapa é obrigatória</p>
+        <div class="sub" style="margin-bottom:8px">Este é o achado mais importante do teste. Sem a etapa de verificação, o perfil teria sido publicado com dados de <b>outra empresa</b>.</div>
+        <ul class="clean">
+          <li><b>Contaminação por homônimo (o risco nº 1 em escala):</b> dois agentes reportaram, com <b>confiança alta</b>, um site de pedidos como sendo da empresa. O verificador checou: o domínio é de um <b>"Cantinho da Pizza" de Ferraz de Vasconcelos/SP</b>, com telefone (11) e bairros de lá. <b>Descartado.</b> Outro domínio apontava para um homônimo em <b>Ilhéus/BA</b>. Foram catalogados <b>6 CNPJs homônimos</b> em outros estados como fonte de contaminação.</li>
+          <li><b>Erro de leitura numérica:</b> um agente interpretou o título truncado "…1/2 mussarel" como "12 fatias de mussarela". O verificador leu certo: <b>"1/2 mussarela" = meio a meio</b>. O número inventado morreu ali.</li>
+          <li><b>Fato estético sem lastro:</b> "massa fina" foi descartado — os elogios recorrentes são ao <b>ponto de assamento</b>, não à espessura.</li>
+          <li><b>Nota de terceiro barrada:</b> 4,3/5 no RestaurantGuru <b>não entrou</b> — além da regra de avaliação nativa, a ficha traz endereço divergente, o que compromete até a atribuição da nota.</li>
+          <li><b>Promessa comercial barrada:</b> "entrega grátis" apareceu sem condição (bairro? valor mínimo?). Publicar seria expor o cliente a <b>propaganda enganosa</b>. Virou lacuna.</li>
+          <li><b>Preços barrados:</b> um combo por R$ 34,99 foi achado em post sem data. Preço sem validade não se publica.</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">5 · Duas regras da 3.0 que se provaram no caso real</p>
+        <ul class="clean">
+          <li><b>"CNPJ é pista, não fato":</b> os agentes acharam um CNPJ ativo no <b>mesmo endereço</b>, com CNAE de pizzaria, aberto em <b>20/11/2018</b>. Tentador escrever "há mais de 7 anos em Botucatu" — e a 3.0 <b>proíbe</b> duas vezes: o vínculo marca↔CNPJ não está documentado (é coincidência de endereço) e <b>abertura de CNPJ não é fundação</b>. Ficou como lacuna, não como texto.</li>
+          <li><b>"Sem superlativo":</b> o slogan da casa é "o melhor custo-benefício" e há um post afirmando ser "a única pizzaria de Botucatu" com pizza tamanho família. Ambos são <b>autoafirmações da marca</b> — ficam fora do perfil factual (podem ser usados no canal do próprio cliente, atribuídos a ele).</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">6 · O limite da descoberta autônoma — e a regra que evitou uma mentira</p>
+        <div class="sub" style="margin-bottom:8px">Registro de um erro real da varredura, corrigido por verificação humana direta.</div>
+        <ul class="clean">
+          <li><b>O que a máquina concluiu:</b> a busca não encontrou a pizzaria no 99Food, embora concorrentes da mesma cidade tivessem páginas indexadas na plataforma. Classificamos como <b>"não localizado, confiança média"</b> — um indício de ausência.</li>
+          <li><b>O que a realidade mostrou:</b> uma consulta <b>direta no aplicativo</b> encontrou o Cantinho da Pizza no 99Food. <b>A inferência estava errada.</b></li>
+          <li><b>Por que isso não virou um erro publicado:</b> a regra da 3.0 não deixa "não localizado" virar afirmação. Se a ausência tivesse sido tratada como fato, teríamos publicado uma inverdade sobre o cliente. <b>A trava funcionou.</b></li>
+          <li><b>A regra que fica:</b> conteúdo dentro de aplicativos é um <b>ponto cego estrutural</b> da varredura — é o mesmo problema de legibilidade por máquina que este projeto combate, agora contra nós. Portanto: <b>ausência nunca é fato.</b> "Não encontrado" significa apenas desconhecido, e só o dono (ou verificação humana direta) pode transformar em ausência confirmada.</li>
+          <li><b>Consequência de produto:</b> a ideia de gerar leads comerciais a partir de "ausências detectadas" (ex.: "você não está no 99Food") <b>fica barrada</b> — o primeiro teste dela já produziria um lead falso, com dano de credibilidade na conversa com o cliente. Só vale como <b>pergunta</b> ("você está no 99Food?"), nunca como afirmação.</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">7 · Demais saídas e validação mecânica</p>
         <ul class="clean">
           <li><b>seo.title (59/60):</b> Cantinho da Pizza · Pizzaria em Botucatu/SP · Forno a Lenha</li>
           <li><b>seo.meta_description (148):</b> Pizzas em forno a lenha, esfihas e calzones na Vila Padovan, Botucatu. Big de 16 fatias, delivery em ~40 bairros e retirada. Todos os dias, das 18h.</li>
@@ -1367,7 +1393,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <div class="ck"><span class="cic">✓</span><span>Nenhum dado de Google Maps/Places</span></div>
         </div>
 
-        <p style="font-weight:800;margin:16px 0 6px">6 · Lacunas que sobraram (só o dono responde)</p>
+        <p style="font-weight:800;margin:16px 0 6px">8 · Lacunas que sobraram (só o dono responde)</p>
         <div class="tablewrap"><table>
           <thead><tr><th>Lacuna</th><th>Por que importa</th><th>Dono</th></tr></thead>
           <tbody>
@@ -1382,62 +1408,26 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
         <div class="sub" style="margin:16px 0 0"><b>Veredito:</b> partindo de um cadastro de 5 linhas e <b>zero contato com o cliente</b>, a descoberta autônoma produziu um perfil com forno a lenha, Big de 16 fatias, combo de 40 esfirras, formas de pagamento, dois apps de delivery e ~40 bairros de cobertura — <b>tudo rastreável</b>. E, mais importante que os fatos achados: a etapa de verificação impediu que dados de <b>três empresas homônimas</b> entrassem no perfil. Em escala de milhões de páginas, <b>é essa etapa que separa enriquecimento de contaminação</b>.</div>
       </div>
-
-
-      <div class="card">
+      </div>
+      <div class="emppanel" data-emp="hs">
+<div class="card">
         <span class="badge purple">Caso real nº 2 · PARCEIRA (pagante) · descrição existente auditada + descoberta autônoma</span>
         <h3 class="t" style="margin-top:8px">Hidro Shock Elétrica e Hidráulica — Avaré/SP</h3>
         <div class="sub">O teste inverso do caso nº 1: aqui <b>já existe</b> uma descrição bem construída na forma. A pergunta era: o que a 3.0 mudaria? Varredura por <b>8 agentes</b> em 7 ângulos (120 buscas) → <b>29 fatos consolidados</b> com fonte · <b>8 contaminações descartadas</b> pelo verificador. Sem dados do Google Maps/Places.</div>
 
-        <p style="font-weight:800;margin:16px 0 6px">1 · Auditoria da descrição atual — parece boa, e é o caso-padrão que a régua condena</p>
-        <div class="statband">
-          <div class="stat"><div class="big">28 em 276</div><div class="lbl">ocorrências de <b>termos genéricos</b> por palavras do texto — 1 a cada 10 ("soluções" 6× · "qualidade" 3× · "inovação" 3× · "compromisso" 3×…)</div><div class="src">medido no texto atual</div></div>
-          <div class="stat"><div class="big">3</div><div class="lbl"><b>claims proibidos</b>: "é referência em…" · "é a sua melhor escolha" · "de primeira linha"</div><div class="src">regra 3.1 (sem superlativo sem evidência)</div></div>
-          <div class="stat"><div class="big">28 ≠ 20+</div><div class="lbl"><b>inconsistência interna</b>: "há mais de 28 anos" na abertura vs "mais de duas décadas" nos bullets — o mesmo fato, dito de dois jeitos</div><div class="src">regra de consistência interna</div></div>
-        </div>
-        <ul class="clean">
-          <li>Bloco <b>"Nossos Valores" inteiro é genérico</b> (qualidade/inovação/transparência/humano) — pela regra do módulo sem fato, morre completo.</li>
-          <li>Tema <b>sustentabilidade aparece 3×</b> quando o fato concreto é um só (descarte de lâmpadas fluorescentes).</li>
-          <li><b>Sem UF</b> ("Avaré e Região", sem /SP) · "e Região" vago · CTA não factual ("descubra como podemos transformar seu projeto em um sucesso").</li>
-          <li><b>Mas há 12 fatos reais soterrados</b> nos adjetivos: assistência técnica de aquecedores e pressurizadores, aspersão e gotejamento, bombeamento, tubos e conexões, descarte de lâmpadas, públicos atendidos, 28 anos. A matéria-prima é boa — está mal empacotada.</li>
-        </ul>
-
-        <p style="font-weight:800;margin:16px 0 6px">2 · O que a descoberta autônoma acrescentou (que a descrição atual não diz)</p>
-        <div class="tablewrap"><table>
-          <thead><tr><th>Campo</th><th>Fato descoberto</th><th>Confiança</th></tr></thead>
-          <tbody>
-            <tr><td><b>endereço</b></td><td>Rua Bahia, 692 — <b>Centro</b> — Avaré/SP, CEP 18700-090 (bairro confirmado pela base oficial de CEP)</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>marca</b></td><td><b>Assistência técnica autorizada Lorenzetti</b> para aquecedores a gás e pressurizadores (declarada nos canais oficiais da empresa)</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>marca</b></td><td>A <b>Rinnai lista a razão social (A. J. Porto &amp; Cia) como parceiro credenciado</b> no endereço exato da loja — fonte independente do fabricante</td><td><span class="st par">média · confirmar antes de publicar</span></td></tr>
-            <tr><td><b>horários</b></td><td>Seg–sex <b>7h30–18h</b> · sáb <b>8h–12h</b> · fechado dom/feriados (site oficial; diretórios traziam 8h–17h desatualizado — canal oficial prevalece)</td><td><span class="st par">média · reconfirmar</span></td></tr>
-            <tr><td><b>contato</b></td><td>WhatsApp (14) 99754-8658 · fixo (14) 3732-4184 · vendas@hidroshock.com.br · site hidroshock.com.br</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>hidráulica</b></td><td>Registros, válvulas, torneiras, tubos e conexões para abastecimento de água</td><td><span class="st par">média</span></td></tr>
-            <tr><td><b>irrigação</b></td><td>Aspersão · gotejamento (enterrado ou superficial) · conjuntos de bombeamento com motobomba</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>canais</b></td><td>Instagram @hidroshockavare e Facebook /HidroShock ativos; presença digital desde pelo menos <b>2012</b> (blog antigo da loja)</td><td><span class="st ok">alta</span></td></tr>
-            <tr><td><b>CNPJ (pista interna)</b></td><td>Razão social A. J. Porto &amp; Cia Ltda, <b>aberta em 17/01/1994</b>, ativa, CNAE de material elétrico, no endereço exato</td><td><span class="st ok">alta · uso interno</span></td></tr>
-          </tbody>
-        </table></div>
-
-        <p style="font-weight:800;margin:16px 0 6px">3 · O que o verificador matou (de novo, homônimos)</p>
-        <ul class="clean">
-          <li><b>"Revenda Precon"</b> — a página do fabricante se refere a OUTRA Hidro Shock. Descartado.</li>
-          <li><b>Hidroshock Distribuidora (Belo Horizonte/MG)</b> e <b>Hidroshock de Birigüi/SP</b> — homônimos catalogados na lista de exclusão; nenhum dado aproveitado.</li>
-          <li><b>"Energia solar"</b> como linha de produto — menção única de diretório, ausente de todos os canais próprios. Não entrou (provável erro de categorização do diretório).</li>
-          <li><b>@hidroshock_</b> no Instagram — sem vínculo com Avaré. Fora.</li>
-          <li>Horário <b>8h–17h</b> de diretórios — conflita com o canal oficial (7h30–18h); mantido só como nota de conflito.</li>
-        </ul>
-
-        <p style="font-weight:800;margin:16px 0 6px">4 · O achado que muda o texto: a empresa se subvende</p>
-        <div class="sub" style="margin-bottom:0">O CNPJ da razão social foi aberto em <b>17/01/1994</b> — ~32 anos em 2026. O "há mais de 28 anos" do texto atual provavelmente foi escrito anos atrás e <b>nunca envelheceu junto com a empresa</b> (o problema exato que a regra "desde [ano]" evita: "desde 1994" estaria certo para sempre). Pela regra <b>CNPJ é pista, não fato</b>, não trocamos o número sem o dono: o texto 3.0 mantém a autodeclaração "mais de 28 anos" e o CS leva ao cliente a pergunta de 1 toque: <i>"a Hidro Shock é de 1994? Podemos dizer 'desde 1994'?"</i> — um upgrade de prova social que só depende de um sim.</div>
-
-        <p style="font-weight:800;margin:16px 0 6px">5 · Antes × Descrição 3.0</p>
+        <p style="font-weight:800;margin:16px 0 6px">1 · Antes × Descrição 3.0</p>
         <div class="cols">
           <div class="doc before">
-            <h3>● Texto atual (trechos marcados)</h3>
-            <p style="margin-top:12px">"…a Hidro Shock <mark class="m-bad" data-tip="Claim sem evidência — proibido pela regra 3.1.">é referência em</mark> materiais elétricos e hidráulicos… Nossa história é marcada pela <mark class="m-bad" data-tip="Genérico puro — cabe em qualquer empresa.">confiança, inovação</mark>…"</p>
-            <p>"…garantindo sempre <mark class="m-bad" data-tip="A tripla genérica clássica — o problema nº 9 da nossa tabela, o mesmo do caso New Rock.">soluções sob medida, agilidade no atendimento e compromisso com o cliente</mark>."</p>
-            <p>"Por que a Hidro Shock <mark class="m-bad" data-tip="Superlativo direto — claim proibido.">é a sua melhor escolha</mark>? • <mark class="m-bad" data-tip="Inconsistente com os '28 anos' da abertura — o mesmo fato dito de dois jeitos, e o mais fraco.">Mais de duas décadas de experiência</mark> • Produtos com <mark class="m-bad" data-tip="Adjetivos vazios sem fato.">qualidade, durabilidade e alto desempenho</mark>…"</p>
-            <p>"Nossos Valores • <mark class="m-bad" data-tip="Bloco inteiro sem um fato — pela regra do módulo sem fato, é omitido.">Qualidade e inovação em cada produto • Atendimento próximo, consultivo e humano • Transparência…</mark>"</p>
+            <h3>● Descrição atual na Solutudo (íntegra, marcada)</h3>
+            <p style="margin-top:12px"><b><mark class="m-bad" data-tip="Título de template: 'Soluções Inteligentes' é genérico — nenhum cliente busca isso.">Soluções Inteligentes</mark> em Materiais Elétricos, Hidráulicos e Irrigação em <mark class="m-bad" data-tip="Sem UF e 'Região' vaga — quais cidades? A 3.0 exige cidade/UF e área real.">Avaré e Região</mark></b></p>
+            <p>Há mais de 28 anos, a Hidro Shock <mark class="m-bad" data-tip="Claim sem evidência — proibido pela regra 3.1.">é referência em</mark> materiais elétricos e hidráulicos, oferecendo também <mark class="m-bad" data-tip="'Soluções completas' — genérico; o fato real (venda + assistência de aquecedores) aparece só depois.">soluções completas</mark> em aquecimento de água e sistemas de irrigação. Nossa história é marcada pela <mark class="m-bad" data-tip="Genérico puro — cabe em qualquer empresa do mundo.">confiança, inovação</mark> e um portfólio que atende tanto pequenas reformas quanto grandes projetos residenciais, comerciais e industriais.</p>
+            <p><b>Atendimento <mark class="m-bad" data-tip="'Diferenciado' sem dizer em quê — adjetivo sem fato.">Diferenciado</mark> na Região</b><br>Estamos presentes em Avaré, garantindo sempre <mark class="m-bad" data-tip="A tripla genérica clássica — o problema nº 9 da nossa tabela (o mesmo do caso New Rock).">soluções sob medida, agilidade no atendimento e compromisso com o cliente</mark>.</p>
+            <p><b>Por que a Hidro Shock <mark class="m-bad" data-tip="Superlativo direto — claim proibido.">é a sua melhor escolha</mark>?</b><br>• <mark class="m-bad" data-tip="Inconsistente com os '28 anos' da abertura — o mesmo fato dito de dois jeitos, e o mais fraco (o CNPJ é de 1994: ~32 anos).">Mais de duas décadas de experiência</mark> aliadas à inovação constante<br>• Produtos com <mark class="m-bad" data-tip="Adjetivos vazios — sem marca, sem linha, sem fato.">qualidade, durabilidade e alto desempenho</mark><br>• <mark class="m-bad" data-tip="Semi-genérico: especializada em quê? A 3.0 nomeia (assistência autorizada Lorenzetti).">Equipe técnica especializada</mark> para orientar cada decisão<br>• <mark class="m-bad" data-tip="Genérico — que projetos? A 3.0 nomeia: irrigação por aspersão/gotejamento e bombeamento.">Projetos personalizados</mark> para diferentes necessidades<br>• Compromisso com a sustentabilidade e o descarte ambientalmente correto</p>
+            <p><b>Portfólio Completo para Sua Obra</b><br>• Materiais elétricos e hidráulicos <mark class="m-bad" data-tip="'De primeira linha' — claim sem evidência.">de primeira linha</mark><br>• Venda e assistência técnica de aquecedores e pressurizadores<br>• Sistemas de bombeamento e irrigação por aspersão ou gotejamento<br>• Tubos, conexões e acessórios para abastecimento de água<br>• <mark class="m-bad" data-tip="Cauda genérica ('soluções adaptadas'); o fato é o público — que já foi dito na abertura.">Soluções adaptadas</mark> para casas, comércios e indústrias</p>
+            <p><b>Compromisso com o Meio Ambiente</b><br>A Hidro Shock realiza o descarte responsável de lâmpadas fluorescentes, <mark class="m-bad" data-tip="3ª vez que o tema aparece — o fato concreto é um só; repetição dilui.">reforçando nosso cuidado com a natureza e responsabilidade ambiental</mark>.</p>
+            <p><b>Nossos Valores</b><br><mark class="m-bad" data-tip="Bloco inteiro sem um único fato — pela regra do módulo sem fato, é omitido por completo.">• Qualidade e inovação em cada produto • Atendimento próximo, consultivo e humano • Transparência em todos os processos • Sustentabilidade como parte da nossa essência</mark></p>
+            <p><b>Faça Sua Obra com a Hidro Shock</b><br>Sua obra merece mais do que materiais: merece soluções inteligentes e atendimento especializado. <mark class="m-bad" data-tip="CTA não factual — não diz o que fazer nem por onde.">Descubra como podemos transformar seu projeto em um sucesso.</mark></p>
+            <p><mark class="m-bad" data-tip="Slogan/autoafirmação — vive no canal da marca, não no perfil factual.">Hidro Shock – qualidade, confiança e soluções que fazem a diferença.</mark></p>
           </div>
           <div class="doc after">
             <h3>● Descrição 3.0 (fatos verificados · parceira)</h3>
@@ -1467,7 +1457,59 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           </div>
         </div>
 
-        <p style="font-weight:800;margin:16px 0 6px">6 · Demais canais — o gating de parceira abre tudo</p>
+        <p style="font-weight:800;margin:16px 0 6px">2 · Por que a 3.0 é melhor — leitor a leitor (neste caso concreto)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Leitor</th><th>Antes (texto atual)</th><th>Com a 3.0</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rt conv">Pessoas</span></td><td>28 genéricos e 3 claims; sem endereço, horário ou contato no texto</td><td>Decide e age: Rua Bahia 692 (Centro), 7h30–18h e sáb 8h–12h, WhatsApp, o que a loja vende e conserta</td></tr>
+            <tr><td><span class="rt seo">SEO (busca)</span></td><td>"Soluções inteligentes" — termo que ninguém busca; sem UF</td><td>Termos que o cliente digita: "aquecedor a gás Avaré", "pressurizador", "irrigação por gotejamento", "assistência Lorenzetti"; entidade + Avaré/SP na 1ª frase; title 59/60, meta 145</td></tr>
+            <tr><td><span class="rt local">Google · Bing</span></td><td>Texto que existe igual em milhares de lojas (só troca o nome) — perfil de desindexação</td><td>Denso e único: autorizada Lorenzetti + descarte de lâmpadas + 4 pilares + indício Rinnai — combinação que só esta loja tem; versão Google 640/750 pronta conforme a política</td></tr>
+            <tr><td><span class="rt ia">IAs (GEO)</span></td><td>"É referência", "melhor escolha" — se a IA citar, repete marketing como se fosse fato</td><td>Só afirmações factuais e autossuficientes — o que a IA extrai e cita é verdade verificável ("assistência técnica autorizada Lorenzetti em Avaré/SP")</td></tr>
+            <tr><td><span class="rt voz">Voz / PAA</span></td><td>Sem resposta direta a nada</td><td>"Abre às 7h30", "fecha aos domingos", "recebe lâmpadas usadas" — respostas extraíveis de 1 frase</td></tr>
+          </tbody>
+        </table></div>
+<p style="font-weight:800;margin:16px 0 6px">3 · Auditoria da descrição atual — parece boa, e é o caso-padrão que a régua condena</p>
+        <div class="statband">
+          <div class="stat"><div class="big">28 em 276</div><div class="lbl">ocorrências de <b>termos genéricos</b> por palavras do texto — 1 a cada 10 ("soluções" 6× · "qualidade" 3× · "inovação" 3× · "compromisso" 3×…)</div><div class="src">medido no texto atual</div></div>
+          <div class="stat"><div class="big">3</div><div class="lbl"><b>claims proibidos</b>: "é referência em…" · "é a sua melhor escolha" · "de primeira linha"</div><div class="src">regra 3.1 (sem superlativo sem evidência)</div></div>
+          <div class="stat"><div class="big">28 ≠ 20+</div><div class="lbl"><b>inconsistência interna</b>: "há mais de 28 anos" na abertura vs "mais de duas décadas" nos bullets — o mesmo fato, dito de dois jeitos</div><div class="src">regra de consistência interna</div></div>
+        </div>
+        <ul class="clean">
+          <li>Bloco <b>"Nossos Valores" inteiro é genérico</b> (qualidade/inovação/transparência/humano) — pela regra do módulo sem fato, morre completo.</li>
+          <li>Tema <b>sustentabilidade aparece 3×</b> quando o fato concreto é um só (descarte de lâmpadas fluorescentes).</li>
+          <li><b>Sem UF</b> ("Avaré e Região", sem /SP) · "e Região" vago · CTA não factual ("descubra como podemos transformar seu projeto em um sucesso").</li>
+          <li><b>Mas há 12 fatos reais soterrados</b> nos adjetivos: assistência técnica de aquecedores e pressurizadores, aspersão e gotejamento, bombeamento, tubos e conexões, descarte de lâmpadas, públicos atendidos, 28 anos. A matéria-prima é boa — está mal empacotada.</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">4 · O que a descoberta autônoma acrescentou (que a descrição atual não diz)</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Campo</th><th>Fato descoberto</th><th>Confiança</th></tr></thead>
+          <tbody>
+            <tr><td><b>endereço</b></td><td>Rua Bahia, 692 — <b>Centro</b> — Avaré/SP, CEP 18700-090 (bairro confirmado pela base oficial de CEP)</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>marca</b></td><td><b>Assistência técnica autorizada Lorenzetti</b> para aquecedores a gás e pressurizadores (declarada nos canais oficiais da empresa)</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>marca</b></td><td>A <b>Rinnai lista a razão social (A. J. Porto &amp; Cia) como parceiro credenciado</b> no endereço exato da loja — fonte independente do fabricante</td><td><span class="st par">média · confirmar antes de publicar</span></td></tr>
+            <tr><td><b>horários</b></td><td>Seg–sex <b>7h30–18h</b> · sáb <b>8h–12h</b> · fechado dom/feriados (site oficial; diretórios traziam 8h–17h desatualizado — canal oficial prevalece)</td><td><span class="st par">média · reconfirmar</span></td></tr>
+            <tr><td><b>contato</b></td><td>WhatsApp (14) 99754-8658 · fixo (14) 3732-4184 · vendas@hidroshock.com.br · site hidroshock.com.br</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>hidráulica</b></td><td>Registros, válvulas, torneiras, tubos e conexões para abastecimento de água</td><td><span class="st par">média</span></td></tr>
+            <tr><td><b>irrigação</b></td><td>Aspersão · gotejamento (enterrado ou superficial) · conjuntos de bombeamento com motobomba</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>canais</b></td><td>Instagram @hidroshockavare e Facebook /HidroShock ativos; presença digital desde pelo menos <b>2012</b> (blog antigo da loja)</td><td><span class="st ok">alta</span></td></tr>
+            <tr><td><b>CNPJ (pista interna)</b></td><td>Razão social A. J. Porto &amp; Cia Ltda, <b>aberta em 17/01/1994</b>, ativa, CNAE de material elétrico, no endereço exato</td><td><span class="st ok">alta · uso interno</span></td></tr>
+          </tbody>
+        </table></div>
+
+        <p style="font-weight:800;margin:16px 0 6px">5 · O que o verificador matou (de novo, homônimos)</p>
+        <ul class="clean">
+          <li><b>"Revenda Precon"</b> — a página do fabricante se refere a OUTRA Hidro Shock. Descartado.</li>
+          <li><b>Hidroshock Distribuidora (Belo Horizonte/MG)</b> e <b>Hidroshock de Birigüi/SP</b> — homônimos catalogados na lista de exclusão; nenhum dado aproveitado.</li>
+          <li><b>"Energia solar"</b> como linha de produto — menção única de diretório, ausente de todos os canais próprios. Não entrou (provável erro de categorização do diretório).</li>
+          <li><b>@hidroshock_</b> no Instagram — sem vínculo com Avaré. Fora.</li>
+          <li>Horário <b>8h–17h</b> de diretórios — conflita com o canal oficial (7h30–18h); mantido só como nota de conflito.</li>
+        </ul>
+
+        <p style="font-weight:800;margin:16px 0 6px">6 · O achado que muda o texto: a empresa se subvende</p>
+        <div class="sub" style="margin-bottom:0">O CNPJ da razão social foi aberto em <b>17/01/1994</b> — ~32 anos em 2026. O "há mais de 28 anos" do texto atual provavelmente foi escrito anos atrás e <b>nunca envelheceu junto com a empresa</b> (o problema exato que a regra "desde [ano]" evita: "desde 1994" estaria certo para sempre). Pela regra <b>CNPJ é pista, não fato</b>, não trocamos o número sem o dono: o texto 3.0 mantém a autodeclaração "mais de 28 anos" e o CS leva ao cliente a pergunta de 1 toque: <i>"a Hidro Shock é de 1994? Podemos dizer 'desde 1994'?"</i> — um upgrade de prova social que só depende de um sim.</div>
+
+        <p style="font-weight:800;margin:16px 0 6px">7 · Demais canais — o gating de parceira abre tudo</p>
         <ul class="clean">
           <li><b>google_business_profile (640/750 · essencial nos ~250 primeiros · sem telefone/URL):</b> "A Hidro Shock Elétrica e Hidráulica é uma loja de materiais elétricos e hidráulicos no Centro de Avaré (SP), na Rua Bahia, 692. Atua há mais de 28 anos com elétrica, hidráulica, aquecimento de água e irrigação, atendendo obras residenciais, comerciais e industriais. Faz venda e assistência técnica de aquecedores — inclusive a gás — e pressurizadores, com assistência autorizada Lorenzetti. Monta sistemas de irrigação por aspersão e gotejamento e conjuntos de bombeamento com motobomba. A loja também recebe lâmpadas fluorescentes usadas para descarte responsável. Aberta de segunda a sexta, das 7h30 às 18h, e aos sábados, das 8h às 12h."</li>
           <li><b>instagram_bio (148/150, proposta para @hidroshockavare):</b> 💡🔧 Elétrica, hidráulica, aquecimento e irrigação · 📍 Avaré/SP — Rua Bahia, 692 · 🔥 Assistência autorizada Lorenzetti · ⏰ Seg–sex 7h30–18h · Sáb 8h–12h</li>
@@ -1476,7 +1518,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <li><b>solusite (pauta da narrativa própria — mesma base de fatos, texto distinto):</b> a história desde os anos 1990 (após confirmação) · a loja da Rua Bahia e a equipe · por dentro da assistência autorizada Lorenzetti · o balcão de descarte de lâmpadas · casos de irrigação nos sítios da região de Avaré.</li>
         </ul>
 
-        <p style="font-weight:800;margin:16px 0 6px">7 · Lacunas — e aqui a diferença de ser parceira: viram pauta do CS, não pesquisa fria</p>
+        <p style="font-weight:800;margin:16px 0 6px">8 · Lacunas — e aqui a diferença de ser parceira: viram pauta do CS, não pesquisa fria</p>
         <div class="tablewrap"><table>
           <thead><tr><th>Pergunta de 1 toque para o cliente</th><th>O que destrava</th></tr></thead>
           <tbody>
@@ -1489,7 +1531,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           </tbody>
         </table></div>
 
-        <p style="font-weight:800;margin:16px 0 6px">8 · Validação mecânica</p>
+        <p style="font-weight:800;margin:16px 0 6px">9 · Validação mecânica</p>
         <div class="checkgrid">
           <div class="ck"><span class="cic">✓</span><span>Entidade + categoria + cidade/UF + bairro na 1ª frase</span></div>
           <div class="ck"><span class="cic">✓</span><span>Enumeração dos 4 pilares idêntica em descrição, Google, bio e title</span></div>
@@ -1503,6 +1545,8 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
         <div class="sub" style="margin:16px 0 0"><b>Veredito do caso nº 2:</b> a descrição atual tem boa forma e 12 fatos reais — afogados em 28 ocorrências de genéricos e 3 claims proibidos. A 3.0 não "melhorou o texto": <b>trocou adjetivo por fato descoberto</b> (endereço com CEP oficial, autorizada Lorenzetti, horários, 4 pilares do site próprio, indício Rinnai pela razão social) e transformou as lacunas em 6 perguntas de 1 toque para o CS — incluindo a que faz a empresa parar de se subvender: "desde 1994".</div>
       </div>
+      </div>
+
 
       <div class="card">
         <span class="badge warn">Regra nova · vale para TODA descrição publicada</span>
@@ -1578,6 +1622,11 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   function fallbackCopy(text){
     var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px';
     document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
+  }
+  function empsel(which, btn){
+    document.querySelectorAll('.emppanel').forEach(function(p){ p.classList.toggle('on', p.dataset.emp===which); });
+    btn.parentElement.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
+    btn.classList.add('on');
   }
   function ch(which, btn){
     document.querySelectorAll('.chpanel').forEach(function(p){ p.classList.toggle('on', p.dataset.ch===which); });
