@@ -2041,8 +2041,8 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <div class="ag-pnum"><b>1</b></div>
           <div>
             <span class="ag-pst now">Piloto rodando</span>
-            <h4>Descrição da empresa + textos por canal</h4>
-            <p>Descrição do perfil Solutudo, título e meta de busca, Google Business, bio de rede social e a narrativa própria do Solusite — todos saindo do mesmo envelope de fatos, com enumeração consistente entre canais.</p>
+            <h4>Descrição da empresa</h4>
+            <p>O bloco de descrição do perfil Solutudo: escrito só a partir de fatos verificados, proporcional ao que existe de fato, com selo de procedência e campo em conflito fora do texto. É a etapa em que estamos — nada além dela por enquanto.</p>
             <div class="ag-pmeta"><b>Estado:</b> validado em 8 empresas reais, de cliente completo a gratuito raso (aba <b>Empresas 3.0</b>).</div>
           </div>
         </div>
@@ -2062,7 +2062,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
           <div>
             <span class="ag-pst next">Próximo</span>
             <h4>Descrições específicas para cada canal Solutudo</h4>
-            <p>Cada superfície da Solutudo pede recorte, limite e ordem próprios: card de busca interna, listagem de categoria, destaque, comparativo. Mesmo fato, formatos diferentes — sem repetir bloco idêntico em escala.</p>
+            <p>Cada superfície pede recorte, limite e ordem próprios: card de busca interna, listagem de categoria, destaque, título e meta da página, Google Business, bio de rede social. Mesmo fato, formatos diferentes — sem repetir bloco idêntico em escala.</p>
             <div class="ag-pmeta"><b>Reaproveita:</b> tudo. <b>Troca:</b> só a régua de cada canal no auditor.</div>
           </div>
         </div>
@@ -2189,7 +2189,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
         <ul class="clean">
           <li><b>Só o link:</b> <code>/empresa-3-0 &lt;url da Solutudo ou do site&gt;</code> — o alvo (nome, cidade/UF, DDD esperado) é extraído do próprio link e vira a amarra das buscas.</li>
           <li><b>Com contextos:</b> briefing respondido, transcrição de reunião ou cadastro entram como <b>fonte fornecida pela empresa</b> — é o que habilita o selo variante A em vez do B.</li>
-          <li><b>O que sai:</b> dossiê de 6 arquivos por empresa (<code>00-alvo</code> → <code>50-supervisao</code>), a descrição com selo, os textos por canal com contagens medidas, os barrados e as pendências humanas.</li>
+          <li><b>O que sai:</b> dossiê de 6 arquivos por empresa (<code>00-alvo</code> → <code>50-supervisao</code>), a descrição com selo e contagens medidas, o relatório do que foi usado e do que ficou de fora, os barrados e as pendências humanas.</li>
           <li><b>Limites conhecidos:</b> sem Google Maps/Places (contratual) · ~60–80 buscas por empresa, e a cota de busca é o gargalo · apps e páginas não indexadas seguem cegos e viram lacuna declarada, nunca "não tem".</li>
         </ul>
         <div class="sub" style="margin-top:12px">Cada agente é um arquivo versionado em <code>.claude/agents/</code> com missão, ferramentas e formato de retorno próprios — e o orquestrador (<code>.claude/skills/empresa-3-0/</code>) é quem encadeia as fases e passa o dossiê de um agente para o próximo.</div>
@@ -2300,14 +2300,14 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
       note:'Conflito de dado não vira escolha: o campo sai do texto e vira tarefa humana. Zero barrados em empresa de nome comum é sinal de verificação preguiçosa.'},
     red:{n:'6',cls:'ag-r',av:'RC',file:'redator-3-0',nm:'Redator-Chefe da Descrição',role:'Fase 3 · quem escreve',
       mission:'Escrever exatamente o que o envelope sustenta — nem uma frase além.',
-      ind:['100% das frases rastreáveis a um fato verificado','Texto proporcional ao envelope (raso → curto)','Canal sem fato fica sem texto'],
-      bars:[[75,'Descrição e textos por canal'],[25,'Relatório: o que usou, o que não usou e por quê']],
+      ind:['100% das frases rastreáveis a um fato verificado','Texto proporcional ao envelope (raso → curto)','Módulo sem fato é omitido, não preenchido'],
+      bars:[[75,'Redação da descrição'],[25,'Relatório: o que usou, o que não usou e por quê']],
       chips:[['out','Entrega: 30-textos.md'],['tut','Conferido pelos agentes 7 e 8']],
       note:'Não tem acesso à internet por decisão de projeto. Se o fato não está no envelope, ele não existe — é a garantia estrutural contra invenção.'},
     aud:{n:'7',cls:'ag-a',av:'IA',file:'auditor-indexacao',nm:'Especialista em Indexação e Acessibilidade',role:'Fase 4 · quem mede',
       mission:'Garantir que o texto é bem lido por Google, Bing e IAs — e, antes de tudo, por pessoas.',
-      ind:['Limites por canal medidos em código, não estimados','Frases atômicas e enumerações consistentes entre canais','Leitor leigo entende o que a empresa faz em 10 segundos'],
-      bars:[[45,'Limites, formato e leitura por máquinas'],[55,'Verdade frase a frase e acessibilidade humana']],
+      ind:['Limites de tamanho medidos em código, não estimados','Frases atômicas e enumeração consistente dentro do texto','Leitor leigo entende o que a empresa faz em 10 segundos'],
+      bars:[[45,'Formato, limites e leitura por máquinas'],[55,'Verdade frase a frase e acessibilidade humana']],
       chips:[['out','Entrega: 40-auditoria.md'],['tut','Confere o agente 6'],['tut','Conferido pelo agente 8']],
       note:'Texto que passa no robô mas confunde o leitor reprova. Toda reprovação vem com a correção objetiva e a regra da spec que a fundamenta.'},
     sup:{n:'8',cls:'ag-s',av:'DQ',file:'supervisor-3-0',nm:'Diretor de Qualidade e Conferência Final',role:'Fase 5 · última instância',
