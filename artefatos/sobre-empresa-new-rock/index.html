@@ -292,8 +292,7 @@
   .ag-checked{position:relative;display:flex;flex-direction:column}
   .ag-tutrail{position:absolute;right:-62px;top:40px;bottom:6px;border-left:2px dashed var(--ag-tut);border-radius:2px}
   .ag-tutrail::after{content:"";position:absolute;left:-6px;bottom:-2px;width:10px;height:10px;border-right:2px dashed var(--ag-tut);border-bottom:2px dashed var(--ag-tut);transform:rotate(45deg)}
-  .ag-tutlabel{position:absolute;right:-56px;top:6px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#06724F;white-space:nowrap;background:rgba(0,181,137,.14);padding:3px 8px;border-radius:var(--pill)}
-  @media(max-width:760px){.ag-tutrail,.ag-tutlabel{display:none}}
+  @media(max-width:760px){.ag-tutrail{display:none}}
   .ag-station{position:relative}
   .ag-station.tut::after{content:"";position:absolute;right:-62px;top:38px;width:62px;border-top:2px dashed var(--ag-tut);opacity:.85}
   @media(max-width:760px){.ag-station.tut::after{display:none}}
@@ -2046,7 +2045,6 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
           <div class="ag-checked">
             <div class="ag-tutrail"></div>
-            <span class="ag-tutlabel">Supervisão</span>
 
             <div class="ag-station tut">
               <div class="ag-phase"><b>1</b><span>Fase 1 · 4 agentes descobridores em paralelo</span></div>
