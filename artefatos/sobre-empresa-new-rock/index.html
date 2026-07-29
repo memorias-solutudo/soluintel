@@ -16,7 +16,7 @@
     --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
     --shadow-md:0 12px 32px rgba(21,21,21,.12);
     --line:1px solid rgba(21,21,21,.06);
-    --r-md:16px; --r-lg:20px; --pill:999px;
+    --r-md:16px; --r-lg:20px; --pill:999px; --ag-tut:#00B589;
     --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -266,6 +266,103 @@
   .empsellabel{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);margin-bottom:8px}
   #empselect{width:100%;border:1.5px solid var(--g150);border-radius:12px;padding:12px 14px;font:inherit;font-weight:800;font-size:14.5px;letter-spacing:-.01em;color:var(--ink);background:var(--white);cursor:pointer;appearance:auto}
   #empselect:focus{outline:2px solid var(--brand-purple);outline-offset:1px}
+  /* ===== aba Agentes: mapa de fluxo + painel de detalhe ===== */
+  .ag-step1{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);border:var(--line);border-left:5px solid var(--brand-orange);padding:22px 26px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px;margin-top:14px}
+  @media(max-width:900px){.ag-step1{grid-template-columns:1fr;gap:18px}}
+  .ag-step1 .ag-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#B03A00;background:var(--tint-peach);padding:5px 12px;border-radius:var(--pill)}
+  .ag-step1 h3{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-top:12px;line-height:1.2}
+  .ag-step1 p{font-size:14px;color:var(--g700);margin-top:9px}
+  .ag-step1 p b{color:var(--ink)}
+  .ag-queue{display:flex;flex-direction:column;gap:7px}
+  .ag-qhead{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600)}
+  .ag-qitem{display:flex;align-items:flex-start;gap:10px;background:var(--bg);border-radius:12px;padding:9px 12px}
+  .ag-qitem .ag-st{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:var(--pill);margin-top:1px}
+  .ag-st.now{background:var(--tint-mint);color:#06724F}
+  .ag-st.next{background:var(--tint-lav);color:#7B00BE}
+  .ag-st.later{background:var(--g100);color:var(--g700)}
+  .ag-qitem .ag-qt{font-size:13.2px;font-weight:700;line-height:1.35}
+  .ag-qitem .ag-qt span{display:block;font-weight:500;color:var(--g600);font-size:12.4px;margin-top:1px}
+
+  .ag-maplayout{display:grid;grid-template-columns:minmax(0,1fr) 396px;gap:24px;align-items:start;margin-top:14px}
+  @media(max-width:1120px){.ag-maplayout{grid-template-columns:1fr}}
+  .ag-map{background:var(--white);border:var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:24px 24px 26px;
+    background-image:radial-gradient(circle,rgba(167,1,253,.13) 1.1px,transparent 1.1px);background-size:22px 22px;background-position:-1px -1px}
+  .ag-flow{position:relative;padding-right:62px}
+  @media(max-width:760px){.ag-flow{padding-right:0}}
+  .ag-checked{position:relative;display:flex;flex-direction:column}
+  .ag-tutrail{position:absolute;right:-62px;top:40px;bottom:6px;border-left:2px dashed var(--ag-tut);border-radius:2px}
+  .ag-tutrail::after{content:"";position:absolute;left:-6px;bottom:-2px;width:10px;height:10px;border-right:2px dashed var(--ag-tut);border-bottom:2px dashed var(--ag-tut);transform:rotate(45deg)}
+  .ag-tutlabel{position:absolute;right:-56px;top:6px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#06724F;white-space:nowrap;background:rgba(0,181,137,.14);padding:3px 8px;border-radius:var(--pill)}
+  @media(max-width:760px){.ag-tutrail,.ag-tutlabel{display:none}}
+  .ag-station{position:relative}
+  .ag-station.tut::after{content:"";position:absolute;right:-62px;top:38px;width:62px;border-top:2px dashed var(--ag-tut);opacity:.85}
+  @media(max-width:760px){.ag-station.tut::after{display:none}}
+  .ag-arrow{height:26px;display:flex;justify-content:center;align-items:center}
+  .ag-arrow i{display:block;width:2px;height:100%;background:linear-gradient(180deg,rgba(21,21,21,.16),rgba(21,21,21,.3));position:relative}
+  .ag-arrow i::after{content:"";position:absolute;left:-4px;bottom:-1px;width:9px;height:9px;border-right:2px solid rgba(21,21,21,.3);border-bottom:2px solid rgba(21,21,21,.3);transform:rotate(45deg)}
+  .ag-phase{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .ag-phase b{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:10.5px;font-weight:800}
+  .ag-phase span{font-size:10.8px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--g600)}
+  .ag-node{width:100%;text-align:left;background:var(--white);border:1.5px solid rgba(21,21,21,.09);border-radius:var(--r-md);padding:13px 15px;cursor:pointer;box-shadow:var(--shadow-card);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;display:flex;gap:12px;align-items:flex-start;font:inherit;color:inherit}
+  .ag-node:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .ag-node.on{border-color:currentColor;box-shadow:var(--shadow-md)}
+  .ag-node .ag-av{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#fff;letter-spacing:-.02em}
+  .ag-node > span:last-child{display:block;min-width:0}
+  .ag-node .ag-nm{display:block;font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.25}
+  .ag-node .ag-rl{display:block;font-size:12.2px;color:var(--g700);font-weight:600;margin-top:2px;line-height:1.35}
+  .ag-node .ag-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .ag-node .ag-chip{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .ag-d{color:var(--brand-purple)} .ag-d .ag-av{background:var(--brand-purple)} .ag-d.on{background:#FDFAFF}
+  .ag-v{color:var(--brand-orange-deep)} .ag-v .ag-av{background:var(--brand-orange-deep)} .ag-v.on{background:#FFFBF9}
+  .ag-r{color:var(--brand-pink)} .ag-r .ag-av{background:var(--brand-pink)} .ag-r.on{background:#FFFAFD}
+  .ag-a{color:#0093B5} .ag-a .ag-av{background:#0093B5} .ag-a.on{background:#F9FDFF}
+  .ag-s{color:var(--ink)} .ag-s .ag-av{background:var(--ink)} .ag-s.on{background:#FAFAFC}
+  .ag-quad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.ag-quad{grid-template-columns:1fr}}
+  .ag-quad .ag-node{padding:11px 13px}
+  .ag-quad .ag-node .ag-av{width:29px;height:29px;font-size:10.5px}
+  .ag-endpoint{border:1.5px dashed rgba(21,21,21,.2);background:rgba(255,255,255,.72);border-radius:var(--r-md);padding:11px 15px;font-size:12.8px;font-weight:700;color:var(--g700);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ag-endpoint .ag-dot{width:9px;height:9px;border-radius:50%;background:var(--grad-cta);flex:none}
+  .ag-endpoint span{font-weight:500;color:var(--g700)}
+
+  .ag-detail{position:sticky;top:74px;background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-md);border:var(--line);overflow:hidden}
+  @media(max-width:1120px){.ag-detail{position:static}}
+  .ag-detail .ag-dtop{padding:20px 22px 16px;display:flex;gap:13px;align-items:center;border-bottom:var(--line)}
+  .ag-detail .ag-dav{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex:none;background:currentColor}
+  .ag-detail h3{font-size:19px;font-weight:800;letter-spacing:-.03em;line-height:1.15}
+  .ag-detail .ag-drole{font-size:12.5px;color:var(--g700);font-weight:600;margin-top:2px}
+  .ag-detail .ag-dbody{padding:18px 22px 22px;display:flex;flex-direction:column;gap:16px}
+  .ag-dlabel{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g600)}
+  .ag-dmission{font-size:16.5px;font-weight:800;letter-spacing:-.025em;line-height:1.28;margin-top:6px;color:var(--ink)}
+  .ag-dlist{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:6px;padding:0}
+  .ag-dlist li{position:relative;padding-left:16px;font-size:13.2px;color:var(--g700);line-height:1.42}
+  .ag-dlist li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:currentColor}
+  .ag-bars{margin-top:10px;display:flex;flex-direction:column;gap:10px}
+  .ag-bar .ag-bl{display:flex;align-items:center;gap:10px}
+  .ag-bar .ag-pct{font-size:12.5px;font-weight:800;width:38px;font-variant-numeric:tabular-nums;color:var(--g700)}
+  .ag-bar .ag-track{flex:1;height:7px;border-radius:var(--pill);background:var(--g100);overflow:hidden}
+  .ag-bar .ag-fill{height:100%;border-radius:var(--pill);background:currentColor;display:block}
+  .ag-bar .ag-cap{font-size:12.3px;color:var(--g700);margin:4px 0 0 48px;line-height:1.35}
+  .ag-dchips{display:flex;flex-wrap:wrap;gap:6px}
+  .ag-dchip{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .ag-dchip.tut{background:rgba(0,181,137,.14);color:#06724F}
+  .ag-dchip.out{background:var(--tint-lav);color:#7B00BE}
+  .ag-dnote{background:var(--tint-yellow);border-radius:12px;padding:12px 14px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.45}
+
+  .ag-chain{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .ag-crow{display:grid;grid-template-columns:150px 78px minmax(0,1fr);gap:14px;align-items:center;background:var(--white);border:var(--line);border-radius:14px;padding:11px 14px;box-shadow:var(--shadow-card)}
+  @media(max-width:700px){.ag-crow{grid-template-columns:1fr;gap:5px}.ag-crow .ag-ar{display:none}}
+  .ag-crow .ag-who{font-size:13.2px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+  .ag-crow .ag-who i{width:9px;height:9px;border-radius:50%;flex:none}
+  .ag-crow .ag-ar{color:var(--g700);font-weight:800;text-align:center;font-size:11px;letter-spacing:.05em;text-transform:uppercase;background:var(--g100);border-radius:var(--pill);padding:4px 0}
+  .ag-crow .ag-what{font-size:13.2px;color:var(--g700);line-height:1.4}
+  .ag-crow .ag-what b{color:var(--ink)}
+  .ag-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+  @media(max-width:940px){.ag-grid3{grid-template-columns:1fr}}
+  .ag-mini{background:var(--white);border:var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-card);padding:16px 18px}
+  .ag-mini h4{font-size:14.5px;font-weight:800;letter-spacing:-.025em;line-height:1.25}
+  .ag-mini p{font-size:13.2px;color:var(--g700);margin-top:7px;line-height:1.45}
+  .ag-mini .ag-k{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600);margin-bottom:8px;display:block}
 </style>
 </head>
 <body>
@@ -278,6 +375,7 @@
       <button id="t-faq" onclick="show('faq')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</button>
       <button id="t-index" onclick="show('index')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Indexação</button>
       <button id="t-emp" onclick="show('emp')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Empresas 3.0</button>
+      <button id="t-ag" onclick="show('ag')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M12 7.6v3.9M12 11.5 6.6 15.9M12 11.5l5.4 4.4"/></svg>Agentes</button>
     </nav>
     <span class="tb-right"><span class="upchip">Atualizado em 28/07/2026</span></span>
   </div>
@@ -1894,6 +1992,146 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     </div>
   </section>
 
+  <section id="p-ag" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow"><b>1</b> Leia isto antes do organograma</span>
+      <h2>O time de agentes que gera a Descrição 3.0</h2>
+      <p class="secsub">Cinco agentes com missão estreita, encadeados numa esteira onde ninguém entrega sem ser conferido por outro — e um supervisor que confere se a conferência foi feita de verdade. É o motor por trás dos 8 casos da aba anterior.</p>
+    </div>
+
+    <div class="ag-step1">
+      <div>
+        <span class="ag-tag">Isto é o primeiro passo</span>
+        <h3>A descrição da empresa é o piloto — não o destino</h3>
+        <p>Escolhemos a descrição para nascer primeiro porque ela é o conteúdo mais <b>exposto</b> (aparece em busca, em IA, no perfil) e o mais <b>arriscado</b> (fato errado sobre empresa real). Se a estrutura de conferência se sustenta aqui, ela se sustenta em qualquer conteúdo.</p>
+        <p>O que estamos realmente construindo é a <b>camada de fatos verificados de cada empresa</b>. Ela é cara de produzir uma vez e barata de reaproveitar: a mesma base que sustenta a descrição sustenta depois o post, a pauta, o Solusite e cada canal. Por isso a ordem importa — <b>primeiro a verdade, depois o volume</b>.</p>
+        <p style="color:var(--g700);font-size:13.2px">O que muda de um conteúdo para o outro é o redator e o auditor. O descobridor, o verificador e o supervisor são os mesmos — é o núcleo reutilizável.</p>
+      </div>
+      <div class="ag-queue">
+        <span class="ag-qhead">Fila de expansão — mesma estrutura, novas células</span>
+        <div class="ag-qitem"><span class="ag-st now">Piloto</span><span class="ag-qt">Descrição da empresa + textos por canal<span>Solutudo, title/meta, Google Business, bio, Solusite</span></span></div>
+        <div class="ag-qitem"><span class="ag-st next">Próximo</span><span class="ag-qt">Conteúdo completo da página da empresa<span>FAQ, blocos de serviços, destaques, categorias</span></span></div>
+        <div class="ag-qitem"><span class="ag-st next">Próximo</span><span class="ag-qt">Descrições específicas para cada canal Solutudo<span>cada superfície pede recorte, limite e ordem próprios</span></span></div>
+        <div class="ag-qitem"><span class="ag-st later">Depois</span><span class="ag-qt">Cronograma de tópicos para posts<span>calendário por segmento, sazonalidade e agenda local</span></span></div>
+        <div class="ag-qitem"><span class="ag-st later">Depois</span><span class="ag-qt">Editorias do plano estratégico<span>maior plano Solutudo: séries, pautas e campanhas</span></span></div>
+        <div class="ag-qitem"><span class="ag-st later">Depois</span><span class="ag-qt">Solusite completo<span>home, serviços, sobre e blog do site próprio</span></span></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow"><b>2</b> O fluxo real</span>
+      <h2>Como o trabalho anda — e onde cada um confere o outro</h2>
+      <p class="secsub">Clique em qualquer agente para ver missão, indicadores e quem o confere. A linha contínua é a esteira de produção; a tracejada verde é a supervisão, que alcança todas as fases.</p>
+    </div>
+
+    <div class="ag-maplayout">
+      <div class="ag-map">
+        <div class="ag-flow">
+
+          <div class="ag-endpoint"><span class="ag-dot"></span> Entrada — <span>1 link da empresa, ou contextos: briefing respondido, transcrição de reunião, cadastro</span></div>
+          <div class="ag-arrow"><i></i></div>
+
+          <div class="ag-checked">
+            <div class="ag-tutrail"></div>
+            <span class="ag-tutlabel">Supervisão</span>
+
+            <div class="ag-station tut">
+              <div class="ag-phase"><b>1</b><span>Descoberta · 4 agentes em paralelo</span></div>
+              <div class="ag-quad">
+                <button class="ag-node ag-d" data-ag="d1" onclick="agsel('d1',this)"><span class="ag-av">SO</span><span><span class="ag-nm">Descobridor · Site oficial</span><span class="ag-rl">Site próprio, páginas internas, dados já publicados</span></span></button><button class="ag-node ag-d" data-ag="d2" onclick="agsel('d2',this)"><span class="ag-av">RD</span><span><span class="ag-nm">Descobridor · Redes e diretórios</span><span class="ag-rl">Instagram, Facebook, marketplaces, Solutudo</span></span></button><button class="ag-node ag-d" data-ag="d3" onclick="agsel('d3',this)"><span class="ag-av">BO</span><span><span class="ag-nm">Descobridor · Bases oficiais</span><span class="ag-rl">CEP, CNPJ, conselhos de classe</span></span></button><button class="ag-node ag-d" data-ag="d4" onclick="agsel('d4',this)"><span class="ag-av">RC</span><span><span class="ag-nm">Descobridor · Reputação e conteúdo</span><span class="ag-rl">Reclamações, notícias locais, menções</span></span></button>
+              </div>
+            </div>
+
+            <div class="ag-arrow"><i></i></div>
+
+            <div class="ag-station tut">
+              <div class="ag-phase"><b>2</b><span>Verificação adversarial</span></div>
+              <button class="ag-node ag-v" data-ag="ver" onclick="agsel('ver',this)"><span class="ag-av">VA</span><span><span class="ag-nm">Verificador adversarial</span><span class="ag-rl">Tenta derrubar cada fato — homônimos, amarras, conflitos</span><span class="ag-chips"><span class="ag-chip">confere a fase 1</span><span class="ag-chip">entrega o envelope</span></span></span></button>
+            </div>
+
+            <div class="ag-arrow"><i></i></div>
+
+            <div class="ag-station tut">
+              <div class="ag-phase"><b>3</b><span>Redação</span></div>
+              <button class="ag-node ag-r" data-ag="red" onclick="agsel('red',this)"><span class="ag-av">R3</span><span><span class="ag-nm">Redator 3.0</span><span class="ag-rl">Aplica o prompt da spec sobre o envelope — sem internet</span><span class="ag-chips"><span class="ag-chip">só usa o que foi verificado</span></span></span></button>
+            </div>
+
+            <div class="ag-arrow"><i></i></div>
+
+            <div class="ag-station tut">
+              <div class="ag-phase"><b>4</b><span>Auditoria de indexação e acesso</span></div>
+              <button class="ag-node ag-a" data-ag="aud" onclick="agsel('aud',this)"><span class="ag-av">AI</span><span><span class="ag-nm">Auditor de indexação</span><span class="ag-rl">Google, Bing, SEO, GEO, IAs — e leitura por pessoas</span><span class="ag-chips"><span class="ag-chip">confere a fase 3</span><span class="ag-chip">mede em código</span></span></span></button>
+            </div>
+          </div>
+
+          <div class="ag-arrow"><i></i></div>
+
+          <div class="ag-station">
+            <div class="ag-phase"><b>5</b><span>Supervisão — última instância</span></div>
+            <button class="ag-node ag-s" data-ag="sup" onclick="agsel('sup',this)"><span class="ag-av">SU</span><span><span class="ag-nm">Supervisor 3.0</span><span class="ag-rl">Confere se cada fase foi feita de verdade, com amostragem própria</span><span class="ag-chips"><span class="ag-chip">refaz buscas por conta</span><span class="ag-chip">devolve com critério de aceite</span><span class="ag-chip">pode reprovar</span></span></span></button>
+          </div>
+
+          <div class="ag-arrow"><i></i></div>
+          <div class="ag-endpoint"><span class="ag-dot"></span> Entrega — <span>veredito, descrição com selo, antes × depois, canais medidos, barrados e pendências humanas</span></div>
+
+        </div>
+      </div>
+
+      <div class="ag-detail" id="ag-detail"></div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow"><b>3</b> O princípio</span>
+      <h2>Ninguém assina o próprio trabalho</h2>
+      <p class="secsub">Cada agente tem uma missão estreita o suficiente para ser conferível por outro. É isso que separa um pipeline de qualidade de um teatro de qualidade.</p>
+    </div>
+
+    <div class="ag-chain">
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-orange-deep)"></i>Verificador</span><span class="ag-ar">confere</span><span class="ag-what"><b>os 4 descobridores.</b> Fato sem fonte cai; fato com uma amarra só cai; achado de homônimo vira registro de barrado, não silêncio.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-pink)"></i>Redator</span><span class="ag-ar">depende</span><span class="ag-what"><b>do verificador — e só dele.</b> Sem acesso à internet: se o fato não está no envelope, não existe para ele. A restrição é a garantia contra invenção.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:#0093B5"></i>Auditor</span><span class="ag-ar">confere</span><span class="ag-what"><b>o redator.</b> Pente-fino frase a frase contra o envelope, contagens medidas em código e leitura por pessoas — não só por robô.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--ink)"></i>Supervisor</span><span class="ag-ar">confere</span><span class="ag-what"><b>os quatro anteriores, inclusive o auditor.</b> E não confia no relatório: refaz buscas por conta própria. Se achar contaminação que passou, reprova a fase e devolve com critério de aceite.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-purple)"></i>Nós</span><span class="ag-ar">conferimos</span><span class="ag-what"><b>o supervisor.</b> Cada rodada deixa um dossiê com um arquivo por fase — dá para auditar quem falhou e onde, sem reconstituir a conversa.</span></div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow"><b>4</b> O que sustenta a estrutura</span>
+      <h2>Três decisões que fazem a conferência funcionar</h2>
+    </div>
+
+    <div class="ag-grid3">
+      <div class="ag-mini">
+        <span class="ag-k">Especialização estreita</span>
+        <h4>Um agente que faz tudo não pode ser conferido</h4>
+        <p>Quem descobre não decide o que é verdade; quem verifica não escreve; quem escreve não se audita. Missão estreita gera saída conferível — e erro localizável numa fase específica.</p>
+      </div>
+      <div class="ag-mini">
+        <span class="ag-k">Ceticismo com incentivo certo</span>
+        <h4>O verificador ganha por derrubar, não por aprovar</h4>
+        <p>Ele é avaliado pelo que barra. Nos 8 casos reais houve contaminação por homônimo em todos — inclusive um perfil de reclamação de outra cidade e um homônimo dentro da própria base Solutudo.</p>
+      </div>
+      <div class="ag-mini">
+        <span class="ag-k">Amostragem, não confiança</span>
+        <h4>O supervisor refaz parte do trabalho alheio</h4>
+        <p>Ler relatório bonito não é supervisionar. Ele reexecuta buscas, reconfere contagens e roda contraprovas que ninguém rodou. Se nada foi barrado numa empresa de nome comum, isso já é suspeito.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <span class="badge">Como rodar</span>
+      <h3 class="t" style="margin-top:8px">Uma empresa por vez, a partir de 1 link ou dos contextos que já temos</h3>
+      <ul class="clean">
+        <li><b>Só o link:</b> <code>/empresa-3-0 &lt;url da Solutudo ou do site&gt;</code> — o alvo (nome, cidade/UF, DDD esperado) é extraído do próprio link e vira a amarra das buscas.</li>
+        <li><b>Com contextos:</b> briefing respondido, transcrição de reunião ou cadastro entram como <b>fonte fornecida pela empresa</b> — é o que habilita o selo variante A em vez do B.</li>
+        <li><b>O que sai:</b> dossiê de 6 arquivos por empresa (<code>00-alvo</code> → <code>50-supervisao</code>), a descrição com selo, os textos por canal com contagens medidas, os barrados e as pendências humanas.</li>
+        <li><b>Limites conhecidos:</b> sem Google Maps/Places (contratual) · ~60–80 buscas por empresa, e a cota de busca é o gargalo · apps e páginas não indexadas seguem cegos e viram lacuna declarada, nunca "não tem".</li>
+      </ul>
+      <div class="sub" style="margin-top:12px">Versão em página própria, para apresentar sem as outras abas: <a href="../agentes-descricao-3-0/">artefato do time de agentes</a>.</div>
+    </div>
+
+  </section>
+
   <div class="foot">
     Artefato vivo da inteligência Solutudo ·
     <a href="../../checklist/">voltar ao checklist</a> ·
@@ -1904,11 +2142,11 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
 
 <script>
   function show(which){
-    ['desc','faq','index','emp'].forEach(function(k){
+    ['desc','faq','index','emp','ag'].forEach(function(k){
       document.getElementById('p-'+k).classList.toggle('on', which===k);
       document.getElementById('t-'+k).classList.toggle('on', which===k);
     });
-    history.replaceState(null,'',which==='faq'?'#faq':which==='index'?'#indexacao':which==='emp'?'#empresas':'#descricao');
+    history.replaceState(null,'',which==='faq'?'#faq':which==='index'?'#indexacao':which==='emp'?'#empresas':which==='ag'?'#agentes':'#descricao');
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function qa(btn){ btn.parentElement.classList.toggle('open'); }
@@ -1948,6 +2186,78 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   if(location.hash==='#faq') show('faq');
   if(location.hash==='#indexacao') show('index');
   if(location.hash==='#empresas') show('emp');
+  if(location.hash==='#agentes') show('ag');
+
+  var AGENTES = {
+    d1:{cls:'ag-d',av:'SO',nm:'Descobridor · Site oficial',role:'Fase 1 · varredura por ângulo',
+      mission:'Nenhum fato entra na base sem fonte, confiança e destino declarados.',
+      ind:['Fatos publicáveis encontrados','% de fatos com fonte forte (canal próprio ou base oficial)','Lacunas declaradas — honestidade, não falha'],
+      bars:[[70,'Leitura do canal próprio da empresa'],[30,'Registro de proveniência e risco']],
+      chips:[['out','Entrega: 10-descoberta-site-oficial.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
+      note:'Snippet de busca que só prova que um perfil existe não é conteúdo lido — vira confiança média, com a ressalva escrita.'},
+    d2:{cls:'ag-d',av:'RD',nm:'Descobridor · Redes e diretórios',role:'Fase 1 · varredura por ângulo',
+      mission:'Achar o que a empresa mostra de si em canais públicos — sem confundir com o vizinho de mesmo nome.',
+      ind:['Canais confirmados (só canal confirmado recebe texto depois)','Amarras coletadas: cidade, DDD, endereço','Suspeitos declarados para o verificador'],
+      bars:[[60,'Redes, marketplaces e diretórios'],[40,'Recuperação da descrição atual na Solutudo']],
+      chips:[['out','Entrega: 10-descoberta-redes-diretorios.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
+      note:'Google Maps e Places estão fora por decisão contratual — não busca, não cita, não usa como fonte.'},
+    d3:{cls:'ag-d',av:'BO',nm:'Descobridor · Bases oficiais',role:'Fase 1 · varredura por ângulo',
+      mission:'Trazer o que é documental: endereço válido, existência jurídica, registro profissional.',
+      ind:['Endereço validado na base oficial de CEP','Corroborações de cidade e data de abertura','Registro em conselho, quando o setor é regulado'],
+      bars:[[55,'CEP e cadastro público'],[45,'Conselhos de classe e corroboração cruzada']],
+      chips:[['out','Entrega: 10-descoberta-bases-oficiais.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
+      note:'CNPJ é pista interna: serve para corroborar cidade e data, nunca vira frase publicada.'},
+    d4:{cls:'ag-d',av:'RC',nm:'Descobridor · Reputação e conteúdo',role:'Fase 1 · varredura por ângulo',
+      mission:'Ver o que terceiros dizem — e desconfiar de tudo que não tem amarra com a empresa certa.',
+      ind:['Menções encontradas com amarra fechada','Suspeitos separados com motivo','Nenhuma conclusão sobre reputação sem fonte'],
+      bars:[[50,'Menções, notícias e reclamações'],[50,'Checagem de amarra (é a mesma empresa?)']],
+      chips:[['out','Entrega: 10-descoberta-reputacao-conteudo.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
+      note:'É o ângulo onde mais aparece homônimo. Achado sem amarra não é descartado em silêncio: vai para SUSPEITOS com o motivo.'},
+    ver:{cls:'ag-v',av:'VA',nm:'Verificador adversarial',role:'Fase 2 · quem tenta derrubar',
+      mission:'Só o fato que sobrevive à tentativa de derrubada entra no envelope.',
+      ind:['Homônimos barrados','Conflitos registrados como needs_human_review','Fatos rebaixados de publicável para interno'],
+      bars:[[60,'Contraprova ativa: buscar o homônimo, o telefone solto, a outra cidade'],[40,'Cruzamento de amarras e registro de conflito']],
+      chips:[['out','Entrega: 20-envelope.md'],['tut','Confere: os 4 descobridores'],['tut','Conferido por: Supervisor']],
+      note:'Conflito de dado não vira escolha: o campo sai do texto e vira tarefa humana. Zero barrados em empresa de nome comum é sinal de verificação preguiçosa.'},
+    red:{cls:'ag-r',av:'R3',nm:'Redator 3.0',role:'Fase 3 · quem escreve',
+      mission:'Escrever exatamente o que o envelope sustenta — nem uma frase além.',
+      ind:['100% das frases rastreáveis a um fato verificado','Texto proporcional ao envelope (raso → curto)','Canal sem fato fica sem texto'],
+      bars:[[75,'Descrição e textos por canal'],[25,'Relatório: o que usou, o que não usou e por quê']],
+      chips:[['out','Entrega: 30-textos.md'],['tut','Conferido por: Auditor + Supervisor']],
+      note:'Não tem acesso à internet por decisão de projeto. Se o fato não está no envelope, ele não existe — é a garantia estrutural contra invenção.'},
+    aud:{cls:'ag-a',av:'AI',nm:'Auditor de indexação',role:'Fase 4 · quem mede',
+      mission:'Garantir que o texto é bem lido por Google, Bing e IAs — e, antes de tudo, por pessoas.',
+      ind:['Limites por canal medidos em código, não estimados','Frases atômicas e enumerações consistentes entre canais','Leitor leigo entende o que a empresa faz em 10 segundos'],
+      bars:[[45,'Limites, formato e leitura por máquinas'],[55,'Verdade frase a frase e acessibilidade humana']],
+      chips:[['out','Entrega: 40-auditoria.md'],['tut','Confere: o Redator'],['tut','Conferido por: Supervisor']],
+      note:'Texto que passa no robô mas confunde o leitor reprova. Toda reprovação vem com a correção objetiva e a regra da spec que a fundamenta.'},
+    sup:{cls:'ag-s',av:'SU',nm:'Supervisor 3.0',role:'Fase 5 · última instância',
+      mission:'Nenhuma entrega sai sem que cada fase tenha sido conferida de verdade.',
+      ind:['Fases reprovadas e motivo','Achados nos próprios spot-checks','Retrabalhos até o aceite (limite: 2 ciclos)'],
+      bars:[[55,'Amostragem ativa: refaz buscas e contagens das outras fases'],[45,'Veredito, ordens de retrabalho e pendências humanas']],
+      chips:[['tut','Confere: todas as fases, inclusive o Auditor'],['out','Entrega: 50-supervisao.md']],
+      note:'Pode entregar REPROVADO — e entrega. Se depois de 2 retrabalhos a fase não passa, o veredito sai visível com as pendências. Maquiar resultado para parecer aprovado é a única falha inaceitável.'}
+  };
+  function agsel(k, el){
+    var a = AGENTES[k]; if(!a) return;
+    document.querySelectorAll('.ag-node').forEach(function(n){ n.classList.remove('on'); });
+    if(el) el.classList.add('on');
+    var bars = a.bars.map(function(b){
+      return '<div class="ag-bar"><div class="ag-bl"><span class="ag-pct">'+b[0]+'%</span><span class="ag-track"><span class="ag-fill" style="width:'+b[0]+'%"></span></span></div><div class="ag-cap">'+b[1]+'</div></div>';
+    }).join('');
+    var chips = a.chips.map(function(c){ return '<span class="ag-dchip '+c[0]+'">'+c[1]+'</span>'; }).join('');
+    var ind = a.ind.map(function(i){ return '<li>'+i+'</li>'; }).join('');
+    document.getElementById('ag-detail').innerHTML =
+      '<div class="ag-dtop '+a.cls+'"><span class="ag-dav">'+a.av+'</span><span><h3>'+a.nm+'</h3><div class="ag-drole">'+a.role+'</div></span></div>'+
+      '<div class="ag-dbody '+a.cls+'">'+
+        '<div><span class="ag-dlabel">Missão</span><div class="ag-dmission">'+a.mission+'</div></div>'+
+        '<div><span class="ag-dlabel">Indicadores</span><ul class="ag-dlist">'+ind+'</ul></div>'+
+        '<div><span class="ag-dlabel">Divisão do esforço</span><div class="ag-bars">'+bars+'</div></div>'+
+        '<div class="ag-dchips">'+chips+'</div>'+
+        '<div class="ag-dnote">'+a.note+'</div>'+
+      '</div>';
+  }
+  agsel('d1', document.querySelector('.ag-node[data-ag="d1"]'));
 </script>
 </body>
 </html>
