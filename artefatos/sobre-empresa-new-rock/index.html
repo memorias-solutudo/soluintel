@@ -363,6 +363,17 @@
   .ag-mini h4{font-size:14.5px;font-weight:800;letter-spacing:-.025em;line-height:1.25}
   .ag-mini p{font-size:13.2px;color:var(--g700);margin-top:7px;line-height:1.45}
   .ag-mini .ag-k{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600);margin-bottom:8px;display:block}
+  .ag-kind{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:currentColor;background:var(--g100);padding:2px 8px;border-radius:var(--pill);margin-bottom:6px}
+  .ag-kind i{width:5px;height:5px;border-radius:50%;background:currentColor;display:block}
+  .ag-kind.neutral{color:var(--g600)}
+  .ag-id{display:block;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:10.5px;color:var(--g600);margin-top:7px;word-break:break-all}
+  .ag-dkind{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:currentColor;background:var(--g100);padding:2px 8px;border-radius:var(--pill);margin-bottom:5px}
+  .ag-dkind i{width:5px;height:5px;border-radius:50%;background:currentColor;display:block}
+  .ag-dfile{font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:11px;color:var(--g600);margin-top:5px}
+  .ag-epkind{display:inline-flex;align-items:center;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);background:var(--g100);padding:2px 8px;border-radius:var(--pill);flex:none}
+  .ag-count{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .ag-count b{font-size:12px;font-weight:800;letter-spacing:-.01em;background:var(--ink);color:#fff;border-radius:var(--pill);padding:5px 13px}
+  .ag-count span{font-size:12px;font-weight:700;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:5px 13px}
 </style>
 </head>
 <body>
@@ -1997,7 +2008,8 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     <div class="sec first">
       <span class="eyebrow"><b>1</b> Leia isto antes do organograma</span>
       <h2>O time de agentes que gera a Descrição 3.0</h2>
-      <p class="secsub">Cinco agentes com missão estreita, encadeados numa esteira onde ninguém entrega sem ser conferido por outro — e um supervisor que confere se a conferência foi feita de verdade. É o motor por trás dos 8 casos da aba anterior.</p>
+      <p class="secsub">Cada etapa do fluxo abaixo é um <b>agente</b> — não um passo de um prompt gigante. Cinco tipos de agente, cada um com prompt próprio em <code>.claude/agents/</code>, encadeados numa esteira onde ninguém entrega sem ser conferido por outro. É o motor por trás dos 8 casos da aba anterior.</p>
+      <div class="ag-count"><b>5 tipos de agente</b><span>8 execuções de agente por empresa</span><span>1 comando: <code>/empresa-3-0</code></span><span>1 arquivo de dossiê por agente</span></div>
     </div>
 
     <div class="ag-step1">
@@ -2029,7 +2041,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
       <div class="ag-map">
         <div class="ag-flow">
 
-          <div class="ag-endpoint"><span class="ag-dot"></span> Entrada — <span>1 link da empresa, ou contextos: briefing respondido, transcrição de reunião, cadastro</span></div>
+          <div class="ag-endpoint"><span class="ag-epkind">Insumo · não é agente</span> <b style="font-size:12.8px">Entrada</b> <span>1 link da empresa, ou contextos: briefing respondido, transcrição de reunião, cadastro</span></div>
           <div class="ag-arrow"><i></i></div>
 
           <div class="ag-checked">
@@ -2037,43 +2049,43 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
             <span class="ag-tutlabel">Supervisão</span>
 
             <div class="ag-station tut">
-              <div class="ag-phase"><b>1</b><span>Descoberta · 4 agentes em paralelo</span></div>
+              <div class="ag-phase"><b>1</b><span>Fase 1 · 4 agentes descobridores em paralelo</span></div>
               <div class="ag-quad">
-                <button class="ag-node ag-d" data-ag="d1" onclick="agsel('d1',this)"><span class="ag-av">SO</span><span><span class="ag-nm">Descobridor · Site oficial</span><span class="ag-rl">Site próprio, páginas internas, dados já publicados</span></span></button><button class="ag-node ag-d" data-ag="d2" onclick="agsel('d2',this)"><span class="ag-av">RD</span><span><span class="ag-nm">Descobridor · Redes e diretórios</span><span class="ag-rl">Instagram, Facebook, marketplaces, Solutudo</span></span></button><button class="ag-node ag-d" data-ag="d3" onclick="agsel('d3',this)"><span class="ag-av">BO</span><span><span class="ag-nm">Descobridor · Bases oficiais</span><span class="ag-rl">CEP, CNPJ, conselhos de classe</span></span></button><button class="ag-node ag-d" data-ag="d4" onclick="agsel('d4',this)"><span class="ag-av">RC</span><span><span class="ag-nm">Descobridor · Reputação e conteúdo</span><span class="ag-rl">Reclamações, notícias locais, menções</span></span></button>
+                <button class="ag-node ag-d" data-ag="d1" onclick="agsel('d1',this)"><span class="ag-av">SO</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Descobridor · Site oficial</span><span class="ag-rl">Site próprio, páginas internas, dados já publicados</span><span class="ag-id">.claude/agents/descobridor-empresa.md · ângulo site-oficial</span></span></button><button class="ag-node ag-d" data-ag="d2" onclick="agsel('d2',this)"><span class="ag-av">RD</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Descobridor · Redes e diretórios</span><span class="ag-rl">Instagram, Facebook, marketplaces, Solutudo</span><span class="ag-id">.claude/agents/descobridor-empresa.md · ângulo redes-diretorios</span></span></button><button class="ag-node ag-d" data-ag="d3" onclick="agsel('d3',this)"><span class="ag-av">BO</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Descobridor · Bases oficiais</span><span class="ag-rl">CEP, CNPJ, conselhos de classe</span><span class="ag-id">.claude/agents/descobridor-empresa.md · ângulo bases-oficiais</span></span></button><button class="ag-node ag-d" data-ag="d4" onclick="agsel('d4',this)"><span class="ag-av">RC</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Descobridor · Reputação e conteúdo</span><span class="ag-rl">Reclamações, notícias locais, menções</span><span class="ag-id">.claude/agents/descobridor-empresa.md · ângulo reputacao-conteudo</span></span></button>
               </div>
             </div>
 
             <div class="ag-arrow"><i></i></div>
 
             <div class="ag-station tut">
-              <div class="ag-phase"><b>2</b><span>Verificação adversarial</span></div>
-              <button class="ag-node ag-v" data-ag="ver" onclick="agsel('ver',this)"><span class="ag-av">VA</span><span><span class="ag-nm">Verificador adversarial</span><span class="ag-rl">Tenta derrubar cada fato — homônimos, amarras, conflitos</span><span class="ag-chips"><span class="ag-chip">confere a fase 1</span><span class="ag-chip">entrega o envelope</span></span></span></button>
+              <div class="ag-phase"><b>2</b><span>Fase 2 · 1 agente verificador</span></div>
+              <button class="ag-node ag-v" data-ag="ver" onclick="agsel('ver',this)"><span class="ag-av">VA</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Verificador adversarial</span><span class="ag-rl">Tenta derrubar cada fato — homônimos, amarras, conflitos</span><span class="ag-id">.claude/agents/verificador-adversarial.md</span><span class="ag-chips"><span class="ag-chip">confere a fase 1</span><span class="ag-chip">entrega o envelope</span></span></span></button>
             </div>
 
             <div class="ag-arrow"><i></i></div>
 
             <div class="ag-station tut">
-              <div class="ag-phase"><b>3</b><span>Redação</span></div>
-              <button class="ag-node ag-r" data-ag="red" onclick="agsel('red',this)"><span class="ag-av">R3</span><span><span class="ag-nm">Redator 3.0</span><span class="ag-rl">Aplica o prompt da spec sobre o envelope — sem internet</span><span class="ag-chips"><span class="ag-chip">só usa o que foi verificado</span></span></span></button>
+              <div class="ag-phase"><b>3</b><span>Fase 3 · 1 agente redator</span></div>
+              <button class="ag-node ag-r" data-ag="red" onclick="agsel('red',this)"><span class="ag-av">R3</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Redator 3.0</span><span class="ag-rl">Aplica o prompt da spec sobre o envelope — sem internet</span><span class="ag-id">.claude/agents/redator-3-0.md</span><span class="ag-chips"><span class="ag-chip">só usa o que foi verificado</span></span></span></button>
             </div>
 
             <div class="ag-arrow"><i></i></div>
 
             <div class="ag-station tut">
-              <div class="ag-phase"><b>4</b><span>Auditoria de indexação e acesso</span></div>
-              <button class="ag-node ag-a" data-ag="aud" onclick="agsel('aud',this)"><span class="ag-av">AI</span><span><span class="ag-nm">Auditor de indexação</span><span class="ag-rl">Google, Bing, SEO, GEO, IAs — e leitura por pessoas</span><span class="ag-chips"><span class="ag-chip">confere a fase 3</span><span class="ag-chip">mede em código</span></span></span></button>
+              <div class="ag-phase"><b>4</b><span>Fase 4 · 1 agente auditor</span></div>
+              <button class="ag-node ag-a" data-ag="aud" onclick="agsel('aud',this)"><span class="ag-av">AI</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Auditor de indexação</span><span class="ag-rl">Google, Bing, SEO, GEO, IAs — e leitura por pessoas</span><span class="ag-id">.claude/agents/auditor-indexacao.md</span><span class="ag-chips"><span class="ag-chip">confere a fase 3</span><span class="ag-chip">mede em código</span></span></span></button>
             </div>
           </div>
 
           <div class="ag-arrow"><i></i></div>
 
           <div class="ag-station">
-            <div class="ag-phase"><b>5</b><span>Supervisão — última instância</span></div>
-            <button class="ag-node ag-s" data-ag="sup" onclick="agsel('sup',this)"><span class="ag-av">SU</span><span><span class="ag-nm">Supervisor 3.0</span><span class="ag-rl">Confere se cada fase foi feita de verdade, com amostragem própria</span><span class="ag-chips"><span class="ag-chip">refaz buscas por conta</span><span class="ag-chip">devolve com critério de aceite</span><span class="ag-chip">pode reprovar</span></span></span></button>
+            <div class="ag-phase"><b>5</b><span>Fase 5 · 1 agente supervisor — última instância</span></div>
+            <button class="ag-node ag-s" data-ag="sup" onclick="agsel('sup',this)"><span class="ag-av">SU</span><span><span class="ag-kind"><i></i>Agente</span><span class="ag-nm">Supervisor 3.0</span><span class="ag-rl">Confere se cada fase foi feita de verdade, com amostragem própria</span><span class="ag-id">.claude/agents/supervisor-3-0.md</span><span class="ag-chips"><span class="ag-chip">refaz buscas por conta</span><span class="ag-chip">devolve com critério de aceite</span><span class="ag-chip">pode reprovar</span></span></span></button>
           </div>
 
           <div class="ag-arrow"><i></i></div>
-          <div class="ag-endpoint"><span class="ag-dot"></span> Entrega — <span>veredito, descrição com selo, antes × depois, canais medidos, barrados e pendências humanas</span></div>
+          <div class="ag-endpoint"><span class="ag-epkind">Resultado · não é agente</span> <b style="font-size:12.8px">Entrega</b> <span>veredito, descrição com selo, antes × depois, canais medidos, barrados e pendências humanas</span></div>
 
         </div>
       </div>
@@ -2088,10 +2100,10 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     </div>
 
     <div class="ag-chain">
-      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-orange-deep)"></i>Verificador</span><span class="ag-ar">confere</span><span class="ag-what"><b>os 4 descobridores.</b> Fato sem fonte cai; fato com uma amarra só cai; achado de homônimo vira registro de barrado, não silêncio.</span></div>
-      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-pink)"></i>Redator</span><span class="ag-ar">depende</span><span class="ag-what"><b>do verificador — e só dele.</b> Sem acesso à internet: se o fato não está no envelope, não existe para ele. A restrição é a garantia contra invenção.</span></div>
-      <div class="ag-crow"><span class="ag-who"><i style="background:#0093B5"></i>Auditor</span><span class="ag-ar">confere</span><span class="ag-what"><b>o redator.</b> Pente-fino frase a frase contra o envelope, contagens medidas em código e leitura por pessoas — não só por robô.</span></div>
-      <div class="ag-crow"><span class="ag-who"><i style="background:var(--ink)"></i>Supervisor</span><span class="ag-ar">confere</span><span class="ag-what"><b>os quatro anteriores, inclusive o auditor.</b> E não confia no relatório: refaz buscas por conta própria. Se achar contaminação que passou, reprova a fase e devolve com critério de aceite.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-orange-deep)"></i>Agente verificador</span><span class="ag-ar">confere</span><span class="ag-what"><b>os 4 descobridores.</b> Fato sem fonte cai; fato com uma amarra só cai; achado de homônimo vira registro de barrado, não silêncio.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-pink)"></i>Agente redator</span><span class="ag-ar">depende</span><span class="ag-what"><b>do verificador — e só dele.</b> Sem acesso à internet: se o fato não está no envelope, não existe para ele. A restrição é a garantia contra invenção.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:#0093B5"></i>Agente auditor</span><span class="ag-ar">confere</span><span class="ag-what"><b>o redator.</b> Pente-fino frase a frase contra o envelope, contagens medidas em código e leitura por pessoas — não só por robô.</span></div>
+      <div class="ag-crow"><span class="ag-who"><i style="background:var(--ink)"></i>Agente supervisor</span><span class="ag-ar">confere</span><span class="ag-what"><b>os quatro anteriores, inclusive o auditor.</b> E não confia no relatório: refaz buscas por conta própria. Se achar contaminação que passou, reprova a fase e devolve com critério de aceite.</span></div>
       <div class="ag-crow"><span class="ag-who"><i style="background:var(--brand-purple)"></i>Nós</span><span class="ag-ar">conferimos</span><span class="ag-what"><b>o supervisor.</b> Cada rodada deixa um dossiê com um arquivo por fase — dá para auditar quem falhou e onde, sem reconstituir a conversa.</span></div>
     </div>
 
@@ -2108,12 +2120,12 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
       </div>
       <div class="ag-mini">
         <span class="ag-k">Ceticismo com incentivo certo</span>
-        <h4>O verificador ganha por derrubar, não por aprovar</h4>
+        <h4>O agente verificador ganha por derrubar, não por aprovar</h4>
         <p>Ele é avaliado pelo que barra. Nos 8 casos reais houve contaminação por homônimo em todos — inclusive um perfil de reclamação de outra cidade e um homônimo dentro da própria base Solutudo.</p>
       </div>
       <div class="ag-mini">
         <span class="ag-k">Amostragem, não confiança</span>
-        <h4>O supervisor refaz parte do trabalho alheio</h4>
+        <h4>O agente supervisor refaz parte do trabalho alheio</h4>
         <p>Ler relatório bonito não é supervisionar. Ele reexecuta buscas, reconfere contagens e roda contraprovas que ninguém rodou. Se nada foi barrado numa empresa de nome comum, isso já é suspeito.</p>
       </div>
     </div>
@@ -2127,7 +2139,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
         <li><b>O que sai:</b> dossiê de 6 arquivos por empresa (<code>00-alvo</code> → <code>50-supervisao</code>), a descrição com selo, os textos por canal com contagens medidas, os barrados e as pendências humanas.</li>
         <li><b>Limites conhecidos:</b> sem Google Maps/Places (contratual) · ~60–80 buscas por empresa, e a cota de busca é o gargalo · apps e páginas não indexadas seguem cegos e viram lacuna declarada, nunca "não tem".</li>
       </ul>
-      <div class="sub" style="margin-top:12px">Versão em página própria, para apresentar sem as outras abas: <a href="../agentes-descricao-3-0/">artefato do time de agentes</a>.</div>
+      <div class="sub" style="margin-top:12px">Cada agente é um arquivo versionado em <code>.claude/agents/</code> com missão, ferramentas e formato de retorno próprios — e o orquestrador (<code>.claude/skills/empresa-3-0/</code>) é quem encadeia as fases e passa o dossiê de um agente para o próximo.</div>
     </div>
 
   </section>
@@ -2189,49 +2201,49 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
   if(location.hash==='#agentes') show('ag');
 
   var AGENTES = {
-    d1:{cls:'ag-d',av:'SO',nm:'Descobridor · Site oficial',role:'Fase 1 · varredura por ângulo',
+    d1:{cls:'ag-d',av:'SO',file:'descobridor-empresa',nm:'Descobridor · Site oficial',role:'Fase 1 · varredura por ângulo',
       mission:'Nenhum fato entra na base sem fonte, confiança e destino declarados.',
       ind:['Fatos publicáveis encontrados','% de fatos com fonte forte (canal próprio ou base oficial)','Lacunas declaradas — honestidade, não falha'],
       bars:[[70,'Leitura do canal próprio da empresa'],[30,'Registro de proveniência e risco']],
       chips:[['out','Entrega: 10-descoberta-site-oficial.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
       note:'Snippet de busca que só prova que um perfil existe não é conteúdo lido — vira confiança média, com a ressalva escrita.'},
-    d2:{cls:'ag-d',av:'RD',nm:'Descobridor · Redes e diretórios',role:'Fase 1 · varredura por ângulo',
+    d2:{cls:'ag-d',av:'RD',file:'descobridor-empresa',nm:'Descobridor · Redes e diretórios',role:'Fase 1 · varredura por ângulo',
       mission:'Achar o que a empresa mostra de si em canais públicos — sem confundir com o vizinho de mesmo nome.',
       ind:['Canais confirmados (só canal confirmado recebe texto depois)','Amarras coletadas: cidade, DDD, endereço','Suspeitos declarados para o verificador'],
       bars:[[60,'Redes, marketplaces e diretórios'],[40,'Recuperação da descrição atual na Solutudo']],
       chips:[['out','Entrega: 10-descoberta-redes-diretorios.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
       note:'Google Maps e Places estão fora por decisão contratual — não busca, não cita, não usa como fonte.'},
-    d3:{cls:'ag-d',av:'BO',nm:'Descobridor · Bases oficiais',role:'Fase 1 · varredura por ângulo',
+    d3:{cls:'ag-d',av:'BO',file:'descobridor-empresa',nm:'Descobridor · Bases oficiais',role:'Fase 1 · varredura por ângulo',
       mission:'Trazer o que é documental: endereço válido, existência jurídica, registro profissional.',
       ind:['Endereço validado na base oficial de CEP','Corroborações de cidade e data de abertura','Registro em conselho, quando o setor é regulado'],
       bars:[[55,'CEP e cadastro público'],[45,'Conselhos de classe e corroboração cruzada']],
       chips:[['out','Entrega: 10-descoberta-bases-oficiais.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
       note:'CNPJ é pista interna: serve para corroborar cidade e data, nunca vira frase publicada.'},
-    d4:{cls:'ag-d',av:'RC',nm:'Descobridor · Reputação e conteúdo',role:'Fase 1 · varredura por ângulo',
+    d4:{cls:'ag-d',av:'RC',file:'descobridor-empresa',nm:'Descobridor · Reputação e conteúdo',role:'Fase 1 · varredura por ângulo',
       mission:'Ver o que terceiros dizem — e desconfiar de tudo que não tem amarra com a empresa certa.',
       ind:['Menções encontradas com amarra fechada','Suspeitos separados com motivo','Nenhuma conclusão sobre reputação sem fonte'],
       bars:[[50,'Menções, notícias e reclamações'],[50,'Checagem de amarra (é a mesma empresa?)']],
       chips:[['out','Entrega: 10-descoberta-reputacao-conteudo.md'],['tut','Conferido por: Verificador + spot-check do Supervisor']],
       note:'É o ângulo onde mais aparece homônimo. Achado sem amarra não é descartado em silêncio: vai para SUSPEITOS com o motivo.'},
-    ver:{cls:'ag-v',av:'VA',nm:'Verificador adversarial',role:'Fase 2 · quem tenta derrubar',
+    ver:{cls:'ag-v',av:'VA',file:'verificador-adversarial',nm:'Verificador adversarial',role:'Fase 2 · quem tenta derrubar',
       mission:'Só o fato que sobrevive à tentativa de derrubada entra no envelope.',
       ind:['Homônimos barrados','Conflitos registrados como needs_human_review','Fatos rebaixados de publicável para interno'],
       bars:[[60,'Contraprova ativa: buscar o homônimo, o telefone solto, a outra cidade'],[40,'Cruzamento de amarras e registro de conflito']],
       chips:[['out','Entrega: 20-envelope.md'],['tut','Confere: os 4 descobridores'],['tut','Conferido por: Supervisor']],
       note:'Conflito de dado não vira escolha: o campo sai do texto e vira tarefa humana. Zero barrados em empresa de nome comum é sinal de verificação preguiçosa.'},
-    red:{cls:'ag-r',av:'R3',nm:'Redator 3.0',role:'Fase 3 · quem escreve',
+    red:{cls:'ag-r',av:'R3',file:'redator-3-0',nm:'Redator 3.0',role:'Fase 3 · quem escreve',
       mission:'Escrever exatamente o que o envelope sustenta — nem uma frase além.',
       ind:['100% das frases rastreáveis a um fato verificado','Texto proporcional ao envelope (raso → curto)','Canal sem fato fica sem texto'],
       bars:[[75,'Descrição e textos por canal'],[25,'Relatório: o que usou, o que não usou e por quê']],
       chips:[['out','Entrega: 30-textos.md'],['tut','Conferido por: Auditor + Supervisor']],
       note:'Não tem acesso à internet por decisão de projeto. Se o fato não está no envelope, ele não existe — é a garantia estrutural contra invenção.'},
-    aud:{cls:'ag-a',av:'AI',nm:'Auditor de indexação',role:'Fase 4 · quem mede',
+    aud:{cls:'ag-a',av:'AI',file:'auditor-indexacao',nm:'Auditor de indexação',role:'Fase 4 · quem mede',
       mission:'Garantir que o texto é bem lido por Google, Bing e IAs — e, antes de tudo, por pessoas.',
       ind:['Limites por canal medidos em código, não estimados','Frases atômicas e enumerações consistentes entre canais','Leitor leigo entende o que a empresa faz em 10 segundos'],
       bars:[[45,'Limites, formato e leitura por máquinas'],[55,'Verdade frase a frase e acessibilidade humana']],
       chips:[['out','Entrega: 40-auditoria.md'],['tut','Confere: o Redator'],['tut','Conferido por: Supervisor']],
       note:'Texto que passa no robô mas confunde o leitor reprova. Toda reprovação vem com a correção objetiva e a regra da spec que a fundamenta.'},
-    sup:{cls:'ag-s',av:'SU',nm:'Supervisor 3.0',role:'Fase 5 · última instância',
+    sup:{cls:'ag-s',av:'SU',file:'supervisor-3-0',nm:'Supervisor 3.0',role:'Fase 5 · última instância',
       mission:'Nenhuma entrega sai sem que cada fase tenha sido conferida de verdade.',
       ind:['Fases reprovadas e motivo','Achados nos próprios spot-checks','Retrabalhos até o aceite (limite: 2 ciclos)'],
       bars:[[55,'Amostragem ativa: refaz buscas e contagens das outras fases'],[45,'Veredito, ordens de retrabalho e pendências humanas']],
@@ -2248,7 +2260,7 @@ Se todas tiverem "sim", a página é bonita **e** vai ser encontrada. É esse o 
     var chips = a.chips.map(function(c){ return '<span class="ag-dchip '+c[0]+'">'+c[1]+'</span>'; }).join('');
     var ind = a.ind.map(function(i){ return '<li>'+i+'</li>'; }).join('');
     document.getElementById('ag-detail').innerHTML =
-      '<div class="ag-dtop '+a.cls+'"><span class="ag-dav">'+a.av+'</span><span><h3>'+a.nm+'</h3><div class="ag-drole">'+a.role+'</div></span></div>'+
+      '<div class="ag-dtop '+a.cls+'"><span class="ag-dav">'+a.av+'</span><span><span class="ag-dkind"><i></i>Agente</span><h3>'+a.nm+'</h3><div class="ag-drole">'+a.role+'</div><div class="ag-dfile">.claude/agents/'+a.file+'.md</div></span></div>'+
       '<div class="ag-dbody '+a.cls+'">'+
         '<div><span class="ag-dlabel">Missão</span><div class="ag-dmission">'+a.mission+'</div></div>'+
         '<div><span class="ag-dlabel">Indicadores</span><ul class="ag-dlist">'+ind+'</ul></div>'+
