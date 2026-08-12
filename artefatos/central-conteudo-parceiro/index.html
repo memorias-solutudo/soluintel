@@ -107,6 +107,58 @@
   .ph.wide img{aspect-ratio:16/7}
   .ph .pl{position:absolute;left:7px;bottom:7px;font-size:10px;font-weight:800;letter-spacing:.03em;background:rgba(21,21,21,.72);color:#fff;padding:3px 8px;border-radius:var(--pill);line-height:1.2}
   .ph-grid.caps{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  /* marcações inline + tooltip do porquê (regra vira hint) */
+  mark{border-radius:5px;padding:0 3px;font-weight:600;cursor:help}
+  .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
+  .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
+  .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 #00B589}
+  [data-tip]{position:relative}
+  [data-tip]:hover{z-index:60}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:310px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
+  [data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
+  .hint{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--g200);color:var(--g700);font-size:10px;font-weight:800;cursor:help;margin-left:5px;vertical-align:middle}
+  .hint:hover{background:var(--ink);color:#fff}
+
+  /* comparativo como está × como deveria */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  @media(max-width:900px){.cmp{grid-template-columns:1fr}}
+  .col{border:var(--line);border-radius:15px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+  .col.now{border-color:rgba(252,98,0,.3)}
+  .col.next{border-color:rgba(0,181,137,.32)}
+  .colh{padding:11px 15px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .col.now .colh{background:var(--tint-peach);color:#8a3400}
+  .col.next .colh{background:var(--tint-mint);color:#06724F}
+  .colb{padding:15px 17px;font-size:13.6px;line-height:1.6;color:var(--ink);flex:1}
+  .colb h5{font-size:13px;font-weight:800;margin:11px 0 3px}
+  .colb h5:first-child{margin-top:0}
+  .colb ul{margin:5px 0 5px 18px}
+  .colb li{margin-top:3px}
+  .colb p + p{margin-top:8px}
+  .colb .lbl{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);display:block;margin-bottom:3px}
+  .colb .ttl{font-weight:800;font-size:14.5px;letter-spacing:-.02em}
+
+  /* score */
+  .sc{border-top:var(--line);padding:13px 17px;background:var(--bg)}
+  .scnum{display:flex;align-items:baseline;gap:8px}
+  .scnum b{font-size:27px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .scnum span{font-size:11.5px;font-weight:700;color:var(--g600)}
+  .col.now .scnum b{color:var(--brand-orange-deep)}
+  .col.next .scnum b{color:#06845a}
+  .scrow{display:grid;grid-template-columns:118px 1fr 30px;gap:9px;align-items:center;margin-top:6px;font-size:11.5px}
+  .scrow .sl{color:var(--g700);font-weight:700}
+  .scrow .st{height:6px;border-radius:var(--pill);background:var(--g200);overflow:hidden}
+  .scrow .sf{height:100%;border-radius:var(--pill);display:block}
+  .col.now .sf{background:var(--brand-orange)}
+  .col.next .sf{background:#00B589}
+  .scrow .sv{text-align:right;font-weight:800;color:var(--g700);font-variant-numeric:tabular-nums}
+  .delta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:4px 12px;margin-top:12px}
+
+  /* inventário de produto */
+  .inv{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;border:var(--line);border-radius:14px;padding:14px;margin-top:10px;background:var(--white)}
+  @media(max-width:640px){.inv{grid-template-columns:1fr}}
+  .inv img{width:96px;height:96px;object-fit:cover;border-radius:11px;display:block;background:var(--g100)}
+  .inv .it{font-size:14.5px;font-weight:800;letter-spacing:-.02em}
+  .inv .im{font-size:12.3px;color:var(--g600);font-weight:600;margin-top:3px;font-family:'SFMono-Regular',Consolas,Menlo,monospace}
   .foot{margin-top:40px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
 </style>
 </head>
@@ -238,6 +290,41 @@
       <div class="note"><b>Antes de propagar:</b> escrever legenda/descrição real por foto (prato, salão, fachada, cozinha) — vira alt-text no Solusite, nome de arquivo no GMB e acessibilidade em todos os canais. <b>Atenção:</b> as 12 PNGs mais novas são artes de divulgação com texto — boas para redes sociais; no álbum do GMB e no Solusite, priorizar as fotos reais (salão, fachada, pratos).</div>
     </div>
 
+    <div class="card">
+      <span class="badge">Produtos cadastrados no sistema</span>
+      <h3>O que já existe no cadastro — categoria 22005 · Pizzarias</h3>
+      <p class="sub">Dois produtos ativos, cada um com uma foto e sem preço informado. Os textos vieram do editor rico e carregam markup herdado. A reescrita de cada um está na aba <b>Destaque</b>; a versão para o site, na aba <b>Solusite</b>.</p>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6048b9b7-4678-471f-a1dc-5ebeac1e0117/6048b9b7-46c8-491f-b52c-5ebeac1e0117.JPG" alt="Foto cadastrada do produto Pizzaria — Pizza Frita Semião" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Pizzaria&nbsp;" <mark class="m-bad" data-tip="O título está gravado como &quot;Pizzaria &quot;, com espaço no fim. Espaço sobrando vira slug e breadcrumb sujos e atrapalha a comparação entre canais.">espaço no fim</mark></div>
+          <div class="im">ID 447787 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">Título genérico da categoria<span class="hint" data-tip="O título repete o nome da categoria em vez de dizer o que a empresa entrega. Título de produto é âncora de busca: precisa carregar diferencial + cidade.">?</span></span>
+            <span class="chip peach">Texto quase idêntico ao outro produto<span class="hint" data-tip="Os dois produtos abrem com a mesma promessa e repetem os mesmos benefícios. Conteúdo duplicado dentro da própria página faz os dois competirem entre si.">?</span></span>
+            <span class="chip peach">Markup herdado do editor<span class="hint" data-tip="O HTML salvo traz font aninhado, &amp;nbsp; e parágrafos vazios. Sujeira de markup atrapalha a extração por IA e a renderização em outros canais.">?</span></span>
+            <span class="chip">Sem preço<span class="hint" data-tip="Preço é campo volátil: fica no cardápio digital, que é atualizado com frequência. Ausência aqui é decisão correta — não é lacuna.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6048ba04-9454-4f95-8b06-5fbeac1e0117/6048ba04-adc8-4418-88b8-5fbeac1e0117.JPG" alt="Foto cadastrada do produto Pizza Frita — Pizza Frita Semião" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Pizza Frita&nbsp;" <mark class="m-bad" data-tip="Mesmo caso: &quot;Pizza Frita &quot; com espaço final gravado no cadastro.">espaço no fim</mark></div>
+          <div class="im">ID 447789 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">Sem sabores nomeados<span class="hint" data-tip="O texto fala em &quot;opções salgadas e doces&quot; sem citar um sabor sequer. Sabor nomeado é o que casa com a busca real (&quot;pizza de calabresa&quot;) e o que a IA consegue citar.">?</span></span>
+            <span class="chip peach">Promessa de processo sem lastro<span class="hint" data-tip="&quot;Óleo de alta qualidade e controle de temperatura rigoroso&quot; é afirmação de processo que o cadastro não comprova. Sem fonte, sai do texto público.">?</span></span>
+            <span class="chip">1 foto só<span class="hint" data-tip="Há 22 imagens no álbum da empresa. Vincular fotos reais a cada produto melhora a página e a busca por imagem.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note"><b>Serviços × produtos:</b> no cadastro da Solutudo os dois estão no mesmo lugar (categoria de produtos). A distinção prática que aplicamos: <b>Pizzaria</b> descreve o atendimento (salão, delivery, retirada) e <b>Pizza Frita</b> descreve o item que se compra. Separar os dois elimina a duplicação e dá a cada um uma intenção de busca própria.</div>
+    </div>
+
   </section>
 
   <!-- ================================================== DESTAQUE -->
@@ -249,30 +336,50 @@
       <p class="secsub">Descrição 3.0, FAQ respondendo as buscas reais, serviços reescritos e as características que a página exibe. Regra da casa: CTA sem link — telefone por extenso; o cardápio digital fica para Solusite, GMB e redes.</p>
     </div>
 
+    <div class="card" style="padding:16px 20px">
+      <div class="chips" style="margin-top:0">
+        <span class="chip peach">Marcação laranja<span class="hint" data-tip="Trecho que enfraquece o texto: adjetivo sem fato, superlativo sem fonte, promessa sem lastro ou duplicação. Passe o mouse sobre cada marcação para ver a regra específica.">?</span></span>
+        <span class="chip lav">Marcação roxa<span class="hint" data-tip="Fato que existe no cadastro e não foi usado — lacuna de conteúdo, não erro de escrita.">?</span></span>
+        <span class="chip mint">Marcação verde<span class="hint" data-tip="Trecho que carrega fato verificável, responde a uma busca real ou fecha em ação possível.">?</span></span>
+        <span class="chip">Score de 0 a 100<span class="hint" data-tip="Seis dimensões somam 100: entidade e local (15), fatos verificáveis (25), resposta direta para AEO (20), estrutura extraível (15), unicidade (15) e contato (10). Cada barra do card mostra a nota da dimensão.">?</span></span>
+      </div>
+    </div>
+
     <div class="card">
-      <span class="badge">Descrição da empresa — 3.0</span>
-      <h3>O bloco principal da página</h3>
-      <div class="txt">
-        <p>A Pizza Frita Semião é uma pizzaria de Botucatu/SP especializada em pizza frita — massa frita na hora, crocante por fora e macia por dentro. Atende desde 1999 no Centro da cidade.</p>
-        <h4>O que servimos</h4>
+      <span class="badge">Detalhes da empresa na Solutudo — como está × como deveria</span>
+      <h3>A descrição do perfil, auditada frase a frase</h3>
+      <p class="sub">À esquerda, o texto que está publicado hoje no cadastro. À direita, a versão pela Descrição 3.0. Passe o mouse em qualquer marcação para ver a regra que a justifica.</p>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Publicado hoje no cadastro</div><div class="colb"><p><mark class="m-bad" data-tip="Abre pela emoção, não pela entidade. A primeira frase é a que vira resposta em IA e snippet: precisa dizer quem é, o que faz e onde.">Na Pizza Frita Semião, nossa história é movida pela paixão em transformar um clássico.</mark> Nascemos com o propósito de oferecer uma <mark class="m-bad" data-tip="Cauda genérica: serve para qualquer restaurante do país. A frase termina sem entregar fato.">experiência única e deliciosa</mark>, trazendo para Botucatu o conceito das autênticas pizzas fritas em diversos sabores. Fugindo do convencional, nos estabelecemos rapidamente como <mark class="m-bad" data-tip="Superlativo autoproclamado, sem fonte. Além de não pontuar em busca, é risco de publicidade enganosa perante o consumidor.">uma das pizzarias mais inovadoras da cidade</mark>, combinando a crocância da massa frita com o recheio suculento de uma pizza tradicional.</p>
+        <h5>Nossos Produtos: Sabores Inesquecíveis</h5>
+        <p>Oferecemos um cardápio variado focado em nossa especialidade: a pizza frita. Nossos clientes podem desfrutar desde os sabores tradicionais como mussarela, calabresa e frango com catupiry, até as opções gourmet e pizzas doces. São pizzas fritas individuais e em tamanhos maiores, perfeitas para um lanche rápido ou para compartilhar em família. Além disso, disponibilizamos serviço de delivery e retirada no local, garantindo que a <mark class="m-bad" data-tip="&quot;A melhor de Botucatu&quot; é afirmação comparativa sem prova. Buscadores desconsideram e o consumidor pode contestar.">melhor pizza frita de Botucatu</mark> chegue fresquinha e saborosa onde você estiver. <mark class="m-bad" data-tip="Convite sem caminho: não diz o telefone, o WhatsApp nem como pedir. A busca termina e a empresa não recebe o cliente.">Venha experimentar a nova sensação das pizzarias em Botucatu!</mark></p>
+        <p style="margin-top:10px"><span class="lbl">Não aparece em lugar nenhum</span>
+        <mark class="m-fill" data-tip="Horário é a informação mais buscada do segmento — e o cadastro tem: todos os dias, 18h às 23h.">horário</mark>
+        <mark class="m-fill" data-tip="Endereço completo está no cadastro e é o que amarra a empresa à busca local.">endereço</mark>
+        <mark class="m-fill" data-tip="Telefone e WhatsApp existem no cadastro e não aparecem no texto.">telefone</mark>
+        <mark class="m-fill" data-tip="Dinheiro, Pix e cartões estão cadastrados — remove a última dúvida antes do pedido.">pagamento</mark>
+        <mark class="m-fill" data-tip="Climatizado, mesas externas, espaço kids, fraldário, Wi-Fi, reservas: sete características cadastradas e nenhuma citada.">estrutura</mark>
+        <mark class="m-fill" data-tip="Fundação em 1999 está no contrato e sustenta &quot;desde 1999&quot; — datação durável, que não envelhece.">desde 1999</mark></p></div><div class="sc"><div class="scnum"><b>40</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">10</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">4</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0</span></div></div></div>
+        <div class="col next"><div class="colh">● Descrição 3.0</div><div class="colb"><p><mark class="m-good" data-tip="Entidade + categoria + cidade na primeira frase: é o trecho que a IA cita e o que amarra a empresa certa, mesmo quando a busca vem com grafia errada.">A Pizza Frita Semião é uma pizzaria de Botucatu/SP especializada em pizza frita</mark> — massa frita na hora, crocante por fora e macia por dentro. Atende <mark class="m-good" data-tip="Datação durável: &quot;desde 1999&quot; não envelhece, ao contrário de &quot;há 26 anos&quot;.">desde 1999</mark> no Centro da cidade.</p>
+        <h5>O que servimos</h5>
         <ul>
-          <li>Pizzas fritas salgadas: mussarela, calabresa, frango com catupiry, entre outros sabores do cardápio.</li>
+          <li><mark class="m-good" data-tip="Sabores nomeados casam com a busca real por sabor e podem ser citados por IA. Vieram do texto que a própria empresa cadastrou.">Pizzas fritas salgadas: mussarela, calabresa, frango com catupiry</mark> e outros sabores do cardápio.</li>
           <li>Pizzas fritas doces.</li>
           <li>Tamanho individual e opções maiores, para dividir.</li>
         </ul>
-        <h4>Como atendemos</h4>
+        <h5>Como atendemos</h5>
         <ul>
-          <li>Salão com ambiente climatizado, mesas externas, espaço kids, fraldário, recepção e Wi-Fi.</li>
-          <li>Delivery e retirada no local, todos os dias, das 18h às 23h — inclusive feriados.</li>
+          <li><mark class="m-good" data-tip="As sete características cadastradas viram uma frase útil — cada item é um fato conferível, não um adjetivo.">Salão climatizado, mesas externas, espaço kids, fraldário, recepção e Wi-Fi.</mark></li>
+          <li><mark class="m-good" data-tip="Responde direto a duas das buscas mais frequentes do segmento: &quot;faz entrega?&quot; e &quot;que horas abre?&quot;.">Delivery e retirada, todos os dias das 18h às 23h — inclusive feriados.</mark></li>
           <li>Aceita reservas.</li>
           <li>Pagamento em dinheiro, Pix e cartões de crédito e débito.</li>
         </ul>
-        <h4>Onde estamos</h4>
+        <h5>Onde estamos</h5>
         <p>Rua Doutor Costa Leite, 1917 — Centro, Botucatu/SP, CEP 18602-110. Referência: próximo à padaria.</p>
-        <p class="cta">Vai pedir? Chame no WhatsApp (14) 98197-7531 ou ligue (14) 3815-7137.</p>
+        <p class="cta"><mark class="m-good" data-tip="CTA com contato por extenso e sem link — regra do perfil Solutudo. O texto termina em ação possível.">Vai pedir? Chame no WhatsApp (14) 98197-7531 ou ligue (14) 3815-7137.</mark></p></div><div class="sc"><div class="scnum"><b>92</b><span>/100 · Descrição 3.0</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9</span></div></div></div>
       </div>
+      <span class="delta">Ganho de 52 pontos · 40 → 92</span>
       <div class="selo"><b>Selo de procedência · variante A (parceiro)</b> Informações fornecidas pela empresa no cadastro Solutudo e no contrato · verificadas em 12/08/2026. Após reconfirmação via CS, atualizar a data.</div>
-      <div class="note"><b>O que mudou da descrição atual:</b> saem as caudas genéricas ("experiência única e deliciosa", "paixão em transformar um clássico"); entram horário, estrutura, pagamento e endereço — os fatos que as buscas reais pedem e que a versão atual não tem.</div>
     </div>
 
     <div class="card">
@@ -305,16 +412,72 @@
     </div>
 
     <div class="card">
-      <span class="badge">Serviços — os 2 produtos da página, reescritos</span>
-      <div class="grid2">
-        <div class="blk"><h4>Pizzaria</h4>
-          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">Pizzas fritas salgadas e doces, em tamanho individual e opções para dividir. Atendimento no salão, delivery e retirada, todos os dias das 18h às 23h.</p>
-        </div>
-        <div class="blk"><h4>Pizza Frita</h4>
-          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">A especialidade da casa: massa frita na hora, crocante por fora e macia por dentro, com recheio de pizza tradicional. Sabores salgados — mussarela, calabresa, frango com catupiry — e versões doces.</p>
-        </div>
+      <span class="badge">Produtos e serviços cadastrados — como está × como deveria</span>
+      <h3>Os dois itens do cadastro, reescritos para busca, resposta e citação</h3>
+      <p class="sub">Mesmos fatos, dois recortes diferentes: um responde "onde comer pizza em Botucatu", o outro responde "o que é pizza frita". É o que elimina a duplicação atual.</p>
+
+      <h4 style="margin-top:18px;font-size:15px;font-weight:800">Produto 447787</h4>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb">
+          <span class="lbl">Título</span><div class="ttl">"Pizzaria&nbsp;" <mark class="m-bad" data-tip="Espaço no fim do título, gravado assim no cadastro.">espaço no fim</mark></div>
+          <p style="margin-top:10px"><b>Pizzaria, Botucatu - Pizza Frita Semião</b></p>
+          <p>Descubra o diferencial que está conquistando Botucatu: a Pizza Frita Semião. <mark class="m-bad" data-tip="Promete &quot;experiência única&quot; e não entrega dado nenhum. É a mesma abertura do outro produto — duplicação interna.">Nosso principal benefício é oferecer uma experiência gastronômica única</mark>, combinando o recheio tradicional de uma pizzaria de qualidade com uma massa leve, crocante e sequinha, frita na hora.</p>
+          <h5>Vantagens e Por Que Escolher a Pizza Frita</h5>
+          <ul>
+            <li><b>Sabor Intenso e Crocante:</b> o processo de fritura sela o recheio…</li>
+            <li><b>Opções Variadas:</b> <mark class="m-bad" data-tip="&quot;Menu completo&quot; sem citar um sabor. A busca real é por sabor nomeado; sem isso, não casa com nada.">menu completo de pizzas salgadas e doces</mark>…</li>
+            <li><b>Qualidade Técnica:</b> <mark class="m-bad" data-tip="Afirmação de processo que o cadastro não comprova. Sem fonte, não vai para texto público.">óleo de alta qualidade e controle de temperatura rigoroso</mark>…</li>
+            <li><b>Rapidez na Entrega:</b> <mark class="m-bad" data-tip="&quot;Rápida&quot; sem prazo não é fato. O que existe e é verificável: entrega todos os dias, das 18h às 23h.">perfeita para quem busca refeição rápida</mark>…</li>
+          </ul>
+          <p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Horário do delivery está no cadastro.">horário</mark> <mark class="m-fill" data-tip="Endereço do salão está no cadastro.">endereço</mark> <mark class="m-fill" data-tip="Reserva, espaço kids, climatização: características cadastradas que descrevem justamente o serviço de pizzaria.">estrutura</mark> <mark class="m-fill" data-tip="Formas de pagamento aceitas estão cadastradas.">pagamento</mark></p>
+        </div><div class="sc"><div class="scnum"><b>34</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:73%"></span></span><span class="sv">11</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:32%"></span></span><span class="sv">8</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:15%"></span></span><span class="sv">3</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0</span></div></div></div>
+        <div class="col next"><div class="colh">● Reescrito pela 3.0</div><div class="colb">
+          <span class="lbl">Título<span class="hint" data-tip="Título de produto responde a uma intenção de busca completa: o que + onde + como se consome. Alvo de 50 a 60 caracteres.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Categoria + cidade + as três formas de atendimento. Responde &quot;pizzaria em Botucatu&quot; sem repetir o nome da empresa, que já está no título da página.">Pizzaria em Botucatu — salão, delivery e retirada</mark> <span class="cnt">49/60</span></div>
+          <p style="margin-top:10px"><mark class="m-good" data-tip="Diz o que a empresa é e o que a diferencia em uma frase autocontida — extraível por IA sem depender do resto do texto.">A Pizza Frita Semião é a pizzaria de Botucatu especializada em pizza frita: massa frita na hora, em vez de assada no forno.</mark></p>
+          <h5>Como atendemos</h5>
+          <ul>
+            <li><mark class="m-good" data-tip="Responde &quot;que horas abre?&quot; e &quot;faz entrega?&quot; na mesma linha — as duas buscas mais frequentes do segmento.">Salão, delivery e retirada, todos os dias das 18h às 23h — inclusive feriados.</mark></li>
+            <li>Salão climatizado, com mesas externas, espaço kids, fraldário e Wi-Fi.</li>
+            <li>Aceita reservas de mesa.</li>
+            <li>Pagamento em dinheiro, Pix e cartões.</li>
+          </ul>
+          <p>Rua Doutor Costa Leite, 1917 — Centro, Botucatu/SP (próximo à padaria).</p>
+          <p class="cta">Reserve ou peça pelo WhatsApp (14) 98197-7531.</p>
+        </div><div class="sc"><div class="scnum"><b>88</b><span>/100 · reescrito</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9</span></div></div></div>
       </div>
-      <div class="note">Os textos atuais dos produtos repetem o mesmo bloco de marketing 2×. A reescrita diferencia os dois e corta a redundância — conteúdo duplicado dentro da própria página compete consigo mesmo.</div>
+      <span class="delta">Ganho de 54 pontos · 34 → 88</span>
+
+      <h4 style="margin-top:22px;font-size:15px;font-weight:800">Produto 447789</h4>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb">
+          <span class="lbl">Título</span><div class="ttl">"Pizza Frita&nbsp;" <mark class="m-bad" data-tip="Espaço no fim do título, gravado assim no cadastro.">espaço no fim</mark></div>
+          <p style="margin-top:10px"><b>Pizza Frita, Botucatu - Pizza Frita Semião</b></p>
+          <p>A Pizza Frita do Semião em Botucatu é uma <mark class="m-bad" data-tip="Abertura quase idêntica à do produto 447787: mesma promessa, mesmos benefícios reformulados. Os dois textos competem pela mesma busca.">experiência gastronômica que revoluciona o conceito de pizza</mark>! Nosso principal benefício é oferecer um sabor irresistível e uma textura incrivelmente crocante por fora, com recheio suculento por dentro.</p>
+          <h5>Diferenciais Práticos e Técnicos</h5>
+          <ul>
+            <li><b>Leveza Inesperada:</b> <mark class="m-bad" data-tip="Comparação com a pizza de forno sem medida nem fonte. É opinião apresentada como especificação.">massa que absorve o mínimo de óleo, mais leve que a de forno</mark>…</li>
+            <li><b>Recheios Gourmet:</b> <mark class="m-bad" data-tip="&quot;Ingredientes de primeira linha&quot; é adjetivo. O fato disponível — quais sabores existem — continua ausente.">ingredientes frescos e de primeira linha</mark>…</li>
+            <li><b>Preparo Artesanal:</b> cada redonda frita é feita sob demanda…</li>
+            <li><b>Entrega Rápida e Quente:</b> logística otimizada em Botucatu…</li>
+          </ul>
+          <p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Mussarela, calabresa e frango com catupiry estão na descrição da empresa — e não neste produto, que é justamente o item vendido.">sabores</mark> <mark class="m-fill" data-tip="Individual e tamanhos maiores: informação que define o que a pessoa vai pedir.">tamanhos</mark> <mark class="m-fill" data-tip="Cardápio digital e WhatsApp são os caminhos reais de pedido.">como pedir</mark></p>
+        </div><div class="sc"><div class="scnum"><b>32</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:73%"></span></span><span class="sv">11</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:28%"></span></span><span class="sv">7</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:15%"></span></span><span class="sv">3</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">3</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0</span></div></div></div>
+        <div class="col next"><div class="colh">● Reescrito pela 3.0</div><div class="colb">
+          <span class="lbl">Título<span class="hint" data-tip="Aqui o recorte é o produto: o que se compra, em que versões. Não repete o recorte de atendimento do outro item.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Produto + variações reais (salgada/doce, individual/para dividir). Cada palavra corresponde a um fato do cadastro.">Pizza frita salgada e doce — individual ou para dividir</mark> <span class="cnt">55/60</span></div>
+          <p style="margin-top:10px"><mark class="m-good" data-tip="Define o produto para quem nunca ouviu falar — é o que uma IA precisa para explicar o item a alguém.">A pizza frita é a pizza selada na fritura: crocante por fora, com o recheio derretido por dentro.</mark></p>
+          <h5>Versões</h5>
+          <ul>
+            <li>Salgadas: mussarela, calabresa, frango com catupiry e outros sabores do cardápio.</li>
+            <li>Doces, para sobremesa.</li>
+            <li>Individual ou tamanho maior, para dividir.</li>
+          </ul>
+          <h5>Como pedir</h5>
+          <p><mark class="m-good" data-tip="Os dois canais reais de pedido, com o horário junto — fecha o ciclo da busca.">No cardápio digital ou pelo WhatsApp (14) 98197-7531, todos os dias das 18h às 23h.</mark> Também para retirar no balcão, na Rua Doutor Costa Leite, 1917 — Centro.</p>
+        </div><div class="sc"><div class="scnum"><b>90</b><span>/100 · reescrito</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14</span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (horário, endereço, serviços, pagamento, fundação). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23</span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: que horas abre, onde fica, como pedir, aceita reserva.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17</span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14</span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto duplicado entre produtos ou genérico do segmento compete consigo mesmo.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13</span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: telefone, WhatsApp ou como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9</span></div></div></div>
+      </div>
+      <span class="delta">Ganho de 58 pontos · 32 → 90</span>
+
+      <div class="note"><b>Por que separar assim:</b> hoje os dois textos disputam a mesma busca e repetem o mesmo argumento. Com o recorte novo, o produto 447787 responde a quem procura <b>onde comer</b> e o 447789 a quem procura <b>o que é / qual sabor</b> — duas intenções, duas páginas, zero canibalização.</div>
     </div>
 
     <div class="card">
@@ -375,7 +538,19 @@
     </div>
 
     <div class="blk">
-      <span class="bnum">4</span><h4>Salão &amp; família — por que vir até nós</h4>
+      <span class="bnum">4</span><h4>Páginas de produto — uma por item do cadastro<span class="hint" data-tip="Cada produto do cadastro vira uma página própria no site, com title e meta próprios. Uma página por intenção de busca rende mais que uma página tentando responder todas.">?</span></h4>
+      <div class="txt">
+        <p><b>/pizzaria</b> — título: Pizzaria em Botucatu — Pizza Frita Semião <span class="cnt">41/60</span><br>
+        meta: Pizzaria especializada em pizza frita no Centro de Botucatu. Salão climatizado com espaço kids, delivery e retirada, todos os dias das 18h às 23h. <span class="cnt">146/160</span></p>
+        <p>Conteúdo: o mesmo recorte de atendimento da aba Destaque, em 1ª pessoa, com botão de reserva pelo WhatsApp e o mapa do salão.</p>
+        <p style="margin-top:12px"><b>/pizza-frita</b> — título: Pizza frita salgada e doce — Semião, Botucatu <span class="cnt">45/60</span><br>
+        meta: Pizza frita crocante por fora e derretida por dentro: mussarela, calabresa, frango com catupiry e versões doces. Individual ou para dividir, em Botucatu. <span class="cnt">153/160</span></p>
+        <p>Conteúdo: o recorte de produto — o que é, versões salgadas e doces, tamanhos — com botão para o cardápio digital.</p>
+      </div>
+      <p class="bwhy">As fotos cadastradas de cada produto abrem as duas páginas, com alt-text descrevendo o prato. Enumeração de sabores idêntica à da Solutudo e do GMB.</p>
+    </div>
+    <div class="blk">
+      <span class="bnum">5</span><h4>Salão &amp; família — por que vir até nós</h4>
       <div class="txt">
         <p>Ambiente climatizado, mesas externas, espaço kids e fraldário: pizza com a família toda, sem estresse. Tem Wi-Fi, recepção e reserva de mesa.</p>
       </div>
@@ -383,7 +558,7 @@
     </div>
 
     <div class="blk">
-      <span class="bnum">5</span><h4>Delivery — como pedir</h4>
+      <span class="bnum">6</span><h4>Delivery — como pedir</h4>
       <div class="txt">
         <p>Entregamos todos os dias, das 18h às 23h — inclusive feriados. Peça pelo cardápio digital ou pelo WhatsApp (14) 98197-7531. Pagamento em dinheiro, Pix e cartões.</p>
         <p class="cta">[Botão] Pedir agora</p>
@@ -392,7 +567,7 @@
     </div>
 
     <div class="blk">
-      <span class="bnum">6</span><h4>Contato &amp; onde estamos</h4>
+      <span class="bnum">7</span><h4>Contato &amp; onde estamos</h4>
       <div class="txt">
         <p>Rua Doutor Costa Leite, 1917 — Centro, Botucatu/SP · CEP 18602-110 (próximo à padaria).</p>
         <p>Fixo (14) 3815-7137 · WhatsApp (14) 98197-7531 · semiao@uol.com.br</p>
@@ -402,7 +577,7 @@
     </div>
 
     <div class="blk">
-      <span class="bnum">7</span><h4>FAQ — as mesmas 7 perguntas da página de Destaque</h4>
+      <span class="bnum">8</span><h4>FAQ — as mesmas 7 perguntas da página de Destaque</h4>
       <p class="bwhy" style="margin-top:10px">Mesmas perguntas, mesmas respostas (1ª pessoa permitida aqui). Consistência entre os dois domínios evita que o buscador escolha um e descarte o outro; o Solusite pode marcar FAQPage no JSON-LD — gerado pela aplicação, nunca pela LLM.</p>
     </div>
 
