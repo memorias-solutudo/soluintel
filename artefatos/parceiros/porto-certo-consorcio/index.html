@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Central de Conteúdo — Porto Certo Consórcio · Solutudo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
+<style>
+  :root{
+    --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
+    --ink:#151515; --g700:#4D4D4D; --g600:#656565; --g500:#888888; --g200:#DCDCDC; --g100:#F2F2F2;
+    --bg:#F5F4F8; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-pink:#FFE3F1; --tint-cyan:#DCF6FC; --tint-yellow:#FFF6DC;
+    --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
+    --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
+    --shadow-md:0 12px 32px rgba(21,21,21,.12);
+    --line:1px solid rgba(21,21,21,.07);
+    --r-md:16px; --r-lg:20px; --pill:999px;
+    --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar{display:none}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
+  body::-webkit-scrollbar{display:none}
+  a{color:var(--brand-purple)}
+  button{font:inherit;color:inherit}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px;border-radius:6px}
+  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
+  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
+  .tb-in{max-width:1840px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tb-in::after{content:""}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
+  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta);display:inline-block}
+  .seg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px;flex-wrap:wrap;justify-content:center}
+  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 16px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button.on{color:#fff;background:var(--grad-cta)}
+  @media(max-width:940px){.tb-in{grid-template-columns:1fr auto}.seg{grid-column:1/-1;order:3;justify-self:center;margin-top:2px}}
+  .hero{text-align:center;padding:30px 22px 4px;max-width:1100px;margin:0 auto}
+  .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .hero h1{font-size:29px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.12}
+  .hero .crumbs{color:var(--g600);font-size:13.5px;margin-top:7px;font-weight:600}
+  .wrap{max-width:1840px;margin:0 auto;padding:16px 30px 70px}
+  .sec .secsub,.card p.sub{max-width:980px}
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .25s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .sec{margin:34px 0 14px}
+  .sec.first{margin-top:12px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .sec h2{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:11px;line-height:1.16;text-wrap:balance}
+  .sec .secsub{color:var(--g700);font-size:14px;margin-top:6px;max-width:720px}
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 24px;border:var(--line);margin-top:14px}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE}
+  .badge.mint{background:var(--tint-mint);color:#06724F}
+  .badge.peach{background:var(--tint-peach);color:#B03A00}
+  .badge.warn{background:var(--tint-yellow);color:#7A5A00}
+  .card h3{font-size:17.5px;font-weight:800;letter-spacing:-.025em;margin-top:9px;line-height:1.22}
+  .card p.sub{color:var(--g700);font-size:13.5px;margin-top:6px}
+  ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.5}
+  ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
+  ul.clean li b{color:var(--ink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  @media(max-width:940px){.grid3{grid-template-columns:1fr}}
+  .kv{display:grid;grid-template-columns:190px minmax(0,1fr);gap:8px 16px;margin-top:12px;font-size:13.6px;max-width:1080px}
+  @media(max-width:640px){.kv{grid-template-columns:1fr}}
+  .kv dt{font-weight:800;color:var(--g600);font-size:12.5px;letter-spacing:.02em;text-transform:uppercase;padding-top:2px}
+  .kv dd{color:var(--ink);font-weight:600;overflow-wrap:break-word}
+  .kv dd small{display:block;color:var(--g600);font-weight:500;font-size:12.3px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{font-size:12.3px;font-weight:700;padding:6px 13px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .chip.mint{background:var(--tint-mint);color:#06724F}
+  .chip.lav{background:var(--tint-lav);color:#7B00BE}
+  .chip.peach{background:var(--tint-peach);color:#B03A00}
+  .txt{background:var(--bg);border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;font-size:14px;line-height:1.62;color:var(--ink)}
+  .txt h4{font-size:14px;font-weight:800;margin:12px 0 4px}
+  .txt h4:first-child{margin-top:0}
+  .txt ul{margin:4px 0 4px 18px}
+  .txt li{margin-top:3px}
+  .txt .cta{font-weight:800;color:var(--brand-pink);margin-top:10px}
+  .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:11px 14px;font-size:12.6px;color:#06503B;line-height:1.5}
+  .selo b{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  .cnt{display:inline-block;font-size:11.5px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:3px 10px;margin-left:8px;vertical-align:middle}
+  .note{margin-top:12px;background:var(--tint-yellow);border-radius:12px;padding:11px 14px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
+  .blk{border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;background:var(--white)}
+  .blk .bnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;margin-right:9px;vertical-align:middle}
+  .blk h4{display:inline;font-size:15.5px;font-weight:800;letter-spacing:-.02em;vertical-align:middle}
+  .blk .bwhy{font-size:12.6px;color:var(--g600);font-weight:600;margin-top:8px}
+  .ed{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill)}
+  .ed i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+  .ed1{background:var(--tint-lav);color:#7B00BE}
+  .ed2{background:var(--tint-pink);color:#C40074}
+  .ed3{background:var(--tint-peach);color:#B03A00}
+  .ed4{background:var(--tint-mint);color:#06724F}
+  .ed5{background:var(--tint-cyan);color:#00647C}
+  .ed6{background:var(--tint-yellow);color:#7A5A00}
+  .tema{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start;background:var(--white);border:var(--line);border-radius:13px;padding:12px 15px;box-shadow:var(--shadow-card);margin-top:8px}
+  @media(max-width:640px){.tema{grid-template-columns:1fr;gap:6px}}
+  .tema .tt{font-size:13.8px;font-weight:800;letter-spacing:-.015em;line-height:1.35}
+  .tema .td{font-size:12.8px;color:var(--g700);margin-top:3px;line-height:1.45}
+  .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:12px}
+  .ph{position:relative;border-radius:12px;overflow:hidden;background:var(--g100);border:var(--line)}
+  .ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .ph.wide img{aspect-ratio:16/7}
+  .ph .pl{position:absolute;left:7px;bottom:7px;font-size:10px;font-weight:800;letter-spacing:.03em;background:rgba(21,21,21,.72);color:#fff;padding:3px 8px;border-radius:var(--pill);line-height:1.2}
+  .ph-grid.caps{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  /* marcações inline + tooltip do porquê (regra vira hint) */
+  mark{border-radius:5px;padding:0 3px;font-weight:600;cursor:help}
+  .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
+  .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
+  .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 #00B589}
+  [data-tip]{position:relative}
+  [data-tip]:hover{z-index:60}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:310px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
+  [data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
+  .hint{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--g200);color:var(--g700);font-size:10px;font-weight:800;cursor:help;margin-left:5px;vertical-align:middle}
+  .hint:hover{background:var(--ink);color:#fff}
+
+  /* comparativo como está × como deveria */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  @media(max-width:900px){.cmp{grid-template-columns:1fr}}
+  .col{border:var(--line);border-radius:15px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+  .col.now{border-color:rgba(252,98,0,.3)}
+  .col.next{border-color:rgba(0,181,137,.32)}
+  .colh{padding:11px 15px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .col.now .colh{background:var(--tint-peach);color:#8a3400}
+  .col.next .colh{background:var(--tint-mint);color:#06724F}
+  .colb{padding:15px 17px;font-size:13.6px;line-height:1.6;color:var(--ink);flex:1}
+  .colb h5{font-size:13px;font-weight:800;margin:11px 0 3px}
+  .colb h5:first-child{margin-top:0}
+  .colb ul{margin:5px 0 5px 18px}
+  .colb li{margin-top:3px}
+  .colb p + p{margin-top:8px}
+  .colb .lbl{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);display:block;margin-bottom:3px}
+  .colb .ttl{font-weight:800;font-size:14.5px;letter-spacing:-.02em}
+
+  /* score */
+  .sc{border-top:var(--line);padding:13px 17px;background:var(--bg)}
+  .scnum{display:flex;align-items:baseline;gap:8px}
+  .scnum b{font-size:27px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .scnum span{font-size:11.5px;font-weight:700;color:var(--g600)}
+  .col.now .scnum b{color:var(--brand-orange-deep)}
+  .col.next .scnum b{color:#06845a}
+  .scrow{display:grid;grid-template-columns:118px 1fr 58px;gap:9px;align-items:center;margin-top:6px;font-size:11.5px}
+  .scrow .sl{color:var(--g700);font-weight:700}
+  .scrow .st{height:6px;border-radius:var(--pill);background:var(--g200);overflow:hidden}
+  .scrow .sf{height:100%;border-radius:var(--pill);display:block}
+  .col.now .sf{background:var(--brand-orange)}
+  .col.next .sf{background:#00B589}
+  .scrow .sv{text-align:right;font-weight:800;color:var(--g700);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .scrow .sv i{font-style:normal;font-weight:700;color:var(--g400);font-size:10.5px}
+  .delta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:4px 12px;margin-top:12px}
+
+  /* catálogo de produtos e serviços */
+  .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:14px}
+  .catcard{text-align:left;background:var(--white);border:1.5px solid rgba(21,21,21,.09);border-radius:15px;padding:15px 16px;cursor:pointer;box-shadow:var(--shadow-card);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;display:flex;flex-direction:column;gap:7px;font:inherit;color:inherit}
+  .catcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--brand-purple)}
+  .cattop{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .cattag{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill)}
+  .cattag.reg{background:var(--tint-lav);color:#7B00BE}
+  .cattag.sug{background:var(--tint-cyan);color:#00647C}
+  .cattag.st{background:var(--g100);color:var(--g700)}
+  .catname{font-size:15px;font-weight:800;letter-spacing:-.025em;line-height:1.24}
+  .catprev{font-size:12.4px;color:var(--g700);line-height:1.45;flex:1}
+  .catprev em{font-style:normal;color:var(--g600)}
+  .catfoot{display:flex;align-items:center;gap:8px;border-top:var(--line);padding-top:9px;margin-top:2px}
+  .catsc{font-size:16px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .catsc.now{color:var(--brand-orange-deep)}
+  .catsc.now.zero{color:var(--g400)}
+  .catsc.next{color:#06845a}
+  .catarrow{color:var(--g400);font-weight:800}
+  .catopen{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--brand-purple)}
+  .itemfull{display:none}
+
+  /* modal lateral da ficha do item */
+  .dw-back{position:fixed;inset:0;background:rgba(21,21,21,.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:98;opacity:0;pointer-events:none;transition:opacity .2s ease}
+  .dw-back.on{opacity:1;pointer-events:auto}
+  .dw{position:fixed;top:0;right:0;height:100%;width:min(1120px,96vw);background:var(--white);z-index:99;box-shadow:-14px 0 44px rgba(21,21,21,.18);transform:translateX(102%);visibility:hidden;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s linear .24s;display:flex;flex-direction:column;overflow:hidden}
+  .dw.on{transform:none;visibility:visible;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s}
+  .dw-top{padding:16px 22px;display:flex;align-items:center;gap:12px;border-bottom:var(--line);flex:none}
+  .dw-top h3{font-size:18px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  .dw-close{margin-left:auto;flex:none;border:none;background:var(--g100);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;font-weight:800;color:var(--g700);display:flex;align-items:center;justify-content:center}
+  .dw-close:hover{background:var(--g200)}
+  .dw-body{padding:18px 22px 30px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .dw-body::-webkit-scrollbar{display:none}
+  .dw-body .cmp{margin-top:0}
+  /* inventário de produto */
+  .inv{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;border:var(--line);border-radius:14px;padding:14px;margin-top:10px;background:var(--white)}
+  @media(max-width:640px){.inv{grid-template-columns:1fr}}
+  .inv img{width:96px;height:96px;object-fit:cover;border-radius:11px;display:block;background:var(--g100)}
+  .inv .it{font-size:14.5px;font-weight:800;letter-spacing:-.02em}
+  .inv .im{font-size:12.3px;color:var(--g600);font-weight:600;margin-top:3px;font-family:'SFMono-Regular',Consolas,Menlo,monospace}
+  .foot{margin-top:40px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-in">
+    <a href="../" class="logo" style="text-decoration:none;color:inherit"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <nav class="seg" aria-label="Abas">
+      <button id="t-parc" class="on" onclick="show('parc')">Parceiro</button>
+      <button id="t-dest" onclick="show('dest')">Destaque</button>
+      <button id="t-site" onclick="show('site')">Solusite</button>
+      <button id="t-gmb" onclick="show('gmb')">Google</button>
+      <button id="t-soc" onclick="show('soc')">Redes</button>
+      <button id="t-cont" onclick="show('cont')">Conteúdo</button>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <span class="vbadge">Central de conteúdo · um dossiê, todos os produtos</span>
+  <h1>Central de Conteúdo — Porto Certo Consórcio</h1>
+  <p class="crumbs">Consórcios · Araraquara/SP · parceiro pagante (Destaque + GMB + Solusite) · fonte: cadastro Solutudo · 12/08/2026</p>
+</div>
+
+<div class="wrap">
+
+  <section id="p-parc" class="panel on">
+    <div class="sec first">
+      <span class="eyebrow">Como esta central funciona</span>
+      <h2>Um dossiê de fatos, seis saídas</h2>
+      <p class="secsub">Tudo aqui vem do cadastro que a empresa mantém na Solutudo — fatos fornecidos pela própria empresa, o que habilita o <b>selo A</b>. Este caso tem uma camada a mais que o de uma pizzaria: <b>consórcio é setor regulado</b>, então promessa de resultado e número sem fonte não são só ruído de SEO — são risco.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge peach">Pré-condição do setor · vale para todos os textos desta central</span>
+      <h3>O que muda por ser consórcio</h3>
+      <ul class="clean">
+        <li><b>A empresa é representante, não administradora.</b> Quem administra os grupos é a Porto Bank, autorizada pelo Banco Central. Os textos dizem "representante" e nunca se apresentam como administradora.</li>
+        <li><b>Contemplação não se promete.</b> Nenhum texto pode sugerir prazo, garantia ou "chance aumentada" de contemplação — ela ocorre por sorteio ou lance, conforme o regulamento do grupo. <span class="hint" data-tip="É a marcação mais grave encontrada: o texto do produto de imóveis hoje diz que a consultoria serve &quot;para aumentar as chances de contemplação&quot;.">?</span></li>
+        <li><b>"Sem juros" nunca vem sozinho.</b> Consórcio não tem juros de financiamento, mas tem taxa de administração e fundo de reserva. Omitir isso é informação incompleta em produto financeiro.</li>
+        <li><b>Número tem fonte e data.</b> "Até 90 meses", "30% de lance", "60% do valor do bem" são condições comerciais que mudam — vão para o texto com ressalva de condições vigentes, ou não vão.</li>
+      </ul>
+      <div class="note"><b>Não é parecer jurídico.</b> É a régua de conteúdo que aplicamos; a validação final das expressões usadas em material de consórcio deve passar pelo jurídico, como já registrado nas pendências da spec 3.0.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Identificação</span>
+      <h3>Porto Certo Consórcio</h3>
+      <dl class="kv">
+        <dt>ID · UUID</dt><dd>27460312 · <code>69b14a29-d240-4ca7-b84d-402fac1e09ff</code></dd>
+        <dt>Categoria</dt><dd>Consórcios (padrão)</dd>
+        <dt>Cidade</dt><dd>Araraquara/SP</dd>
+        <dt>Responsável</dt><dd>Gustavo Sanchez <small>o cadastro grava "Sanches" no campo do patrocinador e a descrição assina "Sanchez" — divergência de grafia a corrigir</small></dd>
+        <dt>Avaliação do perfil</dt><dd>11 <small>indicador interno de completude do cadastro (o parceiro anterior tinha 14)</small></dd>
+        <dt>Perfil digital</dt><dd>Totalmente digital — site e redes ativas <small>autodeclarado no contrato; nenhuma rede social está cadastrada</small></dd>
+        <dt>Nome fantasia</dt><dd>— <small>campo vazio: publicar sempre como "Porto Certo Consórcio"</small></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge mint">Produtos contratados — o que esta central precisa alimentar</span>
+      <div class="chips">
+        <span class="chip lav">Destaque Renovação</span>
+        <span class="chip lav">GMB — Presença Profissional no Google</span>
+        <span class="chip lav">Site Profissional Solutudo (ativo)</span>
+      </div>
+      <p class="sub">O Solusite já está ligado no cadastro e tem identidade montada (logo, favicon, banners) — os blocos de conteúdo estão na aba Solusite.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">NAP oficial — fonte única para todos os canais</span>
+      <dl class="kv">
+        <dt>Nome público</dt><dd>Porto Certo Consórcio</dd>
+        <dt>Endereço</dt><dd>Rua José Marques Pinheiro Filho, 1124 — Vila Harmonia, Araraquara/SP · CEP 14802-480 <small>lat -21.7621379, long -48.176715</small></dd>
+        <dt>Telefone / WhatsApp</dt><dd>(16) 98844-6553 <small>no cadastro está grafado "(016) 9884-46553" — mesmo número do telefone comercial, agrupamento errado: corrigir</small></dd>
+        <dt>E-mail</dt><dd>g.henriquesanchez@gmail.com <small>e-mail pessoal; com o domínio próprio já ativo, um endereço @portocertoconsorcio.com.br passa mais confiança</small></dd>
+        <dt>Site</dt><dd>portocertoconsorcio.com.br</dd>
+        <dt>Perfil no Google</dt><dd>cadastrado pela empresa, com link de avaliação <small>o link foi informado pelo parceiro no cadastro — não usamos dados do Google Maps/Places</small></dd>
+        <dt>Horário</dt><dd>Segunda a sexta, 9h00–18h00 <small>sábado, domingo e feriados fechados — publicar por extenso</small></dd>
+        <dt>Área de atendimento</dt><dd>Escritório em Araraquara + atendimento a distância para todo o Brasil</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Conflitos e correções antes de propagar</span>
+      <ul class="clean">
+        <li><b>Marca inconsistente:</b> os títulos dos produtos dizem <b>Porto Bank</b> e os textos dizem <b>Porto Seguro</b>. Padronizar numa marca só, confirmando com a empresa qual é a vigente no contrato de representação. <span class="hint" data-tip="Duas marcas para o mesmo produto dividem a autoridade da página e confundem quem lê — inclusive a IA, que passa a citar a marca errada.">?</span></li>
+        <li><b>Fundação improvável:</b> o contrato registra <b>12/05/1999</b> — exatamente a mesma data do outro parceiro desta base, o que sugere valor padrão do formulário. Além disso, a descrição fala em "1995" e em "36 anos de experiência". <b>Nenhum "desde [ano]" entra nos textos</b> até o dono confirmar. <span class="hint" data-tip="Datação durável é ótima para SEO, mas só quando é verdade. Dado repetido entre cadastros diferentes é sinal clássico de campo preenchido por padrão.">?</span></li>
+        <li><b>WhatsApp mal formatado</b> — "(016) 9884-46553" → (16) 98844-6553.</li>
+        <li><b>Palavras-chave particulares vazias</b> — não há buscas reais registradas para este perfil, ao contrário do parceiro anterior. Sem esse insumo, o FAQ foi construído a partir das dúvidas clássicas do setor e das palavras curadas da categoria.</li>
+        <li><b>Nenhuma rede social cadastrada</b>, embora o contrato declare "redes ativas". Confirmar Instagram, LinkedIn e Facebook — sem handle confirmado, nenhum texto de rede é publicado.</li>
+        <li><b>Sem álbum de fotos, e o rosto do consultor subaproveitado:</b> não existe álbum de fotos no cadastro. Há foto do responsável, mas guardada como <b>logotipo anterior</b> e dentro do conjunto do Solusite, sem legenda. Falta foto do escritório e do atendimento. <span class="hint" data-tip="Em serviço financeiro consultivo, rosto e lugar reais sustentam confiança melhor que qualquer arte de catálogo — e alimentam GMB, site e redes de uma vez.">?</span></li>
+        <li><b>Descrição em primeira pessoa do consultor</b> numa página de empresa, sem citar Araraquara. A 3.0 mantém a autoridade pessoal (que é o ativo real) e devolve a entidade e a cidade ao texto.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="badge">Banco de imagens — direto do CDN do cadastro</span>
+      <h3>14 imagens: identidade completa e o rosto do consultor</h3>
+      <p class="sub">Logo, favicon, capa e banners do Solusite estão prontos — e os banners são o único material com <b>legenda e descrição preenchidas</b>, o que deveria ser o padrão. As fotos do responsável estão no acervo, mas catalogadas como logotipo e como imagem avulsa do Solusite.</p>
+      <div class="ph-grid"><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7b765c-3ec8-4590-9d4d-2ebaac1e09ff.png" alt="Logotipo (novo) — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo (novo)</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/69b14c7f-842c-4198-be88-4231ac1e09ff.jpg" alt="Logotipo anterior — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo anterior</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7c97bd-6f38-4913-80b3-14b2ac1e09ff.webp" alt="Favicon do Solusite — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Favicon do Solusite</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/69b14c6c-24e8-4a74-a0c2-41f2ac1e09ff.png" alt="Capa desktop — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Capa desktop</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7ca45d-4f98-478b-910e-1e5aac1e09ff.webp" alt="Banner do Solusite · com legenda — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner do Solusite · com legenda</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7ca476-8008-44dd-a115-1ea3ac1e09ff.webp" alt="Banner mobile · com legenda — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner mobile · com legenda</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/69bd60ce-9c8c-4c47-83c3-4e12ac1e09ff.webp" alt="Solusite · outras — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Solusite · outras</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/69bd63cf-c3d4-4cea-a48c-4ed2ac1e09ff.webp" alt="Solusite · outras — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Solusite · outras</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7c9cff-946c-43d1-89e6-173bac1e09ff.webp" alt="Solusite · outras — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Solusite · outras</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/69b14e18-6ed8-418b-bfd7-4391ac1e09ff/69c189f7-e3b4-4c0f-8194-4b2aac1e09ff.jpeg" alt="Produto · imóveis — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Produto · imóveis</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/69c189e0-cd40-4bdd-9a95-4adfac1e09ff/69c189e0-3738-4124-bdf5-4adfac1e09ff.jpeg" alt="Produto · automóveis — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Produto · automóveis</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/69c1897f-4ad8-4ac8-b952-4abaac1e09ff/69c1897f-9a24-4764-a223-4abaac1e09ff.jpeg" alt="Produto · pesados — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Produto · pesados</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/69b14e36-d9f0-480b-b679-439dac1e09ff/69c18fc9-d920-4726-a821-512fac1e09ff.png" alt="Produto · máquinas — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Produto · máquinas</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6a67b14a-98e4-467e-9274-1b59ac1e09ff/6a67b14a-a01c-46fd-8590-1b59ac1e09ff.jpeg" alt="Produto · home equity — Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Produto · home equity</figcaption></figure></div>
+      <div class="note"><b>O que falta:</b> foto do escritório e do atendimento — e reclassificar as fotos do responsável, hoje guardadas como logotipo. <b>Correção de rota:</b> ao ler só os nomes de categoria do cadastro, tínhamos concluído que não havia foto real nenhuma; ao abrir as imagens, o rosto do consultor estava lá. É a regra de sempre valendo para nós também — ausência presumida não é fato.</div>
+    </div>
+  </section>
+
+  <section id="p-dest" class="panel">
+    <div class="sec first">
+      <span class="eyebrow">Produto · Destaque Renovação</span>
+      <h2>Página de Destaque na Solutudo</h2>
+      <p class="secsub">Descrição 3.0, catálogo de itens auditado e FAQ que responde as dúvidas do setor sem prometer nada. CTA sem link — contato por extenso.</p>
+    </div>
+
+    <div class="card" style="padding:16px 20px">
+      <div class="chips" style="margin-top:0">
+        <span class="chip peach">Marcação laranja<span class="hint" data-tip="Trecho que enfraquece ou expõe a empresa: promessa de resultado, número sem fonte, texto de catálogo da marca, informação financeira incompleta.">?</span></span>
+        <span class="chip lav">Marcação roxa<span class="hint" data-tip="Fato que existe no cadastro e não foi usado — lacuna de conteúdo, não erro de escrita.">?</span></span>
+        <span class="chip mint">Marcação verde<span class="hint" data-tip="Trecho que carrega fato verificável, responde a uma busca real, respeita a regra do setor ou fecha em ação possível.">?</span></span>
+        <span class="chip">Score de 0 a 100<span class="hint" data-tip="Seis dimensões: entidade e local (15), fatos verificáveis (25), resposta direta para AEO (20), estrutura extraível (15), unicidade (15) e contato (10).">?</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Detalhes da empresa na Solutudo — como está × como deveria</span>
+      <h3>A descrição do perfil, auditada frase a frase</h3>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Publicado hoje no cadastro</div><div class="colb">
+          <h5>Consultor Especialista em Consórcios Porto Bank | Imóveis, Automóveis, Pesados e Crédito com Garantia de Imóvel</h5>
+          <p><mark class="m-bad" data-tip="A página é da empresa Porto Certo Consórcio, mas o texto abre na primeira pessoa do consultor. A entidade que o buscador precisa reconhecer não aparece — e o nome da empresa não é citado uma única vez.">Sou Gustavo Sanchez, especialista em consórcios do Porto Bank</mark> e consultor em Crédito com Garantia de Imóvel, ajudando pessoas e empresas <mark class="m-bad" data-tip="&quot;Todo o Brasil&quot; sem citar a base local. Araraquara está no cadastro e é o que ancora a busca local — dizer só &quot;Brasil&quot; não posiciona em lugar nenhum.">de todo o Brasil</mark>…</p>
+          <p>Minha história com consórcios começou <mark class="m-bad" data-tip="1995 no texto, 12/05/1999 no contrato e &quot;36 anos de experiência&quot; no fechamento: três datações que não fecham entre si. Nenhuma entra no texto até o dono confirmar.">em 1995</mark>…</p>
+          <p><mark class="m-good" data-tip="Este é o ativo real da empresa: o consultor foi cliente e foi contemplado. Nenhum concorrente copia essa história — é a melhor frase do texto atual.">Também fui cliente de consórcio e já fui contemplado.</mark> Essa vivência reforçou minha convicção de que o consórcio é <mark class="m-bad" data-tip="Opinião apresentada como fato, em produto financeiro regulado. &quot;Mais seguras&quot; exige comparação e fonte.">uma das formas mais inteligentes e seguras</mark> de adquirir bens…</p>
+          <h5>Soluções em Consórcio</h5>
+          <ul><li>Automóveis</li><li>Imóveis (compra, construção e reforma)</li><li>Caminhões</li><li>Veículos pesados</li><li>Máquinas e equipamentos</li></ul>
+          <p style="margin-top:8px">Com <mark class="m-bad" data-tip="36 anos de experiência e 30 de gestão comercial são autodeclarações que conflitam com as outras datas do cadastro. Ficam de fora até confirmação.">36 anos de experiência</mark>… <mark class="m-bad" data-tip="A chamada final pede simulação e não informa nenhum canal: nem WhatsApp, nem horário, nem endereço.">Solicite uma simulação personalizada</mark>.</p>
+          <p style="margin-top:10px"><span class="lbl">Não aparece em lugar nenhum</span>
+          <mark class="m-fill" data-tip="Nome da empresa — a página é dela.">Porto Certo</mark>
+          <mark class="m-fill" data-tip="Cidade do escritório, cadastrada com endereço completo.">Araraquara</mark>
+          <mark class="m-fill" data-tip="Seg a sex, das 9h às 18h.">horário</mark>
+          <mark class="m-fill" data-tip="WhatsApp (16) 98844-6553 está no cadastro.">contato</mark>
+          <mark class="m-fill" data-tip="A regra que protege a empresa e responde à dúvida nº 1 do setor.">como funciona a contemplação</mark></p>
+        </div><div class="sc"><div class="scnum"><b>44</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:48%"></span></span><span class="sv">12<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:25%"></span></span><span class="sv">5<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:60%"></span></span><span class="sv">9<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:73%"></span></span><span class="sv">11<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div>
+        <div class="col next"><div class="colh">● Descrição 3.0</div><div class="colb">
+          <p><mark class="m-good" data-tip="Entidade + o que faz + cidade na primeira frase, mantendo o consultor logo em seguida: a autoridade pessoal continua, mas agora amarrada à empresa e ao lugar.">A Porto Certo Consórcio é a consultoria de Gustavo Sanchez em Araraquara/SP, representante dos consórcios Porto Bank</mark> e consultoria em crédito com garantia de imóvel.</p>
+          <h5>Consórcios que a Porto Certo trabalha</h5>
+          <ul><li>Imóveis — compra, construção e reforma.</li><li>Automóveis.</li><li>Caminhões e veículos pesados.</li><li>Máquinas e equipamentos.</li></ul>
+          <h5>Crédito com garantia de imóvel</h5>
+          <p>Para quem tem imóvel próprio e quer transformar parte do patrimônio em crédito — o imóvel continua sendo usado normalmente. Valor e condições dependem de análise da instituição financeira.</p>
+          <h5>Como funciona o atendimento</h5>
+          <ul>
+            <li>Conversa sobre o objetivo antes de qualquer proposta.</li>
+            <li>Comparação de grupos, prazos e valores de carta.</li>
+            <li><mark class="m-good" data-tip="A frase de conformidade vira conteúdo útil: responde a busca mais frequente do setor e ao mesmo tempo cumpre a regra de não prometer resultado.">A contemplação ocorre por sorteio ou por lance, conforme o regulamento de cada grupo.</mark></li>
+            <li>Acompanhamento até a contratação.</li>
+          </ul>
+          <h5>Onde e quando</h5>
+          <p>Rua José Marques Pinheiro Filho, 1124 — Vila Harmonia, Araraquara/SP. Segunda a sexta, das 9h às 18h. <mark class="m-good" data-tip="Mantém o alcance nacional declarado, mas ancorado num lugar real — é assim que a busca local e a nacional convivem.">Clientes de outras cidades são atendidos a distância.</mark></p>
+          <p class="cta">Quer simular? Chame no WhatsApp (16) 98844-6553.</p>
+        </div><div class="sc"><div class="scnum"><b>91</b><span>/100 · Descrição 3.0</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div>
+      </div>
+      <span class="delta">Ganho de 47 pontos · 44 → 91</span>
+      <div class="selo"><b>Selo de procedência · variante A (parceiro)</b> Informações fornecidas pela empresa no cadastro Solutudo · verificadas em 12/08/2026. Campos em conflito ficaram fora do texto e viraram tarefa de CS.</div>
+      <div class="note"><b>Uma nota sobre a assinatura:</b> o cadastro grava "Sanches" e a descrição assina "Sanchez". Não é conflito simétrico — o campo do patrocinador é preenchido pelo comercial, enquanto a assinatura é da própria empresa no texto publicado. Adotamos a assinatura e mandamos corrigir o cadastro.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da página</span>
+      <dl class="kv">
+        <dt>seo.title</dt><dd>Consórcio Porto Bank em Araraquara — Porto Certo<span class="cnt">48/60</span></dd>
+        <dt>seo.meta</dt><dd>Consultoria em consórcio de imóvel, automóvel, pesados e máquinas, e crédito com garantia de imóvel. Araraquara/SP e todo o Brasil, seg a sex, 9h às 18h.<span class="cnt">153/160</span></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge">Catálogo de produtos e serviços — como está × como deveria</span>
+      <h3>7 itens: 5 cadastrados e 2 que a empresa oferece e não descreve</h3>
+      <p class="sub">Os cinco produtos cadastrados hoje são, em boa parte, texto de catálogo da marca — o mesmo que qualquer representante publica. Score baixo primeiro: comece pelos de menor nota.</p>
+      <div class="cat">
+        <button class="catcard" onclick="openItem('p700338',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 700338</span></span>
+          <span class="catname">Consórcio de Imóveis Porto Bank</span>
+          <span class="catprev">"O consórcio de imóveis Porto Seguro é uma alternativa segura para quem deseja conquistar um imóvel sem pagar juros…"</span>
+          <span class="catfoot"><span class="catsc now">41</span><span class="catarrow">→</span><span class="catsc next">89</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p701336',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 701336</span></span>
+          <span class="catname">Consórcio de Automóveis Porto Bank</span>
+          <span class="catprev">"Realize o sonho do carro próprio com mais planejamento, economia e liberdade… Sem entrada e sem juros, com até 90 meses…"</span>
+          <span class="catfoot"><span class="catsc now">40</span><span class="catarrow">→</span><span class="catsc next">89</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p701335',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 701335</span></span>
+          <span class="catname">Consórcio de Veículos Pesados Porto Bank</span>
+          <span class="catprev">"Por que escolher o Consórcio Porto? Sem entrada e sem juros… utilize até 30% do valor para antecipar sua contemplação."</span>
+          <span class="catfoot"><span class="catsc now">39</span><span class="catarrow">→</span><span class="catsc next">89</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p700339',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 700339</span></span>
+          <span class="catname">Consórcio de Máquinas Pesadas Porto Bank</span>
+          <span class="catprev">"A solução inteligente e econômica para impulsionar sua produção… Sem entrada e sem juros, parcelas reduzidas…"</span>
+          <span class="catfoot"><span class="catsc now">38</span><span class="catarrow">→</span><span class="catsc next">88</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p710545',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 710545 · melhor texto atual</span></span>
+          <span class="catname">Crédito com Garantia de Imóvel em Araraquara</span>
+          <span class="catprev">"…você usa seu imóvel como garantia, mas ele continua sendo seu… O crédito pode chegar a até 60% do valor do bem, conforme análise…"</span>
+          <span class="catfoot"><span class="catsc now">58</span><span class="catarrow">→</span><span class="catsc next">90</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-caminhoes',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">sem conteúdo hoje</span></span>
+          <span class="catname">Consórcio de caminhões</span>
+          <span class="catprev"><em>Citado na descrição da empresa como solução oferecida, mas sem item próprio no catálogo — não disputa nenhuma busca.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">88</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-escritorio',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">sem conteúdo hoje</span></span>
+          <span class="catname">Atendimento em Araraquara</span>
+          <span class="catprev"><em>O escritório está cadastrado com endereço completo e horário, e nenhum item de conteúdo fala dele.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">86</span><span class="catopen">ver ficha</span></span>
+        </button>
+      </div>
+      <div class="note"><b>O padrão que apareceu:</b> o único item com score acima de 50 é o de crédito com garantia de imóvel — justamente o que cita a empresa, a cidade e coloca ressalva no número. É a prova, dentro do próprio cadastro, de que a régua funciona.</div>
+    </div>
+
+    <div class="itemfull" id="if-p700338" data-title="Consórcio de Imóveis Porto Bank · ID 700338"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p>Compra, Construção ou Reforma</p><p style="margin-top:8px">O <mark class="m-bad" data-tip="O título do produto diz Porto Bank e o texto diz Porto Seguro. Duas marcas no mesmo item confundem o leitor e diluem a entidade que o buscador associa à página.">consórcio de imóveis Porto Seguro</mark> é uma alternativa segura para quem deseja conquistar um imóvel <mark class="m-bad" data-tip="Consórcio não cobra juros, mas cobra taxa de administração e fundo de reserva. Dizer só &quot;sem juros&quot; é informação incompleta — em setor regulado isso é risco, não só SEO.">sem pagar juros</mark> e com planejamento de longo prazo.</p><h5>Para que serve o consórcio de imóveis</h5><ul><li>Compra de casa ou apartamento</li><li>Aquisição de terrenos</li><li>Construção de imóveis</li><li>Reformas e ampliações</li></ul><p style="margin-top:8px">Com uma consultoria especializada, é possível avaliar valor da carta, prazo, estratégia de lance e planejamento financeiro <mark class="m-bad" data-tip="Sugerir que a consultoria aumenta a chance de contemplação é promessa de resultado. A contemplação é por sorteio ou lance, conforme o regulamento do grupo — dizer o contrário é o erro mais grave possível neste setor.">para aumentar as chances de contemplação</mark>.</p><p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Araraquara não é citada — e é a cidade do escritório, cadastrada.">cidade</mark> <mark class="m-fill" data-tip="Nenhum telefone ou WhatsApp: o texto pede simulação e não diz por onde.">contato</mark> <mark class="m-fill" data-tip="Seg a sex, 9h às 18h está no cadastro.">horário</mark></p></div><div class="sc"><div class="scnum"><b>41</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">10<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:30%"></span></span><span class="sv">6<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:60%"></span></span><span class="sv">9<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Consórcio de imóvel em Araraquara — casa, terreno ou obra</mark> <span class="cnt">57/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Diz o que é, de quem é a representação e onde fica o atendimento — as três amarras que o texto atual não tem.">A Porto Certo é representante do consórcio de imóveis Porto Bank e atende de Araraquara/SP para todo o Brasil.</mark></p><h5>Para que serve a carta de crédito</h5><ul><li>Comprar casa, apartamento ou terreno.</li><li>Construir em terreno próprio.</li><li>Reformar ou ampliar um imóvel.</li></ul><h5>Como funciona</h5><ul><li>Sem juros de financiamento; há taxa de administração e fundo de reserva, informados na simulação.</li><li><mark class="m-good" data-tip="Enuncia a regra do setor em vez de prometer resultado. É a frase que protege a empresa e, ao mesmo tempo, responde à dúvida número um de quem pesquisa consórcio.">A contemplação ocorre por sorteio ou por lance, conforme o regulamento do grupo.</mark></li><li>A consultoria compara grupos, prazos e valores de carta conforme o seu objetivo.</li></ul><p class="cta">Peça uma simulação pelo WhatsApp (16) 98844-6553, de segunda a sexta, das 9h às 18h.</p></div><div class="sc"><div class="scnum"><b>89</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 48 pontos · 41 → 89</span></div>
+    <div class="itemfull" id="if-p701336" data-title="Consórcio de Automóveis Porto Bank · ID 701336"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p>Realize o sonho do carro próprio com mais planejamento, economia e liberdade.</p><h5>Por que escolher o Consórcio de Carros Porto?</h5><ul><li><b>Sem entrada e <mark class="m-bad" data-tip="Mesma omissão: sem juros, mas com taxa de administração. Em produto financeiro, informação incompleta vira reclamação.">sem juros</mark>, com <mark class="m-bad" data-tip="Número específico de condição comercial, sem data nem fonte. Condição muda; publicada assim, envelhece errado e vira promessa.">até 90 meses para pagar</mark></b></li><li><b>Parcelas reduzidas até a contemplação</b></li><li><b>Liberdade total na escolha do veículo</b></li><li><b>Crédito que facilita todo o processo</b> — utilize parte do valor para documentação e seguro.</li></ul><p style="margin-top:8px"><mark class="m-bad" data-tip="Texto de catálogo da marca: qualquer um dos milhares de representantes publica exatamente isto. Nada aqui é da Porto Certo.">A escolha inteligente para quem quer economizar e decidir com segurança.</mark></p><p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Nem a empresa nem a cidade aparecem no texto do produto.">empresa e cidade</mark> <mark class="m-fill" data-tip="Sem canal de contato — o texto termina sem próximo passo.">contato</mark></p></div><div class="sc"><div class="scnum"><b>40</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:44%"></span></span><span class="sv">11<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:35%"></span></span><span class="sv">7<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:67%"></span></span><span class="sv">10<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:10%"></span></span><span class="sv">1<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Consórcio de carro em Araraquara — planejamento sem juros</mark> <span class="cnt">57/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Entidade + cidade + o que se compra. O leitor sabe em dez segundos com quem está falando.">Na Porto Certo, em Araraquara/SP, o consórcio de automóveis Porto Bank é montado a partir do valor de carta que cabe no seu orçamento.</mark></p><h5>Como funciona</h5><ul><li>Sem entrada e sem juros de financiamento; a taxa de administração aparece na simulação.</li><li>Parcelas menores antes da contemplação, conforme o plano escolhido.</li><li>Você escolhe o carro no momento da contemplação — novo ou usado, dentro do valor da carta.</li><li>A contemplação ocorre por sorteio ou lance, conforme o regulamento do grupo.</li></ul><p class="cta">Simule pelo WhatsApp (16) 98844-6553 e receba a comparação de grupos e prazos.</p></div><div class="sc"><div class="scnum"><b>89</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 49 pontos · 40 → 89</span></div>
+    <div class="itemfull" id="if-p701335" data-title="Consórcio de Veículos Pesados Porto Bank · ID 701335"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><h5>Por que escolher o Consórcio Porto?</h5><ul><li><b>Sem entrada e <mark class="m-bad" data-tip="Mesma incompletude dos outros itens — e aqui o público é empresarial, que compara custo total.">sem juros</mark></b></li><li><b>Mais poder de lance com seu próprio crédito</b> — <mark class="m-bad" data-tip="Percentual específico sem fonte nem data, combinado com a palavra &quot;antecipar contemplação&quot;: soma de número não verificável com promessa de resultado.">utilize até 30% do valor para antecipar sua contemplação</mark>.</li><li><b>Crédito que vai além da compra</b> — use até 10% do valor para documentação e seguro.</li></ul><p style="margin-top:8px"><mark class="m-bad" data-tip="Fecha sem dizer para quem é. Transportador, produtor rural e construtora têm necessidades diferentes — o texto não fala com nenhum deles em específico.">Ideal para quem quer crescer com segurança e controle financeiro.</mark></p><p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Que tipo de veículo pesado: caminhão, carreta, ônibus, implemento?">o que dá para comprar</mark> <mark class="m-fill" data-tip="Nem empresa, nem cidade, nem contato.">empresa, cidade e contato</mark></p></div><div class="sc"><div class="scnum"><b>39</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">10<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:35%"></span></span><span class="sv">7<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:67%"></span></span><span class="sv">10<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:10%"></span></span><span class="sv">1<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Consórcio de caminhão e veículo pesado — Porto Certo</mark> <span class="cnt">52/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Diz para quem é o produto: transportador, produtor e empresa que renova frota. Segmentar o público é o que separa este texto do catálogo genérico.">A Porto Certo atende transportadores, produtores rurais e empresas que precisam renovar frota com o consórcio de veículos pesados Porto Bank.</mark></p><h5>Como funciona</h5><ul><li>Sem entrada e sem juros de financiamento; taxa de administração informada na simulação.</li><li>Parcelas menores antes da contemplação, preservando o caixa da operação.</li><li>Parte da carta pode cobrir documentação e seguro, conforme o regulamento do grupo.</li><li>A contemplação ocorre por sorteio ou lance — o lance pode usar o próprio crédito, nas condições do grupo.</li></ul><p class="cta">Fale com a consultoria pelo WhatsApp (16) 98844-6553, de segunda a sexta, das 9h às 18h.</p></div><div class="sc"><div class="scnum"><b>89</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 50 pontos · 39 → 89</span></div>
+    <div class="itemfull" id="if-p700339" data-title="Consórcio de Máquinas Pesadas Porto Bank · ID 700339"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-bad" data-tip="Abertura de folheto: &quot;solução inteligente e econômica&quot; serve para qualquer produto de qualquer setor.">A solução inteligente e econômica para impulsionar sua produção.</mark></p><h5>Por que escolher o Consórcio de Máquinas Pesadas Porto Seguro?</h5><ul><li><b>Sem entrada e sem juros</b></li><li><b>Parcelas reduzidas até a contemplação</b></li><li><b>Flexibilidade para adquirir as máquinas ideais</b></li><li><b>Use parte do crédito para custos adicionais</b></li></ul><p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="Quais máquinas: agrícola, construção, industrial? Sem isso não casa com busca nenhuma.">tipo de máquina</mark> <mark class="m-fill" data-tip="Araraquara é polo agroindustrial — o entorno é o argumento local que falta.">região atendida</mark> <mark class="m-fill" data-tip="Sem canal de contato.">contato</mark></p></div><div class="sc"><div class="scnum"><b>38</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">10<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:30%"></span></span><span class="sv">6<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:67%"></span></span><span class="sv">10<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:10%"></span></span><span class="sv">1<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Consórcio de máquinas e equipamentos — Porto Certo</mark> <span class="cnt">50/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Nomeia os tipos de máquina e o público: é o que faz o texto casar com a busca real de quem compra equipamento.">A Porto Certo trabalha o consórcio Porto Bank para máquinas agrícolas, equipamentos de construção e maquinário industrial</mark>, atendendo de Araraquara/SP para todo o Brasil.</p><h5>Como funciona</h5><ul><li>Sem entrada e sem juros de financiamento; taxa de administração na simulação.</li><li>Parcelas menores antes da contemplação, para não travar o capital de giro.</li><li>A carta é usada na compra do equipamento escolhido, conforme o regulamento do grupo.</li></ul><p class="cta">Peça a simulação pelo WhatsApp (16) 98844-6553.</p></div><div class="sc"><div class="scnum"><b>88</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:84%"></span></span><span class="sv">21<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 50 pontos · 38 → 88</span></div>
+    <div class="itemfull" id="if-p710545" data-title="Crédito com Garantia de Imóvel em Araraquara · ID 710545 · melhor texto atual"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><b>Crédito com Garantia de Imóvel: transforme seu patrimônio em novas possibilidades</b></p><p style="margin-top:8px">Muitas pessoas conhecem empréstimo pessoal, financiamento e consignado, mas ainda não sabem que o crédito com garantia de imóvel pode oferecer condições mais atrativas, com <mark class="m-bad" data-tip="Comparação de custo sem fonte nem data. É o tipo de afirmação que o setor financeiro precisa sustentar com condição vigente.">taxas reduzidas</mark>, prazos maiores e mais liberdade.</p><p style="margin-top:8px">O crédito pode chegar a até <mark class="m-good" data-tip="Aqui o texto acerta: dá o número E a ressalva (&quot;conforme análise e condições da instituição&quot;). É o padrão que os outros produtos deveriam seguir.">60% do valor do bem, conforme análise e condições da instituição financeira</mark>.</p><p style="margin-top:8px">A <mark class="m-good" data-tip="Único item do catálogo que cita a empresa e a cidade no corpo do texto — e por isso é o de maior score atual.">Porto Certo Consórcio, em Araraquara</mark>, oferece atendimento personalizado. Entre em contato e conheça as condições.</p><p style="margin-top:10px"><span class="lbl">Não aparece</span><mark class="m-fill" data-tip="&quot;Entre em contato&quot; sem dizer por onde: falta WhatsApp e horário.">como entrar em contato</mark></p></div><div class="sc"><div class="scnum"><b>58</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:56%"></span></span><span class="sv">14<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:45%"></span></span><span class="sv">9<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:67%"></span></span><span class="sv">10<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:60%"></span></span><span class="sv">9<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">4<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Crédito com garantia de imóvel em Araraquara/SP</mark> <span class="cnt">47/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Explica o mecanismo em uma frase autocontida — o tipo de trecho que uma IA cita inteiro ao responder &quot;o que é home equity&quot;.">No crédito com garantia de imóvel, o imóvel quitado fica como garantia e continua sendo usado normalmente pelo dono.</mark></p><h5>Para que costuma ser usado</h5><ul><li>Quitar dívidas mais caras.</li><li>Reformar, ampliar ou modernizar o imóvel.</li><li>Abrir ou expandir um negócio.</li><li>Reorganizar as finanças.</li></ul><h5>Condições</h5><ul><li>O valor liberado pode chegar a 60% do imóvel, conforme análise e condições vigentes da instituição financeira.</li><li>Prazos e taxas dependem da análise de crédito — a simulação mostra o custo total antes de qualquer assinatura.</li></ul><p class="cta">Fale com a Porto Certo pelo WhatsApp (16) 98844-6553, de segunda a sexta, das 9h às 18h.</p></div><div class="sc"><div class="scnum"><b>90</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 32 pontos · 58 → 90</span></div>
+    <div class="itemfull" id="if-s-caminhoes" data-title="Consórcio de caminhões · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Citado na descrição da empresa como solução oferecida, mas sem item próprio no catálogo — não disputa nenhuma busca.</p><p style="margin-top:8px"><span class="lbl">Busca que fica sem resposta</span><mark class="m-fill" data-tip="&quot;Caminhões&quot; está listado na descrição da empresa, sem página que responda a essa busca.">consórcio de caminhão</mark> <mark class="m-fill" data-tip="Intenção de quem compra o primeiro caminhão para trabalhar — público diferente do de frota.">como comprar caminhão sem entrada</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Consórcio de caminhão — Porto Certo, Araraquara/SP</mark> <span class="cnt">50/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Separar caminhão de &quot;veículos pesados&quot; atende quem busca pelo nome do bem, que é como as pessoas de fato pesquisam.">A Porto Certo trabalha o consórcio Porto Bank para caminhões, do primeiro veículo do autônomo à renovação de frota.</mark></p><h5>Como funciona</h5><ul><li>Sem entrada e sem juros de financiamento; taxa de administração na simulação.</li><li>A contemplação ocorre por sorteio ou lance, conforme o regulamento do grupo.</li><li>Parte da carta pode cobrir documentação e emplacamento, nas condições do grupo.</li></ul><p class="cta">Simule pelo WhatsApp (16) 98844-6553.</p></div><div class="sc"><div class="scnum"><b>88</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:84%"></span></span><span class="sv">21<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 88 pontos</span></div>
+    <div class="itemfull" id="if-s-escritorio" data-title="Atendimento em Araraquara · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">O escritório está cadastrado com endereço completo e horário, e nenhum item de conteúdo fala dele.</p><p style="margin-top:8px"><span class="lbl">Busca que fica sem resposta</span><mark class="m-fill" data-tip="Endereço completo e horário estão no cadastro; nenhum texto os usa.">consórcio em Araraquara</mark> <mark class="m-fill" data-tip="Quem prefere resolver olho no olho procura por atendimento presencial.">consultor de consórcio perto de mim</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta 3.0</div><div class="colb"><span class="lbl">Título<span class="hint" data-tip="Alvo de 40 a 60 caracteres, uma intenção de busca por item, sem repetir o recorte de outro.">?</span></span><div class="ttl"><mark class="m-good" data-tip="Título que amarra produto + cidade ou público, sem prometer resultado.">Atendimento presencial de consórcio em Araraquara</mark> <span class="cnt">49/60</span></div><p style="margin-top:10px"><mark class="m-good" data-tip="Transforma dois campos do cadastro — endereço e horário — em resposta direta para a busca local, que hoje fica sem página.">A Porto Certo atende no escritório da Vila Harmonia, em Araraquara/SP, de segunda a sexta, das 9h às 18h.</mark></p><h5>Como é o atendimento</h5><ul><li>Conversa sobre o objetivo — imóvel, veículo, máquina ou crédito — antes de qualquer proposta.</li><li>Comparação de grupos, prazos e valores de carta.</li><li>Acompanhamento até a contratação e depois dela.</li><li>Para quem é de outra cidade, o mesmo atendimento acontece a distância.</li></ul><p class="cta">Agende pelo WhatsApp (16) 98844-6553 — Rua José Marques Pinheiro Filho, 1124, Vila Harmonia.</p></div><div class="sc"><div class="scnum"><b>86</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro. Em setor regulado, número sem fonte e promessa de resultado descontam pesado.">?</span></span><span class="st"><span class="sf" style="width:84%"></span></span><span class="sv">21<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="Responde de forma extraível as perguntas reais: o que é, quanto custa, como funciona, onde fica, como falar com alguém.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos — quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de catálogo da marca, igual ao de mil representantes, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="Termina em ação possível: telefone, WhatsApp ou como iniciar a simulação.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 86 pontos</span></div>
+
+    <div class="card">
+      <span class="badge">FAQ — as dúvidas do setor, respondidas sem promessa</span>
+      <div class="txt">
+        <h4>O consórcio tem juros?</h4>
+        <p>Não há juros de financiamento. Há taxa de administração e fundo de reserva, informados na simulação.</p>
+        <h4>Quanto tempo leva para ser contemplado?</h4>
+        <p>Não há prazo garantido. A contemplação ocorre por sorteio ou por lance, conforme o regulamento de cada grupo.</p>
+        <h4>O que dá para comprar com a carta de crédito?</h4>
+        <p>Imóvel (inclusive para construir ou reformar), automóvel, caminhão, veículo pesado, máquinas e equipamentos.</p>
+        <h4>O que é crédito com garantia de imóvel?</h4>
+        <p>É o crédito em que o imóvel quitado fica como garantia e continua sendo usado pelo dono. Valor e condições dependem de análise da instituição financeira.</p>
+        <h4>A Porto Certo é a administradora do consórcio?</h4>
+        <p>Não. A Porto Certo é a consultoria representante; a administração dos grupos é da Porto Bank.</p>
+        <h4>Atende quem é de outra cidade?</h4>
+        <p>Sim. O escritório fica em Araraquara/SP e o atendimento a distância é feito para clientes de todo o Brasil.</p>
+        <h4>Qual o horário de atendimento?</h4>
+        <p>De segunda a sexta, das 9h às 18h.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="p-site" class="panel">
+    <div class="sec first">
+      <span class="eyebrow">Produto · Site Profissional (Solusite)</span>
+      <h2>Blocos do site e o conteúdo de cada um</h2>
+      <p class="secsub">O Solusite já está ativo, com logo, favicon e banners montados. Aqui a voz é da empresa e links são permitidos — o que muda em relação ao perfil Solutudo.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da home</span>
+      <dl class="kv">
+        <dt>title</dt><dd>Porto Certo Consórcio — consultoria em Araraquara/SP<span class="cnt">52/60</span></dd>
+        <dt>meta</dt><dd>Consórcio Porto Bank e crédito com garantia de imóvel com atendimento consultivo. Escritório em Araraquara e atendimento a distância para todo o Brasil.<span class="cnt">152/160</span></dd>
+      </dl>
+      <div class="note">O banner já cadastrado traz a legenda <b>"Consórcios Porto Bank e Home Equity para clientes em todo o Brasil"</b> — boa base para o hero, faltando só a âncora local que a 3.0 acrescenta.</div>
+    </div>
+
+    <div class="blk"><span class="bnum">1</span><h4>Hero — a promessa em uma linha</h4>
+      <div class="txt"><p><b>Consórcio e crédito com garantia de imóvel, com consultoria de verdade.</b></p>
+      <p>Porto Certo, em Araraquara/SP: representante Porto Bank, atendendo clientes em todo o Brasil.</p>
+      <p class="cta">[Botão] Simular pelo WhatsApp · [Botão] Ver as soluções</p></div>
+      <p class="bwhy">Entidade, cidade e representação na primeira dobra — as três coisas que faltam no texto atual.</p></div>
+
+    <div class="blk"><span class="bnum">2</span><h4>Sobre — a autoridade que é só dela</h4>
+      <div class="txt"><p>Gustavo Sanchez trabalha com consórcios desde antes de a modalidade virar popular — e antes de ser consultor, foi cliente: entrou num grupo e foi contemplado. Essa vivência define o jeito da Porto Certo trabalhar: primeiro entender o objetivo, depois montar o plano.</p>
+      <p><b>Pendente de confirmação:</b> o ano de início e o tempo de experiência saem do texto até o parceiro confirmar a data correta.</p></div>
+      <p class="bwhy">A história de contemplação é o ativo mais único do cadastro. As datas conflitantes ficam fora até o CS confirmar.</p></div>
+
+    <div class="blk"><span class="bnum">3</span><h4>Consórcios — uma seção por bem</h4>
+      <div class="txt"><p>Cards para imóveis, automóveis, caminhões, veículos pesados e máquinas — cada um levando à sua própria página, com o texto do catálogo da aba Destaque.</p></div>
+      <p class="bwhy">Uma página por bem: é assim que as pessoas pesquisam ("consórcio de caminhão", não "consórcio de bens").</p></div>
+
+    <div class="blk"><span class="bnum">4</span><h4>Crédito com garantia de imóvel</h4>
+      <div class="txt"><p>O mecanismo explicado em linguagem simples, o que pode ser feito com o recurso e a ressalva de análise. Botão para simulação.</p></div>
+      <p class="bwhy">É o produto com melhor texto atual — no site ele ganha página própria com a ressalva mantida.</p></div>
+
+    <div class="blk"><span class="bnum">5</span><h4>Como funciona — o processo em 4 passos</h4>
+      <div class="txt"><p>1 · Conversa sobre o objetivo · 2 · Comparação de grupos, prazos e cartas · 3 · Contratação com as condições na mão · 4 · Acompanhamento depois da contratação.</p>
+      <p>Com a regra sempre visível: a contemplação ocorre por sorteio ou lance, conforme o regulamento do grupo.</p></div>
+      <p class="bwhy">Processo explícito reduz a desconfiança que o setor carrega — e vira resposta extraível para IA.</p></div>
+
+    <div class="blk"><span class="bnum">6</span><h4>Atendimento — Araraquara e todo o Brasil</h4>
+      <div class="txt"><p>Escritório na Vila Harmonia, segunda a sexta das 9h às 18h, com mapa. Para outras cidades, atendimento a distância pelos mesmos canais.</p></div>
+      <p class="bwhy">Resolve a tensão do texto atual: local e nacional convivem quando ambos estão escritos.</p></div>
+
+    <div class="blk"><span class="bnum">7</span><h4>Contato</h4>
+      <div class="txt"><p>WhatsApp (16) 98844-6553 · Rua José Marques Pinheiro Filho, 1124 — Vila Harmonia, Araraquara/SP · segunda a sexta, 9h às 18h.</p>
+      <p><b>Recomendação:</b> trocar o e-mail pessoal por um endereço no domínio próprio.</p></div>
+      <p class="bwhy">NAP idêntico ao da Solutudo e do Google — é o tripé que os buscadores cruzam.</p></div>
+
+    <div class="blk"><span class="bnum">8</span><h4>FAQ — as mesmas 7 perguntas da página de Destaque</h4>
+      <p class="bwhy" style="margin-top:10px">Mesmas perguntas e respostas, em 1ª pessoa. FAQPage no JSON-LD é gerado pela aplicação, nunca pela LLM.</p></div>
+
+    <div class="card">
+      <span class="badge warn">Regras do produto</span>
+      <ul class="clean">
+        <li><b>Sem aggregateRating</b>: existe link de avaliação do Google no cadastro, mas o site da empresa não marca a própria nota.</li>
+        <li><b>alt-text</b> em todas as imagens — os banners já têm descrição escrita, que serve de modelo.</li>
+        <li><b>Toda página com número</b> (prazo, percentual) leva a ressalva de condições vigentes.</li>
+        <li><b>dateModified</b> no JSON-LD do WebPage a cada mudança material.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="p-gmb" class="panel">
+    <div class="sec first">
+      <span class="eyebrow">Produto · GMB — Presença Profissional no Google</span>
+      <h2>Ficha do Google Meu Negócio, pronta para conferir</h2>
+      <p class="secsub">O perfil já existe — o link está no cadastro, informado pela própria empresa. Abaixo, o que precisa estar preenchido e consistente com os outros canais.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Ficha básica</span>
+      <dl class="kv">
+        <dt>Nome do perfil</dt><dd>Porto Certo Consórcio <small>sem palavra-chave ou cidade coladas no nome</small></dd>
+        <dt>Categoria principal</dt><dd>Consultor financeiro <small>"Administradora de consórcio" seria incorreto: a administradora é a Porto Bank</small></dd>
+        <dt>Categorias extras</dt><dd>Serviço de empréstimo · Consultoria de negócios</dd>
+        <dt>Endereço</dt><dd>Rua José Marques Pinheiro Filho, 1124 — Vila Harmonia, Araraquara/SP, 14802-480</dd>
+        <dt>Telefone</dt><dd>(16) 98844-6553</dd>
+        <dt>Site</dt><dd>portocertoconsorcio.com.br</dd>
+        <dt>Horário</dt><dd>Seg–Sex 09:00–18:00 · Sáb, Dom e feriados fechado</dd>
+        <dt>Área atendida</dt><dd>Além de Araraquara, marcar atendimento a distância</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge">Descrição do perfil<span class="cnt">680/750</span></span>
+      <div class="txt"><p>A Porto Certo Consórcio é a consultoria de Gustavo Sanchez em Araraquara/SP, especializada em consórcios Porto Bank e em crédito com garantia de imóvel. Atende quem planeja a compra de imóvel — inclusive para construir ou reformar —, automóvel, caminhão, veículo pesado ou máquinas e equipamentos, e também quem quer transformar um imóvel próprio em crédito. O atendimento é consultivo: análise do objetivo, comparação de grupos e prazos e acompanhamento até a contratação. A contemplação ocorre por sorteio ou lance, conforme o regulamento de cada grupo. Atendimento de segunda a sexta, das 9h às 18h, no escritório da Vila Harmonia e a distância para clientes de outras cidades.</p></div>
+      <div class="note"><b>Regras do canal aplicadas:</b> sem telefone e sem URL no texto; o essencial nos ~250 primeiros caracteres; nenhuma promessa de contemplação; nada de preço ou promoção.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Rotina de manutenção</span>
+      <ul class="clean">
+        <li><b>Perguntas e respostas:</b> semear as 7 do FAQ — especialmente "tem juros?" e "quanto tempo até ser contemplado?".</li>
+        <li><b>Avaliações:</b> o link de avaliação já está cadastrado; responder todas, sem oferecer recompensa por avaliação.</li>
+        <li><b>Fotos:</b> aproveitar as fotos do responsável que já existem no acervo e subir foto do escritório — hoje o perfil vive de artes e banners.</li>
+        <li><b>Posts:</b> usar os temas da aba Conteúdo, sem número sem fonte.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="p-soc" class="panel">
+    <div class="sec first">
+      <span class="eyebrow">Redes sociais</span>
+      <h2>Bio, editorias, destaques e os 3 posts fixados</h2>
+      <p class="secsub">Nenhum perfil de rede está cadastrado, embora o contrato declare "redes ativas". Os textos abaixo ficam prontos e <b>só são publicados quando o handle for confirmado</b> — canal não confirmado não recebe texto.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Bio do Instagram<span class="cnt">125/150</span></span>
+      <div class="txt"><p>Consórcio Porto Bank e crédito com garantia de imóvel. Consultoria em Araraquara/SP e todo o Brasil. WhatsApp (16) 98844-6553</p></div>
+      <ul class="clean">
+        <li><b>Regras aplicadas:</b> o que faz + onde + alcance · fecha no contato · nenhuma promessa de contemplação.</li>
+        <li><b>Link da bio:</b> o site próprio, que já existe.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="badge">Headline do LinkedIn<span class="cnt">195/220</span></span>
+      <div class="txt"><p>Consultor de consórcios Porto Bank e crédito com garantia de imóvel | Atendimento consultivo em Araraquara/SP e em todo o Brasil | Planejamento para conquistar imóvel, veículo, máquinas e capital</p></div>
+      <p class="sub">Em serviço financeiro consultivo, o LinkedIn costuma pesar mais que o Instagram — é onde a autoridade pessoal do consultor circula.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">6 editorias — as linhas que sustentam o ano</span>
+      <div class="grid3">
+        <div class="blk"><span class="ed ed1"><i></i>E1 · Como o consórcio funciona</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Educação sem promessa: taxa de administração, sorteio e lance, o que acontece depois da contemplação.</p></div>
+        <div class="blk"><span class="ed ed2"><i></i>E2 · Conquistas e planejamento</span><p style="font-size:13px;color:var(--g700);margin-top:9px">O uso real da carta de crédito e o critério para escolher valor e prazo.</p></div>
+        <div class="blk"><span class="ed ed3"><i></i>E3 · Crédito com garantia de imóvel</span><p style="font-size:13px;color:var(--g700);margin-top:9px">O produto menos conhecido do portfólio — e o de melhor texto atual.</p></div>
+        <div class="blk"><span class="ed ed4"><i></i>E4 · Para empresas e produtores</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Frota, máquina agrícola, equipamento e capital de giro: o público B2B da região.</p></div>
+        <div class="blk"><span class="ed ed5"><i></i>E5 · Araraquara e região</span><p style="font-size:13px;color:var(--g700);margin-top:9px">A âncora local que falta em todo o conteúdo atual.</p></div>
+        <div class="blk"><span class="ed ed6"><i></i>E6 · Perguntas que chegam</span><p style="font-size:13px;color:var(--g700);margin-top:9px">As dúvidas do setor respondidas direto — AEO dentro da rede.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Destaques do perfil — títulos sugeridos</span>
+      <div class="chips">
+        <span class="chip lav">Imóveis</span><span class="chip lav">Carros</span><span class="chip lav">Pesados</span><span class="chip lav">Máquinas</span><span class="chip lav">Home Equity</span><span class="chip lav">Como funciona</span><span class="chip lav">Dúvidas</span><span class="chip lav">Contato</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 1 · Sobre a empresa</span>
+      <div class="txt">
+        <p>Antes de ser consultor, eu fui cliente de consórcio — e fui contemplado. 🔑</p>
+        <p>É por isso que a Porto Certo trabalha do jeito que trabalha: primeiro entender o seu objetivo, depois montar o plano. Somos representantes dos consórcios Porto Bank em Araraquara/SP e atendemos clientes em todo o Brasil.</p>
+        <p>Consórcio de imóvel, carro, caminhão, pesados e máquinas — e crédito com garantia de imóvel.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 2 · Serviços</span>
+      <div class="txt">
+        <p>O que a Porto Certo resolve:</p>
+        <p>🏠 Consórcio de imóveis — comprar, construir ou reformar<br>🚗 Consórcio de automóveis<br>🚛 Consórcio de caminhões e veículos pesados<br>🚜 Consórcio de máquinas e equipamentos<br>🏦 Crédito com garantia de imóvel</p>
+        <p>Sem juros de financiamento — com taxa de administração informada na simulação. A contemplação ocorre por sorteio ou lance, conforme o regulamento do grupo.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 3 · Contato (todos os canais)</span>
+      <div class="txt">
+        <p>Quer simular? Fala comigo. 👇</p>
+        <p>📱 WhatsApp: (16) 98844-6553<br>💻 Site: portocertoconsorcio.com.br<br>📍 Rua José Marques Pinheiro Filho, 1124 — Vila Harmonia, Araraquara/SP<br>⏰ Segunda a sexta, das 9h às 18h</p>
+        <p>Atendimento presencial em Araraquara e a distância para todo o Brasil.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="p-cont" class="panel">
+    <div class="sec first">
+      <span class="eyebrow">Conteúdo · com ou sem social media</span>
+      <h2>24 temas para o ano, organizados por editoria</h2>
+      <p class="secsub">Dois por mês, cada um marcado com a editoria. Em setor regulado o critério extra é simples: <b>tema que só funciona prometendo resultado não entra na lista</b>.</p>
+    </div>
+
+    <div class="card"><span class="ed ed1"><i></i>E1 · Como o consórcio funciona</span><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">1 · Consórcio não é financiamento: a diferença em 1 minuto</span><span class="td" style="display:block">Comparação honesta entre as duas formas — sem dizer que uma é sempre melhor.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">2 · O que é taxa de administração</span><span class="td" style="display:block">O custo que existe no consórcio, explicado sem rodeio. Transparência aqui gera confiança.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">3 · Sorteio e lance: como a contemplação acontece</span><span class="td" style="display:block">A regra do grupo explicada — sem prometer prazo nem resultado.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">4 · O que acontece depois da contemplação</span><span class="td" style="display:block">Do uso da carta à entrega do bem, passo a passo.</span></span></div></div>
+    <div class="card"><span class="ed ed2"><i></i>E2 · Conquistas e planejamento</span><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">5 · Carta de crédito: para que serve além da compra</span><span class="td" style="display:block">Construção, reforma, terreno — usos que a maioria desconhece.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">6 · Como escolher o valor da carta</span><span class="td" style="display:block">Partir do orçamento real, não do sonho — o critério que a consultoria aplica.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">7 · Planejar a compra do imóvel sem pressa</span><span class="td" style="display:block">O consórcio como instrumento de planejamento de longo prazo.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">8 · De cliente a consultor: por que acredito no modelo</span><span class="td" style="display:block">A história de quem já foi contemplado antes de trabalhar com isso — o ativo mais único da empresa.</span></span></div></div>
+    <div class="card"><span class="ed ed3"><i></i>E3 · Crédito com garantia de imóvel</span><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">9 · Home equity: o crédito que usa o imóvel que você já tem</span><span class="td" style="display:block">O mecanismo, com a ressalva de análise sempre junto.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">10 · Quando trocar dívida cara por crédito com garantia</span><span class="td" style="display:block">Cenários em que faz sentido — e quando não faz.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">11 · O imóvel continua sendo seu</span><span class="td" style="display:block">A dúvida que mais trava a decisão, respondida direto.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">12 · O que a análise de crédito avalia</span><span class="td" style="display:block">Expectativa realista antes de pedir a simulação.</span></span></div></div>
+    <div class="card"><span class="ed ed4"><i></i>E4 · Para empresas e produtores</span><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">13 · Renovar frota sem travar o caixa</span><span class="td" style="display:block">Consórcio de pesados para transportadores, com o argumento financeiro.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">14 · Máquina agrícola no tempo da safra</span><span class="td" style="display:block">Planejamento de aquisição casado com o ciclo do produtor.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">15 · Equipamento para construção: comprar ou alugar?</span><span class="td" style="display:block">Comparação útil para construtora pequena — sem empurrar produto.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">16 · Consórcio como ferramenta de capital de giro</span><span class="td" style="display:block">Uso empresarial do crédito com garantia de imóvel.</span></span></div></div>
+    <div class="card"><span class="ed ed5"><i></i>E5 · Araraquara e região</span><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">17 · Atendimento no coração de Araraquara</span><span class="td" style="display:block">O escritório da Vila Harmonia e como chegar — conteúdo local puro.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">18 · Araraquara e o agronegócio da região</span><span class="td" style="display:block">Gancho local que conecta com o público de máquinas e pesados.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">19 · Comprar imóvel em Araraquara: por onde começar</span><span class="td" style="display:block">Conteúdo de cidade que atrai quem está no início da decisão.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">20 · Atendo de Araraquara para todo o Brasil</span><span class="td" style="display:block">Como funciona o atendimento a distância — resolve a dúvida de quem é de fora.</span></span></div></div>
+    <div class="card"><span class="ed ed6"><i></i>E6 · Perguntas que chegam</span><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">21 · "Consórcio tem juros?"</span><span class="td" style="display:block">A resposta completa: sem juros de financiamento, com taxa de administração.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">22 · "Quanto tempo até ser contemplado?"</span><span class="td" style="display:block">A resposta honesta — depende de sorteio e lance, conforme o grupo.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">23 · "Posso usar o FGTS?"</span><span class="td" style="display:block">Regra do consórcio imobiliário explicada, com a ressalva das condições vigentes.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">24 · "E se eu quiser desistir?"</span><span class="td" style="display:block">O que diz o regulamento — a pergunta que ninguém responde e todo mundo tem.</span></span></div></div>
+
+    <div class="card">
+      <span class="badge warn">Como usar</span>
+      <ul class="clean">
+        <li><b>E6 é o motor de busca:</b> cada pergunta respondida vira post, item de FAQ e resposta no Google — o mesmo texto trabalha em três canais.</li>
+        <li><b>Números só com ressalva</b> de condições vigentes, sempre.</li>
+        <li><b>A história de contemplação do consultor</b> (tema 8) é o conteúdo mais único do ano — vale produzir com calma.</li>
+        <li>Antes de publicar qualquer rede, confirmar os handles: hoje não há perfil cadastrado.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="foot">
+    Central de conteúdo do parceiro · Porto Certo Consórcio (ID 27460312) · <a href="../">todos os parceiros</a> ·
+    <a href="../../sobre-empresa-new-rock/">artefato da Descrição 3.0</a> · regras em <code>docs/descricao-empresa-3-0.md</code>
+  </div>
+</div>
+
+<div class="dw-back" id="dw-back" onclick="closeItem()"></div>
+<aside class="dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dw-title"></aside>
+
+<script>
+  var itemLast = null;
+  function openItem(key, el){
+    var src = document.getElementById('if-' + key);
+    if(!src) return;
+    itemLast = el || null;
+    var dw = document.getElementById('dw');
+    dw.innerHTML = '<div class="dw-top"><h3 id="dw-title">' + src.dataset.title + '</h3>' +
+      '<button class="dw-close" onclick="closeItem()" aria-label="Fechar ficha do item">✕</button></div>' +
+      '<div class="dw-body">' + src.innerHTML + '</div>';
+    dw.classList.add('on');
+    document.getElementById('dw-back').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    var b = dw.querySelector('.dw-close'); if(b) b.focus();
+  }
+  function closeItem(){
+    var dw = document.getElementById('dw'); if(!dw) return;
+    dw.classList.remove('on');
+    document.getElementById('dw-back').classList.remove('on');
+    document.body.style.overflow = '';
+    if(itemLast){ itemLast.focus(); itemLast = null; }
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var dw = document.getElementById('dw');
+      if(dw && dw.classList.contains('on')) closeItem();
+    }
+  });
+  function show(which){
+    ['parc','dest','site','gmb','soc','cont'].forEach(function(k){
+      document.getElementById('p-'+k).classList.toggle('on', which===k);
+      document.getElementById('t-'+k).classList.toggle('on', which===k);
+    });
+    closeItem();
+    history.replaceState(null,'','#'+which);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  var h = location.hash.replace('#','');
+  if(['dest','site','gmb','soc','cont'].indexOf(h) >= 0) show(h);
+</script>
+</body>
+</html>
