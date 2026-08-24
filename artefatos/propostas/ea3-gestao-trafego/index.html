@@ -26,7 +26,7 @@
   a{color:var(--brand-purple)}
   code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
   .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
-  .tb-in{max-width:1280px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .tb-in{max-width:1360px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;justify-content:space-between;gap:14px}
   .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
   .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta)}
   .tbchip{font-size:11.5px;font-weight:800;color:#7B00BE;background:var(--tint-lav);padding:5px 12px;border-radius:var(--pill)}
@@ -34,47 +34,52 @@
   .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
   .hero h1{font-size:30px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.14;text-wrap:balance}
   .hero p{color:var(--g700);font-size:14.5px;margin-top:9px}
-  .wrap{max-width:1280px;margin:0 auto;padding:22px 30px 70px}
-  .sec{margin:34px 0 6px;text-align:center}
+  .wrap{max-width:1360px;margin:0 auto;padding:22px 30px 70px}
+  .sec{margin:36px 0 6px;text-align:center}
   .sec .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
   .sec h2{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:10px;line-height:1.16;text-wrap:balance}
-  .sec p{color:var(--g700);font-size:14px;margin:7px auto 0;max-width:760px}
+  .sec p{color:var(--g700);font-size:14px;margin:7px auto 0;max-width:780px}
   .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;border:var(--line);margin-top:16px}
   .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE;margin-bottom:8px}
   .badge.mint{background:var(--tint-mint);color:#06724F}
-  .badge.warn{background:var(--tint-yellow);color:#7A5A00}
   .card h3{font-size:17px;font-weight:800;letter-spacing:-.025em;line-height:1.22}
   .card p.sub{color:var(--g700);font-size:13.6px;margin-top:7px;max-width:960px}
   ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
-  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.5}
+  ul.clean li{position:relative;padding-left:17px;font-size:13.5px;color:var(--g700);line-height:1.5}
   ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
   ul.clean li b{color:var(--ink)}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  @media(max-width:940px){.grid2,.grid3{grid-template-columns:1fr}}
-  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.4px}
-  th,td{text-align:left;padding:10px 12px;border-bottom:var(--line);vertical-align:top}
-  th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
-  td b{color:var(--ink)}
-  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .price{display:flex;align-items:baseline;gap:8px;margin-top:6px}
-  .price b{font-size:30px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-  .price span{font-size:12.5px;font-weight:700;color:var(--g600)}
-  .plan{border:1.5px solid rgba(21,21,21,.09);border-radius:var(--r-md);padding:20px 22px;background:var(--white);display:flex;flex-direction:column;gap:8px}
+  @media(max-width:940px){.grid3{grid-template-columns:1fr}}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;align-items:start}
+  @media(max-width:980px){.plans{grid-template-columns:1fr}}
+  .plan{border:1.5px solid rgba(21,21,21,.09);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--shadow-card);overflow:hidden;display:flex;flex-direction:column}
   .plan.reco{border-color:#00B589;box-shadow:var(--shadow-md);position:relative}
-  .plan .ptag{position:absolute;top:-11px;left:20px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--tint-mint);color:#06724F;padding:4px 11px;border-radius:var(--pill)}
-  .plan h4{font-size:15.5px;font-weight:800;letter-spacing:-.02em}
-  .plan .pl{font-size:12.6px;color:var(--g700);line-height:1.5}
-  .split{display:flex;height:14px;border-radius:var(--pill);overflow:hidden;margin-top:10px}
+  .plan .ptag{position:absolute;top:14px;right:16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--tint-mint);color:#06724F;padding:4px 11px;border-radius:var(--pill)}
+  .phead{padding:22px 24px 16px;border-bottom:var(--line)}
+  .phead .pno{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600)}
+  .phead h3{font-size:19px;font-weight:800;letter-spacing:-.03em;margin-top:5px;line-height:1.18}
+  .phead .pfor{font-size:13px;color:var(--g700);margin-top:6px;line-height:1.5}
+  .pbody{padding:16px 24px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .pb-label{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--g600)}
+  .price{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+  .price b{font-size:28px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .price span{font-size:12.5px;font-weight:700;color:var(--g600)}
+  .price small{font-size:12px;font-weight:700;color:var(--g600)}
+  .split{display:flex;height:12px;border-radius:var(--pill);overflow:hidden;margin-top:8px}
   .split .sg{background:#0093B5}
   .split .sm{background:var(--brand-pink)}
-  .splitlab{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--g600);margin-top:6px}
-  .phase{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;border:var(--line);border-radius:14px;padding:14px 16px;background:var(--white);margin-top:10px;align-items:start}
-  @media(max-width:640px){.phase{grid-template-columns:1fr}}
-  .phase .pw{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7B00BE;background:var(--tint-lav);border-radius:10px;padding:7px 10px;text-align:center}
-  .phase h5{font-size:14px;font-weight:800;letter-spacing:-.02em}
-  .phase p{font-size:13px;color:var(--g700);margin-top:4px;line-height:1.5}
-  .note{margin-top:12px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
+  .splitlab{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--g600);margin-top:5px}
+  .steps{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .step{display:grid;grid-template-columns:96px minmax(0,1fr);gap:11px;align-items:start;background:var(--bg);border-radius:12px;padding:10px 13px}
+  .step .sw{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#7B00BE;background:var(--tint-lav);border-radius:9px;padding:5px 7px;text-align:center;line-height:1.25}
+  .step p{font-size:12.7px;color:var(--g700);line-height:1.45}
+  .step p b{color:var(--ink)}
+  .ptotal{border-top:var(--line);background:var(--bg);padding:15px 24px 18px}
+  .ptotal table{width:100%;border-collapse:collapse;font-size:13px}
+  .ptotal td{padding:5px 0;color:var(--g700)}
+  .ptotal td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
+  .ptotal tr.tt td{border-top:var(--line);padding-top:9px;font-weight:800;color:var(--ink);font-size:14px}
+  .note{margin-top:14px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
   .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:12px 15px;font-size:12.8px;color:#06503B;line-height:1.55}
   .foot{margin-top:36px;color:var(--g500);font-size:12.4px;text-align:center;line-height:1.7}
 </style>
@@ -91,7 +96,7 @@
 <div class="hero">
   <span class="vbadge">Gestão de tráfego · Google Ads + Meta Ads</span>
   <h1>Mais orçamentos de obra chegando pelo WhatsApp da EA3</h1>
-  <p>Proposta de gestão de tráfego para a <b>EA3 Construtora e Engenharia</b> — campanhas no Google e no Meta apontando para uma presença que já conta a história certa, com relatório na única métrica que importa: <b>custo por contato de orçamento</b>.</p>
+  <p>Dois formatos de plano para a <b>EA3 Construtora e Engenharia</b>. Nos dois, o caminho é o mesmo: anúncio certo → a pessoa <b>conhece a empresa</b> → e sai da página direto para o <b>WhatsApp</b>. E nos dois, a gestão acompanha as métricas e senta com você para decidir os próximos rumos.</p>
 </div>
 
 <div class="wrap">
@@ -104,132 +109,155 @@
     <div class="card" style="margin-top:14px">
       <span class="badge">Dossiê antes do anúncio</span>
       <h3>Campanha nasce de fatos, não de achismo</h3>
-      <p class="sub">Antes do primeiro real de mídia, montamos a <b>central de conteúdo da EA3</b>: serviços reais (construção, reforma, projetos), cidades atendidas, obras que pode mostrar, diferenciais com lastro. É o briefing que agência nenhuma tem no dia 1 — e que faz anúncio, página e perfil contarem a mesma história.</p>
+      <p class="sub">Antes do primeiro real de mídia, montamos a <b>central de conteúdo da EA3</b>: serviços reais, cidades atendidas, obras para mostrar. Anúncio, site e perfil contando a mesma história — é o que faz o clique custar menos.</p>
     </div>
     <div class="card" style="margin-top:14px">
       <span class="badge">Circuito completo</span>
-      <h3>Do clique ao orçamento, tudo rastreado</h3>
-      <p class="sub">O anúncio leva para a página certa (Solusite/Destaque), o botão certo (WhatsApp com rastreio) e o telefone certo. Quem só gerencia anúncio não controla a página de destino; nós controlamos o circuito inteiro — é onde a conversão acontece.</p>
+      <h3>Do clique ao WhatsApp, tudo rastreado</h3>
+      <p class="sub">O anúncio leva ao site, o site apresenta a empresa e entrega o contato no botão certo — WhatsApp com rastreio. Sabemos de qual campanha veio cada conversa iniciada.</p>
     </div>
     <div class="card" style="margin-top:14px">
       <span class="badge">Transparência estrutural</span>
       <h3>A conta é sua, a mídia é sua</h3>
-      <p class="sub">As contas de anúncio ficam <b>no nome da EA3</b> e a verba de mídia é paga por você direto ao Google e ao Meta, com fatura aberta. Nosso ganho é o fee de gestão — nunca margem escondida sobre mídia. Se um dia sairmos, o histórico e as campanhas ficam com você.</p>
+      <p class="sub">Contas de anúncio no nome da EA3 e verba de mídia paga por você direto ao Google e ao Meta, com fatura aberta. Nosso ganho é só o fee de gestão — nunca margem sobre mídia.</p>
     </div>
   </div>
 
   <div class="sec">
-    <span class="eyebrow">2 · Investimento</span>
-    <h2>Fee de gestão + mídia, sem valor escondido</h2>
-    <p>O mercado brasileiro trabalha com fee fixo mensal (modelo de 65–70% das agências, faixa de R$ 1.500 a R$ 8.000 para PMEs) com a mídia à parte. Nossa proposta fica na entrada dessa faixa — porque o briefing e a landing, que encarecem as agências, nós já temos.</p>
+    <span class="eyebrow">2 · Os dois formatos</span>
+    <h2>Plano Institucional e Plano Performance</h2>
+    <p>O primeiro coloca a EA3 no ar com uma frente de campanha em cada canal. O segundo soma uma landing page e duas campanhas segmentadas — para testar caminhos e escalar o que a métrica aprovar.</p>
   </div>
 
-  <div class="card">
-    <div class="grid2">
-      <div>
-        <span class="badge mint">Fee de gestão Solutudo</span>
-        <div class="price"><b>R$ 1.497</b><span>/mês</span></div>
-        <ul class="clean">
-          <li>Gestão completa de <b>Google Ads + Meta Ads</b> (estrutura, criativos, otimização semanal).</li>
-          <li>Fee fixo até R$ 5.000/mês de mídia; acima disso, 10% sobre o excedente.</li>
-          <li>Relatório mensal de custo por contato + reunião mensal de 30 min.</li>
-          <li>Contrato mínimo de <b>90 dias</b> (ciclo de aprendizado das plataformas); depois, mês a mês.</li>
-        </ul>
+  <div class="plans">
+
+    <!-- ============================== PLANO 1 -->
+    <div class="plan">
+      <div class="phead">
+        <span class="pno">Plano 1</span>
+        <h3>Institucional — conhecer e chamar</h3>
+        <p class="pfor">Para colocar a EA3 no ar com consistência: o anúncio apresenta, o site institucional convence e o WhatsApp recebe.</p>
       </div>
-      <div>
-        <span class="badge">Setup — pago uma vez</span>
-        <div class="price"><b>R$ 997</b><span>· 50% de cortesia para cliente Solutudo ativo → <b style="font-size:16px">R$ 498</b></span></div>
-        <ul class="clean">
-          <li>Central de conteúdo da EA3 (o dossiê de fatos que alimenta tudo).</li>
-          <li>Configuração das contas, pixel/tag, conversões e rastreio de WhatsApp.</li>
-          <li>Landing de orçamento no Solusite alinhada às campanhas.</li>
-          <li>Estrutura inicial: campanhas por serviço × cidade.</li>
-        </ul>
+      <div class="pbody">
+        <div>
+          <span class="pb-label">O que está incluso</span>
+          <ul class="clean">
+            <li><b>Campanha Meta com imagem animada</b> — vídeo converte melhor, então o criativo é uma imagem em movimento (motion) feita por nós, com os fatos e obras da EA3.</li>
+            <li><b>Anúncio no topo do Google</b> (rede de pesquisa) nos <b>termos que fazem sentido com a campanha</b> — quem já procura construtora e reforma na sua região.</li>
+            <li><b>Destino: o site institucional</b>, trabalhado para conversão — a pessoa conhece a empresa e sai da página falando no WhatsApp (botão rastreado, telefone visível).</li>
+            <li><b>Gestão completa:</b> todos os cadastros e configurações, acompanhamento contínuo e análise do caminho pelas métricas.</li>
+            <li><b>Reunião mensal de rumos:</b> apresentamos o que os números dizem e decidimos juntos os próximos passos.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="pb-label">Etapas de trabalho</span>
+          <div class="steps">
+            <div class="step"><span class="sw">Semanas 1–2</span><p><b>Cadastros e fundação:</b> contas de anúncio no nome da EA3, tag e conversões, WhatsApp rastreado, ajuste do site institucional para receber contato, central de conteúdo e produção da imagem animada.</p></div>
+            <div class="step"><span class="sw">Semanas 3–4</span><p><b>Campanhas no ar:</b> Google no topo da pesquisa pelos termos definidos com você + Meta com a imagem animada. Os dois levando ao site.</p></div>
+            <div class="step"><span class="sw">Mês 2 em diante</span><p><b>Acompanhar, analisar, discutir:</b> otimização semanal, leitura do caminho do clique ao WhatsApp e reunião mensal para os próximos rumos.</p></div>
+          </div>
+        </div>
+        <div>
+          <span class="pb-label">Gestão de mídia — valor total</span>
+          <div class="price"><b>R$ 1.297</b><span>/mês</span></div>
+          <p style="font-size:12.4px;color:var(--g600);font-weight:600;margin-top:2px">+ Setup único de R$ 997 → <b style="color:var(--ink)">R$ 498</b> com a cortesia de 50% para cliente Solutudo ativo</p>
+        </div>
+        <div>
+          <span class="pb-label">Mídia sugerida (paga direto às plataformas)</span>
+          <div class="price"><b>R$ 1.800</b><span>/mês</span></div>
+          <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
+          <div class="splitlab"><span>Google R$ 1.200</span><span>Meta R$ 600</span></div>
+        </div>
+      </div>
+      <div class="ptotal">
+        <table>
+          <tr><td>Gestão (Solutudo)</td><td class="num">R$ 1.297</td></tr>
+          <tr><td>Mídia (Google + Meta, direto)</td><td class="num">R$ 1.800</td></tr>
+          <tr><td>Setup — só no 1º mês</td><td class="num">R$ 498</td></tr>
+          <tr class="tt"><td>Mês 1: R$ 3.595</td><td class="num">Depois: R$ 3.097/mês</td></tr>
+        </table>
       </div>
     </div>
+
+    <!-- ============================== PLANO 2 -->
+    <div class="plan reco">
+      <span class="ptag">Recomendado</span>
+      <div class="phead">
+        <span class="pno">Plano 2</span>
+        <h3>Performance — testar caminhos e escalar</h3>
+        <p class="pfor">Tudo do Plano 1, mais uma landing page e duas campanhas segmentadas — para descobrir, com métrica, qual caminho traz orçamento mais barato.</p>
+      </div>
+      <div class="pbody">
+        <div>
+          <span class="pb-label">Tudo do Plano 1, e mais</span>
+          <ul class="clean">
+            <li><b>1 landing page criada por nós</b>, focada num objetivo só (ex.: orçamento de reforma) — página enxuta, que termina no WhatsApp.</li>
+            <li><b>2 campanhas segmentadas</b> (ex.: uma por serviço de maior ticket, outra por região) — cada uma apontando <b>para a landing page ou para o site institucional</b>, conforme o teste.</li>
+            <li><b>Manutenção do conjunto — R$ 75/mês</b> por conjunto de <b>1 landing page + 2 campanhas</b>. <b>Renovação inclusa:</b> quando a métrica mostrar que a campanha cansou, renovamos criativo e abordagem <b>sem custo adicional</b>.</li>
+            <li><b>Expansível:</b> cada novo conjunto (mais 1 LP + 2 campanhas para outro serviço ou cidade) soma apenas +R$ 75/mês.</li>
+            <li><b>Teste A/B permanente:</b> site institucional × landing page — o relatório mostra qual converte contato mais barato, e a verba segue o vencedor.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="pb-label">Etapas de trabalho</span>
+          <div class="steps">
+            <div class="step"><span class="sw">Semanas 1–2</span><p><b>Cadastros e fundação:</b> tudo do Plano 1 + construção da landing page e definição das 2 campanhas segmentadas com você (serviços e regiões prioritárias).</p></div>
+            <div class="step"><span class="sw">Semanas 3–4</span><p><b>Tudo no ar:</b> Google no topo + Meta com imagem animada (institucional) + as 2 campanhas segmentadas, divididas entre landing page e site.</p></div>
+            <div class="step"><span class="sw">Mês 2 em diante</span><p><b>Acompanhar, analisar, discutir:</b> comparação LP × site por custo por contato, renovação de campanha quando a métrica pedir (sem custo) e reunião mensal de rumos.</p></div>
+          </div>
+        </div>
+        <div>
+          <span class="pb-label">Gestão de mídia — valor total</span>
+          <div class="price"><b>R$ 1.497</b><span>/mês</span><small>+ R$ 75/mês do conjunto LP + 2 campanhas = <b style="color:var(--ink);font-size:15px">R$ 1.572/mês</b></small></div>
+          <p style="font-size:12.4px;color:var(--g600);font-weight:600;margin-top:2px">+ Setup único de R$ 997 → <b style="color:var(--ink)">R$ 498</b> com a cortesia de 50% para cliente Solutudo ativo</p>
+        </div>
+        <div>
+          <span class="pb-label">Mídia sugerida (paga direto às plataformas)</span>
+          <div class="price"><b>R$ 3.000</b><span>/mês</span></div>
+          <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
+          <div class="splitlab"><span>Google R$ 2.000</span><span>Meta R$ 1.000</span></div>
+        </div>
+      </div>
+      <div class="ptotal">
+        <table>
+          <tr><td>Gestão + conjunto LP e campanhas (Solutudo)</td><td class="num">R$ 1.572</td></tr>
+          <tr><td>Mídia (Google + Meta, direto)</td><td class="num">R$ 3.000</td></tr>
+          <tr><td>Setup — só no 1º mês</td><td class="num">R$ 498</td></tr>
+          <tr class="tt"><td>Mês 1: R$ 5.070</td><td class="num">Depois: R$ 4.572/mês</td></tr>
+        </table>
+      </div>
+    </div>
+
   </div>
+
+  <div class="note"><b>Sobre a mídia:</b> os valores de mídia são sugestão de partida e podem ser ajustados a cada ciclo — a verba é sua, paga direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido. O fee de gestão é fixo até R$ 5.000/mês de mídia; acima disso, 10% apenas sobre o excedente. Contrato mínimo de 90 dias (ciclo de aprendizado das plataformas); depois, mês a mês.</div>
 
   <div class="sec">
-    <span class="eyebrow">3 · Mídia</span>
-    <h2>Quanto vai para anúncio — e como divide entre Google e Meta</h2>
-    <p>Construção civil tem clique mais caro que a média (a pessoa que busca "construtora em [cidade]" vale muito) — por isso o Google Search lidera o orçamento, com o Meta sustentando remarketing e portfólio de obras. A mídia é paga por você, direto às plataformas.</p>
-  </div>
-
-  <div class="grid3">
-    <div class="plan" style="margin-top:14px">
-      <h4>Ponto de partida</h4>
-      <div class="price"><b>R$ 1.800</b><span>/mês em mídia</span></div>
-      <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
-      <div class="splitlab"><span>Google R$ 1.200</span><span>Meta R$ 600</span></div>
-      <p class="pl">O mínimo que recomendamos para os dois canais rodarem com dados suficientes. Google Search nas buscas de obra e reforma; Meta só em remarketing.</p>
-    </div>
-    <div class="plan reco" style="margin-top:14px">
-      <span class="ptag">Recomendado para a EA3</span>
-      <h4>Tração</h4>
-      <div class="price"><b>R$ 3.000</b><span>/mês em mídia</span></div>
-      <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
-      <div class="splitlab"><span>Google R$ 2.000</span><span>Meta R$ 1.000</span></div>
-      <p class="pl">Google Search por serviço × cidade + remarketing; Meta com portfólio de obras (antes/depois) e captação de orçamento. Volume de contato previsível a partir do 2º mês.</p>
-    </div>
-    <div class="plan" style="margin-top:14px">
-      <h4>Aceleração</h4>
-      <div class="price"><b>R$ 5.000</b><span>/mês em mídia</span></div>
-      <div class="split"><span class="sg" style="width:64%"></span><span class="sm" style="width:36%"></span></div>
-      <div class="splitlab"><span>Google R$ 3.200</span><span>Meta R$ 1.800</span></div>
-      <p class="pl">Para disputar mais cidades ou serviços de ticket alto (obras comerciais, condomínios). Ainda dentro do fee fixo, sem cobrança extra.</p>
-    </div>
-  </div>
-
-  <div class="note"><b>Transparência de 2026:</b> desde janeiro, Google e Meta destacam na fatura um repasse tributário de ~12,15% sobre o valor investido. A verba acima é o total pago às plataformas — o planejamento das campanhas já considera esse repasse, e nada disso passa pela Solutudo.</div>
-
-  <div class="card">
-    <span class="badge">Conta total no cenário recomendado</span>
-    <table>
-      <tr><th>Item</th><th>Quem recebe</th><th class="num">Mês 1</th><th class="num">Meses seguintes</th></tr>
-      <tr><td><b>Setup</b> (uma vez, com cortesia de cliente ativo)</td><td>Solutudo</td><td class="num">R$ 498</td><td class="num">—</td></tr>
-      <tr><td><b>Fee de gestão</b></td><td>Solutudo</td><td class="num">R$ 1.497</td><td class="num">R$ 1.497</td></tr>
-      <tr><td><b>Mídia</b> (cenário Tração: Google R$ 2.000 + Meta R$ 1.000)</td><td>Google e Meta, direto</td><td class="num">R$ 3.000</td><td class="num">R$ 3.000</td></tr>
-      <tr><td><b>Total</b></td><td></td><td class="num"><b>R$ 4.995</b></td><td class="num"><b>R$ 4.497</b></td></tr>
-    </table>
-  </div>
-
-  <div class="sec">
-    <span class="eyebrow">4 · Execução</span>
-    <h2>Como isso acontece, semana a semana</h2>
-  </div>
-
-  <div class="phase"><span class="pw">Semanas 1–2</span><div><h5>Fundação (setup)</h5><p>Central de conteúdo da EA3 · contas de anúncio no nome da EA3 · tag, conversões e WhatsApp rastreado · landing de orçamento no Solusite · definição de serviços e cidades prioritárias com você.</p></div></div>
-  <div class="phase"><span class="pw">Semanas 3–4</span><div><h5>Google no ar</h5><p>Campanhas de Search por serviço × cidade ("construtora em…", "reforma…", "projeto…"), com extensões de chamada e local. Primeiro dinheiro vai onde a demanda já existe.</p></div></div>
-  <div class="phase"><span class="pw">Mês 2</span><div><h5>Meta entra</h5><p>Remarketing sobre quem visitou a página + campanhas de portfólio (obras reais, antes/depois) para gerar demanda nova. Criativos saem das editorias da central — fatos, não banco de imagem.</p></div></div>
-  <div class="phase"><span class="pw">Contínuo</span><div><h5>Otimização e prestação de contas</h5><p>Otimização semanal (termos, lances, criativos) · relatório mensal com <b>contatos, ligações e custo por contato</b> · reunião mensal de 30 min · realocação Google↔Meta conforme o custo por contato de cada um.</p></div></div>
-  <div class="phase"><span class="pw">Dia 90</span><div><h5>Ponto de decisão</h5><p>Fechamos o ciclo de aprendizado com números na mesa: custo por contato por serviço e por cidade. Aí decidimos juntos: escalar mídia, manter, ou encerrar sem multa.</p></div></div>
-
-  <div class="sec">
-    <span class="eyebrow">5 · Medição</span>
-    <h2>O que aparece no seu relatório</h2>
+    <span class="eyebrow">3 · Acompanhamento</span>
+    <h2>O que a gestão faz todo mês — e o que você recebe</h2>
   </div>
   <div class="card">
     <ul class="clean">
-      <li><b>Contatos de orçamento:</b> conversas de WhatsApp iniciadas, ligações e formulários — separados por campanha, serviço e cidade.</li>
-      <li><b>Custo por contato</b> — a métrica que manda no orçamento. Impressão e clique aparecem, mas não guiam decisão.</li>
-      <li><b>De onde veio cada contato:</b> Google ou Meta, qual anúncio, qual página.</li>
-      <li><b>O que faremos no mês seguinte</b> — em 3 linhas, sem tecniquês.</li>
+      <li><b>Fazemos todos os cadastros e configurações</b> — contas, tags, conversões, rastreio de WhatsApp — e mantemos tudo funcionando.</li>
+      <li><b>Acompanhamos as métricas e analisamos o caminho:</b> de qual anúncio veio o clique, por qual página passou, quantos viraram conversa no WhatsApp e a que custo.</li>
+      <li><b>Passamos isso para a empresa e discutimos os rumos:</b> relatório mensal simples (contatos, ligações, custo por contato, de onde veio cada um) + reunião de 30 minutos para decidir juntos o próximo ciclo.</li>
+      <li><b>No dia 90, ponto de decisão:</b> números na mesa — escalar mídia, ajustar o caminho ou encerrar sem multa.</li>
     </ul>
-    <div class="selo"><b>O que não prometemos:</b> número garantido de leads ou de obras fechadas. Tráfego pago gera contatos qualificados a custo conhecido; a conversão em contrato depende do atendimento e da proposta — e o relatório mostra exatamente onde cada etapa está performando. Compromisso firmado em contrato: gestão diligente, verba aplicada com transparência e decisão conjunta a cada ciclo.</div>
+    <div class="selo"><b>O que não prometemos:</b> número garantido de leads ou de obras fechadas. Tráfego pago gera contatos qualificados a custo conhecido; a conversão em contrato depende do atendimento e da proposta — e o relatório mostra exatamente onde cada etapa está performando. Compromisso em contrato: gestão diligente, verba transparente e decisão conjunta a cada ciclo.</div>
   </div>
 
   <div class="sec">
-    <span class="eyebrow">6 · Próximo passo</span>
+    <span class="eyebrow">4 · Próximo passo</span>
     <h2>Para começar</h2>
   </div>
   <div class="card" style="text-align:center">
-    <p class="sub" style="max-width:720px;margin:4px auto 0">Aprovando a proposta, agendamos a reunião de fundação (1h) na mesma semana — é dela que saem os serviços e cidades prioritários. As primeiras campanhas entram no ar em até <b>15 dias corridos</b> da assinatura.</p>
-    <p class="sub" style="max-width:720px;margin:10px auto 0"><b>Resumo:</b> Setup R$ 498 (cortesia de cliente ativo aplicada) · Fee R$ 1.497/mês · Mídia recomendada R$ 3.000/mês paga direto às plataformas · contrato mínimo de 90 dias, depois mês a mês.</p>
+    <p class="sub" style="max-width:740px;margin:4px auto 0">Escolhido o plano, agendamos a reunião de fundação (1h) na mesma semana — dela saem os termos do Google, o roteiro da imagem animada e, no Plano 2, o foco da landing page. Campanhas no ar em até <b>15 dias corridos</b> da assinatura.</p>
+    <p class="sub" style="max-width:740px;margin:10px auto 0"><b>Plano 1 · Institucional:</b> R$ 1.297/mês + mídia sugerida R$ 1.800 &nbsp;·&nbsp; <b>Plano 2 · Performance:</b> R$ 1.572/mês + mídia sugerida R$ 3.000 &nbsp;·&nbsp; Setup único R$ 498 nos dois (cortesia de cliente ativo aplicada).</p>
   </div>
 
   <div class="foot">
     Proposta preparada pela Solutudo para EA3 Construtora e Engenharia · 12/08/2026 · validade 30 dias<br>
-    Valores de fee conforme faixas praticadas no mercado brasileiro de gestão de tráfego em 2026 · mídia paga diretamente às plataformas, com repasse tributário destacado em fatura pelas próprias plataformas
+    Fee conforme faixas do mercado brasileiro de gestão de tráfego em 2026 · mídia paga diretamente às plataformas, com repasse tributário destacado em fatura pelas próprias plataformas
   </div>
 </div>
 
