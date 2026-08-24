@@ -35,25 +35,28 @@
   .hero h1{font-size:30px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.14;text-wrap:balance}
   .hero p{color:var(--g700);font-size:14.5px;margin-top:9px}
   .wrap{max-width:1360px;margin:0 auto;padding:22px 30px 70px}
-  .sec{margin:36px 0 6px;text-align:center}
+  .sec{margin:38px 0 6px;text-align:center}
   .sec .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
   .sec h2{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:10px;line-height:1.16;text-wrap:balance}
-  .sec p{color:var(--g700);font-size:14px;margin:7px auto 0;max-width:780px}
+  .sec p{color:var(--g700);font-size:14px;margin:7px auto 0;max-width:800px}
   .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;border:var(--line);margin-top:16px}
   .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE;margin-bottom:8px}
   .badge.mint{background:var(--tint-mint);color:#06724F}
+  .badge.peach{background:var(--tint-peach);color:#B03A00}
   .card h3{font-size:17px;font-weight:800;letter-spacing:-.025em;line-height:1.22}
-  .card p.sub{color:var(--g700);font-size:13.6px;margin-top:7px;max-width:960px}
+  .card p.sub{color:var(--g700);font-size:13.6px;margin-top:7px;max-width:980px}
   ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
   ul.clean li{position:relative;padding-left:17px;font-size:13.5px;color:var(--g700);line-height:1.5}
   ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
   ul.clean li b{color:var(--ink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  @media(max-width:940px){.grid3{grid-template-columns:1fr}}
+  @media(max-width:940px){.grid2,.grid3{grid-template-columns:1fr}}
   .plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;align-items:start}
   @media(max-width:980px){.plans{grid-template-columns:1fr}}
   .plan{border:1.5px solid rgba(21,21,21,.09);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--shadow-card);overflow:hidden;display:flex;flex-direction:column}
   .plan.reco{border-color:#00B589;box-shadow:var(--shadow-md);position:relative}
+  .plan.soon{border-style:dashed;background:rgba(255,255,255,.72)}
   .plan .ptag{position:absolute;top:14px;right:16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--tint-mint);color:#06724F;padding:4px 11px;border-radius:var(--pill)}
   .phead{padding:22px 24px 16px;border-bottom:var(--line)}
   .phead .pno{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600)}
@@ -61,14 +64,9 @@
   .phead .pfor{font-size:13px;color:var(--g700);margin-top:6px;line-height:1.5}
   .pbody{padding:16px 24px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
   .pb-label{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--g600)}
-  .price{display:flex;align-items:baseline;gap:8px;margin-top:4px}
-  .price b{font-size:28px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .price{display:flex;align-items:baseline;gap:8px;margin-top:4px;flex-wrap:wrap}
+  .price b{font-size:30px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
   .price span{font-size:12.5px;font-weight:700;color:var(--g600)}
-  .price small{font-size:12px;font-weight:700;color:var(--g600)}
-  .split{display:flex;height:12px;border-radius:var(--pill);overflow:hidden;margin-top:8px}
-  .split .sg{background:#0093B5}
-  .split .sm{background:var(--brand-pink)}
-  .splitlab{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--g600);margin-top:5px}
   .steps{display:flex;flex-direction:column;gap:8px;margin-top:6px}
   .step{display:grid;grid-template-columns:96px minmax(0,1fr);gap:11px;align-items:start;background:var(--bg);border-radius:12px;padding:10px 13px}
   .step .sw{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#7B00BE;background:var(--tint-lav);border-radius:9px;padding:5px 7px;text-align:center;line-height:1.25}
@@ -79,7 +77,15 @@
   .ptotal td{padding:5px 0;color:var(--g700)}
   .ptotal td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
   .ptotal tr.tt td{border-top:var(--line);padding-top:9px;font-weight:800;color:var(--ink);font-size:14px}
+  table.esc{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.4px}
+  table.esc th,table.esc td{text-align:left;padding:10px 12px;border-bottom:var(--line)}
+  table.esc th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
+  table.esc td.num,table.esc th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.esc td b{color:var(--ink)}
+  table.esc tr.hi td{background:var(--tint-mint)}
   .note{margin-top:14px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
+  .alert{margin-top:14px;background:var(--tint-peach);border-radius:12px;padding:13px 16px;font-size:13.2px;color:#7A3400;line-height:1.55}
+  .alert b{color:#5A2600}
   .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:12px 15px;font-size:12.8px;color:#06503B;line-height:1.55}
   .foot{margin-top:36px;color:var(--g500);font-size:12.4px;text-align:center;line-height:1.7}
 </style>
@@ -96,7 +102,7 @@
 <div class="hero">
   <span class="vbadge">Gestão de tráfego · Google Ads + Meta Ads</span>
   <h1>Mais orçamentos de obra chegando pelo WhatsApp da EA3</h1>
-  <p>Dois formatos de plano para a <b>EA3 Construtora e Engenharia</b>. Nos dois, o caminho é o mesmo: anúncio certo → a pessoa <b>conhece a empresa</b> → e sai da página direto para o <b>WhatsApp</b>. E nos dois, a gestão acompanha as métricas e senta com você para decidir os próximos rumos.</p>
+  <p>Anúncio no topo do Google para quem já procura construtora na região, campanha de conversa no Meta e a gestão acompanhando todos os dias — com <b>preço por canal</b>, sem taxa de entrada e sem margem escondida sobre a sua verba.</p>
 </div>
 
 <div class="wrap">
@@ -119,152 +125,125 @@
     <div class="card" style="margin-top:14px">
       <span class="badge">Transparência estrutural</span>
       <h3>A conta é sua, a mídia é sua</h3>
-      <p class="sub">As contas de anúncio ficam <b>no nome da EA3</b> — acessamos por vínculo administrativo, que você remove quando quiser. A verba é paga por você direto ao Google e ao Meta, com fatura aberta. Nosso ganho é só a mensalidade — nunca margem sobre mídia. E o setup, que a maioria das agências cobra, aqui é <b>cortesia: R$ 0</b>.</p><p class="sub" style="margin-top:9px"><b>Se um dia a parceria acabar, você leva tudo:</b> contas, campanhas e — o que mais importa — o <b>histórico de conversão</b>, que é o que faz o algoritmo trabalhar melhor a cada mês.</p>
+      <p class="sub">As contas ficam <b>no nome da EA3</b> — acessamos por vínculo administrativo que você remove quando quiser. A verba é paga direto ao Google e ao Meta, com fatura aberta. <b>Se a parceria acabar, você leva tudo</b>, inclusive o histórico de conversão.</p>
     </div>
   </div>
 
   <div class="sec">
-    <span class="eyebrow">2 · Os dois formatos</span>
-    <h2>Plano Institucional e Plano Performance</h2>
-    <p>O primeiro coloca a EA3 no ar com <b>2 campanhas no Meta e 1 no Google</b>, gerindo até R$ 3.000/mês de mídia. O segundo amplia a capacidade para até R$ 10.000/mês e soma conjuntos de landing page + 4 criativos. Nos dois: acompanhamento diário, relatório semanal e mínimo de 3 meses para uma amostra de dados válida.</p>
+    <span class="eyebrow">2 · Investimento</span>
+    <h2>Você paga por canal — e só isso</h2>
+    <p>Sem taxa de setup, sem pacote fechado. Cada canal tem seu valor mensal de gestão, e a verba de mídia é sua, paga direto às plataformas.</p>
   </div>
 
   <div class="plans">
-
-    <!-- ============================== PLANO 1 -->
-    <div class="plan">
+    <div class="plan reco">
+      <span class="ptag">Para começar agora</span>
       <div class="phead">
-        <span class="pno">Plano 1</span>
-        <h3>Institucional — conhecer e chamar</h3>
-        <p class="pfor">Para colocar a EA3 no ar com consistência: o anúncio apresenta, o site institucional convence e o WhatsApp recebe.</p>
+        <span class="pno">Opção A</span>
+        <h3>Google Ads</h3>
+        <p class="pfor">Uma campanha de Pesquisa colocando a EA3 no topo para quem já está procurando construtora, reforma ou projeto na região.</p>
       </div>
       <div class="pbody">
+        <div>
+          <span class="pb-label">Gestão mensal</span>
+          <div class="price"><b>R$ 300</b><span>/mês</span></div>
+        </div>
         <div>
           <span class="pb-label">O que está incluso</span>
           <ul class="clean">
-            <li><b>2 campanhas no Meta, com criação dos anúncios:</b> uma que abre <b>conversa direto no WhatsApp</b> e outra que leva ao <b>site</b> — com <b>imagem animada</b> (motion), porque vídeo converte melhor que imagem parada.</li>
-            <li><b>1 campanha no Google Ads</b> (Rede de Pesquisa), aparecendo <b>no topo</b> nos termos que fazem sentido — quem já está procurando construtora e reforma na região.</li>
-            <li><b>Destino: o site institucional</b>, trabalhado para conversão — a pessoa conhece a empresa e sai da página falando no WhatsApp (botão rastreado, telefone visível).</li>
-            <li><b>Novos criativos sem custo adicional</b> quando a performance pedir troca.</li>
-            <li><b>Gestão completa:</b> todos os cadastros e configurações, com <b>acompanhamento diário</b> das campanhas.</li>
-            <li><b>Relatório semanal:</b> o resumo do que aconteceu na semana e <b>o que vamos fazer nesta semana</b> — para você entender cada mudança.</li>
+            <li><b>Configuração completa da conta</b> — no nome da EA3 — com tag, conversões e WhatsApp rastreado.</li>
+            <li><b>1 campanha de Pesquisa</b> com palavras específicas do serviço e da região.</li>
+            <li>Redação dos anúncios e das extensões.</li>
+            <li><b>Acompanhamento diário</b> e <b>relatório semanal</b>: o que foi e o que faremos na semana.</li>
+            <li>Ajuste contínuo de termos, lances e anúncios — sem custo extra.</li>
           </ul>
         </div>
         <div>
-          <span class="pb-label">Etapas de trabalho</span>
-          <div class="steps">
-            <div class="step"><span class="sw">Semanas 1–2</span><p><b>Cadastros e fundação:</b> contas de anúncio no nome da EA3, tag e conversões, WhatsApp rastreado, ajuste do site institucional para receber contato, central de conteúdo e produção da imagem animada.</p></div>
-            <div class="step"><span class="sw">Semanas 3–4</span><p><b>Campanhas no ar:</b> 1 no Google (Pesquisa, levando ao site) + 2 no Meta (uma abrindo conversa no WhatsApp, outra levando ao site com a imagem animada).</p></div>
-            <div class="step"><span class="sw">Mês 2 e 3</span><p><b>Acompanhamento diário + relatório semanal:</b> otimização todos os dias úteis, leitura do caminho do clique ao WhatsApp e, toda semana, o resumo do que foi e o plano da semana seguinte. No fim do 3º mês, a amostra de dados é válida para decidir a escala.</p></div>
-          </div>
-        </div>
-        <div>
-          <span class="pb-label">Gestão de mídia — valor total</span>
-          <div class="price"><b>R$ 890</b><span>/mês · cuida de até R$ 3.000/mês investidos em Google e Meta</span></div>
-          <p style="font-size:12.4px;color:var(--g600);font-weight:600;margin-top:2px">Setup completo (cadastros, rastreio, criativos e configuração) — <b style="color:#06845a">R$ 0 · cortesia Solutudo</b>. A maioria das agências cobra taxa de setup; aqui você paga só a mensalidade.</p>
-        </div>
-        <div>
-          <span class="pb-label">Mídia sugerida (paga direto às plataformas)</span>
-          <div class="price"><b>R$ 1.800</b><span>/mês</span></div>
-          <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
-          <div class="splitlab"><span>Google R$ 1.200</span><span>Meta R$ 600</span></div>
+          <span class="pb-label">Mídia sugerida (paga direto ao Google)</span>
+          <div class="price"><b>R$ 1.500</b><span>/mês · dentro do limite sem taxa</span></div>
         </div>
       </div>
       <div class="ptotal">
         <table>
-          <tr><td>Gestão (Solutudo) — cobre até R$ 3.000/mês de mídia</td><td class="num">R$ 890</td></tr>
-          <tr><td>Mídia sugerida (Google + Meta, direto)</td><td class="num">R$ 1.800</td></tr>
-          <tr><td>Setup</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
-          <tr class="tt"><td>Total — desde o 1º mês</td><td class="num">R$ 2.690/mês</td></tr>
+          <tr><td>Gestão (Solutudo)</td><td class="num">R$ 300</td></tr>
+          <tr><td>Mídia (Google, direto)</td><td class="num">R$ 1.500</td></tr>
+          <tr><td>Setup e configuração</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
+          <tr class="tt"><td>Total mensal</td><td class="num">R$ 1.800</td></tr>
         </table>
       </div>
     </div>
 
-    <!-- ============================== PLANO 2 -->
-    <div class="plan reco">
-      <span class="ptag">Recomendado</span>
+    <div class="plan soon">
       <div class="phead">
-        <span class="pno">Plano 2</span>
-        <h3>Performance — testar caminhos e escalar</h3>
-        <p class="pfor">Tudo do Plano 1, com capacidade de mídia até R$ 10.000/mês e conjuntos de landing page + 4 criativos — para testar caminhos e escalar o que a métrica aprovar.</p>
+        <span class="pno">Opção B</span>
+        <h3>Google + Meta</h3>
+        <p class="pfor">Soma a campanha de conversa no Meta, que abre o WhatsApp com um toque — o caminho mais curto para quem já decidiu pedir orçamento.</p>
       </div>
       <div class="pbody">
         <div>
-          <span class="pb-label">Tudo do Plano 1, e mais</span>
+          <span class="pb-label">Gestão mensal</span>
+          <div class="price"><b>R$ 750</b><span>/mês · Google R$ 300 + Meta R$ 450</span></div>
+        </div>
+        <div>
+          <span class="pb-label">Tudo da Opção A, e mais</span>
           <ul class="clean">
-            <li><b>Capacidade de mídia até R$ 10.000/mês</b> — gerenciamos o investimento direto nas plataformas, com a mesma mensalidade.</li>
-            <li><b>Conjuntos de campanha:</b> cada conjunto é <b>1 landing page + 4 criativos diferentes</b> rodando no mesmo conjunto de anúncios — o algoritmo distribui a verba para o que performa melhor e nós trocamos os que cansam.</li>
-            <li><b>Cada conjunto: +R$ 125/mês</b> para mantermos. <b>Renovação inclusa:</b> quando a métrica mostrar que a campanha cansou, renovamos criativos e abordagem <b>sem custo adicional</b>.</li>
-            <li><b>Expansível:</b> um conjunto novo por serviço ou cidade (mais 1 LP + 4 criativos) soma apenas +R$ 125/mês.</li>
-            <li><b>Teste A/B permanente:</b> site institucional × landing page — o relatório mostra qual converte contato mais barato, e a verba segue o vencedor.</li>
+            <li><b>Campanha de conversa no Meta</b>, com criação dos anúncios e mensagem de entrada do WhatsApp.</li>
+            <li>Segmentação por raio ou por cidades atendidas.</li>
+            <li>Rotação de criativos conforme o desempenho — troca inclusa.</li>
           </ul>
         </div>
-        <div>
-          <span class="pb-label">Etapas de trabalho</span>
-          <div class="steps">
-            <div class="step"><span class="sw">Semanas 1–2</span><p><b>Cadastros e fundação:</b> tudo do Plano 1 + construção da 1ª landing page e produção dos 4 criativos do conjunto, definidos com você (serviços e regiões prioritárias).</p></div>
-            <div class="step"><span class="sw">Semanas 3–4</span><p><b>Tudo no ar:</b> 1 campanha no Google + 2 no Meta (conversa e site) + o conjunto de 4 criativos rodando, dividido entre landing page e site.</p></div>
-            <div class="step"><span class="sw">Mês 2 e 3</span><p><b>Acompanhamento diário + relatório semanal:</b> comparação LP × site por custo por contato, rotação dos 4 criativos pelo desempenho, renovação quando a métrica pedir (sem custo) e, toda semana, o resumo e o plano da próxima. No fim do 3º mês, amostra válida para decidir a escala.</p></div>
-          </div>
-        </div>
-        <div>
-          <span class="pb-label">Gestão de mídia — valor total</span>
-          <div class="price"><b>R$ 1.490</b><span>/mês · gerencia até R$ 10.000/mês de mídia</span></div><p style="font-size:12.6px;color:var(--g700);font-weight:700;margin-top:4px">+ R$ 125/mês por conjunto (LP + 4 criativos) · com 1 conjunto: <b style="color:var(--ink)">R$ 1.615/mês</b></p>
-          <p style="font-size:12.4px;color:var(--g600);font-weight:600;margin-top:2px">Setup completo (cadastros, rastreio, criativos e configuração) — <b style="color:#06845a">R$ 0 · cortesia Solutudo</b>. A maioria das agências cobra taxa de setup; aqui você paga só a mensalidade.</p>
-        </div>
-        <div>
-          <span class="pb-label">Mídia sugerida (paga direto às plataformas)</span>
-          <div class="price"><b>R$ 3.000</b><span>/mês</span></div>
-          <div class="split"><span class="sg" style="width:67%"></span><span class="sm" style="width:33%"></span></div>
-          <div class="splitlab"><span>Google R$ 2.000</span><span>Meta R$ 1.000</span></div>
-        </div>
+        <div class="alert"><b>Pendência para viabilizar:</b> hoje não é possível compartilhar o acesso do Meta da EA3. Antes de contratar esta opção, precisamos resolver o acesso à conta de anúncio — nós ajudamos nesse ajuste, e a conta continua sendo de vocês.</div>
       </div>
       <div class="ptotal">
         <table>
-          <tr><td>Gestão (até R$ 10 mil/mês de mídia) + 1 conjunto LP e 4 criativos</td><td class="num">R$ 1.615</td></tr>
-          <tr><td>Mídia sugerida para começar (Google + Meta, direto)</td><td class="num">R$ 3.000</td></tr>
-          <tr><td>Setup, criação das campanhas e da LP</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
-          <tr class="tt"><td>Total — desde o 1º mês</td><td class="num">R$ 4.615/mês</td></tr>
+          <tr><td>Gestão (Solutudo)</td><td class="num">R$ 750</td></tr>
+          <tr><td>Mídia sugerida (Google + Meta, direto)</td><td class="num">R$ 2.000</td></tr>
+          <tr><td>Setup e configuração</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
+          <tr class="tt"><td>Total mensal</td><td class="num">R$ 2.750</td></tr>
         </table>
       </div>
     </div>
-
   </div>
 
-  <div class="note"><b>Sobre a mídia:</b> os valores de mídia são sugestão de partida e podem ser ajustados a cada ciclo — a verba é sua, paga direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido. A mensalidade cobre a gestão de até <b>R$ 3.000/mês</b> de mídia no Institucional e até <b>R$ 10.000/mês</b> no Performance. <b>Contrato mínimo de 3 meses</b> — é o tempo necessário para uma amostra de dados válida; depois, mês a mês.</div>
+  <div class="card">
+    <span class="badge">Como o plano cresce</span>
+    <h3>Escala pelo valor investido, não por pacote novo</h3>
+    <p class="sub">Enquanto a mídia estiver em até <b>R$ 2.000/mês</b>, a gestão é o valor do canal. Acima disso entra a <b>taxa de responsabilidade de 10%</b> sobre o valor que exceder — porque gerir verba maior exige acompanhamento mais fino e mais criativos em rotação.</p>
+    <table class="esc">
+      <tr><th>Mídia por mês</th><th class="num">Taxa de responsabilidade</th><th class="num">Gestão — só Google</th><th class="num">Gestão — Google + Meta</th></tr>
+      <tr class="hi"><td><b>Até R$ 2.000</b></td><td class="num">—</td><td class="num"><b>R$ 300</b></td><td class="num"><b>R$ 750</b></td></tr>
+      <tr><td>R$ 3.000</td><td class="num">R$ 100</td><td class="num">R$ 400</td><td class="num">R$ 850</td></tr>
+      <tr><td>R$ 5.000</td><td class="num">R$ 300</td><td class="num">R$ 600</td><td class="num">R$ 1.050</td></tr>
+      <tr><td>R$ 10.000</td><td class="num">R$ 800</td><td class="num">R$ 1.100</td><td class="num">R$ 1.550</td></tr>
+    </table>
+    <div class="note"><b>Extras, se e quando fizerem sentido:</b> landing page com conjunto de criativos e campanhas adicionais são orçados à parte — nunca entram sem você aprovar antes. A verba de mídia é paga por vocês direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido.</div>
+  </div>
 
   <div class="sec">
-    <span class="eyebrow">3 · Como começa</span>
-    <h2>As duas primeiras semanas, em três frentes</h2>
-    <p>Nada de campanha no ar antes da base pronta. As três frentes rodam em paralelo e terminam na reunião que define o que vai ao ar.</p>
+    <span class="eyebrow">3 · O que precisamos de vocês</span>
+    <h2>Sem oferta, não há criativo</h2>
+    <p>Esta é a única exigência real do processo — e é o que separa anúncio que gera conversa de anúncio que só gasta verba.</p>
   </div>
 
-  <div class="grid3">
+  <div class="grid2">
     <div class="card" style="margin-top:14px">
-      <span class="badge">Frente 1 · Formal</span>
-      <h3>Contrato e escopo por escrito</h3>
+      <span class="badge peach">Obrigatório</span>
+      <h3>Uma chamada para ação relevante</h3>
+      <p class="sub">Toda campanha precisa de um motivo concreto para a pessoa parar e falar com vocês. Pode ser uma condição comercial, um prazo, um brinde técnico — desde que seja real e vocês consigam honrar.</p>
       <ul class="clean">
-        <li>Contrato com o escopo exato: quantas campanhas por canal, o que é conjunto adicional e o que é renovação inclusa.</li>
-        <li>Assinatura eletrônica — sem papel, sem cartório.</li>
-        <li>Mensalidade em cobrança recorrente, com aviso automático de vencimento.</li>
+        <li><b>Exemplos para construção civil:</b> visita técnica sem compromisso · orçamento em até 48h · projeto incluso na contratação da obra · condição para fechamento no mês.</li>
+        <li>É a partir dessa oferta que o criativo é escrito e desenhado.</li>
+        <li><b>Sem oferta definida, a campanha não sobe</b> — não é burocracia nossa, é o que faz a conversa acontecer.</li>
       </ul>
     </div>
     <div class="card" style="margin-top:14px">
-      <span class="badge">Frente 2 · Técnica</span>
-      <h3>Contas, rastreio e WhatsApp</h3>
+      <span class="badge">Também combinado na fundação</span>
+      <h3>Quem responde, e em quanto tempo</h3>
+      <p class="sub">O contato chega pelo WhatsApp de vocês. Quem atende e com que rapidez é o fator que mais mexe no resultado final — e é a parte que fica com a EA3.</p>
       <ul class="clean">
-        <li>Contas de Google Ads e Meta <b>no nome da EA3</b> (criamos, se ainda não existirem) e vínculo de acesso para a gestão.</li>
-        <li>Tag, conversões e <b>WhatsApp rastreado</b>: passamos a saber de qual campanha veio cada conversa.</li>
-        <li>Confirmação de que o número está em <b>WhatsApp Business</b> — sem isso a campanha de conversa não roda.</li>
-      </ul>
-    </div>
-    <div class="card" style="margin-top:14px">
-      <span class="badge">Frente 3 · Estratégica</span>
-      <h3>Reunião de fundação (1h)</h3>
-      <ul class="clean">
-        <li>Serviços e cidades prioritárias, termos do Google e roteiro do criativo.</li>
-        <li>Mensagem de entrada do WhatsApp — a que o cliente envia ao tocar no botão, já dizendo serviço e cidade.</li>
-        <li><b>Combinado de atendimento:</b> quem responde e em quanto tempo. Contato que chega e demora a ser atendido é verba perdida — e essa parte é da EA3.</li>
+        <li>Número precisa estar em <b>WhatsApp Business</b> para receber a campanha de conversa.</li>
+        <li>Definimos juntos a mensagem de entrada, já dizendo serviço e cidade — chega qualificado.</li>
+        <li>Contato que espera horas para ser respondido é verba que já foi gasta e não volta.</li>
       </ul>
     </div>
   </div>
@@ -272,73 +251,73 @@
   <div class="sec">
     <span class="eyebrow">4 · O caminho</span>
     <h2>Como as campanhas se dividem — e por que</h2>
-    <p>Site e WhatsApp não competem: cada canal cobre um momento diferente da decisão. Obra tem ticket alto e ciclo longo, então parte das pessoas quer conhecer a empresa antes de falar; outra parte já quer o orçamento agora.</p>
+    <p>No Google a pessoa procura; no Meta a gente interrompe. São dois momentos da decisão, e cada um pede uma estrutura própria.</p>
   </div>
 
-  <div class="grid3">
+  <div class="grid2">
     <div class="card" style="margin-top:14px">
-      <span class="badge">Google · 1 campanha</span>
-      <h3>Rede de Pesquisa → site → WhatsApp</h3>
-      <p class="sub">No Google a demanda já existe: a pessoa digita "construtora em…", "reforma…", "projeto…". O anúncio aparece no topo e leva ao <b>site</b>, onde ela conhece a EA3 e clica no WhatsApp.</p>
+      <span class="badge">Google · 1 campanha de Pesquisa</span>
+      <h3>Palavra específica custa menos e converte mais</h3>
       <ul class="clean">
-        <li><b>Uma campanha só, não duas.</b> No Google o destino é sempre o site — o WhatsApp entra como <b>conversão medida dentro dele</b>, junto com ligações e formulário. Dividir em duas campanhas fatiaria os dados e atrasaria o aprendizado do algoritmo.</li>
-        <li><b>Objetivo "Leads"</b>, para o algoritmo otimizar por contato gerado — não por clique.</li>
-        <li><b>Pesquisa primeiro, sempre.</b> Formatos automáticos (Performance Max) só depois que houver histórico de conversão; sem dados, o orçamento se espalha sem critério.</li>
+        <li><b>Termos específicos, não genéricos.</b> "Construtora em [cidade]" e "reforma de [tipo]" custam menos por clique e trazem quem realmente quer contratar. Palavra ampla é cara e converte pouco — só entra quando houver verba e histórico que sustentem o teste.</li>
+        <li><b>Uma campanha só, não duas.</b> O destino é o site, e o WhatsApp entra como conversão medida dentro dele, junto com ligações. Dividir em duas fatiaria os dados e atrasaria o aprendizado.</li>
+        <li>Objetivo <b>Leads</b> — o algoritmo otimiza por contato gerado, não por clique.</li>
       </ul>
     </div>
     <div class="card" style="margin-top:14px">
-      <span class="badge">Meta · campanha 1</span>
-      <h3>Conversa direto no WhatsApp</h3>
-      <p class="sub">Anúncio que abre a conversa com um toque, sem passar por página. É o caminho mais curto para quem já decidiu pedir orçamento.</p>
+      <span class="badge">Meta · campanha de conversa</span>
+      <h3>Toda campanha do Meta é para gerar conversa</h3>
       <ul class="clean">
-        <li>Otimizada para <b>conversas e leads</b> — e não para "tráfego", que otimiza clique e não conversa iniciada.</li>
-        <li>Costuma entregar <b>custo por contato bem menor</b> que mandar para página, com um custo por clique um pouco maior — a conta fecha a favor do contato.</li>
-        <li>Depois do clique, a conversa segue no WhatsApp da EA3, como qualquer cliente.</li>
-      </ul>
-    </div>
-    <div class="card" style="margin-top:14px">
-      <span class="badge">Meta · campanha 2</span>
-      <h3>Apresentação → site</h3>
-      <p class="sub">A imagem animada mostra obra e serviço, leva ao site e alimenta o público de remarketing — quem visitou e não falou ainda.</p>
-      <ul class="clean">
-        <li>Atende quem <b>ainda não decidiu</b> e precisa conhecer a empresa antes de chamar — o normal em obra.</li>
-        <li>Gera o público que a campanha de conversa reaproveita depois: quem viu o site e não chamou.</li>
-        <li>No <b>Plano 2</b>, é aqui que entram os conjuntos de <b>1 LP + 4 criativos</b>. Rodar quatro variações no mesmo conjunto costuma <b>baixar o custo sem aumentar a verba</b>: o leilão do Meta cobra mais barato de quem tem criativo com melhor desempenho, e o algoritmo concentra a entrega no que funciona.</li>
+        <li>O anúncio <b>abre o WhatsApp com um toque</b>, sem passar por página — otimizado para conversas, não para cliques.</li>
+        <li>O criativo é construído <b>a partir da oferta</b> definida com vocês: é a chamada para ação que faz a pessoa tocar no botão.</li>
+        <li>Segmentação por raio a partir do endereço ou por lista de cidades atendidas.</li>
+        <li>Criativo cansa: trocamos quando o desempenho pedir, <b>sem custo adicional</b>.</li>
       </ul>
     </div>
   </div>
-
-  <div class="note"><b>Por que 1 no Google e 2 no Meta:</b> no Google a pessoa <b>procura</b> — existe uma intenção só, e uma campanha bem estruturada cobre as variações por grupo de anúncio, concentrando o aprendizado. No Meta ninguém está procurando: a gente interrompe. Por isso vale separar quem já quer falar (conversa) de quem precisa conhecer (site) — são otimizações diferentes, e misturar as duas na mesma campanha faz o algoritmo perseguir o alvo errado.</div>
 
   <div class="sec">
-    <span class="eyebrow">5 · Acompanhamento</span>
-    <h2>O que a gestão faz todo mês — e o que você recebe</h2>
+    <span class="eyebrow">5 · Etapas</span>
+    <h2>Como isso acontece, semana a semana</h2>
+  </div>
+
+  <div class="card">
+    <div class="steps">
+      <div class="step"><span class="sw">Semana 1</span><p><b>Formal e técnica:</b> aprovação do plano, configuração da conta de anúncio no nome da EA3, tag e conversões, WhatsApp rastreado e confirmação do WhatsApp Business.</p></div>
+      <div class="step"><span class="sw">Semana 2</span><p><b>Estratégica:</b> reunião de fundação (1h) — serviços e cidades prioritárias, palavras da campanha, <b>definição da oferta</b> e roteiro dos anúncios. Ajuste do site para receber e registrar o contato.</p></div>
+      <div class="step"><span class="sw">Semanas 3–4</span><p><b>No ar:</b> campanha de Pesquisa publicada (e a de conversa no Meta, na Opção B). Primeiros dias são de aprendizado — anúncio não se julga antes de 3 a 4 dias.</p></div>
+      <div class="step"><span class="sw">Mês 2 e 3</span><p><b>Acompanhamento diário e relatório semanal:</b> otimização de termos e criativos, leitura do caminho do clique ao WhatsApp e, toda semana, o resumo e o plano da próxima.</p></div>
+      <div class="step"><span class="sw">Fim do 3º mês</span><p><b>Ponto de decisão:</b> com amostra de dados válida na mesa — escalar a mídia, ajustar o caminho ou encerrar sem multa.</p></div>
+    </div>
+    <div class="note"><b>Por que o mínimo de 3 meses:</b> no começo a campanha gasta antes de converter, porque a plataforma ainda está descobrindo quem responde. O custo por contato só vira um número confiável depois de volume — ler resultado no primeiro mês é ler ruído.</div>
+  </div>
+
+  <div class="sec">
+    <span class="eyebrow">6 · Acompanhamento</span>
+    <h2>O que a gestão faz — e o que vocês recebem</h2>
   </div>
   <div class="card">
     <ul class="clean">
-      <li><b>Fazemos todos os cadastros e configurações</b> — contas, tags, conversões, rastreio de WhatsApp — e mantemos tudo funcionando.</li>
-      <li><b>Acompanhamento diário:</b> todos os dias úteis olhamos as campanhas — é trabalho que merece atenção para ser bem feito, e é assim que ajuste pequeno não vira prejuízo grande.</li>
-      <li><b>Relatório semanal:</b> o resumo do que aconteceu na semana e <b>o que vamos fazer nesta semana</b> — você acompanha cada mudança e o porquê dela, sem tecniquês.</li>
-      <li><b>Analisamos o caminho completo:</b> de qual anúncio veio o clique, por qual página passou, quantos viraram conversa no WhatsApp e a que custo.</li>
-      <li><b>Nada de julgar criativo no dia seguinte:</b> anúncio só é avaliado depois de 3 a 4 dias no ar — antes disso, o número é ruído.</li>
-      <li><b>No fim do 3º mês, ponto de decisão:</b> amostra de dados válida na mesa — escalar mídia, ajustar o caminho ou encerrar sem multa.</li>
+      <li><b>Configuração e manutenção de tudo:</b> conta, tags, conversões, rastreio de WhatsApp.</li>
+      <li><b>Acompanhamento diário</b> das campanhas — ajuste pequeno feito a tempo é o que evita prejuízo grande.</li>
+      <li><b>Relatório semanal:</b> o que aconteceu e <b>o que vamos fazer nesta semana</b>, sem tecniquês.</li>
+      <li><b>A métrica que importa:</b> contatos no WhatsApp, ligações e <b>custo por contato</b> — impressão e clique aparecem, mas não guiam decisão.</li>
     </ul>
-    <div class="note" style="margin-top:14px"><b>Como a conta funciona:</b> a verba dividida pelo custo por clique dá o número de visitas; a parcela dessas visitas que vira conversa dá o número de contatos; e a verba dividida pelos contatos dá o <b>custo por contato</b>. No começo esse número vem alto — a plataforma ainda está descobrindo quem responde. Ele cai conforme o histórico se forma, e é por isso que a leitura séria acontece no 3º mês, não no primeiro.</div>
     <div class="selo"><b>O que não prometemos:</b> número garantido de leads ou de obras fechadas. Tráfego pago gera contatos qualificados a custo conhecido; a conversão em contrato depende do atendimento e da proposta — e o relatório mostra exatamente onde cada etapa está performando. Compromisso em contrato: gestão diligente, verba transparente e decisão conjunta a cada ciclo.</div>
   </div>
 
   <div class="sec">
-    <span class="eyebrow">6 · Próximo passo</span>
+    <span class="eyebrow">7 · Próximo passo</span>
     <h2>Para começar</h2>
   </div>
   <div class="card" style="text-align:center">
-    <p class="sub" style="max-width:740px;margin:4px auto 0">Escolhido o plano, agendamos a reunião de fundação (1h) na mesma semana — dela saem os termos do Google, o roteiro da imagem animada e, no Plano 2, o foco da landing page. Campanhas no ar em até <b>15 dias corridos</b> da assinatura.</p>
-    <p class="sub" style="max-width:740px;margin:10px auto 0"><b>Plano 1 · Institucional:</b> R$ 890/mês (mídia de até R$ 3.000/mês) &nbsp;·&nbsp; <b>Plano 2 · Performance:</b> R$ 1.490/mês (mídia de até R$ 10.000/mês) + R$ 125/mês por conjunto de LP + 4 criativos &nbsp;·&nbsp; <b>Setup e criação: R$ 0 nos dois</b> — sem taxa de entrada &nbsp;·&nbsp; acompanhamento diário e relatório semanal &nbsp;·&nbsp; mínimo de 3 meses.</p>
+    <p class="sub" style="max-width:760px;margin:4px auto 0">Escolhida a opção, o plano é aprovado por vocês e agendamos a reunião de fundação na mesma semana — é dela que saem as palavras da campanha e a oferta. Campanhas no ar em até <b>15 dias corridos</b>.</p>
+    <p class="sub" style="max-width:760px;margin:12px auto 0"><b>Opção A · Google:</b> R$ 300/mês + mídia sugerida R$ 1.500 &nbsp;·&nbsp; <b>Opção B · Google + Meta:</b> R$ 750/mês + mídia sugerida R$ 2.000 (depende de resolvermos o acesso ao Meta) &nbsp;·&nbsp; <b>Setup R$ 0</b> &nbsp;·&nbsp; acompanhamento diário e relatório semanal &nbsp;·&nbsp; mínimo de 3 meses.</p>
   </div>
 
   <div class="foot">
     Proposta preparada pela Solutudo para EA3 Construtora e Engenharia · 12/08/2026 · validade 30 dias<br>
-    Fee conforme faixas do mercado brasileiro de gestão de tráfego em 2026 · mídia paga diretamente às plataformas, com repasse tributário destacado em fatura pelas próprias plataformas
+    Mídia paga diretamente às plataformas, com repasse tributário destacado em fatura pelas próprias plataformas
   </div>
 </div>
 

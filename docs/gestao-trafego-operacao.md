@@ -138,3 +138,64 @@ lucrativa não cresce — só ocupa o dia.
   planos têm salto maior porque a diferença não é de embalagem, e sim de capacidade (mídia gerida de
   R$ 3 mil para R$ 10 mil, mais os conjuntos). **Pendência comercial:** validar se o salto afasta o
   cliente do plano maior ou se o gatilho de migração — mídia acima de R$ 3.000/mês — resolve sozinho.
+
+---
+
+## 7. Regras internas (definidas com o especialista · 12/08/2026)
+
+Estas são as regras do que a Solutudo consegue operar hoje. Elas têm precedência sobre qualquer
+referência de mercado citada acima.
+
+### 7.1 Preço — por canal, não por pacote
+
+| Item | Valor mensal |
+|---|---|
+| **Google Ads** (1 campanha de Pesquisa) | **R$ 300** |
+| **Meta Ads** (campanhas de conversa) | **R$ 450** |
+| **Os dois canais** | **R$ 750** |
+
+- É o **plano inicial**. Os planos maiores não mudam de escopo: **escalam pelo valor**, conforme a
+  verba de mídia cresce.
+- **Taxa de responsabilidade:** mídia acima de **R$ 2.000/mês** cobra **10%** sobre o valor investido.
+  *(Interpretação adotada: 10% sobre o que excede R$ 2.000 — a confirmar com o especialista se a
+  intenção era sobre o total.)*
+- **Extras são cobrados à parte:** conjunto de landing page + criativos, produção fora do escopo,
+  campanha adicional.
+- **Setup:** R$ 0 (cortesia).
+
+**Escada resultante (Google + Meta):**
+
+| Mídia/mês | Taxa | Gestão total |
+|---|---|---|
+| até R$ 2.000 | — | R$ 750 |
+| R$ 3.000 | R$ 100 | R$ 850 |
+| R$ 5.000 | R$ 300 | R$ 1.050 |
+| R$ 10.000 | R$ 800 | R$ 1.550 |
+
+### 7.2 Meta — sempre conversa, e sempre com oferta
+
+- **Toda campanha de Meta é para gerar conversa.** Não rodamos campanha de Meta sem esse destino.
+- **Obrigatório:** cada campanha precisa de uma **chamada para ação relevante** — uma oferta, uma
+  condição, um gancho concreto. É a partir dela que o criativo é construído.
+- **Sem oferta definida, não há criativo.** Essa é uma **pré-condição do cliente**, não um item que a
+  gestão resolve sozinha: anúncio sem motivo para a pessoa agir não gera conversa, só gasta verba.
+
+### 7.3 Google — Pesquisa com palavras específicas
+
+- Campanha de **Pesquisa** acompanhando a estratégia do Meta.
+- **Quanto mais genérica a palavra, mais caro o clique e menor a conversão.** A escolha é sempre por
+  termos específicos — serviço + cidade, serviço + qualificador — em vez de termos amplos de categoria.
+- Termo genérico entra apenas quando há verba e histórico que sustentem o teste.
+
+### 7.4 Aprovação do plano
+
+- O cliente **aprova o plano pela API do Dani** (fluxo interno Solutudo).
+  *(A detalhar: como o aceite é registrado e o que dispara o início da execução.)*
+
+### 7.5 Configuração da conta
+
+- A configuração das contas de anúncio é parte do serviço, sempre com as contas **no nome do cliente**
+  (ver seção 1.2).
+- **Restrição conhecida — EA3:** não é possível compartilhar acesso no Meta. Enquanto isso não for
+  resolvido, a EA3 opera **somente com Google Ads**; o Meta entra como fase seguinte, quando o acesso
+  for viabilizado.
