@@ -47,6 +47,10 @@ não é atendido em minutos vira dinheiro queimado, e essa parte não é nossa.
 - Coloca o site do cliente **no topo das buscas** de quem já procura o serviço na região.
 - **Trabalho no site é parte da entrega:** destacar o WhatsApp, botão fixo no mobile, contato visível
   em toda rolagem. Não adianta trazer visita para uma página onde o contato se esconde.
+- **O site captura o número do interessado antes de abrir a conversa.** É o que transforma clique pago
+  em lead que fica com o cliente: sem a captura, quem toca no botão e não escreve simplesmente some, e
+  o clique já foi pago. Com ela, o número é registrado mesmo quando a conversa não acontece — e o
+  cliente pode retomar depois. Vale para o tráfego de Google e para o do Meta que passa pelo site.
 - Objetivo **Leads**, não Tráfego.
 - Conversões contadas: clique no WhatsApp do site, ligação e formulário.
 - Grupos de anúncio por serviço; extensões de chamada e localização.
@@ -169,7 +173,26 @@ referência de mercado citada acima.
   de até Y de mídia". A verba é do cliente e vai direto para a plataforma.
 - **Extras são cobrados à parte:** conjunto de landing page + criativos, produção fora do escopo,
   campanha adicional.
-- **Setup:** R$ 0 (cortesia).
+- **Setup:** R$ 0 (cortesia) nos três planos acima.
+
+**Plano de entrada — a alternativa com setup pago (somente Google):**
+
+| Item | Valor |
+|---|---|
+| Configuração inicial (**Google + todas as plataformas**) | **R$ 400**, uma única vez |
+| Gestão mensal (Google Ads) | **R$ 400/mês** |
+| Mídia coberta pela gestão | até **R$ 1.500/mês** (mesma regra de 10% acima do teto) |
+
+- **O que a configuração de R$ 400 cobre:** conta Google Ads criada e verificada no nome do cliente;
+  Business Manager e conta de anúncio do Meta criados e verificados **e deixados prontos e parados**
+  para quando o Meta for contratado; Tag Manager e Analytics instalados com o clique de WhatsApp medido;
+  site preparado para receber contato **com captura do número do interessado**.
+- **A lógica comercial:** troca-se a cortesia do setup por R$ 200/mês a menos de gestão. O setup se paga
+  em **2 meses**; do 3º em diante o plano de entrada é o mais barato dos dois (12 meses: R$ 5.200 contra
+  R$ 7.200). Serve para quem entra para ficar; o plano de R$ 600 com setup cortesia serve para quem
+  quer testar sem desembolso de entrada.
+- **Não inclui:** gestão de Meta, landing page e produção de conteúdo. Ligar o Meta depois **não gera
+  nova configuração** — é só contratar a gestão do canal.
 
 **Escada resultante (Google + Meta):**
 
