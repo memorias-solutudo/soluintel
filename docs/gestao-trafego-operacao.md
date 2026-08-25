@@ -155,7 +155,7 @@ referência de mercado citada acima.
 
 | Item | Gestão mensal | Mídia coberta pela gestão |
 |---|---|---|
-| **Google Ads** (1 campanha de Pesquisa) | **R$ 500** | até **R$ 1.500/mês** |
+| **Google Ads** (1 campanha de Pesquisa) | **R$ 600** | até **R$ 1.500/mês** |
 | **Meta Ads** (2 campanhas de conversa) | **R$ 800** | até **R$ 1.500/mês** |
 | **Os dois canais** | **R$ 1.200** | até **R$ 3.000/mês** |
 
@@ -163,7 +163,7 @@ referência de mercado citada acima.
   verba de mídia cresce.
 - **Taxa de responsabilidade:** cada canal tem seu teto de mídia coberto pela gestão. **Acima do teto,
   cobra-se 10% sobre o valor que exceder, por canal.** Exemplos: cliente só com Google investindo
-  R$ 2.500 → R$ 500 + 10% de R$ 1.000 = R$ 600; cliente com os dois canais investindo R$ 5.000 →
+  R$ 2.500 → R$ 600 + 10% de R$ 1.000 = R$ 700; cliente com os dois canais investindo R$ 5.000 →
   R$ 1.200 + 10% de R$ 2.000 = R$ 1.600.
 - **A gestão e a mídia nunca são somadas na proposta.** O que se comunica é: "a gestão custa X e cuida
   de até Y de mídia". A verba é do cliente e vai direto para a plataforma.
