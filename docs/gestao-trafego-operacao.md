@@ -148,29 +148,32 @@ referência de mercado citada acima.
 
 ### 7.1 Preço — por canal, não por pacote
 
-| Item | Valor mensal |
-|---|---|
-| **Google Ads** (1 campanha de Pesquisa) | **R$ 500** |
-| **Meta Ads** (campanhas de conversa) | **R$ 700** |
-| **Os dois canais** | **R$ 1.200** |
+| Item | Gestão mensal | Mídia coberta pela gestão |
+|---|---|---|
+| **Google Ads** (1 campanha de Pesquisa) | **R$ 500** | até **R$ 1.500/mês** |
+| **Meta Ads** (campanhas de conversa) | **R$ 700** | até **R$ 1.500/mês** |
+| **Os dois canais** | **R$ 1.200** | até **R$ 3.000/mês** |
 
 - É o **plano inicial**. Os planos maiores não mudam de escopo: **escalam pelo valor**, conforme a
   verba de mídia cresce.
-- **Taxa de responsabilidade:** mídia acima de **R$ 2.000/mês** cobra **10%** sobre o valor investido.
-  *(Interpretação adotada: 10% sobre o que excede R$ 2.000 — a confirmar com o especialista se a
-  intenção era sobre o total.)*
+- **Taxa de responsabilidade:** cada canal tem seu teto de mídia coberto pela gestão. **Acima do teto,
+  cobra-se 10% sobre o valor que exceder, por canal.** Exemplos: cliente só com Google investindo
+  R$ 2.500 → R$ 500 + 10% de R$ 1.000 = R$ 600; cliente com os dois canais investindo R$ 5.000 →
+  R$ 1.200 + 10% de R$ 2.000 = R$ 1.600.
+- **A gestão e a mídia nunca são somadas na proposta.** O que se comunica é: "a gestão custa X e cuida
+  de até Y de mídia". A verba é do cliente e vai direto para a plataforma.
 - **Extras são cobrados à parte:** conjunto de landing page + criativos, produção fora do escopo,
   campanha adicional.
 - **Setup:** R$ 0 (cortesia).
 
 **Escada resultante (Google + Meta):**
 
-| Mídia/mês | Taxa | Gestão total |
-|---|---|---|
-| até R$ 2.000 | — | R$ 1.200 |
-| R$ 3.000 | R$ 100 | R$ 1.300 |
-| R$ 5.000 | R$ 300 | R$ 1.500 |
-| R$ 10.000 | R$ 800 | R$ 2.000 |
+| Mídia/mês (Google + Meta) | Excedente | Taxa (10%) | Gestão total |
+|---|---|---|---|
+| até R$ 3.000 | — | — | R$ 1.200 |
+| R$ 5.000 | R$ 2.000 | R$ 200 | R$ 1.400 |
+| R$ 8.000 | R$ 5.000 | R$ 500 | R$ 1.700 |
+| R$ 10.000 | R$ 7.000 | R$ 700 | R$ 1.900 |
 
 ### 7.2 Meta — sempre conversa, e sempre com oferta
 

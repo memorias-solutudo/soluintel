@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Proposta · Gestão de Tráfego — EA3 Construtora e Engenharia</title>
+<title>Proposta · Gestão de Tráfego — Solutudo</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
 <style>
   :root{
@@ -24,12 +24,25 @@
   body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
   body::-webkit-scrollbar{display:none}
   a{color:var(--brand-purple)}
+  button{font:inherit;color:inherit}
+  button:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px}
   code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
-  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
-  .tb-in{max-width:1360px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
+  .tb-in{max-width:1360px;margin:0 auto;padding:10px 30px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tb-in::after{content:""}
   .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
   .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta)}
-  .tbchip{font-size:11.5px;font-weight:800;color:#7B00BE;background:var(--tint-lav);padding:5px 12px;border-radius:var(--pill)}
+  .seg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px}
+  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 18px;font-weight:800;font-size:13px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button.on{color:#fff;background:var(--grad-cta)}
+  @media(max-width:860px){.tb-in{grid-template-columns:1fr auto}.seg{grid-column:1/-1;order:3;justify-self:center;margin-top:3px}}
+
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .25s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
   .hero{text-align:center;padding:36px 22px 6px;max-width:880px;margin:0 auto}
   .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
   .hero h1{font-size:30px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.14;text-wrap:balance}
@@ -41,7 +54,6 @@
   .sec p{color:var(--g700);font-size:14px;margin:7px auto 0;max-width:800px}
   .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;border:var(--line);margin-top:16px}
   .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE;margin-bottom:8px}
-  .badge.mint{background:var(--tint-mint);color:#06724F}
   .badge.peach{background:var(--tint-peach);color:#B03A00}
   .card h3{font-size:17px;font-weight:800;letter-spacing:-.025em;line-height:1.22}
   .card p.sub{color:var(--g700);font-size:13.6px;margin-top:7px;max-width:980px}
@@ -62,32 +74,51 @@
   .phead .pno{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600)}
   .phead h3{font-size:19px;font-weight:800;letter-spacing:-.03em;margin-top:5px;line-height:1.18}
   .phead .pfor{font-size:13px;color:var(--g700);margin-top:6px;line-height:1.5}
-  .pbody{padding:16px 24px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .pbody{padding:16px 24px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
   .pb-label{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--g600)}
   .price{display:flex;align-items:baseline;gap:8px;margin-top:4px;flex-wrap:wrap}
-  .price b{font-size:30px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-  .price span{font-size:12.5px;font-weight:700;color:var(--g600)}
+  .price b{font-size:34px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .price span{font-size:13px;font-weight:700;color:var(--g600)}
+  .cap{margin-top:8px;background:var(--tint-mint);border-radius:11px;padding:9px 13px;font-size:12.8px;font-weight:700;color:#06503B;line-height:1.45}
+  .cap b{color:#044C38}
   .steps{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-  .step{display:grid;grid-template-columns:96px minmax(0,1fr);gap:11px;align-items:start;background:var(--bg);border-radius:12px;padding:10px 13px}
+  .step{display:grid;grid-template-columns:100px minmax(0,1fr);gap:11px;align-items:start;background:var(--bg);border-radius:12px;padding:10px 13px}
   .step .sw{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#7B00BE;background:var(--tint-lav);border-radius:9px;padding:5px 7px;text-align:center;line-height:1.25}
   .step p{font-size:12.7px;color:var(--g700);line-height:1.45}
   .step p b{color:var(--ink)}
-  .ptotal{border-top:var(--line);background:var(--bg);padding:15px 24px 18px}
-  .ptotal table{width:100%;border-collapse:collapse;font-size:13px}
-  .ptotal td{padding:5px 0;color:var(--g700)}
-  .ptotal td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
-  .ptotal tr.tt td{border-top:var(--line);padding-top:9px;font-weight:800;color:var(--ink);font-size:14px}
-  table.esc{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.4px}
-  table.esc th,table.esc td{text-align:left;padding:10px 12px;border-bottom:var(--line)}
+  table.esc{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.6px}
+  table.esc th,table.esc td{text-align:left;padding:11px 12px;border-bottom:var(--line)}
   table.esc th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
   table.esc td.num,table.esc th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   table.esc td b{color:var(--ink)}
-  table.esc tr.hi td{background:var(--tint-mint)}
   .note{margin-top:14px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
   .alert{margin-top:14px;background:var(--tint-peach);border-radius:12px;padding:13px 16px;font-size:13.2px;color:#7A3400;line-height:1.55}
   .alert b{color:#5A2600}
   .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:12px 15px;font-size:12.8px;color:#06503B;line-height:1.55}
   .foot{margin-top:36px;color:var(--g500);font-size:12.4px;text-align:center;line-height:1.7}
+
+  /* ===== modelo simples ===== */
+  .simple{max-width:960px;margin:0 auto}
+  .simple .sbadge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .simple h1{font-size:32px;font-weight:800;letter-spacing:-.04em;line-height:1.14;margin-top:14px;text-wrap:balance}
+  .simple .lead{font-size:16px;color:var(--g700);margin-top:10px;line-height:1.6}
+  .sblock{margin-top:34px}
+  .sblock h2{font-size:19px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+  .sblock h2 i{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:800;font-style:normal;flex:none}
+  .sblock > p{font-size:14.5px;color:var(--g700);margin-top:9px;line-height:1.6}
+  .sitems{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+  .sitem{background:var(--white);border:var(--line);border-radius:14px;padding:14px 17px;font-size:14.2px;color:var(--g700);line-height:1.5;box-shadow:var(--shadow-card)}
+  .sitem b{color:var(--ink)}
+  .pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+  @media(max-width:860px){.pcards{grid-template-columns:1fr}}
+  .pc{background:var(--white);border:1.5px solid rgba(21,21,21,.09);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow-card);text-align:center}
+  .pc.best{border-color:#00B589;box-shadow:var(--shadow-md)}
+  .pc .pcn{font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700)}
+  .pc .pcv{font-size:32px;font-weight:800;letter-spacing:-.045em;margin-top:6px;font-variant-numeric:tabular-nums}
+  .pc .pcv span{font-size:13px;font-weight:700;color:var(--g600);letter-spacing:0}
+  .pc .pcc{font-size:12.8px;color:#06503B;background:var(--tint-mint);border-radius:10px;padding:8px 10px;margin-top:11px;font-weight:700;line-height:1.4}
+  .sfoot{margin-top:34px;background:var(--white);border:var(--line);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-card);font-size:14px;color:var(--g700);line-height:1.6}
+  .sfoot b{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -95,9 +126,15 @@
 <div class="topbar">
   <div class="tb-in">
     <span class="logo"><span class="heart"></span> Solutudo</span>
-    <span class="tbchip">Proposta comercial · validade 30 dias</span>
+    <nav class="seg" aria-label="Versões da proposta">
+      <button id="t-full" class="on" onclick="show('full')">Proposta EA3</button>
+      <button id="t-simple" onclick="show('simple')">Modelo simples</button>
+    </nav>
   </div>
 </div>
+
+<!-- ==================================================== PROPOSTA COMPLETA -->
+<section id="p-full" class="panel on">
 
 <div class="hero">
   <span class="vbadge">Gestão de tráfego · Google Ads + Meta Ads</span>
@@ -131,8 +168,8 @@
 
   <div class="sec">
     <span class="eyebrow">2 · Investimento</span>
-    <h2>Você paga por canal — e só isso</h2>
-    <p>Sem taxa de setup, sem pacote fechado. Cada canal tem seu valor mensal de gestão, e a verba de mídia é sua, paga direto às plataformas.</p>
+    <h2>Você paga a gestão por canal — a mídia é sua</h2>
+    <p>Sem taxa de setup e sem pacote fechado. A mensalidade da gestão já cobre o acompanhamento de uma faixa de investimento; a verba de mídia você paga direto às plataformas.</p>
   </div>
 
   <div class="plans">
@@ -147,6 +184,7 @@
         <div>
           <span class="pb-label">Gestão mensal</span>
           <div class="price"><b>R$ 500</b><span>/mês</span></div>
+          <div class="cap"><b>Cuida de até R$ 1.500/mês</b> investidos no Google. Acima disso, 10% sobre o valor que exceder.</div>
         </div>
         <div>
           <span class="pb-label">O que está incluso</span>
@@ -156,20 +194,9 @@
             <li>Redação dos anúncios e das extensões.</li>
             <li><b>Acompanhamento diário</b> e <b>relatório semanal</b>: o que foi e o que faremos na semana.</li>
             <li>Ajuste contínuo de termos, lances e anúncios — sem custo extra.</li>
+            <li><b>Setup: R$ 0.</b> A maioria das agências cobra; aqui é cortesia.</li>
           </ul>
         </div>
-        <div>
-          <span class="pb-label">Mídia sugerida (paga direto ao Google)</span>
-          <div class="price"><b>R$ 1.500</b><span>/mês · dentro do limite sem taxa</span></div>
-        </div>
-      </div>
-      <div class="ptotal">
-        <table>
-          <tr><td>Gestão (Solutudo)</td><td class="num">R$ 500</td></tr>
-          <tr><td>Mídia (Google, direto)</td><td class="num">R$ 1.500</td></tr>
-          <tr><td>Setup e configuração</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
-          <tr class="tt"><td>Total mensal</td><td class="num">R$ 2.000</td></tr>
-        </table>
       </div>
     </div>
 
@@ -183,40 +210,32 @@
         <div>
           <span class="pb-label">Gestão mensal</span>
           <div class="price"><b>R$ 1.200</b><span>/mês · Google R$ 500 + Meta R$ 700</span></div>
+          <div class="cap"><b>Cuida de até R$ 3.000/mês</b> somando os dois canais. Acima disso, 10% sobre o valor que exceder.</div>
         </div>
         <div>
           <span class="pb-label">Tudo da Opção A, e mais</span>
           <ul class="clean">
             <li><b>Campanha de conversa no Meta</b>, com criação dos anúncios e mensagem de entrada do WhatsApp.</li>
-            <li>Segmentação por raio ou por cidades atendidas.</li>
+            <li>Segmentação por raio a partir do endereço ou por cidades atendidas.</li>
             <li>Rotação de criativos conforme o desempenho — troca inclusa.</li>
           </ul>
         </div>
         <div class="alert"><b>Pendência para viabilizar:</b> hoje não é possível compartilhar o acesso do Meta da EA3. Antes de contratar esta opção, precisamos resolver o acesso à conta de anúncio — nós ajudamos nesse ajuste, e a conta continua sendo de vocês.</div>
-      </div>
-      <div class="ptotal">
-        <table>
-          <tr><td>Gestão (Solutudo)</td><td class="num">R$ 1.200</td></tr>
-          <tr><td>Mídia sugerida (Google + Meta, direto)</td><td class="num">R$ 2.000</td></tr>
-          <tr><td>Setup e configuração</td><td class="num" style="color:#06845a">R$ 0 · cortesia</td></tr>
-          <tr class="tt"><td>Total mensal</td><td class="num">R$ 3.200</td></tr>
-        </table>
       </div>
     </div>
   </div>
 
   <div class="card">
     <span class="badge">Como o plano cresce</span>
-    <h3>Escala pelo valor investido, não por pacote novo</h3>
-    <p class="sub">Enquanto a mídia estiver em até <b>R$ 2.000/mês</b>, a gestão é o valor do canal. Acima disso entra a <b>taxa de responsabilidade de 10%</b> sobre o valor que exceder — porque gerir verba maior exige acompanhamento mais fino e mais criativos em rotação.</p>
+    <h3>A gestão acompanha o tamanho do investimento</h3>
+    <p class="sub">Cada canal tem uma faixa de mídia já coberta pela mensalidade. Quando o investimento passa dessa faixa, entra a <b>taxa de responsabilidade de 10% sobre o que exceder</b> — porque verba maior exige acompanhamento mais fino e mais criativos em rotação.</p>
     <table class="esc">
-      <tr><th>Mídia por mês</th><th class="num">Taxa de responsabilidade</th><th class="num">Gestão — só Google</th><th class="num">Gestão — Google + Meta</th></tr>
-      <tr class="hi"><td><b>Até R$ 2.000</b></td><td class="num">—</td><td class="num"><b>R$ 500</b></td><td class="num"><b>R$ 1.200</b></td></tr>
-      <tr><td>R$ 3.000</td><td class="num">R$ 100</td><td class="num">R$ 600</td><td class="num">R$ 1.300</td></tr>
-      <tr><td>R$ 5.000</td><td class="num">R$ 300</td><td class="num">R$ 800</td><td class="num">R$ 1.500</td></tr>
-      <tr><td>R$ 10.000</td><td class="num">R$ 800</td><td class="num">R$ 1.300</td><td class="num">R$ 2.000</td></tr>
+      <tr><th>Contratação</th><th class="num">Gestão mensal</th><th class="num">Mídia coberta</th><th class="num">Acima da faixa</th></tr>
+      <tr><td><b>Só Google</b></td><td class="num"><b>R$ 500</b></td><td class="num">até R$ 1.500/mês</td><td class="num">+10% do excedente</td></tr>
+      <tr><td><b>Só Meta</b></td><td class="num"><b>R$ 700</b></td><td class="num">até R$ 1.500/mês</td><td class="num">+10% do excedente</td></tr>
+      <tr><td><b>Google + Meta</b></td><td class="num"><b>R$ 1.200</b></td><td class="num">até R$ 3.000/mês</td><td class="num">+10% do excedente</td></tr>
     </table>
-    <div class="note"><b>Extras, se e quando fizerem sentido:</b> landing page com conjunto de criativos e campanhas adicionais são orçados à parte — nunca entram sem você aprovar antes. A verba de mídia é paga por vocês direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido.</div>
+    <div class="note"><b>Exemplo:</b> com os dois canais e R$ 5.000 de mídia no mês, a gestão fica em R$ 1.200 + 10% sobre os R$ 2.000 que passaram da faixa = <b>R$ 1.400</b>. <b>Extras</b> como landing page com conjunto de criativos ou campanha adicional são orçados à parte e nunca entram sem sua aprovação. A verba de mídia é paga por vocês direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido.</div>
   </div>
 
   <div class="sec">
@@ -312,7 +331,7 @@
   </div>
   <div class="card" style="text-align:center">
     <p class="sub" style="max-width:760px;margin:4px auto 0">Escolhida a opção, o plano é aprovado por vocês e agendamos a reunião de fundação na mesma semana — é dela que saem as palavras da campanha e a oferta. Campanhas no ar em até <b>15 dias corridos</b>.</p>
-    <p class="sub" style="max-width:760px;margin:12px auto 0"><b>Opção A · Google:</b> R$ 500/mês + mídia sugerida R$ 1.500 &nbsp;·&nbsp; <b>Opção B · Google + Meta:</b> R$ 1.200/mês + mídia sugerida R$ 2.000 (depende de resolvermos o acesso ao Meta) &nbsp;·&nbsp; <b>Setup R$ 0</b> &nbsp;·&nbsp; acompanhamento diário e relatório semanal &nbsp;·&nbsp; mínimo de 3 meses.</p>
+    <p class="sub" style="max-width:760px;margin:12px auto 0"><b>Opção A · Google:</b> R$ 500/mês, cuidando de até R$ 1.500 de mídia &nbsp;·&nbsp; <b>Opção B · Google + Meta:</b> R$ 1.200/mês, cuidando de até R$ 3.000 de mídia (depende de resolvermos o acesso ao Meta) &nbsp;·&nbsp; <b>Setup R$ 0</b> &nbsp;·&nbsp; acompanhamento diário e relatório semanal &nbsp;·&nbsp; mínimo de 3 meses.</p>
   </div>
 
   <div class="foot">
@@ -320,6 +339,101 @@
     Mídia paga diretamente às plataformas, com repasse tributário destacado em fatura pelas próprias plataformas
   </div>
 </div>
+</section>
 
+<!-- ==================================================== MODELO SIMPLES -->
+<section id="p-simple" class="panel">
+<div class="wrap">
+  <div class="simple">
+
+    <div style="text-align:center;padding:20px 0 4px">
+      <span class="sbadge">Modelo de proposta · use com qualquer cliente</span>
+      <h1>Anúncios que colocam sua empresa na frente de quem já está procurando</h1>
+      <p class="lead">A Solutudo cuida das suas campanhas no Google e no Meta para que mais pessoas certas encontrem sua empresa — e falem com você pelo WhatsApp.</p>
+    </div>
+
+    <div class="sblock">
+      <h2><i>1</i> O que fazemos</h2>
+      <div class="sitems">
+        <div class="sitem"><b>Colocamos você no topo do Google</b> quando alguém da sua região busca o que você vende. Quem procura já quer contratar.</div>
+        <div class="sitem"><b>Criamos anúncios no Instagram e Facebook</b> que abrem uma conversa no seu WhatsApp com um toque.</div>
+        <div class="sitem"><b>Cuidamos de tudo:</b> configuração das contas, criação dos anúncios, acompanhamento diário e ajustes ao longo do mês.</div>
+      </div>
+    </div>
+
+    <div class="sblock">
+      <h2><i>2</i> Quanto custa</h2>
+      <p>Você paga a <b>gestão</b> para a Solutudo. O <b>investimento em anúncios</b> é pago por você direto ao Google e ao Meta — a conta é sua, sem nenhuma taxa nossa por cima.</p>
+      <div class="pcards">
+        <div class="pc">
+          <div class="pcn">Google</div>
+          <div class="pcv">R$ 500<span>/mês</span></div>
+          <div class="pcc">Cuida de até R$ 1.500/mês em anúncios</div>
+        </div>
+        <div class="pc">
+          <div class="pcn">Meta (Instagram e Facebook)</div>
+          <div class="pcv">R$ 700<span>/mês</span></div>
+          <div class="pcc">Cuida de até R$ 1.500/mês em anúncios</div>
+        </div>
+        <div class="pc best">
+          <div class="pcn">Google + Meta</div>
+          <div class="pcv">R$ 1.200<span>/mês</span></div>
+          <div class="pcc">Cuida de até R$ 3.000/mês em anúncios</div>
+        </div>
+      </div>
+      <div class="sitem" style="margin-top:12px"><b>Quer investir mais que isso?</b> Pode. Acima da faixa do seu plano, acrescentamos 10% sobre o valor que passar — é o acompanhamento extra que uma verba maior exige.</div>
+      <div class="sitem" style="margin-top:9px"><b>Sem taxa de entrada.</b> A configuração inicial é cortesia. A maioria das agências cobra por isso.</div>
+    </div>
+
+    <div class="sblock">
+      <h2><i>3</i> O que precisamos de você</h2>
+      <div class="sitems">
+        <div class="sitem"><b>Uma oferta.</b> Um motivo concreto para a pessoa falar com você agora — uma condição, um prazo, uma vantagem real. É a partir dela que criamos os anúncios. Sem oferta, o anúncio não convence ninguém.</div>
+        <div class="sitem"><b>WhatsApp Business ativo</b> e alguém para responder rápido. O contato chega em minutos; quem demora horas para responder perde a venda que já foi paga.</div>
+        <div class="sitem"><b>Uma conversa de 1 hora</b> no início, para escolhermos juntos os serviços, as regiões e as palavras que vão para os anúncios.</div>
+      </div>
+    </div>
+
+    <div class="sblock">
+      <h2><i>4</i> Como funciona, na prática</h2>
+      <div class="steps">
+        <div class="step"><span class="sw">Semanas 1–2</span><p><b>Preparação:</b> criamos e configuramos as contas <b>no seu nome</b>, instalamos o rastreio do WhatsApp e definimos com você a oferta e os anúncios.</p></div>
+        <div class="step"><span class="sw">Semanas 3–4</span><p><b>Anúncios no ar.</b> Os primeiros dias são de aprendizado das plataformas — é normal o resultado oscilar no começo.</p></div>
+        <div class="step"><span class="sw">Todo dia</span><p><b>Acompanhamento diário</b> das campanhas, com ajustes sempre que necessário.</p></div>
+        <div class="step"><span class="sw">Toda semana</span><p><b>Relatório semanal:</b> o que aconteceu e o que vamos fazer na semana seguinte, em linguagem simples.</p></div>
+        <div class="step"><span class="sw">No 3º mês</span><p><b>Balanço com você:</b> aí sim os números são confiáveis. Decidimos juntos se aumenta, ajusta ou encerra.</p></div>
+      </div>
+    </div>
+
+    <div class="sblock">
+      <h2><i>5</i> O que você recebe</h2>
+      <div class="sitems">
+        <div class="sitem"><b>Contatos no seu WhatsApp</b> — e sabemos de qual anúncio veio cada um.</div>
+        <div class="sitem"><b>Um número que importa:</b> quanto custou cada contato. Curtida e clique aparecem no relatório, mas não é isso que paga a conta.</div>
+        <div class="sitem"><b>As contas são suas.</b> Se um dia quisermos caminhos diferentes, você leva tudo: contas, campanhas e histórico.</div>
+      </div>
+    </div>
+
+    <div class="sfoot">
+      <b>O que não prometemos:</b> número garantido de clientes. Anúncio bem feito traz contatos qualificados a um custo conhecido — fechar a venda depende do seu atendimento e da sua proposta. O que garantimos é gestão diligente, verba transparente e decisão tomada junto com você a cada ciclo.
+      <div style="margin-top:14px;font-weight:800;color:var(--ink);font-size:14.5px">Contrato mínimo de 3 meses — o tempo necessário para os números fazerem sentido. Depois, mês a mês.</div>
+    </div>
+
+    <p class="foot">Modelo de proposta Solutudo · gestão de tráfego · valores vigentes em 12/08/2026</p>
+  </div>
+</div>
+</section>
+
+<script>
+  function show(which){
+    ['full','simple'].forEach(function(k){
+      document.getElementById('p-'+k).classList.toggle('on', which===k);
+      document.getElementById('t-'+k).classList.toggle('on', which===k);
+    });
+    history.replaceState(null,'','#'+which);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  if(location.hash==='#simple') show('simple');
+</script>
 </body>
 </html>
