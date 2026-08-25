@@ -44,16 +44,21 @@ não é atendido em minutos vira dinheiro queimado, e essa parte não é nossa.
 ## 2. Configuração padrão das campanhas
 
 ### Google — 1 campanha de Pesquisa
+- Coloca o site do cliente **no topo das buscas** de quem já procura o serviço na região.
+- **Trabalho no site é parte da entrega:** destacar o WhatsApp, botão fixo no mobile, contato visível
+  em toda rolagem. Não adianta trazer visita para uma página onde o contato se esconde.
 - Objetivo **Leads**, não Tráfego.
 - Conversões contadas: clique no WhatsApp do site, ligação e formulário.
 - Grupos de anúncio por serviço; extensões de chamada e localização.
 - Pesquisa antes de qualquer formato automático — estes precisam de histórico de conversão para funcionar.
 
-### Meta — 2 campanhas
-1. **Conversa (click-to-WhatsApp):** objetivo Engajamento com destino WhatsApp, otimizado para conversas
-   ou leads. Mensagem de entrada pré-escrita (é ela que o cliente envia ao tocar no botão) — escrever
-   uma que já qualifique: serviço e cidade.
-2. **Site:** leva ao site/LP, alimenta o público de remarketing.
+### Meta — 2 campanhas, ambas terminando no WhatsApp
+1. **Anúncio direto para o WhatsApp:** o criativo abre a conversa com um toque, sem passar por página.
+   Objetivo Engajamento com destino WhatsApp, otimizado para conversas. Mensagem de entrada pré-escrita,
+   já qualificando serviço e cidade.
+2. **Anúncio para o site institucional:** para quem precisa conhecer a empresa antes de falar. O site
+   explica — mas é montado para levar ao WhatsApp: botão fixo no mobile, contato repetido em cada
+   bloco. **As duas campanhas terminam no mesmo lugar**; o que muda é o caminho.
 
 **Segmentação local:** pino no endereço com raio ajustável, ou lista de cidades atendidas. Interesses
 entre **5 e 10** — mais que isso é ruído. Posicionamento automático como padrão.
@@ -151,7 +156,7 @@ referência de mercado citada acima.
 | Item | Gestão mensal | Mídia coberta pela gestão |
 |---|---|---|
 | **Google Ads** (1 campanha de Pesquisa) | **R$ 500** | até **R$ 1.500/mês** |
-| **Meta Ads** (campanhas de conversa) | **R$ 700** | até **R$ 1.500/mês** |
+| **Meta Ads** (2 campanhas de conversa) | **R$ 800** | até **R$ 1.500/mês** |
 | **Os dois canais** | **R$ 1.200** | até **R$ 3.000/mês** |
 
 - É o **plano inicial**. Os planos maiores não mudam de escopo: **escalam pelo valor**, conforme a

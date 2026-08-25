@@ -117,6 +117,10 @@
   .pc .pcv{font-size:32px;font-weight:800;letter-spacing:-.045em;margin-top:6px;font-variant-numeric:tabular-nums}
   .pc .pcv span{font-size:13px;font-weight:700;color:var(--g600);letter-spacing:0}
   .pc .pcc{font-size:12.8px;color:#06503B;background:var(--tint-mint);border-radius:10px;padding:8px 10px;margin-top:11px;font-weight:700;line-height:1.4}
+  .pc .pcl{list-style:none;margin-top:13px;padding:0;display:flex;flex-direction:column;gap:7px;text-align:left}
+  .pc .pcl li{position:relative;padding-left:18px;font-size:12.8px;color:var(--g700);line-height:1.45}
+  .pc .pcl li::before{content:"✓";position:absolute;left:0;top:0;color:#06845a;font-weight:800;font-size:12px}
+  .pc .pcl li b{color:var(--ink)}
   .sfoot{margin-top:34px;background:var(--white);border:var(--line);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-card);font-size:14px;color:var(--g700);line-height:1.6}
   .sfoot b{color:var(--ink)}
 </style>
@@ -209,13 +213,14 @@
       <div class="pbody">
         <div>
           <span class="pb-label">Gestão mensal</span>
-          <div class="price"><b>R$ 1.200</b><span>/mês · Google R$ 500 + Meta R$ 700</span></div>
+          <div class="price"><b>R$ 1.200</b><span>/mês · Google R$ 500 + Meta R$ 800, com desconto no conjunto</span></div>
           <div class="cap"><b>Cuida de até R$ 3.000/mês</b> somando os dois canais. Acima disso, 10% sobre o valor que exceder.</div>
         </div>
         <div>
           <span class="pb-label">Tudo da Opção A, e mais</span>
           <ul class="clean">
-            <li><b>Campanha de conversa no Meta</b>, com criação dos anúncios e mensagem de entrada do WhatsApp.</li>
+            <li><b>2 campanhas no Meta, as duas terminando no seu WhatsApp:</b> uma com anúncio que <b>abre a conversa direto</b>, com um toque; outra que leva ao <b>site institucional</b>, para quem precisa conhecer a empresa antes — e o site é montado para empurrar para o WhatsApp.</li>
+            <li>Criação dos anúncios e da mensagem de entrada, já dizendo serviço e cidade.</li>
             <li>Segmentação por raio a partir do endereço ou por cidades atendidas.</li>
             <li>Rotação de criativos conforme o desempenho — troca inclusa.</li>
           </ul>
@@ -232,7 +237,7 @@
     <table class="esc">
       <tr><th>Contratação</th><th class="num">Gestão mensal</th><th class="num">Mídia coberta</th><th class="num">Acima da faixa</th></tr>
       <tr><td><b>Só Google</b></td><td class="num"><b>R$ 500</b></td><td class="num">até R$ 1.500/mês</td><td class="num">+10% do excedente</td></tr>
-      <tr><td><b>Só Meta</b></td><td class="num"><b>R$ 700</b></td><td class="num">até R$ 1.500/mês</td><td class="num">+10% do excedente</td></tr>
+      <tr><td><b>Só Meta</b></td><td class="num"><b>R$ 800</b></td><td class="num">até R$ 1.500/mês</td><td class="num">+10% do excedente</td></tr>
       <tr><td><b>Google + Meta</b></td><td class="num"><b>R$ 1.200</b></td><td class="num">até R$ 3.000/mês</td><td class="num">+10% do excedente</td></tr>
     </table>
     <div class="note"><b>Exemplo:</b> com os dois canais e R$ 5.000 de mídia no mês, a gestão fica em R$ 1.200 + 10% sobre os R$ 2.000 que passaram da faixa = <b>R$ 1.400</b>. <b>Extras</b> como landing page com conjunto de criativos ou campanha adicional são orçados à parte e nunca entram sem sua aprovação. A verba de mídia é paga por vocês direto às plataformas, que desde janeiro de 2026 destacam na fatura um repasse tributário de ~12,15% sobre o investido.</div>
@@ -281,15 +286,17 @@
         <li><b>Termos específicos, não genéricos.</b> "Construtora em [cidade]" e "reforma de [tipo]" custam menos por clique e trazem quem realmente quer contratar. Palavra ampla é cara e converte pouco — só entra quando houver verba e histórico que sustentem o teste.</li>
         <li><b>Uma campanha só, não duas.</b> O destino é o site, e o WhatsApp entra como conversão medida dentro dele, junto com ligações. Dividir em duas fatiaria os dados e atrasaria o aprendizado.</li>
         <li>Objetivo <b>Leads</b> — o algoritmo otimiza por contato gerado, não por clique.</li>
+        <li><b>E o trabalho não para no anúncio:</b> no site, destacamos o WhatsApp — <b>botão fixo no celular</b>, contato repetido em cada bloco, telefone visível. Não tem como a pessoa não notar como falar com vocês.</li>
       </ul>
     </div>
     <div class="card" style="margin-top:14px">
       <span class="badge">Meta · campanha de conversa</span>
       <h3>Toda campanha do Meta é para gerar conversa</h3>
       <ul class="clean">
-        <li>O anúncio <b>abre o WhatsApp com um toque</b>, sem passar por página — otimizado para conversas, não para cliques.</li>
-        <li>O criativo é construído <b>a partir da oferta</b> definida com vocês: é a chamada para ação que faz a pessoa tocar no botão.</li>
-        <li>Segmentação por raio a partir do endereço ou por lista de cidades atendidas.</li>
+        <li><b>Campanha 1 — direto para o WhatsApp:</b> o anúncio abre a conversa com um toque, sem passar por página. É o caminho mais curto para quem já decidiu pedir orçamento.</li>
+        <li><b>Campanha 2 — para o site institucional:</b> para quem ainda precisa conhecer a empresa. O site explica quem vocês são, mas <b>com foco em levar ao WhatsApp</b> — contato em destaque do começo ao fim.</li>
+        <li>As duas terminam no mesmo lugar: <b>uma conversa no WhatsApp da EA3</b>. O que muda é o caminho.</li>
+        <li>O criativo é construído <b>a partir da oferta</b> definida com vocês — é a chamada para ação que faz a pessoa tocar no botão.</li>
         <li>Criativo cansa: trocamos quando o desempenho pedir, <b>sem custo adicional</b>.</li>
       </ul>
     </div>
@@ -355,9 +362,11 @@
     <div class="sblock">
       <h2><i>1</i> O que fazemos</h2>
       <div class="sitems">
-        <div class="sitem"><b>Colocamos você no topo do Google</b> quando alguém da sua região busca o que você vende. Quem procura já quer contratar.</div>
-        <div class="sitem"><b>Criamos anúncios no Instagram e Facebook</b> que abrem uma conversa no seu WhatsApp com um toque.</div>
-        <div class="sitem"><b>Cuidamos de tudo:</b> configuração das contas, criação dos anúncios, acompanhamento diário e ajustes ao longo do mês.</div>
+        <div class="sitem"><b>No Google — seu site no topo das buscas.</b> Uma campanha de pesquisa para aparecer em primeiro quando alguém da sua região procura exatamente o que você vende. Quem busca já está querendo contratar — é o público mais quente que existe.<br><span style="display:block;margin-top:7px;color:var(--g600)">E o trabalho não para no anúncio: <b style="color:var(--ink)">no seu site a gente destaca o WhatsApp</b> — botão fixo na tela do celular, contato repetido ao longo da página. A pessoa chega e não tem como não ver como falar com você.</span></div>
+        <div class="sitem"><b>No Meta (Instagram e Facebook) — 2 campanhas, as duas terminando no seu WhatsApp:</b>
+          <br><span style="display:block;margin-top:7px"><b>1 · Anúncio direto para o WhatsApp.</b> A pessoa toca no anúncio e já cai na conversa com você, sem passar por nenhuma página. É o caminho mais curto para quem já decidiu.</span>
+          <span style="display:block;margin-top:6px"><b>2 · Anúncio para o seu site institucional.</b> Para quem ainda precisa conhecer sua empresa antes de falar. O site explica quem você é e o que faz — mas é montado com um objetivo só: <b>levar essa pessoa para o seu WhatsApp</b>.</span></div>
+        <div class="sitem"><b>Cuidamos de toda a parte técnica:</b> criamos e configuramos as contas de anúncio no seu nome, instalamos o rastreamento e criamos os anúncios. Você não precisa mexer em nada.</div>
       </div>
     </div>
 
@@ -366,19 +375,37 @@
       <p>Você paga a <b>gestão</b> para a Solutudo. O <b>investimento em anúncios</b> é pago por você direto ao Google e ao Meta — a conta é sua, sem nenhuma taxa nossa por cima.</p>
       <div class="pcards">
         <div class="pc">
-          <div class="pcn">Google</div>
+          <div class="pcn">Só Google</div>
           <div class="pcv">R$ 500<span>/mês</span></div>
           <div class="pcc">Cuida de até R$ 1.500/mês em anúncios</div>
+          <ul class="pcl">
+            <li>1 campanha de pesquisa, para aparecer no topo</li>
+            <li>Seu site preparado para destacar o WhatsApp</li>
+            <li>Configuração da conta e do rastreamento</li>
+            <li>Acompanhamento diário + relatório semanal</li>
+          </ul>
         </div>
         <div class="pc">
-          <div class="pcn">Meta (Instagram e Facebook)</div>
-          <div class="pcv">R$ 700<span>/mês</span></div>
+          <div class="pcn">Só Meta · Instagram e Facebook</div>
+          <div class="pcv">R$ 800<span>/mês</span></div>
           <div class="pcc">Cuida de até R$ 1.500/mês em anúncios</div>
+          <ul class="pcl">
+            <li>2 campanhas: uma direto para o WhatsApp, outra para o site</li>
+            <li>Criação dos anúncios a partir da sua oferta</li>
+            <li>Troca de criativo quando cansar, sem custo</li>
+            <li>Acompanhamento diário + relatório semanal</li>
+          </ul>
         </div>
         <div class="pc best">
           <div class="pcn">Google + Meta</div>
           <div class="pcv">R$ 1.200<span>/mês</span></div>
           <div class="pcc">Cuida de até R$ 3.000/mês em anúncios</div>
+          <ul class="pcl">
+            <li><b>Tudo dos dois planos acima</b></li>
+            <li>3 campanhas no ar trabalhando juntas</li>
+            <li>Verba realocada para o canal que traz contato mais barato</li>
+            <li>Sai mais em conta que contratar separado</li>
+          </ul>
         </div>
       </div>
       <div class="sitem" style="margin-top:12px"><b>Quer investir mais que isso?</b> Pode. Acima da faixa do seu plano, acrescentamos 10% sobre o valor que passar — é o acompanhamento extra que uma verba maior exige.</div>
@@ -409,14 +436,18 @@
       <h2><i>5</i> O que você recebe</h2>
       <div class="sitems">
         <div class="sitem"><b>Contatos no seu WhatsApp</b> — e sabemos de qual anúncio veio cada um.</div>
+        <div class="sitem"><b>Relatório toda semana, em duas partes:</b>
+          <br><span style="display:block;margin-top:7px"><b>Como foi</b> — os números da semana: quantas pessoas viram, quantas clicaram, quantos contatos chegaram e quanto custou cada um.</span>
+          <span style="display:block;margin-top:6px"><b>O que vamos fazer nesta semana</b> — os ajustes já decididos e o motivo de cada um, em linguagem simples.</span></div>
+        <div class="sitem"><b>Acompanhamento diário.</b> Suas campanhas são olhadas todos os dias úteis — não é algo que sobe e fica esquecido até o fim do mês. Ajuste pequeno feito na hora é o que evita desperdício grande.</div>
         <div class="sitem"><b>Um número que importa:</b> quanto custou cada contato. Curtida e clique aparecem no relatório, mas não é isso que paga a conta.</div>
-        <div class="sitem"><b>As contas são suas.</b> Se um dia quisermos caminhos diferentes, você leva tudo: contas, campanhas e histórico.</div>
+        <div class="sitem"><b>As contas são suas.</b> Se um dia seguirmos caminhos diferentes, você leva tudo: contas, campanhas e histórico.</div>
       </div>
     </div>
 
     <div class="sfoot">
       <b>O que não prometemos:</b> número garantido de clientes. Anúncio bem feito traz contatos qualificados a um custo conhecido — fechar a venda depende do seu atendimento e da sua proposta. O que garantimos é gestão diligente, verba transparente e decisão tomada junto com você a cada ciclo.
-      <div style="margin-top:14px;font-weight:800;color:var(--ink);font-size:14.5px">Contrato mínimo de 3 meses — o tempo necessário para os números fazerem sentido. Depois, mês a mês.</div>
+      <div style="margin-top:14px;font-weight:800;color:var(--ink);font-size:14.5px">Contrato mínimo de 3 meses.</div><div style="margin-top:6px">É o tempo necessário para termos <b>números suficientes para analisar</b>: no primeiro mês as plataformas ainda estão aprendendo quem responde aos seus anúncios, e o custo por contato só se estabiliza depois disso. No fim do 3º mês fazemos o balanço com você, com dados de verdade na mesa, e decidimos juntos se aumenta, ajusta ou encerra. Depois desse período, é mês a mês.</div>
     </div>
 
     <p class="foot">Modelo de proposta Solutudo · gestão de tráfego · valores vigentes em 12/08/2026</p>
