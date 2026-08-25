@@ -150,9 +150,9 @@ referência de mercado citada acima.
 
 | Item | Valor mensal |
 |---|---|
-| **Google Ads** (1 campanha de Pesquisa) | **R$ 300** |
-| **Meta Ads** (campanhas de conversa) | **R$ 450** |
-| **Os dois canais** | **R$ 750** |
+| **Google Ads** (1 campanha de Pesquisa) | **R$ 500** |
+| **Meta Ads** (campanhas de conversa) | **R$ 700** |
+| **Os dois canais** | **R$ 1.200** |
 
 - É o **plano inicial**. Os planos maiores não mudam de escopo: **escalam pelo valor**, conforme a
   verba de mídia cresce.
@@ -167,10 +167,10 @@ referência de mercado citada acima.
 
 | Mídia/mês | Taxa | Gestão total |
 |---|---|---|
-| até R$ 2.000 | — | R$ 750 |
-| R$ 3.000 | R$ 100 | R$ 850 |
-| R$ 5.000 | R$ 300 | R$ 1.050 |
-| R$ 10.000 | R$ 800 | R$ 1.550 |
+| até R$ 2.000 | — | R$ 1.200 |
+| R$ 3.000 | R$ 100 | R$ 1.300 |
+| R$ 5.000 | R$ 300 | R$ 1.500 |
+| R$ 10.000 | R$ 800 | R$ 2.000 |
 
 ### 7.2 Meta — sempre conversa, e sempre com oferta
 
