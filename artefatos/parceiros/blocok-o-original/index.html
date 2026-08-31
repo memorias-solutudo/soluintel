@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Blocok O Original · diagnóstico · Solutudo</title>
+<title>Central de Conteúdo — Blocok O Original · Solutudo</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
 <style>
   :root{
     --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
     --ink:#151515; --g700:#4D4D4D; --g600:#656565; --g500:#888888; --g200:#DCDCDC; --g100:#F2F2F2;
     --bg:#F5F4F8; --white:#fff;
-    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-cyan:#DCF6FC; --tint-yellow:#FFF6DC;
-    --tint-red:#FFE4E0;
+    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-pink:#FFE3F1; --tint-cyan:#DCF6FC; --tint-yellow:#FFF6DC;
     --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
     --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
     --shadow-md:0 12px 32px rgba(21,21,21,.12);
@@ -25,217 +24,950 @@
   body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
   body::-webkit-scrollbar{display:none}
   a{color:var(--brand-purple)}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px;border-radius:6px}
-  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em;word-break:break-word}
+  button{font:inherit;color:inherit}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px;border-radius:6px}
+  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
   .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
-  .tb-in{max-width:1500px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}
-  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px;text-decoration:none;color:inherit}
-  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta)}
-  .wrap{max-width:1060px;margin:0 auto;padding:26px 26px 80px}
-  .back{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:18px}
-  .back:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
-  .head{display:flex;flex-wrap:wrap;align-items:center;gap:15px;padding-bottom:20px;border-bottom:var(--line);margin-bottom:20px}
-  .head img{width:58px;height:58px;border-radius:15px;object-fit:cover;background:var(--g100);flex:none}
-  .head h1{font-size:27px;font-weight:800;letter-spacing:-.035em;line-height:1.12}
-  .head .meta{font-size:13px;color:var(--g600);font-weight:600;margin-top:3px}
-  .st{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill)}
-  .st.wait{background:var(--tint-yellow);color:#7A5A00}
-  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;border:var(--line);margin-bottom:16px}
-  .card h2{font-size:19px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
-  .card h3{font-size:14.5px;font-weight:800;letter-spacing:-.02em;margin-top:18px}
-  .card p{font-size:13.8px;color:var(--g700);margin-top:9px;line-height:1.58;max-width:78ch}
-  .card p b{color:var(--ink)}
-  .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE;margin-bottom:10px}
+  .tb-in{max-width:1840px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tb-in::after{content:""}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
+  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta);display:inline-block}
+  .seg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px;flex-wrap:wrap;justify-content:center}
+  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 16px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button.on{color:#fff;background:var(--grad-cta)}
+  @media(max-width:940px){.tb-in{grid-template-columns:1fr auto}.seg{grid-column:1/-1;order:3;justify-self:center;margin-top:2px}}
+  .hero{text-align:center;padding:30px 22px 4px;max-width:1100px;margin:0 auto}
+  .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .hero h1{font-size:29px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.12}
+  .hero .crumbs{color:var(--g600);font-size:13.5px;margin-top:7px;font-weight:600}
+  .wrap{max-width:1840px;margin:0 auto;padding:16px 30px 70px}
+  .sec .secsub,.card p.sub{max-width:980px}
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .25s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .sec{margin:34px 0 14px}
+  .sec.first{margin-top:12px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .sec h2{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:11px;line-height:1.16;text-wrap:balance}
+  .sec .secsub{color:var(--g700);font-size:14px;margin-top:6px;max-width:720px}
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 24px;border:var(--line);margin-top:14px}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE}
+  .badge.mint{background:var(--tint-mint);color:#06724F}
+  .badge.peach{background:var(--tint-peach);color:#B03A00}
   .badge.warn{background:var(--tint-yellow);color:#7A5A00}
-  .badge.stop{background:var(--tint-red);color:#A3200F}
-  .card.stop{border-color:rgba(196,43,34,.35);background:linear-gradient(180deg,#FFF6F4 0%,var(--white) 62%)}
-  .card p.quote{font-size:23px;font-weight:800;letter-spacing:-.035em;line-height:1.2;margin-top:8px;color:var(--ink);max-width:none}
-  .card p.src{font-size:12.2px;color:var(--g500);font-weight:700;margin-top:7px}
+  .card h3{font-size:17.5px;font-weight:800;letter-spacing:-.025em;margin-top:9px;line-height:1.22}
+  .card p.sub{color:var(--g700);font-size:13.5px;margin-top:6px}
   ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
-  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.55}
+  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.5}
   ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
   ul.clean li b{color:var(--ink)}
-  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.2px}
-  th,td{text-align:left;padding:9px 12px;border-bottom:var(--line);vertical-align:top}
-  th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
-  td b{color:var(--ink)}
-  td.n{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink);white-space:nowrap}
-  td.bad{color:#A3200F;font-weight:700}
-  .note{margin-top:13px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.55}
-  .kpi{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;border-top:var(--line);padding-top:13px}
-  .kpi div{font-size:12px;color:var(--g600);font-weight:700}
-  .kpi b{display:block;font-size:22px;color:var(--ink);letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1.2}
-  .kpi b.bad{color:#A3200F}
-  .vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:12px;margin-top:14px}
-  .vsb{border:var(--line);border-radius:var(--r-md);padding:16px 18px}
-  .vsb.a{background:#FFF6F4;border-color:rgba(196,43,34,.24)}
-  .vsb.b{background:var(--tint-mint);border-color:rgba(6,114,79,.2)}
-  .vsb h4{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:11px}
-  .vsb.a h4{color:#A3200F}
-  .vsb.b h4{color:#06724F}
-  .vsb dl{display:flex;flex-direction:column;gap:9px}
-  .vsb dt{font-size:12.8px;font-weight:800;color:var(--ink)}
-  .vsb dd{font-size:12.4px;color:var(--g700);font-weight:600;line-height:1.45;word-break:break-word}
-  .cities{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
-  .city{font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
-  .city.cond{background:var(--tint-cyan);color:#0B5E70}
-  .cf{display:flex;gap:14px;padding:14px 16px;border-radius:var(--r-md);background:var(--tint-yellow);margin-top:9px}
-  .cf .q{font-size:13px;font-weight:800;color:#7A5A00;flex:none;padding-top:1px}
-  .card .cf p{margin-top:0;font-size:13.4px;color:#5A4200;font-weight:600;max-width:none}
-  .cf p b{color:#3D2E00}
-  .foot{margin-top:34px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
-  @media(max-width:940px){.tb-in{grid-template-columns:1fr}}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  @media(max-width:940px){.grid3{grid-template-columns:1fr}}
+  .kv{display:grid;grid-template-columns:190px minmax(0,1fr);gap:8px 16px;margin-top:12px;font-size:13.6px;max-width:1080px}
+  @media(max-width:640px){.kv{grid-template-columns:1fr}}
+  .kv dt{font-weight:800;color:var(--g600);font-size:12.5px;letter-spacing:.02em;text-transform:uppercase;padding-top:2px}
+  .kv dd{color:var(--ink);font-weight:600;overflow-wrap:break-word}
+  .kv dd small{display:block;color:var(--g600);font-weight:500;font-size:12.3px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{font-size:12.3px;font-weight:700;padding:6px 13px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .chip.mint{background:var(--tint-mint);color:#06724F}
+  .chip.lav{background:var(--tint-lav);color:#7B00BE}
+  .chip.peach{background:var(--tint-peach);color:#B03A00}
+  .txt{background:var(--bg);border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;font-size:14px;line-height:1.62;color:var(--ink)}
+  .txt h4{font-size:14px;font-weight:800;margin:12px 0 4px}
+  .txt h4:first-child{margin-top:0}
+  .txt ul{margin:4px 0 4px 18px}
+  .txt li{margin-top:3px}
+  .txt .cta{font-weight:800;color:var(--brand-pink);margin-top:10px}
+  .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:11px 14px;font-size:12.6px;color:#06503B;line-height:1.5}
+  .selo b{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  .cnt{display:inline-block;font-size:11.5px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:3px 10px;margin-left:8px;vertical-align:middle}
+  .note{margin-top:12px;background:var(--tint-yellow);border-radius:12px;padding:11px 14px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
+  .blk{border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;background:var(--white)}
+  .blk .bnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;margin-right:9px;vertical-align:middle}
+  .blk h4{display:inline;font-size:15.5px;font-weight:800;letter-spacing:-.02em;vertical-align:middle}
+  .blk .bwhy{font-size:12.6px;color:var(--g600);font-weight:600;margin-top:8px}
+  .ed{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill)}
+  .ed i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+  .ed1{background:var(--tint-lav);color:#7B00BE}
+  .ed2{background:var(--tint-pink);color:#C40074}
+  .ed3{background:var(--tint-peach);color:#B03A00}
+  .ed4{background:var(--tint-mint);color:#06724F}
+  .ed5{background:var(--tint-cyan);color:#00647C}
+  .ed6{background:var(--tint-yellow);color:#7A5A00}
+  .tema{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start;background:var(--white);border:var(--line);border-radius:13px;padding:12px 15px;box-shadow:var(--shadow-card);margin-top:8px}
+  @media(max-width:640px){.tema{grid-template-columns:1fr;gap:6px}}
+  .tema .tt{font-size:13.8px;font-weight:800;letter-spacing:-.015em;line-height:1.35}
+  .tema .td{font-size:12.8px;color:var(--g700);margin-top:3px;line-height:1.45}
+  .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:12px}
+  .ph{position:relative;border-radius:12px;overflow:hidden;background:var(--g100);border:var(--line)}
+  .ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .ph.wide img{aspect-ratio:16/7}
+  .ph .pl{position:absolute;left:7px;bottom:7px;font-size:10px;font-weight:800;letter-spacing:.03em;background:rgba(21,21,21,.72);color:#fff;padding:3px 8px;border-radius:var(--pill);line-height:1.2}
+  .ph-grid.caps{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  /* marcações inline + tooltip do porquê (regra vira hint) */
+  mark{border-radius:5px;padding:0 3px;font-weight:600;cursor:help}
+  .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
+  .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
+  .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 #00B589}
+  [data-tip]{position:relative}
+  [data-tip]:hover{z-index:60}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:310px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
+  [data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
+  .hint{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--g200);color:var(--g700);font-size:10px;font-weight:800;cursor:help;margin-left:5px;vertical-align:middle}
+  .hint:hover{background:var(--ink);color:#fff}
+
+  /* comparativo como está × como deveria */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  @media(max-width:900px){.cmp{grid-template-columns:1fr}}
+  .col{border:var(--line);border-radius:15px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+  .col.now{border-color:rgba(252,98,0,.3)}
+  .col.next{border-color:rgba(0,181,137,.32)}
+  .colh{padding:11px 15px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .col.now .colh{background:var(--tint-peach);color:#8a3400}
+  .col.next .colh{background:var(--tint-mint);color:#06724F}
+  .colb{padding:15px 17px;font-size:13.6px;line-height:1.6;color:var(--ink);flex:1}
+  .colb h5{font-size:13px;font-weight:800;margin:11px 0 3px}
+  .colb h5:first-child{margin-top:0}
+  .colb ul{margin:5px 0 5px 18px}
+  .colb li{margin-top:3px}
+  .colb p + p{margin-top:8px}
+  .colb .lbl{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);display:block;margin-bottom:3px}
+  .colb .ttl{font-weight:800;font-size:14.5px;letter-spacing:-.02em}
+
+  /* score */
+  .sc{border-top:var(--line);padding:13px 17px;background:var(--bg)}
+  .scnum{display:flex;align-items:baseline;gap:8px}
+  .scnum b{font-size:27px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .scnum span{font-size:11.5px;font-weight:700;color:var(--g600)}
+  .col.now .scnum b{color:var(--brand-orange-deep)}
+  .col.next .scnum b{color:#06845a}
+  .scrow{display:grid;grid-template-columns:118px 1fr 58px;gap:9px;align-items:center;margin-top:6px;font-size:11.5px}
+  .scrow .sl{color:var(--g700);font-weight:700}
+  .scrow .st{height:6px;border-radius:var(--pill);background:var(--g200);overflow:hidden}
+  .scrow .sf{height:100%;border-radius:var(--pill);display:block}
+  .col.now .sf{background:var(--brand-orange)}
+  .col.next .sf{background:#00B589}
+  .scrow .sv{text-align:right;font-weight:800;color:var(--g700);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .scrow .sv i{font-style:normal;font-weight:700;color:var(--g400);font-size:10.5px}
+  .delta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:4px 12px;margin-top:12px}
+
+  /* catálogo de produtos e serviços */
+  .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:14px}
+  .catcard{text-align:left;background:var(--white);border:1.5px solid rgba(21,21,21,.09);border-radius:15px;padding:15px 16px;cursor:pointer;box-shadow:var(--shadow-card);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;display:flex;flex-direction:column;gap:7px;font:inherit;color:inherit}
+  .catcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--brand-purple)}
+  .cattop{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .cattag{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill)}
+  .cattag.reg{background:var(--tint-lav);color:#7B00BE}
+  .cattag.sug{background:var(--tint-cyan);color:#00647C}
+  .cattag.st{background:var(--g100);color:var(--g700)}
+  .catname{font-size:15px;font-weight:800;letter-spacing:-.025em;line-height:1.24}
+  .catprev{font-size:12.4px;color:var(--g700);line-height:1.45;flex:1}
+  .catprev em{font-style:normal;color:var(--g600)}
+  .catfoot{display:flex;align-items:center;gap:8px;border-top:var(--line);padding-top:9px;margin-top:2px}
+  .catsc{font-size:16px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .catsc.now{color:var(--brand-orange-deep)}
+  .catsc.now.zero{color:var(--g400)}
+  .catsc.next{color:#06845a}
+  .catarrow{color:var(--g400);font-weight:800}
+  .catopen{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--brand-purple)}
+  .itemfull{display:none}
+
+  /* modal lateral da ficha do item */
+  .dw-back{position:fixed;inset:0;background:rgba(21,21,21,.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:98;opacity:0;pointer-events:none;transition:opacity .2s ease}
+  .dw-back.on{opacity:1;pointer-events:auto}
+  .dw{position:fixed;top:0;right:0;height:100%;width:min(1120px,96vw);background:var(--white);z-index:99;box-shadow:-14px 0 44px rgba(21,21,21,.18);transform:translateX(102%);visibility:hidden;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s linear .24s;display:flex;flex-direction:column;overflow:hidden}
+  .dw.on{transform:none;visibility:visible;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s}
+  .dw-top{padding:16px 22px;display:flex;align-items:center;gap:12px;border-bottom:var(--line);flex:none}
+  .dw-top h3{font-size:18px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  .dw-close{margin-left:auto;flex:none;border:none;background:var(--g100);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;font-weight:800;color:var(--g700);display:flex;align-items:center;justify-content:center}
+  .dw-close:hover{background:var(--g200)}
+  .dw-body{padding:18px 22px 30px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .dw-body::-webkit-scrollbar{display:none}
+  .dw-body .cmp{margin-top:0}
+  /* inventário de produto */
+  .inv{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;border:var(--line);border-radius:14px;padding:14px;margin-top:10px;background:var(--white)}
+  @media(max-width:640px){.inv{grid-template-columns:1fr}}
+  .inv img{width:96px;height:96px;object-fit:cover;border-radius:11px;display:block;background:var(--g100)}
+  .inv .it{font-size:14.5px;font-weight:800;letter-spacing:-.02em}
+  .inv .im{font-size:12.3px;color:var(--g600);font-weight:600;margin-top:3px;font-family:'SFMono-Regular',Consolas,Menlo,monospace}
+  .foot{margin-top:40px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+  .backlink{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:16px}
+  .backlink:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="tb-in">
-    <a href="../" class="logo"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <a href="../" class="logo" style="text-decoration:none;color:inherit"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <nav class="seg" aria-label="Abas">
+      <button id="t-parc" class="on" onclick="show('parc')">Parceiro</button>
+      <button id="t-dest" onclick="show('dest')">Destaque</button>
+      <button id="t-site" onclick="show('site')">Solusite</button>
+      <button id="t-gmb" onclick="show('gmb')">Google</button>
+      <button id="t-soc" onclick="show('soc')">Redes</button>
+      <button id="t-cont" onclick="show('cont')">Conteúdo</button>
+    </nav>
     <div id="pnav" data-atual="blocok-o-original"></div>
   </div>
 </div>
 
-<div class="wrap">
-
-  <a class="back" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
-
-  <div class="head">
-    <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/e80d6b9a-4ac7-4f2b-8da2-ec1571e623b8.png" alt="Logotipo da Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
-    <div style="flex:1 1 260px;min-width:0">
-      <h1>Blocok O Original</h1>
-      <div class="meta">Materiais para Construção · Sorocaba/SP · ID 27112782 · assina “Franquia Riviera”</div>
-    </div>
-    <span class="st wait">● Diagnóstico · central bloqueada · 31/08/2026</span>
-  </div>
-
-  <div class="card stop">
-    <span class="badge stop">Bloqueio · resolver antes de qualquer coisa</span>
-    <p class="quote">“Não pode utilizar IA”</p>
-    <p class="src">Anotação interna prioritária · tag Prioridade · João Pedro Cavassini · 10/08/2026</p>
-    <p>A nota colide de frente com o pipeline <code>empresa-3-0</code>, cuja saída é justamente conteúdo gerado. <b>Nenhuma descrição, editoria ou texto de anúncio foi produzido para esta empresa.</b> Esta página é leitura do que já está no cadastro — diagnóstico, não geração.</p>
-    <p>A pergunta que precisa de resposta: a restrição vale para <b>publicar conteúdo gerado no perfil do cliente</b>, ou para <b>usar IA em qualquer etapa</b>, inclusive análise interna? São coisas diferentes, e mudam o que dá para entregar.</p>
-  </div>
-
-  <div class="card">
-    <span class="badge">Ficha</span>
-    <h2>O pior ponto de partida da série</h2>
-    <p>A EA3 partiu de 31 com 29 itens de catálogo. A Blocok parte de <b>13 com 3 itens</b> — e com <b>104 palavras-chave particulares</b> já preenchidas, que é onde está o valor.</p>
-    <div class="kpi">
-      <div><b class="bad">13</b>nota do perfil</div>
-      <div><b>3</b>itens no catálogo</div>
-      <div><b>104</b>palavras-chave</div>
-      <div><b>4</b>categorias</div>
-      <div><b>1–5</b>funcionários</div>
-    </div>
-    <table>
-      <tr><th>Campo</th><th>Valor</th></tr>
-      <tr><td><b>Produto Solutudo</b></td><td>Força Digital Essencial</td></tr>
-      <tr><td><b>Categorias</b></td><td>Materiais para Construção <i>(padrão)</i>, Blocos de Cimento, Concretos, Tijolos Ecológicos</td></tr>
-      <tr><td><b>Patrocinador</b></td><td>Fábio — telefone e e-mail do patrocinador em branco</td></tr>
-      <tr><td><b>Canais ativos</b></td><td>Solusite, Instagram, Facebook, site da franqueadora, perfil do Google</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <span class="badge">Achado central</span>
-    <h2>O cadastro está posicionado na cidade errada</h2>
-    <p>Tudo no cadastro aponta para um lugar. Tudo na identidade da empresa aponta para outro.</p>
-    <div class="vs">
-      <div class="vsb a">
-        <h4>O cadastro diz Sorocaba</h4>
-        <dl>
-          <dt>Cidade na página de busca</dt><dd>Sorocaba</dd>
-          <dt>Endereço</dt><dd>Av. Ipanema 5381 — complemento “BLOCO B; APT 14”, Jardim Planalto. É apartamento.</dd>
-          <dt>Descrição</dt><dd>cita Sorocaba 3×; o resto vira “toda a região”</dd>
-          <dt>Banners do Solusite</dt><dd>“transformar sua obra em sorocaba”</dd>
-        </dl>
-      </div>
-      <div class="vsb b">
-        <h4>A identidade diz condomínio</h4>
-        <dl>
-          <dt>Nome da franquia</dt><dd>Blocok O Original Franquia <b>Riviera</b></dd>
-          <dt>E-mail</dt><dd>blocok.riviera@gmail.com</dd>
-          <dt>Instagram</dt><dd>@blocok.riviera</dd>
-          <dt>Os 3 produtos</dt><dd>descrevem, todos, Ninho Verde II Eco Residence</dd>
-        </dl>
-      </div>
-    </div>
-    <p>O endereço é onde o franqueado mora, e o cadastro tomou isso como o mercado. Sorocaba é <b>o mais disputado dos quatro municípios</b> — cidade grande, cheia de depósito de material de construção — e é exatamente onde a Blocok não tem vantagem nenhuma. Nos condomínios ela tem presença de fato.</p>
-    <div class="note"><b>Padrão que se repete.</b> Na EA3 o roteiro dizia “Avaré e região” e apagava o eixo Campinas–Sorocaba. Aqui o cadastro diz “Sorocaba” e apaga o eixo do interior. Nos dois casos o material nomeia um eixo só — e é o eixo errado. Vale virar item fixo da régua: <b>a cidade declarada é onde a empresa vende, ou onde o dono mora?</b></div>
-  </div>
-
-  <div class="card">
-    <span class="badge">Cobertura</span>
-    <h2>Quatro cidades em dois eixos que não se tocam</h2>
-    <h3>Eixo Sorocaba</h3>
-    <div class="cities"><span class="city">Sorocaba</span></div>
-    <h3>Eixo interior (Botucatu–Avaré)</h3>
-    <div class="cities"><span class="city">Pardinho</span><span class="city">Avaré</span><span class="city">Paranapanema</span></div>
-    <table>
-      <tr><th>Condomínio Momentum</th><th>Cidade</th></tr>
-      <tr><td><b>Ninho Verde II Eco Residence</b></td><td>Pardinho, SP</td></tr>
-      <tr><td><b>Riviera de Santa Cristina XIII</b></td><td>Paranapanema, SP</td></tr>
-    </table>
-    <p><b>Riviera de Santa Cristina XIII é o mesmo condomínio da EA3.</b> Duas empresas da carteira atendendo o mesmo condomínio, em ramos complementares — bloco e engenharia. Vale checar se é oportunidade de venda casada ou conflito de exclusividade de franquia.</p>
-    <p>Não existe raio único que cubra os dois eixos. A segmentação de Google e Meta tem que ser por <b>lista de cidades</b>, ou dois conjuntos de campanha.</p>
-  </div>
-
-  <div class="card">
-    <span class="badge">Inteligência interna</span>
-    <h2>O que as 104 palavras-chave particulares entregam</h2>
-    <p>São as buscas que já acharam a empresa. Uso interno — alimentam grupos de anúncio, FAQ e editoria, nunca texto público.</p>
-    <table>
-      <tr><th>Grupo</th><th>Termos</th><th>O que fazer</th></tr>
-      <tr><td><b>Nome de condomínio</b></td><td class="n">11</td><td>Grupo de anúncio próprio — é o ativo de maior intenção</td></tr>
-      <tr><td>Cidade nomeada</td><td class="n">8</td><td>Confirmam Pardinho, Paranapanema e Avaré na prática</td></tr>
-      <tr><td><b>Pedras ornamentais</b></td><td class="n">10</td><td>Linha inteira <b>sem nenhum produto no catálogo</b></td></tr>
-      <tr><td>Marca de terceiro</td><td class="n">6</td><td>Tupan, Vedacit, Lafarge, Quartzolit, Votoran — revisar política de marca</td></tr>
-      <tr><td>Pergunta (intenção informativa)</td><td class="n">9</td><td>Pauta de conteúdo, não anúncio</td></tr>
-      <tr><td>Superlativo (“top…”, “melhor…”)</td><td class="n">11</td><td>Suspeitos de terem sido redigidos</td></tr>
-    </table>
-    <h3>Os 11 termos de condomínio são o ativo</h3>
-    <p>Quem constrói ali procura pelo nome do condomínio, não por “bloco de concreto em Pardinho”: <code>onde comprar blocos de cimento no ninho verde ii eco residence</code>, <code>blocos de concreto riviera de santa cristina</code>, <code>contratar fornecimento de cimento ninho verde</code>.</p>
-    <h3>As 9 perguntas são pauta, não anúncio</h3>
-    <p><code>quanto custa um bloco de cimento 39x19x14</code>, <code>quantos blocos de cimento para construir um quarto</code>, <code>como assentar blocos de concreto corretamente</code>, <code>evitar infiltracao em muros de blocos de concreto</code>. Alimentam direto os seis slots fixos de editoria.</p>
-    <h3>Uma intenção trocada</h3>
-    <p><code>franquia blocok em sao paulo interior</code> não é cliente procurando bloco — é alguém querendo <b>comprar a franquia</b>. Outra campanha, outra landing, outro funil. Não pode ficar no mesmo grupo.</p>
-    <div class="note"><b>A lista mistura dois registros.</b> Diferente da EA3, onde as 43 buscas eram todas reais, aqui convivem termos que parecem busca real — <code>quanto custa um bloco de cimento 39x19x14</code>, medida padrão de bloco — com 11 que parecem redigidos: <code>top fornecedor de blocos de cimento em sp</code>, <code>melhor fabrica de blocos em sp</code>. Ninguém digita “top fornecedor de”. Se parte da lista foi redigida por IA, já existe conteúdo gerado no cadastro de uma empresa marcada como “não pode utilizar IA”. Verificar a origem antes de qualquer coisa.</div>
-  </div>
-
-  <div class="card">
-    <span class="badge warn">Pergunta para o CS</span>
-    <h2>Três confirmações antes de subir campanha</h2>
-    <div class="cf"><span class="q">1</span><p><b>Itatinga aparece nas palavras-chave e não na lista de cidades.</b> Dois termos: <code>loja de blocos em itatinga sp</code> e <code>loja de pedras ornamentais itatinga sp</code>. Ou é cidade atendida que ficou de fora da lista, ou é termo que não deveria estar no cadastro.</p></div>
-    <div class="cf"><span class="q">2</span><p><b>A Blocok vende pedras ornamentais?</b> Dez termos pedindo pedra ornamental, decorativa e de revestimento — e os três produtos cadastrados são todos bloco e sistema construtivo. Ou vende e não cadastrou, ou não vende e os termos vão queimar verba.</p></div>
-    <div class="cf"><span class="q">3</span><p><b>Sorocaba é mercado real ou só o endereço do dono?</b> Decide se a campanha vai para a cidade grande e disputada, ou para os condomínios onde a franquia tem presença de fato. Muda a verba inteira.</p></div>
-  </div>
-
-  <div class="card">
-    <span class="badge">Pendências de cadastro</span>
-    <h2>O que derruba a nota para 13</h2>
-    <table>
-      <tr><th>Campo</th><th>Estado</th></tr>
-      <tr><td><b>Palavras-chave</b></td><td class="bad">[""] — vazia</td></tr>
-      <tr><td><b>Palavras-chave estendidas</b></td><td class="bad">[""] — vazia</td></tr>
-      <tr><td>Nome fantasia</td><td class="bad">vazio</td></tr>
-      <tr><td>Vídeo</td><td class="bad">vazio</td></tr>
-      <tr><td>Campo <code>Logo</code></td><td class="bad">null — embora exista logo em Fotos</td></tr>
-      <tr><td>Preço dos 3 produtos</td><td class="bad">null nos três</td></tr>
-      <tr><td>Menu / Ofertas / Eventos</td><td class="bad">false nos três</td></tr>
-      <tr><td>Horário</td><td class="bad">08:00–18:00 sete dias por semana, feriado incluído</td></tr>
-      <tr><td>Ano de fundação</td><td class="bad">12/05/1999</td></tr>
-    </table>
-    <p>As duas listas de palavras-chave vazias, com <b>104 particulares preenchidas</b>, é a contradição mais fácil de corrigir. O <code>Logo: null</code> com logo presente em Fotos é provável falha de vínculo, não ausência de arquivo.</p>
-    <div class="note"><b>A data 12/05/1999 é a quarta ocorrência idêntica</b> entre os parceiros analisados — e esta mostra o mecanismo: a pergunta do formulário é “Em que ano a empresa foi fundada?” e o que ficou gravado é uma <b>data completa</b>, não um ano. É um seletor de data respondendo a uma pergunta de ano, e o que sobra é o valor-padrão do seletor. Nenhum campo de data do cadastro deve ser tratado como dado real enquanto isso não for medido na base.</div>
-  </div>
-
-  <p class="foot">
-    Diagnóstico de cadastro · nenhum conteúdo gerado ·
-    <a href="../">voltar para todos os parceiros</a>
-  </p>
+<div class="hero">
+  <span class="vbadge">Central de conteúdo · um dossiê, todos os produtos</span>
+  <h1>Central de Conteúdo — Blocok O Original</h1>
+  <p class="crumbs">Materiais para Construção · Pardinho, Avaré, Paranapanema e Sorocaba/SP · ID 27112782 · Força Digital Essencial · fonte: cadastro Solutudo · 31/08/2026</p>
 </div>
 
+<div class="wrap">
+
+  <a class="backlink" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
+
+  <!-- ================================================== PARCEIRO -->
+  <section id="p-parc" class="panel on">
+
+    <div class="sec first">
+      <span class="eyebrow">Como esta central funciona</span>
+      <h2>Um dossiê de fatos, seis saídas</h2>
+      <p class="secsub">Tudo nesta página nasce do cadastro que a empresa mantém na Solutudo, mais a lista de cidades e condomínios confirmada pelo parceiro — fatos fornecidos pela própria empresa, o que habilita o <b>selo de procedência A</b>. Cada aba organiza a MESMA verdade no formato de um produto. Este caso tem uma particularidade: <b>a verdade do cadastro contradiz a si mesma</b>, e resolver essa contradição é a maior parte do trabalho.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(196,43,34,.3);background:linear-gradient(180deg,#FFF6F4 0%,var(--white) 60%)">
+      <span class="badge" style="background:#FFE4E0;color:#A3200F">Anotação interna prioritária · registrada no cadastro</span>
+      <h3>“Não pode utilizar IA”</h3>
+      <p class="sub">Tag <b>Prioridade</b> · João Pedro Cavassini · 10/08/2026.</p>
+      <p class="sub">A nota está no cadastro e fica registrada aqui porque <b>esta central é conteúdo gerado</b> — foi produzida por decisão explícita do responsável, após a restrição ser levantada. Antes de publicar qualquer texto desta página nos canais do cliente, confirmar com o CS o alcance da restrição: se ela vale para <b>publicar conteúdo gerado no perfil</b> ou para <b>usar IA em qualquer etapa</b>, inclusive análise interna. São coisas diferentes.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Identificação</span>
+      <h3>Blocok O Original</h3>
+      <dl class="kv">
+        <dt>Nome público</dt><dd>Blocok O Original <small>assina “Blocok O Original Franquia Riviera” em produtos, e-mail e Instagram — a franquia, não a marca. Definir com o CS qual das duas grafias é a oficial e usar só ela em todos os canais</small></dd>
+        <dt>Nome fantasia</dt><dd><b>vazio no cadastro</b> <small>campo em branco — é onde “Franquia Riviera” deveria estar</small></dd>
+        <dt>ID · UUID</dt><dd>27112782 · <code>6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff</code></dd>
+        <dt>Categorias</dt><dd>Materiais para Construção (padrão) · Blocos de Cimento · Concretos · Tijolos Ecológicos</dd>
+        <dt>Cidade na busca</dt><dd>Sorocaba/SP <small>é o endereço do franqueado, não o mercado atendido — ver o card de posicionamento abaixo</small></dd>
+        <dt>Fundação</dt><dd>12/05/1999 <small><b>não usar.</b> A pergunta do contrato é “em que ano a empresa foi fundada?” e o gravado é uma data completa — valor-padrão do seletor. A mesma data aparece idêntica nos quatro parceiros analisados. Sem “desde 1999” em canal nenhum até o CS confirmar o ano real</small></dd>
+        <dt>Porte</dt><dd>1–5 funcionários <small>uso interno</small></dd>
+        <dt>Perfil digital</dt><dd>Totalmente digital — site e redes ativas (autodeclarado no contrato)</dd>
+        <dt>Patrocinador</dt><dd>Fábio <small>telefone e e-mail do patrocinador em branco — pedir ao CS</small></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge mint">Produtos contratados — o que esta central precisa alimentar</span>
+      <div class="chips">
+        <span class="chip lav">Força Digital Essencial</span>
+        <span class="chip lav">Solusite (ativo)</span>
+        <span class="chip lav">Perfil no Google (link cadastrado)</span>
+      </div>
+      <p class="sub">Menu, Ofertas e Eventos não estão contratados. Redes sociais e calendário de conteúdo entram como camadas de recomendação — valem mesmo sem social media contratado.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(196,43,34,.28)">
+      <span class="badge" style="background:#FFE4E0;color:#A3200F">Achado principal · vale para todos os textos desta central</span>
+      <h3>O cadastro está posicionado na cidade errada</h3>
+      <p class="sub">Tudo no cadastro aponta para um lugar. Tudo na identidade da empresa aponta para outro. Nenhum texto desta central pode ser escrito antes de resolver isso — é o que decide qual cidade entra na primeira frase, no <code>seo.title</code>, na bio e na segmentação.</p>
+      <div class="grid2">
+        <div class="blk">
+          <h4 style="color:#A3200F">O cadastro diz Sorocaba</h4>
+          <ul class="clean">
+            <li><b>Cidade na página de busca:</b> Sorocaba.</li>
+            <li><b>Endereço:</b> Avenida Ipanema, 5381 — complemento <code>BLOCO B;APT 14</code>, Jardim Planalto. É <b>apartamento residencial</b>.</li>
+            <li><b>Descrição publicada:</b> cita Sorocaba três vezes; o resto do território vira “toda a região”.</li>
+            <li><b>Banners do Solusite</b> (desktop e mobile): “transformar sua obra em sorocaba”.</li>
+          </ul>
+        </div>
+        <div class="blk">
+          <h4 style="color:#06724F">A identidade diz condomínio</h4>
+          <ul class="clean">
+            <li><b>Nome da franquia:</b> Blocok O Original Franquia <b>Riviera</b>.</li>
+            <li><b>E-mail:</b> blocok.riviera@gmail.com.</li>
+            <li><b>Instagram:</b> @blocok.riviera.</li>
+            <li><b>Os 3 produtos cadastrados</b> descrevem, todos, <b>Ninho Verde II Eco Residence</b>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>O que decidimos:</b> o endereço é onde o franqueado mora — não é ponto de venda nem mercado. Sorocaba entra na lista de cidades atendidas, mas <b>não abre</b> nenhum texto: a primeira frase nomeia a operação real, que são as cidades do interior e os dois condomínios. Sorocaba é também o mercado mais disputado dos quatro, cheio de depósito de material de construção, e é justamente onde a franquia não tem vantagem nenhuma.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Cobertura confirmada pelo parceiro</span>
+      <h3>Quatro cidades em dois eixos que não se tocam, e dois condomínios nomeados</h3>
+      <div class="grid2">
+        <div class="blk">
+          <h4>Eixo interior (Botucatu–Avaré)</h4>
+          <div class="chips"><span class="chip mint">Pardinho</span><span class="chip mint">Avaré</span><span class="chip mint">Paranapanema</span></div>
+          <p class="sub" style="margin-top:9px">É onde a franquia entrega de fato, com presença dentro dos condomínios.</p>
+        </div>
+        <div class="blk">
+          <h4>Eixo Sorocaba</h4>
+          <div class="chips"><span class="chip">Sorocaba</span></div>
+          <p class="sub" style="margin-top:9px">Endereço cadastral do franqueado. Mercado grande e disputado, sem vantagem própria.</p>
+        </div>
+      </div>
+      <table>
+        <tr><th>Condomínio Momentum</th><th>Cidade</th><th>Por que importa</th></tr>
+        <tr><td><b>Ninho Verde II Eco Residence</b></td><td>Pardinho/SP</td><td>Nomeado nos 3 produtos cadastrados e em 8 das buscas reais</td></tr>
+        <tr><td><b>Riviera de Santa Cristina XIII</b></td><td>Paranapanema/SP</td><td>Dá nome à franquia; aparece em 3 buscas reais</td></tr>
+      </table>
+      <div class="note"><b>Riviera de Santa Cristina XIII é o mesmo condomínio atendido pela EA3 Engenharia</b>, outra parceira da carteira. Ramos complementares — bloco e engenharia. Vale checar com o comercial se é oportunidade de venda casada ou conflito de exclusividade de franquia.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NAP oficial — fonte única para todos os canais</span>
+      <h3>Nome, contato e território que valem em toda parte</h3>
+      <dl class="kv">
+        <dt>Nome público</dt><dd>Blocok O Original</dd>
+        <dt>Endereço cadastral</dt><dd>Avenida Ipanema, 5381 — BLOCO B, apto 14, Jardim Planalto, Sorocaba/SP · CEP 18070-631 <small>lat -23.4537625, long -47.507524 — <b>endereço residencial: não publicar em canal nenhum.</b> No Google vira empresa de área de atendimento, com endereço oculto</small></dd>
+        <dt>Área de atendimento</dt><dd>Pardinho, Avaré, Paranapanema e Sorocaba/SP · entrega dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII</dd>
+        <dt>WhatsApp</dt><dd>(15) 98809-6618 <small>é o único canal de voz cadastrado — não há telefone fixo</small></dd>
+        <dt>E-mail</dt><dd>blocok.riviera@gmail.com</dd>
+        <dt>Site</dt><dd>blocokoriginal.com.br <small><b>é o site da franqueadora</b>, não da franquia. Não tem página, contato nem área de atendimento desta unidade. O Solusite é que precisa ocupar esse lugar</small></dd>
+        <dt>Instagram</dt><dd>@blocok.riviera</dd>
+        <dt>Facebook</dt><dd>facebook.com/profile.php?id=61585549802243 <small>perfil sem nome de usuário — pedir vanity URL</small></dd>
+        <dt>Perfil no Google</dt><dd>share.google/1nRjQDg3GkO6zCp8b</dd>
+        <dt>Horário</dt><dd>08h00–18h00 <small>o cadastro marca <b>os sete dias mais feriado</b>, na mesma faixa. Para fornecedor de material de construção é quase certamente valor não verificado — confirmar com o CS antes de publicar</small></dd>
+      </dl>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="badge">Pagamento — cadastrado e utilizável</span>
+        <div class="chips">
+          <span class="chip mint">Pix</span><span class="chip mint">Dinheiro</span><span class="chip mint">Cartões de crédito e débito</span><span class="chip mint">Boleto</span><span class="chip mint">Financiamento</span>
+        </div>
+        <p class="sub" style="margin-top:10px"><b>Financiamento e boleto são o diferencial real aqui.</b> Quem compra material para uma obra inteira decide por prazo, não só por preço — e nenhum dos textos publicados hoje menciona isso.</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Estrutura — cadastrada, mas não confiável</span>
+        <div class="chips">
+          <span class="chip peach">Ar Condicionado</span><span class="chip peach">Wi-Fi</span><span class="chip peach">Estacionamento</span><span class="chip peach">Acessibilidade</span>
+        </div>
+        <div class="note">As quatro estão marcadas num cadastro cujo endereço é <b>um apartamento</b>. São características de estabelecimento com atendimento presencial, que esta operação não tem. <b>Não usar em canal nenhum</b> até o CS confirmar se existe loja, depósito ou showroom — e onde.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">O ouro do cadastro — 104 buscas reais que acharam a empresa</span>
+      <h3>O que as pessoas digitam quando procuram bloco e concreto por aqui</h3>
+      <table>
+        <tr><th>Grupo</th><th>Termos</th><th>Para onde vai</th></tr>
+        <tr><td><b>Nome de condomínio</b></td><td><b>11</b></td><td>O ativo de maior intenção: grupo de anúncio próprio, FAQ e editoria E5</td></tr>
+        <tr><td>Cidade nomeada</td><td><b>8</b></td><td>Confirmam Pardinho, Paranapanema e Avaré — e denunciam Itatinga</td></tr>
+        <tr><td><b>Pedras ornamentais</b></td><td><b>10</b></td><td>Linha inteira sem nenhum produto cadastrado — item 6 do catálogo</td></tr>
+        <tr><td>Marca de terceiro</td><td><b>6</b></td><td>Tupan, Vedacit, Lafarge, Quartzolit, Votoran — inteligência de sortimento, nunca texto público</td></tr>
+        <tr><td>Pergunta de obra</td><td><b>9</b></td><td>FAQ da aba Destaque e editoria E6</td></tr>
+        <tr><td>Superlativo (“top…”, “melhor…”)</td><td><b>11</b></td><td>Descartar — ver a ressalva abaixo</td></tr>
+      </table>
+      <ul class="clean">
+        <li><b>Os 11 termos de condomínio são o achado.</b> <code>onde comprar blocos de cimento no ninho verde ii eco residence</code>, <code>blocos de concreto riviera de santa cristina</code>, <code>contratar fornecimento de cimento ninho verde</code>. Quem constrói ali procura pelo nome do condomínio — não por “bloco de concreto em Pardinho”. É a busca que nenhum depósito de Sorocaba disputa.</li>
+        <li><b>As 9 perguntas viram conteúdo, não anúncio:</b> <code>quanto custa um bloco de cimento 39x19x14</code> (medida padrão), <code>quantos blocos de cimento para construir um quarto</code>, <code>como assentar blocos de concreto corretamente</code>, <code>blocos de concreto sao melhores que tijolos</code>, <code>evitar infiltracao em muros de blocos de concreto</code>.</li>
+        <li><b>Uma intenção trocada:</b> <code>franquia blocok em sao paulo interior</code> não é cliente procurando bloco — é alguém querendo <b>comprar a franquia</b>. Outro funil, outra página. Não pode ficar no mesmo grupo, e não entra em nenhum texto desta central.</li>
+        <li><b>Itatinga aparece e não deveria:</b> <code>loja de blocos em itatinga sp</code> e <code>loja de pedras ornamentais itatinga sp</code>. A cidade não está na lista confirmada pelo parceiro. Ou é cidade atendida que ficou de fora, ou é termo que não deveria estar no cadastro — <b>pergunta para o CS</b>.</li>
+      </ul>
+      <div class="note"><b>Ressalva de qualidade da lista.</b> Diferente dos outros parceiros, esta lista mistura dois registros. Parecem busca real os termos com medida (<code>bloco de cimento 39x19x14</code>), com erro de digitação (<code>blocos concrelagos</code>), com marca (<code>blocos tupan</code>) e com nome de condomínio. Parecem redigidos os 11 superlativos — <code>top fornecedor de blocos de cimento em sp</code>, <code>melhor fabrica de blocos em sp</code>, <code>empresa referencia em blocos de cimento</code>: ninguém digita “top fornecedor de”. Antes de qualquer verba, triar. E se parte da lista foi redigida por IA, isso já é conteúdo gerado num cadastro marcado como “não pode utilizar IA” — <b>verificar a origem</b>. Estas variações são inteligência interna: orientam FAQ, títulos e editorias, e <b>não</b> vão para o texto público.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Correções de cadastro — 11 itens, antes de propagar para os canais</span>
+      <ul class="clean">
+        <li><b>Cidade de busca em Sorocaba</b> enquanto a operação é Pardinho, Paranapanema e Avaré. É a correção que muda tudo — decide o texto, o Google e a verba.</li>
+        <li><b>Endereço é apartamento residencial</b> (<code>BLOCO B;APT 14</code>). Configurar como empresa de área de atendimento e ocultar o endereço, ou cadastrar o depósito real se existir.</li>
+        <li><b>Palavras-chave e Palavras-chave estendidas vazias</b> (só string em branco) — com <b>104 particulares preenchidas</b>. É a contradição mais fácil de corrigir: preencher com as curadas das quatro categorias.</li>
+        <li><b>Nome fantasia vazio</b> — é onde “Franquia Riviera” deveria estar, e é o que distingue esta unidade da marca.</li>
+        <li><b>Campo <code>Logo</code> nulo</b> apesar de existir logotipo em Fotos. Provável falha de vínculo, não ausência de arquivo.</li>
+        <li><b>Data de fundação 12/05/1999</b> — valor-padrão de seletor, idêntico nos quatro parceiros. Pedir o ano real ao CS; até lá, sem datação em canal nenhum.</li>
+        <li><b>Horário de sete dias mais feriado</b>, 08h–18h, para fornecedor de material de construção. Confirmar antes de publicar.</li>
+        <li><b>Características de estabelecimento</b> (ar-condicionado, Wi-Fi, estacionamento, acessibilidade) marcadas num endereço residencial. Confirmar ou desmarcar.</li>
+        <li><b>Campo Site aponta para a franqueadora</b> (blocokoriginal.com.br), que não tem página desta unidade. Trocar pelo Solusite assim que publicado.</li>
+        <li><b>Legendas das fotos genéricas</b> — 23 imagens do álbum com a legenda “Blocok O Original” e descrição nula. Nenhuma diz o que a imagem mostra.</li>
+        <li><b>Vídeo vazio</b> e <b>preço nulo nos 3 produtos</b>. Preço em material de construção varia por volume e frete — a decisão de não publicar é defensável, mas precisa virar lacuna declarada (“orçamento pelo WhatsApp”), não silêncio.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge">Banco de imagens — direto do CDN do cadastro</span>
+      <h3>33 imagens já disponíveis, nenhuma descrita</h3>
+      <p class="sub">Identidade, capas e banners prontos para o Solusite e o Google; o álbum é a matéria-prima dos posts. A pendência é a mesma em todas: <b>as 23 fotos do álbum têm a legenda genérica “Blocok O Original” e descrição nula</b> — nenhuma diz o que a imagem mostra. Os dois banners do Solusite carregam o erro de posicionamento no próprio texto da arte.</p>
+      <div class="ph-grid caps" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));max-width:420px"><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/e80d6b9a-4ac7-4f2b-8da2-ec1571e623b8.png" alt="Logotipo (novo) — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo (novo)</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/69936fb5-a3a4-40c3-a359-5519ac1e09ff.png" alt="Logotipo do Solusite — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo do Solusite</figcaption></figure></div>
+      <div class="ph-grid caps"><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/68a74e56-2140-4cf7-821c-1e0aac1e0fec.png" alt="Capa desktop · legenda “Franquia Riviera” — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Capa desktop · legenda “Franquia Riviera”</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f4-c5ac-4d51-b508-1ef5ac1e09ff.jpeg" alt="Capa desktop (nova) — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Capa desktop (nova)</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/699f41b5-25a8-47db-94cf-3c09ac1e09ff.png" alt="Banner Solusite · diz “em sorocaba” — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner Solusite · diz “em sorocaba”</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/69a1f3b1-8eb4-4ec9-9d0c-0db2ac1e09ff.png" alt="Banner mobile · diz “em sorocaba” — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner mobile · diz “em sorocaba”</figcaption></figure></div>
+      <div class="ph-grid"><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/68a74e4d-4c74-4fcc-9239-1e0aac1e0fec.png" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4ed-2024-4997-af76-1ef5ac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4ed-a49c-4369-ae34-1e4aac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4ef-2070-41c1-9b89-1ef5ac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f1-26e4-478d-9fc9-1e4aac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f2-200c-4857-91c2-1ef5ac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f3-ec04-4670-9ab2-1e4aac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f4-f940-48d8-90aa-1e4aac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6989f4f5-2f64-4685-a7ab-1ef5ac1e09ff.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b6-e938-4df3-88c4-1d95ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b6-208c-4b18-996c-1c2dac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b7-a970-4691-a94e-1d95ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b7-db7c-490e-95b3-1c2dac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b8-79cc-4a02-92f0-1d95ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1b9-9578-4bdd-8e2e-1c2dac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a04d1ba-2298-4a3a-9407-1d95ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270de-bcc8-4c10-86af-68a5ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270de-ecc0-40b5-9edc-68d2ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270df-a3c8-49d8-917b-68a5ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270e0-823c-4aff-ad9e-68d2ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270e1-0788-4e4b-a860-68a5ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270e2-983c-494c-b0fb-68d2ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/6a4270e2-f184-490b-a708-68a5ac1e0fec.jpeg" alt="Álbum · legenda genérica — Blocok O Original" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Álbum · legenda genérica</figcaption></figure></div>
+      <div class="note"><b>Antes de propagar:</b> escrever legenda e descrição real por foto — o que a imagem mostra (bloco, parede erguida, obra no condomínio, entrega, equipe em treinamento). Vira alt-text no Solusite, nome de arquivo no Google e acessibilidade em todos os canais. <b>Atenção aos dois banners do Solusite:</b> a arte publicada diz “transformar sua obra em sorocaba”. Refazer com a área de atendimento real antes de qualquer campanha.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Produtos cadastrados no sistema</span>
+      <h3>Três produtos ativos — e os três descrevem a mesma coisa</h3>
+      <p class="sub">Todos na categoria Materiais para Construção, cada um com uma foto e sem preço. Os três falam do bloco cimentício com EPS, e os três situam a empresa em <b>Ninho Verde II Eco Residence</b> — o oposto do que diz o cadastro. A reescrita de cada um está na aba <b>Destaque</b>; a versão para o site, na aba <b>Solusite</b>.</p>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/696a7b47-7a48-4ece-819f-7499ac1e09ff/016e4f36-9224-4040-82c5-90cf720a5504.jpeg" alt="Foto cadastrada do bloco cimentício de vedação — Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Bloco Cimentício de vedação de alta resistência e termo-acústico com EPS anti-chama" <mark class="m-bad" data-tip="83 caracteres. Título de produto vira slug, breadcrumb e âncora de busca — acima de ~60 é truncado em toda parte e ninguém digita a frase inteira.">83 caracteres</mark></div>
+          <div class="im">ID 697312 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">Título é a ficha técnica, não a busca<span class="hint" data-tip="O título empilha quatro atributos técnicos. Quem compra digita &quot;bloco de concreto&quot; ou o nome do condomínio — não &quot;bloco cimentício de vedação termo-acústico&quot;.">?</span></span>
+            <span class="chip peach">Cidade contradiz o cadastro<span class="hint" data-tip="O texto situa a operação em Ninho Verde II Eco Residence; a cidade de busca do cadastro é Sorocaba. Divergência interna derruba confiança em todos os canais.">?</span></span>
+            <span class="chip peach">Texto quase idêntico ao produto 698701<span class="hint" data-tip="Os dois abrem com a mesma promessa, citam o mesmo EPS anti-chama e os mesmos certificados. Conteúdo duplicado dentro da própria página faz os dois competirem entre si.">?</span></span>
+            <span class="chip mint">Certificação UFMG citada<span class="hint" data-tip="&quot;Certificados de resistência e ensaios de não propagação de chamas&quot; com a UFMG nomeada na descrição da empresa. É o único fato com fonte externa em todo o cadastro — precisa aparecer em todos os canais.">?</span></span>
+            <span class="chip">Sem preço<span class="hint" data-tip="Preço de material de construção varia por volume e frete. A ausência é defensável, mas precisa virar lacuna declarada (&quot;orçamento pelo WhatsApp&quot;), não silêncio.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6989f6a8-8054-4f55-94c0-2288ac1e09ff/6989f6a8-8130-454e-94cc-2288ac1e09ff.jpeg" alt="Foto cadastrada do sistema construtivo — Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Sistema Construtivo Blocok o Original – Eficiência e Economia na Obra"</div>
+          <div class="im">ID 698700 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip mint">Único com benefício mensurável<span class="hint" data-tip="Redução de argamassa, menos resíduo, execução mais rápida: são consequências operacionais do sistema, não adjetivos. É o produto com o melhor texto dos três.">?</span></span>
+            <span class="chip peach">Grafia da marca inconsistente<span class="hint" data-tip="&quot;Blocok o Original&quot; com o &quot;o&quot; minúsculo, enquanto o nome cadastrado é &quot;Blocok O Original&quot;. Buscador e IA precisam resolver uma entidade só.">?</span></span>
+            <span class="chip peach">Fecha sem contato<span class="hint" data-tip="&quot;Solicite um orçamento&quot; sem WhatsApp, sem telefone e sem caminho. A busca resolve e a empresa não recebe o cliente.">?</span></span>
+            <span class="chip peach">Nomeia só o condomínio<span class="hint" data-tip="Cita Ninho Verde II duas vezes e não nomeia Pardinho, Avaré, Paranapanema nem a Riviera XIII. Metade do território fica invisível.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6989f6fa-3d00-49b3-877f-239aac1e09ff/6989f6fa-9f8c-45a3-af22-239aac1e09ff.jpeg" alt="Foto cadastrada do bloco estrutural — Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Bloco Cimentício Blocok o Original – Alta Resistência Estrutural"</div>
+          <div class="im">ID 698701 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">Duplica o produto 697312<span class="hint" data-tip="Mesmo bloco, mesmo EPS anti-chama, mesma promessa de resistência. Dois produtos para o mesmo item dividem a autoridade em vez de somar.">?</span></span>
+            <span class="chip peach">"Vedação" e "estrutural" no mesmo texto<span class="hint" data-tip="O título diz &quot;alta resistência estrutural&quot; e o corpo diz &quot;bloco cimentício de vedação&quot;. São classificações técnicas diferentes: vedação não é estrutural. Confirmar com a franqueadora antes de publicar qualquer um dos dois.">?</span></span>
+            <span class="chip peach">Patologias sem lastro<span class="hint" data-tip="&quot;Redução de patologias como trincas e infiltrações&quot; é afirmação de desempenho que o cadastro não comprova. Sem ensaio nomeado, sai do texto público.">?</span></span>
+            <span class="chip">1 foto só<span class="hint" data-tip="Há 23 imagens no álbum da empresa. Vincular fotos reais a cada produto melhora a página e a busca por imagem.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note"><b>A contradição técnica é a mais séria.</b> O produto 698701 chama de “alta resistência estrutural” um bloco que o próprio texto descreve como “de vedação”. Bloco de vedação não sustenta carga; bloco estrutural sim. Publicar os dois como estão é risco técnico, não só de texto. <b>Pergunta obrigatória para a franqueadora antes de qualquer publicação:</b> o Blocok Parede Pronta é de vedação, estrutural, ou existem as duas linhas? A reescrita da aba Destaque adota <b>vedação</b>, que é o que aparece em dois dos três textos e na descrição da empresa — e marca a definitiva como pendente.</div>
+    </div>
+
+  </section>
+
+  <!-- ================================================== DESTAQUE -->
+  <section id="p-dest" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Força Digital Essencial</span>
+      <h2>Página da empresa na Solutudo</h2>
+      <p class="secsub">Descrição 3.0, FAQ respondendo as buscas reais, catálogo reescrito e as características que a página exibe. Regra da casa: CTA sem link — WhatsApp por extenso. Regra deste caso: <b>nenhum texto abre por Sorocaba</b>, e nada usa “desde 1999”.</p>
+    </div>
+
+    <div class="card" style="padding:16px 20px">
+      <div class="chips" style="margin-top:0">
+        <span class="chip peach">Marcação laranja<span class="hint" data-tip="Trecho que enfraquece o texto: adjetivo sem fato, superlativo sem fonte, promessa sem lastro ou duplicação. Passe o mouse sobre cada marcação para ver a regra específica.">?</span></span>
+        <span class="chip lav">Marcação roxa<span class="hint" data-tip="Fato que existe no cadastro e não foi usado — lacuna de conteúdo, não erro de escrita.">?</span></span>
+        <span class="chip mint">Marcação verde<span class="hint" data-tip="Trecho que carrega fato verificável, responde a uma busca real ou fecha em ação possível.">?</span></span>
+        <span class="chip">Score de 0 a 100<span class="hint" data-tip="Seis dimensões somam 100: entidade e local (15), fatos verificáveis (25), resposta direta para AEO (20), estrutura extraível (15), unicidade (15) e contato (10). Cada barra do card mostra a nota da dimensão.">?</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Detalhes da empresa na Solutudo — como está × como deveria</span>
+      <h3>A descrição do perfil, auditada frase a frase</h3>
+      <p class="sub">À esquerda, o texto publicado hoje. À direita, a versão pela Descrição 3.0. Nota 13 é a mais baixa dos quatro parceiros analisados — e o motivo não é texto ruim: é <b>texto de franqueadora publicado como se fosse da franquia</b>, sem território, sem contato e sem operação.</p>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Publicado hoje no cadastro</div><div class="colb">
+        <p><b>Blocok O Original – Construção Inteligente <mark class="m-bad" data-tip="A cidade do título é o endereço residencial do franqueado, não o mercado atendido. Pardinho, Avaré e Paranapanema, que são onde a operação entrega, não aparecem em lugar nenhum.">em Sorocaba</mark></b></p>
+        <p><mark class="m-bad" data-tip="Abre pela dor genérica do setor, não pela entidade. A primeira frase é a que vira resposta em IA e snippet: precisa dizer quem é, o que faz e onde.">Construir uma casa costumava ser sinônimo de atrasos, altos custos e imprevistos.</mark> Mas <mark class="m-bad" data-tip="&quot;Ao conhecer&quot; e &quot;descobrimos&quot; são voz de cliente, não de fornecedor. O leitor não entende se quem escreve vende o produto ou comprou o produto.">ao conhecer a Blocok O Original, descobrimos</mark> uma forma totalmente nova de transformar esse processo em Sorocaba. O sistema construtivo inovador da marca alia <mark class="m-bad" data-tip="Três adjetivos em sequência, sem um número, um ensaio ou uma comparação. Não pontuam e ocupam a linha mais valiosa do texto.">rapidez, economia e excelente isolamento termoacústico</mark>, oferecendo conforto e eficiência em cada detalhe. O resultado foi tão surpreendente que decidimos levar essa tecnologia para <mark class="m-bad" data-tip="&quot;Toda a região&quot; não é lugar nenhum. O cadastro tem quatro cidades e dois condomínios nomeados — a informação existe e não foi usada.">toda a região..</mark></p>
+        <p><b>Por que escolher a Blocok O Original</b></p>
+        <p>O Blocok Parede Pronta é <mark class="m-good" data-tip="Único fato com fonte externa em todo o cadastro. A certificação por uma universidade é exatamente o tipo de afirmação que buscador e IA conseguem verificar e citar — e está enterrada no meio do texto.">certificado pela UFMG, comprovando resistência, durabilidade e não propagação de chamas</mark>. O sistema <mark class="m-good" data-tip="Remove a maior objeção do sistema construtivo alternativo: &quot;meu pedreiro não sabe assentar&quot;. É diferencial operacional real.">reduz a necessidade de mão de obra altamente especializada e inclui treinamento completo</mark> para sua equipe.</p>
+        <p><b>Nossas soluções</b></p>
+        <ul>
+          <li>Blocok Parede Pronta para residências, comércios e grandes projetos</li>
+          <li>Estruturas que reduzem custos e aceleram prazos</li>
+          <li>Materiais termoacústicos que ampliam o conforto dos ambientes</li>
+          <li><mark class="m-bad" data-tip="&quot;Testados, aprovados e de alta confiabilidade&quot; serve para qualquer produto de qualquer setor. E é redundante: a certificação UFMG já foi dita, com fonte.">Produtos testados, aprovados e de alta confiabilidade</mark></li>
+        </ul>
+        <p>Se você deseja construir com qualidade, eficiência e economia, a Blocok O Original é <mark class="m-bad" data-tip="Superlativo autoproclamado, sem fonte. Não pontua em busca e é risco de publicidade enganosa perante o consumidor.">a parceira ideal</mark>. <mark class="m-bad" data-tip="Convite sem caminho: não diz o WhatsApp, não diz o horário, não diz como pedir orçamento. A busca termina e a empresa não recebe o cliente.">Entre em contato agora mesmo!</mark></p>
+        <p style="margin-top:10px"><span class="lbl">Não aparece em lugar nenhum</span>
+        <mark class="m-fill" data-tip="Pardinho, Avaré e Paranapanema estão confirmadas pelo parceiro. São o mercado real e não são citadas uma vez.">as cidades atendidas</mark>
+        <mark class="m-fill" data-tip="Ninho Verde II e Riviera de Santa Cristina XIII aparecem nos três produtos e em 11 buscas reais — e não na descrição.">os dois condomínios</mark>
+        <mark class="m-fill" data-tip="O WhatsApp (15) 98809-6618 está cadastrado. É o único canal de voz da empresa e não aparece no texto.">WhatsApp</mark>
+        <mark class="m-fill" data-tip="Pix, dinheiro, boleto, cartões e financiamento estão cadastrados. Prazo é o que decide compra de obra inteira.">financiamento</mark>
+        <mark class="m-fill" data-tip="Cimento, argamassa e insumos aparecem nas buscas reais e nas categorias — a empresa vende mais que bloco e não diz.">o resto do sortimento</mark>
+        <mark class="m-fill" data-tip="O horário 8h–18h está cadastrado (dias a confirmar com o CS).">horário</mark></p>
+        </div><div class="sc"><div class="scnum"><b>13</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:16%"></span></span><span class="sv">4<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:5%"></span></span><span class="sv">1<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:13%"></span></span><span class="sv">2<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:7%"></span></span><span class="sv">1<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div>
+        <div class="col next"><div class="colh">● Descrição 3.0</div><div class="colb">
+        <p><mark class="m-good" data-tip="Entidade + o que faz + as quatro cidades na primeira frase. É o trecho que a IA cita, e é o que amarra a franquia ao território que ela realmente atende.">A Blocok O Original é a franquia que fornece o sistema construtivo Blocok em Pardinho, Avaré, Paranapanema e Sorocaba/SP</mark> — com <mark class="m-good" data-tip="Os dois condomínios nomeados. É o único trecho deste texto que nenhum concorrente da região pode copiar, e responde direto a 11 das buscas reais.">entrega dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII</mark>.</p>
+        <h5>O que fornecemos</h5>
+        <ul>
+          <li><mark class="m-good" data-tip="O fato com fonte externa promovido para o topo da lista, com a certificadora nomeada e o que exatamente foi certificado.">Blocok Parede Pronta: bloco cimentício de vedação com núcleo de EPS anti-chama, certificado pela UFMG em resistência, durabilidade e não propagação de chamas.</mark></li>
+          <li><mark class="m-good" data-tip="Consequências operacionais medíveis no canteiro, tiradas do produto 698700 — não adjetivos.">O sistema construtivo completo, que consome menos argamassa, gera menos resíduo e acelera a execução em comparação à alvenaria convencional.</mark></li>
+          <li><mark class="m-good" data-tip="O treinamento é o diferencial que remove a objeção de mão de obra. Estava no texto original e merecia estar em item próprio.">Treinamento da equipe de obra incluído — o sistema não exige mão de obra especializada.</mark></li>
+          <li>Cimento, argamassa e insumos para construção.</li>
+        </ul>
+        <h5>Onde entregamos</h5>
+        <ul>
+          <li>Pardinho, Avaré, Paranapanema e Sorocaba/SP.</li>
+          <li><mark class="m-good" data-tip="Acesso de caminhão e horário de portaria é a objeção real de quem constrói em condomínio fechado, e o que diferencia a franquia de um depósito de cidade.">Dentro do Ninho Verde II Eco Residence (Pardinho) e da Riviera de Santa Cristina XIII (Paranapanema), com entrega combinada com a portaria.</mark></li>
+        </ul>
+        <h5>Como comprar</h5>
+        <ul>
+          <li>Orçamento pelo WhatsApp, das 8h às 18h.</li>
+          <li><mark class="m-good" data-tip="Cinco formas de pagamento cadastradas e nunca publicadas. Financiamento e boleto são o que decide compra de obra inteira.">Pagamento em Pix, dinheiro, boleto, cartões de crédito e débito — e financiamento.</mark></li>
+        </ul>
+        <p class="cta"><mark class="m-good" data-tip="CTA com contato por extenso e sem link — regra do perfil Solutudo. Diz o que mandar, o que encurta o orçamento.">Vai construir? Chame no WhatsApp (15) 98809-6618 com a metragem da parede e receba o orçamento.</mark></p>
+        </div><div class="sc"><div class="scnum"><b>91</b><span>/100 · Descrição 3.0</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div>
+      </div>
+      <span class="delta">Ganho de 78 pontos · 13 → 91</span>
+      <div class="selo"><b>Selo de procedência · variante A (parceiro)</b> Informações fornecidas pela empresa no cadastro Solutudo e no contrato, mais a lista de cidades e condomínios confirmada pelo parceiro · verificadas em 31/08/2026. Após reconfirmação via CS, atualizar a data.</div>
+      <div class="note"><b>Três coisas que a 3.0 deliberadamente NÃO faz.</b> Não abre por Sorocaba, porque é endereço residencial e não mercado. Não usa “desde 1999”, porque a data do contrato é valor-padrão de seletor. Não diz “todos os dias”, porque horário de sete dias mais feriado para fornecedor de material de construção precisa de confirmação — publica só a faixa de horas, que é o dado seguro. Cada uma dessas ausências é <b>lacuna declarada</b>, não esquecimento.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da página</span>
+      <dl class="kv">
+        <dt>seo.title</dt><dd>Blocok O Original — Blocos de concreto em Pardinho e Avaré<span class="cnt">58/60</span></dd>
+        <dt>seo.meta</dt><dd>Sistema construtivo Blocok e blocos cimentícios com EPS, certificados pela UFMG. Entrega em Pardinho, Avaré, Paranapanema e no Ninho Verde II.<span class="cnt">142/160</span></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge">FAQ — respondendo o que as pessoas realmente buscam</span>
+      <h3>8 perguntas: 5 respondidas pelo cadastro, 3 que dependem da franqueadora</h3>
+      <p class="sub">Cada uma nasce de uma busca real registrada no cadastro. As três últimas <b>não têm resposta hoje</b> — e é assim que ficam publicadas internamente até o dado chegar. Inventar número técnico em material de construção é risco, não conteúdo.</p>
+      <div class="txt">
+        <h4>Vocês entregam onde?</h4>
+        <p>Em Pardinho, Avaré, Paranapanema e Sorocaba/SP — e dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII.</p>
+        <h4>Entregam dentro do condomínio?</h4>
+        <p>Sim. A entrega no Ninho Verde II e na Riviera XIII é combinada com a portaria, no dia e no horário da obra.</p>
+        <h4>O que é o Blocok Parede Pronta?</h4>
+        <p>Um bloco cimentício de vedação com núcleo de EPS anti-chama, que substitui a alvenaria convencional: consome menos argamassa, gera menos resíduo e acelera a execução.</p>
+        <h4>O bloco tem certificação?</h4>
+        <p>Sim. É certificado pela UFMG em resistência, durabilidade e não propagação de chamas.</p>
+        <h4>Precisa de pedreiro especializado?</h4>
+        <p>Não. O sistema dispensa mão de obra altamente especializada, e a franquia inclui o treinamento da equipe da obra.</p>
+        <h4>Quais as formas de pagamento?</h4>
+        <p>Pix, dinheiro, boleto, cartões de crédito e débito, e financiamento.</p>
+        <h4 style="color:#A3200F">Quanto custa o bloco?</h4>
+        <p><b>Sem resposta hoje.</b> Nenhum dos três produtos tem preço no cadastro. Enquanto não houver tabela, a resposta publicada é “orçamento pelo WhatsApp com a metragem da parede” — lacuna declarada, não silêncio. <i>A busca real registrada é</i> <code>quanto custa um bloco de cimento 39x19x14</code>.</p>
+        <h4 style="color:#A3200F">Quantos blocos preciso para um cômodo?</h4>
+        <p><b>Sem resposta hoje.</b> Depende da medida nominal do bloco, que não está em nenhum lugar do cadastro. <b>Pedir à franqueadora</b> — com a medida, esta pergunta vira uma calculadora simples no site e o conteúdo de maior tráfego do segmento. <i>Buscas reais:</i> <code>quantos blocos de cimento para construir um quarto</code>, <code>quanto custa um bloco de cimento 39x19x14</code>.</p>
+      </div>
+      <div class="note"><b>A terceira pendência é técnica e trava as outras duas:</b> o produto 698701 chama de “estrutural” um bloco que o próprio texto descreve como “de vedação”. Até a franqueadora confirmar se existe uma linha estrutural separada, nenhuma resposta sobre carga, alvenaria estrutural ou substituição de pilar pode ser publicada. Bloco de vedação não sustenta carga.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Catálogo de produtos e serviços — como está × como deveria</span>
+      <h3>7 itens: 3 cadastrados e 4 que a empresa entrega e não descreve</h3>
+      <p class="sub">Cada item tem sua própria ficha com o antes, o depois e o score. Os três cadastrados descrevem o mesmo bloco e competem entre si. Os quatro <b>sugeridos</b> saem das categorias cadastradas sem produto (Concretos, Tijolos Ecológicos), das 10 buscas por pedra ornamental que nada responde, e da operação real da franquia — a entrega dentro do condomínio, que 11 buscas pedem pelo nome e nenhum texto responde.</p>
+      <div class="cat">
+        <button class="catcard" onclick="openItem('p697312',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 697312</span></span>
+          <span class="catname">Bloco Cimentício de vedação</span>
+          <span class="catprev">"O Bloco Cimentício da Blocok O Original Franquia Riviera é a escolha ideal para quem deseja construir com rapidez, economia e qualidade na Ninho Verde II Eco Residence – SP…"</span>
+          <span class="catfoot"><span class="catsc now">38</span><span class="catarrow">→</span><span class="catsc next">89</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p698700',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 698700</span></span>
+          <span class="catname">Sistema Construtivo Blocok</span>
+          <span class="catprev">"O Blocok o Original representa uma solução construtiva inteligente para quem deseja reduzir custos sem comprometer qualidade…"</span>
+          <span class="catfoot"><span class="catsc now">41</span><span class="catarrow">→</span><span class="catsc next">90</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p698701',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 698701</span></span>
+          <span class="catname">Bloco de Alta Resistência Estrutural</span>
+          <span class="catprev">"O Blocok o Original é um bloco cimentício de vedação projetado para garantir alta resistência mecânica e segurança estrutural…"</span>
+          <span class="catfoot"><span class="catsc now">33</span><span class="catarrow">→</span><span class="catsc next">87</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-concreto',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">categoria cadastrada, zero conteúdo</span></span>
+          <span class="catname">Concreto usinado com entrega</span>
+          <span class="catprev"><em>Existe na operação e nas buscas reais do cadastro, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">88</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-tijolo',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">categoria cadastrada, zero conteúdo</span></span>
+          <span class="catname">Tijolo ecológico</span>
+          <span class="catprev"><em>Existe na operação e nas buscas reais do cadastro, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">84</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-pedras',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">10 buscas reais, zero produto</span></span>
+          <span class="catname">Pedras ornamentais e revestimento</span>
+          <span class="catprev"><em>Existe na operação e nas buscas reais do cadastro, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">86</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-entrega',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">a operação real, sem conteúdo</span></span>
+          <span class="catname">Material de construção entregue no condomínio</span>
+          <span class="catprev"><em>Existe na operação e nas buscas reais do cadastro, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">90</span><span class="catopen">ver ficha</span></span>
+        </button>
+      </div>
+      <div class="note"><b>Por que separar assim:</b> hoje os três produtos cadastrados disputam a mesma busca — “bloco cimentício com EPS” — e repetem o mesmo argumento três vezes. Com um item por intenção — o que é o bloco, o que é o sistema, o concreto, o tijolo ecológico, o acabamento e a entrega no condomínio — cada página responde a uma pergunta diferente e param de competir entre si. <b>A recomendação de maior retorno é o item 7:</b> é o que a operação realmente faz, é o que 11 buscas pedem pelo nome do condomínio, e é a única busca que nenhum depósito de Sorocaba disputa.</div>
+    </div>
+
+<div class="itemfull" id="if-p697312" data-title="Bloco Cimentício de vedação · produto 697312 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><b>"Bloco Cimentício de vedação de alta resistência e termo-acústico com EPS anti-chama"</b> <mark class="m-bad" data-tip="83 caracteres. Vira slug e breadcrumb truncados, e ninguém digita a frase inteira na busca.">título de 83 caracteres</mark></p><p style="margin-top:8px">O texto abre dizendo que o bloco é "a escolha ideal para quem deseja construir com <mark class="m-bad" data-tip="Três adjetivos em sequência sem um número, um ensaio ou uma comparação. Não pontuam e ocupam a primeira linha, que é a que a IA cita.">rapidez, economia e qualidade</mark>" <mark class="m-bad" data-tip="Situa o produto em Ninho Verde II enquanto a cidade de busca do cadastro é Sorocaba. Divergência interna dentro do próprio cadastro.">na Ninho Verde II Eco Residence – SP</mark>. Lista vantagens em cinco travessões: redução de custo, agilidade, isolamento, <mark class="m-good" data-tip="Único fato com fonte externa em todo o cadastro: a certificação pela UFMG aparece na descrição da empresa. É o que precisa liderar o texto, não fechar a lista.">certificados de resistência e ensaios de não propagação de chamas</mark>, e treinamento incluído.</p><p style="margin-top:8px">Fecha em <mark class="m-bad" data-tip="Chamada sem WhatsApp, sem telefone e sem caminho. O texto termina e o cliente não tem para onde ir.">"Fale com a Blocok O Original Franquia Riviera"</mark>, sem contato.</p><p style="margin-top:8px"><span class="lbl">Não aparece em lugar nenhum</span><mark class="m-fill" data-tip="Pardinho, Avaré e Paranapanema estão confirmadas pelo parceiro e não são citadas.">as 4 cidades</mark> <mark class="m-fill" data-tip="A Riviera de Santa Cristina XIII dá nome à franquia e não aparece no texto do produto.">Riviera XIII</mark> <mark class="m-fill" data-tip="Pix, boleto, cartões e financiamento estão cadastrados. Prazo é o que decide compra de obra inteira.">financiamento</mark> <mark class="m-fill" data-tip="A medida 39x19x14 é busca real no cadastro e não aparece em nenhum produto.">medidas do bloco</mark></p></div><div class="sc"><div class="scnum"><b>38</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:48%"></span></span><span class="sv">12<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">4<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Nome do produto na linguagem de quem compra, com a marca e a função. Cabe em título, slug e breadcrumb.">Blocok Parede Pronta — bloco cimentício de vedação com EPS</mark></p><p style="margin-top:8px"><mark class="m-good" data-tip="Entidade + o que é + certificação com fonte, tudo na primeira frase.">Bloco cimentício de vedação com núcleo de EPS anti-chama, certificado pela UFMG em resistência, durabilidade e não propagação de chamas.</mark></p><ul style="margin-top:8px"><li>Substitui a alvenaria convencional em residências, comércios e obras maiores.</li><li><mark class="m-good" data-tip="Consequência operacional, não adjetivo: é o que o comprador de obra mede.">Parede mais leve, execução mais rápida e menos argamassa por metro quadrado.</mark></li><li>Isolamento térmico e acústico pelo núcleo de EPS.</li><li><mark class="m-good" data-tip="O treinamento é diferencial real do sistema e está na descrição da empresa. Remove a objeção do &quot;meu pedreiro não sabe assentar&quot;.">Treinamento da equipe de obra incluído — dispensa mão de obra especializada.</mark></li></ul><p style="margin-top:8px"><b>Entrega:</b> <mark class="m-good" data-tip="As quatro cidades e os dois condomínios, nomeados. É a informação que nenhum concorrente de Sorocaba consegue reivindicar.">Pardinho, Avaré, Paranapanema e Sorocaba/SP, e dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII.</mark></p><p class="cta"><mark class="m-good" data-tip="Fecha em ação possível, com o WhatsApp por extenso e dizendo o que mandar — reduz a ida e volta do orçamento.">Peça o orçamento no WhatsApp (15) 98809-6618 com a metragem da parede.</mark></p><p style="margin-top:8px" class="sub"><b>Pendente antes de publicar:</b> confirmar com a franqueadora se a linha é de vedação, estrutural, ou as duas — e a medida nominal do bloco.</p></div><div class="sc"><div class="scnum"><b>89</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 51 pontos · 38 → 89</span></div>
+<div class="itemfull" id="if-p698700" data-title="Sistema Construtivo Blocok · produto 698700 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p>É <mark class="m-good" data-tip="Redução de argamassa, menos resíduo, execução mais rápida e desempenho termoacústico são consequências operacionais verificáveis, não adjetivos. É o melhor texto dos três produtos.">o único dos três com benefício mensurável</mark>: lista redução no consumo de argamassa, menor geração de resíduos, execução mais rápida e melhor desempenho térmico e acústico.</p><p style="margin-top:8px">Mas abre em <mark class="m-bad" data-tip="&quot;Solução construtiva inteligente&quot; serve para qualquer sistema construtivo do país. A primeira frase é a que vira resposta em IA.">"uma solução construtiva inteligente"</mark> e escreve a marca como <mark class="m-bad" data-tip="&quot;Blocok o Original&quot;, com o &quot;o&quot; minúsculo, enquanto o nome cadastrado é &quot;Blocok O Original&quot;. Buscador e IA precisam resolver uma entidade só.">"Blocok o Original"</mark>, diferente do nome cadastrado. Cita <mark class="m-bad" data-tip="Nomeia Ninho Verde II duas vezes e não nomeia Pardinho, Avaré, Paranapanema nem a Riviera XIII. Metade do território fica invisível.">só Ninho Verde II</mark> e fecha em <mark class="m-bad" data-tip="&quot;Solicite um orçamento&quot; sem WhatsApp, sem telefone e sem caminho.">"Solicite um orçamento"</mark> sem dizer onde.</p></div><div class="sc"><div class="scnum"><b>41</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:52%"></span></span><span class="sv">13<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:25%"></span></span><span class="sv">5<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:60%"></span></span><span class="sv">9<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Nome do sistema + a comparação que o comprador faz de verdade: contra alvenaria convencional.">Sistema construtivo Blocok — parede pronta em vez de alvenaria convencional</mark></p><p style="margin-top:8px">O sistema entrega a parede montada com o bloco cimentício de vedação e o núcleo de EPS anti-chama. Comparado à alvenaria tradicional:</p><ul style="margin-top:8px"><li><mark class="m-good" data-tip="Os quatro benefícios do texto original, mantidos porque são operacionais e verificáveis na obra.">Menos argamassa por metro quadrado.</mark></li><li>Menos resíduo no canteiro.</li><li>Execução mais rápida, com menos etapas.</li><li>Melhor desempenho térmico e acústico.</li></ul><p style="margin-top:8px"><mark class="m-good" data-tip="Diferencial que remove a maior objeção do sistema construtivo alternativo — e está na descrição da empresa.">A franquia treina a equipe da obra: o sistema não exige mão de obra especializada.</mark></p><p style="margin-top:8px"><b>Onde:</b> Pardinho, Avaré, Paranapanema e Sorocaba/SP, incluindo Ninho Verde II Eco Residence e Riviera de Santa Cristina XIII.</p><p class="cta"><mark class="m-good" data-tip="Fecha em ação possível e diz exatamente o que mandar para receber o orçamento.">Mande a planta ou a metragem no WhatsApp (15) 98809-6618 e receba o cálculo de blocos.</mark></p></div><div class="sc"><div class="scnum"><b>90</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 49 pontos · 41 → 90</span></div>
+<div class="itemfull" id="if-p698701" data-title="Bloco de Alta Resistência Estrutural · produto 698701 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-bad" data-tip="O título diz &quot;alta resistência estrutural&quot; e a primeira linha do corpo diz &quot;bloco cimentício de vedação&quot;. São classificações técnicas diferentes: vedação não sustenta carga, estrutural sim. Publicar assim é risco técnico, não só de texto.">O título diz "estrutural" e o corpo diz "de vedação"</mark> — a contradição mais séria do cadastro.</p><p style="margin-top:8px">O texto <mark class="m-bad" data-tip="Mesmo bloco, mesmo EPS anti-chama, mesma promessa de resistência do produto 697312. Dois produtos para o mesmo item dividem a autoridade em vez de somar.">duplica o produto 697312</mark> e afirma <mark class="m-bad" data-tip="&quot;Redução de patologias como trincas e infiltrações&quot; é afirmação de desempenho sem ensaio nomeado. Sem fonte, sai do texto público.">"redução de patologias como trincas e infiltrações"</mark> sem lastro. Cita Ninho Verde II três vezes e nenhuma outra praça.</p></div><div class="sc"><div class="scnum"><b>33</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">10<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:15%"></span></span><span class="sv">3<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p class="sub"><b>Este item não deve ser publicado como está.</b> Enquanto a franqueadora não confirmar se existe uma linha estrutural separada da linha de vedação, a recomendação é <b>fundir com o produto 697312</b> — que descreve o mesmo bloco — e liberar o slot do catálogo para o concreto usinado, que tem busca real e nenhum produto.</p><p style="margin-top:8px">Se a linha estrutural existir de fato, o texto abaixo é o que ela pede:</p><p style="margin-top:8px"><mark class="m-good" data-tip="Se a linha existir, o que a diferencia é exatamente a função estrutural — e é isso que precisa estar no título.">Blocok estrutural — bloco cimentício que compõe estrutura</mark></p><ul style="margin-top:8px"><li><mark class="m-good" data-tip="A distinção técnica dita em uma frase é o que faz este item parar de competir com o de vedação.">Diferente do bloco de vedação, compõe a estrutura da edificação e recebe carga.</mark></li><li>Ensaio de resistência mecânica e classe de resistência — <b>pedir os números à franqueadora</b>.</li><li>Núcleo de EPS anti-chama, como toda a linha.</li></ul><p class="cta">Peça a ficha técnica no WhatsApp (15) 98809-6618.</p><p style="margin-top:8px" class="sub"><b>Lacuna declarada:</b> sem a classe de resistência e o ensaio nomeado, o item não sobe. Adjetivo não substitui número em produto estrutural.</p></div><div class="sc"><div class="scnum"><b>87</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:84%"></span></span><span class="sv">21<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 54 pontos · 33 → 87</span></div>
+<div class="itemfull" id="if-s-concreto" data-title="Concreto usinado com entrega · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — então não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas reais que ficam sem resposta</span><mark class="m-fill" data-tip="Termo cadastrado, sem nenhum produto que o responda.">concreto usinado</mark> <mark class="m-fill" data-tip="Intenção de compra direta, com o serviço embutido.">comprar concreto usinado com entrega</mark> <mark class="m-fill" data-tip="Busca com condomínio nomeado — a de maior valor.">melhor empresa de concreto usinado ninho verde</mark> <mark class="m-fill" data-tip="Aplicação específica, alta intenção.">concreto para lajes</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="A categoria Concretos está cadastrada e não tem um único produto. Este item é o que a torna útil.">Concreto usinado com entrega em Pardinho, Avaré e Paranapanema</mark></p><p style="margin-top:8px">Concreto pronto entregue na obra, incluindo dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII — onde o acesso de caminhão precisa de combinação prévia com a portaria.</p><ul style="margin-top:8px"><li>Para laje, fundação, piso e contrapiso.</li><li>Entrega programada por data e horário.</li><li><mark class="m-good" data-tip="Prazo é o que decide compra de obra: financiamento e boleto estão cadastrados e nenhum texto publicado os menciona.">Pagamento em Pix, boleto, cartões e financiamento.</mark></li></ul><p class="cta">Diga o volume em m³ e a data no WhatsApp (15) 98809-6618.</p><p style="margin-top:8px" class="sub"><b>Confirmar com o CS:</b> a franquia entrega concreto usinado próprio, revende de terceiro, ou apenas o cimento ensacado? A categoria está cadastrada e as buscas existem — falta saber o que a operação realmente faz.</p></div><div class="sc"><div class="scnum"><b>88</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">De zero a 88 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-tijolo" data-title="Tijolo ecológico · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — então não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas reais que ficam sem resposta</span><mark class="m-fill" data-tip="Termo da categoria cadastrada, sem produto que o responda.">tijolo ecológico</mark> <mark class="m-fill" data-tip="Busca real registrada no cadastro.">tijolos de concreto</mark> <mark class="m-fill" data-tip="Comparação que a empresa deveria estar respondendo.">blocos de concreto sao melhores que tijolos</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="A categoria Tijolos Ecológicos está cadastrada, tem busca própria e nenhum conteúdo. É o segundo slot vazio do catálogo.">Tijolo ecológico — alternativa sustentável ao tijolo cerâmico</mark></p><p style="margin-top:8px">Linha de tijolo de concreto com menor consumo de argamassa e menos resíduo no canteiro, na mesma lógica do sistema Blocok.</p><ul style="margin-top:8px"><li>Encaixe que reduz argamassa de assentamento.</li><li>Menos entulho gerado na obra.</li><li>Entrega nas quatro cidades e nos dois condomínios.</li></ul><p class="cta">Peça o comparativo com o tijolo comum no WhatsApp (15) 98809-6618.</p><p style="margin-top:8px" class="sub"><b>Confirmar com o CS:</b> a categoria está cadastrada, mas nenhum produto a descreve. A franquia trabalha com tijolo ecológico de fato, ou a categoria foi marcada por engano? Se for engano, desmarcar — categoria sem produto derruba a nota do perfil.</p></div><div class="sc"><div class="scnum"><b>84</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">20<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">16<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">De zero a 84 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-pedras" data-title="Pedras ornamentais e revestimento · sugerido, 10 buscas sem resposta"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — então não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas reais que ficam sem resposta</span><mark class="m-fill" data-tip="Dez termos da família aparecem nas buscas reais e nenhum produto responde.">pedras ornamentais</mark> <mark class="m-fill" data-tip="Aplicação específica de acabamento.">pedras para revestimento</mark> <mark class="m-fill" data-tip="Junta as duas coisas: o produto e o território da franquia.">fornecedor de pedras ornamentais em condominio</mark> <mark class="m-fill" data-tip="Intenção de compra com região.">quanto custa pedras ornamentais em sp interior</mark> <mark class="m-fill" data-tip="Cidade que não está na lista confirmada — ver a pendência do CS.">loja de pedras ornamentais itatinga sp</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Dez buscas reais da mesma família, nenhum produto e nenhuma categoria. É o maior buraco comercial do cadastro.">Pedras ornamentais e revestimento para acabamento</mark></p><p style="margin-top:8px">Linha de acabamento para fachada, muro e área externa, entregue junto com o material de estrutura — a obra resolve estrutura e acabamento no mesmo fornecedor.</p><ul style="margin-top:8px"><li>Pedra decorativa e de revestimento para fachada e área externa.</li><li>Entrega nas quatro cidades e dentro dos dois condomínios.</li></ul><p class="cta">Mande a foto da área no WhatsApp (15) 98809-6618 e receba as opções.</p><div class="note" style="margin-top:10px"><b>Este item não sobe sem confirmação.</b> São 10 buscas reais pedindo pedra ornamental, decorativa e de revestimento — e o cadastro não tem nem produto nem categoria para isso. Ou a empresa vende e não cadastrou, e este é o item de maior retorno imediato do catálogo, ou <b>a empresa não vende</b> e os 10 termos estão queimando verba e atraindo contato errado. <b>Pergunta de uma linha para o CS</b>, resposta que muda a campanha inteira.</div></div><div class="sc"><div class="scnum"><b>86</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:84%"></span></span><span class="sv">21<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">De zero a 86 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-entrega" data-title="Material de construção entregue no condomínio · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — então não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas reais que ficam sem resposta</span><mark class="m-fill" data-tip="A busca mais específica do cadastro inteiro — e sem resposta.">onde comprar blocos de cimento no ninho verde ii eco residence</mark> <mark class="m-fill" data-tip="O condomínio que dá nome à franquia.">blocos de concreto riviera de santa cristina</mark> <mark class="m-fill" data-tip="Cidade + categoria, intenção local.">materiais de construcao em pardinho sp</mark> <mark class="m-fill" data-tip="O serviço que a operação presta e não descreve.">materiais de construcao com entrega rapida</mark> <mark class="m-fill" data-tip="Fornecimento contínuo, não compra avulsa — outro ticket.">contratar fornecimento de cimento ninho verde</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="É o que a franquia realmente faz e o que 11 buscas reais pedem pelo nome do condomínio. Hoje não existe em texto nenhum.">Material de construção entregue dentro do seu condomínio</mark></p><p style="margin-top:8px">Quem constrói em condomínio fechado tem um problema que a loja da cidade não resolve: acesso de caminhão, horário de portaria e regra de obra. A franquia entrega dentro do <b>Ninho Verde II Eco Residence</b> (Pardinho) e da <b>Riviera de Santa Cristina XIII</b> (Paranapanema).</p><ul style="margin-top:8px"><li>Bloco, cimento, argamassa e insumos na mesma entrega.</li><li><mark class="m-good" data-tip="É a objeção real de quem constrói em condomínio e o que diferencia a franquia de qualquer depósito de cidade.">Entrega combinada com a portaria, no dia e no horário da obra.</mark></li><li>Fornecimento contínuo para obra em andamento, não só compra avulsa.</li><li>Pagamento em Pix, boleto, cartões e financiamento.</li></ul><p class="cta">Diga o condomínio e a etapa da obra no WhatsApp (15) 98809-6618.</p><p style="margin-top:8px" class="sub"><b>Por que este é o item mais importante do catálogo:</b> 11 das 104 buscas reais nomeiam um dos dois condomínios. É a única busca que nenhum depósito de Sorocaba disputa — e hoje não existe uma linha de texto que a responda.</p></div><div class="sc"><div class="scnum"><b>90</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa — inclusive quando a pessoa erra a grafia na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (território, certificação, pagamento, atendimento). Adjetivo sem fato não pontua; superlativo sem fonte desconta.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível as perguntas que as pessoas realmente fazem: entrega onde, o que é o bloco, como comprar, como paga.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido o trecho, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que não caberia em qualquer concorrente. Texto de franqueadora, replicável por qualquer franquia, não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, orçamento, como pedir. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">8<i>/10</i></span></div></div></div></div><span class="delta">De zero a 90 — item que hoje não disputa busca nenhuma</span></div>
+
+  </section>
+
+
+  <!-- ================================================== SOLUSITE -->
+  <section id="p-site" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Site Profissional (Solusite)</span>
+      <h2>Blocos do site e o conteúdo de cada um</h2>
+      <p class="secsub">No site próprio a voz é da empresa (1ª pessoa) e links e botões são permitidos — ao contrário do perfil Solutudo. A enumeração de fatos é a mesma das outras abas; muda o formato, nunca a verdade. <b>O Solusite tem um papel extra neste caso:</b> hoje o campo Site do cadastro aponta para blocokoriginal.com.br, que é da franqueadora e não tem página, contato nem território desta unidade. O Solusite é a única casa própria que a franquia vai ter.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(180,83,9,.3)">
+      <span class="badge warn">Antes de tudo: refazer os dois banners</span>
+      <p class="sub">Os banners publicados hoje (desktop e mobile) trazem, na própria arte, a frase <b>“Tecnologia aplicada para transformar sua obra em sorocaba”</b> — cidade errada e em minúscula. São as duas primeiras imagens que o visitante vê. Refazer com a área de atendimento real antes de publicar qualquer bloco.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da home</span>
+      <dl class="kv">
+        <dt>title</dt><dd>Blocok O Original | Bloco e concreto no seu condomínio<span class="cnt">54/60</span></dd>
+        <dt>meta</dt><dd>Bloco cimentício Blocok, concreto e materiais entregues em Pardinho, Avaré e Paranapanema — inclusive dentro do Ninho Verde II e da Riviera XIII.<span class="cnt">145/160</span></dd>
+      </dl>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">1</span><h4>Hero — a promessa em uma linha</h4>
+      <div class="txt">
+        <p><b>A obra do seu lote, com o material entregue na porta dela.</b></p>
+        <p>Sistema construtivo Blocok, blocos, concreto e insumos em Pardinho, Avaré e Paranapanema — e dentro do Ninho Verde II e da Riviera de Santa Cristina XIII.</p>
+        <p class="cta">[Botão] Pedir orçamento no WhatsApp · [Botão] Ver o que entregamos</p>
+      </div>
+      <p class="bwhy">Território na primeira dobra, com os condomínios nomeados: é o que diferencia a franquia de qualquer depósito e o que 11 buscas reais pedem pelo nome.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">2</span><h4>O que é o Blocok Parede Pronta</h4>
+      <div class="txt">
+        <p>É um bloco cimentício de vedação com núcleo de EPS anti-chama. No lugar de erguer a alvenaria tijolo a tijolo, a parede sobe pronta: menos argamassa por metro quadrado, menos resíduo no canteiro e execução mais rápida.</p>
+        <p><b>Certificado pela UFMG</b> em resistência, durabilidade e não propagação de chamas.</p>
+      </div>
+      <p class="bwhy">A certificação é o único fato com fonte externa em todo o cadastro. Sai do meio do texto e vira bloco próprio, porque é o que buscador e IA conseguem verificar.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">3</span><h4>Onde entregamos — as duas frentes<span class="hint" data-tip="Bloco exclusivo deste parceiro. São duas manchas separadas no mapa: não existe raio único que cubra Sorocaba e o eixo do interior. O site precisa dizer as duas, com os condomínios nomeados.">?</span></h4>
+      <div class="txt">
+        <p><b>Interior — Pardinho, Avaré e Paranapanema.</b> Entrega de material na obra, inclusive dentro dos condomínios <b>Ninho Verde II Eco Residence</b> (Pardinho) e <b>Riviera de Santa Cristina XIII</b> (Paranapanema), com acesso combinado com a portaria.</p>
+        <p><b>Sorocaba e região.</b> Atendimento e orçamento pelo WhatsApp.</p>
+        <p class="cta">[Botão] Seu condomínio está na lista? Confirme no WhatsApp</p>
+      </div>
+      <p class="bwhy">Uma página própria por condomínio (<code>/ninho-verde-ii</code> e <code>/riviera-santa-cristina-xiii</code>) captura a busca pelo nome — que é o termo mais específico e menos disputado do cadastro inteiro.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">4</span><h4>Páginas de produto — uma por item do catálogo<span class="hint" data-tip="Cada item da aba Destaque vira uma página própria, com title e meta próprios. Uma página por intenção de busca rende mais que uma página tentando responder todas.">?</span></h4>
+      <div class="txt">
+        <p><b>/blocok-parede-pronta</b> — título: Blocok Parede Pronta — bloco cimentício com EPS <span class="cnt">48/60</span><br>
+        meta: Bloco cimentício de vedação com núcleo de EPS anti-chama, certificado pela UFMG. Entrega em Pardinho, Avaré, Paranapanema e nos condomínios. <span class="cnt">143/160</span></p>
+        <p style="margin-top:12px"><b>/sistema-construtivo-blocok</b> — o sistema completo, comparado à alvenaria convencional, com o treinamento da equipe.</p>
+        <p style="margin-top:12px"><b>/concreto-usinado</b> · <b>/tijolo-ecologico</b> · <b>/pedras-ornamentais</b> — os três itens sugeridos, cada um <b>condicionado à confirmação do CS</b> (ver as fichas na aba Destaque). Nenhum sobe antes da resposta.</p>
+        <p style="margin-top:12px"><b>/entrega-no-condominio</b> — a página mais importante do site: o que a operação faz e o que ninguém mais na região oferece.</p>
+      </div>
+      <p class="bwhy">As três fotos cadastradas dos produtos abrem as páginas, com alt-text descrevendo o bloco. Enumeração idêntica à da Solutudo e do Google.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">5</span><h4>Quem constrói com a gente</h4>
+      <div class="txt">
+        <p>Autoconstrutor de lote em condomínio, pedreiro e mestre de obra da região, e construtora de casa térrea e sobrado. Para todos, o sistema chega com <b>treinamento da equipe</b> — não é preciso mão de obra especializada em Blocok para começar.</p>
+      </div>
+      <p class="bwhy">Remove a objeção que mais trava sistema construtivo alternativo. O treinamento está na descrição da empresa e nunca foi usado como argumento próprio.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">6</span><h4>Como comprar — orçamento, entrega e pagamento</h4>
+      <div class="txt">
+        <p>Mande a metragem da parede ou a planta pelo WhatsApp <b>(15) 98809-6618</b>, das 8h às 18h. Devolvemos o cálculo de blocos e o orçamento.</p>
+        <p><b>Pagamento:</b> Pix, dinheiro, boleto, cartões de crédito e débito e <b>financiamento</b> — para quem prefere diluir o material da obra.</p>
+        <p class="cta">[Botão] Pedir orçamento agora</p>
+      </div>
+      <p class="bwhy">As cinco formas de pagamento estão no cadastro e nunca foram publicadas. Financiamento e boleto são o que decide compra de obra inteira — é argumento comercial, não detalhe operacional.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">7</span><h4>Contato &amp; atendimento</h4>
+      <div class="txt">
+        <p>WhatsApp (15) 98809-6618 · blocok.riviera@gmail.com · @blocok.riviera</p>
+        <p>Atendimento das 8h às 18h. Área de atendimento: Pardinho, Avaré, Paranapanema e Sorocaba/SP.</p>
+      </div>
+      <p class="bwhy"><b>Sem endereço e sem mapa neste bloco.</b> O endereço cadastrado é residencial (apartamento) — publicar expõe a casa do franqueado e não ajuda ninguém a comprar. Enquanto não houver depósito ou loja, o site é de área de atendimento, como o Google.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">8</span><h4>FAQ — as mesmas 8 perguntas da página de Destaque</h4>
+      <p class="bwhy" style="margin-top:10px">Mesmas perguntas, mesmas respostas (1ª pessoa permitida aqui) — incluindo as duas que hoje não têm resposta, que ficam de fora do site até o dado chegar. Consistência entre os dois domínios evita que o buscador escolha um e descarte o outro; o Solusite pode marcar FAQPage no JSON-LD — gerado pela aplicação, nunca pela LLM.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Regras do produto</span>
+      <ul class="clean">
+        <li><b>alt-text obrigatório</b> nas fotos dos blocos (23 imagens disponíveis no álbum — hoje todas com legenda genérica).</li>
+        <li><b>Nenhum endereço físico e nenhum mapa</b> enquanto o cadastro apontar para o apartamento.</li>
+        <li><b>Nenhuma afirmação estrutural</b> (carga, pilar, alvenaria estrutural) até a franqueadora confirmar a linha — ver a ficha do produto 698701.</li>
+        <li><b>Sem “desde 1999”</b> em bloco nenhum: a data do contrato é valor-padrão.</li>
+        <li><b>aggregateRating não entra</b>: avaliação exibida só se houver review nativa.</li>
+        <li><b>WhatsApp clicável e visível</b> em todas as páginas — é o único canal de voz da empresa.</li>
+        <li><b>dateModified</b> no JSON-LD do WebPage a cada mudança material — pela aplicação.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ================================================== GOOGLE -->
+  <section id="p-gmb" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Presença no Google</span>
+      <h2>Ficha do Google, pronta para conferir</h2>
+      <p class="secsub">Dados tradicionais organizados campo a campo. Regra de ouro: exatamente o mesmo NAP da Solutudo e do site — divergência aqui derruba confiança em todos os canais. <b>E uma decisão de configuração que vale mais que qualquer texto:</b> este perfil precisa ser de <b>área de atendimento</b>, não de endereço.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(196,43,34,.3);background:linear-gradient(180deg,#FFF6F4 0%,var(--white) 60%)">
+      <span class="badge" style="background:#FFE4E0;color:#A3200F">Decisão de configuração · antes de qualquer texto</span>
+      <h3>Empresa de área de atendimento, com endereço oculto</h3>
+      <p class="sub">O endereço cadastrado é <code>Avenida Ipanema, 5381 — BLOCO B, apto 14</code>: um apartamento. Publicar como endereço de atendimento no Google é problema em três frentes ao mesmo tempo.</p>
+      <ul class="clean">
+        <li><b>É contra a política do Google.</b> Endereço só é publicado quando o cliente pode ser atendido ali. Perfil com endereço residencial sem atendimento presencial é passível de suspensão.</li>
+        <li><b>Expõe a casa do franqueado</b> — endereço e número de apartamento em mapa público.</li>
+        <li><b>Ancora o perfil na cidade errada.</b> Com endereço em Sorocaba, o perfil disputa Sorocaba: o mercado mais concorrido e onde a franquia não tem vantagem. Como área de atendimento, ele aparece em Pardinho, Avaré e Paranapanema, que é onde ela entrega.</li>
+      </ul>
+      <div class="note"><b>Configuração correta:</b> marcar como empresa que atende clientes no endereço deles, <b>ocultar o endereço</b> e declarar as áreas de atendimento — Pardinho, Avaré, Paranapanema e Sorocaba/SP. Se existir depósito ou loja de verdade, cadastrar esse endereço e o perfil volta a ser de local. <b>Pergunta para o CS: existe ponto físico?</b></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Ficha básica</span>
+      <dl class="kv">
+        <dt>Nome do perfil</dt><dd>Blocok O Original <small>sem cidade e sem palavra-chave no nome — o Google pune nome decorado. Se a franqueadora exigir o identificador da unidade, usar "Blocok O Original — Franquia Riviera", nunca "Blocok Sorocaba"</small></dd>
+        <dt>Categoria principal</dt><dd>Loja de materiais de construção</dd>
+        <dt>Categorias secundárias</dt><dd>Fornecedor de blocos de concreto · Fornecedor de concreto · Loja de produtos para construção</dd>
+        <dt>Endereço</dt><dd><b>oculto</b> <small>empresa de área de atendimento — ver o card acima</small></dd>
+        <dt>Áreas de atendimento</dt><dd>Pardinho/SP · Avaré/SP · Paranapanema/SP · Sorocaba/SP <small>o Google aceita cidade, não condomínio: os condomínios entram na descrição, nas fotos e nas Perguntas e respostas</small></dd>
+        <dt>Telefone</dt><dd>(15) 98809-6618 <small>é celular e é o único canal — marcar como principal e habilitar o chat</small></dd>
+        <dt>Site</dt><dd>o Solusite, assim que publicado <small>hoje o campo aponta para blocokoriginal.com.br, da franqueadora, que não tem página desta unidade</small></dd>
+        <dt>Horário</dt><dd>08:00–18:00 <small><b>confirmar os dias com o CS antes de preencher.</b> O cadastro marca os sete dias mais feriado; perfil com horário errado no Google gera avaliação negativa de quem foi e não encontrou</small></dd>
+        <dt>Perfil existente</dt><dd>share.google/1nRjQDg3GkO6zCp8b <small>já existe — verificar reivindicação e acesso antes de editar</small></dd>
+      </dl>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="badge">Atributos a marcar</span>
+        <div class="chips">
+          <span class="chip mint">Faz entrega</span>
+          <span class="chip mint">Pagamento: Pix</span><span class="chip mint">Cartões de crédito e débito</span><span class="chip mint">Dinheiro</span><span class="chip mint">Boleto</span><span class="chip mint">Financiamento</span>
+        </div>
+        <div class="note" style="margin-top:12px"><b>Não marcar</b> ar-condicionado, Wi-Fi, estacionamento nem acessibilidade, ainda que estejam no cadastro da Solutudo: são atributos de estabelecimento com atendimento presencial, e esta operação não tem endereço público. Marcar atributo que não existe é o caminho mais rápido para uma avaliação de uma estrela.</div>
+      </div>
+      <div class="card">
+        <span class="badge">Fotos</span>
+        <ul class="clean">
+          <li><b>23 fotos do álbum</b> + duas capas + logotipo já disponíveis no cadastro (galeria completa na aba Parceiro).</li>
+          <li>Prioridade de publicação: bloco de perto, parede erguida, entrega chegando na obra, equipe em treinamento.</li>
+          <li>Renomear arquivos com conteúdo real antes de subir (ex.: <code>blocok-parede-pronta-ninho-verde.jpg</code>).</li>
+          <li><b>Não subir os dois banners do Solusite</b> enquanto disserem “em sorocaba”.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Descrição do perfil<span class="cnt">739/750</span></span>
+      <div class="txt"><p>A Blocok O Original é a franquia que fornece o sistema construtivo Blocok em Pardinho, Avaré, Paranapanema e Sorocaba/SP. O produto principal é o Blocok Parede Pronta: bloco cimentício de vedação com núcleo de EPS anti-chama, certificado pela UFMG em resistência, durabilidade e não propagação de chamas. O sistema substitui a alvenaria convencional, consome menos argamassa, gera menos resíduo e acelera a execução — e a franquia treina a equipe do canteiro, sem exigir mão de obra especializada. Também fornece cimento, argamassa e insumos. Entrega nas quatro cidades e dentro dos condomínios Ninho Verde II Eco Residence, em Pardinho, e Riviera de Santa Cristina XIII, em Paranapanema. Pagamento em Pix, boleto, cartões e financiamento.</p></div>
+      <div class="note"><b>Regras do canal aplicadas:</b> sem telefone e sem URL no texto (o Google reserva campos próprios); os ~250 caracteres iniciais carregam entidade, território e o produto principal, porque é o que aparece antes do “Mais”; sem promoção, sem preço e sem superlativo. Os dois condomínios entram nominalmente — é o que o campo de área de atendimento não consegue expressar.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Rotina de manutenção</span>
+      <ul class="clean">
+        <li><b>Perguntas e respostas:</b> semear as 6 do FAQ que já têm resposta. As duas sem resposta ficam de fora até o dado da franqueadora chegar.</li>
+        <li><b>Publicações:</b> uma por entrega concluída em condomínio, com o nome do condomínio no texto — é o termo que ninguém mais disputa.</li>
+        <li><b>Avaliações:</b> responder todas; nunca incentivar avaliação com recompensa.</li>
+        <li><b>Horário:</b> confirmar os dias com o CS e revisar em feriado. Perfil com “horário não confirmado” perde destaque.</li>
+        <li><b>Reivindicação:</b> confirmar quem controla o perfil hoje — se está com a franqueadora, pedir acesso de gerente para a unidade.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ================================================== REDES -->
+  <section id="p-soc" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Redes sociais</span>
+      <h2>Bio, editorias, destaques e os 3 posts fixados</h2>
+      <p class="secsub">Foco em contato: a bio fecha no WhatsApp, o post fixado 3 concentra o contato e a área de atendimento, e cada editoria existe para sustentar tema o ano inteiro sem inventar fato. Perfis cadastrados: <b>@blocok.riviera</b> no Instagram e uma página no Facebook sem nome de usuário.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Bio do Instagram<span class="cnt">139/150</span></span>
+      <div class="txt"><p>Bloco cimentício Blocok e material de obra. Entrega em Pardinho, Avaré e Paranapanema, e dentro do Ninho Verde II. WhatsApp (15) 98809-6618</p></div>
+      <ul class="clean">
+        <li><b>Regras aplicadas:</b> o que é + onde entrega + condomínio nomeado · fecha no contato (WhatsApp por extenso).</li>
+        <li><b>Link da bio:</b> o Solusite, assim que publicado. Hoje não há link próprio — o site cadastrado é da franqueadora.</li>
+        <li><b>Sem “desde 1999”</b> e <b>sem Sorocaba na primeira linha</b>: a bio tem 150 caracteres e cada um precisa trabalhar pelo território que converte.</li>
+        <li>Contado em UTF-16, como o Instagram conta (139 de 150).</li>
+      </ul>
+      <div class="note"><b>Pendência do Facebook:</b> a página está cadastrada como <code>profile.php?id=61585549802243</code>, sem nome de usuário. Pedir a vanity URL (<code>/blocok.riviera</code>, igual ao Instagram) — nome de usuário é parte da entidade que os buscadores cruzam.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">6 editorias — as linhas que sustentam o ano</span>
+      <div class="grid3">
+        <div class="blk"><span class="ed ed1"><i></i>E1 · Como o Blocok funciona</span><p style="font-size:13px;color:var(--g700);margin-top:9px">O sistema por dentro: o bloco, o EPS, a certificação da UFMG, o treinamento da equipe. O que só quem trabalha com o sistema pode mostrar.</p></div>
+        <div class="blk"><span class="ed ed2"><i></i>E2 · O que entregamos</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Bloco, sistema completo, cimento, argamassa e insumos. Sempre um item real do catálogo por vez.</p></div>
+        <div class="blk"><span class="ed ed3"><i></i>E3 · Peça para a sua obra</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Orçamento, prazo de entrega, formas de pagamento e financiamento — a editoria de conversão, com WhatsApp em todo post.</p></div>
+        <div class="blk"><span class="ed ed4"><i></i>E4 · Quem constrói com Blocok</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Autoconstrutor de lote, pedreiro, mestre de obra e construtora. Fala com quem decide o material.</p></div>
+        <div class="blk"><span class="ed ed5"><i></i>E5 · Dentro do condomínio</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Ninho Verde II, Riviera XIII, Pardinho, Avaré e Paranapanema. A editoria de maior alavancagem: é o território que ninguém mais disputa.</p></div>
+        <div class="blk"><span class="ed ed6"><i></i>E6 · Dúvidas de obra</span><p style="font-size:13px;color:var(--g700);margin-top:9px">Responde as buscas reais (bloco × tijolo, muro, impermeabilização, assentamento) — AEO dentro da rede.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Destaques do perfil — títulos sugeridos</span>
+      <div class="chips">
+        <span class="chip lav">O Blocok</span><span class="chip lav">Certificação</span><span class="chip lav">Entrega</span><span class="chip lav">Ninho Verde II</span><span class="chip lav">Riviera XIII</span><span class="chip lav">Orçamento</span><span class="chip lav">Pagamento</span><span class="chip lav">Obras</span>
+      </div>
+      <p class="sub">Regra: 1–2 palavras, substantivo primeiro, capa legível no círculo. Ordem: o que vende antes do institucional. <b>Os dois condomínios ganham destaque próprio</b> — quem mora lá procura pelo nome.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 1 · Sobre a empresa</span>
+      <div class="txt">
+        <p>Sua parede sobe pronta. 🧱</p>
+        <p>Somos a franquia Blocok que atende Pardinho, Avaré, Paranapanema e Sorocaba. O Blocok Parede Pronta é um bloco cimentício de vedação com núcleo de EPS anti-chama — certificado pela UFMG em resistência, durabilidade e não propagação de chamas.</p>
+        <p>No lugar de erguer tijolo a tijolo: menos argamassa, menos entulho e obra mais rápida. E a gente treina a sua equipe — não precisa de mão de obra especializada.</p>
+        <p>📍 Entregamos dentro do Ninho Verde II Eco Residence e da Riviera de Santa Cristina XIII.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 2 · O que entregamos</span>
+      <div class="txt">
+        <p>O que sai do nosso caminhão:</p>
+        <p>🧱 Blocok Parede Pronta — bloco cimentício de vedação com EPS anti-chama<br>🏗️ O sistema construtivo completo, com treinamento da equipe<br>🪣 Cimento, argamassa e insumos para a obra<br>🚚 Entrega em Pardinho, Avaré, Paranapanema e Sorocaba<br>🏘️ Dentro do Ninho Verde II e da Riviera de Santa Cristina XIII, combinada com a portaria</p>
+        <p>Atendimento das 8h às 18h.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 3 · Contato e como pedir</span>
+      <div class="txt">
+        <p>Vai começar a obra? Manda a metragem que a gente calcula. 👇</p>
+        <p>📱 WhatsApp: (15) 98809-6618<br>✉️ blocok.riviera@gmail.com<br>📸 @blocok.riviera<br>🚚 Pardinho · Avaré · Paranapanema · Sorocaba/SP<br>🏘️ Ninho Verde II Eco Residence e Riviera de Santa Cristina XIII<br>⏰ Das 8h às 18h</p>
+        <p>Pagamento em Pix, dinheiro, boleto, cartões — e financiamento para diluir o material da obra. 💳</p>
+      </div>
+      <div class="note"><b>Sem endereço no post fixado</b>, ao contrário dos outros parceiros: o endereço cadastrado é residencial. O que ancora a empresa no território aqui é a lista de cidades e os dois condomínios, não um ponto no mapa.</div>
+    </div>
+
+  </section>
+
+  <!-- ================================================== CONTEUDO -->
+  <section id="p-cont" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Conteúdo · com ou sem social media</span>
+      <h2>24 temas para o ano, organizados por editoria</h2>
+      <p class="secsub">Dois temas por mês, cada um marcado com a editoria a que pertence. Todos ancorados em fato do cadastro ou em busca real registrada — nenhum exige inventar nada; o formato (foto, vídeo, carrossel) fica a critério de quem produz.</p>
+    </div>
+
+    <div class="card"><span class="ed ed1"><i></i>E1 · Como o Blocok funciona</span><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">1 · Blocok Parede Pronta: o que é, em 40 segundos</span><span class="td" style="display:block">Bloco cimentício de vedação com núcleo de EPS anti-chama — o produto explicado com o bloco na mão.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">2 · Certificado pela UFMG: o que foi testado</span><span class="td" style="display:block">Resistência, durabilidade e não propagação de chamas. O único fato do cadastro com fonte externa.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">3 · Por que a parede sobe mais rápido</span><span class="td" style="display:block">Menos etapas, menos argamassa por metro quadrado — o comparativo com a alvenaria convencional.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">4 · O treinamento que vem junto</span><span class="td" style="display:block">A equipe da obra aprende a assentar. Registrar um treinamento real, no canteiro.</span></span></div></div>
+    <div class="card"><span class="ed ed2"><i></i>E2 · O que entregamos</span><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">5 · Não é só bloco: o que mais sai no caminhão</span><span class="td" style="display:block">Cimento, argamassa e insumos — o sortimento que as buscas pedem e nenhum texto publica hoje.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">6 · O sistema completo × o bloco avulso</span><span class="td" style="display:block">A diferença entre comprar o bloco e contratar o sistema, que é o que separa os dois produtos do catálogo.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">7 · EPS anti-chama: o que o núcleo faz</span><span class="td" style="display:block">Isolamento térmico e acústico explicado pelo corte do bloco.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">8 · O item do mês</span><span class="td" style="display:block">Série recorrente: um item real do catálogo em destaque a cada edição.</span></span></div></div>
+    <div class="card"><span class="ed ed3"><i></i>E3 · Peça para a sua obra</span><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">9 · Como pedir orçamento em uma mensagem</span><span class="td" style="display:block">Mande a metragem ou a planta no WhatsApp — o post que ensina o caminho mais curto.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">10 · Financiamento: diluir o material da obra</span><span class="td" style="display:block">Forma de pagamento cadastrada e nunca comunicada. É o que decide compra de obra inteira.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">11 · Pix, boleto, cartão: como você prefere pagar</span><span class="td" style="display:block">As cinco formas cadastradas, num post que remove a última dúvida.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">12 · Combinamos a entrega com a portaria</span><span class="td" style="display:block">Como funciona a entrega dentro do condomínio, do pedido ao caminhão no lote.</span></span></div></div>
+    <div class="card"><span class="ed ed4"><i></i>E4 · Quem constrói com Blocok</span><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">13 · Você mesmo vai tocar a obra?</span><span class="td" style="display:block">O autoconstrutor de lote em condomínio — o público que mais pesquisa antes de comprar.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">14 · Para o pedreiro e o mestre de obra</span><span class="td" style="display:block">O sistema pela ótica de quem assenta: o que muda na rotina do canteiro.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">15 · Para construtora: casa térrea e sobrado</span><span class="td" style="display:block">Escala, prazo e padronização — o argumento para quem faz mais de uma obra.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">16 · A primeira parede de quem nunca usou</span><span class="td" style="display:block">Registro de uma equipe estreando no sistema, do treinamento à parede pronta.</span></span></div></div>
+    <div class="card"><span class="ed ed5"><i></i>E5 · Dentro do condomínio</span><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">17 · Obra no Ninho Verde II Eco Residence</span><span class="td" style="display:block">O condomínio em Pardinho, nomeado — é o termo que 8 buscas reais procuram.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">18 · Obra na Riviera de Santa Cristina XIII</span><span class="td" style="display:block">O condomínio em Paranapanema que dá nome à franquia.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">19 · Pardinho, Avaré e Paranapanema</span><span class="td" style="display:block">As três cidades do eixo do interior, cada uma com a obra que está rodando lá.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">20 · Construir em lote de condomínio: o que muda</span><span class="td" style="display:block">Acesso, portaria, horário e regra de obra — a dor que a loja da cidade não resolve.</span></span></div></div>
+    <div class="card"><span class="ed ed6"><i></i>E6 · Dúvidas de obra</span><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">21 · “Bloco de concreto é melhor que tijolo?”</span><span class="td" style="display:block">Busca real registrada no cadastro. Comparativo honesto, sem depreciar o tijolo.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">22 · “Pode usar bloco de cimento em muro?”</span><span class="td" style="display:block">Busca real. Responde a aplicação e as condições — sem prometer o que não foi ensaiado.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">23 · “Como evitar infiltração em muro de bloco?”</span><span class="td" style="display:block">Busca real, alta intenção de dúvida. O post que resolve e gera salvamento.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">24 · “Como assentar bloco de concreto corretamente?”</span><span class="td" style="display:block">Busca real. Vídeo curto do assentamento — o conteúdo que o treinamento já produz.</span></span></div></div>
+
+    <div class="card">
+      <span class="badge">Como estas editorias nasceram</span>
+      <h3>6 slots fixos, preenchidos com os fatos deste cadastro</h3>
+      <p class="sub">A função de cada editoria é sempre a mesma — o que muda de empresa para empresa é quem a ocupa. Cada uma precisa de <b>pelo menos 2 fatos do cadastro</b> para existir: uma editoria tem que render 4 publicações sem ninguém inventar nada no meio do caminho.</p>
+      <div class="chips">
+        <span class="chip lav">A · Processo e origem<span class="hint" data-tip="Aqui virou E1. Vem do sistema construtivo, da certificação UFMG e do treinamento — o modo de fazer que a franquia domina.">?</span></span>
+        <span class="chip lav">B · Oferta<span class="hint" data-tip="Aqui virou E2. Vem dos 3 produtos cadastrados e das 4 categorias, incluindo o sortimento que hoje nenhum texto publica.">?</span></span>
+        <span class="chip lav">C · Conversão<span class="hint" data-tip="Aqui virou E3. Vem das 5 formas de pagamento, do horário e do WhatsApp. Todo tema deste slot termina em contato real.">?</span></span>
+        <span class="chip lav">D · Público e experiência<span class="hint" data-tip="Aqui virou E4. Vem dos segmentos que os produtos citam: residências, comércios e grandes projetos.">?</span></span>
+        <span class="chip lav">E · Território<span class="hint" data-tip="Aqui virou E5, e é o slot de maior valor deste parceiro: as 4 cidades e os 2 condomínios nomeados, que 11 buscas reais procuram e nenhum concorrente disputa.">?</span></span>
+        <span class="chip lav">F · Dúvidas<span class="hint" data-tip="Aqui virou E6. Vem direto das 9 perguntas registradas nas buscas reais do cadastro. É o slot de maior alavancagem: a mesma resposta vira post, FAQ, resposta no Google e bloco do site.">?</span></span>
+      </div>
+      <p class="sub" style="margin-top:12px">Padrão completo, com os filtros e o prompt do agente planejador de pauta, em <code>docs/editorias-conteudo.md</code>.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Como usar</span>
+      <ul class="clean">
+        <li><b>Ritmo:</b> 2 temas/mês fecham o ano; a ordem dentro de cada editoria já sugere a progressão.</li>
+        <li><b>A E5 é a prioridade deste parceiro.</b> Se o calendário encolher, ela é a última a cair: é o único conteúdo que nenhum concorrente da região consegue produzir.</li>
+        <li><b>Todo post da E3 termina em contato</b> (WhatsApp + o que mandar), como o post fixado 3.</li>
+        <li><b>Nenhum tema afirma resistência estrutural.</b> Enquanto a franqueadora não confirmar a linha, o assunto não entra em pauta — nem em post, nem em resposta de comentário.</li>
+        <li><b>O tema 8 da E2 (“item do mês”)</b> é série recorrente — pode repetir com item diferente sempre que faltar pauta.</li>
+        <li><b>Antes de produzir a E5:</b> confirmar com o CS a política de cada condomínio sobre divulgação de obra. Alguns condomínios restringem foto de lote e fachada.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    Central de conteúdo do parceiro · Blocok O Original (ID 27112782) · <a href="../">todos os parceiros</a> ·
+    <a href="../../sobre-empresa-new-rock/">artefato da Descrição 3.0</a> · regras em <code>docs/descricao-empresa-3-0.md</code>
+  </div>
+</div>
+<div class="dw-back" id="dw-back" onclick="closeItem()"></div>
+<aside class="dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dw-title"></aside>
+
+<script>
+  var itemLast = null;
+  function openItem(key, el){
+    var src = document.getElementById('if-' + key);
+    if(!src) return;
+    itemLast = el || null;
+    var dw = document.getElementById('dw');
+    dw.innerHTML = '<div class="dw-top"><h3 id="dw-title">' + src.dataset.title + '</h3>' +
+      '<button class="dw-close" onclick="closeItem()" aria-label="Fechar ficha do item">✕</button></div>' +
+      '<div class="dw-body">' + src.innerHTML + '</div>';
+    dw.classList.add('on');
+    document.getElementById('dw-back').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    var b = dw.querySelector('.dw-close'); if(b) b.focus();
+  }
+  function closeItem(){
+    var dw = document.getElementById('dw'); if(!dw) return;
+    dw.classList.remove('on');
+    document.getElementById('dw-back').classList.remove('on');
+    document.body.style.overflow = '';
+    if(itemLast){ itemLast.focus(); itemLast = null; }
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var dw = document.getElementById('dw');
+      if(dw && dw.classList.contains('on')) closeItem();
+    }
+  });
+  function show(which){
+    ['parc','dest','site','gmb','soc','cont'].forEach(function(k){
+      document.getElementById('p-'+k).classList.toggle('on', which===k);
+      document.getElementById('t-'+k).classList.toggle('on', which===k);
+    });
+    closeItem();
+    history.replaceState(null,'','#'+which);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  var h = location.hash.replace('#','');
+  if(['dest','site','gmb','soc','cont'].indexOf(h) >= 0) show(h);
+</script>
 <script src="../parceiros.js" defer></script>
 </body>
 </html>

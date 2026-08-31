@@ -28,8 +28,8 @@
     {
       pasta: "blocok-o-original",
       nome: "Blocok O Original",
-      meta: "Sorocaba/SP",
-      estado: "diagnostico"
+      meta: "Pardinho e Avaré/SP",
+      estado: "completa"
     }
   ];
 

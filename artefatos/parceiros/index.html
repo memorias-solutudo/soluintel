@@ -115,7 +115,7 @@
 <div class="hero">
   <span class="vbadge">Parceiros · perfil completo dos canais</span>
   <h1>Parceiros analisados</h1>
-  <p>Cada parceiro tem uma central própria: um dossiê de fatos do cadastro e uma aba por produto contratado — Destaque, Solusite, Google, redes e calendário de conteúdo. Segmentos distintos: um estabelecimento de bairro, uma consultoria financeira regulada, uma construtora que também entra no novo produto de tráfego pago e uma franquia de material de construção em diagnóstico.</p>
+  <p>Cada parceiro tem uma central própria: um dossiê de fatos do cadastro e uma aba por produto contratado — Destaque, Solusite, Google, redes e calendário de conteúdo. Segmentos distintos: um estabelecimento de bairro, uma consultoria financeira regulada, uma construtora que também entra no novo produto de tráfego pago e uma franquia de material de construção que entrega dentro de condomínio fechado.</p>
 </div>
 
 <div class="wrap">
@@ -199,28 +199,28 @@
       <a class="open" href="ea3-engenharia/">Abrir central</a>
     </div>
 
-    <div class="pcard wait" data-nome="Blocok O Original" data-busca="blocok o original franquia riviera materiais para construção construcao sorocaba sp 27112782 pardinho avaré avare paranapanema" data-estado="diagnostico">
+    <div class="pcard done" data-nome="Blocok O Original" data-busca="blocok o original franquia riviera materiais para construção construcao sorocaba sp 27112782 pardinho avaré avare paranapanema ninho verde riviera de santa cristina" data-estado="completa">
       <div class="ptop">
         <img class="plogo" src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/e80d6b9a-4ac7-4f2b-8da2-ec1571e623b8.png" alt="Logotipo da Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
         <div>
           <div class="pname">Blocok O Original</div>
-          <div class="pmeta">Materiais para Construção · Sorocaba/SP · ID 27112782</div>
+          <div class="pmeta">Materiais para Construção · Pardinho e Avaré/SP · ID 27112782</div>
         </div>
       </div>
-      <span class="st wait">● Diagnóstico · central bloqueada · 31/08/2026</span>
+      <span class="st ok">● Central completa · 31/08/2026</span>
       <div class="chips">
         <span class="chip lav">Força Digital Essencial</span><span class="chip lav">Solusite</span>
-        <span class="chip" style="background:var(--tint-peach);color:#B03A00">Não pode utilizar IA</span>
+        <span class="chip" style="background:var(--tint-peach);color:#B03A00">Nota interna: não pode utilizar IA</span>
       </div>
-      <p class="pdesc">Cadastro posicionado na cidade errada: tudo aponta para <b>Sorocaba</b>, mas o endereço é apartamento do franqueado e os 3 produtos descrevem <b>Ninho Verde II</b>. <b>104 palavras-chave</b> particulares, 11 delas com nome de condomínio. Nota de <b>13</b> — o pior ponto de partida da série.</p>
-      <p class="pblock"><b>Central não produzida.</b> O cadastro carrega anotação interna prioritária “Não pode utilizar IA”, que colide com a saída do pipeline. Nenhum texto foi gerado — só a leitura do que já existe.</p>
+      <p class="pdesc">Cadastro posicionado na cidade errada: tudo aponta para <b>Sorocaba</b>, mas o endereço é apartamento do franqueado e os 3 produtos descrevem <b>Ninho Verde II</b>. Catálogo de <b>7 itens</b> com os 2 condomínios nomeados, <b>24 temas</b>, e o Google reconfigurado como área de atendimento. Das <b>104 buscas reais</b>, 11 pedem o condomínio pelo nome.</p>
+      <p class="pblock"><b>Atenção antes de publicar:</b> o cadastro carrega anotação interna prioritária “Não pode utilizar IA”. A central foi produzida por decisão explícita do responsável — confirmar o alcance da restrição com o CS antes de levar qualquer texto aos canais do cliente.</p>
       <div class="kpi">
-        <div><b>13</b>nota do perfil</div>
-        <div><b>3</b>itens no catálogo</div>
-        <div><b>104</b>palavras-chave</div>
-        <div><b>4</b>cidades atendidas</div>
+        <div><b>13→91</b>descrição</div>
+        <div><b>7</b>itens no catálogo</div>
+        <div><b>11</b>correções de cadastro</div>
+        <div><b>33</b>imagens</div>
       </div>
-      <a class="open" href="blocok-o-original/" style="background:var(--g100);color:var(--g700)">Ver diagnóstico</a>
+      <a class="open" href="blocok-o-original/">Abrir central</a>
     </div>
 
   </div>
@@ -267,7 +267,7 @@
   var nores = document.getElementById("nores");
   var filtro = "todos";
 
-  var defs = [["todos", "Todos"], ["completa", "Central completa"], ["diagnostico", "Diagnóstico"]];
+  var rotulos = { completa: "Central completa", diagnostico: "Diagnóstico" };
 
   function normaliza(v) {
     return String(v || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -276,6 +276,10 @@
   function pintaChips() {
     var n = { todos: cards.length, completa: 0, diagnostico: 0 };
     cards.forEach(function (c) { n[c.dataset.estado] = (n[c.dataset.estado] || 0) + 1; });
+    var defs = [["todos", "Todos"]];
+    Object.keys(rotulos).forEach(function (k) {
+      if (n[k]) { defs.push([k, rotulos[k]]); }
+    });
     chips.innerHTML = defs.map(function (d) {
       return '<button type="button" class="fchip" data-f="' + d[0] + '" aria-pressed="' +
         (filtro === d[0]) + '">' + d[1] + '<span class="n">' + (n[d[0]] || 0) + "</span></button>";
