@@ -195,6 +195,8 @@
   .inv .it{font-size:14.5px;font-weight:800;letter-spacing:-.02em}
   .inv .im{font-size:12.3px;color:var(--g600);font-weight:600;margin-top:3px;font-family:'SFMono-Regular',Consolas,Menlo,monospace}
   .foot{margin-top:40px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+  .backlink{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:16px}
+  .backlink:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -210,6 +212,7 @@
       <button id="t-soc" onclick="show('soc')">Redes</button>
       <button id="t-cont" onclick="show('cont')">Conteúdo</button>
     </nav>
+    <div id="pnav" data-atual="pizza-frita-semiao"></div>
   </div>
 </div>
 
@@ -220,6 +223,8 @@
 </div>
 
 <div class="wrap">
+
+  <a class="backlink" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
 
   <!-- ================================================== PARCEIRO -->
   <section id="p-parc" class="panel on">
@@ -884,5 +889,6 @@
   var h = location.hash.replace('#','');
   if(['dest','site','gmb','soc','cont'].indexOf(h) >= 0) show(h);
 </script>
+<script src="../parceiros.js" defer></script>
 </body>
 </html>

@@ -30,13 +30,37 @@
   .tb-in{max-width:1500px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;justify-content:space-between;gap:14px}
   .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px;text-decoration:none;color:inherit}
   .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta)}
-  .tblink{font-size:13px;font-weight:700}
+  .tblink{font-size:13px;font-weight:700;white-space:nowrap}
+  .logo{white-space:nowrap}
+  .tbgrp{display:flex;align-items:center;gap:14px;min-width:0}
+  @media(max-width:780px){
+    .tb-in{flex-wrap:wrap;row-gap:9px}
+    .tbgrp{width:100%;justify-content:space-between}
+  }
+  @media(max-width:430px){.tblink{display:none}}
   .hero{text-align:center;padding:34px 22px 4px;max-width:900px;margin:0 auto}
   .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
   .hero h1{font-size:30px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.12}
   .hero p{color:var(--g700);font-size:14.5px;margin-top:9px}
   .wrap{max-width:1500px;margin:0 auto;padding:22px 30px 70px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+  .tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+  .srch{position:relative;flex:1 1 280px;min-width:0}
+  .srch input{width:100%;font:inherit;font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--ink);background:var(--white);border:var(--line);border-radius:var(--pill);padding:11px 16px 11px 40px}
+  .srch input::placeholder{color:var(--g500);font-weight:600}
+  .srch input:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+  .srch svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--g500)}
+  .fchips{display:flex;flex-wrap:wrap;gap:6px}
+  .fchip{font:inherit;font-size:12.5px;font-weight:800;letter-spacing:-.01em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:9px 14px;cursor:pointer;white-space:nowrap}
+  .fchip:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
+  .fchip[aria-pressed="true"]{background:var(--tint-lav);border-color:rgba(167,1,253,.28);color:#7B00BE}
+  .fchip .n{font-size:11px;opacity:.7;margin-left:5px;font-variant-numeric:tabular-nums}
+  .fcount{font-size:12px;font-weight:700;color:var(--g500);margin-bottom:11px;letter-spacing:-.01em}
+  .pcard[hidden]{display:none}
+  .nores{display:none;padding:38px 20px;text-align:center;color:var(--g500);font-size:14px;font-weight:600;background:var(--white);border:var(--line);border-radius:var(--r-lg)}
+  .nores.on{display:block}
+  .pblock{font-size:13.4px;line-height:1.5;background:var(--tint-yellow);border-radius:12px;padding:11px 14px;color:#5A4200;font-weight:600}
+  .pblock b{color:#3D2E00}
   .pcard{background:var(--white);border:var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 24px;display:flex;flex-direction:column;gap:11px;transition:transform .16s ease,box-shadow .16s ease}
   .pcard.done:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
   .pcard.wait{border-style:dashed;border-color:rgba(21,21,21,.16);background:rgba(255,255,255,.66)}
@@ -80,22 +104,34 @@
 
 <div class="topbar">
   <div class="tb-in">
-    <a class="logo" href="../"><span class="heart"></span> Solutudo</a>
-    <a class="tblink" href="../sobre-empresa-new-rock/">Descrição 3.0 e agentes →</a>
+    <a class="logo" href="../"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <div class="tbgrp">
+      <div id="pnav" data-atual=""></div>
+      <a class="tblink" href="../sobre-empresa-new-rock/">Descrição 3.0 e agentes →</a>
+    </div>
   </div>
 </div>
 
 <div class="hero">
   <span class="vbadge">Parceiros · perfil completo dos canais</span>
   <h1>Parceiros analisados</h1>
-  <p>Cada parceiro tem uma central própria: um dossiê de fatos do cadastro e uma aba por produto contratado — Destaque, Solusite, Google, redes e calendário de conteúdo. Três parceiros analisados, de segmentos distintos: um estabelecimento de bairro, uma consultoria financeira regulada e uma construtora que também entra no novo produto de tráfego pago.</p>
+  <p>Cada parceiro tem uma central própria: um dossiê de fatos do cadastro e uma aba por produto contratado — Destaque, Solusite, Google, redes e calendário de conteúdo. Segmentos distintos: um estabelecimento de bairro, uma consultoria financeira regulada, uma construtora que também entra no novo produto de tráfego pago e uma franquia de material de construção em diagnóstico.</p>
 </div>
 
 <div class="wrap">
 
-  <div class="grid">
+  <div class="tools">
+    <label class="srch">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input type="search" id="q" placeholder="Buscar por nome, segmento, cidade ou ID" aria-label="Buscar parceiro" autocomplete="off">
+    </label>
+    <div class="fchips" id="fchips" role="group" aria-label="Filtrar por estado"></div>
+  </div>
+  <p class="fcount" id="fcount"></p>
 
-    <div class="pcard done">
+  <div class="grid" id="grid">
+
+    <div class="pcard done" data-nome="Pizza Frita Semião" data-busca="pizza frita semião pizzarias botucatu sp 1737" data-estado="completa">
       <div class="ptop">
         <img class="plogo" src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/541216ae-6234-44f2-8246-17bcdfa458e5/5ee69ccf-804c-44a7-aa54-6fa5ac1e0b88.jpg" alt="Logotipo da Pizza Frita Semião" loading="lazy" referrerpolicy="no-referrer">
         <div>
@@ -117,7 +153,7 @@
       <a class="open" href="pizza-frita-semiao/">Abrir central</a>
     </div>
 
-    <div class="pcard done">
+    <div class="pcard done" data-nome="Porto Certo Consórcio" data-busca="porto certo consórcio consorcio consórcios araraquara sp 27460312" data-estado="completa">
       <div class="ptop">
         <img class="plogo" src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/69b14a29-d240-4ca7-b84d-402fac1e09ff/6a7b765c-3ec8-4590-9d4d-2ebaac1e09ff.png" alt="Logotipo da Porto Certo Consórcio" loading="lazy" referrerpolicy="no-referrer">
         <div>
@@ -140,7 +176,7 @@
       <a class="open" href="porto-certo-consorcio/">Abrir central</a>
     </div>
 
-    <div class="pcard done">
+    <div class="pcard done" data-nome="EA3 Engenharia" data-busca="ea3 engenharia construtoras avaré avare sp 21651088" data-estado="completa">
       <div class="ptop">
         <img class="plogo" src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/614ce766-32a0-4f2d-9686-56cfac1e09ff/6a88846a-de10-4f40-bd7f-3ec3ac1e09ff.png" alt="Logotipo da EA3 Engenharia" loading="lazy" referrerpolicy="no-referrer">
         <div>
@@ -163,7 +199,32 @@
       <a class="open" href="ea3-engenharia/">Abrir central</a>
     </div>
 
+    <div class="pcard wait" data-nome="Blocok O Original" data-busca="blocok o original franquia riviera materiais para construção construcao sorocaba sp 27112782 pardinho avaré avare paranapanema" data-estado="diagnostico">
+      <div class="ptop">
+        <img class="plogo" src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/e80d6b9a-4ac7-4f2b-8da2-ec1571e623b8.png" alt="Logotipo da Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="pname">Blocok O Original</div>
+          <div class="pmeta">Materiais para Construção · Sorocaba/SP · ID 27112782</div>
+        </div>
+      </div>
+      <span class="st wait">● Diagnóstico · central bloqueada · 31/08/2026</span>
+      <div class="chips">
+        <span class="chip lav">Força Digital Essencial</span><span class="chip lav">Solusite</span>
+        <span class="chip" style="background:var(--tint-peach);color:#B03A00">Não pode utilizar IA</span>
+      </div>
+      <p class="pdesc">Cadastro posicionado na cidade errada: tudo aponta para <b>Sorocaba</b>, mas o endereço é apartamento do franqueado e os 3 produtos descrevem <b>Ninho Verde II</b>. <b>104 palavras-chave</b> particulares, 11 delas com nome de condomínio. Nota de <b>13</b> — o pior ponto de partida da série.</p>
+      <p class="pblock"><b>Central não produzida.</b> O cadastro carrega anotação interna prioritária “Não pode utilizar IA”, que colide com a saída do pipeline. Nenhum texto foi gerado — só a leitura do que já existe.</p>
+      <div class="kpi">
+        <div><b>13</b>nota do perfil</div>
+        <div><b>3</b>itens no catálogo</div>
+        <div><b>104</b>palavras-chave</div>
+        <div><b>4</b>cidades atendidas</div>
+      </div>
+      <a class="open" href="blocok-o-original/" style="background:var(--g100);color:var(--g700)">Ver diagnóstico</a>
+    </div>
+
   </div>
+  <p class="nores" id="nores">Nenhum parceiro corresponde a essa busca.</p>
 
   <div class="card">
     <span class="badge">Como um parceiro entra aqui</span>
@@ -193,6 +254,62 @@
     regras vigentes em <code>docs/descricao-empresa-3-0.md</code>
   </p>
 </div>
+
+<script src="parceiros.js" defer></script>
+<script>
+(function () {
+  "use strict";
+  var grid = document.getElementById("grid");
+  var cards = Array.prototype.slice.call(grid.querySelectorAll(".pcard"));
+  var q = document.getElementById("q");
+  var chips = document.getElementById("fchips");
+  var count = document.getElementById("fcount");
+  var nores = document.getElementById("nores");
+  var filtro = "todos";
+
+  var defs = [["todos", "Todos"], ["completa", "Central completa"], ["diagnostico", "Diagnóstico"]];
+
+  function normaliza(v) {
+    return String(v || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function pintaChips() {
+    var n = { todos: cards.length, completa: 0, diagnostico: 0 };
+    cards.forEach(function (c) { n[c.dataset.estado] = (n[c.dataset.estado] || 0) + 1; });
+    chips.innerHTML = defs.map(function (d) {
+      return '<button type="button" class="fchip" data-f="' + d[0] + '" aria-pressed="' +
+        (filtro === d[0]) + '">' + d[1] + '<span class="n">' + (n[d[0]] || 0) + "</span></button>";
+    }).join("");
+  }
+
+  function aplica() {
+    var termo = normaliza(q.value.trim());
+    var vis = 0;
+    cards.forEach(function (c) {
+      var casaTexto = !termo || normaliza(c.dataset.busca).indexOf(termo) !== -1;
+      var casaEstado = filtro === "todos" || c.dataset.estado === filtro;
+      var ok = casaTexto && casaEstado;
+      c.hidden = !ok;
+      if (ok) { vis++; }
+    });
+    nores.classList.toggle("on", vis === 0);
+    count.textContent = vis + (vis === 1 ? " parceiro" : " parceiros") +
+      (vis === cards.length ? "" : " de " + cards.length);
+  }
+
+  chips.addEventListener("click", function (ev) {
+    var b = ev.target.closest(".fchip");
+    if (!b) { return; }
+    filtro = b.dataset.f;
+    pintaChips();
+    aplica();
+  });
+  q.addEventListener("input", aplica);
+
+  pintaChips();
+  aplica();
+})();
+</script>
 
 </body>
 </html>

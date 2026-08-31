@@ -236,6 +236,8 @@
   table.sg th{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
   table.sg td b{color:var(--ink)}
   table.sg tr:last-child td{border-bottom:0}
+  .backlink{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:16px}
+  .backlink:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -252,6 +254,7 @@
       <button id="t-traf" onclick="show('traf')">Tráfego pago</button>
       <button id="t-brief" onclick="show('brief')">Briefing</button>
     </nav>
+    <div id="pnav" data-atual="ea3-engenharia"></div>
   </div>
 </div>
 
@@ -262,6 +265,8 @@
 </div>
 
 <div class="wrap">
+
+  <a class="backlink" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
 
   <section id="p-parc" class="panel on">
     <div class="sec first">
@@ -839,5 +844,6 @@
   var h = location.hash.replace('#','');
   if(TABS.indexOf(h) > 0) show(h);
 </script>
+<script src="../parceiros.js" defer></script>
 </body>
 </html>

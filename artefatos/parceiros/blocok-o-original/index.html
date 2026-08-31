@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blocok O Original · diagnóstico · Solutudo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
+<style>
+  :root{
+    --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
+    --ink:#151515; --g700:#4D4D4D; --g600:#656565; --g500:#888888; --g200:#DCDCDC; --g100:#F2F2F2;
+    --bg:#F5F4F8; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-cyan:#DCF6FC; --tint-yellow:#FFF6DC;
+    --tint-red:#FFE4E0;
+    --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
+    --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
+    --shadow-md:0 12px 32px rgba(21,21,21,.12);
+    --line:1px solid rgba(21,21,21,.07);
+    --r-md:16px; --r-lg:20px; --pill:999px;
+    --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar{display:none}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
+  body::-webkit-scrollbar{display:none}
+  a{color:var(--brand-purple)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px;border-radius:6px}
+  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em;word-break:break-word}
+  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
+  .tb-in{max-width:1500px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px;text-decoration:none;color:inherit}
+  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta)}
+  .wrap{max-width:1060px;margin:0 auto;padding:26px 26px 80px}
+  .back{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:18px}
+  .back:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
+  .head{display:flex;flex-wrap:wrap;align-items:center;gap:15px;padding-bottom:20px;border-bottom:var(--line);margin-bottom:20px}
+  .head img{width:58px;height:58px;border-radius:15px;object-fit:cover;background:var(--g100);flex:none}
+  .head h1{font-size:27px;font-weight:800;letter-spacing:-.035em;line-height:1.12}
+  .head .meta{font-size:13px;color:var(--g600);font-weight:600;margin-top:3px}
+  .st{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill)}
+  .st.wait{background:var(--tint-yellow);color:#7A5A00}
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;border:var(--line);margin-bottom:16px}
+  .card h2{font-size:19px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  .card h3{font-size:14.5px;font-weight:800;letter-spacing:-.02em;margin-top:18px}
+  .card p{font-size:13.8px;color:var(--g700);margin-top:9px;line-height:1.58;max-width:78ch}
+  .card p b{color:var(--ink)}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE;margin-bottom:10px}
+  .badge.warn{background:var(--tint-yellow);color:#7A5A00}
+  .badge.stop{background:var(--tint-red);color:#A3200F}
+  .card.stop{border-color:rgba(196,43,34,.35);background:linear-gradient(180deg,#FFF6F4 0%,var(--white) 62%)}
+  .card p.quote{font-size:23px;font-weight:800;letter-spacing:-.035em;line-height:1.2;margin-top:8px;color:var(--ink);max-width:none}
+  .card p.src{font-size:12.2px;color:var(--g500);font-weight:700;margin-top:7px}
+  ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.55}
+  ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
+  ul.clean li b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.2px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:var(--line);vertical-align:top}
+  th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600)}
+  td b{color:var(--ink)}
+  td.n{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink);white-space:nowrap}
+  td.bad{color:#A3200F;font-weight:700}
+  .note{margin-top:13px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.55}
+  .kpi{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;border-top:var(--line);padding-top:13px}
+  .kpi div{font-size:12px;color:var(--g600);font-weight:700}
+  .kpi b{display:block;font-size:22px;color:var(--ink);letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1.2}
+  .kpi b.bad{color:#A3200F}
+  .vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:12px;margin-top:14px}
+  .vsb{border:var(--line);border-radius:var(--r-md);padding:16px 18px}
+  .vsb.a{background:#FFF6F4;border-color:rgba(196,43,34,.24)}
+  .vsb.b{background:var(--tint-mint);border-color:rgba(6,114,79,.2)}
+  .vsb h4{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:11px}
+  .vsb.a h4{color:#A3200F}
+  .vsb.b h4{color:#06724F}
+  .vsb dl{display:flex;flex-direction:column;gap:9px}
+  .vsb dt{font-size:12.8px;font-weight:800;color:var(--ink)}
+  .vsb dd{font-size:12.4px;color:var(--g700);font-weight:600;line-height:1.45;word-break:break-word}
+  .cities{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .city{font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .city.cond{background:var(--tint-cyan);color:#0B5E70}
+  .cf{display:flex;gap:14px;padding:14px 16px;border-radius:var(--r-md);background:var(--tint-yellow);margin-top:9px}
+  .cf .q{font-size:13px;font-weight:800;color:#7A5A00;flex:none;padding-top:1px}
+  .card .cf p{margin-top:0;font-size:13.4px;color:#5A4200;font-weight:600;max-width:none}
+  .cf p b{color:#3D2E00}
+  .foot{margin-top:34px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+  @media(max-width:940px){.tb-in{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-in">
+    <a href="../" class="logo"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <div id="pnav" data-atual="blocok-o-original"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <a class="back" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
+
+  <div class="head">
+    <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/6939bfcb-dc28-45eb-8a1c-30b2ac1e09ff/e80d6b9a-4ac7-4f2b-8da2-ec1571e623b8.png" alt="Logotipo da Blocok O Original" loading="lazy" referrerpolicy="no-referrer">
+    <div style="flex:1 1 260px;min-width:0">
+      <h1>Blocok O Original</h1>
+      <div class="meta">Materiais para Construção · Sorocaba/SP · ID 27112782 · assina “Franquia Riviera”</div>
+    </div>
+    <span class="st wait">● Diagnóstico · central bloqueada · 31/08/2026</span>
+  </div>
+
+  <div class="card stop">
+    <span class="badge stop">Bloqueio · resolver antes de qualquer coisa</span>
+    <p class="quote">“Não pode utilizar IA”</p>
+    <p class="src">Anotação interna prioritária · tag Prioridade · João Pedro Cavassini · 10/08/2026</p>
+    <p>A nota colide de frente com o pipeline <code>empresa-3-0</code>, cuja saída é justamente conteúdo gerado. <b>Nenhuma descrição, editoria ou texto de anúncio foi produzido para esta empresa.</b> Esta página é leitura do que já está no cadastro — diagnóstico, não geração.</p>
+    <p>A pergunta que precisa de resposta: a restrição vale para <b>publicar conteúdo gerado no perfil do cliente</b>, ou para <b>usar IA em qualquer etapa</b>, inclusive análise interna? São coisas diferentes, e mudam o que dá para entregar.</p>
+  </div>
+
+  <div class="card">
+    <span class="badge">Ficha</span>
+    <h2>O pior ponto de partida da série</h2>
+    <p>A EA3 partiu de 31 com 29 itens de catálogo. A Blocok parte de <b>13 com 3 itens</b> — e com <b>104 palavras-chave particulares</b> já preenchidas, que é onde está o valor.</p>
+    <div class="kpi">
+      <div><b class="bad">13</b>nota do perfil</div>
+      <div><b>3</b>itens no catálogo</div>
+      <div><b>104</b>palavras-chave</div>
+      <div><b>4</b>categorias</div>
+      <div><b>1–5</b>funcionários</div>
+    </div>
+    <table>
+      <tr><th>Campo</th><th>Valor</th></tr>
+      <tr><td><b>Produto Solutudo</b></td><td>Força Digital Essencial</td></tr>
+      <tr><td><b>Categorias</b></td><td>Materiais para Construção <i>(padrão)</i>, Blocos de Cimento, Concretos, Tijolos Ecológicos</td></tr>
+      <tr><td><b>Patrocinador</b></td><td>Fábio — telefone e e-mail do patrocinador em branco</td></tr>
+      <tr><td><b>Canais ativos</b></td><td>Solusite, Instagram, Facebook, site da franqueadora, perfil do Google</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <span class="badge">Achado central</span>
+    <h2>O cadastro está posicionado na cidade errada</h2>
+    <p>Tudo no cadastro aponta para um lugar. Tudo na identidade da empresa aponta para outro.</p>
+    <div class="vs">
+      <div class="vsb a">
+        <h4>O cadastro diz Sorocaba</h4>
+        <dl>
+          <dt>Cidade na página de busca</dt><dd>Sorocaba</dd>
+          <dt>Endereço</dt><dd>Av. Ipanema 5381 — complemento “BLOCO B; APT 14”, Jardim Planalto. É apartamento.</dd>
+          <dt>Descrição</dt><dd>cita Sorocaba 3×; o resto vira “toda a região”</dd>
+          <dt>Banners do Solusite</dt><dd>“transformar sua obra em sorocaba”</dd>
+        </dl>
+      </div>
+      <div class="vsb b">
+        <h4>A identidade diz condomínio</h4>
+        <dl>
+          <dt>Nome da franquia</dt><dd>Blocok O Original Franquia <b>Riviera</b></dd>
+          <dt>E-mail</dt><dd>blocok.riviera@gmail.com</dd>
+          <dt>Instagram</dt><dd>@blocok.riviera</dd>
+          <dt>Os 3 produtos</dt><dd>descrevem, todos, Ninho Verde II Eco Residence</dd>
+        </dl>
+      </div>
+    </div>
+    <p>O endereço é onde o franqueado mora, e o cadastro tomou isso como o mercado. Sorocaba é <b>o mais disputado dos quatro municípios</b> — cidade grande, cheia de depósito de material de construção — e é exatamente onde a Blocok não tem vantagem nenhuma. Nos condomínios ela tem presença de fato.</p>
+    <div class="note"><b>Padrão que se repete.</b> Na EA3 o roteiro dizia “Avaré e região” e apagava o eixo Campinas–Sorocaba. Aqui o cadastro diz “Sorocaba” e apaga o eixo do interior. Nos dois casos o material nomeia um eixo só — e é o eixo errado. Vale virar item fixo da régua: <b>a cidade declarada é onde a empresa vende, ou onde o dono mora?</b></div>
+  </div>
+
+  <div class="card">
+    <span class="badge">Cobertura</span>
+    <h2>Quatro cidades em dois eixos que não se tocam</h2>
+    <h3>Eixo Sorocaba</h3>
+    <div class="cities"><span class="city">Sorocaba</span></div>
+    <h3>Eixo interior (Botucatu–Avaré)</h3>
+    <div class="cities"><span class="city">Pardinho</span><span class="city">Avaré</span><span class="city">Paranapanema</span></div>
+    <table>
+      <tr><th>Condomínio Momentum</th><th>Cidade</th></tr>
+      <tr><td><b>Ninho Verde II Eco Residence</b></td><td>Pardinho, SP</td></tr>
+      <tr><td><b>Riviera de Santa Cristina XIII</b></td><td>Paranapanema, SP</td></tr>
+    </table>
+    <p><b>Riviera de Santa Cristina XIII é o mesmo condomínio da EA3.</b> Duas empresas da carteira atendendo o mesmo condomínio, em ramos complementares — bloco e engenharia. Vale checar se é oportunidade de venda casada ou conflito de exclusividade de franquia.</p>
+    <p>Não existe raio único que cubra os dois eixos. A segmentação de Google e Meta tem que ser por <b>lista de cidades</b>, ou dois conjuntos de campanha.</p>
+  </div>
+
+  <div class="card">
+    <span class="badge">Inteligência interna</span>
+    <h2>O que as 104 palavras-chave particulares entregam</h2>
+    <p>São as buscas que já acharam a empresa. Uso interno — alimentam grupos de anúncio, FAQ e editoria, nunca texto público.</p>
+    <table>
+      <tr><th>Grupo</th><th>Termos</th><th>O que fazer</th></tr>
+      <tr><td><b>Nome de condomínio</b></td><td class="n">11</td><td>Grupo de anúncio próprio — é o ativo de maior intenção</td></tr>
+      <tr><td>Cidade nomeada</td><td class="n">8</td><td>Confirmam Pardinho, Paranapanema e Avaré na prática</td></tr>
+      <tr><td><b>Pedras ornamentais</b></td><td class="n">10</td><td>Linha inteira <b>sem nenhum produto no catálogo</b></td></tr>
+      <tr><td>Marca de terceiro</td><td class="n">6</td><td>Tupan, Vedacit, Lafarge, Quartzolit, Votoran — revisar política de marca</td></tr>
+      <tr><td>Pergunta (intenção informativa)</td><td class="n">9</td><td>Pauta de conteúdo, não anúncio</td></tr>
+      <tr><td>Superlativo (“top…”, “melhor…”)</td><td class="n">11</td><td>Suspeitos de terem sido redigidos</td></tr>
+    </table>
+    <h3>Os 11 termos de condomínio são o ativo</h3>
+    <p>Quem constrói ali procura pelo nome do condomínio, não por “bloco de concreto em Pardinho”: <code>onde comprar blocos de cimento no ninho verde ii eco residence</code>, <code>blocos de concreto riviera de santa cristina</code>, <code>contratar fornecimento de cimento ninho verde</code>.</p>
+    <h3>As 9 perguntas são pauta, não anúncio</h3>
+    <p><code>quanto custa um bloco de cimento 39x19x14</code>, <code>quantos blocos de cimento para construir um quarto</code>, <code>como assentar blocos de concreto corretamente</code>, <code>evitar infiltracao em muros de blocos de concreto</code>. Alimentam direto os seis slots fixos de editoria.</p>
+    <h3>Uma intenção trocada</h3>
+    <p><code>franquia blocok em sao paulo interior</code> não é cliente procurando bloco — é alguém querendo <b>comprar a franquia</b>. Outra campanha, outra landing, outro funil. Não pode ficar no mesmo grupo.</p>
+    <div class="note"><b>A lista mistura dois registros.</b> Diferente da EA3, onde as 43 buscas eram todas reais, aqui convivem termos que parecem busca real — <code>quanto custa um bloco de cimento 39x19x14</code>, medida padrão de bloco — com 11 que parecem redigidos: <code>top fornecedor de blocos de cimento em sp</code>, <code>melhor fabrica de blocos em sp</code>. Ninguém digita “top fornecedor de”. Se parte da lista foi redigida por IA, já existe conteúdo gerado no cadastro de uma empresa marcada como “não pode utilizar IA”. Verificar a origem antes de qualquer coisa.</div>
+  </div>
+
+  <div class="card">
+    <span class="badge warn">Pergunta para o CS</span>
+    <h2>Três confirmações antes de subir campanha</h2>
+    <div class="cf"><span class="q">1</span><p><b>Itatinga aparece nas palavras-chave e não na lista de cidades.</b> Dois termos: <code>loja de blocos em itatinga sp</code> e <code>loja de pedras ornamentais itatinga sp</code>. Ou é cidade atendida que ficou de fora da lista, ou é termo que não deveria estar no cadastro.</p></div>
+    <div class="cf"><span class="q">2</span><p><b>A Blocok vende pedras ornamentais?</b> Dez termos pedindo pedra ornamental, decorativa e de revestimento — e os três produtos cadastrados são todos bloco e sistema construtivo. Ou vende e não cadastrou, ou não vende e os termos vão queimar verba.</p></div>
+    <div class="cf"><span class="q">3</span><p><b>Sorocaba é mercado real ou só o endereço do dono?</b> Decide se a campanha vai para a cidade grande e disputada, ou para os condomínios onde a franquia tem presença de fato. Muda a verba inteira.</p></div>
+  </div>
+
+  <div class="card">
+    <span class="badge">Pendências de cadastro</span>
+    <h2>O que derruba a nota para 13</h2>
+    <table>
+      <tr><th>Campo</th><th>Estado</th></tr>
+      <tr><td><b>Palavras-chave</b></td><td class="bad">[""] — vazia</td></tr>
+      <tr><td><b>Palavras-chave estendidas</b></td><td class="bad">[""] — vazia</td></tr>
+      <tr><td>Nome fantasia</td><td class="bad">vazio</td></tr>
+      <tr><td>Vídeo</td><td class="bad">vazio</td></tr>
+      <tr><td>Campo <code>Logo</code></td><td class="bad">null — embora exista logo em Fotos</td></tr>
+      <tr><td>Preço dos 3 produtos</td><td class="bad">null nos três</td></tr>
+      <tr><td>Menu / Ofertas / Eventos</td><td class="bad">false nos três</td></tr>
+      <tr><td>Horário</td><td class="bad">08:00–18:00 sete dias por semana, feriado incluído</td></tr>
+      <tr><td>Ano de fundação</td><td class="bad">12/05/1999</td></tr>
+    </table>
+    <p>As duas listas de palavras-chave vazias, com <b>104 particulares preenchidas</b>, é a contradição mais fácil de corrigir. O <code>Logo: null</code> com logo presente em Fotos é provável falha de vínculo, não ausência de arquivo.</p>
+    <div class="note"><b>A data 12/05/1999 é a quarta ocorrência idêntica</b> entre os parceiros analisados — e esta mostra o mecanismo: a pergunta do formulário é “Em que ano a empresa foi fundada?” e o que ficou gravado é uma <b>data completa</b>, não um ano. É um seletor de data respondendo a uma pergunta de ano, e o que sobra é o valor-padrão do seletor. Nenhum campo de data do cadastro deve ser tratado como dado real enquanto isso não for medido na base.</div>
+  </div>
+
+  <p class="foot">
+    Diagnóstico de cadastro · nenhum conteúdo gerado ·
+    <a href="../">voltar para todos os parceiros</a>
+  </p>
+</div>
+
+<script src="../parceiros.js" defer></script>
+</body>
+</html>
