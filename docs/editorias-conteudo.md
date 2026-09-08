@@ -1,8 +1,8 @@
 # Editorias de conteúdo — padronização
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
-**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) e Porto Certo Consórcio (ID 27460312, consórcio — setor regulado)
-**Última revisão:** 12/08/2026
+**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas)
+**Última revisão:** 08/09/2026
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
 parceiro. Ele nasceu da aplicação em dois casos de segmentos opostos e está escrito para ser executado
@@ -83,6 +83,59 @@ ocupa depende do negócio.**
   ativo mais valioso do calendário e merece produção caprichada.**
 - **Série recorrente:** ao menos uma editoria ganha um tema repetível (ex.: "O sabor do mês"), que salva
   o calendário quando faltar pauta.
+
+---
+
+## 4.1 Datas comemorativas — o cruzamento, não a efeméride
+
+**Status:** vigente desde 08/09/2026 · primeiro caso aplicado: LAAE Laboratório (ID 32069845)
+
+Datas entram no calendário **quando fazem sentido para o segmento e o público** — e nunca como
+efeméride solta. A regra cabe em uma linha:
+
+> **A data não é o assunto. A data é o gancho.**
+
+O post continua sendo sobre o serviço, o dado ou a operação da empresa; a data só decide **quando**
+ele vai ao ar, aproveitando que o assunto já está na cabeça de quem lê. "Feliz Dia Mundial da Água"
+não é conteúdo — "a água que passou pela nossa bancada este ano, em números" publicado em 22 de março
+é.
+
+### Por que esta seção existe
+
+Na reunião comercial do LAAE, o dono descreveu o fornecedor de redes sociais querendo *"postar um
+milhão de post[s]… relacionados ao São João"* e concluiu: *"para São João em Minas, São João em outros
+estados, **isso aqui não tem nada**."* A análise da transcrição classificou isso como **conteúdo
+genérico aplicado a unidades diferentes**. Data sem cruzamento é o exemplo mais fácil de conteúdo que
+parece trabalho e não é.
+
+### Como aplicar
+
+1. **Liste as datas que o segmento é dono**, não as do calendário geral. Um laboratório de água tem
+   22/03 (Dia Mundial da Água), 05/06 (Meio Ambiente) e 19/11 (saneamento) — três datas que falam
+   exatamente do que ele faz. Uma pizzaria não tem nenhuma dessas, e tem outras.
+2. **Cruze com um fato do cadastro.** Se a data não encontra um fato próprio para cruzar, ela cai.
+   O teste é o mesmo do filtro 3: *qualquer concorrente publicaria isso?* Se sim, não entra.
+3. **No máximo 2 datas viram tema** dentro de uma editoria — normalmente o slot **E (Território)**,
+   que é onde o calendário já morava no caso Semião ("Datas de Botucatu com pizza frita").
+4. **As demais datas viram âncora, não tema novo.** O padrão fixa 24 temas; datas adicionais
+   **escolhem quando** um tema existente é publicado. Isso resolve parte do calendário sem inventar
+   pauta.
+5. **Data não verificada fica marcada como tal.** Vale a regra 8 do prompt: aniversário da empresa,
+   aniversário da cidade, dia do profissional e calendário agrícola entram como *"confirmar com o
+   parceiro"* — nunca como fato.
+6. **Registre o que ficou de fora e por quê.** Natal, Dia das Mães, Páscoa e São João não têm
+   cruzamento em negócio B2B técnico. Escrever isso na central evita que alguém "complete" o
+   calendário com enfeite depois.
+
+### O que isso muda no prompt do agente
+
+Acrescente ao prompt da §8, entre as regras 7 e 8:
+
+> **7.1** Se o segmento tiver datas de calendário que falem diretamente do que a empresa faz, cruze
+> cada uma com um fato do envelope e proponha **no máximo 2 como tema**, preferencialmente no slot E.
+> As demais devolva como **âncora de publicação** de temas já existentes. Data sem fato para cruzar
+> não entra. Data não verificável entra como "confirmar com o parceiro". Liste também as datas
+> descartadas e o motivo.
 
 ---
 
