@@ -26,6 +26,12 @@
       estado: "completa"
     },
     {
+      pasta: "laae-laboratorio",
+      nome: "LAAE Laboratório",
+      meta: "Montes Claros/MG",
+      estado: "completa"
+    },
+    {
       pasta: "blocok-o-original",
       nome: "Blocok O Original",
       meta: "Pardinho e Avaré/SP",

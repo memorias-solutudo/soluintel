@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Central de Conteúdo — LAAE Laboratório · Solutudo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" />
+<style>
+  :root{
+    --brand-purple:#A701FD; --brand-pink:#FC0097; --brand-orange:#FF6849; --brand-orange-deep:#FC6200;
+    --ink:#151515; --g700:#4D4D4D; --g600:#656565; --g500:#888888; --g200:#DCDCDC; --g100:#F2F2F2;
+    --bg:#F5F4F8; --white:#fff;
+    --tint-lav:#F3E8FF; --tint-mint:#D9F7EE; --tint-peach:#FFE7DC; --tint-pink:#FFE3F1; --tint-cyan:#DCF6FC; --tint-yellow:#FFF6DC;
+    --grad-cta:linear-gradient(90deg,#A701FD 0%,#FC0097 52%,#FF6849 100%);
+    --shadow-card:0 1px 2px rgba(21,21,21,.04),0 8px 24px rgba(21,21,21,.05);
+    --shadow-md:0 12px 32px rgba(21,21,21,.12);
+    --line:1px solid rgba(21,21,21,.07);
+    --r-md:16px; --r-lg:20px; --pill:999px;
+    --font:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar{display:none}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;scrollbar-width:none;-ms-overflow-style:none}
+  body::-webkit-scrollbar{display:none}
+  a{color:var(--brand-purple)}
+  button{font:inherit;color:inherit}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--brand-purple);outline-offset:3px;border-radius:6px}
+  code{background:var(--g100);border-radius:5px;padding:1px 5px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.85em}
+  .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--line)}
+  .tb-in{max-width:1840px;margin:0 auto;padding:9px 26px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tb-in::after{content:""}
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:17px}
+  .logo .heart{width:13px;height:13px;border-radius:50%;background:var(--grad-cta);display:inline-block}
+  .seg{display:inline-flex;gap:4px;background:var(--g100);border-radius:var(--pill);padding:4px;flex-wrap:wrap;justify-content:center}
+  .seg button{border:none;cursor:pointer;border-radius:var(--pill);padding:8px 16px;font:inherit;font-weight:800;font-size:13px;letter-spacing:-.02em;color:var(--g600);background:transparent;transition:color .15s}
+  .seg button.on{color:#fff;background:var(--grad-cta)}
+  @media(max-width:940px){.tb-in{grid-template-columns:1fr auto}.seg{grid-column:1/-1;order:3;justify-self:center;margin-top:2px}}
+  .hero{text-align:center;padding:30px 22px 4px;max-width:1100px;margin:0 auto}
+  .vbadge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .hero h1{font-size:29px;font-weight:800;letter-spacing:-.035em;margin-top:12px;line-height:1.12}
+  .hero .crumbs{color:var(--g600);font-size:13.5px;margin-top:7px;font-weight:600}
+  .wrap{max-width:1840px;margin:0 auto;padding:16px 30px 70px}
+  .sec .secsub,.card p.sub{max-width:980px}
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .25s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .sec{margin:34px 0 14px}
+  .sec.first{margin-top:12px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-purple);background:var(--tint-lav);padding:5px 13px;border-radius:var(--pill)}
+  .sec h2{font-size:23px;font-weight:800;letter-spacing:-.03em;margin-top:11px;line-height:1.16;text-wrap:balance}
+  .sec .secsub{color:var(--g700);font-size:14px;margin-top:6px;max-width:720px}
+  .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 24px;border:var(--line);margin-top:14px}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill);background:var(--tint-lav);color:#7B00BE}
+  .badge.mint{background:var(--tint-mint);color:#06724F}
+  .badge.peach{background:var(--tint-peach);color:#B03A00}
+  .badge.warn{background:var(--tint-yellow);color:#7A5A00}
+  .card h3{font-size:17.5px;font-weight:800;letter-spacing:-.025em;margin-top:9px;line-height:1.22}
+  .card p.sub{color:var(--g700);font-size:13.5px;margin-top:6px}
+  ul.clean{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  ul.clean li{position:relative;padding-left:17px;font-size:13.6px;color:var(--g700);line-height:1.5}
+  ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-pink)}
+  ul.clean li b{color:var(--ink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  @media(max-width:940px){.grid3{grid-template-columns:1fr}}
+  .kv{display:grid;grid-template-columns:190px minmax(0,1fr);gap:8px 16px;margin-top:12px;font-size:13.6px;max-width:1080px}
+  @media(max-width:640px){.kv{grid-template-columns:1fr}}
+  .kv dt{font-weight:800;color:var(--g600);font-size:12.5px;letter-spacing:.02em;text-transform:uppercase;padding-top:2px}
+  .kv dd{color:var(--ink);font-weight:600;overflow-wrap:break-word}
+  .kv dd small{display:block;color:var(--g600);font-weight:500;font-size:12.3px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{font-size:12.3px;font-weight:700;padding:6px 13px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .chip.mint{background:var(--tint-mint);color:#06724F}
+  .chip.lav{background:var(--tint-lav);color:#7B00BE}
+  .chip.peach{background:var(--tint-peach);color:#B03A00}
+  .txt{background:var(--bg);border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;font-size:14px;line-height:1.62;color:var(--ink)}
+  .txt h4{font-size:14px;font-weight:800;margin:12px 0 4px}
+  .txt h4:first-child{margin-top:0}
+  .txt ul{margin:4px 0 4px 18px}
+  .txt li{margin-top:3px}
+  .txt .cta{font-weight:800;color:var(--brand-pink);margin-top:10px}
+  .selo{margin-top:12px;background:var(--tint-mint);border-radius:12px;padding:11px 14px;font-size:12.6px;color:#06503B;line-height:1.5}
+  .selo b{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  .cnt{display:inline-block;font-size:11.5px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:3px 10px;margin-left:8px;vertical-align:middle}
+  .note{margin-top:12px;background:var(--tint-yellow);border-radius:12px;padding:11px 14px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
+  .blk{border:var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;background:var(--white)}
+  .blk .bnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;margin-right:9px;vertical-align:middle}
+  .blk h4{display:inline;font-size:15.5px;font-weight:800;letter-spacing:-.02em;vertical-align:middle}
+  .blk .bwhy{font-size:12.6px;color:var(--g600);font-weight:600;margin-top:8px}
+  .ed{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:var(--pill)}
+  .ed i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+  .ed1{background:var(--tint-lav);color:#7B00BE}
+  .ed2{background:var(--tint-pink);color:#C40074}
+  .ed3{background:var(--tint-peach);color:#B03A00}
+  .ed4{background:var(--tint-mint);color:#06724F}
+  .ed5{background:var(--tint-cyan);color:#00647C}
+  .ed6{background:var(--tint-yellow);color:#7A5A00}
+  .tema{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start;background:var(--white);border:var(--line);border-radius:13px;padding:12px 15px;box-shadow:var(--shadow-card);margin-top:8px}
+  @media(max-width:640px){.tema{grid-template-columns:1fr;gap:6px}}
+  .tema .tt{font-size:13.8px;font-weight:800;letter-spacing:-.015em;line-height:1.35}
+  .tema .td{font-size:12.8px;color:var(--g700);margin-top:3px;line-height:1.45}
+  .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:12px}
+  .ph{position:relative;border-radius:12px;overflow:hidden;background:var(--g100);border:var(--line)}
+  .ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .ph.wide img{aspect-ratio:16/7}
+  .ph .pl{position:absolute;left:7px;bottom:7px;font-size:10px;font-weight:800;letter-spacing:.03em;background:rgba(21,21,21,.72);color:#fff;padding:3px 8px;border-radius:var(--pill);line-height:1.2}
+  .ph-grid.caps{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  /* marcações inline + tooltip do porquê (regra vira hint) */
+  mark{border-radius:5px;padding:0 3px;font-weight:600;cursor:help}
+  .m-bad{background:var(--tint-peach);color:#7a3a16;box-shadow:inset 0 -2px 0 var(--brand-orange)}
+  .m-fill{background:var(--tint-lav);color:#6a18b0;box-shadow:inset 0 -2px 0 var(--brand-purple);border:1px dashed #c79bf0}
+  .m-good{background:var(--tint-mint);color:#06845a;box-shadow:inset 0 -2px 0 #00B589}
+  [data-tip]{position:relative}
+  [data-tip]:hover{z-index:60}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 9px);z-index:61;width:max-content;max-width:310px;white-space:normal;background:var(--ink);color:#fff;font-weight:500;font-size:12px;line-height:1.45;letter-spacing:0;text-align:left;padding:9px 12px;border-radius:11px;box-shadow:var(--shadow-md);pointer-events:none}
+  [data-tip]:hover::before{content:"";position:absolute;left:16px;bottom:calc(100% + 2px);z-index:61;border:7px solid transparent;border-top-color:var(--ink);pointer-events:none}
+  .hint{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--g200);color:var(--g700);font-size:10px;font-weight:800;cursor:help;margin-left:5px;vertical-align:middle}
+  .hint:hover{background:var(--ink);color:#fff}
+
+  /* comparativo como está × como deveria */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  @media(max-width:900px){.cmp{grid-template-columns:1fr}}
+  .col{border:var(--line);border-radius:15px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+  .col.now{border-color:rgba(252,98,0,.3)}
+  .col.next{border-color:rgba(0,181,137,.32)}
+  .colh{padding:11px 15px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .col.now .colh{background:var(--tint-peach);color:#8a3400}
+  .col.next .colh{background:var(--tint-mint);color:#06724F}
+  .colb{padding:15px 17px;font-size:13.6px;line-height:1.6;color:var(--ink);flex:1}
+  .colb h5{font-size:13px;font-weight:800;margin:11px 0 3px}
+  .colb h5:first-child{margin-top:0}
+  .colb ul{margin:5px 0 5px 18px}
+  .colb li{margin-top:3px}
+  .colb p + p{margin-top:8px}
+  .colb .lbl{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);display:block;margin-bottom:3px}
+  .colb .ttl{font-weight:800;font-size:14.5px;letter-spacing:-.02em}
+
+  /* score */
+  .sc{border-top:var(--line);padding:13px 17px;background:var(--bg)}
+  .scnum{display:flex;align-items:baseline;gap:8px}
+  .scnum b{font-size:27px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .scnum span{font-size:11.5px;font-weight:700;color:var(--g600)}
+  .col.now .scnum b{color:var(--brand-orange-deep)}
+  .col.next .scnum b{color:#06845a}
+  .scrow{display:grid;grid-template-columns:118px 1fr 58px;gap:9px;align-items:center;margin-top:6px;font-size:11.5px}
+  .scrow .sl{color:var(--g700);font-weight:700}
+  .scrow .st{height:6px;border-radius:var(--pill);background:var(--g200);overflow:hidden}
+  .scrow .sf{height:100%;border-radius:var(--pill);display:block}
+  .col.now .sf{background:var(--brand-orange)}
+  .col.next .sf{background:#00B589}
+  .scrow .sv{text-align:right;font-weight:800;color:var(--g700);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .scrow .sv i{font-style:normal;font-weight:700;color:var(--g400);font-size:10.5px}
+  .delta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;background:var(--ink);color:#fff;border-radius:var(--pill);padding:4px 12px;margin-top:12px}
+
+  /* catálogo de produtos e serviços */
+  .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:14px}
+  .catcard{text-align:left;background:var(--white);border:1.5px solid rgba(21,21,21,.09);border-radius:15px;padding:15px 16px;cursor:pointer;box-shadow:var(--shadow-card);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;display:flex;flex-direction:column;gap:7px;font:inherit;color:inherit}
+  .catcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--brand-purple)}
+  .cattop{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .cattag{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill)}
+  .cattag.reg{background:var(--tint-lav);color:#7B00BE}
+  .cattag.sug{background:var(--tint-cyan);color:#00647C}
+  .cattag.st{background:var(--g100);color:var(--g700)}
+  .catname{font-size:15px;font-weight:800;letter-spacing:-.025em;line-height:1.24}
+  .catprev{font-size:12.4px;color:var(--g700);line-height:1.45;flex:1}
+  .catprev em{font-style:normal;color:var(--g600)}
+  .catfoot{display:flex;align-items:center;gap:8px;border-top:var(--line);padding-top:9px;margin-top:2px}
+  .catsc{font-size:16px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .catsc.now{color:var(--brand-orange-deep)}
+  .catsc.now.zero{color:var(--g400)}
+  .catsc.next{color:#06845a}
+  .catarrow{color:var(--g400);font-weight:800}
+  .catopen{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--brand-purple)}
+  .itemfull{display:none}
+
+  /* modal lateral da ficha do item */
+  .dw-back{position:fixed;inset:0;background:rgba(21,21,21,.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:98;opacity:0;pointer-events:none;transition:opacity .2s ease}
+  .dw-back.on{opacity:1;pointer-events:auto}
+  .dw{position:fixed;top:0;right:0;height:100%;width:min(1120px,96vw);background:var(--white);z-index:99;box-shadow:-14px 0 44px rgba(21,21,21,.18);transform:translateX(102%);visibility:hidden;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s linear .24s;display:flex;flex-direction:column;overflow:hidden}
+  .dw.on{transform:none;visibility:visible;transition:transform .24s cubic-bezier(.32,.72,0,1),visibility 0s}
+  .dw-top{padding:16px 22px;display:flex;align-items:center;gap:12px;border-bottom:var(--line);flex:none}
+  .dw-top h3{font-size:18px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  .dw-close{margin-left:auto;flex:none;border:none;background:var(--g100);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;font-weight:800;color:var(--g700);display:flex;align-items:center;justify-content:center}
+  .dw-close:hover{background:var(--g200)}
+  .dw-body{padding:18px 22px 30px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .dw-body::-webkit-scrollbar{display:none}
+  .dw-body .cmp{margin-top:0}
+  /* inventário de produto */
+  .inv{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;border:var(--line);border-radius:14px;padding:14px;margin-top:10px;background:var(--white)}
+  @media(max-width:640px){.inv{grid-template-columns:1fr}}
+  .inv img{width:96px;height:96px;object-fit:cover;border-radius:11px;display:block;background:var(--g100)}
+  .inv .it{font-size:14.5px;font-weight:800;letter-spacing:-.02em}
+  .inv .im{font-size:12.3px;color:var(--g600);font-weight:600;margin-top:3px;font-family:'SFMono-Regular',Consolas,Menlo,monospace}
+  .foot{margin-top:40px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+  .backlink{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--g700);background:var(--white);border:var(--line);border-radius:var(--pill);padding:8px 16px 8px 13px;text-decoration:none;margin-bottom:16px}
+  .backlink:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-in">
+    <a href="../" class="logo" style="text-decoration:none;color:inherit"><span class="heart"></span> Solutudo <span style="font-weight:700;color:var(--g600);font-size:13px">· parceiros</span></a>
+    <nav class="seg" aria-label="Abas">
+      <button id="t-parc" class="on" onclick="show('parc')">Parceiro</button>
+      <button id="t-dest" onclick="show('dest')">Destaque</button>
+      <button id="t-site" onclick="show('site')">Solusite</button>
+      <button id="t-gmb" onclick="show('gmb')">Google</button>
+      <button id="t-soc" onclick="show('soc')">Redes</button>
+      <button id="t-cont" onclick="show('cont')">Conteúdo</button>
+    </nav>
+    <div id="pnav" data-atual="laae-laboratorio"></div>
+  </div>
+</div>
+
+<div class="hero">
+  <span class="vbadge">Central de conteúdo · um dossiê, todos os produtos</span>
+  <h1>Central de Conteúdo — LAAE Laboratório</h1>
+  <p class="crumbs">Análises de Água · Montes Claros/MG · ID 32069845 · Força Digital Essencial · fonte: cadastro Solutudo + transcrição da reunião comercial · 08/09/2026</p>
+</div>
+
+<div class="wrap">
+
+  <a class="backlink" href="../"><span aria-hidden="true">←</span> Todos os parceiros</a>
+
+  <section id="p-parc" class="panel on">
+
+    <div class="sec first">
+      <span class="eyebrow">Como esta central funciona</span>
+      <h2>O cadastro mais rico da série — e o mais contaminado</h2>
+      <p class="secsub">Tudo aqui nasce do cadastro que a empresa mantém na Solutudo, somado à <b>análise da transcrição da reunião comercial</b>, que este parceiro tem e os outros quatro não. Isso muda o peso do dossiê: além dos fatos do cadastro, há o que o dono disse com todas as letras sobre o negócio, o mercado e o que ele quer. Fatos fornecidos pela própria empresa habilitam o <b>selo de procedência A</b>.</p>
+      <p class="secsub">Duas coisas tornam este caso diferente de tudo que veio antes: <b>a base factual é a melhor</b> — acreditação por órgão nomeado, horário real, clientes identificados — e <b>três dos quatro produtos publicados estão com o texto corrompido</b>, por um motivo que dá para provar.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(196,43,34,.3);background:linear-gradient(180deg,#FFF6F4 0%,var(--white) 60%)">
+      <span class="badge" style="background:#FFE4E0;color:#A3200F">Achado principal · vale para três dos quatro produtos</span>
+      <h3>Os textos passaram por tradução automática e voltaram corrompidos</h3>
+      <p class="sub">Os produtos <b>711410</b>, <b>711908</b> e <b>711909</b> têm o corpo inteiro envolvido em <code>&lt;font dir="auto" style="vertical-align: inherit;"&gt;</code> — o markup que o tradutor automático do navegador injeta no DOM quando traduz uma página. Alguém traduziu, copiou o resultado da tela e colou de volta no cadastro. O markup veio junto, e o texto voltou em português quebrado.</p>
+      <p class="sub">Não é suposição de estilo. São erros que só a ida e volta de tradução produz:</p>
+      <table>
+        <tr><th>Produto</th><th>O que está publicado</th><th>O que era para dizer</th></tr>
+        <tr><td>711410</td><td>"Vantagens da <b>pesquisa</b> especializada"</td><td>amostragem — o próprio título do produto é "Amostragem"</td></tr>
+        <tr><td>711410</td><td>"informações confiáveis <b>​​</b> sobre"</td><td>dois espaços de largura zero no meio da frase</td></tr>
+        <tr><td>711908</td><td>"empresas que <b>detectam</b> resultados confiáveis"</td><td>buscam</td></tr>
+        <tr><td>711908</td><td>"<b>Monitorização</b> das condições da água"</td><td>monitoramento — "monitorização" é português europeu</td></tr>
+        <tr><td>711909</td><td>"projetos de monitoramento que <b>desativam</b> avaliação de parâmetros"</td><td>demandam — a frase publicada não tem sentido</td></tr>
+      </table>
+      <div class="note"><b>Por que isso é achado de sistema e não caso isolado:</b> a assinatura é detectável por código. Uma varredura por <code>font dir="auto"</code> e <code>vertical-align: inherit</code> nos campos de descrição da base inteira diz, em uma consulta, <b>quantos dos 28 milhões de perfis têm texto colado de tradutor</b>. É a mesma família do achado da data 12/05/1999: um defeito que passa despercebido no caso a caso e aparece na medição.</div>
+      <p class="sub">O produto <b>711409</b> (Análise de Efluentes) é o único limpo — sem o markup e em português correto. Serve de controle: prova que o problema não é o redator, é o caminho pelo qual o texto entrou.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(180,83,9,.35)">
+      <span class="badge warn">Quinta ocorrência da data 12/05/1999 — e a primeira com o valor certo à vista</span>
+      <h3>O contrato diz 1999. A empresa diz 2003, duas vezes.</h3>
+      <div class="grid2">
+        <div class="blk">
+          <h4 style="color:#A3200F">Campo do contrato</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">Pergunta: <i>"Em que ano a empresa foi fundada?"</i><br>Resposta gravada: <b>12/05/1999</b> — data completa respondendo pergunta de ano.</p>
+        </div>
+        <div class="blk">
+          <h4 style="color:#06724F">O que a empresa diz</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px"><b>Descrição publicada:</b> "Fundado em <b>2003</b>, em Montes Claros/MG".<br><b>Reunião comercial:</b> "2003 o nascimento da empresa".</p>
+        </div>
+      </div>
+      <div class="note">Nos quatro parceiros anteriores, a data-padrão era um achado sem contraprova — dava para dizer que o campo estava errado, não qual era o valor certo. <b>Aqui a empresa se contradiz dentro do próprio cadastro</b>, e a fonte independente (a transcrição) confirma. Adotamos <b>2003</b> em todos os canais desta central. O campo do contrato fica registrado como pendência de correção.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Identificação</span>
+      <h3>LAAE Laboratório de Análise de Água e Efluentes</h3>
+      <dl class="kv">
+        <dt>Nome público</dt><dd>LAAE Laboratório de Análise de Água e Efluentes</dd>
+        <dt>Nome fantasia</dt><dd><b>vazio no cadastro</b> <small>e existe: os três depoimentos dizem "LabLAAE", o domínio é lablaae.com.br e o Instagram é @lablaae. É como o cliente chama a empresa — preencher</small></dd>
+        <dt>ID · UUID</dt><dd>32069845 · <code>c22a9e06-9dd8-48bd-94d0-bfa24ad2a610</code></dd>
+        <dt>Categorias</dt><dd>Análises de Água · Engenharia Ambiental <small><b>as duas marcadas como padrão</b> — só uma pode ser. E o bloco de produtos está sob uma terceira, "Tratamento de Água", que não consta na lista. Três classificações para a mesma empresa</small></dd>
+        <dt>Cidade na busca</dt><dd>Montes Claros/MG <small>correta — é o primeiro parceiro da série em que a cidade de busca bate com a operação</small></dd>
+        <dt>Fundação</dt><dd><b>2003</b> <small>adotado. O campo do contrato traz 12/05/1999 — ver o card acima</small></dd>
+        <dt>Porte</dt><dd>1–5 funcionários <small>uso interno. Conflita com a operação descrita na reunião (matriz + logística própria de coleta em 8 cidades + 2 franquias); confirmar com o CS</small></dd>
+        <dt>Perfil digital</dt><dd>Totalmente digital — site e redes ativas (autodeclarado no contrato)</dd>
+        <dt>Responsável</dt><dd>Paulo Fialho, diretor · (38) 98405-5532 <small>contato do patrocinador — uso interno, nunca publicar</small></dd>
+        <dt>Avaliação do perfil</dt><dd><b>null</b> <small>o cadastro não traz nota calculada. A nota 47 desta central foi apurada aqui, pela régua de 6 dimensões</small></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge mint">Produtos contratados — o que esta central precisa alimentar</span>
+      <div class="chips">
+        <span class="chip lav">Força Digital Essencial</span>
+        <span class="chip lav">Perfil no Google (link cadastrado)</span>
+        <span class="chip" style="background:var(--tint-peach);color:#B03A00">Solusite: false, com 6 imagens de Solusite no cadastro</span>
+      </div>
+      <div class="note"><b>Contradição a resolver com o CS:</b> o campo <code>Solusite</code> está <code>false</code>, mas o cadastro guarda <b>banner, banner mobile, favicon, logotipo, preview do site e preview do logo</b>, todos com o prefixo [Solusite] e legendas escritas ("Análise de água e efluentes e controle de qualidade hídrica"). Ou o site foi montado e a flag não foi marcada, ou foi cancelado e os ativos ficaram. Isso importa: a maior dor técnica da reunião é o site atual — "pesado", "não é vivo, ele é estacionado" — e o Solusite é exatamente a correção.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NAP oficial — fonte única para todos os canais</span>
+      <h3>Nome, endereço e contato que valem em toda parte</h3>
+      <dl class="kv">
+        <dt>Nome público</dt><dd>LAAE Laboratório de Análise de Água e Efluentes <small>curto, para bio e redes: LabLAAE</small></dd>
+        <dt>Endereço</dt><dd>Avenida Professor Vicente Guimarães, 1095 — Vicente Guimarães, Montes Claros/MG · CEP 39401-781 <small>lat -16.7425054, long -43.8754184. O título do registro é <b>"Franqueador "</b>, com espaço no fim — é rótulo interno de franquia vazando para um campo de endereço</small></dd>
+        <dt>WhatsApp / celular</dt><dd>(38) 98405-5391</dd>
+        <dt>Telefone fixo</dt><dd>(38) 2101-2881 <small><b>cadastrado no campo "Celular"</b> — é fixo, pelo prefixo 2101. Reclassificar</small></dd>
+        <dt>E-mail</dt><dd>comercial@lablaae.com.br</dd>
+        <dt>Site</dt><dd>lablaae.com.br <small><b>marcado como <code>Padrão: false</code></b> — o site não é o contato padrão da empresa. Corrigir</small></dd>
+        <dt>Instagram</dt><dd>@lablaae <small>no cadastro está a URL completa com <code>?utm_source=ig_web_button_share_sheet&amp;igsh=…</code> — parâmetro de rastreio colado do botão de compartilhar. Salvar a URL limpa</small></dd>
+        <dt>Perfil no Google</dt><dd>share.google/6UkPXQyBs00sx9kVr</dd>
+        <dt>Link de avaliação</dt><dd>g.page/r/Cbp6ScKvZyd0EBM/review <small><b>cadastrado duas vezes</b>, mesma URL, os dois como padrão. Remover a duplicata</small></dd>
+        <dt>Horário</dt><dd>Segunda a sexta, 08h–12h e 13h–17h · sábado, domingo e feriado fechado <small><b>é o primeiro horário verossímil da série</b> — dois turnos com intervalo de almoço, fim de semana fechado. Serve de contraste com os cadastros de "sete dias mais feriado" dos outros parceiros</small></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge">Cobertura e o fosso que ninguém publicou</span>
+      <h3>Oito cidades nomeadas, um raio de 600 km e uma janela de 24 horas</h3>
+      <p class="sub">A descrição publicada nomeia as cidades. A reunião explica <b>por que</b> são essas — e essa explicação é o ativo mais valioso do dossiê, porque não está escrita em canal nenhum.</p>
+      <div class="chips">
+        <span class="chip mint">Montes Claros <small>(matriz)</small></span><span class="chip">Jaíba</span><span class="chip">Janaúba</span><span class="chip">Januária</span><span class="chip">Diamantina</span><span class="chip">Curvelo</span><span class="chip">Salinas</span><span class="chip">Araçuaí</span><span class="chip">Pirapora</span>
+      </div>
+      <ul class="clean">
+        <li><b>A amostra vale 24 horas.</b> Entre a coleta e a chegada ao laboratório existe uma janela curta — dita na reunião: <i>"entre você coletar a amostra… você tem 24 horas"</i>.</li>
+        <li><b>Por isso o raio é de ~600 km.</b> <i>"Não me interessa muito trabalhar num raio acima de 600 quilômetros daqui."</i> Não é preferência comercial: é consequência física do serviço.</li>
+        <li><b>Por isso o mercado é regional — e por isso ele o domina.</b> <i>"Hoje eu tenho aproximadamente 90% do mercado regional… uns 90%, 80 a 90."</i></li>
+        <li><b>Logística própria de coleta</b> nas cidades atendidas, com processo em tablet e portal de laudos com login e senha para o cliente.</li>
+        <li><b>A rede já passou do Norte de Minas:</b> franquias ativas em Feira de Santana e Vitória da Conquista (BA), mais 8 vendidas em construção. Plano declarado: 77 franquias no país.</li>
+      </ul>
+      <div class="note"><b>As 24 horas explicam o negócio inteiro e não aparecem em nenhum texto público.</b> É o que justifica o preço, a exclusividade regional, a impossibilidade de um laboratório de São Paulo atender Januária e a razão de existir da franquia. Vira o <b>tema único</b> do calendário (aba Conteúdo) e o bloco de abertura do site.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">O que a transcrição da reunião entregou</span>
+      <h3>Fatos de negócio que nenhum cadastro tem</h3>
+      <p class="sub">Este parceiro tem a análise da reunião comercial anexada ao cadastro. Ela responde perguntas de briefing que normalmente ficam em aberto — e define a prioridade do conteúdo.</p>
+      <table>
+        <tr><th>O que se sabe</th><th>Consequência para o conteúdo</th></tr>
+        <tr><td><b>99% do negócio é água e efluente</b>; solo é 1%</td><td>Nenhum tema de solo entra no calendário. A categoria Engenharia Ambiental serve ao monitoramento, não a análise de solo</td></tr>
+        <tr><td><b>130 tipos de exame</b> no portfólio</td><td>Sustenta a série recorrente "o exame do mês" sem repetir pauta por 10 anos</td></tr>
+        <tr><td>Público: indústria farmacêutica, agronegócio, consultorias ambientais, hospitais, hotéis, motéis, restaurantes, clínicas, <b>poços artesianos</b> — <b>quem usa água que não é da concessionária</b></td><td>É o critério que define o cliente em uma frase. Vira o tema de abertura da editoria de público</td></tr>
+        <tr><td><b>Dor prioritária:</b> contrato com multinacional farmacêutica, 20–30% do faturamento, deve cair em ~6 meses</td><td>O conteúdo precisa atacar <b>aquisição</b>, não marca. Prazo definido muda a ordem dos temas</td></tr>
+        <tr><td><b>"Meu público não está no Instagram."</b> Literal.</td><td>Muda o destino do calendário — ver a aba Redes. O canal é Google e blog, não feed</td></tr>
+        <tr><td>Quer <b>posicionamento orgânico no Google</b> em palavras-chave que impactem</td><td>O slot F (dúvidas) vira o de maior prioridade, porque é o que trabalha em quatro canais ao mesmo tempo</td></tr>
+        <tr><td>Perfil do Google com <b>reclamações antigas de atendimento telefônico</b> — e a empresa <b>mudou de sede e de telefonia</b> desde então</td><td>Responder as avaliações antigas contextualizando a mudança é ação de reputação com fato novo, não desculpa</td></tr>
+        <tr><td>Cliente desejado: <i>"aquele cara que me dá mil análises por mês"</i> — contrato recorrente, não avulso</td><td>O item de catálogo de maior valor é <b>monitoramento recorrente</b>, não análise unitária</td></tr>
+        <tr><td>Concorrente citado: Minas Watts</td><td>Inteligência interna. Não entra em texto público</td></tr>
+      </table>
+      <div class="note"><b>Uso interno.</b> Nada desta tabela é publicável como está — nem o percentual de mercado, nem a dependência do cliente farmacêutico, nem o nome do concorrente. O que vai para os canais são os fatos <b>de serviço</b> que ela revela: a janela de 24 horas, as cidades, os 130 exames, o portal de laudos e o critério de "água não concessionária".</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Prova social que está no cadastro e ninguém vê</span>
+      <h3>Três depoimentos nomeados, guardados no campo "[Solusite] Ícones"</h3>
+      <p class="sub">Não são avaliações anônimas: são clientes identificados, com empresa e cargo, um deles com tempo de relação declarado. Estão num campo de ícones.</p>
+      <div class="grid3">
+        <div class="blk">
+          <span class="ed ed1"><i></i>SEAM Engenharia e Meio Ambiente</span>
+          <p style="font-size:13px;color:var(--g700);margin-top:9px">"A SEAM é cliente do LabLAAE <b>a 15 anos</b> e gostaria de expressar a nossa satisfação com essa longa parceria. […] <b>Coletas rápidas, resultados no prazo correto</b> e com alto grau de confiabilidade."</p>
+        </div>
+        <div class="blk">
+          <span class="ed ed2"><i></i>Heráclides Veloso Marques (Kid)</span>
+          <p style="font-size:13px;color:var(--g700);margin-top:9px">"Em nome do <b>Hospital do Câncer do Norte de Minas — Oncológica</b>, vimos através deste manifestar os nossos mais sinceros agradecimentos e parabéns pela parceria […]"</p>
+        </div>
+        <div class="blk">
+          <span class="ed ed3"><i></i>Tânia Botelho</span>
+          <p style="font-size:13px;color:var(--g700);margin-top:9px">"Os serviços prestados pelo LabLAAE são excelentes. <b>Todo o suporte é dado e o cumprimento de agendas segue conforme esperado.</b>"</p>
+        </div>
+      </div>
+      <div class="note"><b>Por que isso vale mais que a média:</b> o dono disse na reunião que o público dele é técnico e desconfiado, e que decide por resultado. Depoimento de <b>hospital</b> e de <b>consultoria ambiental que é cliente há 15 anos</b> é exatamente a prova que esse público lê. Hoje está invisível — nem no perfil, nem no site, nem no Google. <b>Antes de publicar:</b> pedir autorização de uso de nome e empresa aos três, e conferir a grafia ("a 15 anos" é do original — publicar corrigido como "há 15 anos" ou citar entre aspas com [sic]).</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="badge">Pagamento — cadastrado</span>
+        <div class="chips">
+          <span class="chip mint">Boleto</span><span class="chip mint">Pix</span><span class="chip mint">Dinheiro</span><span class="chip mint">Cartões de crédito e débito</span>
+        </div>
+        <p class="sub" style="margin-top:10px"><b>Boleto é o item que importa</b> num laboratório B2B: indústria, hospital e consultoria compram por nota e prazo, não no cartão. Nenhum texto publicado menciona.</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Estrutura — cadastrada, mas rasa</span>
+        <div class="chips">
+          <span class="chip">Ar Condicionado</span><span class="chip">Sala de Espera</span>
+        </div>
+        <div class="note">Duas características genéricas para um laboratório acreditado. O que este cadastro deveria registrar — e não tem campo para isso — é <b>escopo de acreditação, equipamentos multiparâmetros, portal de laudos e logística própria de coleta</b>. Registrado como lacuna de estrutura do cadastro, não da empresa.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">As 16 "palavras-chave particulares" não são buscas reais</span>
+      <h3>Lista digitada, não capturada — e isso muda a editoria de dúvidas</h3>
+      <p class="sub">Nos outros parceiros esse campo trouxe buscas de verdade, com erro de grafia e tudo. Aqui, três evidências dizem que não:</p>
+      <ul class="clean">
+        <li><b>Ordem alfabética perfeita.</b> As 16 estão exatamente em ordem — de <code>analise de agua contaminada</code> a <code>monitoramento de residuos</code>. Busca capturada chega por frequência ou por data, nunca alfabetada.</li>
+        <li><b>14 das 16 terminam com ponto final.</b> Ninguém digita ponto no fim de uma busca. É pontuação de item de lista.</li>
+        <li><b>Os erros são de digitação, não de busca:</b> <code>psicultura</code> (por piscicultura) e <code>pocos artesiano</code>, com o singular e o plural trocados na mesma expressão.</li>
+      </ul>
+      <div class="note"><b>O que isso significa na prática.</b> Segundo a §6 do padrão de editorias, quando não há buscas reais a ordem de substituição é: as <code>curated_keywords</code> da categoria, depois as dúvidas clássicas do setor, depois o que o CS ouve. A categoria <b>Análises de Água</b> tem 15 termos curados e 25 no total — inclusive <i>análise de água de poço</i>, <i>análise de água de caminhão pipa</i>, <i>análise de água de piscina</i> e <i>exame bacteriológico da água</i>, que a lista digitada não tem. <b>É daí que sai o slot F desta central</b>, e a lacuna fica registrada: este perfil não tem busca real capturada.</div>
+      <p class="sub"><b>E três termos estão fora do escopo declarado:</b> <code>analise de alimentos</code>, <code>monitoramento ambiental do ar</code> e <code>monitoramento de residuos</code>. A reunião diz que 99% do negócio é água e efluente. Ou a empresa faz e não cadastrou, ou os três atraem contato que ela não atende — <b>pergunta de um toque para o CS</b>.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Correções de cadastro — 12 itens, antes de propagar para os canais</span>
+      <ul class="clean">
+        <li><b>Três produtos com markup de tradutor e texto quebrado</b> (711410, 711908, 711909) — reescrever do zero, não editar.</li>
+        <li><b>Data de fundação 12/05/1999</b> contra 2003 na própria descrição e na reunião. Corrigir para 2003.</li>
+        <li><b>Duas categorias marcadas como padrão</b> (Análises de Água e Engenharia Ambiental) e uma terceira classificando os produtos (Tratamento de Água). Definir uma.</li>
+        <li><b>Nome fantasia vazio</b> — "LabLAAE" é como o cliente chama, é o domínio e é o Instagram.</li>
+        <li><b>Campo <code>Logo</code> nulo</b> apesar de existir logotipo em Fotos.</li>
+        <li><b>Campo <code>Solusite</code> false</b> com seis imagens de Solusite cadastradas.</li>
+        <li><b>Site marcado como <code>Padrão: false</code></b> — é o site oficial da empresa.</li>
+        <li><b>Telefone fixo (38) 2101-2881 cadastrado como celular.</b></li>
+        <li><b>Link de avaliação do Google duplicado</b>, os dois marcados como padrão.</li>
+        <li><b>Instagram com parâmetro de rastreio</b> (<code>utm_source</code>, <code>igsh</code>) colado do botão de compartilhar.</li>
+        <li><b>Título do endereço é "Franqueador "</b>, com espaço no fim — rótulo interno num campo de endereço.</li>
+        <li><b>Nenhuma foto do laboratório</b> — ver o banco de imagens abaixo.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge">Banco de imagens — direto do CDN do cadastro</span>
+      <h3>11 imagens, e nenhuma do laboratório</h3>
+      <p class="sub">Este é o cadastro com <b>menos imagens da série</b> — o Semião tem 27, a EA3 tem 55. E a composição é o problema: são logotipo, capa, ativos de Solusite e três cartões de depoimento. <b>Não há uma única foto da operação</b>: nem bancada, nem equipamento, nem coleta em campo, nem equipe, nem a sede nova. Para um laboratório acreditado, cuja venda é confiança técnica, essa é a lacuna mais cara do cadastro.</p>
+      <div class="ph-grid caps" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));max-width:480px"><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/e467ad3d-3ebb-4c75-ab2b-5139de5f214f.jpg" alt="Logotipo (novo) — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo (novo)</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a9868c1-e160-437f-9d84-1890ac1e0fec.webp" alt="Logotipo do Solusite — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Logotipo do Solusite</figcaption></figure><figure class="ph"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a9868c7-4c94-467f-9e4c-18cdac1e0fec.png" alt="Favicon do Solusite — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Favicon do Solusite</figcaption></figure></div>
+      <div class="ph-grid caps"><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a8da382-912c-4ef9-b3e9-7d1fac1e09ff.png" alt="Capa desktop · sem legenda — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Capa desktop · sem legenda</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a98839e-ad5c-40e5-8a87-6801ac1e09ff.webp" alt="Banner Solusite · legenda escrita — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner Solusite · legenda escrita</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a988267-33b4-49da-8238-229cac1e0fec.webp" alt="Banner mobile Solusite — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Banner mobile Solusite</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a9868b9-8fc4-42ac-8d91-1890ac1e0fec.webp" alt="Preview do Solusite — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Preview do Solusite</figcaption></figure></div>
+      <p class="sub" style="margin-top:14px"><b>Os três cartões de depoimento</b>, hoje no campo "[Solusite] Ícones":</p>
+      <div class="ph-grid caps"><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a987976-aa88-4deb-bb7c-6366ac1e09ff.webp" alt="Depoimento · SEAM — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Depoimento · SEAM</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a9879ed-4368-4606-b020-641aac1e09ff.webp" alt="Depoimento · Hospital do Câncer — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Depoimento · Hospital do Câncer</figcaption></figure><figure class="ph wide"><img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_ads/c22a9e06-9dd8-48bd-94d0-bfa24ad2a610/6a987a11-b39c-4d1a-b4d4-63beac1e09ff.webp" alt="Depoimento · Tânia Botelho — LAAE Laboratório" loading="lazy" referrerpolicy="no-referrer"><figcaption class="pl">Depoimento · Tânia Botelho</figcaption></figure></div>
+      <div class="note"><b>Pedido de uma linha para o CS, com o maior retorno do dossiê:</b> uma sessão de fotos da operação — bancada com vidraria e equipamento, o multiparâmetro em campo, a coleta chegando de carro, a caixa térmica com as amostras dentro da janela de 24 horas, a equipe de jaleco, a fachada da sede nova. Sem isso, o Solusite, o perfil do Google e o calendário inteiro ficam sem matéria-prima visual, e um laboratório sem foto de laboratório não passa a confiança que vende.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Produtos cadastrados no sistema</span>
+      <h3>Quatro serviços ativos — três com o texto corrompido</h3>
+      <p class="sub">Todos sob a categoria "Tratamento de Água" (que não consta na lista de categorias da empresa), cada um com uma imagem e sem preço. Os quatro títulos terminam com <b>espaço sobrando</b>. A reescrita de cada um está na aba <b>Destaque</b>.</p>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/f362abd7-546f-4429-8605-3caf6ffd42f9/6a889868-909c-4086-b6b8-251fac1e0fec.png" alt="Imagem cadastrada da Análise de Efluentes — LAAE" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Análise de Efluentes em Montes Claros/MG e Região&nbsp;" <mark class="m-bad" data-tip="Espaço no fim do título. Vira slug e breadcrumb sujos e atrapalha a comparação entre canais.">espaço no fim</mark></div>
+          <div class="im">ID 711409 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip mint">Texto limpo — o único dos quatro<span class="hint" data-tip="Sem markup de tradutor e em português correto. Serve de controle: prova que o problema dos outros três não é o redator, é o caminho pelo qual o texto entrou no cadastro.">?</span></span>
+            <span class="chip mint">Tem estrutura real<span class="hint" data-tip="Usa H2 e lista de aplicações. É o único produto que um buscador consegue extrair em blocos.">?</span></span>
+            <span class="chip peach">Não distingue industrial de sanitário<span class="hint" data-tip="Cita &quot;efluentes industriais e sanitários&quot; numa linha só. São análises com parâmetros e normas diferentes: separar rende duas intenções de busca em vez de uma.">?</span></span>
+            <span class="chip peach">Cidade repetida no título e no corpo<span class="hint" data-tip="&quot;Montes Claros/MG e Região&quot; aparece cinco vezes no mesmo texto. Repetição por cota é padrão antigo de SEO e hoje só ocupa espaço.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/56d2130a-c9bf-4605-8439-364465989382/6a86ee5f-da24-458c-8ca7-352fac1e09ff.png" alt="Imagem cadastrada da Amostragem de Água — LAAE" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Amostragem de Água em Montes Claros/MG e Região&nbsp;" <mark class="m-bad" data-tip="Markup &lt;font dir=&quot;auto&quot; style=&quot;vertical-align: inherit;&quot;&gt; envolvendo o texto inteiro, em pares aninhados. É a assinatura do tradutor automático do navegador.">texto de tradutor</mark></div>
+          <div class="im">ID 711410 · ativo · 1 imagem · <b>imagem marcada como não-padrão</b> · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">"Vantagens da pesquisa especializada"<span class="hint" data-tip="O subtítulo do produto de AMOSTRAGEM fala em &quot;pesquisa&quot;. É o inglês &quot;sampling&quot; voltando errado da tradução — e desconecta o subtítulo do próprio produto.">?</span></span>
+            <span class="chip peach">Espaços de largura zero no meio da frase<span class="hint" data-tip="&quot;informações confiáveis ​​sobre&quot; carrega dois caracteres invisíveis U+200B. Vieram colados da tela do tradutor.">?</span></span>
+            <span class="chip peach">Gênero da marca alterna<span class="hint" data-tip="&quot;o LAAE&quot; e &quot;a LAAE&quot; aparecem no mesmo cadastro. Buscador e IA precisam resolver uma entidade só.">?</span></span>
+            <span class="chip peach">Única imagem não é a padrão<span class="hint" data-tip="O produto tem uma imagem só, e ela está com Padrão: false. Na prática o produto exibe sem imagem.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6a86f050-46e8-48e5-b634-2adeac1e0fec/6a86f050-519c-4963-846b-2adeac1e0fec.png" alt="Imagem cadastrada da Análise Microbiológica — LAAE" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Análise Microbiológica de Água em Montes Claros/MG e Região&nbsp;" <mark class="m-bad" data-tip="Mesmo markup de tradutor do 711410.">texto de tradutor</mark></div>
+          <div class="im">ID 711908 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">"empresas que detectam resultados confiáveis"<span class="hint" data-tip="Empresa não &quot;detecta&quot; resultado, ela busca. A frase publicada inverte quem faz o quê.">?</span></span>
+            <span class="chip peach">"Monitorização das condições da água"<span class="hint" data-tip="&quot;Monitorização&quot; é português europeu. O resto do cadastro diz &quot;monitoramento&quot;. A tradução passou por outra variante da língua.">?</span></span>
+            <span class="chip mint">Nomeia os tipos de água<span class="hint" data-tip="Água para consumo humano, potável, superficial e subterrânea: quatro intenções de busca distintas, nomeadas. É o que salva o texto.">?</span></span>
+            <span class="chip peach">Não cita nenhum parâmetro<span class="hint" data-tip="Análise microbiológica de água tem parâmetros clássicos (coliformes totais, E. coli, contagem de bactérias heterotróficas). Nenhum aparece — e são exatamente os termos que o cliente técnico pesquisa.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv">
+        <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/shp_products/6a86f10c-7768-4295-9dd7-352fac1e09ff/6a86f10c-9bbc-488f-9c87-352fac1e09ff.png" alt="Imagem cadastrada da Análise Físico-Química — LAAE" loading="lazy" referrerpolicy="no-referrer">
+        <div>
+          <div class="it">"Análise Físico-Química de Água em Montes Claros/MG e Região&nbsp;" <mark class="m-bad" data-tip="Mesmo markup de tradutor. O corpo tem a frase mais quebrada dos três.">texto de tradutor</mark></div>
+          <div class="im">ID 711909 · ativo · 1 imagem · preço não informado</div>
+          <div class="chips">
+            <span class="chip peach">"projetos que desativam avaliação de parâmetros"<span class="hint" data-tip="A frase não tem sentido em português. Muito provavelmente era &quot;demandam&quot;. Está publicada assim hoje.">?</span></span>
+            <span class="chip peach">"a LAAE reúne experiência"<span class="hint" data-tip="Terceiro texto, terceira flexão da marca. O cadastro alterna entre o LAAE, a LAAE e LabLAAE.">?</span></span>
+            <span class="chip peach">Nenhum parâmetro nomeado<span class="hint" data-tip="pH, turbidez, cloro residual, dureza, nitrato: os parâmetros são o vocabulário do comprador técnico e não aparecem em lugar nenhum do cadastro.">?</span></span>
+            <span class="chip peach">Duplica o 711908 na estrutura<span class="hint" data-tip="Mesma abertura, mesma lista de benefícios genéricos, mesmo fechamento. Os dois competem pela mesma busca em vez de dividir físico-químico e microbiológico.">?</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note"><b>O que falta nos quatro, e é a mesma coisa:</b> <b>parâmetro nomeado</b>. Nenhum dos textos cita pH, turbidez, coliformes, DBO, DQO, cloro residual — que é o vocabulário exato de quem compra análise. Um laboratório com 130 exames publicou quatro páginas que não nomeiam um único ensaio. É a maior lacuna de conteúdo do cadastro, e a que mais custa em busca: <i>"análise de coliformes em Montes Claros"</i> é uma busca que ninguém disputa e que este laboratório deveria ganhar.</div>
+    </div>
+
+  </section>
+
+  <section id="p-dest" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Força Digital Essencial</span>
+      <h2>Página da empresa na Solutudo</h2>
+      <p class="secsub">Descrição 3.0, FAQ, catálogo reescrito e as características que a página exibe. Regra da casa: CTA sem link — WhatsApp por extenso. Regras deste caso: <b>2003, nunca 1999</b>; <b>a acreditação sempre com o órgão nomeado e a ressalva do escopo</b>; e <b>nenhum parâmetro inventado</b> — o que o laboratório não confirmou, não sobe.</p>
+    </div>
+
+    <div class="card" style="padding:16px 20px">
+      <div class="chips" style="margin-top:0">
+        <span class="chip peach">Marcação laranja<span class="hint" data-tip="Trecho que enfraquece o texto: adjetivo sem fato, superlativo sem fonte, promessa sem lastro ou duplicação.">?</span></span>
+        <span class="chip lav">Marcação roxa<span class="hint" data-tip="Fato que existe no cadastro e não foi usado — lacuna de conteúdo, não erro de escrita.">?</span></span>
+        <span class="chip mint">Marcação verde<span class="hint" data-tip="Trecho que carrega fato verificável, responde a uma busca real ou fecha em ação possível.">?</span></span>
+        <span class="chip">Score de 0 a 100<span class="hint" data-tip="Seis dimensões somam 100: entidade e local (15), fatos verificáveis (25), resposta direta para AEO (20), estrutura extraível (15), unicidade (15) e contato (10).">?</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Detalhes da empresa na Solutudo — como está × como deveria</span>
+      <h3>A descrição do perfil, auditada frase a frase</h3>
+      <p class="sub">O cadastro não traz nota calculada (<code>Avaliação do perfil: null</code>), então a nota atual foi apurada aqui. <b>47 é a melhor base da série</b> — este texto tem acreditação nomeada, ano de fundação, cidades e tipos de água. E ainda assim <b>zera na dimensão de contato</b>: não há um telefone, um WhatsApp ou um "como pedir" em parágrafo nenhum.</p>
+      <div class="cmp">
+        <div class="col now"><div class="colh">● Publicado hoje no cadastro</div><div class="colb">
+        <p>O <b>LAAE Laboratório de Análise de Água e Efluentes</b> atua <mark class="m-bad" data-tip="&quot;Mais de 20 anos&quot; envelhece a cada ano e ainda repete o que a frase seguinte já diz com precisão (2003). Datação relativa sempre perde para datação absoluta.">há mais de 20 anos</mark> com Análises de Água e Efluentes, análises laboratoriais e monitoramento ambiental. <mark class="m-good" data-tip="Ano e cidade de fundação na abertura. É o trecho que contradiz o campo do contrato (12/05/1999) e prova que o campo é valor-padrão.">Fundado em 2003, em Montes Claros/MG</mark>, o laboratório nasceu para atender à crescente demanda de empresas do Norte de Minas Gerais.</p>
+        <p>A matriz possui <mark class="m-good" data-tip="Órgão certificador nomeado, com a ressalva correta do escopo. É o fato verificável mais forte de todo o cadastro — e está no segundo parágrafo, não no primeiro.">serviços acreditados pela CGCRE do INMETRO, conforme os escopos disponíveis em seus certificados</mark>, além de reconhecimento pela Rede Metrológica do Rio Grande do Sul segundo a <b>ABNT NBR ISO/IEC 17025</b>.</p>
+        <p>O principal diferencial do LAAE está na combinação entre <mark class="m-bad" data-tip="Quatro adjetivos em sequência, sem um número, um ensaio ou uma comparação. É a frase que serve para qualquer laboratório do país — e ela é apresentada como &quot;o principal diferencial&quot;.">experiência, qualidade, confiabilidade e compromisso com a satisfação dos clientes</mark>.</p>
+        <p>Entre os serviços estão <mark class="m-good" data-tip="Nomeia os quatro tipos de água e os dois tipos de efluente. São seis intenções de busca distintas, e é o melhor trecho do texto.">análises físico-químicas e microbiológicas de água potável, para consumo humano, superficiais, subterrâneas e efluentes industriais e sanitários</mark>.</p>
+        <p>A atuação alcança <mark class="m-good" data-tip="Oito cidades nomeadas. É informação de território que quase nenhum concorrente publica com esse nível de detalhe.">Jaíba, Diamantina, Salinas, Araçuaí, Curvelo, Januária, Janaúba, Pirapora</mark> e toda a região do Norte de Minas<mark class="m-bad" data-tip="O parágrafo tem um &lt;span style=&quot;font-family:arial…&quot;&gt; solto no meio, um ponto final órfão e um &amp;nbsp; entre a lista e o texto. Markup herdado de colagem.">.&nbsp;ampliando</mark> o acesso a análises ambientais. Com a expansão por franquias, o LAAE leva sua experiência a diferentes regiões.</p>
+        <p style="margin-top:10px"><span class="lbl">Não aparece em lugar nenhum</span>
+        <mark class="m-fill" data-tip="As 24 horas de validade da amostra explicam o raio de atuação, a exclusividade regional e o motivo de a coleta ser própria. É o fato que explica o negócio inteiro.">a janela de 24 horas</mark>
+        <mark class="m-fill" data-tip="Nenhum telefone, nenhum WhatsApp, nenhum &quot;fale com&quot;. A dimensão de contato zera.">como contratar</mark>
+        <mark class="m-fill" data-tip="Segunda a sexta, 8h–12h e 13h–17h. Está cadastrado e é o horário mais verossímil da série.">horário</mark>
+        <mark class="m-fill" data-tip="Boleto é o que importa num laboratório B2B: indústria e hospital compram por nota e prazo.">pagamento</mark>
+        <mark class="m-fill" data-tip="Coleta feita por equipe própria, com equipamento multiparâmetro em campo — dito na reunião e ausente de todo texto público.">a coleta própria</mark>
+        <mark class="m-fill" data-tip="Portal com login e senha onde o cliente busca o laudo. Diferencial operacional real, nunca publicado.">o portal de laudos</mark></p>
+        </div><div class="sc"><div class="scnum"><b>47</b><span>/100 · texto atual</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:80%"></span></span><span class="sv">12<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:64%"></span></span><span class="sv">16<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:25%"></span></span><span class="sv">5<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:53%"></span></span><span class="sv">8<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div>
+        <div class="col next"><div class="colh">● Descrição 3.0</div><div class="colb">
+        <p><mark class="m-good" data-tip="Entidade + categoria + cidade + a datação absoluta, na primeira frase. É o trecho que a IA cita.">O LAAE é um laboratório de análise de água e efluentes em Montes Claros/MG, em atividade desde 2003</mark> — com <mark class="m-good" data-tip="Acreditação promovida para a abertura, com o órgão nomeado e a ressalva do escopo preservada.">serviços acreditados pela CGCRE do Inmetro, conforme os escopos dos certificados</mark>, e reconhecimento pela Rede Metrológica do Rio Grande do Sul segundo a ABNT NBR ISO/IEC 17025.</p>
+        <h5>O que analisamos</h5>
+        <ul>
+          <li>Análises <b>físico-químicas</b> e <b>microbiológicas</b> de água potável, água para consumo humano, águas superficiais e águas subterrâneas.</li>
+          <li>Análise de <b>efluentes industriais e sanitários</b>, para acompanhamento de sistemas de tratamento.</li>
+          <li>Programas de <b>monitoramento ambiental</b>, com pontos e frequência definidos com a equipe do cliente.</li>
+        </ul>
+        <h5>Como funciona</h5>
+        <ul>
+          <li><mark class="m-good" data-tip="A janela de 24 horas: o fato técnico que justifica a coleta própria, o raio de atuação e a exclusividade regional. Nunca havia sido publicado.">A amostra tem validade curta — entre a coleta e o laboratório, a contagem é de 24 horas.</mark> Por isso a coleta é feita por equipe própria, com equipamento multiparâmetro em campo.</li>
+          <li><mark class="m-good" data-tip="O portal de laudos com login é diferencial operacional dito na reunião e ausente de todo texto público.">O laudo fica disponível em portal próprio, com login e senha.</mark></li>
+          <li>Atendimento de segunda a sexta, das 8h às 12h e das 13h às 17h.</li>
+          <li>Pagamento em boleto, Pix, dinheiro e cartões de crédito e débito.</li>
+        </ul>
+        <h5>Onde coletamos</h5>
+        <p><mark class="m-good" data-tip="As nove cidades nomeadas, com a matriz identificada. Território é o que nenhum laboratório de fora da região consegue reivindicar.">Montes Claros (matriz), Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora</mark>, e demais cidades do Norte de Minas.</p>
+        <p class="cta"><mark class="m-good" data-tip="Fecha em ação possível, com o canal por extenso e dizendo o que informar — reduz a ida e volta do orçamento. A dimensão sai de 0 para 9.">Precisa de uma análise? Chame no WhatsApp (38) 98405-5391 dizendo a origem da água e para que ela é usada.</mark></p>
+        </div><div class="sc"><div class="scnum"><b>94</b><span>/100 · Descrição 3.0</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:96%"></span></span><span class="sv">24<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div>
+      </div>
+      <span class="delta">Ganho de 47 pontos · 47 → 94</span>
+      <div class="selo"><b>Selo de procedência · variante A (parceiro)</b> Informações fornecidas pela empresa no cadastro Solutudo, no contrato e na reunião comercial gravada · verificadas em 08/09/2026. Após reconfirmação via CS, atualizar a data.</div>
+      <div class="note"><b>Duas coisas que a 3.0 deliberadamente NÃO faz.</b> Não escreve "há mais de 20 anos" — datação relativa envelhece sozinha, e o ano exato está disponível. E <b>não nomeia nenhum parâmetro de ensaio</b>: pH, coliformes, DBO e turbidez seriam os termos de maior valor de busca deste perfil, mas o cadastro não traz o escopo acreditado. Nomear parâmetro que o laboratório talvez não tenha no escopo é risco técnico e regulatório. Fica como <b>a pendência número 1 para o CS</b> — e é uma pergunta de um toque, porque o próprio dono usa o termo: "chama escopo de acreditação".</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da página</span>
+      <dl class="kv">
+        <dt>seo.title</dt><dd>LAAE — Análise de água e efluentes em Montes Claros/MG<span class="cnt">54/60</span></dd>
+        <dt>seo.meta</dt><dd>Laboratório de análise de água e efluentes acreditado pela CGCRE/Inmetro. Coleta própria em Montes Claros, Jaíba, Janaúba, Januária e Norte de Minas.<span class="cnt">149/160</span></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <span class="badge">FAQ — respondendo o que as pessoas realmente buscam</span>
+      <h3>8 perguntas: 6 respondidas pelo cadastro, 2 que dependem do laboratório</h3>
+      <p class="sub">Como as 16 palavras-chave do cadastro <b>não são buscas reais</b> (ver aba Parceiro), estas perguntas saem dos <code>curated_keywords</code> da categoria Análises de Água e das dúvidas clássicas do setor — que é a ordem de substituição prevista na §6 do padrão de editorias.</p>
+      <div class="txt">
+        <h4>Vocês coletam na minha cidade?</h4>
+        <p>Coletamos em Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora, além de outras cidades do Norte de Minas. Se a sua não está na lista, consulte pelo WhatsApp.</p>
+        <h4>Quanto tempo a amostra vale depois de coletada?</h4>
+        <p>A contagem é de 24 horas entre a coleta e a chegada ao laboratório. É por isso que a coleta é feita pela nossa equipe e por isso o atendimento é regional.</p>
+        <h4>O laboratório é acreditado?</h4>
+        <p>Sim. A matriz tem serviços acreditados pela CGCRE do Inmetro, conforme os escopos disponíveis nos certificados, e reconhecimento pela Rede Metrológica do Rio Grande do Sul segundo a ABNT NBR ISO/IEC 17025.</p>
+        <h4>Preciso analisar a água do meu poço?</h4>
+        <p>Quem capta água fora da rede pública é responsável pela qualidade dela. A análise verifica se a água serve ao uso pretendido — consumo, produção ou irrigação.</p>
+        <h4>Qual a diferença entre análise físico-química e microbiológica?</h4>
+        <p>A físico-química mede características químicas e físicas da água. A microbiológica verifica a presença de microrganismos. Para o laudo de potabilidade, as duas são feitas juntas.</p>
+        <h4>Como recebo o laudo?</h4>
+        <p>O laudo fica disponível em portal próprio, com login e senha — o histórico de resultados fica no mesmo lugar.</p>
+        <h4 style="color:#A3200F">Quanto custa uma análise?</h4>
+        <p><b>Sem resposta hoje.</b> Nenhum dos quatro produtos tem preço no cadastro, e o valor depende dos parâmetros e do número de pontos. A resposta publicada é "orçamento pelo WhatsApp dizendo a origem da água e o uso" — lacuna declarada, não silêncio.</p>
+        <h4 style="color:#A3200F">Quais parâmetros vocês analisam?</h4>
+        <p><b>Sem resposta hoje — e é a pendência mais cara do dossiê.</b> A reunião registra <b>130 tipos de exame</b>, e o cadastro não nomeia um. Sem o escopo de acreditação, nenhum parâmetro pode ser publicado: dizer que se analisa um ensaio fora do escopo é problema técnico e regulatório, não erro de texto.</p>
+      </div>
+      <div class="note"><b>O que muda quando o escopo chegar:</b> cada parâmetro vira uma busca própria de altíssima intenção e baixíssima concorrência — <i>"análise de coliformes em Montes Claros"</i>, <i>"análise de DBO efluente"</i>, <i>"medir turbidez da água"</i>. É o único insumo que falta para este perfil sair de bom para dominante em busca orgânica, que é exatamente o que o dono pediu na reunião.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Catálogo de produtos e serviços — como está × como deveria</span>
+      <h3>9 itens: 4 cadastrados e 5 que a empresa entrega e não descreve</h3>
+      <p class="sub">Os quatro cadastrados descrevem serviços reais, mas três estão com o texto corrompido por tradução e nenhum nomeia um parâmetro. Os cinco <b>sugeridos</b> saem da norma citada na própria lista de palavras-chave (Portaria 888), do público declarado na reunião (poço artesiano, agronegócio), da categoria Engenharia Ambiental cadastrada sem produto, e da operação real — a coleta própria nas nove cidades.</p>
+      <div class="cat">
+        <button class="catcard" onclick="openItem('p711409',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 711409</span></span>
+          <span class="catname">Análise de Efluentes</span>
+          <span class="catprev">"A Análise de Efluentes é um serviço essencial para empresas que precisam acompanhar a qualidade dos efluentes gerados em suas atividades…"</span>
+          <span class="catfoot"><span class="catsc now">52</span><span class="catarrow">→</span><span class="catsc next">91</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p711410',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 711410</span></span>
+          <span class="catname">Amostragem de Água</span>
+          <span class="catprev">"A Amostragem realizada pelo LAAE… é uma etapa fundamental para obter informações confiáveis ​​sobre a qualidade da água…"</span>
+          <span class="catfoot"><span class="catsc now">28</span><span class="catarrow">→</span><span class="catsc next">90</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p711908',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 711908</span></span>
+          <span class="catname">Análise Microbiológica de Água</span>
+          <span class="catprev">"A Análise Microbiológica de Água é um serviço essencial para avaliar a qualidade microbiológica da água…"</span>
+          <span class="catfoot"><span class="catsc now">31</span><span class="catarrow">→</span><span class="catsc next">92</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('p711909',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag reg">Produto cadastrado</span><span class="cattag st">ID 711909</span></span>
+          <span class="catname">Análise Físico-Química de Água</span>
+          <span class="catprev">"A Análise Físico-Química de Água permite avaliar diferentes características e parâmetros da água…"</span>
+          <span class="catfoot"><span class="catsc now">30</span><span class="catarrow">→</span><span class="catsc next">92</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-potabilidade',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">norma nomeada, zero conteúdo</span></span>
+          <span class="catname">Laudo de potabilidade (Portaria GM/MS 888)</span>
+          <span class="catprev"><em>Existe na operação, na categoria ou nas buscas do setor, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">93</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-poco',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">público declarado, zero conteúdo</span></span>
+          <span class="catname">Análise de água de poço artesiano</span>
+          <span class="catprev"><em>Existe na operação, na categoria ou nas buscas do setor, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">91</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-monitoramento',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">categoria cadastrada, zero conteúdo</span></span>
+          <span class="catname">Monitoramento ambiental recorrente</span>
+          <span class="catprev"><em>Existe na operação, na categoria ou nas buscas do setor, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">93</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-coleta',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">o fosso da operação, sem conteúdo</span></span>
+          <span class="catname">Coleta própria nas nove cidades</span>
+          <span class="catprev"><em>Existe na operação, na categoria ou nas buscas do setor, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">92</span><span class="catopen">ver ficha</span></span>
+        </button>
+        <button class="catcard" onclick="openItem('s-agro',this)" aria-haspopup="dialog">
+          <span class="cattop"><span class="cattag sug">Sugerido</span><span class="cattag st">6 termos, zero conteúdo</span></span>
+          <span class="catname">Análises para o agronegócio</span>
+          <span class="catprev"><em>Existe na operação, na categoria ou nas buscas do setor, mas não tem título nem texto. Proposta pronta na ficha.</em></span>
+          <span class="catfoot"><span class="catsc now zero">—</span><span class="catarrow">→</span><span class="catsc next">90</span><span class="catopen">ver ficha</span></span>
+        </button>
+      </div>
+      <div class="note"><b>Por que separar assim:</b> hoje quatro produtos disputam a mesma busca — "análise de água em Montes Claros" — e repetem a mesma frase de abertura. Com um item por intenção, cada página responde a uma pergunta diferente: o que é o ensaio, quem precisa dele, onde a gente coleta e como vira contrato recorrente. <b>Os dois de maior retorno são o laudo de potabilidade</b> (a norma já está citada na lista de palavras-chave e em nenhum texto) <b>e o monitoramento recorrente</b> — porque a dor prioritária da reunião é repor faturamento recorrente que vai cair, e análise avulsa não repõe contrato.</div>
+    </div>
+
+<div class="itemfull" id="if-p711409" data-title="Análise de Efluentes · produto 711409 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-good" data-tip="Único dos quatro sem markup de tradutor e em português correto. Também é o único com H2 e lista — estrutura que buscador consegue extrair.">Texto limpo e com estrutura real</mark>: usa subtítulos e lista as aplicações do serviço.</p><p style="margin-top:8px">Mas fala de <mark class="m-bad" data-tip="Efluente industrial e efluente sanitário têm parâmetros, normas e compradores diferentes. Tratados numa linha só, dividem a autoridade em vez de somar.">"efluentes industriais e sanitários"</mark> numa linha só, repete <mark class="m-bad" data-tip="&quot;Montes Claros/MG e Região&quot; aparece cinco vezes no mesmo texto. Repetição por cota é padrão antigo de SEO; hoje só ocupa espaço.">"Montes Claros/MG e Região" cinco vezes</mark> e não nomeia <mark class="m-bad" data-tip="DBO, DQO, sólidos sedimentáveis, óleos e graxas: os parâmetros que quem compra análise de efluente digita na busca. Nenhum aparece.">nenhum parâmetro</mark>. Fecha em "entre em contato", <mark class="m-bad" data-tip="Não diz o WhatsApp, não diz o telefone, não diz o horário. A busca termina e a empresa não recebe o cliente.">sem dizer como</mark>.</p></div><div class="sc"><div class="scnum"><b>52</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:60%"></span></span><span class="sv">9<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:56%"></span></span><span class="sv">14<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">8<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:73%"></span></span><span class="sv">11<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">4<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Nomeia o serviço, separa a intenção e traz a cidade — tudo em menos de 60 caracteres.">Análise de efluente industrial e sanitário — Montes Claros e Norte de Minas</mark></p><p style="margin-top:8px">Análise laboratorial de efluentes para acompanhamento de sistemas de tratamento e controle ambiental, com <mark class="m-good" data-tip="O único fato com fonte externa do cadastro, promovido para a abertura do produto.">acreditação CGCRE/Inmetro conforme o escopo dos certificados</mark>.</p><ul style="margin-top:8px"><li><b>Efluente industrial:</b> acompanhamento de processo e da eficiência do tratamento.</li><li><b>Efluente sanitário:</b> monitoramento de estação e de lançamento.</li><li><mark class="m-good" data-tip="A coleta própria é operação real e é o que separa o LAAE de um laboratório que só recebe amostra no balcão.">Coleta feita pela nossa equipe, com a amostra dentro da janela de validade.</mark></li><li>Laudo disponível no portal, com login próprio.</li></ul><p style="margin-top:8px"><b>Atendemos:</b> Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</p><p class="cta"><mark class="m-good" data-tip="Fecha em ação possível, com o canal por extenso e dizendo o que informar — reduz a ida e volta do orçamento.">Peça a coleta no WhatsApp (38) 98405-5391 informando o tipo de efluente e o ponto de lançamento.</mark></p><p style="margin-top:8px" class="sub"><b>Pendente:</b> pedir ao laboratório os parâmetros do escopo acreditado para efluente (DBO, DQO, sólidos, óleos e graxas) — sem eles o texto não alcança a busca técnica.</p></div><div class="sc"><div class="scnum"><b>91</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 39 pontos · 52 → 91</span></div>
+<div class="itemfull" id="if-p711410" data-title="Amostragem de Água · produto 711410 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-bad" data-tip="O corpo inteiro está envolvido em &lt;font dir=&quot;auto&quot; style=&quot;vertical-align: inherit;&quot;&gt; em pares aninhados: assinatura do tradutor automático do navegador, copiado da tela e colado de volta no cadastro.">Texto colado do tradutor automático</mark> — o markup veio junto e o português voltou quebrado.</p><p style="margin-top:8px">O subtítulo do produto de amostragem diz <mark class="m-bad" data-tip="&quot;Sampling&quot; voltou como &quot;pesquisa&quot;. O subtítulo perdeu a conexão com o próprio produto.">"Vantagens da pesquisa especializada"</mark>. A abertura traz <mark class="m-bad" data-tip="Dois caracteres U+200B (espaço de largura zero) no meio da frase, vindos da tela do tradutor.">"informações confiáveis ​​ sobre"</mark> com espaços invisíveis. E a marca aparece como <mark class="m-bad" data-tip="&quot;a LAAE&quot; aqui, &quot;o LAAE&quot; no produto anterior. Buscador e IA precisam resolver uma entidade só.">"a LAAE"</mark>.</p><p style="margin-top:8px"><span class="lbl">Não aparece em lugar nenhum</span><mark class="m-fill" data-tip="A validade de 24 horas da amostra é o motivo de existir da amostragem profissional — e é o fato que explica o negócio inteiro.">as 24 horas</mark> <mark class="m-fill" data-tip="Frasco correto, preservante, caixa térmica, cadeia de custódia: o que de fato diferencia coleta técnica de coleta caseira.">como se coleta</mark> <mark class="m-fill" data-tip="As oito cidades atendidas estão na descrição da empresa e não no produto que descreve justamente o serviço de ir até o cliente.">as cidades</mark></p></div><div class="sc"><div class="scnum"><b>28</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:40%"></span></span><span class="sv">6<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:28%"></span></span><span class="sv">7<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">4<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Nomeia o serviço pelo que ele é e embute o diferencial logístico no título.">Coleta e amostragem de água e efluente na sua unidade</mark></p><p style="margin-top:8px"><mark class="m-good" data-tip="A janela de 24 horas é o fato que justifica a coleta profissional e o raio de atuação. É o trecho mais valioso desta central e não existia em texto nenhum.">A amostra tem validade curta: entre a coleta e a chegada ao laboratório, a contagem é de 24 horas.</mark> Por isso a coleta é feita pela nossa equipe, com frasco, preservação e transporte adequados ao ensaio.</p><ul style="margin-top:8px"><li>Coleta programada por data e horário na sua unidade.</li><li>Equipamento multiparâmetro em campo para leitura no momento da coleta.</li><li>Registro do ponto coletado e das condições da amostra.</li><li>Amostra entregue ao laboratório dentro da janela de validade.</li></ul><p style="margin-top:8px"><b>Onde coletamos:</b> Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</p><p class="cta">Agende a coleta no WhatsApp (38) 98405-5391 dizendo a cidade e quantos pontos serão coletados.</p></div><div class="sc"><div class="scnum"><b>90</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 62 pontos · 28 → 90</span></div>
+<div class="itemfull" id="if-p711908" data-title="Análise Microbiológica de Água · produto 711908 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-bad" data-tip="Mesmo markup de tradutor do produto 711410.">Texto colado do tradutor automático.</mark> Diz <mark class="m-bad" data-tip="Empresa não &quot;detecta&quot; resultado, ela busca. A frase inverte quem faz o quê.">"empresas que detectam resultados confiáveis"</mark> e <mark class="m-bad" data-tip="&quot;Monitorização&quot; é português europeu; o resto do cadastro usa &quot;monitoramento&quot;. A tradução passou por outra variante da língua.">"Monitorização das condições da água"</mark>.</p><p style="margin-top:8px">Salva-se por <mark class="m-good" data-tip="Água para consumo humano, potável, superficial e subterrânea: quatro intenções de busca distintas, nomeadas. É o melhor trecho do texto.">nomear os tipos de água</mark>. Mas <mark class="m-bad" data-tip="Coliformes totais, Escherichia coli, contagem de bactérias heterotróficas: os parâmetros clássicos da análise microbiológica. Nenhum aparece — e são exatamente os termos que o comprador técnico digita.">não cita um parâmetro sequer</mark>.</p></div><div class="sc"><div class="scnum"><b>31</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:32%"></span></span><span class="sv">8<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:25%"></span></span><span class="sv">5<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="O nome do ensaio como o cliente o conhece, com a cidade. &quot;Exame bacteriológico&quot; é termo curado da categoria e sinônimo popular.">Análise microbiológica da água — exame bacteriológico em Montes Claros</mark></p><p style="margin-top:8px">Avalia a presença de microrganismos que comprometem o uso da água, para consumo humano, água potável, águas superficiais e subterrâneas.</p><ul style="margin-top:8px"><li>Indicada para poço artesiano, reservatório, caixa d'água e caminhão-pipa.</li><li>Parte de programas de monitoramento periódico da qualidade da água.</li><li><mark class="m-good" data-tip="Acreditação com o órgão nomeado e a ressalva do escopo — do jeito que o próprio dono descreve na reunião: &quot;chama escopo de acreditação&quot;.">Ensaios acreditados pela CGCRE/Inmetro conforme o escopo dos certificados.</mark></li><li>Coleta pela nossa equipe e laudo no portal com login próprio.</li></ul><p class="cta">Peça sua análise no WhatsApp (38) 98405-5391 dizendo a origem da água e para que ela é usada.</p><p style="margin-top:8px" class="sub"><b>Pendente:</b> pedir a lista de parâmetros microbiológicos do escopo acreditado. Com ela, este item vira a página que responde "exame bacteriológico da água em Montes Claros" — busca que hoje ninguém disputa.</p></div><div class="sc"><div class="scnum"><b>92</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 61 pontos · 31 → 92</span></div>
+<div class="itemfull" id="if-p711909" data-title="Análise Físico-Química de Água · produto 711909 cadastrado"><div class="cmp"><div class="col now"><div class="colh">● Cadastrado hoje</div><div class="colb"><p><mark class="m-bad" data-tip="Mesmo markup de tradutor. Este é o texto com a frase mais quebrada dos três.">Texto colado do tradutor automático.</mark> Publica hoje a frase <mark class="m-bad" data-tip="A frase não tem sentido em português. Muito provavelmente era &quot;demandam&quot;. Está no ar assim.">"projetos de monitoramento que desativam avaliação de parâmetros"</mark>.</p><p style="margin-top:8px">Repete a estrutura do produto anterior — mesma abertura, mesma lista de benefícios genéricos, mesmo fechamento —, o que faz <mark class="m-bad" data-tip="Físico-químico e microbiológico são ensaios diferentes para compradores diferentes. Textos gêmeos fazem os dois competirem pela mesma busca.">os dois competirem pela mesma busca</mark>. E <mark class="m-bad" data-tip="pH, turbidez, cloro residual, dureza, nitrato, condutividade: o vocabulário exato do comprador. Ausente.">também não nomeia parâmetro nenhum</mark>.</p></div><div class="sc"><div class="scnum"><b>30</b><span>/100 · cadastrado hoje</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:47%"></span></span><span class="sv">7<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:32%"></span></span><span class="sv">8<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">4<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:33%"></span></span><span class="sv">5<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:27%"></span></span><span class="sv">4<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:20%"></span></span><span class="sv">2<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Separa a intenção do produto microbiológico já no título e nomeia o ensaio pelo que ele mede.">Análise físico-química da água — parâmetros e potabilidade</mark></p><p style="margin-top:8px">Avalia as características químicas e físicas da água: o que a torna própria ou imprópria para cada uso, em água potável, para consumo humano, superficial e subterrânea.</p><ul style="margin-top:8px"><li>Apoia o controle de processo industrial e a gestão ambiental.</li><li>Complementa a análise microbiológica — juntas, formam o laudo de potabilidade.</li><li>Ensaios acreditados pela CGCRE/Inmetro conforme o escopo dos certificados.</li><li>Coleta pela nossa equipe e laudo no portal com login próprio.</li></ul><p class="cta">Diga o uso da água no WhatsApp (38) 98405-5391 e receba os parâmetros indicados para o seu caso.</p><p style="margin-top:8px" class="sub"><b>Pendente:</b> a lista de parâmetros físico-químicos acreditados. É o insumo que falta para separar de vez este item do microbiológico.</p></div><div class="sc"><div class="scnum"><b>92</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">Ganho de 62 pontos · 30 → 92</span></div>
+<div class="itemfull" id="if-s-potabilidade" data-title="Laudo de potabilidade · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas que ficam sem resposta</span><mark class="m-fill" data-tip="Único termo da lista sem ponto final — e o mais específico: nomeia a norma.">análises de água da portaria 888</mark> <mark class="m-fill" data-tip="Termo da lista e o nome que o cliente usa.">análise de potabilidade de água</mark> <mark class="m-fill" data-tip="Termo curado da categoria.">análise de água potável</mark> <mark class="m-fill" data-tip="Termo curado da categoria, intenção de programa recorrente.">controle de qualidade da água</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Nomear a norma é o que separa este item de qualquer &quot;análise de água&quot; genérica. Quem precisa do laudo procura pela portaria.">Laudo de potabilidade conforme a Portaria GM/MS nº 888</mark></p><p style="margin-top:8px">É o laudo que comprova que a água está própria para consumo humano — exigido de quem capta água fora da rede pública e precisa comprovar a qualidade.</p><ul style="margin-top:8px"><li>Reúne os ensaios físico-químicos e microbiológicos do padrão de potabilidade.</li><li>Indicado para poço artesiano, caixa d'água, reservatório e caminhão-pipa.</li><li>Ensaios acreditados pela CGCRE/Inmetro conforme o escopo dos certificados.</li></ul><p class="cta">Precisa do laudo? Chame no WhatsApp (38) 98405-5391 com a origem da água e o prazo de que você precisa.</p><div class="note" style="margin-top:10px"><b>Este é o item de maior retorno do catálogo, e ele já está no cadastro pela metade.</b> A norma aparece na lista de palavras-chave e em nenhum texto. <b>Confirmar com o laboratório:</b> a versão vigente da portaria e quais parâmetros do padrão estão dentro do escopo acreditado — a norma é citada pelo número, então precisa estar certa.</div></div><div class="sc"><div class="scnum"><b>93</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 93 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-poco" data-title="Análise de água de poço artesiano · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas que ficam sem resposta</span><mark class="m-fill" data-tip="Termo da lista — e público citado nominalmente na reunião comercial.">análise de poços artesianos</mark> <mark class="m-fill" data-tip="Termo curado da categoria.">análise de água de poço</mark> <mark class="m-fill" data-tip="Termo da lista, intenção de urgência.">análise de água contaminada</mark> <mark class="m-fill" data-tip="Termo curado da categoria, sem nenhum conteúdo que responda.">análise de água de caminhão pipa</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Poço artesiano é público citado nominalmente na reunião e tem termo próprio na lista. Zero conteúdo hoje.">Análise da água do seu poço artesiano</mark></p><p style="margin-top:8px"><mark class="m-good" data-tip="É o critério que o próprio dono usa para definir o cliente, dito na reunião. Em uma frase, qualifica quem deve comprar.">Quem capta água fora da rede pública é responsável pela qualidade dela.</mark> A análise verifica se a água do poço serve ao uso pretendido — consumo, produção ou irrigação.</p><ul style="margin-top:8px"><li>Ensaios físico-químicos e microbiológicos, conforme o uso.</li><li>Também aplicável a reservatório, caixa d'água e caminhão-pipa.</li><li>Coleta feita pela nossa equipe, nas nove cidades atendidas.</li></ul><p class="cta">Tem poço? Fale no WhatsApp (38) 98405-5391 e a gente indica os ensaios para o seu uso.</p></div><div class="sc"><div class="scnum"><b>91</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 91 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-monitoramento" data-title="Monitoramento ambiental recorrente · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas que ficam sem resposta</span><mark class="m-fill" data-tip="Termo da lista, e a categoria Engenharia Ambiental está cadastrada sem nenhum produto.">monitoramento ambiental</mark> <mark class="m-fill" data-tip="Termo da lista.">monitoramento de água residual</mark> <mark class="m-fill" data-tip="Termo da lista, intenção de programa contínuo.">análises de corpo hídrico</mark> <mark class="m-fill" data-tip="Termo da lista.">análises de reservatório de água</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="É o item que corresponde ao cliente que o dono descreve na reunião: contrato recorrente, não análise avulsa. E dá conteúdo à categoria Engenharia Ambiental, hoje vazia.">Programa de monitoramento ambiental — coleta e laudo no calendário</mark></p><p style="margin-top:8px">Em vez de pedir análise avulsa a cada vez, o monitoramento fixa a frequência, os pontos e os parâmetros: a coleta entra no calendário e o laudo chega no prazo combinado.</p><ul style="margin-top:8px"><li>Monitoramento de efluente, corpo hídrico, reservatório e água de processo.</li><li>Pontos e frequência definidos com a sua equipe técnica.</li><li><mark class="m-good" data-tip="Histórico é o que transforma laudo isolado em informação de gestão — e é o argumento que sustenta contrato recorrente.">Histórico acumulado no portal: a série de resultados no mesmo lugar.</mark></li><li>Coleta pela nossa equipe, nas nove cidades atendidas.</li></ul><p class="cta">Monta com a gente: chame no WhatsApp (38) 98405-5391 com os pontos e a frequência que você precisa.</p><p style="margin-top:8px" class="sub"><b>Por que este item importa mais que os outros:</b> a dor prioritária da reunião é substituir faturamento recorrente que vai cair. Análise avulsa não substitui contrato — programa de monitoramento substitui.</p></div><div class="sc"><div class="scnum"><b>93</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 93 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-coleta" data-title="Coleta própria nas nove cidades · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas que ficam sem resposta</span><mark class="m-fill" data-tip="Cidade nomeada na descrição da empresa e citada como prioritária na reunião — sem página que a responda.">análise de água em Jaíba</mark> <mark class="m-fill" data-tip="Intenção local imediata.">laboratório de análise de água perto de mim</mark> <mark class="m-fill" data-tip="Cidade nomeada, sem conteúdo próprio.">análise de água em Janaúba</mark> <mark class="m-fill" data-tip="Cidade nomeada, sem conteúdo próprio.">análise de água em Januária</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="É o item que nenhum concorrente de fora da região consegue publicar, porque não consegue cumprir. É a página de território do catálogo.">Coleta na sua cidade — Norte de Minas, dentro da janela de 24 horas</mark></p><p style="margin-top:8px"><mark class="m-good" data-tip="A explicação física do serviço, que justifica a exclusividade regional. Não estava em texto nenhum.">A amostra tem 24 horas entre a coleta e o laboratório.</mark> É isso que define até onde um laboratório ambiental consegue atender — e por que a nossa coleta é própria, não terceirizada.</p><ul style="margin-top:8px"><li><b>Coletamos em:</b> Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</li><li>Equipe própria, com equipamento multiparâmetro em campo.</li><li>Coleta programada por data e horário.</li><li>Sua cidade não está na lista? Consulte — o atendimento cobre o Norte de Minas.</li></ul><p class="cta">Diga sua cidade no WhatsApp (38) 98405-5391 e confirmamos a data da próxima coleta na região.</p><p style="margin-top:8px" class="sub"><b>Desdobramento recomendado:</b> uma página por cidade no Solusite (<code>/analise-de-agua-em-jaiba</code>, <code>/janauba</code>, <code>/januaria</code>…). Foi o que o dono pediu na reunião ao falar em "cidades-chave", e é a estrutura que captura busca local.</p></div><div class="sc"><div class="scnum"><b>92</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:92%"></span></span><span class="sv">23<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">18<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 92 — item que hoje não disputa busca nenhuma</span></div>
+<div class="itemfull" id="if-s-agro" data-title="Análises para o agronegócio · sugerido, sem conteúdo hoje"><div class="cmp"><div class="col now"><div class="colh">● Não existe no cadastro</div><div class="colb"><p><b>Nenhum conteúdo publicado para este item hoje.</b></p><p style="margin-top:8px">Não tem título nem texto próprio — não aparece em busca por conta própria e nenhuma IA consegue citá-lo.</p><p style="margin-top:8px"><span class="lbl">Buscas que ficam sem resposta</span><mark class="m-fill" data-tip="Termo da lista.">análise de água para irrigação</mark> <mark class="m-fill" data-tip="Termo da lista, grafado &amp;quot;psicultura&amp;quot; no cadastro.">análise de água para piscicultura</mark> <mark class="m-fill" data-tip="Termo da lista.">análise de água para reuso</mark> <mark class="m-fill" data-tip="Termo da lista.">análise de água de barragens</mark></p></div><div class="sc"><div class="scnum"><b>0</b><span>/100 · sem conteúdo</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:0%"></span></span><span class="sv">0<i>/10</i></span></div></div></div><div class="col next"><div class="colh">● Proposta</div><div class="colb"><p><mark class="m-good" data-tip="Agronegócio é público citado na reunião e concentra 6 dos 16 termos da lista — e nenhum produto responde a ele.">Análise de água para irrigação, piscicultura e reuso</mark></p><p style="margin-top:8px">A água da propriedade rural tem usos diferentes, e cada um pede um conjunto de parâmetros diferente.</p><ul style="margin-top:8px"><li><b>Irrigação:</b> avaliação da água aplicada na lavoura.</li><li><b>Piscicultura:</b> acompanhamento da qualidade da água do tanque.</li><li><b>Reuso:</b> verificação da água tratada antes de voltar ao processo.</li><li><b>Barragem e corpo hídrico:</b> monitoramento do manancial.</li></ul><p class="cta">Fale no WhatsApp (38) 98405-5391 dizendo o uso da água e a cidade da propriedade.</p><p style="margin-top:8px" class="sub"><b>Confirmar com o CS:</b> os parâmetros que o laboratório cobre para cada uso, e se piscicultura e reuso são de fato atendidos — os termos estão na lista digitada, que não é busca real.</p></div><div class="sc"><div class="scnum"><b>90</b><span>/100 · proposta</span></div><div class="scrow"><span class="sl">Entidade e local<span class="hint" data-tip="O nome da empresa e a cidade aparecem cedo e do mesmo jeito em todos os canais. É o que amarra a empresa certa na busca.">?</span></span><span class="st"><span class="sf" style="width:100%"></span></span><span class="sv">15<i>/15</i></span></div><div class="scrow"><span class="sl">Fatos verificáveis<span class="hint" data-tip="Cada afirmação tem lastro no cadastro (acreditação, cidades, tipos de água, horário, pagamento). Adjetivo sem fato não pontua.">?</span></span><span class="st"><span class="sf" style="width:88%"></span></span><span class="sv">22<i>/25</i></span></div><div class="scrow"><span class="sl">Resposta direta (AEO)<span class="hint" data-tip="O texto responde de forma extraível o que as pessoas realmente perguntam: coleta onde, prazo da amostra, como pedir, como recebe o laudo.">?</span></span><span class="st"><span class="sf" style="width:85%"></span></span><span class="sv">17<i>/20</i></span></div><div class="scrow"><span class="sl">Estrutura extraível<span class="hint" data-tip="Frases atômicas, listas e blocos curtos. IA e buscador citam trechos: quanto mais autocontido, maior a chance de virar resposta.">?</span></span><span class="st"><span class="sf" style="width:87%"></span></span><span class="sv">13<i>/15</i></span></div><div class="scrow"><span class="sl">Unicidade<span class="hint" data-tip="Conteúdo que nenhum concorrente conseguiria publicar. Texto genérico de laboratório não pontua.">?</span></span><span class="st"><span class="sf" style="width:93%"></span></span><span class="sv">14<i>/15</i></span></div><div class="scrow"><span class="sl">Contato e próximo passo<span class="hint" data-tip="O texto termina em ação possível: WhatsApp, pedido de coleta, orçamento. Sem isso, a busca resolve e a empresa não recebe o cliente.">?</span></span><span class="st"><span class="sf" style="width:90%"></span></span><span class="sv">9<i>/10</i></span></div></div></div></div><span class="delta">De zero a 90 — item que hoje não disputa busca nenhuma</span></div>
+
+  </section>
+
+  <section id="p-site" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Site Profissional (Solusite)</span>
+      <h2>Blocos do site e o conteúdo de cada um</h2>
+      <p class="secsub">No site próprio a voz é da empresa (1ª pessoa) e links e botões são permitidos — ao contrário do perfil Solutudo. A enumeração de fatos é a mesma das outras abas; muda o formato, nunca a verdade.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(180,83,9,.35)">
+      <span class="badge warn">Resolver antes: o Solusite existe ou não?</span>
+      <p class="sub">O campo <code>Solusite</code> está <code>false</code> e o cadastro guarda <b>seis imagens de Solusite</b> — banner, banner mobile, favicon, logotipo, preview do site e preview do logo — com legendas já escritas: <i>"Análises de água e efluentes e controle de qualidade hídrica para água potável, água para consumo humano, águas superficiais e outros tipos em Montes Claros, Jaíba, Diamantina e região."</i> Alguém montou. <b>Pergunta de um toque para o CS.</b></p>
+      <p class="sub">E isso é a coisa mais urgente do dossiê, porque a reunião registra que o site atual é a maior dor técnica do cliente: <i>"ele leva um tempo para carregar"</i>, <i>"seu site não é vivo, ele é estacionado"</i>, <i>"no seu site não tem o seu telefone também, é muito difícil chegar"</i>. E o objetivo declarado dele é <b>posicionamento orgânico no Google</b> — que é exatamente o que um site pesado, sem blog e sem contato visível impede.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">SEO da home</span>
+      <dl class="kv">
+        <dt>title</dt><dd>LabLAAE | Análise de água e efluentes no Norte de Minas<span class="cnt">55/60</span></dd>
+        <dt>meta</dt><dd>Análises físico-químicas e microbiológicas de água e efluentes, com coleta própria em 8 cidades do Norte de Minas. Acreditação CGCRE/Inmetro desde 2003.<span class="cnt">152/160</span></dd>
+      </dl>
+      <p class="sub" style="margin-top:10px">O <code>title</code> abre por <b>LabLAAE</b> — que é o domínio, o Instagram e como os três depoimentos chamam a empresa. É o nome fantasia que o cadastro deixou vazio.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">1</span><h4>Hero — a promessa em uma linha</h4>
+      <div class="txt">
+        <p><b>A coleta vai até você. O laudo fica no seu portal.</b></p>
+        <p>Laboratório de análise de água e efluentes acreditado pela CGCRE/Inmetro, com coleta própria em nove cidades do Norte de Minas.</p>
+        <p class="cta">[Botão] Pedir uma análise no WhatsApp · [Botão] Ver o que analisamos</p>
+      </div>
+      <p class="bwhy">O que diferencia não é analisar — é ir buscar e devolver organizado. Os dois verbos da primeira dobra são os dois diferenciais operacionais reais, e nenhum deles estava publicado.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">2</span><h4>As 24 horas — o bloco que explica o negócio<span class="hint" data-tip="Bloco exclusivo deste parceiro. A validade da amostra é o fato técnico que justifica a coleta própria, o raio de 600 km e a liderança regional. Não existia em texto nenhum.">?</span></h4>
+      <div class="txt">
+        <p>Entre coletar a amostra e ela chegar ao laboratório, a contagem é de <b>24 horas</b>. Passou disso, o resultado não representa mais a água que estava lá.</p>
+        <p>É por isso que a nossa coleta é própria, não terceirizada — e é por isso que um laboratório de fora da região não consegue atender o Norte de Minas com segurança.</p>
+      </div>
+      <p class="bwhy">É o bloco de maior valor do site: explica o preço, a exclusividade e a razão de existir da operação, sem depreciar concorrente nenhum. Puro fato físico.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">3</span><h4>O que analisamos</h4>
+      <div class="txt">
+        <p><b>Água:</b> potável, para consumo humano, superficial e subterrânea — análises físico-químicas e microbiológicas.</p>
+        <p><b>Efluentes:</b> industriais e sanitários, para acompanhamento de sistemas de tratamento.</p>
+        <p><b>Monitoramento ambiental:</b> programas com pontos e frequência definidos com a sua equipe.</p>
+        <p class="cta">[Botão] Ver todos os serviços →</p>
+      </div>
+      <p class="bwhy">Três famílias, três intenções de busca. Cada uma abre uma página própria — a arquitetura que hoje não existe, porque os quatro produtos disputam a mesma frase.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">4</span><h4>Páginas de serviço — uma por item do catálogo</h4>
+      <div class="txt">
+        <p><b>/analise-microbiologica</b> · <b>/analise-fisico-quimica</b> · <b>/analise-de-efluentes</b> · <b>/amostragem-e-coleta</b> — os quatro cadastrados, reescritos.</p>
+        <p style="margin-top:12px"><b>/laudo-de-potabilidade</b> — título: Laudo de potabilidade Portaria 888 — Montes Claros <span class="cnt">54/60</span><br>meta: Laudo de potabilidade conforme a Portaria GM/MS 888, para poço artesiano, reservatório e caixa d'água. Coleta própria no Norte de Minas. <span class="cnt">140/160</span></p>
+        <p style="margin-top:12px"><b>/agua-de-poco-artesiano</b> · <b>/monitoramento-ambiental</b> · <b>/agronegocio</b> — os sugeridos, cada um condicionado à confirmação do CS (ver as fichas na aba Destaque).</p>
+      </div>
+      <p class="bwhy">Quando o escopo de acreditação chegar, cada página ganha a sua lista de parâmetros — e é aí que o site passa a capturar a busca técnica, que é a de maior intenção e menor concorrência.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">5</span><h4>Onde coletamos — uma página por cidade<span class="hint" data-tip="Foi o que o dono pediu na reunião ao falar em &quot;cidades-chave&quot;, citando Jaíba como prioritária. É a estrutura que captura busca local.">?</span></h4>
+      <div class="txt">
+        <p>Montes Claros (matriz) · Jaíba · Janaúba · Januária · Diamantina · Curvelo · Salinas · Araçuaí · Pirapora.</p>
+        <p><b>/analise-de-agua-em-jaiba</b>, <b>/janauba</b>, <b>/januaria</b>… cada cidade com a sua página: o que se coleta ali, com que frequência a equipe passa e como agendar.</p>
+        <p class="cta">[Botão] Sua cidade está na rota? Confirme no WhatsApp</p>
+      </div>
+      <p class="bwhy">Nove páginas de baixa concorrência e alta intenção. É o pedido literal da reunião — "gostei da possibilidade de cidade-chave" — transformado em arquitetura de site.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">6</span><h4>Quem confia no laboratório</h4>
+      <div class="txt">
+        <p>Os três depoimentos que hoje estão no campo "[Solusite] Ícones": a <b>SEAM Engenharia e Meio Ambiente</b> (cliente há 15 anos), o <b>Hospital do Câncer do Norte de Minas — Oncológica</b> e <b>Tânia Botelho</b>.</p>
+      </div>
+      <p class="bwhy">Prova social nomeada, com empresa e tempo de relação, para um público técnico e desconfiado. <b>Depende de autorização de uso dos três</b> — sem isso, o bloco não sobe.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">7</span><h4>Como pedir — e o botão que falta hoje</h4>
+      <div class="txt">
+        <p>Diga a origem da água, o uso e a cidade pelo WhatsApp <b>(38) 98405-5391</b>. Atendimento de segunda a sexta, das 8h às 12h e das 13h às 17h.</p>
+        <p><b>Pagamento:</b> boleto, Pix, dinheiro e cartões de crédito e débito.</p>
+        <p class="cta">[Botão flutuante de WhatsApp, fixo no mobile]</p>
+      </div>
+      <p class="bwhy"><b>É a correção mais barata e de maior impacto do dossiê.</b> A reunião registra que o telefone é difícil de achar no site atual e que o fixo não é botão de WhatsApp: <i>"aí acaba a venda"</i>. Boleto entra porque indústria e hospital compram por nota e prazo.</p>
+    </div>
+
+    <div class="blk">
+      <span class="bnum">8</span><h4>Blog — o bloco que resolve a queixa de "site estacionado"</h4>
+      <div class="txt">
+        <p>Os 24 temas da aba Conteúdo publicados aqui, e não no feed. Começando pelos quatro do slot de dúvidas, que são os que capturam busca.</p>
+      </div>
+      <p class="bwhy">O dono disse que o público dele não está no Instagram e que quer orgânico no Google. O blog é onde as duas coisas se encontram: o mesmo texto vira post do perfil do Google, item de FAQ e página indexável. Um texto, quatro canais.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Regras do produto</span>
+      <ul class="clean">
+        <li><b>Nenhum parâmetro de ensaio publicado</b> antes de o escopo de acreditação chegar.</li>
+        <li><b>Acreditação sempre com a ressalva do escopo</b> — "conforme os escopos dos certificados". Nunca "laboratório acreditado" sem qualificação.</li>
+        <li><b>2003, nunca "há mais de 20 anos"</b> e nunca 1999.</li>
+        <li><b>Depoimentos só com autorização</b> de nome e empresa.</li>
+        <li><b>alt-text obrigatório</b> — e hoje não há uma foto do laboratório para descrever. Ver a pendência de fotos na aba Parceiro.</li>
+        <li><b>Botão de WhatsApp fixo no mobile</b>, em todas as páginas.</li>
+        <li><b>aggregateRating não entra</b>: avaliação exibida só se houver review nativa.</li>
+        <li><b>dateModified</b> no JSON-LD do WebPage a cada mudança material — pela aplicação.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="p-gmb" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Produto · Presença no Google</span>
+      <h2>Ficha do Google, pronta para conferir</h2>
+      <p class="secsub">Dados tradicionais organizados campo a campo. Regra de ouro: exatamente o mesmo NAP da Solutudo e do site. <b>Neste caso o Google é o canal principal</b>, por decisão do próprio cliente — a reunião registra 31 menções a "Google" e a frase "meu público não está no Instagram".</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Ficha básica</span>
+      <dl class="kv">
+        <dt>Nome do perfil</dt><dd>LAAE Laboratório de Análise de Água e Efluentes <small>sem cidade e sem palavra-chave no nome — o Google pune nome decorado</small></dd>
+        <dt>Categoria principal</dt><dd>Laboratório de análises <small>secundárias: Serviço de análise de água · Consultoria ambiental</small></dd>
+        <dt>Endereço</dt><dd>Av. Professor Vicente Guimarães, 1095 — Vicente Guimarães, Montes Claros/MG, 39401-781 <small>endereço comercial real, com sede própria: perfil de local, não de área de atendimento</small></dd>
+        <dt>Áreas de atendimento</dt><dd>Jaíba · Janaúba · Januária · Diamantina · Curvelo · Salinas · Araçuaí · Pirapora <small>o perfil de local aceita áreas de atendimento além do endereço — é onde as oito cidades entram</small></dd>
+        <dt>Telefone</dt><dd>(38) 98405-5391 <small>o celular como principal, com chat habilitado. O fixo (38) 2101-2881 entra como secundário — hoje ele está cadastrado como celular na Solutudo</small></dd>
+        <dt>Site</dt><dd>lablaae.com.br <small>ou o Solusite, se ele for ativado</small></dd>
+        <dt>Horário</dt><dd>Seg–Sex 08:00–12:00 e 13:00–17:00 · Sáb, Dom e feriado fechado <small>o Google aceita dois turnos no mesmo dia — preencher os dois, não um bloco de 8 às 17</small></dd>
+        <dt>Perfil existente</dt><dd>share.google/6UkPXQyBs00sx9kVr <small>já existe e tem avaliações — confirmar reivindicação e acesso antes de editar</small></dd>
+      </dl>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="badge">Atributos a marcar</span>
+        <div class="chips">
+          <span class="chip mint">Faz coleta no local do cliente</span>
+          <span class="chip mint">Pagamento: boleto</span><span class="chip mint">Pix</span><span class="chip mint">Cartões</span><span class="chip mint">Dinheiro</span>
+          <span class="chip">Ar-condicionado</span><span class="chip">Sala de espera</span>
+        </div>
+        <p class="sub" style="margin-top:10px">Ar-condicionado e sala de espera são as duas únicas características cadastradas — e para um laboratório com sede real elas são verdadeiras, ao contrário do que aconteceu em outros parceiros. Podem ser marcadas.</p>
+      </div>
+      <div class="card">
+        <span class="badge warn">Fotos — a lacuna</span>
+        <ul class="clean">
+          <li><b>Há 11 imagens no cadastro e nenhuma da operação.</b> Logotipo, capa, ativos de Solusite e três cartões de depoimento.</li>
+          <li>O perfil do Google de um laboratório vive de foto de bancada, equipamento, coleta em campo e fachada. Não há nenhuma.</li>
+          <li><b>Prioridade de produção:</b> fachada da sede nova, bancada com vidraria, multiparâmetro em campo, caixa térmica de transporte, equipe de jaleco.</li>
+          <li>Renomear os arquivos com conteúdo real antes de subir.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Descrição do perfil<span class="cnt">723/750</span></span>
+      <div class="txt"><p>O LAAE é um laboratório de análise de água e efluentes com sede em Montes Claros/MG, em atividade desde 2003. Realiza análises físico-químicas e microbiológicas de água potável, água para consumo humano, águas superficiais e subterrâneas, e de efluentes industriais e sanitários. A matriz tem serviços acreditados pela CGCRE do Inmetro, conforme os escopos dos certificados, e reconhecimento pela Rede Metrológica do Rio Grande do Sul segundo a ABNT NBR ISO/IEC 17025. Mantém logística própria de coleta e atende Montes Claros, Jaíba, Diamantina, Salinas, Araçuaí, Curvelo, Januária, Janaúba e Pirapora. Atende indústrias, agronegócio, consultorias ambientais, hospitais e hotéis, além de quem capta água de poço artesiano.</p></div>
+      <div class="note"><b>Regras do canal aplicadas:</b> sem telefone e sem URL no texto (o Google reserva campos próprios); os ~250 caracteres iniciais carregam entidade, cidade, ano e os ensaios, porque é o que aparece antes do "Mais"; sem promoção, sem preço e sem superlativo. As nove cidades entram nominalmente — o campo de área de atendimento sozinho não expressa isso na busca.</div>
+    </div>
+
+    <div class="card" style="border-color:rgba(180,83,9,.35)">
+      <span class="badge warn">A rotina que este perfil precisa — e por que ela é a prioridade</span>
+      <ul class="clean">
+        <li><b>Responder as avaliações antigas, com o fato novo.</b> A reunião registra reclamações ligadas ao atendimento telefônico — e registra também que a empresa <b>mudou de sede e de telefonia por completo</b> desde então: <i>"Hoje não tem problema nenhum."</i> Responder cada uma citando a mudança não é desculpa, é informação nova e verificável. Hoje nenhuma está respondida.</li>
+        <li><b>Ativar o botão de WhatsApp no perfil.</b> Está entre as maiores fricções apontadas na reunião: telefone fixo que cai em ramal, sem atalho de conversa.</li>
+        <li><b>Semear as 6 perguntas do FAQ</b> que já têm resposta, no bloco de Perguntas e respostas. As 2 sem resposta ficam de fora até o escopo chegar.</li>
+        <li><b>Publicar por cidade:</b> uma publicação a cada rota de coleta concluída, nomeando a cidade. É o conteúdo local que o perfil de laboratório quase nunca tem.</li>
+        <li><b>Pedir avaliação com processo:</b> a reunião já previu mensagem pronta e link. O link existe no cadastro — e está duplicado, os dois como padrão. Limpar antes de usar.</li>
+      </ul>
+      <div class="note"><b>Ordem de execução recomendada:</b> WhatsApp no perfil → responder avaliações antigas → fotos da operação → publicações por cidade. As duas primeiras são de dias e destravam conversão; as duas últimas são de semanas e constroem posição.</div>
+    </div>
+
+  </section>
+
+  <section id="p-soc" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Redes sociais</span>
+      <h2>Bio, perfis e uma decisão contra o manual</h2>
+      <p class="secsub">Este é o único parceiro da série em que a recomendação é <b>não investir no feed</b> — e a razão está na transcrição, dita pelo dono com todas as letras.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(180,83,9,.35);background:linear-gradient(180deg,#FFFBF0 0%,var(--white) 60%)">
+      <span class="badge warn">Decisão de canal · contraria o padrão, e está certa</span>
+      <h3>"Meu público não está no Instagram."</h3>
+      <p class="sub">Paulo Fialho, na reunião comercial. E ele completa: <i>"Meu público é muito direcionado."</i> Os dados do próprio cadastro concordam — quem compra análise de água é engenheiro ambiental, responsável técnico de indústria, gestor de hospital, produtor rural. Esse público procura no Google quando precisa, não descobre laboratório rolando o feed.</p>
+      <p class="sub">Então o calendário de 24 temas desta central <b>não é um calendário de Instagram</b>. Ele é produzido uma vez e distribuído assim:</p>
+      <table>
+        <tr><th>Destino</th><th>Peso</th><th>Por quê</th></tr>
+        <tr><td><b>Blog do site</b></td><td><b>principal</b></td><td>É o que resolve a queixa de "site estacionado" e o que indexa. O objetivo declarado é orgânico no Google</td></tr>
+        <tr><td><b>Perfil do Google</b> (publicações e Q&amp;A)</td><td><b>principal</b></td><td>O canal que o cliente elegeu. Publicação por cidade e resposta no Q&amp;A batem exatamente na busca local</td></tr>
+        <tr><td>FAQ da página Solutudo e do site</td><td>alto</td><td>O slot de dúvidas rende os quatro canais com um texto só</td></tr>
+        <tr><td>Instagram e Facebook</td><td><b>manutenção</b></td><td>Perfil vivo e coerente, sem meta de alcance. Repost do que já foi escrito para o blog</td></tr>
+        <tr><td>LinkedIn</td><td><b>a avaliar</b></td><td>Não está no cadastro. Para venda B2B técnica, é o feed que faz sentido — <b>pergunta para o CS</b></td></tr>
+      </table>
+      <div class="note"><b>Por que registrar isso explicitamente:</b> o padrão de editorias existe para ser aplicado igual em 28 milhões de perfis, mas o §7 dele já prevê que cada editoria tem destino em mais de um canal. Aqui o peso entre canais muda — não as editorias. <b>A arquitetura é a mesma; a distribuição é que segue o público.</b> E há um risco comercial em ignorar isso: a reunião registra que o fornecedor atual de redes sociais é percebido como amador justamente por entregar atividade sem resultado.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Bio do Instagram<span class="cnt">145/150</span></span>
+      <div class="txt"><p>Laboratório de análise de água e efluentes. Acreditado CGCRE/Inmetro. Coleta em Montes Claros, Jaíba, Janaúba e região. Análises: (38) 98405-5391</p></div>
+      <ul class="clean">
+        <li><b>Regras aplicadas:</b> o que é + a credencial + onde coleta · fecha no contato (telefone por extenso).</li>
+        <li><b>Link da bio:</b> o site (ou o Solusite, se ativado). Hoje a URL do Instagram no cadastro carrega <code>utm_source</code> e <code>igsh</code> — parâmetros do botão de compartilhar. Salvar limpa.</li>
+        <li><b>Sem "há mais de 20 anos"</b> — a bio tem 150 caracteres e a credencial do Inmetro trabalha mais que a antiguidade.</li>
+        <li>Contado em UTF-16, como o Instagram conta (145 de 150).</li>
+      </ul>
+      <div class="note"><b>Pendência do Facebook:</b> não há página no cadastro. Se existir, pedir o link; se não existir, <b>não criar</b> — perfil abandonado prejudica mais que ausência, e o público não está lá.</div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 1 · Sobre o laboratório</span>
+      <div class="txt">
+        <p>A água que a sua empresa usa é o que você acha que ela é? 💧</p>
+        <p>O LAAE analisa água e efluentes em Montes Claros desde 2003, com serviços acreditados pela CGCRE do Inmetro conforme o escopo dos certificados.</p>
+        <p>Físico-química, microbiológica, efluente industrial e sanitário, e programas de monitoramento — com coleta feita pela nossa equipe.</p>
+        <p>📍 Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 2 · As 24 horas</span>
+      <div class="txt">
+        <p>Por que a gente vai buscar a amostra em vez de você mandar pelo correio? ⏱️</p>
+        <p>Porque entre a coleta e o laboratório a contagem é de <b>24 horas</b>. Passou disso, o resultado não representa mais a água que estava lá.</p>
+        <p>Por isso a coleta é nossa, com equipamento multiparâmetro em campo e transporte adequado ao ensaio. E é por isso que laboratório ambiental é negócio regional.</p>
+      </div>
+      <p class="bwhy" style="margin-top:10px">É o post que explica o negócio inteiro — e o que nenhum concorrente de fora consegue publicar sem admitir que não cumpre.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Post fixado 3 · Contato e como pedir</span>
+      <div class="txt">
+        <p>Precisa de uma análise? Manda a origem da água que a gente indica os ensaios. 👇</p>
+        <p>📱 WhatsApp: (38) 98405-5391<br>☎️ Fixo: (38) 2101-2881<br>✉️ comercial@lablaae.com.br<br>📍 Av. Professor Vicente Guimarães, 1095 — Montes Claros/MG<br>⏰ Seg a sex, 8h–12h e 13h–17h</p>
+        <p>Laudo no portal, com login e senha. Pagamento em boleto, Pix, dinheiro e cartões. 🧾</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p-cont" class="panel">
+
+    <div class="sec first">
+      <span class="eyebrow">Conteúdo · o calendário do ano</span>
+      <h2>6 editorias e 24 temas, com o lastro de cada uma à vista</h2>
+      <p class="secsub">Dois temas por mês. Cada um marcado com a editoria a que pertence e ancorado num fato específico do cadastro ou da reunião — nenhum exige inventar nada. O padrão completo está em <code>docs/editorias-conteudo.md</code>; abaixo, ele aplicado a este caso, com os fatos que sustentam cada eixo declarados antes dos temas.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">Antes dos temas · a regra que governa</span>
+      <h3>Editoria não é tema. É um eixo de fatos que a empresa sustenta o ano inteiro</h3>
+      <p class="sub">Uma editoria só existe se houver <b>pelo menos 2 fatos do cadastro</b> que a sustentem — porque ela precisa render 4 publicações sem que ninguém invente nada no meio do caminho. Eixo com 1 fato vira tema avulso dentro de outra editoria; com zero, vira pendência de CS.</p>
+      <p class="sub">Os <b>6 slots são fixos</b> e cobrem o funil inteiro sem sobreposição: A e E constroem confiança, B e D qualificam, C converte, F captura demanda de busca. O que muda de empresa para empresa é o nome e quem ocupa cada slot — nunca a função. É isso que torna o método comparável entre 28 milhões de perfis.</p>
+      <div class="scroller"><table>
+        <tr><th>Slot</th><th>Editoria aqui</th><th>Os fatos que a sustentam</th><th>Quantos</th></tr>
+        <tr><td><b>A</b> · Processo e origem</td><td>Dentro do laboratório</td><td>Acreditação CGCRE/Inmetro · ABNT NBR ISO/IEC 17025 e Rede Metrológica RS · fundação em 2003 · janela de 24 horas · coleta própria · portal de laudos · 130 exames</td><td><b>7</b></td></tr>
+        <tr><td><b>B</b> · Oferta / catálogo</td><td>O que analisamos</td><td>4 produtos cadastrados · categorias Análises de Água e Engenharia Ambiental · 4 tipos de água nomeados · 2 tipos de efluente · 130 exames</td><td><b>5</b></td></tr>
+        <tr><td><b>C</b> · Conversão</td><td>Peça sua análise</td><td>Horário real em dois turnos · 4 formas de pagamento · coleta agendada · portal com login · WhatsApp cadastrado</td><td><b>5</b></td></tr>
+        <tr><td><b>D</b> · Público e experiência</td><td>Quem manda analisar</td><td>Públicos declarados na reunião (indústria, agro, consultoria, hospital, hotel, restaurante, poço) · critério da água não concessionária · 3 depoimentos nomeados</td><td><b>5</b></td></tr>
+        <tr><td><b>E</b> · Território</td><td>Norte de Minas é aqui</td><td>Matriz em Montes Claros · 8 cidades nomeadas na descrição · raio de ~600 km · franquias em Feira de Santana e Vitória da Conquista</td><td><b>4</b></td></tr>
+        <tr><td><b>F</b> · Dúvidas (AEO)</td><td>Perguntas que chegam</td><td><b>Não há buscas reais</b> — as 16 palavras-chave são lista digitada. Lastro vem dos 15 <code>curated_keywords</code> da categoria e das dúvidas clássicas do setor</td><td><b>substituto</b></td></tr>
+      </table></div>
+      <div class="note"><b>O slot F deste parceiro nasce de uma substituição declarada.</b> A §6 do padrão prevê exatamente esse caso: quando não há buscas reais capturadas, a ordem é <b>1)</b> <code>curated_keywords</code> da categoria, <b>2)</b> dúvidas clássicas do setor, <b>3)</b> o que o CS ouve no atendimento. Usamos as duas primeiras. E a lacuna fica registrada como achado: <i>este perfil não tem busca real capturada</i> — o que também significa que, quando ele passar a receber tráfego de verdade, o campo vai começar a se preencher sozinho e o slot F deve ser refeito.</div>
+    </div>
+
+    <div class="card"><span class="ed ed1"><i></i>E1 · Dentro do laboratório</span><p class="sub" style="margin-top:8px">Slot <b>A · Processo e origem</b></p><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">1 · O que significa ser acreditado pelo Inmetro</span><span class="td" style="display:block">A CGCRE, o escopo de acreditação e o que a ABNT NBR ISO/IEC 17025 garante. A credencial explicada por quem a tem.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">2 · As 24 horas que governam o laboratório</span> <span class="chip mint" style="font-size:10px;padding:2px 8px">tema único</span><span class="td" style="display:block">Entre a coleta e o laboratório, a amostra vale 24 horas. É o que define o raio, a coleta própria e a exclusividade regional.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">3 · Do frasco ao laudo: o caminho de uma amostra</span><span class="td" style="display:block">Frasco, preservação, transporte, bancada, portal. O processo inteiro, com foto de cada etapa.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">4 · Desde 2003 em Montes Claros</span><span class="td" style="display:block">A trajetória do laboratório e a chegada às oito cidades. Datação absoluta, que não envelhece.</span></span></div></div>
+    <div class="card"><span class="ed ed2"><i></i>E2 · O que analisamos</span><p class="sub" style="margin-top:8px">Slot <b>B · Oferta / catálogo</b></p><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">5 · Físico-química e microbiológica: a diferença em um minuto</span><span class="td" style="display:block">Os dois ensaios que os produtos cadastrados hoje confundem — separados de vez.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">6 · Efluente industrial e efluente sanitário não são a mesma análise</span><span class="td" style="display:block">Parâmetros, normas e compradores diferentes. Hoje estão numa linha só do cadastro.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">7 · Potável, superficial, subterrânea: qual análise cada água pede</span><span class="td" style="display:block">Os quatro tipos de água que a descrição já nomeia, cada um com o seu conjunto.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">8 · O ensaio do mês</span> <span class="chip lav" style="font-size:10px;padding:2px 8px">série recorrente</span><span class="td" style="display:block">Um dos 130 exames do portfólio por edição. Com 130, a série sustenta dez anos de pauta.</span></span></div></div>
+    <div class="card"><span class="ed ed3"><i></i>E3 · Peça sua análise</span><p class="sub" style="margin-top:8px">Slot <b>C · Conversão · todo tema fecha em contato</b></p><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">9 · Como pedir uma coleta em três passos</span><span class="td" style="display:block">Origem da água, uso e cidade. Termina no WhatsApp (38) 98405-5391.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">10 · Seu laudo fica no portal, com login e senha</span><span class="td" style="display:block">O acesso que o cliente tem e o histórico que fica guardado. Termina em como pedir o acesso.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">11 · Boleto, Pix ou cartão: como a sua empresa paga</span><span class="td" style="display:block">Boleto é o que indústria e hospital usam. Termina no contato do comercial.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">12 · Precisa do laudo com prazo? Combine antes da coleta</span><span class="td" style="display:block">Prazo se resolve no agendamento, não depois. Termina no WhatsApp.</span></span></div></div>
+    <div class="card"><span class="ed ed4"><i></i>E4 · Quem manda analisar</span><p class="sub" style="margin-top:8px">Slot <b>D · Público e experiência</b></p><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">13 · Sua empresa usa água que não é da concessionária?</span><span class="td" style="display:block">O critério que define o cliente em uma frase — dito pelo próprio dono na reunião.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">14 · Hospital, hotel e restaurante: por que cada um analisa</span><span class="td" style="display:block">Três públicos do cadastro, três motivos diferentes para o mesmo ensaio.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">15 · Para consultoria ambiental: o laboratório como parceiro técnico</span><span class="td" style="display:block">O cliente que revende análise dentro do próprio serviço — e responde pelo laudo.</span></span></div><div class="tema"><span class="ed ed4"><i></i>E4</span><span><span class="tt">16 · 15 anos com a SEAM</span><span class="td" style="display:block">O depoimento nomeado que está no cadastro. Depende de autorização de uso.</span></span></div></div>
+    <div class="card"><span class="ed ed5"><i></i>E5 · Norte de Minas é aqui</span><p class="sub" style="margin-top:8px">Slot <b>E · Território</b></p><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">17 · Coletamos em Jaíba, Janaúba e Januária</span><span class="td" style="display:block">As três cidades do eixo norte, com a rota e a frequência da equipe.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">18 · Por que laboratório ambiental é negócio regional</span><span class="td" style="display:block">As 24 horas aplicadas ao mapa: o raio de 600 km explicado sem citar concorrente.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">19 · Diamantina, Curvelo, Pirapora, Salinas e Araçuaí</span><span class="td" style="display:block">A segunda leva de cidades atendidas, cada uma com a obra ou o cliente que roda lá.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">20 · A rede cresce: Feira de Santana e Vitória da Conquista</span><span class="td" style="display:block">As franquias já abertas na Bahia. Conteúdo que serve à matriz e à expansão.</span></span></div></div>
+    <div class="card"><span class="ed ed6"><i></i>E6 · Perguntas que chegam</span><p class="sub" style="margin-top:8px">Slot <b>F · Dúvidas (AEO) · maior alavancagem</b></p><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">21 · Água de poço artesiano precisa de análise?</span><span class="td" style="display:block">Quem capta fora da rede responde pela qualidade. Vira post, FAQ, Q&amp;A do Google e bloco do site.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">22 · O que a Portaria 888 exige da água potável</span><span class="td" style="display:block">A norma citada na lista de palavras-chave e em nenhum texto publicado.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">23 · De quanto em quanto tempo analisar a água?</span><span class="td" style="display:block">A dúvida que transforma análise avulsa em monitoramento recorrente.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">24 · Caixa d'água e caminhão-pipa: quando analisar</span><span class="td" style="display:block">Dois termos curados da categoria, sem nenhum conteúdo que responda hoje.</span></span></div></div>
+
+    <div class="card">
+      <span class="badge">Os dois temas que não são iguais aos outros</span>
+      <div class="grid2">
+        <div class="blk">
+          <span class="ed ed1"><i></i>Tema único · nº 2</span>
+          <h4 style="margin-top:8px">As 24 horas que governam o laboratório</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão exige que pelo menos um tema do ano seja <b>impublicável por qualquer concorrente</b>. Este é: a janela de 24 horas entre coleta e laboratório explica o raio de 600 km, a coleta própria, o regionalismo do setor e a liderança de mercado — tudo de uma vez, sem citar concorrente nenhum e sem prometer nada. <b>Merece a produção mais caprichada do calendário:</b> vídeo curto acompanhando uma coleta do frasco à bancada, com o relógio à vista.</p>
+        </div>
+        <div class="blk">
+          <span class="ed ed2"><i></i>Série recorrente · nº 8</span>
+          <h4 style="margin-top:8px">O ensaio do mês</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão pede uma série repetível, que salve o calendário quando faltar pauta. Aqui ela é confortável: a reunião registra <b>130 tipos de exame</b> no portfólio. Um por edição sustenta <b>mais de dez anos</b> sem repetir. <b>Só entra quando o escopo de acreditação chegar</b> — o ensaio precisa estar no escopo antes de virar post.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge">Os quatro filtros que cada tema passou</span>
+      <ul class="clean">
+        <li><b>1 · Tem lastro?</b> Todos rastreiam a um fato do cadastro ou da reunião. O que não rastreava caiu: não há um tema sequer sobre análise de solo, porque a reunião diz que solo é <b>1% do negócio</b> — e nenhum sobre análise de alimentos, monitoramento do ar ou de resíduos, que estão na lista digitada mas fora do escopo declarado.</li>
+        <li><b>2 · Termina em ação?</b> Os quatro temas da E3 fecham no WhatsApp (38) 98405-5391, com o que informar em cada caso.</li>
+        <li><b>3 · É replicável por qualquer concorrente?</b> Onde era, ganhou fato próprio. "Análise de água de poço" virou "quem capta fora da rede responde pela qualidade" — que é o critério do dono, não um lugar-comum.</li>
+        <li><b>4 · Setor técnico com credencial:</b> nenhum tema afirma resultado de ensaio, nenhum nomeia parâmetro antes do escopo chegar e a acreditação sempre aparece com a ressalva "conforme os escopos dos certificados". Publicar ensaio fora do escopo é problema regulatório, não erro de texto.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="badge warn">Como usar</span>
+      <ul class="clean">
+        <li><b>Ritmo:</b> 2 temas/mês fecham o ano; a ordem dentro de cada editoria já vai do mais fácil de produzir ao mais trabalhoso.</li>
+        <li><b>A E6 é a prioridade deste parceiro</b>, e não por gosto: é o slot que rende quatro canais com um texto só, e o objetivo declarado na reunião é posicionamento orgânico no Google. Se o calendário encolher, ela é a última a cair.</li>
+        <li><b>Comece pelos temas 21 a 24.</b> São os que capturam busca imediatamente e os que não dependem de foto nova nem do escopo de acreditação.</li>
+        <li><b>Os temas 3, 8 e a E5 inteira dependem de fotos</b> que ainda não existem. Ver a pendência de imagens na aba Parceiro — sem ela, metade do calendário fica sem matéria-prima visual.</li>
+        <li><b>O tema 16 depende de autorização</b> da SEAM para uso de nome e depoimento.</li>
+        <li><b>Não invente sazonalidade local.</b> Datas de Montes Claros e do calendário do agronegócio da região entram só depois de confirmadas com o parceiro.</li>
+        <li><b>Quando o campo de buscas reais começar a se preencher</b>, refazer o slot F com as buscas de verdade e aposentar os termos curados da categoria.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    Central de conteúdo do parceiro · LAAE Laboratório (ID 32069845) · <a href="../">todos os parceiros</a> ·
+    <a href="../../sobre-empresa-new-rock/">artefato da Descrição 3.0</a> · regras em <code>docs/descricao-empresa-3-0.md</code> e <code>docs/editorias-conteudo.md</code>
+  </div>
+</div>
+<div class="dw-back" id="dw-back" onclick="closeItem()"></div>
+<aside class="dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dw-title"></aside>
+
+<script>
+  var itemLast = null;
+  function openItem(key, el){
+    var src = document.getElementById('if-' + key);
+    if(!src) return;
+    itemLast = el || null;
+    var dw = document.getElementById('dw');
+    dw.innerHTML = '<div class="dw-top"><h3 id="dw-title">' + src.dataset.title + '</h3>' +
+      '<button class="dw-close" onclick="closeItem()" aria-label="Fechar ficha do item">✕</button></div>' +
+      '<div class="dw-body">' + src.innerHTML + '</div>';
+    dw.classList.add('on');
+    document.getElementById('dw-back').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    var b = dw.querySelector('.dw-close'); if(b) b.focus();
+  }
+  function closeItem(){
+    var dw = document.getElementById('dw'); if(!dw) return;
+    dw.classList.remove('on');
+    document.getElementById('dw-back').classList.remove('on');
+    document.body.style.overflow = '';
+    if(itemLast){ itemLast.focus(); itemLast = null; }
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var dw = document.getElementById('dw');
+      if(dw && dw.classList.contains('on')) closeItem();
+    }
+  });
+  function show(which){
+    ['parc','dest','site','gmb','soc','cont'].forEach(function(k){
+      document.getElementById('p-'+k).classList.toggle('on', which===k);
+      document.getElementById('t-'+k).classList.toggle('on', which===k);
+    });
+    closeItem();
+    history.replaceState(null,'','#'+which);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  var h = location.hash.replace('#','');
+  if(['dest','site','gmb','soc','cont'].indexOf(h) >= 0) show(h);
+</script>
+<script src="../parceiros.js" defer></script>
+</body>
+</html>
