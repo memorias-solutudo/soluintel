@@ -51,7 +51,13 @@ O nome da editoria é lido pelo dono da empresa e pela pessoa que produz — nun
 - **2 a 4 palavras**, na linguagem do negócio, não na do marketing.
 - Nada de "Conversão", "Awareness", "Institucional", "Engajamento".
 - Prefira o que o cliente diria: *"Peça em casa"*, *"Salão & família"*, *"Perguntas que chegam"*.
-- O slot E leva o nome do lugar: *"Botucatu é aqui"*, *"Araraquara e região"*.
+- O slot E leva o nome do lugar **quando o território é um lugar só**: *"Botucatu é aqui"*,
+  *"Araraquara e região"*.
+- **Quando não é, o slot E leva o nome do alcance, não do endereço.** Empresa com rota, região
+  multi-cidade ou rede em expansão não cabe num topônimo — e o nome briga com os próprios temas.
+  No LAAE, "Norte de Minas é aqui" era incompatível com o tema das franquias na Bahia; virou
+  *"Onde a gente chega"*. O teste é direto: **se um dos 4 temas da editoria contradiz o nome dela,
+  o nome está errado.**
 
 **Exemplo dos dois casos aplicados:**
 
@@ -62,6 +68,13 @@ O nome da editoria é lido pelo dono da empresa e pela pessoa que produz — nun
 | C · Conversão | Peça em casa | Crédito com garantia de imóvel |
 | D · Público | Salão & família | Para empresas e produtores |
 | E · Território | Botucatu é aqui | Araraquara e região |
+
+E o caso em que o topônimo não serve — laboratório com rota própria em nove cidades **e** rede de
+franquias em outro estado:
+
+| Slot | Laboratório ambiental (LAAE) |
+|---|---|
+| E · Território | **Onde a gente chega** |
 | F · Dúvidas | Perguntas que chegam | Perguntas que chegam |
 
 Note o slot C no caso do consórcio: em serviço financeiro, o produto de entrada mais concreto (home
