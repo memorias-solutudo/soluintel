@@ -1,8 +1,8 @@
 # Editorias de conteúdo — padronização
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
-**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas)
-**Última revisão:** 08/09/2026
+**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas). O formato de referência da §4.2 vem dos casos EA3 e Blocok
+**Última revisão:** 10/09/2026
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
 parceiro. Ele nasceu da aplicação em dois casos de segmentos opostos e está escrito para ser executado
@@ -273,9 +273,20 @@ bloco do site — quatro canais, um texto.
 > 7. Se `compliance_tags` indicar setor regulado: descarte qualquer tema que só funcione com promessa de
 >    resultado e prefira a versão honesta da mesma dúvida.
 > 8. Não invente sazonalidade local: datas da cidade entram como *"confirmar calendário com o parceiro"*.
+> 9. **Datas comemorativas.** Procure em cinco frentes — **segmento**, **área de atuação**, **público
+>    atendido**, **profissões e ciclo do setor** e **a própria empresa** (aniversário e marcos redondos
+>    de 10, 15, 20, 25 anos) — e cruze cada uma com um fato do envelope. **Havendo alguma que cruze,
+>    ela precisa aparecer; não há teto de quantas.** As datas **não ocupam editoria exclusiva**: entram
+>    como abordagem eventual dentro de uma que já existe, preferencialmente **D · público**, ou **E**
+>    quando a data é do lugar e **A** quando é da própria empresa. Data sem fato para cruzar não entra.
+>    Marco redondo só com o ano de fundação confirmado por outra fonte — o campo do contrato é
+>    notoriamente valor-padrão. Liste as descartadas com o motivo e diga qual editoria ficou com as
+>    datas. Se nenhuma cruzar, declare como achado.
 >
-> **Saída:** para cada editoria — nome, slot, os fatos que a sustentam e os 4 temas com uma linha de
-> descrição cada. No fim: lacunas e pendências para o CS.
+> **Saída:** para cada editoria — **nome, objetivo em uma frase, a lista de CONTEÚDOS e a pergunta que
+> ela responde** (ver §4.2), mais os fatos que a sustentam. Item que depende de confirmação entra na
+> lista com a condição escrita. No fim: o calendário de datas, lacunas e pendências para o CS. Os 24
+> temas datados são um segundo passo, derivado do banco de conteúdos, e só quando pedidos.
 
 ---
 
