@@ -123,13 +123,19 @@ parece trabalho e não é.
 
 ### Como aplicar
 
-1. **Liste as datas que o segmento é dono**, não as do calendário geral. Um laboratório de água tem
-   22/03 (Dia Mundial da Água), 05/06 (Meio Ambiente) e 19/11 (saneamento) — três datas que falam
-   exatamente do que ele faz. Uma pizzaria não tem nenhuma dessas, e tem outras.
+1. **Procure em quatro frentes**, não só no calendário geral:
+   **segmento** (o que a empresa faz), **área de atuação** (o setor em que opera), **público
+   atendido** (datas de quem compra dela) e **profissões e ciclo** (dia do profissional da casa,
+   aniversário da empresa, safra, temporada, período de vistoria). Um laboratório de água tem
+   22/03, 05/06 e 19/11 pelo segmento; uma empresa que vende para engenheiro tem o dia do
+   engenheiro pelo público. Uma pizzaria não tem nenhuma dessas, e tem outras.
 2. **Cruze com um fato do cadastro.** Se a data não encontra um fato próprio para cruzar, ela cai.
    O teste é o mesmo do filtro 3: *qualquer concorrente publicaria isso?* Se sim, não entra.
-3. **No máximo 2 datas viram tema** dentro de uma editoria — normalmente o slot **E (Território)**,
-   que é onde o calendário já morava no caso Semião ("Datas de Botucatu com pizza frita").
+3. **Uma editoria carrega datas, sempre que houver alguma que cruze — pelo menos 1 tema e no
+   máximo 2.** Qual editoria depende de onde a data cruza melhor: **E** quando é do território,
+   **D** quando é do público, **A** quando é da profissão ou do processo. A função do slot não
+   muda; a data entra onde tem lastro. E se o negócio não tiver data nenhuma que cruze, isso é
+   **achado declarado**, não omissão silenciosa.
 4. **As demais datas viram âncora, não tema novo.** O padrão fixa 24 temas; datas adicionais
    **escolhem quando** um tema existente é publicado. Isso resolve parte do calendário sem inventar
    pauta.
@@ -144,11 +150,14 @@ parece trabalho e não é.
 
 Acrescente ao prompt da §8, entre as regras 7 e 8:
 
-> **7.1** Se o segmento tiver datas de calendário que falem diretamente do que a empresa faz, cruze
-> cada uma com um fato do envelope e proponha **no máximo 2 como tema**, preferencialmente no slot E.
-> As demais devolva como **âncora de publicação** de temas já existentes. Data sem fato para cruzar
-> não entra. Data não verificável entra como "confirmar com o parceiro". Liste também as datas
-> descartadas e o motivo.
+> **7.1** Procure datas de calendário em quatro frentes — **segmento**, **área de atuação**,
+> **público atendido** e **profissões e ciclo do setor** — e cruze cada uma com um fato do envelope.
+> **Uma editoria tem de carregar datas sempre que houver alguma que cruze: pelo menos 1 e no máximo
+> 2 como tema**, na editoria em que a data tem lastro (E para território, D para público, A para
+> profissão ou processo). As demais devolva como **âncora de publicação** de temas já existentes.
+> Data sem fato para cruzar não entra. Data não verificável entra como "confirmar com o parceiro".
+> Liste as descartadas com o motivo, e diga qual editoria ficou com as datas. Se nenhuma data
+> cruzar, declare isso como achado e explique — não omita.
 
 ---
 
@@ -343,14 +352,35 @@ PARTE 3 — AS REGRAS
    4) Setor regulado ou técnico: tema que só funciona prometendo resultado não entra. Não nomeie
       número, ensaio, parâmetro ou norma que o material não confirme.
 
-8. DATAS COMEMORATIVAS — o cruzamento, não a efeméride. A data não é o assunto; a data é o gancho.
-   - Liste as datas que o SEGMENTO é dono, não as do calendário geral.
-   - Cruze cada uma com um fato do material. Data sem fato para cruzar não entra.
-   - No máximo 2 datas viram TEMA, preferencialmente no slot E.
+8. DATAS COMEMORATIVAS — OBRIGATÓRIO. Uma das seis editorias TEM DE carregar datas, sempre que o
+   negócio tiver alguma que cruze. Não é opcional e não é enfeite: a regra é o cruzamento, não a
+   efeméride. A data não é o assunto; a data é o gancho — o post continua sendo sobre o serviço, o
+   dado ou a operação da empresa, publicado no dia em que o assunto já está na cabeça de quem lê.
+
+   ONDE PROCURAR — quatro frentes, não só o calendário geral:
+   a) SEGMENTO: datas do que a empresa faz. Laboratório de água tem 22/03 (Dia Mundial da Água);
+      uma pizzaria não tem essa, e tem outras.
+   b) ÁREA DE ATUAÇÃO: datas do setor em que ela opera — meio ambiente, saneamento, construção,
+      saúde, alimentação, educação.
+   c) PÚBLICO ATENDIDO: datas de quem compra dela. Quem vende para engenheiro tem o dia do
+      engenheiro; quem vende para hospital tem as datas da saúde; quem vende para produtor rural
+      tem as do agronegócio.
+   d) PROFISSÕES E CICLO: dia do profissional que trabalha na empresa, aniversário da empresa,
+      e o ciclo do setor — safra, temporada, período de vistoria, fechamento fiscal.
+
+   COMO DECIDIR:
+   - Cruze cada data com um fato do material. Data sem fato para cruzar não entra.
+   - PELO MENOS 1 e no máximo 2 datas viram TEMA, dentro de UMA editoria só.
+   - QUAL EDITORIA CARREGA depende de onde a data cruza melhor: slot E quando a data é do
+     território ou da região; slot D quando é do público; slot A quando é da profissão ou do
+     processo. A função do slot não muda — a data entra onde ela tem lastro.
    - As demais viram ÂNCORA DE PUBLICAÇÃO de temas que já existem — não crie o tema 25.
    - Data não verificável (aniversário da empresa, da cidade, dia do profissional, calendário
      agrícola) entra como "confirmar com o parceiro", nunca como fato.
    - Liste as datas descartadas e o motivo.
+   - SE O NEGÓCIO NÃO TIVER NENHUMA data que cruze, diga isso com todas as letras como achado
+     ("este segmento não tem data própria que cruze, e por isto:") e explique. Omitir em silêncio
+     não é resposta aceitável.
 
 9. DISTRIBUIÇÃO POR CANAL. Cada editoria tem destino em mais de um canal: post, FAQ da página,
    Google (publicações e Q&A) e blocos do site. O slot F é o de maior alavancagem — a mesma resposta
@@ -366,8 +396,10 @@ PARTE 4 — FORMATO DA SAÍDA
    a contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
 3. AS 6 EDITORIAS — para cada uma: nome, slot, e os 4 temas com uma linha de descrição, marcando
    o tema único, a série recorrente e as datas cruzadas.
-4. CALENDÁRIO DE DATAS — as que viraram tema, as que viraram âncora (dizendo qual tema ancoram),
-   as que dependem de confirmação e as descartadas com o motivo.
+4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por que é ela. Depois: as
+   que viraram tema, as que viraram âncora (dizendo qual tema ancoram), as que dependem de
+   confirmação e as descartadas com o motivo. Se nenhuma data cruzar com o negócio, diga isso aqui
+   e justifique.
 5. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
 6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
 7. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
