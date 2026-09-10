@@ -2,7 +2,7 @@
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
 **Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas). O formato de referência da §4.2 vem dos casos EA3 e Blocok
-**Última revisão:** 10/09/2026
+**Última revisão:** 10/09/2026 · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
 parceiro. Ele nasceu da aplicação em dois casos de segmentos opostos e está escrito para ser executado
@@ -209,6 +209,130 @@ transforma a lista de conteúdos numa lista de pendências ao mesmo tempo.
 
 ---
 
+## 4.3 As peças fixas do perfil — destaques, fixados e assinatura
+
+**Status:** vigente desde 10/09/2026 · primeiro caso aplicado: LAAE Laboratório · vale para os próximos
+
+As editorias organizam o que a empresa **publica ao longo do ano**. Mas quem chega ao perfil hoje não
+lê o ano: lê o que está parado no topo. São três peças, e elas se definem **uma vez, junto com as
+editorias**, porque saem dos mesmos fatos:
+
+| Peça | Quantas | Função | De onde sai |
+|---|---|---|---|
+| **Destaques** (os círculos sob a bio) | 5 | o menu permanente do perfil | slots A, B, A/E, D e C, em versão estática |
+| **Posts fixados** | 3 | os três primeiros posts que qualquer pessoa vê no feed | 1 = slot A · 2 = slot B · 3 = slot C |
+| **Assinatura de rodapé** | 1 | o contato em toda imagem publicada | slot C |
+
+### Por que os destaques importam
+
+O feed é cronológico e o story dura 24 horas. **Os destaques são o único conteúdo permanente, ordenado
+e clicável do perfil** — ficam logo abaixo da bio e são o que quem acabou de chegar toca antes de rolar
+qualquer post. Na prática são o cardápio do perfil: em cinco círculos, na ordem, eles respondem às
+perguntas de quem não conhece a empresa — *quem é você, o que vende, por que você, quem já confia,
+como eu compro*.
+
+E o peso muda com o segmento:
+
+- **Público consumidor, com loja** (pizzaria, varejo): o perfil é ponto de venda. O destaque de
+  **oferta vem primeiro** (Cardápio, Peça aqui), depois quem somos, prova social e onde fica.
+- **Venda técnica ou B2B** (laboratório, engenharia, indústria): o público não descobre a empresa no
+  Instagram — ele **confere** o perfil antes de chamar, para saber se a empresa é real. Os destaques
+  valem **mais que o feed**: são cartão de visita estático, e o **Sobre vem primeiro**, porque
+  confiança vem antes de oferta.
+- **Linha de produto** (Blocok): o produto abre (Sistema, Produto), as obras entregues fazem a prova,
+  e o "como comprar" fecha.
+- **Setor regulado** (consórcio): "como funciona" ocupa o lugar do diferencial, prova social só com
+  autorização, e nenhum destaque promete resultado.
+
+### As cinco funções, na ordem padrão
+
+| Nº | Função | Slot | O que entra | O que **não** entra |
+|---|---|---|---|---|
+| 1 | **Sobre** — quem é a empresa | A | fundação confirmada, credenciais, lugar, equipe, bastidores | slogan, "somos apaixonados por" |
+| 2 | **Oferta** — o que vende | B | serviços, linhas, aplicações nomeadas; 3 a 6 stories | item sem lastro no catálogo |
+| 3 | **Diferencial** — como faz, o que é só dela | A ou E | o tema único do calendário costuma morar aqui: processo, rota, prazo | promessa de resultado |
+| 4 | **Prova social** — quem já confia | D | depoimentos autorizados, clientes nomeados com permissão, obras entregues | "milhares de clientes" sem número |
+| 5 | **Contato** — como comprar | C | os passos para pedir, canais, horário, pagamento | contato do patrocinador |
+
+O slot **F (dúvidas) não ganha destaque por padrão** — ele rende mais no blog, no Google e na FAQ. Se
+a empresa tem público consumidor e buscas reais, "Dúvidas" pode ocupar o lugar do 3 ou do 4; diga que
+trocou e por quê.
+
+**Regras de forma.** Título de **1 a 2 palavras, até ~11 caracteres** — é o que cabe legível no
+círculo, no celular ("Depoimentos" estoura; "Clientes" cabe). Capa **uniforme** nos cinco: mesmo
+estilo, cor da identidade da empresa, um ícone ou uma foto real com o mesmo tratamento. Cada destaque
+lista **3 a 6 stories que já existem ou saem do material** — destaque vazio é pior que ausência. O
+quinto **sempre termina em contato**. E o relatório declara **as alternativas descartadas** e o
+motivo (o que viraria o sexto destaque, se algum dia houver um).
+
+### Os três posts fixados
+
+São os três primeiros posts que qualquer pessoa vê no feed, e ficam lá até serem trocados. A função
+de cada um é fixa:
+
+| Fixado | Função | Slot | Formato |
+|---|---|---|---|
+| **1** | **a empresa** — quem é, desde quando, credencial, onde | A | imagem única ou carrossel curto |
+| **2** | **o que oferece** — serviços, áreas de atuação ou linhas de produto, **até 4 itens** seja qual for o formato | B | carrossel: capa + 1 lâmina por item, ou 1 imagem com os 4 blocos |
+| **3** | **chamada para contato** — uma frase curta de CTA, uma descrição breve e os contatos principais (geralmente o WhatsApp) | C | imagem única |
+
+Cada fixado é entregue com **três partes**:
+
+1. **Legenda** — no tom da empresa, só com fatos do material, terminando em ação. Sem hashtag, a
+   menos que a empresa já use.
+2. **Sugestão de imagem** — única ou carrossel, **qual foto real** usar e, se ela não existe no
+   cadastro, **o caminho honesto enquanto não chega** (fachada, selo, fundo da marca). Nunca banco de
+   imagens fingindo ser a empresa.
+3. **Texto na imagem** — título de até 6 palavras e no máximo 2 linhas de apoio; por lâmina, se
+   carrossel. **Não repete a assinatura**: ela já está no rodapé.
+
+Operação: o Instagram coloca o **último post fixado na primeira posição**. Fixe na ordem **3 → 2 → 1**
+para o "Sobre" ficar à esquerda, e confira na tela depois de fixar.
+
+### A assinatura de rodapé
+
+É a faixa que fecha **toda imagem publicada** — post, carrossel, story de destaque. Define-se **em um
+lugar só** (a seção de assinatura da central) e não se repete em legenda nem em texto de imagem: quem
+produz aplica o mesmo rodapé sempre, na mesma posição.
+
+**A fórmula:** `frase no tom da empresa · WhatsApp principal (· segundo WhatsApp, se houver duas
+linhas de atendimento) · terceiro elemento`
+
+Uma linha, **até ~70 caracteres**, legível no celular (numa imagem de 1080 px, nada abaixo de ~26 px),
+contraste de texto de pelo menos 4,5:1, mesma posição em toda peça — inclusive nas lâminas do
+carrossel e nos stories de destaque, onde a faixa sobe para a zona segura, acima dos ~250 px que a
+barra de resposta cobre.
+
+| Parte | Regra |
+|---|---|
+| **Frase** | 2 a 5 palavras, com verbo de atendimento, tirada do jeito que a empresa fala no material ("Fale com o laboratório", "Peça pelo WhatsApp", "Chame a EA3"). Nunca slogan de agência |
+| **WhatsApp** | o principal, com DDD. **Dois** só quando o material mostra duas linhas de atendimento (comercial e suporte, duas unidades) — e as duas são WhatsApp. Fixo não entra na imagem: fica no fixado 3 e no Google |
+| **Terceiro elemento** | decidido por regra, abaixo. Um só. Se nenhum se aplica, a assinatura fica em frase + WhatsApp |
+
+**Como escolher o terceiro elemento:**
+
+| A empresa… | Terceiro elemento |
+|---|---|
+| vai até o cliente ou atende uma região (coleta, obra, entrega, rota) | **"Cidade e Região"** — a cidade-sede mais a palavra Região |
+| tem **uma** loja física onde o cliente entra | **o endereço curto** (rua e número; bairro se ajudar) |
+| tem site atual **e** ele é o destino da conversão (pedido, formulário, portal) | **o site**, sem https |
+| tem site, mas ele é pesado, desatualizado ou não converte | **não entra** — troca quando o Solusite ou o site novo estiver no ar, e isso fica escrito como gatilho de revisão |
+| tem várias lojas | **"Cidade e Região"** ou a marca das unidades — nunca uma lista de endereços |
+
+O relatório entrega a assinatura recomendada, **a justificativa de cada parte** e as alternativas
+descartadas — porque, na próxima revisão, quem lê precisa saber por que o site ficou de fora.
+
+### Na central de conteúdo
+
+A partir do LAAE, a aba **Conteúdo** de cada central é organizada com **menu lateral** e seções
+numeradas: 1 fontes e regra · 2 editorias e temas · 3 datas comemorativas · 4 destaques ·
+5 posts fixados · 6 assinatura · 7 filtros e como usar · 8 o prompt vigente, colado na íntegra no fim
+da aba. As peças fixas se publicam **antes** do primeiro tema do calendário: assinatura, depois os
+três fixados, depois os cinco destaques. As centrais anteriores (Pizza Frita Semião, Porto Certo, EA3,
+Blocok) não são refeitas; a regra vale para as próximas.
+
+---
+
 ## 5. Filtros obrigatórios
 
 Antes de um tema entrar na lista, ele passa por quatro perguntas:
@@ -253,6 +377,10 @@ Editoria não serve só para post. Cada uma tem destino em mais de um canal:
 **O slot F é o de maior alavancagem:** a mesma resposta vira post, item de FAQ, resposta no Google e
 bloco do site — quatro canais, um texto.
 
+As **peças fixas do perfil** (§4.3) são a versão estática dos mesmos slots: os 5 destaques cobrem A,
+B, A/E, D e C; os 3 fixados são A, B e C; a assinatura de rodapé é o slot C em toda imagem. Elas se
+definem junto com as editorias e vão ao ar antes do primeiro tema do calendário.
+
 ---
 
 ## 8. Prompt do agente planejador de pauta
@@ -282,27 +410,37 @@ bloco do site — quatro canais, um texto.
 >    Marco redondo só com o ano de fundação confirmado por outra fonte — o campo do contrato é
 >    notoriamente valor-padrão. Liste as descartadas com o motivo e diga qual editoria ficou com as
 >    datas. Se nenhuma cruzar, declare como achado.
+> 10. **Peças fixas do perfil (§4.3).** Entregue também os **5 destaques** do Instagram (Sobre · Oferta ·
+>    Diferencial · Prova social · Contato, reordenados se o segmento pedir, com o motivo), os **3 posts
+>    fixados** (a empresa · o que oferece, com até 4 itens · a chamada para contato), cada um com
+>    legenda, sugestão de imagem e texto na imagem, e **uma** assinatura de rodapé (frase no tom da
+>    empresa · WhatsApp · terceiro elemento escolhido por regra), definida em um lugar só e nunca
+>    repetida nas peças.
 >
 > **Saída:** para cada editoria — **nome, objetivo em uma frase, a lista de CONTEÚDOS e a pergunta que
 > ela responde** (ver §4.2), mais os fatos que a sustentam. Item que depende de confirmação entra na
 > lista com a condição escrita. No fim: o calendário de datas, lacunas e pendências para o CS. Os 24
-> temas datados são um segundo passo, derivado do banco de conteúdos, e só quando pedidos.
+> temas datados são um segundo passo, derivado do banco de conteúdos, e só quando pedidos. Depois das
+> editorias: os 5 destaques, os 3 fixados e a assinatura, cada um com a justificativa e as alternativas
+> descartadas.
 
 ---
 
 ## 8.1 Prompt de operação direta — a partir do payload do cadastro
 
 O prompt da §8 assume o **envelope de fatos verificados**, que é a saída do pipeline `empresa-3-0`.
-Este aqui é o atalho: recebe o **JSON cru do `getData`** e devolve as 6 editorias e os 24 temas
-direto. Use quando não for rodar o pipeline inteiro.
+Este aqui é o atalho: recebe o **JSON cru do `getData`** e devolve as 6 editorias, os 24 temas e as
+peças fixas do perfil (§4.3) direto. Use quando não for rodar o pipeline inteiro.
 
 Cole o bloco abaixo, e em seguida cole o payload.
 
 ```text
 PAPEL
 Você é o planejador de pauta da Solutudo. A partir do cadastro que a empresa mantém na Solutudo,
-você devolve 6 editorias e 24 temas de conteúdo para um ano. Você não escreve os posts — você
-define os eixos e as pautas, com o lastro de cada uma declarado.
+você devolve 6 editorias e 24 temas de conteúdo para um ano, mais as três peças fixas do perfil:
+os 5 destaques do Instagram, os 3 posts fixados e a assinatura de rodapé. Você não escreve os
+posts do calendário — você define os eixos e as pautas, com o lastro de cada uma declarado. As
+únicas legendas que você escreve são as dos 3 fixados.
 
 REGRA QUE GOVERNA TUDO: nada é inventado. Todo tema rastreia a um fato do material recebido. O que
 não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS.
@@ -451,7 +589,70 @@ PARTE 3 — AS REGRAS
    segue o público: a arquitetura dos 6 slots não muda, o peso entre canais muda.
 
 ============================================================
-PARTE 4 — FORMATO DA SAÍDA
+PARTE 4 — AS PEÇAS FIXAS DO PERFIL
+Além das editorias, entregue as três peças que ficam paradas no topo do perfil. Elas saem dos
+mesmos fatos: são os slots A, B, C e D em versão estática.
+============================================================
+
+1. OS 5 DESTAQUES DO INSTAGRAM (os círculos abaixo da bio).
+   POR QUE IMPORTAM: o feed é cronológico e o story dura 24 horas; os destaques são o único
+   conteúdo permanente, ordenado e clicável do perfil, e são o que quem acabou de chegar toca antes
+   de rolar qualquer post. Em cinco círculos, na ordem, eles respondem a quem não conhece a empresa:
+   quem é você, o que vende, por que você, quem já confia, como eu compro. Diga, para ESTE
+   segmento, por que eles importam: em venda técnica ou B2B o perfil é conferido antes do contato e
+   os destaques valem mais que o feed; em público consumidor com loja, o perfil é ponto de venda e a
+   oferta vem primeiro; em linha de produto, o produto abre e as obras fazem a prova; em setor
+   regulado, "como funciona" ocupa o lugar do diferencial.
+   AS CINCO FUNÇÕES (ordem padrão; reordene se o segmento pedir, e diga por quê):
+     1) SOBRE — quem é a empresa (slot A): fundação confirmada, credenciais, lugar, equipe.
+     2) OFERTA — o que vende (slot B): serviços, linhas, aplicações nomeadas.
+     3) DIFERENCIAL — como faz e o que é só dela (slot A ou E): o tema único costuma morar aqui.
+     4) PROVA SOCIAL — quem já confia (slot D): depoimentos e clientes, só com autorização.
+     5) CONTATO — como comprar (slot C): passos para pedir, canais, horário, pagamento.
+   O slot F não ganha destaque por padrão (rende mais em blog, Google e FAQ). Se trocar, diga.
+   PARA CADA DESTAQUE ENTREGUE: o título (1 a 2 palavras, até ~11 caracteres — o que cabe legível
+   no círculo), o que vai dentro (3 a 6 stories que já existem ou saem do material), a capa
+   sugerida (estilo uniforme nos cinco, cor da identidade da empresa) e por que ele está nessa
+   posição. Nenhum story promete resultado. Prova social só com autorização. O quinto sempre
+   termina em contato. Liste as alternativas descartadas e o motivo.
+
+2. OS 3 POSTS FIXADOS. A função de cada um é fixa:
+     FIXADO 1 — a empresa: quem é, desde quando, credencial, onde (slot A).
+     FIXADO 2 — o que oferece: serviços, áreas de atuação ou linhas de produto, ATÉ 4 ITENS seja
+                qual for o formato (slot B).
+     FIXADO 3 — chamada para contato: UMA FRASE CURTA de CTA, uma descrição breve e os contatos
+                principais — geralmente o WhatsApp (slot C).
+   PARA CADA FIXADO ENTREGUE TRÊS PARTES:
+     a) LEGENDA — no tom da empresa, só com fatos do material, terminando em ação. Sem hashtag, a
+        menos que a empresa já use.
+     b) SUGESTÃO DE IMAGEM — única ou carrossel; qual foto real usar; e, se ela não existe no
+        cadastro, o caminho honesto enquanto não chega (fachada, selo, fundo da marca). Nunca banco
+        de imagens fingindo ser a empresa.
+     c) TEXTO NA IMAGEM — título de até 6 palavras e no máximo 2 linhas de apoio; por lâmina, se
+        carrossel. Não repita a assinatura: ela já está no rodapé.
+   Diga a ordem de fixar: o Instagram põe o último fixado na primeira posição — fixe 3, 2 e 1.
+
+3. A ASSINATURA DE RODAPÉ — a faixa que fecha TODA imagem publicada. Defina UMA VEZ, aqui, e não a
+   repita em legenda nem em texto de imagem.
+   FÓRMULA: frase no tom da empresa · WhatsApp principal (· segundo WhatsApp só se houver duas
+   linhas de atendimento) · terceiro elemento. Uma linha, até ~70 caracteres, mesma posição em
+   toda peça, legível no celular.
+   - A FRASE: 2 a 5 palavras, com verbo de atendimento, tirada do jeito que a empresa fala no
+     material. Nunca slogan de agência.
+   - O WHATSAPP: com DDD. Fixo não entra na imagem — fica no fixado 3 e no Google.
+   - O TERCEIRO ELEMENTO, um só, por regra:
+       vai até o cliente ou atende região (coleta, obra, entrega, rota) → "Cidade e Região";
+       tem UMA loja física onde o cliente entra → o endereço curto;
+       tem site atual E ele é o destino da conversão → o site, sem https;
+       site pesado, desatualizado ou que não converte → não entra, e fica escrito o gatilho de
+       revisão (quando o site novo ou o Solusite estiver no ar);
+       várias lojas → "Cidade e Região", nunca lista de endereços;
+       nada se aplica → frase + WhatsApp.
+   Entregue a assinatura recomendada, a justificativa de cada parte, o gatilho de revisão e as
+   alternativas descartadas.
+
+============================================================
+PARTE 5 — FORMATO DA SAÍDA
 ============================================================
 
 1. VERIFICAÇÕES — resultado das cinco, uma linha cada.
@@ -491,13 +692,22 @@ PARTE 4 — FORMATO DA SAÍDA
 
 6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
 
-7. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
+7. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
+   com título, o que vai dentro, capa e por quê; e as alternativas descartadas com o motivo.
+
+8. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
+   de fixar.
+
+9. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
+   revisão e as alternativas descartadas.
+
+10. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
 
 OPCIONAL, só se pedirem: o CALENDÁRIO DE 24 TEMAS — 4 por editoria, derivado do banco de conteúdos,
 com o tema único e a série recorrente marcados.
 
-Não escreva os posts. Não invente número, norma, parâmetro nem data. Se faltar insumo, registre a
-lacuna e siga.
+Não escreva os posts do calendário — só as legendas dos 3 fixados. Não invente número, norma,
+parâmetro, data nem foto que não existe. Se faltar insumo, registre a lacuna e siga.
 ```
 
 ### Quando usar cada prompt

@@ -199,6 +199,70 @@
   .backlink:hover{border-color:rgba(21,21,21,.18);color:var(--ink)}
   .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
   @media(max-width:700px){.card{overflow-x:auto}.card table{min-width:520px}}
+  /* aba Conteúdo · menu lateral, seções e peças fixas do perfil */
+  .cont-layout{display:grid;grid-template-columns:236px minmax(0,1fr);gap:22px;align-items:start;margin-top:14px}
+  .cont-menu{position:sticky;top:calc(var(--tbh,62px) + 14px);background:var(--white);border:var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:14px 12px;display:flex;flex-direction:column;gap:3px}
+  .cm-title{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g600);padding:2px 10px 8px}
+  .cm-i{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:11px;text-decoration:none;color:var(--g700);font-size:13.2px;font-weight:700;line-height:1.25}
+  .cm-i b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--g100);color:var(--g700);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+  .cm-i:hover{background:var(--bg);color:var(--ink)}
+  .cm-i.on{background:var(--tint-lav);color:#7B00BE}
+  .cm-i.on b{background:var(--brand-purple);color:#fff}
+  .cont-body{min-width:0}
+  .csec{scroll-margin-top:calc(var(--tbh,62px) + 14px)}
+  .csec+.csec{margin-top:36px}
+  .csh{display:flex;align-items:flex-start;gap:14px}
+  .csn{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+  .csh h3{font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.18;margin:0}
+  .csh p{color:var(--g700);font-size:13.6px;margin-top:4px;max-width:820px}
+  .txt p+p{margin-top:8px}
+  .hlgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
+  .hl{border:var(--line);border-radius:16px;padding:16px 14px;background:var(--white);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:6px}
+  .hlt{text-align:center}
+  .hlc{display:inline-flex;align-items:center;justify-content:center;width:74px;height:74px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,#F58529,#DD2A7B,#8134AF,#515BD4,#F58529)}
+  .hlc i{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:#0E5F74;color:#fff;border:3px solid #fff}
+  .hlc svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hlt b{display:block;font-size:14px;font-weight:800;margin-top:7px;letter-spacing:-.01em}
+  .hlt small{display:block;color:var(--g600);font-size:11px;font-weight:700;margin-top:2px}
+  .hl h5{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--brand-purple);margin-top:8px}
+  .hl ol{margin:2px 0 0 16px;font-size:12.6px;color:var(--g700);line-height:1.45}
+  .hl li{margin-top:3px}
+  .hl p{font-size:12.6px;color:var(--g700);line-height:1.45}
+  .hl p.hlw{font-weight:600;color:var(--ink)}
+  .fx3{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,.95fr);gap:16px;margin-top:12px}
+  .fxp h4{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g600);margin-bottom:6px}
+  .fxp .txt{margin-top:0}
+  .fxp ul.clean{margin-top:0}
+  .mock{position:relative;aspect-ratio:4/5;width:100%;max-width:280px;border-radius:14px;overflow:hidden;background:linear-gradient(165deg,#0F6F86 0%,#0A4A36 100%);color:#fff;padding:22px 18px 52px;display:flex;flex-direction:column;justify-content:center;gap:8px;box-shadow:var(--shadow-card)}
+  .mock .mk{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+  .mock h6{font-size:20px;font-weight:800;line-height:1.15;letter-spacing:-.02em;margin:0}
+  .mock p{font-size:12.5px;font-weight:600;line-height:1.35;opacity:.94;margin:0}
+  .mock .big{font-size:24px;font-weight:800;letter-spacing:-.01em}
+  .mock .sig{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.94);color:#0B3A45;font-size:9px;font-weight:800;text-align:center;padding:8px 10px;line-height:1.3}
+  .mock.sm{max-width:168px;padding:14px 12px 40px;flex:none}
+  .mock.sm h6{font-size:13.5px}.mock.sm p{font-size:10.5px}.mock.sm .sig{font-size:6.6px;padding:6px 6px}
+  .mockrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .mocknote{font-size:12px;color:var(--g600);font-weight:600;margin-top:8px;max-width:280px}
+  .sigbar{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:20px 22px;text-align:center;font-size:clamp(14px,2.2vw,21px);font-weight:800;letter-spacing:-.01em;line-height:1.3;overflow-wrap:anywhere}
+  .sigbar small{display:block;font-size:11px;font-weight:700;opacity:.7;margin-top:10px;letter-spacing:.05em;text-transform:uppercase}
+  .sigbar .wa{display:inline-flex;align-items:center;justify-content:center;width:1.15em;height:1.15em;border-radius:50%;background:#25D366;color:#fff;font-size:.7em;margin-right:.35em;vertical-align:-.1em}
+  .prompt{white-space:pre-wrap;overflow-wrap:anywhere;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:12.2px;line-height:1.55;background:var(--bg);border:var(--line);border-radius:14px;padding:18px 20px;margin-top:12px;color:var(--ink)}
+  .copybtn{display:inline-flex;align-items:center;gap:8px;background:var(--grad-cta);color:#fff;border:0;border-radius:var(--pill);padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;margin-top:12px}
+  .copybtn:hover{filter:brightness(1.05)}
+  .cta-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .cta-links .backlink{margin-bottom:0}
+  @media(max-width:1500px){.hlgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:1100px){.fx3{grid-template-columns:1fr}}
+  @media(max-width:940px){
+    .cont-layout{grid-template-columns:1fr;gap:12px}
+    .cont-menu{position:sticky;top:calc(var(--tbh,62px) + 6px);z-index:20;flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 10px;gap:6px;border-radius:14px;scrollbar-width:none}
+    .cont-menu::-webkit-scrollbar{display:none}
+    .cm-title{display:none}
+    .cm-i{flex:none;padding:7px 12px 7px 8px;font-size:12.4px;white-space:nowrap}
+    .csec{scroll-margin-top:calc(var(--tbh,62px) + 68px)}
+  }
+  @media(max-width:760px){.hlgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.hlgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -221,7 +285,7 @@
 <div class="hero">
   <span class="vbadge">Central de conteúdo · um dossiê, todos os produtos</span>
   <h1>Central de Conteúdo — LAAE Laboratório</h1>
-  <p class="crumbs">Análises de Água · Montes Claros/MG · ID 32069845 · Força Digital Essencial · fonte: cadastro Solutudo + transcrição da reunião comercial · 08/09/2026</p>
+  <p class="crumbs">Análises de Água · Montes Claros/MG · ID 32069845 · Força Digital Essencial · fonte: cadastro Solutudo + transcrição da reunião comercial · 08/09/2026 · rev. 10/09/2026</p>
 </div>
 
 <div class="wrap">
@@ -847,7 +911,7 @@
     <div class="sec first">
       <span class="eyebrow">Redes sociais</span>
       <h2>Bio, perfis e uma decisão contra o manual</h2>
-      <p class="secsub">Este é o único parceiro da série em que a recomendação é <b>não investir no feed</b> — e a razão está na transcrição, dita pelo dono com todas as letras.</p>
+      <p class="secsub">Este é o único parceiro da série em que a recomendação é <b>não investir no feed</b> — e a razão está na transcrição, dita pelo dono com todas as letras. As peças que ficam paradas no perfil (destaques, posts fixados e a assinatura das imagens) moram na aba <a href="#c-destaques" onclick="return goSec('c-destaques')">Conteúdo</a>, junto com as editorias.</p>
     </div>
 
     <div class="card" style="border-color:rgba(180,83,9,.35);background:linear-gradient(180deg,#FFFBF0 0%,var(--white) 60%)">
@@ -878,32 +942,14 @@
       <div class="note"><b>Pendência do Facebook:</b> não há página no cadastro. Se existir, pedir o link; se não existir, <b>não criar</b> — perfil abandonado prejudica mais que ausência, e o público não está lá.</div>
     </div>
 
-    <div class="card">
-      <span class="badge">Post fixado 1 · Sobre o laboratório</span>
-      <div class="txt">
-        <p>A água que a sua empresa usa é o que você acha que ela é? 💧</p>
-        <p>O LAAE analisa água e efluentes em Montes Claros desde 2003, com serviços acreditados pela CGCRE do Inmetro conforme o escopo dos certificados.</p>
-        <p>Físico-química, microbiológica, efluente industrial e sanitário, e programas de monitoramento — com coleta feita pela nossa equipe.</p>
-        <p>📍 Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="badge">Post fixado 2 · As 24 horas</span>
-      <div class="txt">
-        <p>Por que a gente vai buscar a amostra em vez de você mandar pelo correio? ⏱️</p>
-        <p>Porque entre a coleta e o laboratório a contagem é de <b>24 horas</b>. Passou disso, o resultado não representa mais a água que estava lá.</p>
-        <p>Por isso a coleta é nossa, com equipamento multiparâmetro em campo e transporte adequado ao ensaio. E é por isso que laboratório ambiental é negócio regional.</p>
-      </div>
-      <p class="bwhy" style="margin-top:10px">É o post que explica o negócio inteiro — e o que nenhum concorrente de fora consegue publicar sem admitir que não cumpre.</p>
-    </div>
-
-    <div class="card">
-      <span class="badge">Post fixado 3 · Contato e como pedir</span>
-      <div class="txt">
-        <p>Precisa de uma análise? Manda a origem da água que a gente indica os ensaios. 👇</p>
-        <p>📱 WhatsApp: (38) 98405-5391<br>☎️ Fixo: (38) 2101-2881<br>✉️ comercial@lablaae.com.br<br>📍 Av. Professor Vicente Guimarães, 1095 — Montes Claros/MG<br>⏰ Seg a sex, 8h–12h e 13h–17h</p>
-        <p>Laudo no portal, com login e senha. Pagamento em boleto, Pix, dinheiro e cartões. 🧾</p>
+    <div class="card" style="border-color:rgba(167,1,253,.28)">
+      <span class="badge">Destaques, fixados e assinatura</span>
+      <h3>Foram para a aba Conteúdo — de propósito</h3>
+      <p class="sub">Os 5 destaques, os 3 posts fixados e a assinatura de rodapé saem dos mesmos fatos que as editorias, e a assinatura só pode ser definida <b>em um lugar</b>. Por isso ficam ao lado do calendário, nas seções 4, 5 e 6, e não aqui — evita duas versões da mesma peça.</p>
+      <div class="cta-links">
+        <a class="backlink" href="#c-destaques" onclick="return goSec('c-destaques')">4 · Destaques do Instagram <span aria-hidden="true">→</span></a>
+        <a class="backlink" href="#c-fixados" onclick="return goSec('c-fixados')">5 · Posts fixados <span aria-hidden="true">→</span></a>
+        <a class="backlink" href="#c-assinatura" onclick="return goSec('c-assinatura')">6 · Assinatura de rodapé <span aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -912,11 +958,27 @@
   <section id="p-cont" class="panel">
 
     <div class="sec first">
-      <span class="eyebrow">Conteúdo · o calendário do ano</span>
-      <h2>6 editorias e 24 temas, com o lastro de cada uma à vista</h2>
-      <p class="secsub">Dois temas por mês. Cada um marcado com a editoria a que pertence e ancorado num fato específico do cadastro, da reunião comercial ou do site oficial — nenhum exige inventar nada. Os temas que vieram do site levam a etiqueta <span class="chip lav" style="font-size:10px;padding:2px 8px">site oficial</span>. O padrão completo está em <code>docs/editorias-conteudo.md</code>; abaixo, ele aplicado a este caso, com os fatos que sustentam cada eixo declarados antes dos temas.</p>
+      <span class="eyebrow">Conteúdo · o calendário do ano e o topo do perfil</span>
+      <h2>6 editorias, 24 temas e as três peças que ficam paradas no perfil</h2>
+      <p class="secsub">Oito seções, no menu ao lado: de onde saem os fatos, as editorias com o lastro à vista, as datas cruzadas com o negócio, os <b>5 destaques</b>, os <b>3 posts fixados</b> (cada um com legenda, imagem e texto na imagem), a <b>assinatura</b> que fecha toda imagem — definida em um lugar só — e, no fim, o prompt que gera tudo isto. O padrão completo está em <code>docs/editorias-conteudo.md</code>.</p>
     </div>
 
+    <div class="cont-layout">
+    <nav class="cont-menu" aria-label="Seções desta aba">
+      <span class="cm-title">Nesta aba</span>
+      <a href="#c-fontes" class="cm-i on"><b>1</b>Fontes e regra</a>
+      <a href="#c-editorias" class="cm-i"><b>2</b>Editorias e temas</a>
+      <a href="#c-datas" class="cm-i"><b>3</b>Datas comemorativas</a>
+      <a href="#c-destaques" class="cm-i"><b>4</b>Destaques do Instagram</a>
+      <a href="#c-fixados" class="cm-i"><b>5</b>Posts fixados</a>
+      <a href="#c-assinatura" class="cm-i"><b>6</b>Assinatura de rodapé</a>
+      <a href="#c-uso" class="cm-i"><b>7</b>Filtros e como usar</a>
+      <a href="#c-prompt" class="cm-i"><b>8</b>O prompt</a>
+    </nav>
+    <div class="cont-body">
+
+      <div class="csec" id="c-fontes">
+        <div class="csh"><span class="csn">1</span><div><h3>Fontes e regra</h3><p>De onde saem os fatos, o que cada fonte manda e a regra que decide se uma editoria existe.</p></div></div>
     <div class="card" style="border-color:rgba(167,1,253,.28)">
       <span class="badge">Duas fontes, duas funções</span>
       <h3>O dossiê manda na estratégia. O site manda no detalhe técnico.</h3>
@@ -986,6 +1048,10 @@
       <div class="note"><b>O slot F deste parceiro nasce de uma substituição declarada.</b> A §6 do padrão prevê exatamente esse caso: quando não há buscas reais capturadas, a ordem é <b>1)</b> <code>curated_keywords</code> da categoria, <b>2)</b> dúvidas clássicas do setor, <b>3)</b> o que o CS ouve no atendimento. Usamos as duas primeiras. E a lacuna fica registrada como achado: <i>este perfil não tem busca real capturada</i> — o que também significa que, quando ele passar a receber tráfego de verdade, o campo vai começar a se preencher sozinho e o slot F deve ser refeito.</div>
     </div>
 
+      </div>
+
+      <div class="csec" id="c-editorias">
+        <div class="csh"><span class="csn">2</span><div><h3>Editorias e temas</h3><p>Seis eixos, quatro temas em cada um — 24 no ano, dois por mês. O tema único e a série recorrente estão marcados; os que vieram do site levam a etiqueta <span class="chip lav" style="font-size:10px;padding:2px 8px">site oficial</span>.</p></div></div>
     <div class="card"><span class="ed ed1"><i></i>E1 · Dentro do laboratório</span><p class="sub" style="margin-top:8px">Slot <b>A · Processo e origem</b></p><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">1 · O que significa ser acreditado pelo Inmetro</span> <span class="chip" style="background:var(--tint-lav);color:#7B00BE;font-size:10px;padding:2px 8px">site oficial</span><span class="td" style="display:block">A Cgcre, o escopo de acreditação e o que a ABNT NBR ISO/IEC 17025 garante — a credencial explicada por quem a tem. O site já apresenta a acreditação da matriz de Montes Claros conforme os escopos: o texto existe, falta virar conteúdo que responde à dúvida de quem contrata.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">2 · As 24 horas que governam o laboratório</span> <span class="chip mint" style="font-size:10px;padding:2px 8px">tema único</span><span class="td" style="display:block">Entre a coleta e o laboratório, a amostra vale 24 horas. É o que define o raio, a coleta própria e a exclusividade regional.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">3 · Do frasco ao laudo: o caminho de uma amostra</span> <span class="chip" style="background:var(--tint-lav);color:#7B00BE;font-size:10px;padding:2px 8px">site oficial</span><span class="td" style="display:block">Frasco, preservação, transporte, bancada, portal — com o que o site detalha e o cadastro não tinha: <b>monitoramento da temperatura durante o transporte</b>, <b>equipamentos multiparâmetros</b> e <b>controles de qualidade durante a própria amostragem</b>. É a prova concreta de que a amostragem é decisiva para a exatidão do resultado.</span></span></div><div class="tema"><span class="ed ed1"><i></i>E1</span><span><span class="tt">4 · Desde 2003 em Montes Claros</span><span class="td" style="display:block">A trajetória do laboratório e a chegada às oito cidades. Datação absoluta, que não envelhece.</span></span></div></div>
     <div class="card"><span class="ed ed2"><i></i>E2 · O que analisamos</span><p class="sub" style="margin-top:8px">Slot <b>B · Oferta / catálogo</b></p><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">5 · Físico-química e microbiológica: a diferença em um minuto</span><span class="td" style="display:block">Os dois ensaios que os produtos cadastrados hoje confundem — separados de vez, e cada um ligado às aplicações do tema 7.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">6 · Efluente industrial e efluente sanitário não são a mesma análise</span><span class="td" style="display:block">Parâmetros, normas e compradores diferentes. Hoje estão numa linha só do cadastro.</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">7 · Seis águas, seis análises diferentes</span> <span class="chip" style="background:var(--tint-lav);color:#7B00BE;font-size:10px;padding:2px 8px">site oficial</span><span class="td" style="display:block">O cadastro nomeia quatro tipos; o site nomeia <b>seis</b>: consumo humano, subterrânea, superficial, <b>industrial de processo</b>, efluente e <b>água de hemodiálise</b>. Um post por aplicação, dizendo quem precisa de cada uma — muito mais forte que "fazemos análise de água".</span></span></div><div class="tema"><span class="ed ed2"><i></i>E2</span><span><span class="tt">8 · O ensaio do mês</span> <span class="chip lav" style="font-size:10px;padding:2px 8px">série recorrente</span><span class="td" style="display:block">Um dos 130 exames do portfólio por edição. Com 130, a série sustenta dez anos de pauta.</span></span></div></div>
     <div class="card"><span class="ed ed3"><i></i>E3 · Peça sua análise</span><p class="sub" style="margin-top:8px">Slot <b>C · Conversão · todo tema fecha em contato</b></p><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">9 · Como pedir uma coleta em três passos</span><span class="td" style="display:block">Origem da água, uso e cidade. Termina no WhatsApp (38) 98405-5391.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">10 · Seu laudo fica no portal, com login e senha</span> <span class="chip" style="background:var(--tint-lav);color:#7B00BE;font-size:10px;padding:2px 8px">site oficial</span><span class="td" style="display:block">O acesso do cliente e o histórico guardado. O portal de resultados é destaque no próprio site — então já é promessa pública, e vira conteúdo de conversão e de experiência: mostrar a tela, não só citar. Termina em como pedir o acesso.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">11 · Boleto, Pix ou cartão: como a sua empresa paga</span><span class="td" style="display:block">Boleto é o que indústria e hospital usam. Termina no contato do comercial.</span></span></div><div class="tema"><span class="ed ed3"><i></i>E3</span><span><span class="tt">12 · Precisa do laudo com prazo? Combine antes da coleta</span><span class="td" style="display:block">Prazo se resolve no agendamento, não depois. Termina no WhatsApp.</span></span></div></div>
@@ -993,6 +1059,26 @@
     <div class="card"><span class="ed ed5"><i></i>E5 · Onde a gente chega</span><p class="sub" style="margin-top:8px">Slot <b>E · Território</b> — <b>não leva nome de lugar, e é de propósito.</b> O padrão sugere batizar este slot com a cidade ("Botucatu é aqui"), mas aqui o território tem duas camadas: a <b>rota própria</b>, que alcança nove cidades do Norte de Minas dentro da janela de 24 horas, e a <b>rede de franquias</b>, que existe justamente para chegar onde a rota não alcança — as duas unidades ativas ficam na Bahia. Um nome de cidade brigaria com metade dos temas. O nome responde à pergunta do slot ("vocês são daqui?") pelo alcance, não pelo endereço.</p><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">17 · Coletamos em nove cidades — e a rota de cada uma</span><span class="td" style="display:block">Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora, com a frequência da equipe em cada uma.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">18 · 22 de março · Dia Mundial da Água — a água do Norte de Minas em números</span> <span class="chip" style="background:var(--tint-cyan);color:#0B5E70;font-size:10px;padding:2px 8px">data cruzada</span><span class="td" style="display:block">Não é post de felicitação: é o balanço próprio do ano — quantas amostras passaram pela bancada, de quantas cidades e de quantas origens diferentes. Dado que só o laboratório tem.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">19 · 5 de junho · Dia do Meio Ambiente — o efluente que não chegou ao rio</span> <span class="chip" style="background:var(--tint-cyan);color:#0B5E70;font-size:10px;padding:2px 8px">data cruzada</span><span class="td" style="display:block">Cruza a data com o serviço: o que uma estação de tratamento monitorada evita despejar. O tema ambiental contado pelo lado técnico, sem discurso.</span></span></div><div class="tema"><span class="ed ed5"><i></i>E5</span><span><span class="tt">20 · A rede cresce: Feira de Santana e Vitória da Conquista</span><span class="td" style="display:block">As franquias já abertas na Bahia. Conteúdo que serve à matriz e à expansão.</span></span></div></div>
     <div class="card"><span class="ed ed6"><i></i>E6 · Perguntas que chegam</span><p class="sub" style="margin-top:8px">Slot <b>F · Dúvidas (AEO) · maior alavancagem</b></p><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">21 · Água de poço artesiano precisa de análise?</span><span class="td" style="display:block">Quem capta fora da rede responde pela qualidade. Vira post, FAQ, Q&amp;A do Google e bloco do site.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">22 · O que a Portaria 888 exige da água potável</span><span class="td" style="display:block">A norma citada na lista de palavras-chave e em nenhum texto publicado.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">23 · De quanto em quanto tempo analisar a água?</span><span class="td" style="display:block">A dúvida que transforma análise avulsa em monitoramento recorrente.</span></span></div><div class="tema"><span class="ed ed6"><i></i>E6</span><span><span class="tt">24 · Caixa d'água e caminhão-pipa: quando analisar</span><span class="td" style="display:block">Dois termos curados da categoria, sem nenhum conteúdo que responda hoje.</span></span></div></div>
 
+    <div class="card">
+      <span class="badge">Os dois temas que não são iguais aos outros</span>
+      <div class="grid2">
+        <div class="blk">
+          <span class="ed ed1"><i></i>Tema único · nº 2</span>
+          <h4 style="margin-top:8px">As 24 horas que governam o laboratório</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão exige que pelo menos um tema do ano seja <b>impublicável por qualquer concorrente</b>. Este é: a janela de 24 horas entre coleta e laboratório explica o raio de 600 km, a coleta própria, o regionalismo do setor e a liderança de mercado — tudo de uma vez, sem citar concorrente nenhum e sem prometer nada. <b>Merece a produção mais caprichada do calendário:</b> vídeo curto acompanhando uma coleta do frasco à bancada, com o relógio à vista.</p>
+        </div>
+        <div class="blk">
+          <span class="ed ed2"><i></i>Série recorrente · nº 8</span>
+          <h4 style="margin-top:8px">O ensaio do mês</h4>
+          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão pede uma série repetível, que salve o calendário quando faltar pauta. Aqui ela é confortável: a reunião registra <b>130 tipos de exame</b> no portfólio. Um por edição sustenta <b>mais de dez anos</b> sem repetir. <b>Só entra quando o escopo de acreditação chegar</b> — o ensaio precisa estar no escopo antes de virar post.</p>
+        </div>
+      </div>
+    </div>
+
+      </div>
+
+      <div class="csec" id="c-datas">
+        <div class="csh"><span class="csn">3</span><div><h3>Datas comemorativas</h3><p>A data não é o assunto, a data é o gancho. Três datas do segmento entraram; o resto do calendário virou âncora de temas que já existem.</p></div></div>
     <div class="card">
       <span class="badge" style="background:var(--tint-cyan);color:#0B5E70">Datas comemorativas · o cruzamento, não a efeméride</span>
       <h3>Duas datas entraram na E5 — e o resto vira âncora de publicação</h3>
@@ -1025,22 +1111,208 @@
       <div class="note" style="background:#FFF6F4;color:#5A2018"><b>O que fica de fora, e por quê.</b> Natal, Dia das Mães, Dia dos Pais, Páscoa, São João. Não há cruzamento: um laboratório B2B que vende para responsável técnico de indústria e gestor de hospital não tem o que dizer nessas datas que não seja enfeite. <b>Publicar por publicar aqui custa mais que ficar quieto</b> — é exatamente o que o cliente apontou como amadorismo do fornecedor atual.</div>
     </div>
 
-    <div class="card">
-      <span class="badge">Os dois temas que não são iguais aos outros</span>
-      <div class="grid2">
-        <div class="blk">
-          <span class="ed ed1"><i></i>Tema único · nº 2</span>
-          <h4 style="margin-top:8px">As 24 horas que governam o laboratório</h4>
-          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão exige que pelo menos um tema do ano seja <b>impublicável por qualquer concorrente</b>. Este é: a janela de 24 horas entre coleta e laboratório explica o raio de 600 km, a coleta própria, o regionalismo do setor e a liderança de mercado — tudo de uma vez, sem citar concorrente nenhum e sem prometer nada. <b>Merece a produção mais caprichada do calendário:</b> vídeo curto acompanhando uma coleta do frasco à bancada, com o relógio à vista.</p>
+      </div>
+
+      <div class="csec" id="c-destaques">
+        <div class="csh"><span class="csn">4</span><div><h3>Destaques do Instagram</h3><p>Cinco círculos, na ordem em que quem chega pergunta: quem é você, o que analisa, por que você, quem já confia, como eu peço.</p></div></div>
+        <div class="card" style="border-color:rgba(167,1,253,.28)">
+          <span class="badge">Por que os destaques importam aqui</span>
+          <h3>Para este laboratório, o destaque vale mais que o feed</h3>
+          <p class="sub">O feed é cronológico e o story dura 24 horas. <b>Os destaques são o único conteúdo permanente, ordenado e clicável do perfil</b> — ficam logo abaixo da bio e são o que quem acabou de chegar toca antes de rolar qualquer post. Em cinco círculos, na ordem, eles respondem às perguntas de quem não conhece a empresa: <i>quem é você, o que analisa, por que você, quem já confia, como eu peço</i>.</p>
+          <div class="note"><b>E aqui isso pesa mais do que numa pizzaria.</b> A reunião registra que o público do LAAE <i>"não está no Instagram"</i> e <i>"é muito direcionado"</i>: engenheiro ambiental, responsável técnico de indústria, gestor de hospital. Esse público não descobre laboratório rolando o feed — ele <b>confere o perfil antes de chamar</b>, para saber se a empresa é real, tem credencial e atende a cidade dele. Os cinco destaques são o cartão de visita que responde isso em trinta segundos, sem depender de post novo. Por isso o <b>Sobre vem primeiro</b>: em venda técnica, confiança vem antes de oferta. Numa loja de consumo seria o contrário.</div>
         </div>
-        <div class="blk">
-          <span class="ed ed2"><i></i>Série recorrente · nº 8</span>
-          <h4 style="margin-top:8px">O ensaio do mês</h4>
-          <p style="font-size:13.4px;color:var(--g700);margin-top:8px">O padrão pede uma série repetível, que salve o calendário quando faltar pauta. Aqui ela é confortável: a reunião registra <b>130 tipos de exame</b> no portfólio. Um por edição sustenta <b>mais de dez anos</b> sem repetir. <b>Só entra quando o escopo de acreditação chegar</b> — o ensaio precisa estar no escopo antes de virar post.</p>
+
+        <div class="hlgrid">
+          <div class="hl">
+            <div class="hlt"><span class="hlc"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5.6 9.6A2 2 0 0 0 6.1 21.6h11.8a2 2 0 0 0 1.7-3L14 9V3"/><path d="M8.5 15h7"/></svg></i></span><b>Laboratório</b><small>1 · Sobre · slot A</small></div>
+            <p class="hlw">Responde "vocês são um laboratório de verdade?" — a primeira pergunta de quem chega por indicação ou por busca, antes de qualquer contato.</p>
+            <h5>O que vai dentro</h5><ol><li>A fachada e o endereço em Montes Claros, desde 2003</li><li>O selo de acreditação CGCRE/Inmetro, com a ressalva "conforme os escopos dos certificados"</li><li>A bancada e a equipe técnica — <b>foto pendente</b>, hoje não existe no cadastro</li><li>Um laudo saindo no portal, com os dados do cliente ocultos</li><li>A rede: Feira de Santana e Vitória da Conquista, as duas unidades ativas</li></ol>
+            <h5>Capa</h5><p>O selo de acreditação, ou o logo, sobre fundo da cor da identidade do laboratório.</p>
+          </div>
+          <div class="hl">
+            <div class="hlt"><span class="hlc"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6.5 7.2 6.5 11.7A6.5 6.5 0 0 1 5.5 14.7C5.5 10.2 12 3 12 3z"/></svg></i></span><b>Análises</b><small>2 · Oferta · slot B</small></div>
+            <p class="hlw">É o "o que vocês fazem" — e as seis aplicações nomeadas pelo site dizem <b>para quem</b>, o que o cadastro hoje não diz.</p>
+            <h5>O que vai dentro</h5><ol><li>Água para consumo humano e potabilidade</li><li>Água de poço e subterrânea</li><li>Água superficial e água industrial de processo</li><li>Efluente industrial e efluente sanitário</li><li>Físico-química × microbiológica: a diferença em um card</li><li>Água de hemodiálise — <b>só após confirmar o escopo de acreditação</b></li></ol>
+            <h5>Capa</h5><p>Um frasco de amostra etiquetado — foto real quando existir; até lá, o ícone da gota.</p>
+          </div>
+          <div class="hl">
+            <div class="hlt"><span class="hlc"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i></span><b>Coleta</b><small>3 · Diferencial · slot A/E</small></div>
+            <p class="hlw">O que nenhum laboratório de fora consegue mostrar sem admitir que não cumpre a janela. O argumento comercial inteiro em um destaque — é o tema único do calendário.</p>
+            <h5>O que vai dentro</h5><ol><li>As 24 horas entre a coleta e o laboratório — o relógio à vista</li><li>O equipamento multiparâmetro em campo</li><li>A temperatura monitorada no transporte</li><li>As nove cidades da rota, com a frequência de cada uma</li><li>Como agendar a coleta</li></ol>
+            <h5>Capa</h5><p>A caixa térmica ou o multiparâmetro em campo — foto pendente; até lá, o ícone do relógio.</p>
+          </div>
+          <div class="hl">
+            <div class="hlt"><span class="hlc"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4.2-6.1"/></svg></i></span><b>Clientes</b><small>4 · Prova social · slot D</small></div>
+            <p class="hlw">Gestor de hospital e responsável técnico compram por referência. Três depoimentos nomeados, já publicados no site, valem mais que qualquer texto sobre qualidade.</p>
+            <h5>O que vai dentro</h5><ol><li>SEAM — 15 anos de parceria <b>(após autorização para os canais Solutudo)</b></li><li>Hospital do Câncer do Norte de Minas <b>(idem)</b></li><li>Tânia Botelho <b>(idem)</b></li><li>Quem analisa: indústria, hospital, hotel, agro e consultoria ambiental</li><li>"Sua empresa usa água que não é da concessionária?" — o critério do dono</li></ol>
+            <h5>Capa</h5><p>Aspas grandes sobre o fundo da identidade. O nome é "Clientes" porque "Depoimentos" não cabe no círculo.</p>
+          </div>
+          <div class="hl">
+            <div class="hlt"><span class="hlc"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9.5L4 20.5V5z"/><path d="M8 9h8M8 12.5h5"/></svg></i></span><b>Como pedir</b><small>5 · Contato · slot C</small></div>
+            <p class="hlw">Fecha o funil. É o destaque que quem já decidiu toca — tem que ser o último e tem que abrir conversa em um toque.</p>
+            <h5>O que vai dentro</h5><ol><li>Três passos: a origem da água, o uso e a cidade</li><li>WhatsApp (38) 98405-5391, com o link de conversa no sticker</li><li>Horário em dois turnos: seg a sex, 8h–12h e 13h–17h</li><li>Boleto, Pix, dinheiro e cartões</li><li>O laudo no portal, com login e senha</li></ol>
+            <h5>Capa</h5><p>O balão de conversa na cor da identidade — o único dos cinco que pode usar o verde do WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Forma e o que ficou de fora</span>
+          <ul class="clean">
+            <li><b>Capa uniforme nos cinco:</b> mesmo estilo, cor da identidade (a do logo), ícone linear branco. Enquanto não houver foto real de operação, as capas são ícones — e isso é honesto. Pior que ícone é foto de banco fingindo ser o laboratório.</li>
+            <li><b>Título de uma ou duas palavras:</b> é o que cabe legível no círculo, no celular. Todos os cinco têm até 10 caracteres.</li>
+            <li><b>Nenhum story promete resultado.</b> A acreditação aparece sempre "conforme os escopos dos certificados"; nenhum story nomeia ensaio que o escopo não confirme.</li>
+            <li><b>Os stories já existem ou saem do material:</b> 26 no total, 4 marcados como pendentes de foto ou de autorização. Destaque vazio é pior que ausência — publicar cada um só quando tiver pelo menos 3 stories.</li>
+          </ul>
+          <h4 style="margin-top:16px">Alternativas descartadas</h4>
+          <div class="scroller"><table>
+            <tr><th>Candidato</th><th>Por que não</th></tr>
+            <tr><td><b>Dúvidas</b> (slot F)</td><td>É a editoria prioritária deste parceiro — mas no blog e no Google, onde o público procura. No Instagram viraria o sexto círculo. <b>Se um dia houver um sexto, é este.</b></td></tr>
+            <tr><td><b>Franquias</b></td><td>Interessa a quem quer comprar uma franquia, não a quem compra análise. A rede entra como um story dentro de Laboratório.</td></tr>
+            <tr><td><b>Equipe</b></td><td>Não há foto. Quando houver, entra dentro de Laboratório, não separado.</td></tr>
+            <tr><td><b>Cidades</b></td><td>A rota já vive em Coleta. Separado, repetiria.</td></tr>
+            <tr><td><b>Depoimentos</b></td><td>O conteúdo entrou inteiro; o nome não cabe no círculo. Virou <b>Clientes</b>.</td></tr>
+          </table></div>
         </div>
       </div>
-    </div>
 
+      <div class="csec" id="c-fixados">
+        <div class="csh"><span class="csn">5</span><div><h3>Posts fixados</h3><p>Os três primeiros posts que qualquer pessoa vê no feed. Cada um com legenda, sugestão de imagem e o texto que vai dentro da imagem. O rodapé de todos é a assinatura da seção 6 — por isso ela não se repete aqui.</p></div></div>
+        <div class="card">
+          <span class="badge">Fixado 1 · A empresa · slot A</span>
+          <h3>Análise de água e efluentes em Montes Claros desde 2003</h3>
+          <div class="fx3">
+            <div class="fxp">
+              <h4>Legenda</h4>
+              <div class="txt">
+                <p>A água que a sua empresa usa é o que você acha que ela é? 💧</p>
+                <p>O LAAE analisa água e efluentes em Montes Claros desde 2003, com serviços acreditados pela CGCRE do Inmetro conforme os escopos dos certificados.</p>
+                <p>Físico-química, microbiológica, efluente industrial e sanitário e programas de monitoramento — com coleta feita pela nossa equipe, dentro do prazo que a amostra exige.</p>
+                <p>📍 Coletamos em Montes Claros, Jaíba, Janaúba, Januária, Diamantina, Curvelo, Salinas, Araçuaí e Pirapora.</p>
+                <p>Precisa de uma análise? O WhatsApp está na imagem e no link da bio.</p>
+              </div>
+            </div>
+            <div class="fxp">
+              <h4>Sugestão de imagem</h4>
+              <ul class="clean">
+                <li><b>Formato:</b> imagem única, 4:5 (1080×1350) — é o que o feed mostra inteiro no celular.</li>
+                <li><b>A foto certa:</b> a bancada com um analista de jaleco e frascos etiquetados, luz natural, sem rosto em primeiro plano se não houver autorização de imagem.</li>
+                <li><b>Ela não existe no cadastro.</b> As 11 imagens não mostram operação — é a pendência de imagens da aba Parceiro.</li>
+                <li><b>Enquanto não chega:</b> a fachada com a placa do laboratório, ou o selo de acreditação sobre fundo da cor da identidade. Nunca foto de banco de laboratório genérico.</li>
+              </ul>
+            </div>
+            <div class="fxp">
+              <h4>Texto na imagem</h4>
+              <div class="mock"><span class="mk">Fixado 1 · 1080×1350</span><h6>Análise de água e efluentes</h6><p>Montes Claros/MG · desde 2003<br>Acreditado CGCRE/Inmetro</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+              <p class="mocknote">Título de 5 palavras, duas linhas de apoio. O rodapé é a assinatura da seção 6 — não se escreve de novo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Fixado 2 · O que oferece · slot B · 4 itens</span>
+          <h3>Quatro serviços — os quatro que já estão no cadastro</h3>
+          <p class="sub">Os itens são exatamente os quatro produtos cadastrados (711409, 711410, 711908 e 711909): nada além do que a empresa já declarou. Água de hemodiálise e as análises para o agro ficam para quando o escopo de acreditação chegar — aí entram no catálogo, não aqui.</p>
+          <div class="fx3">
+            <div class="fxp">
+              <h4>Legenda</h4>
+              <div class="txt">
+                <p>O que o LAAE analisa? Quatro serviços — e a coleta é nossa. 🧪</p>
+                <p>1️⃣ <b>Análise físico-química de água</b> — os parâmetros físicos e químicos, conforme o escopo de acreditação. Para água de consumo, de poço, superficial e industrial de processo.</p>
+                <p>2️⃣ <b>Análise microbiológica de água</b> — a presença de microrganismos, conforme o escopo. É o ensaio de quem precisa saber se a água está própria para o uso.</p>
+                <p>3️⃣ <b>Análise de efluentes</b> — industrial e sanitário, para quem tem estação de tratamento e precisa monitorar o que devolve ao ambiente.</p>
+                <p>4️⃣ <b>Amostragem de água</b> — a coleta feita pela nossa equipe, com equipamento multiparâmetro em campo e transporte com temperatura monitorada, dentro das 24 horas que a amostra exige.</p>
+                <p>Diga a origem da água e o uso, que a gente indica os ensaios. O WhatsApp está na imagem.</p>
+              </div>
+            </div>
+            <div class="fxp">
+              <h4>Sugestão de imagem</h4>
+              <ul class="clean">
+                <li><b>Formato:</b> carrossel de 5 lâminas, 4:5 — a capa e uma por serviço. Não precisa de lâmina final de CTA: o WhatsApp está no rodapé de todas e a chamada vai na legenda.</li>
+                <li><b>As fotos certas:</b> frasco etiquetado (físico-química), a bancada de microbiologia, um ponto de coleta em estação de tratamento (efluentes), a equipe coletando com a caixa térmica (amostragem).</li>
+                <li><b>Todas pendentes.</b> Até chegarem, cada lâmina leva o número grande e um ícone linear do serviço sobre a cor da identidade — legível e honesto.</li>
+                <li><b>Ordem das lâminas:</b> do que mais se pede ao que mais diferencia. A amostragem fecha porque é a que explica por que o laboratório é regional.</li>
+              </ul>
+            </div>
+            <div class="fxp">
+              <h4>Texto na imagem · por lâmina</h4>
+              <div class="mockrow">
+                <div class="mock sm"><span class="mk">Capa</span><h6>O que analisamos</h6><p>4 serviços · coleta própria</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+                <div class="mock sm"><span class="mk">Lâmina 1</span><h6>1 · Físico-química</h6><p>água de consumo, poço, superficial e de processo</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+                <div class="mock sm"><span class="mk">Lâmina 2</span><h6>2 · Microbiológica</h6><p>a água está própria para o uso?</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+                <div class="mock sm"><span class="mk">Lâmina 3</span><h6>3 · Efluentes</h6><p>industrial e sanitário</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+                <div class="mock sm"><span class="mk">Lâmina 4</span><h6>4 · Amostragem</h6><p>coleta nossa, dentro das 24 horas</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+              </div>
+              <p class="mocknote">Cada lâmina: título de até 3 palavras e uma linha de apoio. A assinatura fecha todas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Fixado 3 · Chamada para contato · slot C</span>
+          <h3>Precisa de uma análise? Fale com o laboratório.</h3>
+          <div class="grid3" style="margin-top:12px">
+            <div class="blk"><span class="ed ed3"><i></i>A frase de CTA</span><p style="font-size:15px;font-weight:800;margin-top:8px;letter-spacing:-.02em">Precisa de uma análise? Fale com o laboratório.</p><p class="bwhy">Sete palavras. Pergunta que qualifica e verbo que abre conversa — sem "solicite seu orçamento", que é linguagem de agência.</p></div>
+            <div class="blk"><span class="ed ed3"><i></i>A descrição breve</span><p style="font-size:13.4px;color:var(--g700);margin-top:8px">Diga a origem da água, o uso e a cidade. A gente indica os ensaios, agenda a coleta e entrega o laudo no portal.</p><p class="bwhy">Os três dados que o comercial pede de qualquer forma — dizer antes economiza uma rodada de mensagens.</p></div>
+            <div class="blk"><span class="ed ed3"><i></i>Os contatos principais</span><ul class="clean" style="margin-top:8px"><li><b>WhatsApp (38) 98405-5391</b> — o principal</li><li>comercial@lablaae.com.br</li><li>Seg a sex, 8h–12h e 13h–17h</li><li>Fixo (38) 2101-2881, para quem prefere ligar</li></ul></div>
+          </div>
+          <div class="fx3">
+            <div class="fxp">
+              <h4>Legenda</h4>
+              <div class="txt">
+                <p>Precisa de uma análise? Fale com o laboratório. 👇</p>
+                <p>Diga a origem da água, o uso e a cidade. A gente indica os ensaios, agenda a coleta e entrega o laudo no portal, com login e senha.</p>
+                <p>📱 WhatsApp: (38) 98405-5391<br>✉️ comercial@lablaae.com.br<br>☎️ (38) 2101-2881<br>⏰ Seg a sex, 8h–12h e 13h–17h</p>
+                <p>Pagamento em boleto, Pix, dinheiro e cartões. 🧾</p>
+              </div>
+            </div>
+            <div class="fxp">
+              <h4>Sugestão de imagem</h4>
+              <ul class="clean">
+                <li><b>Formato:</b> imagem única, 4:5. É uma peça de leitura: fundo sólido na cor da identidade, sem foto, e o ícone do WhatsApp grande como único elemento gráfico.</li>
+                <li><b>Se houver foto de atendimento</b> (alguém da equipe na recepção ou ao telefone), pode ser o fundo com escurecimento — mas não é necessária, e não existe hoje.</li>
+                <li><b>O número aparece duas vezes de propósito:</b> grande no corpo e na assinatura. É a única peça em que isso acontece.</li>
+              </ul>
+            </div>
+            <div class="fxp">
+              <h4>Texto na imagem</h4>
+              <div class="mock"><span class="mk">Fixado 3 · 1080×1350</span><h6>Precisa de uma análise?</h6><p class="big">(38) 98405-5391</p><p>Seg a sex · 8h–12h e 13h–17h<br>comercial@lablaae.com.br</p><span class="sig">Fale com o laboratório · (38) 98405-5391 · Montes Claros e Região</span></div>
+              <p class="mocknote">Título, o número em destaque, horário e e-mail. A assinatura fecha.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="note"><b>Ordem de fixar:</b> o Instagram coloca o último post fixado na primeira posição. Fixe na ordem <b>3 → 2 → 1</b> para o "Sobre" ficar à esquerda, e confira na tela depois de fixar. Nenhum dos três depende do escopo de acreditação — podem ir ao ar antes do primeiro tema do calendário, assim que a assinatura estiver aplicada.</div>
+      </div>
+
+      <div class="csec" id="c-assinatura">
+        <div class="csh"><span class="csn">6</span><div><h3>Assinatura de rodapé</h3><p>Definida aqui, e só aqui. Toda imagem publicada — post, carrossel, story de destaque — fecha com esta faixa, na mesma posição.</p></div></div>
+        <div class="card" style="border-color:rgba(167,1,253,.28)">
+          <span class="badge">Assinatura recomendada · 65 caracteres mais o ícone</span>
+          <div class="sigbar">Fale com o laboratório · <span class="wa" aria-hidden="true">✓</span>(38) 98405-5391 · Montes Claros e Região<small>faixa inferior de toda imagem publicada · mesma posição, sempre</small></div>
+          <p class="sub" style="margin-top:12px">Na arte, o ícone do WhatsApp entra antes do número em vez da palavra — economiza nove caracteres e é reconhecido de longe. O padrão é: <b>frase no tom da empresa · WhatsApp principal · terceiro elemento</b>. Aqui cada parte teve uma decisão, e as alternativas ficam registradas para a próxima revisão.</p>
+          <div class="scroller"><table>
+            <tr><th>Parte</th><th>Escolha</th><th>Por quê</th><th>Descartado</th></tr>
+            <tr><td><b>Frase</b></td><td>Fale com o laboratório</td><td>É como o dono fala: direto, sem slogan. E "o laboratório" é a palavra que o cliente usa quando pede a análise. Verbo de atendimento, quatro palavras.</td><td>"Solicite seu orçamento" (agência) · "Água analisada com confiança" (slogan, e promete)</td></tr>
+            <tr><td><b>WhatsApp</b></td><td>(38) 98405-5391, um só</td><td>É o único WhatsApp do cadastro e o canal que guarda por escrito a origem da água e o pedido — o que uma venda B2B precisa. A reunião registra a queixa exata que a assinatura resolve: <i>"no seu site não tem o seu telefone também, é muito difícil chegar… aí acaba a venda"</i>.</td><td>O fixo (38) 2101-2881: dois números na faixa dividem a atenção. Ele fica no fixado 3 e no perfil do Google</td></tr>
+            <tr><td><b>Terceiro elemento</b></td><td>Montes Claros e Região</td><td>O laboratório <b>vai até o cliente</b> — coleta própria em nove cidades. Quem vê o post precisa saber, na hora, que a cidade dele é atendida. "Região" cobre Jaíba, Janaúba, Januária e as outras sem virar lista.</td><td><b>Site:</b> lablaae.com.br é "estacionado" e pesado, palavras da reunião, e não é onde o pedido acontece · <b>Endereço:</b> B2B, ninguém entra na loja; a coleta vai até o cliente. Endereço fica no Google e no fixado 3</td></tr>
+          </table></div>
+          <div class="note" style="background:var(--tint-mint);color:#0A4A36"><b>Gatilho de revisão: o Solusite no ar.</b> Aí o site passa a existir como destino, e a decisão volta à mesa — a regra do padrão diz que o site entra na assinatura só se for onde o pedido acontece. Enquanto o pedido acontecer no WhatsApp, a assinatura não muda: o site vai para o link da bio e para o fixado 3.</div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Como aplicar</span>
+          <ul class="clean">
+            <li><b>Posição:</b> faixa inferior, 8 a 10% da altura da imagem, em toda peça — post, cada lâmina do carrossel e os stories dos destaques. No story, a faixa sobe para a zona segura, acima dos ~250 px que a barra de resposta cobre.</li>
+            <li><b>Legibilidade:</b> nada abaixo de 26 px numa imagem de 1080 px de largura; fundo sólido (branco a 94% com texto na cor escura da identidade, ou o inverso); contraste de pelo menos 4,5:1. Não tem que ser bonita — tem que ser lida no polegar.</li>
+            <li><b>Fonte:</b> a da identidade do laboratório. Se não houver uma definida, DM Sans ou Inter, em peso 700 ou 800.</li>
+            <li><b>Uma linha só.</b> Se em algum formato não couber, cai o terceiro elemento antes de qualquer outra coisa — nunca o número.</li>
+            <li><b>Definida aqui, e só aqui.</b> Legenda e texto de imagem não a repetem. Quem produz aplica o mesmo rodapé sempre; quem revisa confere esta seção, não cada post.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="csec" id="c-uso">
+        <div class="csh"><span class="csn">7</span><div><h3>Filtros e como usar</h3><p>O que cada tema passou para entrar, e a ordem de produção — do que rende quatro canais com um texto ao que depende de foto e de escopo.</p></div></div>
     <div class="card">
       <span class="badge">Os quatro filtros que cada tema passou</span>
       <ul class="clean">
@@ -1054,6 +1326,7 @@
     <div class="card">
       <span class="badge warn">Como usar</span>
       <ul class="clean">
+        <li><b>Antes do primeiro tema:</b> o perfil precisa estar montado. A ordem é a assinatura (seção 6), depois os três fixados (5), depois os cinco destaques (4) — só então o calendário começa.</li>
         <li><b>Ritmo:</b> 2 temas/mês fecham o ano; a ordem dentro de cada editoria já vai do mais fácil de produzir ao mais trabalhoso.</li>
         <li><b>A E6 é a prioridade deste parceiro</b>, e não por gosto: é o slot que rende quatro canais com um texto só, e o objetivo declarado na reunião é posicionamento orgânico no Google. Se o calendário encolher, ela é a última a cair.</li>
         <li><b>Comece pelos temas 21 a 24.</b> São os que capturam busca imediatamente e os que não dependem de foto nova nem do escopo de acreditação.</li>
@@ -1062,6 +1335,294 @@
         <li><b>Não invente sazonalidade local.</b> Datas de Montes Claros e do calendário do agronegócio da região entram só depois de confirmadas com o parceiro.</li>
         <li><b>Quando o campo de buscas reais começar a se preencher</b>, refazer o slot F com as buscas de verdade e aposentar os termos curados da categoria.</li>
       </ul>
+    </div>
+
+      </div>
+
+      <div class="csec" id="c-prompt">
+        <div class="csh"><span class="csn">8</span><div><h3>O prompt</h3><p>O texto que gera tudo isto a partir do cadastro. Versão vigente, na íntegra, com botão de copiar.</p></div></div>
+        <div class="card">
+          <span class="badge">§8.1 de <code style="text-transform:none;letter-spacing:0">docs/editorias-conteudo.md</code> · texto vigente</span>
+          <h3>Cole este bloco e, em seguida, o JSON do getData da empresa</h3>
+          <p class="sub">É o mesmo prompt que gerou esta aba: as verificações, os 6 slots, as regras, as datas comemorativas, os 5 destaques, os 3 fixados e a assinatura. Está copiado do arquivo-fonte na íntegra — quando o padrão mudar, esta página é regenerada; ninguém edita o prompt aqui à mão.</p>
+          <button type="button" class="copybtn" onclick="copyPrompt(this)">Copiar o prompt</button>
+          <pre class="prompt" id="prompt-text">PAPEL
+Você é o planejador de pauta da Solutudo. A partir do cadastro que a empresa mantém na Solutudo,
+você devolve 6 editorias e 24 temas de conteúdo para um ano, mais as três peças fixas do perfil:
+os 5 destaques do Instagram, os 3 posts fixados e a assinatura de rodapé. Você não escreve os
+posts do calendário — você define os eixos e as pautas, com o lastro de cada uma declarado. As
+únicas legendas que você escreve são as dos 3 fixados.
+
+REGRA QUE GOVERNA TUDO: nada é inventado. Todo tema rastreia a um fato do material recebido. O que
+não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS.
+
+ENTRADA
+1. OBRIGATÓRIO — o JSON de retorno do getData?id=&lt;ID&gt; da empresa.
+2. OPCIONAL — o conteúdo do site oficial da empresa (colado ou em anexo).
+3. OPCIONAL — a análise da transcrição da reunião comercial, quando existir no payload em
+   &quot;Processo comercial&quot;.
+
+QUANDO HOUVER MAIS DE UMA FONTE, CADA UMA TEM UMA FUNÇÃO:
+- Cadastro e reunião mandam na ESTRATÉGIA: público, dor com prazo, o que entra e o que não entra,
+  território, qual editoria é prioridade.
+- Site oficial manda no DETALHE TÉCNICO: como o processo é feito, aplicações nomeadas,
+  certificações, provas de autoridade.
+- Quando as duas discordam, o dado em conflito SAI do conteúdo e vira pendência humana. Nunca
+  escolha um lado.
+
+============================================================
+PARTE 1 — VERIFICAÇÕES ANTES DE GERAR
+Faça as cinco, nesta ordem, e relate o resultado de cada uma antes das editorias.
+============================================================
+
+1. PORTÃO DE POLÍTICA. Leia &quot;Anotações internas sobre a empresa&quot;. Se houver nota com
+   &quot;Nota prioritária&quot;: true, leia o texto dela. Se a nota restringir geração de conteúdo ou uso de
+   IA, PARE: não gere as editorias, relate a nota literalmente e pergunte o alcance da restrição.
+   Não prossiga por conta própria.
+
+2. DATA DE FUNDAÇÃO. Em &quot;Processo comercial&quot; → &quot;Pesquisa durante a feitura do contrato&quot; →
+   &quot;Em que ano a empresa foi fundada?&quot;. Se o valor for uma DATA COMPLETA respondendo a uma pergunta
+   de ANO, é valor-padrão de seletor, não fato. Não use em canal nenhum. Procure o ano real na
+   descrição da empresa e na transcrição — se achar, use esse e registre a divergência. Se não
+   achar, nenhum tema usa datação.
+
+3. AUTENTICIDADE DAS PALAVRAS-CHAVE. Em &quot;Palavras-chave particulares&quot;. Elas deveriam ser buscas
+   reais que já encontraram a empresa — é o insumo mais rico que existe. Antes de usar, teste:
+   - Estão em ordem alfabética? Busca capturada chega por frequência ou data, nunca alfabetada.
+   - Terminam com ponto final? Ninguém digita ponto no fim de uma busca.
+   - Os erros são de digitação (singular/plural trocado) ou de busca (grafia fonética, nome errado)?
+   - Há superlativos redigidos (&quot;top fornecedor de&quot;, &quot;melhor empresa de&quot;)? Ninguém digita isso.
+   Se falharem no teste, NÃO são buscas reais. Declare isso como achado e passe para a substituição
+   da regra 6 abaixo.
+
+4. TEXTO CORROMPIDO. Procure nos campos de descrição, da empresa e dos produtos, o markup
+   font dir=&quot;auto&quot; e vertical-align: inherit. É assinatura de tradutor automático do navegador,
+   copiado da tela e colado de volta. Onde aparecer, o texto está corrompido: procure frases sem
+   sentido, palavras trocadas e espaços de largura zero. Não use esses textos como fonte de fato
+   sem conferir. Relate quais produtos estão afetados.
+
+5. CONFLITOS. Liste toda divergência entre cadastro, site e reunião. Cada uma sai do conteúdo e vira
+   pendência nomeada.
+
+============================================================
+PARTE 2 — DE ONDE SAI CADA SLOT
+============================================================
+
+A · PROCESSO E ORIGEM  → &quot;Descrição&quot;, certificações, ano de fundação, o modo de fazer que a reunião
+                          ou o site descrevem, restrições técnicas da operação.
+B · OFERTA / CATÁLOGO  → &quot;Produtos&quot;, &quot;Categorias&quot;, aplicações nomeadas pelo site.
+C · CONVERSÃO          → &quot;Horários de funcionamento&quot;, &quot;Formas de Pagamento&quot;, &quot;Contatos&quot;, canais de
+                          pedido, portais e prazos.
+D · PÚBLICO            → &quot;Características do estabelecimento&quot;, segmentos de cliente citados na
+                          reunião, depoimentos (inclusive os guardados em campos errados de &quot;Fotos&quot;).
+E · TERRITÓRIO         → &quot;Endereços&quot;, &quot;Cidade na página de busca&quot;, cidades citadas na descrição,
+                          raio de atuação, rede de unidades.
+F · DÚVIDAS (AEO)      → &quot;Palavras-chave particulares&quot;, se passarem no teste 3.
+
+============================================================
+PARTE 3 — AS REGRAS
+============================================================
+
+1. EDITORIA É EIXO, NÃO TEMA. Uma editoria só existe se houver PELO MENOS 2 FATOS que a sustentem,
+   porque ela precisa render 4 publicações sem ninguém inventar nada. Eixo com 1 fato vira tema
+   avulso dentro de outra editoria. Com zero, vira pendência de CS — nunca editoria vazia.
+
+2. OS 6 SLOTS SÃO FIXOS E A FUNÇÃO DE CADA UM NÃO MUDA. O que muda de empresa para empresa é o nome
+   e quem ocupa. A · processo e origem · B · oferta · C · conversão · D · público e experiência ·
+   E · território · F · dúvidas.
+
+3. NOME DA EDITORIA: 2 a 4 palavras, na linguagem do negócio, nunca na do marketing. Proibido
+   &quot;Conversão&quot;, &quot;Awareness&quot;, &quot;Institucional&quot;, &quot;Engajamento&quot;. Prefira o que o cliente diria.
+   - O slot E leva o nome do LUGAR quando o território é um lugar só (&quot;Botucatu é aqui&quot;).
+   - Quando há rota, região multi-cidade ou rede em expansão, leva o nome do ALCANCE
+     (&quot;Onde a gente chega&quot;) — topônimo brigaria com os temas.
+   - TESTE OBRIGATÓRIO: se um dos 4 temas contradiz o nome da editoria, o nome está errado.
+
+4. 24 TEMAS: 4 por editoria, o que dá 2 por mês no ano. Cada tema nasce de UM FATO ESPECÍFICO, não
+   de um assunto genérico. Dentro de cada editoria, os 4 progridem do mais fácil de produzir ao mais
+   trabalhoso.
+
+5. MARQUE EXPLICITAMENTE:
+   - 1 TEMA ÚNICO: o que nenhum concorrente conseguiria publicar. É o ativo mais valioso do
+     calendário. Diga por que ele é impublicável pelos outros.
+   - 1 SÉRIE RECORRENTE: tema repetível que salva o calendário quando faltar pauta.
+
+6. QUANDO NÃO HOUVER BUSCAS REAIS (campo vazio, ou reprovado no teste 3), a ordem de substituição é:
+   1) &quot;curated_keywords&quot; e &quot;main_keywords&quot; das categorias; 2) dúvidas clássicas do setor, extraídas
+   do que o próprio texto da empresa evita responder; 3) o que o CS ouve no atendimento — pendência
+   registrada, não invenção. E declare a lacuna: &quot;este perfil não tem busca real capturada&quot; é um
+   achado, não um detalhe.
+
+7. OS 4 FILTROS. Todo tema passa pelos quatro, e você relata o que CAIU em cada um:
+   1) Tem lastro? Rastreia a um fato do material? Se não, cai.
+   2) Termina em ação? Todo tema do slot C fecha em contato real, com o canal do cadastro.
+   3) É replicável por qualquer concorrente? Se sim, ou ganha um fato próprio, ou cai.
+   4) Setor regulado ou técnico: tema que só funciona prometendo resultado não entra. Não nomeie
+      número, ensaio, parâmetro ou norma que o material não confirme.
+
+8. DATAS COMEMORATIVAS — OBRIGATÓRIO quando houver alguma que cruze. A regra é o cruzamento, não a
+   efeméride: a data não é o assunto, a data é o gancho. O post continua sendo sobre o serviço, o
+   dado ou a operação da empresa, publicado no dia em que o assunto já está na cabeça de quem lê.
+
+   PROCURE EM CINCO FRENTES, não no calendário geral:
+   a) SEGMENTO — datas do que a empresa faz. Laboratório de água tem 22/03 (Dia Mundial da Água);
+      uma pizzaria não tem essa, e tem outras.
+   b) ÁREA DE ATUAÇÃO — datas do setor: meio ambiente, saneamento, construção, saúde, educação.
+   c) PÚBLICO ATENDIDO — datas de quem compra dela: dia do engenheiro, do arquiteto, do produtor
+      rural, datas do setor do cliente.
+   d) PROFISSÕES E CICLO — dia do profissional que trabalha na casa, e o ritmo do setor: safra,
+      temporada, período de vistoria, fechamento fiscal.
+   e) A PRÓPRIA EMPRESA — aniversário de fundação e MARCOS REDONDOS: 10, 15, 20, 25 anos. Esta é a
+      única frente impublicável por qualquer concorrente, e carrega a prova de permanência. Se a
+      fundação estiver confirmada, calcule qual marco cai nos próximos anos e traga o mais próximo
+      como pauta a preparar com antecedência. ATENÇÃO: a data de fundação do cadastro costuma ser
+      valor-padrão — só use marco redondo com o ano confirmado por outra fonte (descrição, site ou
+      reunião). Sem confirmação, vira pendência de CS, nunca pauta.
+
+   COMO DECIDIR:
+   - Cruze cada data com um fato do material. Data sem fato para cruzar não entra.
+   - NÃO HÁ TETO. Quantas datas cruzarem com fatos, entram. O que existe é PISO: havendo alguma que
+     cruze, ela precisa aparecer.
+   - AS DATAS NÃO OCUPAM EDITORIA EXCLUSIVA. Entram como abordagem eventual dentro de uma editoria
+     que já existe. Nunca crie uma sétima editoria de calendário.
+   - QUAL EDITORIA CARREGA, por ordem de preferência: D · PÚBLICO é o padrão, porque a maioria das
+     datas é sobre gente — profissões, famílias, segmentos de cliente. E · TERRITÓRIO quando a data
+     é do lugar (aniversário da cidade, festa regional). A · PROCESSO E ORIGEM quando a data é da
+     própria empresa (aniversário e marcos redondos).
+   - Data não verificável entra como &quot;confirmar calendário com o parceiro&quot;, nunca como fato.
+   - Liste as datas descartadas e o motivo.
+   - SE NADA CRUZAR, diga com todas as letras: &quot;este segmento não tem data própria que cruze, e por
+     isto:&quot; e explique. Omitir em silêncio não é resposta aceitável.
+
+9. DISTRIBUIÇÃO POR CANAL. Cada editoria tem destino em mais de um canal: post, FAQ da página,
+   Google (publicações e Q&amp;A) e blocos do site. O slot F é o de maior alavancagem — a mesma resposta
+   vira quatro canais com um texto só. Se o material disser onde o público está, a distribuição
+   segue o público: a arquitetura dos 6 slots não muda, o peso entre canais muda.
+
+============================================================
+PARTE 4 — AS PEÇAS FIXAS DO PERFIL
+Além das editorias, entregue as três peças que ficam paradas no topo do perfil. Elas saem dos
+mesmos fatos: são os slots A, B, C e D em versão estática.
+============================================================
+
+1. OS 5 DESTAQUES DO INSTAGRAM (os círculos abaixo da bio).
+   POR QUE IMPORTAM: o feed é cronológico e o story dura 24 horas; os destaques são o único
+   conteúdo permanente, ordenado e clicável do perfil, e são o que quem acabou de chegar toca antes
+   de rolar qualquer post. Em cinco círculos, na ordem, eles respondem a quem não conhece a empresa:
+   quem é você, o que vende, por que você, quem já confia, como eu compro. Diga, para ESTE
+   segmento, por que eles importam: em venda técnica ou B2B o perfil é conferido antes do contato e
+   os destaques valem mais que o feed; em público consumidor com loja, o perfil é ponto de venda e a
+   oferta vem primeiro; em linha de produto, o produto abre e as obras fazem a prova; em setor
+   regulado, &quot;como funciona&quot; ocupa o lugar do diferencial.
+   AS CINCO FUNÇÕES (ordem padrão; reordene se o segmento pedir, e diga por quê):
+     1) SOBRE — quem é a empresa (slot A): fundação confirmada, credenciais, lugar, equipe.
+     2) OFERTA — o que vende (slot B): serviços, linhas, aplicações nomeadas.
+     3) DIFERENCIAL — como faz e o que é só dela (slot A ou E): o tema único costuma morar aqui.
+     4) PROVA SOCIAL — quem já confia (slot D): depoimentos e clientes, só com autorização.
+     5) CONTATO — como comprar (slot C): passos para pedir, canais, horário, pagamento.
+   O slot F não ganha destaque por padrão (rende mais em blog, Google e FAQ). Se trocar, diga.
+   PARA CADA DESTAQUE ENTREGUE: o título (1 a 2 palavras, até ~11 caracteres — o que cabe legível
+   no círculo), o que vai dentro (3 a 6 stories que já existem ou saem do material), a capa
+   sugerida (estilo uniforme nos cinco, cor da identidade da empresa) e por que ele está nessa
+   posição. Nenhum story promete resultado. Prova social só com autorização. O quinto sempre
+   termina em contato. Liste as alternativas descartadas e o motivo.
+
+2. OS 3 POSTS FIXADOS. A função de cada um é fixa:
+     FIXADO 1 — a empresa: quem é, desde quando, credencial, onde (slot A).
+     FIXADO 2 — o que oferece: serviços, áreas de atuação ou linhas de produto, ATÉ 4 ITENS seja
+                qual for o formato (slot B).
+     FIXADO 3 — chamada para contato: UMA FRASE CURTA de CTA, uma descrição breve e os contatos
+                principais — geralmente o WhatsApp (slot C).
+   PARA CADA FIXADO ENTREGUE TRÊS PARTES:
+     a) LEGENDA — no tom da empresa, só com fatos do material, terminando em ação. Sem hashtag, a
+        menos que a empresa já use.
+     b) SUGESTÃO DE IMAGEM — única ou carrossel; qual foto real usar; e, se ela não existe no
+        cadastro, o caminho honesto enquanto não chega (fachada, selo, fundo da marca). Nunca banco
+        de imagens fingindo ser a empresa.
+     c) TEXTO NA IMAGEM — título de até 6 palavras e no máximo 2 linhas de apoio; por lâmina, se
+        carrossel. Não repita a assinatura: ela já está no rodapé.
+   Diga a ordem de fixar: o Instagram põe o último fixado na primeira posição — fixe 3, 2 e 1.
+
+3. A ASSINATURA DE RODAPÉ — a faixa que fecha TODA imagem publicada. Defina UMA VEZ, aqui, e não a
+   repita em legenda nem em texto de imagem.
+   FÓRMULA: frase no tom da empresa · WhatsApp principal (· segundo WhatsApp só se houver duas
+   linhas de atendimento) · terceiro elemento. Uma linha, até ~70 caracteres, mesma posição em
+   toda peça, legível no celular.
+   - A FRASE: 2 a 5 palavras, com verbo de atendimento, tirada do jeito que a empresa fala no
+     material. Nunca slogan de agência.
+   - O WHATSAPP: com DDD. Fixo não entra na imagem — fica no fixado 3 e no Google.
+   - O TERCEIRO ELEMENTO, um só, por regra:
+       vai até o cliente ou atende região (coleta, obra, entrega, rota) → &quot;Cidade e Região&quot;;
+       tem UMA loja física onde o cliente entra → o endereço curto;
+       tem site atual E ele é o destino da conversão → o site, sem https;
+       site pesado, desatualizado ou que não converte → não entra, e fica escrito o gatilho de
+       revisão (quando o site novo ou o Solusite estiver no ar);
+       várias lojas → &quot;Cidade e Região&quot;, nunca lista de endereços;
+       nada se aplica → frase + WhatsApp.
+   Entregue a assinatura recomendada, a justificativa de cada parte, o gatilho de revisão e as
+   alternativas descartadas.
+
+============================================================
+PARTE 5 — FORMATO DA SAÍDA
+============================================================
+
+1. VERIFICAÇÕES — resultado das cinco, uma linha cada.
+
+2. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
+   contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
+
+3. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
+
+   NN · Nome da editoria            (2 a 4 palavras, linguagem do negócio)
+   Objetivo                         (uma frase: o que esta editoria faz)
+   CONTEÚDOS                        (lista de referência dos assuntos que ela cobre)
+   ESSA EDITORIA RESPONDE           (a pergunta do cliente, escrita como ele faria)
+
+   Sobre os CONTEÚDOS: é um BANCO DE REFERÊNCIA, não um calendário. Não há número fixo de itens —
+   liste tudo que a editoria sustenta com lastro. Item que depende de confirmação entra na lista
+   COM A CONDIÇÃO ESCRITA, não fica de fora. Exemplos do padrão da casa: &quot;Origem e trajetória da
+   empresa, após validação da história oficial&quot;; &quot;Formas de pagamento, depois de validadas com o
+   setor comercial&quot;; &quot;acabamentos e instalações, após confirmação técnica&quot;.
+
+   Sobre a PERGUNTA do fim: é obrigatória e é o que valida a editoria. Se você não consegue escrever
+   a pergunta que o cliente faria, a editoria não tem função — refaça.
+
+   Marque dentro dos CONTEÚDOS, onde couber:
+   - a SÉRIE RECORRENTE, nomeada. Padrão da casa: &quot;&lt;Marca&gt; perto da sua &lt;coisa&gt;&quot;.
+   - as DATAS COMEMORATIVAS, com a nota de que entram como abordagem eventual, sem editoria
+     exclusiva.
+   - no slot E, quando houver muitas praças, agrupe em FRENTES TERRITORIAIS em vez de listar em
+     fila — cada frente com sua lista e sua lógica de operação.
+
+4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
+   cruzaram e com qual fato, as que dependem de confirmação, e as descartadas com o motivo. Se houver
+   marco redondo da empresa nos próximos anos, diga qual ano e quantos anos. Se nada cruzar, diga
+   aqui e justifique.
+
+5. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
+
+6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
+
+7. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
+   com título, o que vai dentro, capa e por quê; e as alternativas descartadas com o motivo.
+
+8. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
+   de fixar.
+
+9. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
+   revisão e as alternativas descartadas.
+
+10. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
+
+OPCIONAL, só se pedirem: o CALENDÁRIO DE 24 TEMAS — 4 por editoria, derivado do banco de conteúdos,
+com o tema único e a série recorrente marcados.
+
+Não escreva os posts do calendário — só as legendas dos 3 fixados. Não invente número, norma,
+parâmetro, data nem foto que não existe. Se faltar insumo, registre a lacuna e siga.</pre>
+        </div>
+      </div>
+
+    </div>
     </div>
 
   </section>
@@ -1102,17 +1663,67 @@
       if(dw && dw.classList.contains('on')) closeItem();
     }
   });
-  function show(which){
+  function show(which, keep){
     ['parc','dest','site','gmb','soc','cont'].forEach(function(k){
       document.getElementById('p-'+k).classList.toggle('on', which===k);
       document.getElementById('t-'+k).classList.toggle('on', which===k);
     });
     closeItem();
     history.replaceState(null,'','#'+which);
-    window.scrollTo({top:0,behavior:'smooth'});
+    if(!keep) window.scrollTo({top:0,behavior:'smooth'});
   }
+  function tbh(){ var t = document.querySelector('.topbar'); if(t) document.documentElement.style.setProperty('--tbh', t.offsetHeight + 'px'); }
+  tbh(); window.addEventListener('resize', tbh);
+  function goSec(id){
+    var el = document.getElementById(id); if(!el) return false;
+    show('cont', true);
+    setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); history.replaceState(null,'','#'+id); }, 30);
+    return false;
+  }
+  function copyPrompt(btn){
+    var t = document.getElementById('prompt-text').textContent;
+    function ok(){ btn.textContent = 'Copiado ✓'; setTimeout(function(){ btn.textContent = 'Copiar o prompt'; }, 2200); }
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly',''); ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok, fallback); } else { fallback(); }
+  }
+  (function(){
+    var links = [].slice.call(document.querySelectorAll('.cm-i'));
+    var secs = [].slice.call(document.querySelectorAll('.csec'));
+    if(!('IntersectionObserver' in window) || !secs.length) return;
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var id = e.target.id;
+        links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href') === '#' + id); });
+        // no celular o menu é uma faixa horizontal: traz o chip ativo para a vista
+        var on = document.querySelector('.cm-i.on'), menu = document.querySelector('.cont-menu');
+        if(on && menu && getComputedStyle(menu).flexDirection === 'row'){ menu.scrollTo({left: Math.max(0, on.offsetLeft - 12), behavior:'smooth'}); }
+      });
+    }, {rootMargin:'-25% 0px -65% 0px', threshold:0});
+    secs.forEach(function(x){ io.observe(x); });
+  })();
   var h = location.hash.replace('#','');
   if(['dest','site','gmb','soc','cont'].indexOf(h) >= 0) show(h);
+  else if(h.indexOf('c-') === 0 && document.getElementById(h)){
+    show('cont', true);
+    var jump = function(){ var el = document.getElementById(h); if(!el) return; var de = document.documentElement, prev = de.style.scrollBehavior; de.style.scrollBehavior = 'auto'; el.scrollIntoView({block:'start'}); de.style.scrollBehavior = prev; };
+    setTimeout(jump, 50);
+    // a página muda de altura enquanto a fonte e as imagens carregam: repete o salto a cada mudança,
+    // por até 3 s, e para na primeira interação do leitor
+    var ro = null;
+    var stop = function(){ if(ro){ ro.disconnect(); ro = null; } };
+    if('ResizeObserver' in window){
+      ro = new ResizeObserver(function(){ jump(); });
+      ro.observe(document.body);
+      setTimeout(stop, 3000);
+      ['wheel','touchstart','keydown'].forEach(function(ev){ window.addEventListener(ev, stop, {passive:true, once:true}); });
+    }
+  }
 </script>
 <script src="../parceiros.js" defer></script>
 </body>
