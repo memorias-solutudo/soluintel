@@ -101,7 +101,7 @@ ocupa depende do negócio.**
 
 ## 4.1 Datas comemorativas — o cruzamento, não a efeméride
 
-**Status:** vigente desde 08/09/2026 · primeiro caso aplicado: LAAE Laboratório (ID 32069845)
+**Status:** vigente desde 08/09/2026 · revisto em 10/09/2026 com os casos EA3 e Blocok
 
 Datas entram no calendário **quando fazem sentido para o segmento e o público** — e nunca como
 efeméride solta. A regra cabe em uma linha:
@@ -121,43 +121,91 @@ estados, **isso aqui não tem nada**."* A análise da transcrição classificou 
 genérico aplicado a unidades diferentes**. Data sem cruzamento é o exemplo mais fácil de conteúdo que
 parece trabalho e não é.
 
+### As cinco frentes onde procurar
+
+Não é o calendário geral. São cinco origens, e a quinta é a mais subestimada:
+
+| Frente | O que procurar | Exemplo |
+|---|---|---|
+| **a) Segmento** | datas do que a empresa faz | Dia Mundial da Água para laboratório de água |
+| **b) Área de atuação** | datas do setor em que opera | meio ambiente, saneamento, construção, saúde |
+| **c) Público atendido** | datas de quem compra dela | dia do engenheiro, do arquiteto, do produtor rural |
+| **d) Profissões e ciclo** | quem trabalha na casa e o ritmo do setor | safra, temporada, vistoria, fechamento fiscal |
+| **e) A própria empresa** | **aniversário e marcos redondos** | 10, 15, 20, 25 anos de fundação |
+
+**A frente (e) é a única impublicável por qualquer concorrente.** O aniversário da empresa e o ano em
+que ela completa uma década, quinze ou vinte anos são datas exclusivas — nenhum concorrente pode
+usar, e elas carregam a prova de permanência que o público técnico valoriza. Se a fundação estiver
+confirmada, **o marco redondo mais próximo entra no calendário do ano em que cai**, planejado com
+antecedência: "2028 — 25 anos" é pauta que se prepara em 2027, não que se descobre na véspera.
+
+> **Atenção ao valor-padrão.** A data de fundação do cadastro é notoriamente contaminada — cinco de
+> cinco parceiros trazem `12/05/1999`. Marco redondo só entra com o ano confirmado por outra fonte
+> (descrição da empresa, site, reunião). Sem confirmação, vira pendência de CS, nunca pauta.
+
 ### Como aplicar
 
-1. **Procure em quatro frentes**, não só no calendário geral:
-   **segmento** (o que a empresa faz), **área de atuação** (o setor em que opera), **público
-   atendido** (datas de quem compra dela) e **profissões e ciclo** (dia do profissional da casa,
-   aniversário da empresa, safra, temporada, período de vistoria). Um laboratório de água tem
-   22/03, 05/06 e 19/11 pelo segmento; uma empresa que vende para engenheiro tem o dia do
-   engenheiro pelo público. Uma pizzaria não tem nenhuma dessas, e tem outras.
-2. **Cruze com um fato do cadastro.** Se a data não encontra um fato próprio para cruzar, ela cai.
-   O teste é o mesmo do filtro 3: *qualquer concorrente publicaria isso?* Se sim, não entra.
-3. **Uma editoria carrega datas, sempre que houver alguma que cruze — pelo menos 1 tema e no
-   máximo 2.** Qual editoria depende de onde a data cruza melhor: **E** quando é do território,
-   **D** quando é do público, **A** quando é da profissão ou do processo. A função do slot não
-   muda; a data entra onde tem lastro. E se o negócio não tiver data nenhuma que cruze, isso é
-   **achado declarado**, não omissão silenciosa.
-4. **As demais datas viram âncora, não tema novo.** O padrão fixa 24 temas; datas adicionais
-   **escolhem quando** um tema existente é publicado. Isso resolve parte do calendário sem inventar
-   pauta.
-5. **Data não verificada fica marcada como tal.** Vale a regra 8 do prompt: aniversário da empresa,
-   aniversário da cidade, dia do profissional e calendário agrícola entram como *"confirmar com o
-   parceiro"* — nunca como fato.
-6. **Registre o que ficou de fora e por quê.** Natal, Dia das Mães, Páscoa e São João não têm
-   cruzamento em negócio B2B técnico. Escrever isso na central evita que alguém "complete" o
-   calendário com enfeite depois.
+1. **Percorra as cinco frentes** e liste as datas candidatas.
+2. **Cruze cada uma com um fato do material.** Se a data não encontra um fato próprio para cruzar,
+   ela cai. O teste é o do filtro 3: *qualquer concorrente publicaria isso?* Se sim, não entra.
+3. **Não há teto.** Quantas datas cruzarem com fatos, entram. O que existe é **piso**: havendo
+   alguma que cruze, ela precisa aparecer.
+4. **As datas não ocupam editoria exclusiva.** Elas entram como **abordagem eventual dentro de uma
+   editoria que já existe** — foi o que os casos EA3 e Blocok fizeram, os dois na editoria de
+   público. Nunca crie uma sétima editoria de calendário.
+5. **Qual editoria carrega**, por ordem de preferência:
+   - **D · Público** é o padrão. A maioria das datas comemorativas é sobre gente — profissões,
+     famílias, segmentos de cliente. Foi onde EA3 e Blocok colocaram.
+   - **E · Território** quando a data é do lugar: aniversário da cidade, festa regional.
+   - **A · Processo e origem** quando a data é da própria empresa: aniversário e marcos redondos.
+6. **Data não verificada fica marcada como tal** — aniversário da cidade, dia do profissional e
+   calendário agrícola entram como *"confirmar calendário com o parceiro"*, nunca como fato.
+7. **Registre o que ficou de fora e por quê.** Natal, Dia das Mães, Páscoa e São João raramente têm
+   cruzamento em negócio B2B técnico. Escrever isso evita que alguém "complete" o calendário com
+   enfeite depois.
+8. **Se nada cruzar, diga.** "Este segmento não tem data própria que cruze, e por isto:" é achado
+   declarado. Omitir em silêncio não é resposta.
 
-### O que isso muda no prompt do agente
+---
 
-Acrescente ao prompt da §8, entre as regras 7 e 8:
+## 4.2 O formato de referência — como as editorias são entregues
 
-> **7.1** Procure datas de calendário em quatro frentes — **segmento**, **área de atuação**,
-> **público atendido** e **profissões e ciclo do setor** — e cruze cada uma com um fato do envelope.
-> **Uma editoria tem de carregar datas sempre que houver alguma que cruze: pelo menos 1 e no máximo
-> 2 como tema**, na editoria em que a data tem lastro (E para território, D para público, A para
-> profissão ou processo). As demais devolva como **âncora de publicação** de temas já existentes.
-> Data sem fato para cruzar não entra. Data não verificável entra como "confirmar com o parceiro".
-> Liste as descartadas com o motivo, e diga qual editoria ficou com as datas. Se nenhuma data
-> cruzar, declare isso como achado e explique — não omita.
+**Status:** vigente · formato aplicado em EA3 Engenharia e Blocok O Original
+
+Cada editoria é entregue com **três partes fixas**, nesta ordem:
+
+| Parte | O que é |
+|---|---|
+| **Nome** | 2 a 4 palavras, na linguagem do negócio |
+| **Objetivo** | uma frase dizendo o que a editoria faz |
+| **CONTEÚDOS** | a lista de referência de assuntos que ela cobre |
+| **ESSA EDITORIA RESPONDE** | a pergunta do cliente que ela responde, escrita como ele faria |
+
+A lista de **CONTEÚDOS não tem número fixo**: é um banco de referência, não um calendário. Na EA3 as
+editorias vão de 14 a 24 itens. O calendário de 24 temas (§4) é um **segundo passo**, derivado desse
+banco quando alguém precisa de pauta datada.
+
+**A pergunta do fim é obrigatória** e é o que valida a editoria. Se você não consegue escrever a
+pergunta que o cliente faria, a editoria não tem função — ela é um agrupamento arbitrário. Exemplos
+da EA3: *"Por que confiar a minha obra à EA3 Construtora?"*, *"O que exatamente a EA3 Construtora
+faz?"*, *"Como começo meu projeto?"*, *"A EA3 atende um projeto como o meu?"*, *"A EA3 atende a minha
+cidade ou o meu condomínio?"*, *"Aquela dúvida que eu teria antes de contratar uma construtora."*
+
+### Dois recursos do slot E
+
+- **Frentes territoriais.** Quando a empresa atende muitas praças, agrupe em frentes em vez de listar
+  tudo em fila. A EA3 separou *"Avaré e condomínios"* de *"Outras cidades atendidas"* — duas lógicas
+  de operação diferentes, cada uma com sua lista.
+- **Série recorrente nomeada.** O padrão da casa é `<Marca> perto da sua <coisa>`: *"EA3 perto da sua
+  obra"*, *"Blocok perto da sua obra"*. Serve para qualquer negócio com atendimento regional.
+
+### Marcação de conteúdo condicionado
+
+Item que depende de confirmação entra na lista **com a condição escrita**, não fica de fora. A EA3
+faz isso três vezes: *"Origem e trajetória da empresa, **após validação da história oficial**"*,
+*"Formas de pagamento, **depois de validadas com o setor comercial**"*, e na Blocok *"acabamentos e
+instalações, **após confirmação técnica**"*. É o que impede que a lacuna vire invenção — e o que
+transforma a lista de conteúdos numa lista de pendências ao mesmo tempo.
 
 ---
 
@@ -352,35 +400,39 @@ PARTE 3 — AS REGRAS
    4) Setor regulado ou técnico: tema que só funciona prometendo resultado não entra. Não nomeie
       número, ensaio, parâmetro ou norma que o material não confirme.
 
-8. DATAS COMEMORATIVAS — OBRIGATÓRIO. Uma das seis editorias TEM DE carregar datas, sempre que o
-   negócio tiver alguma que cruze. Não é opcional e não é enfeite: a regra é o cruzamento, não a
-   efeméride. A data não é o assunto; a data é o gancho — o post continua sendo sobre o serviço, o
+8. DATAS COMEMORATIVAS — OBRIGATÓRIO quando houver alguma que cruze. A regra é o cruzamento, não a
+   efeméride: a data não é o assunto, a data é o gancho. O post continua sendo sobre o serviço, o
    dado ou a operação da empresa, publicado no dia em que o assunto já está na cabeça de quem lê.
 
-   ONDE PROCURAR — quatro frentes, não só o calendário geral:
-   a) SEGMENTO: datas do que a empresa faz. Laboratório de água tem 22/03 (Dia Mundial da Água);
+   PROCURE EM CINCO FRENTES, não no calendário geral:
+   a) SEGMENTO — datas do que a empresa faz. Laboratório de água tem 22/03 (Dia Mundial da Água);
       uma pizzaria não tem essa, e tem outras.
-   b) ÁREA DE ATUAÇÃO: datas do setor em que ela opera — meio ambiente, saneamento, construção,
-      saúde, alimentação, educação.
-   c) PÚBLICO ATENDIDO: datas de quem compra dela. Quem vende para engenheiro tem o dia do
-      engenheiro; quem vende para hospital tem as datas da saúde; quem vende para produtor rural
-      tem as do agronegócio.
-   d) PROFISSÕES E CICLO: dia do profissional que trabalha na empresa, aniversário da empresa,
-      e o ciclo do setor — safra, temporada, período de vistoria, fechamento fiscal.
+   b) ÁREA DE ATUAÇÃO — datas do setor: meio ambiente, saneamento, construção, saúde, educação.
+   c) PÚBLICO ATENDIDO — datas de quem compra dela: dia do engenheiro, do arquiteto, do produtor
+      rural, datas do setor do cliente.
+   d) PROFISSÕES E CICLO — dia do profissional que trabalha na casa, e o ritmo do setor: safra,
+      temporada, período de vistoria, fechamento fiscal.
+   e) A PRÓPRIA EMPRESA — aniversário de fundação e MARCOS REDONDOS: 10, 15, 20, 25 anos. Esta é a
+      única frente impublicável por qualquer concorrente, e carrega a prova de permanência. Se a
+      fundação estiver confirmada, calcule qual marco cai nos próximos anos e traga o mais próximo
+      como pauta a preparar com antecedência. ATENÇÃO: a data de fundação do cadastro costuma ser
+      valor-padrão — só use marco redondo com o ano confirmado por outra fonte (descrição, site ou
+      reunião). Sem confirmação, vira pendência de CS, nunca pauta.
 
    COMO DECIDIR:
    - Cruze cada data com um fato do material. Data sem fato para cruzar não entra.
-   - PELO MENOS 1 e no máximo 2 datas viram TEMA, dentro de UMA editoria só.
-   - QUAL EDITORIA CARREGA depende de onde a data cruza melhor: slot E quando a data é do
-     território ou da região; slot D quando é do público; slot A quando é da profissão ou do
-     processo. A função do slot não muda — a data entra onde ela tem lastro.
-   - As demais viram ÂNCORA DE PUBLICAÇÃO de temas que já existem — não crie o tema 25.
-   - Data não verificável (aniversário da empresa, da cidade, dia do profissional, calendário
-     agrícola) entra como "confirmar com o parceiro", nunca como fato.
+   - NÃO HÁ TETO. Quantas datas cruzarem com fatos, entram. O que existe é PISO: havendo alguma que
+     cruze, ela precisa aparecer.
+   - AS DATAS NÃO OCUPAM EDITORIA EXCLUSIVA. Entram como abordagem eventual dentro de uma editoria
+     que já existe. Nunca crie uma sétima editoria de calendário.
+   - QUAL EDITORIA CARREGA, por ordem de preferência: D · PÚBLICO é o padrão, porque a maioria das
+     datas é sobre gente — profissões, famílias, segmentos de cliente. E · TERRITÓRIO quando a data
+     é do lugar (aniversário da cidade, festa regional). A · PROCESSO E ORIGEM quando a data é da
+     própria empresa (aniversário e marcos redondos).
+   - Data não verificável entra como "confirmar calendário com o parceiro", nunca como fato.
    - Liste as datas descartadas e o motivo.
-   - SE O NEGÓCIO NÃO TIVER NENHUMA data que cruze, diga isso com todas as letras como achado
-     ("este segmento não tem data própria que cruze, e por isto:") e explique. Omitir em silêncio
-     não é resposta aceitável.
+   - SE NADA CRUZAR, diga com todas as letras: "este segmento não tem data própria que cruze, e por
+     isto:" e explique. Omitir em silêncio não é resposta aceitável.
 
 9. DISTRIBUIÇÃO POR CANAL. Cada editoria tem destino em mais de um canal: post, FAQ da página,
    Google (publicações e Q&A) e blocos do site. O slot F é o de maior alavancagem — a mesma resposta
@@ -392,17 +444,46 @@ PARTE 4 — FORMATO DA SAÍDA
 ============================================================
 
 1. VERIFICAÇÕES — resultado das cinco, uma linha cada.
-2. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e
-   a contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
-3. AS 6 EDITORIAS — para cada uma: nome, slot, e os 4 temas com uma linha de descrição, marcando
-   o tema único, a série recorrente e as datas cruzadas.
-4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por que é ela. Depois: as
-   que viraram tema, as que viraram âncora (dizendo qual tema ancoram), as que dependem de
-   confirmação e as descartadas com o motivo. Se nenhuma data cruzar com o negócio, diga isso aqui
-   e justifique.
+
+2. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
+   contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
+
+3. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
+
+   NN · Nome da editoria            (2 a 4 palavras, linguagem do negócio)
+   Objetivo                         (uma frase: o que esta editoria faz)
+   CONTEÚDOS                        (lista de referência dos assuntos que ela cobre)
+   ESSA EDITORIA RESPONDE           (a pergunta do cliente, escrita como ele faria)
+
+   Sobre os CONTEÚDOS: é um BANCO DE REFERÊNCIA, não um calendário. Não há número fixo de itens —
+   liste tudo que a editoria sustenta com lastro. Item que depende de confirmação entra na lista
+   COM A CONDIÇÃO ESCRITA, não fica de fora. Exemplos do padrão da casa: "Origem e trajetória da
+   empresa, após validação da história oficial"; "Formas de pagamento, depois de validadas com o
+   setor comercial"; "acabamentos e instalações, após confirmação técnica".
+
+   Sobre a PERGUNTA do fim: é obrigatória e é o que valida a editoria. Se você não consegue escrever
+   a pergunta que o cliente faria, a editoria não tem função — refaça.
+
+   Marque dentro dos CONTEÚDOS, onde couber:
+   - a SÉRIE RECORRENTE, nomeada. Padrão da casa: "<Marca> perto da sua <coisa>".
+   - as DATAS COMEMORATIVAS, com a nota de que entram como abordagem eventual, sem editoria
+     exclusiva.
+   - no slot E, quando houver muitas praças, agrupe em FRENTES TERRITORIAIS em vez de listar em
+     fila — cada frente com sua lista e sua lógica de operação.
+
+4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
+   cruzaram e com qual fato, as que dependem de confirmação, e as descartadas com o motivo. Se houver
+   marco redondo da empresa nos próximos anos, diga qual ano e quantos anos. Se nada cruzar, diga
+   aqui e justifique.
+
 5. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
+
 6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
+
 7. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
+
+OPCIONAL, só se pedirem: o CALENDÁRIO DE 24 TEMAS — 4 por editoria, derivado do banco de conteúdos,
+com o tema único e a série recorrente marcados.
 
 Não escreva os posts. Não invente número, norma, parâmetro nem data. Se faltar insumo, registre a
 lacuna e siga.
