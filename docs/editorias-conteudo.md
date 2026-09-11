@@ -2,7 +2,7 @@
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
 **Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas). O formato de referência da §4.2 vem dos casos EA3 e Blocok
-**Última revisão:** 11/09/2026 · a §4.3 ganha a regra de cidades nas peças fixas (11/09) · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
+**Última revisão:** 11/09/2026 · entra a §1.1, a declaração de acesso às fontes, obrigatória e em evidência · a §4.3 ganha a regra de cidades nas peças fixas · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
 parceiro. Ele nasceu da aplicação em dois casos de segmentos opostos e está escrito para ser executado
@@ -20,6 +20,51 @@ publicações sem que ninguém precise inventar nada no meio do caminho.
 
 Se o eixo tem 1 fato só, ele vira *tema avulso* dentro de outra editoria. Se tem zero, vira **pendência
 de CS** ("pergunta de 1 toque para o dono"), nunca uma editoria vazia.
+
+---
+
+## 1.1 Declaração de acesso às fontes — o que foi lido e o que não foi
+
+**Status:** vigente desde 11/09/2026 · obrigatória em toda entrega, sem exceção
+
+**Receber um link não é ter lido o link.** Quando alguém manda o site da empresa, o perfil do
+Instagram, um catálogo em PDF ou uma pasta de arquivos junto com o pedido, a expectativa natural é
+que tudo aquilo entrou na análise. Quando alguma dessas fontes não pôde ser aberta — bloqueio de
+rede, login, arquivo que não veio, ambiente sem navegação —, **quem leu a entrega precisa saber
+disso antes de ler qualquer conclusão**, não depois, e não numa nota de rodapé.
+
+Por isso toda entrega **abre** com o inventário das fontes, e o aviso do que ficou de fora vem **em
+destaque**, antes das editorias.
+
+### Os quatro status
+
+| Status | O que significa |
+|---|---|
+| **LIDO** | a fonte foi aberta e o conteúdo foi realmente lido |
+| **COLADO** | o conteúdo chegou colado ou em anexo pela pessoa; vale como fato, mas quem leu foi ela |
+| **PARCIAL** | só uma parte abriu (uma página de um site, o texto sem as imagens); diga qual parte |
+| **NÃO ACESSADO** | o link veio, a fonte não abriu. **É o status que precisa aparecer em evidência** |
+
+O inventário cobre **tudo que foi enviado** e também **tudo que o payload aponta**: o campo de site
+do cadastro, as URLs de redes sociais, os links dentro da descrição. Fonte apontada e não lida é
+tão declarável quanto fonte enviada e não lida.
+
+### O que nunca acontece com uma fonte não lida
+
+- **Não se escreve "segundo o site" nem "conforme o Instagram"** sobre uma fonte que não abriu.
+- **Não se deduz conteúdo a partir da URL.** Um endereço com `/servicos` não prova que existe uma
+  página de serviços, e o nome do perfil não diz o que há nos destaques dele.
+- **Não se descreve identidade visual, tom ou estado de um perfil que não foi visto.** Recomendar os
+  5 destaques sem ver o perfil é legítimo; dizer que "hoje ele tem três destaques desorganizados",
+  não.
+- **Não se cala.** O trabalho continua com o que existe — mas cada peça que dependeria da fonte
+  ausente entra marcada como *"depende de fonte não lida"*, com a pergunta a fazer.
+
+### Onde o aviso aparece
+
+No **topo** da entrega, como primeiro bloco, e **repetido no fim**, junto às pendências. Se todas as
+fontes foram lidas, o inventário aparece igual, com todas em LIDO — é a prova de que a verificação
+foi feita, e custa três linhas.
 
 ---
 
@@ -467,6 +512,12 @@ definem junto com as editorias e vão ao ar antes do primeiro tema do calendári
 >    assinatura) — entra a sede ou o alcance no lugar. Nunca duas ou três escolhidas a dedo, e nunca
 >    a cidade-sede fazendo as vezes de cobertura. Atendimento nacional não cita cidade.
 >
+> 11. **Declare o acesso às fontes (§1.1).** Abra a entrega com o inventário de tudo que foi enviado
+>    e de tudo que o envelope aponta — site, redes, catálogos, arquivos —, cada um como LIDO,
+>    COLADO, PARCIAL ou **NÃO ACESSADO**. Havendo qualquer NÃO ACESSADO, o aviso vem **em
+>    destaque, antes das editorias**, e se repete no fim. Nada que dependa de uma fonte não lida é
+>    afirmado como fato: entra marcado, com a pergunta a fazer.
+>
 > **Saída:** para cada editoria — **nome, objetivo em uma frase, a lista de CONTEÚDOS e a pergunta que
 > ela responde** (ver §4.2), mais os fatos que a sustentam. Item que depende de confirmação entra na
 > lista com a condição escrita. No fim: o calendário de datas, lacunas e pendências para o CS. Os 24
@@ -493,13 +544,17 @@ posts do calendário — você define os eixos e as pautas, com o lastro de cada
 únicas legendas que você escreve são as dos 3 fixados.
 
 REGRA QUE GOVERNA TUDO: nada é inventado. Todo tema rastreia a um fato do material recebido. O que
-não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS.
+não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS. E nada é dado por lido:
+fonte que você não conseguiu abrir é declarada em destaque, no topo da resposta (PARTE 0).
 
 ENTRADA
 1. OBRIGATÓRIO — o JSON de retorno do getData?id=<ID> da empresa.
-2. OPCIONAL — o conteúdo do site oficial da empresa (colado ou em anexo).
+2. OPCIONAL — o conteúdo do site oficial da empresa (colado, em anexo ou como link).
 3. OPCIONAL — a análise da transcrição da reunião comercial, quando existir no payload em
    "Processo comercial".
+4. OPCIONAL — outros recursos: perfil de Instagram ou Facebook, catálogo, PDF, pasta, vídeo.
+Qualquer item de 2 a 4 que chegue como LINK e não como conteúdo depende de você conseguir abri-lo.
+Se não conseguir, ele NÃO entra na análise e é declarado na PARTE 0. Link não lido não vira fato.
 
 QUANDO HOUVER MAIS DE UMA FONTE, CADA UMA TEM UMA FUNÇÃO:
 - Cadastro e reunião mandam na ESTRATÉGIA: público, dor com prazo, o que entra e o que não entra,
@@ -508,6 +563,44 @@ QUANDO HOUVER MAIS DE UMA FONTE, CADA UMA TEM UMA FUNÇÃO:
   certificações, provas de autoridade.
 - Quando as duas discordam, o dado em conflito SAI do conteúdo e vira pendência humana. Nunca
   escolha um lado.
+
+============================================================
+PARTE 0 — INVENTÁRIO DE FONTES E DECLARAÇÃO DE ACESSO
+Faça isto ANTES de tudo, e publique o resultado como o PRIMEIRO BLOCO da resposta.
+============================================================
+
+RECEBER UM LINK NÃO É TER LIDO O LINK. Liste TODAS as fontes desta análise, sem exceção:
+  - o que foi enviado junto com o pedido: site, perfil de Instagram ou Facebook, catálogo em PDF,
+    pasta de arquivos, vídeo, apresentação, qualquer link;
+  - o que o próprio payload aponta: o campo de site do cadastro, as URLs de redes sociais, links
+    dentro da descrição e dos produtos.
+
+Para cada fonte, um status:
+  LIDO          — você abriu e leu o conteúdo.
+  COLADO        — o conteúdo chegou colado ou em anexo; vale como fato, mas quem leu foi a pessoa.
+  PARCIAL       — só parte abriu. Diga qual parte, e o que ficou de fora.
+  NÃO ACESSADO  — o link veio e você NÃO conseguiu abrir (sem navegação, bloqueio, login, erro).
+
+SE HOUVER QUALQUER "NÃO ACESSADO", O AVISO VEM EM DESTAQUE, NO TOPO DA RESPOSTA, ANTES DAS
+EDITORIAS, e se repete no fim, junto às pendências. Escreva com todas as letras, nomeando cada
+fonte, por exemplo:
+
+  ⚠️ FONTES QUE EU NÃO CONSEGUI ACESSAR
+  - https://exemplo.com.br — não acessei. Nada nesta entrega vem do site.
+  - instagram.com/exemplo — não acessei. Não sei quais destaques, bio ou posts existem hoje.
+  O que isto muda: <o que ficaria diferente se a fonte fosse lida>.
+  O que resolve: cole o conteúdo da página, ou exporte o material e envie junto.
+
+COM UMA FONTE NÃO LIDA, NUNCA:
+  - escreva "segundo o site" ou "conforme o Instagram";
+  - deduza conteúdo a partir da URL (um /servicos não prova que existe a página; o nome do perfil
+    não diz o que há nos destaques);
+  - descreva identidade visual, tom de voz ou o estado atual de um perfil que você não viu.
+    Recomendar os 5 destaques sem ver o perfil é legítimo; dizer como ele está hoje, não.
+
+E NUNCA FIQUE CALADO: siga com o que existe, e marque cada editoria, tema ou peça que dependeria da
+fonte ausente como "depende de fonte não lida", com a pergunta a fazer. Se todas as fontes foram
+lidas, publique o inventário assim mesmo, todas em LIDO — é a prova de que a verificação foi feita.
 
 ============================================================
 PARTE 1 — VERIFICAÇÕES ANTES DE GERAR
@@ -728,12 +821,16 @@ mesmos fatos: são os slots A, B, C e D em versão estática.
 PARTE 5 — FORMATO DA SAÍDA
 ============================================================
 
-1. VERIFICAÇÕES — resultado das cinco, uma linha cada.
+1. DECLARAÇÃO DE ACESSO ÀS FONTES — o inventário da PARTE 0, como PRIMEIRO BLOCO da resposta.
+   Uma linha por fonte, com o status. Havendo qualquer NÃO ACESSADO, o aviso vem em destaque aqui,
+   nomeando cada fonte que não abriu e o que isso muda na entrega.
 
-2. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
+2. VERIFICAÇÕES — resultado das cinco, uma linha cada.
+
+3. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
    contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
 
-3. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
+4. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
 
    NN · Nome da editoria            (2 a 4 palavras, linguagem do negócio)
    Objetivo                         (uma frase: o que esta editoria faz)
@@ -756,32 +853,35 @@ PARTE 5 — FORMATO DA SAÍDA
    - no slot E, quando houver muitas praças, agrupe em FRENTES TERRITORIAIS em vez de listar em
      fila — cada frente com sua lista e sua lógica de operação.
 
-4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
+5. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
    cruzaram e com qual fato, as que dependem de confirmação, e as descartadas com o motivo. Se houver
    marco redondo da empresa nos próximos anos, diga qual ano e quantos anos. Se nada cruzar, diga
    aqui e justifique.
 
-5. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
+6. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
 
-6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
+7. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
 
-7. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
+8. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
    com título, o que vai dentro, capa e por quê; e as alternativas descartadas com o motivo.
 
-8. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
+9. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
    de fixar.
 
-9. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
+10. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
    revisão e as alternativas descartadas. Diga explicitamente por que a cidade entrou ou não
    entrou, e onde a cobertura completa aparece.
 
-10. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
+11. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque. Fecha REPETINDO o aviso
+   das fontes não acessadas, se houver, com o que resolve cada uma (colar o conteúdo, enviar o
+   arquivo, dar acesso).
 
 OPCIONAL, só se pedirem: o CALENDÁRIO DE 24 TEMAS — 4 por editoria, derivado do banco de conteúdos,
 com o tema único e a série recorrente marcados.
 
 Não escreva os posts do calendário — só as legendas dos 3 fixados. Não invente número, norma,
-parâmetro, data nem foto que não existe. Se faltar insumo, registre a lacuna e siga.
+parâmetro, data nem foto que não existe, e não dê por lida nenhuma fonte que você não abriu. Se
+faltar insumo, registre a lacuna e siga.
 ```
 
 ### Quando usar cada prompt
@@ -790,6 +890,9 @@ parâmetro, data nem foto que não existe. Se faltar insumo, registre a lacuna e
 |---|---|
 | Vai rodar o pipeline `empresa-3-0` inteiro | §8 — recebe o envelope verificado |
 | Tem só o payload do cadastro em mãos | **§8.1** — este, direto |
+
+Os dois exigem a declaração de acesso às fontes da §1.1: o que não foi lido aparece em destaque no
+topo da entrega, nunca como nota de rodapé.
 
 O §8.1 pula a verificação adversarial: ele confia no cadastro como fonte, sem caçar homônimo nem
 cruzar amarras. Para editoria isso costuma bastar, porque o material é fornecido pela própria

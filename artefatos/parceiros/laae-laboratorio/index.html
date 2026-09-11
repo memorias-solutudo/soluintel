@@ -249,6 +249,16 @@
   .prompt{white-space:pre-wrap;overflow-wrap:anywhere;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:12.2px;line-height:1.55;background:var(--bg);border:var(--line);border-radius:14px;padding:18px 20px;margin-top:12px;color:var(--ink)}
   .copybtn{display:inline-flex;align-items:center;gap:8px;background:var(--grad-cta);color:#fff;border:0;border-radius:var(--pill);padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;margin-top:12px}
   .copybtn:hover{filter:brightness(1.05)}
+  .alert{border:2px solid #B45309;border-radius:var(--r-lg);background:linear-gradient(180deg,#FFF4E5 0%,#FFFBF4 60%);padding:20px 22px;margin-top:14px;box-shadow:var(--shadow-card)}
+  .alert .atop{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#8A4200}
+  .alert .atop i{flex:none;width:22px;height:22px;border-radius:50%;background:#B45309;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-style:normal;font-weight:800}
+  .alert h3{font-size:18px;font-weight:800;letter-spacing:-.025em;margin-top:10px;line-height:1.22}
+  .alert p{font-size:13.5px;color:#5A3200;margin-top:7px;font-weight:600;line-height:1.55}
+  .alert table{margin-top:14px}
+  .stt{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:var(--pill);white-space:nowrap}
+  .stt.no{background:#B45309;color:#fff}
+  .stt.ok{background:var(--tint-mint);color:#06724F}
+  .stt.pa{background:var(--tint-yellow);color:#7A5A00}
   .cta-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
   .cta-links .backlink{margin-bottom:0}
   @media(max-width:1500px){.hlgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -961,7 +971,7 @@
     <div class="sec first">
       <span class="eyebrow">Conteúdo · o calendário do ano e o topo do perfil</span>
       <h2>6 editorias, 24 temas e as três peças que ficam paradas no perfil</h2>
-      <p class="secsub">Oito seções, no menu ao lado: de onde saem os fatos, as editorias com o lastro à vista, as datas cruzadas com o negócio, os <b>5 destaques</b>, os <b>3 posts fixados</b> (cada um com legenda, imagem e texto na imagem), a <b>assinatura</b> que fecha toda imagem — definida em um lugar só — e, no fim, o prompt que gera tudo isto. O padrão completo está em <code>docs/editorias-conteudo.md</code>.</p>
+      <p class="secsub">Oito seções, no menu ao lado: de onde saem os fatos, as editorias com o lastro à vista, as datas cruzadas com o negócio, os <b>5 destaques</b>, os <b>3 posts fixados</b> (cada um com legenda, imagem e texto na imagem), a <b>assinatura</b> que fecha toda imagem — definida em um lugar só — e, no fim, o prompt que gera tudo isto. O padrão completo está em <code>docs/editorias-conteudo.md</code>. <b>Comece pela declaração de acesso às fontes</b>, na seção 1: duas das fontes deste caso não foram abertas.</p>
     </div>
 
     <div class="cont-layout">
@@ -979,7 +989,24 @@
     <div class="cont-body">
 
       <div class="csec" id="c-fontes">
-        <div class="csh"><span class="csn">1</span><div><h3>Fontes e regra</h3><p>De onde saem os fatos, o que cada fonte manda e a regra que decide se uma editoria existe.</p></div></div>
+        <div class="csh"><span class="csn">1</span><div><h3>Fontes e regra</h3><p>O que foi lido, o que <b>não</b> foi, o que cada fonte manda e a regra que decide se uma editoria existe.</p></div></div>
+        <div class="alert">
+          <span class="atop"><i aria-hidden="true">!</i> Declaração de acesso às fontes · leia antes de tudo</span>
+          <h3>Duas fontes desta análise eu não consegui abrir — e uma delas é o site da empresa</h3>
+          <p><b>Receber um link não é ter lido o link.</b> Este ambiente não alcança <code>lablaae.com.br</code> nem o perfil do Instagram: as duas respondem <b>403 no CONNECT</b>, mesma família de <code>api.solutudo.com</code>. O que entrou nesta central veio do cadastro, da transcrição da reunião e de <b>um resumo do site colado manualmente</b> — não de uma leitura minha da página.</p>
+          <div class="scroller"><table>
+            <tr><th>Fonte</th><th>Status</th><th>O que isso muda</th></tr>
+            <tr><td><b>Cadastro Solutudo</b><br><small>getData?id=32069845</small></td><td><span class="stt ok">colado</span></td><td>Base de tudo. Chegou colado na conversa, íntegro</td></tr>
+            <tr><td><b>Transcrição da reunião comercial</b><br><small>dentro do payload, em "Processo comercial"</small></td><td><span class="stt ok">colado</span></td><td>É de onde vêm as 24 horas, o raio de 600 km, o público e as queixas de canal</td></tr>
+            <tr><td><b>lablaae.com.br</b></td><td><span class="stt no">não acessado</span></td><td><b>Não abri o site.</b> O detalhe técnico que aparece nesta central — as seis aplicações, a amostragem, o portal, os depoimentos — veio de um <b>resumo colado</b>, não da página. <b>Conferir na fonte antes de publicar qualquer texto que dependa disso</b>, incluindo a água de hemodiálise, que é o achado de maior valor do caso</td></tr>
+            <tr><td><b>instagram.com/lablaae</b></td><td><span class="stt no">não acessado</span></td><td><b>Não vi o perfil.</b> Os 5 destaques e os 3 fixados desta central são <b>recomendação a partir do cadastro</b>, não uma reforma do que está no ar. Não sei quais destaques existem hoje, qual é a bio atual, quantos posts há nem qual é o padrão visual — se já houver destaques publicados, comparar antes de trocar</td></tr>
+            <tr><td><b>As 11 imagens do cadastro</b></td><td><span class="stt pa">parcial</span></td><td>Li o <b>nome e o campo</b> de cada uma, não abri os arquivos. A conclusão de que <b>nenhuma mostra a operação</b> se apoia nos rótulos — se alguma foto de bancada estiver salva com nome genérico, ela existe e eu não vi</td></tr>
+            <tr><td><b>Facebook</b></td><td><span class="stt pa">não existe no cadastro</span></td><td>Não há link. Pendência de CS: existe página? Se não existir, não criar</td></tr>
+            <tr><td><b>Perfil do Google</b></td><td><span class="stt no">fora do escopo</span></td><td>Não consultado <b>por regra do projeto</b>: dado de Google Maps e Places não entra em nenhuma análise. As recomendações da aba Google saem do cadastro Solutudo</td></tr>
+          </table></div>
+          <p style="margin-top:14px"><b>O que resolve:</b> colar o conteúdo das páginas do site e uma captura do perfil do Instagram — ou liberar a rede deste ambiente para os dois domínios. <b>Requisito de operação que isto expõe:</b> o pipeline precisa alcançar o site e o perfil do parceiro. Metade do detalhe técnico mora no site, e o estado atual do perfil é o que diz se a recomendação é criação ou reforma.</p>
+        </div>
+
     <div class="card" style="border-color:rgba(167,1,253,.28)">
       <span class="badge">Duas fontes, duas funções</span>
       <h3>O dossiê manda na estratégia. O site manda no detalhe técnico.</h3>
@@ -1029,7 +1056,7 @@
         <tr><td><b>Milhares de clientes</b> e profissionais qualificados</td><td>Sem número no cadastro</td><td><span class="chip peach">não publicar</span> Número sem fonte não vira fato. Se houver o dado real, ele é ótimo — pedir ao CS</td></tr>
       </table></div>
 
-      <div class="note"><b>Procedência destes fatos.</b> O conteúdo de <code>lablaae.com.br</code> foi recuperado e resumido manualmente — <b>este ambiente não alcança o domínio</b> (403 no CONNECT, mesma família de <code>api.solutudo.com</code> e <code>github.io</code>). Antes de publicar qualquer texto que dependa deles, conferir na fonte. E vale registrar como requisito de operação: <b>o pipeline precisa alcançar o site do parceiro</b>, porque metade do detalhe técnico mora lá e não no cadastro.</div>
+      <div class="note"><b>Procedência destes fatos.</b> O conteúdo de <code>lablaae.com.br</code> foi resumido manualmente e colado — <b>eu não abri o site</b>. Está na declaração de acesso, no começo desta seção, junto com o perfil do Instagram, que também não foi visto. Antes de publicar qualquer texto que dependa deles, conferir na fonte.</div>
     </div>
 
     <div class="card">
@@ -1119,6 +1146,7 @@
         <div class="card" style="border-color:rgba(167,1,253,.28)">
           <span class="badge">Por que os destaques importam aqui</span>
           <h3>Para este laboratório, o destaque vale mais que o feed</h3>
+          <div class="note" style="background:#FFF4E5;color:#5A3200"><b>Depende de fonte não lida:</b> o perfil <code>@lablaae</code> não foi acessado. O que vem abaixo é <b>recomendação a partir do cadastro</b> — se já houver destaques publicados, comparar antes de trocar. Ver a declaração na seção 1.</div>
           <p class="sub">O feed é cronológico e o story dura 24 horas. <b>Os destaques são o único conteúdo permanente, ordenado e clicável do perfil</b> — ficam logo abaixo da bio e são o que quem acabou de chegar toca antes de rolar qualquer post. Em cinco círculos, na ordem, eles respondem às perguntas de quem não conhece a empresa: <i>quem é você, o que analisa, por que você, quem já confia, como eu peço</i>.</p>
           <div class="note"><b>E aqui isso pesa mais do que numa pizzaria.</b> A reunião registra que o público do LAAE <i>"não está no Instagram"</i> e <i>"é muito direcionado"</i>: engenheiro ambiental, responsável técnico de indústria, gestor de hospital. Esse público não descobre laboratório rolando o feed — ele <b>confere o perfil antes de chamar</b>, para saber se a empresa é real, tem credencial e atende a cidade dele. Os cinco destaques são o cartão de visita que responde isso em trinta segundos, sem depender de post novo. Por isso o <b>Sobre vem primeiro</b>: em venda técnica, confiança vem antes de oferta. Numa loja de consumo seria o contrário.</div>
         </div>
@@ -1353,6 +1381,7 @@
         <li><b>Os temas 3, 8 e a E5 inteira dependem de fotos</b> que ainda não existem. Ver a pendência de imagens na aba Parceiro — sem ela, metade do calendário fica sem matéria-prima visual.</li>
         <li><b>O tema 16 depende de autorização</b> da SEAM para uso de nome e depoimento.</li>
         <li><b>Não invente sazonalidade local.</b> Datas de Montes Claros e do calendário do agronegócio da região entram só depois de confirmadas com o parceiro.</li>
+        <li><b>Nada que dependa do site ou do perfil vai ao ar sem conferência.</b> As duas fontes não foram abertas — ver a declaração na seção 1. Isso alcança o tema 7 (as seis aplicações), o 10 (o portal), o 16 (os depoimentos) e a leitura de que o perfil precisa de destaques novos.</li>
         <li><b>Quando o campo de buscas reais começar a se preencher</b>, refazer o slot F com as buscas de verdade e aposentar os termos curados da categoria.</li>
       </ul>
     </div>
@@ -1374,13 +1403,17 @@ posts do calendário — você define os eixos e as pautas, com o lastro de cada
 únicas legendas que você escreve são as dos 3 fixados.
 
 REGRA QUE GOVERNA TUDO: nada é inventado. Todo tema rastreia a um fato do material recebido. O que
-não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS.
+não tem lastro não vira tema — vira lacuna declarada ou pergunta para o CS. E nada é dado por lido:
+fonte que você não conseguiu abrir é declarada em destaque, no topo da resposta (PARTE 0).
 
 ENTRADA
 1. OBRIGATÓRIO — o JSON de retorno do getData?id=&lt;ID&gt; da empresa.
-2. OPCIONAL — o conteúdo do site oficial da empresa (colado ou em anexo).
+2. OPCIONAL — o conteúdo do site oficial da empresa (colado, em anexo ou como link).
 3. OPCIONAL — a análise da transcrição da reunião comercial, quando existir no payload em
    &quot;Processo comercial&quot;.
+4. OPCIONAL — outros recursos: perfil de Instagram ou Facebook, catálogo, PDF, pasta, vídeo.
+Qualquer item de 2 a 4 que chegue como LINK e não como conteúdo depende de você conseguir abri-lo.
+Se não conseguir, ele NÃO entra na análise e é declarado na PARTE 0. Link não lido não vira fato.
 
 QUANDO HOUVER MAIS DE UMA FONTE, CADA UMA TEM UMA FUNÇÃO:
 - Cadastro e reunião mandam na ESTRATÉGIA: público, dor com prazo, o que entra e o que não entra,
@@ -1389,6 +1422,44 @@ QUANDO HOUVER MAIS DE UMA FONTE, CADA UMA TEM UMA FUNÇÃO:
   certificações, provas de autoridade.
 - Quando as duas discordam, o dado em conflito SAI do conteúdo e vira pendência humana. Nunca
   escolha um lado.
+
+============================================================
+PARTE 0 — INVENTÁRIO DE FONTES E DECLARAÇÃO DE ACESSO
+Faça isto ANTES de tudo, e publique o resultado como o PRIMEIRO BLOCO da resposta.
+============================================================
+
+RECEBER UM LINK NÃO É TER LIDO O LINK. Liste TODAS as fontes desta análise, sem exceção:
+  - o que foi enviado junto com o pedido: site, perfil de Instagram ou Facebook, catálogo em PDF,
+    pasta de arquivos, vídeo, apresentação, qualquer link;
+  - o que o próprio payload aponta: o campo de site do cadastro, as URLs de redes sociais, links
+    dentro da descrição e dos produtos.
+
+Para cada fonte, um status:
+  LIDO          — você abriu e leu o conteúdo.
+  COLADO        — o conteúdo chegou colado ou em anexo; vale como fato, mas quem leu foi a pessoa.
+  PARCIAL       — só parte abriu. Diga qual parte, e o que ficou de fora.
+  NÃO ACESSADO  — o link veio e você NÃO conseguiu abrir (sem navegação, bloqueio, login, erro).
+
+SE HOUVER QUALQUER &quot;NÃO ACESSADO&quot;, O AVISO VEM EM DESTAQUE, NO TOPO DA RESPOSTA, ANTES DAS
+EDITORIAS, e se repete no fim, junto às pendências. Escreva com todas as letras, nomeando cada
+fonte, por exemplo:
+
+  ⚠️ FONTES QUE EU NÃO CONSEGUI ACESSAR
+  - https://exemplo.com.br — não acessei. Nada nesta entrega vem do site.
+  - instagram.com/exemplo — não acessei. Não sei quais destaques, bio ou posts existem hoje.
+  O que isto muda: &lt;o que ficaria diferente se a fonte fosse lida&gt;.
+  O que resolve: cole o conteúdo da página, ou exporte o material e envie junto.
+
+COM UMA FONTE NÃO LIDA, NUNCA:
+  - escreva &quot;segundo o site&quot; ou &quot;conforme o Instagram&quot;;
+  - deduza conteúdo a partir da URL (um /servicos não prova que existe a página; o nome do perfil
+    não diz o que há nos destaques);
+  - descreva identidade visual, tom de voz ou o estado atual de um perfil que você não viu.
+    Recomendar os 5 destaques sem ver o perfil é legítimo; dizer como ele está hoje, não.
+
+E NUNCA FIQUE CALADO: siga com o que existe, e marque cada editoria, tema ou peça que dependeria da
+fonte ausente como &quot;depende de fonte não lida&quot;, com a pergunta a fazer. Se todas as fontes foram
+lidas, publique o inventário assim mesmo, todas em LIDO — é a prova de que a verificação foi feita.
 
 ============================================================
 PARTE 1 — VERIFICAÇÕES ANTES DE GERAR
@@ -1609,12 +1680,16 @@ mesmos fatos: são os slots A, B, C e D em versão estática.
 PARTE 5 — FORMATO DA SAÍDA
 ============================================================
 
-1. VERIFICAÇÕES — resultado das cinco, uma linha cada.
+1. DECLARAÇÃO DE ACESSO ÀS FONTES — o inventário da PARTE 0, como PRIMEIRO BLOCO da resposta.
+   Uma linha por fonte, com o status. Havendo qualquer NÃO ACESSADO, o aviso vem em destaque aqui,
+   nomeando cada fonte que não abriu e o que isso muda na entrega.
 
-2. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
+2. VERIFICAÇÕES — resultado das cinco, uma linha cada.
+
+3. TABELA DE LASTRO — uma linha por slot, com: slot, nome da editoria, os fatos que a sustentam e a
    contagem. Slot com menos de 2 fatos aparece como pendência, não como editoria.
 
-3. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
+4. AS 6 EDITORIAS. Cada uma com QUATRO PARTES FIXAS, nesta ordem:
 
    NN · Nome da editoria            (2 a 4 palavras, linguagem do negócio)
    Objetivo                         (uma frase: o que esta editoria faz)
@@ -1637,32 +1712,35 @@ PARTE 5 — FORMATO DA SAÍDA
    - no slot E, quando houver muitas praças, agrupe em FRENTES TERRITORIAIS em vez de listar em
      fila — cada frente com sua lista e sua lógica de operação.
 
-4. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
+5. CALENDÁRIO DE DATAS — comece dizendo QUAL EDITORIA carrega as datas e por quê. Depois: as que
    cruzaram e com qual fato, as que dependem de confirmação, e as descartadas com o motivo. Se houver
    marco redondo da empresa nos próximos anos, diga qual ano e quantos anos. Se nada cruzar, diga
    aqui e justifique.
 
-5. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
+6. O QUE OS FILTROS DESCARTARAM — e por qual filtro.
 
-6. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
+7. DISTRIBUIÇÃO POR CANAL — o peso recomendado, com a justificativa quando fugir do padrão.
 
-7. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
+8. OS 5 DESTAQUES — primeiro por que importam neste segmento; depois os cinco na ordem, cada um
    com título, o que vai dentro, capa e por quê; e as alternativas descartadas com o motivo.
 
-8. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
+9. OS 3 POSTS FIXADOS — cada um com legenda, sugestão de imagem e texto na imagem; no fim, a ordem
    de fixar.
 
-9. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
+10. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
    revisão e as alternativas descartadas. Diga explicitamente por que a cidade entrou ou não
    entrou, e onde a cobertura completa aparece.
 
-10. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
+11. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque. Fecha REPETINDO o aviso
+   das fontes não acessadas, se houver, com o que resolve cada uma (colar o conteúdo, enviar o
+   arquivo, dar acesso).
 
 OPCIONAL, só se pedirem: o CALENDÁRIO DE 24 TEMAS — 4 por editoria, derivado do banco de conteúdos,
 com o tema único e a série recorrente marcados.
 
 Não escreva os posts do calendário — só as legendas dos 3 fixados. Não invente número, norma,
-parâmetro, data nem foto que não existe. Se faltar insumo, registre a lacuna e siga.</pre>
+parâmetro, data nem foto que não existe, e não dê por lida nenhuma fonte que você não abriu. Se
+faltar insumo, registre a lacuna e siga.</pre>
         </div>
       </div>
 
