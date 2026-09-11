@@ -2,7 +2,7 @@
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
 **Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas). O formato de referência da §4.2 vem dos casos EA3 e Blocok
-**Última revisão:** 10/09/2026 · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
+**Última revisão:** 11/09/2026 · a §4.3 ganha a regra de cidades nas peças fixas (11/09) · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
 parceiro. Ele nasceu da aplicação em dois casos de segmentos opostos e está escrito para ser executado
@@ -223,6 +223,9 @@ editorias**, porque saem dos mesmos fatos:
 | **Posts fixados** | 3 | os três primeiros posts que qualquer pessoa vê no feed | 1 = slot A · 2 = slot B · 3 = slot C |
 | **Assinatura de rodapé** | 1 | o contato em toda imagem publicada | slot C |
 
+Uma regra atravessa as três e está logo abaixo, antes dos fixados: **cidade em peça fixa é tudo ou
+nada** quando a empresa atende mais de uma.
+
 ### Por que os destaques importam
 
 O feed é cronológico e o story dura 24 horas. **Os destaques são o único conteúdo permanente, ordenado
@@ -265,6 +268,31 @@ lista **3 a 6 stories que já existem ou saem do material** — destaque vazio �
 quinto **sempre termina em contato**. E o relatório declara **as alternativas descartadas** e o
 motivo (o que viraria o sexto destaque, se algum dia houver um).
 
+### As cidades nas peças fixas
+
+Peça fixa fica no ar o ano inteiro, e **a cidade que ela nomeia vira o limite que o leitor enxerga**.
+Por isso a regra é diferente da do calendário: um tema de post pode destacar uma praça — é assim que a
+série do slot E funciona —, mas **a peça fixa nunca prende a empresa a uma cidade quando ela atende
+várias**.
+
+| A empresa atende… | Nas peças fixas |
+|---|---|
+| **uma cidade só** | a cidade entra normalmente; o endereço entra quando há loja física |
+| **várias cidades** | **todas** aparecem onde couber — legenda do fixado 1, fixado 3 e o destaque de território. Onde não couber (texto na imagem, bio, assinatura), **nenhuma é escolhida**: entra a **sede** ("Sede em X"), quando o endereço importa, ou o alcance sem nome de lugar, ou nada |
+| **estado, região ou país** | o alcance, sem cidade: *"Atendemos todo o Brasil"*. A cidade não é relevante e não entra |
+
+**O que isso proíbe na prática:** escolher duas ou três cidades "as principais" para caber num espaço
+curto. Ou cabem todas, ou não cabe nenhuma. Meia lista comunica que o resto não é atendido — e é o
+erro mais caro, porque quem mora nas outras cidades some antes de perguntar.
+
+**Onde a lista completa mora, quando é longa:** na legenda do fixado 1, no fixado 3, no destaque de
+território, no campo de área de atendimento do perfil do Google e nos temas do slot E. Nenhum desses
+tem limite de caractere apertado.
+
+**O caso da sede.** *"Sede em Montes Claros/MG"* não é a mesma afirmação que *"Montes Claros e
+Região"*: a primeira diz onde a empresa fica, a segunda diz até onde ela vai. Use a sede quando o
+endereço importa para o cliente (retirada, loja, visita) e a lista completa não couber.
+
 ### Os três posts fixados
 
 São os três primeiros posts que qualquer pessoa vê no feed, e ficam lá até serem trocados. A função
@@ -285,6 +313,10 @@ Cada fixado é entregue com **três partes**:
    imagens fingindo ser a empresa.
 3. **Texto na imagem** — título de até 6 palavras e no máximo 2 linhas de apoio; por lâmina, se
    carrossel. **Não repete a assinatura**: ela já está no rodapé.
+
+**Cidades nos fixados:** a lista completa vai na **legenda** do fixado 1 e no fixado 3, onde não há
+limite. No **texto da imagem** ela quase nunca cabe — e aí não entra cidade nenhuma, entra a sede ou
+o alcance. Nunca duas ou três cidades escolhidas a dedo.
 
 Operação: o Instagram coloca o **último post fixado na primeira posição**. Fixe na ordem **3 → 2 → 1**
 para o "Sobre" ficar à esquerda, e confira na tela depois de fixar.
@@ -313,14 +345,29 @@ barra de resposta cobre.
 
 | A empresa… | Terceiro elemento |
 |---|---|
-| vai até o cliente ou atende uma região (coleta, obra, entrega, rota) | **"Cidade e Região"** — a cidade-sede mais a palavra Região |
+| atende **uma cidade só** | **"Cidade e Região"** — a cidade mais a palavra Região |
 | tem **uma** loja física onde o cliente entra | **o endereço curto** (rua e número; bairro se ajudar) |
+| atende **várias cidades** e o endereço importa (retirada, loja, visita) | **"Sede em X"** — diz onde a empresa fica, não até onde ela vai |
+| atende **várias cidades** e o endereço não importa (coleta, obra, entrega, rota) | **o alcance sem nome de lugar** ("Atendemos todo o Brasil", "Levamos até a sua obra") **ou nada**. Nunca uma cidade escolhida entre as que ela atende |
 | tem site atual **e** ele é o destino da conversão (pedido, formulário, portal) | **o site**, sem https |
 | tem site, mas ele é pesado, desatualizado ou não converte | **não entra** — troca quando o Solusite ou o site novo estiver no ar, e isso fica escrito como gatilho de revisão |
-| tem várias lojas | **"Cidade e Região"** ou a marca das unidades — nunca uma lista de endereços |
+| tem várias lojas | a marca das unidades ou o alcance — nunca uma lista de endereços, nunca uma das cidades |
+
+**A assinatura é a peça mais fixa de todas** — ela vai em toda imagem, o ano inteiro. É onde a regra
+das cidades pega mais forte: se a lista não cabe numa linha de ~70 caracteres, e ela quase nunca
+cabe, **a cidade sai da assinatura e vive nas peças que comportam a lista inteira**. Assinatura de
+duas partes (frase + WhatsApp) é resultado legítimo, não peça incompleta.
 
 O relatório entrega a assinatura recomendada, **a justificativa de cada parte** e as alternativas
-descartadas — porque, na próxima revisão, quem lê precisa saber por que o site ficou de fora.
+descartadas — porque, na próxima revisão, quem lê precisa saber por que o site, ou a cidade, ficou
+de fora.
+
+### A bio do perfil
+
+A bio tem 150 caracteres e é peça fixa: vale a mesma regra. Empresa que atende várias cidades escreve
+o **alcance** ou a **sede**, nunca uma seleção de praças. *"Coleta própria em nove cidades"* cabe e é
+verdade; *"Coleta em Montes Claros, Jaíba e região"* cabe e comunica que as outras seis não são
+atendidas.
 
 ### Na central de conteúdo
 
@@ -415,7 +462,10 @@ definem junto com as editorias e vão ao ar antes do primeiro tema do calendári
 >    fixados** (a empresa · o que oferece, com até 4 itens · a chamada para contato), cada um com
 >    legenda, sugestão de imagem e texto na imagem, e **uma** assinatura de rodapé (frase no tom da
 >    empresa · WhatsApp · terceiro elemento escolhido por regra), definida em um lugar só e nunca
->    repetida nas peças.
+>    repetida nas peças. **Cidades:** se a empresa atende mais de uma, ou aparecem todas (na legenda
+>    e nos destaques, onde cabem) ou não aparece nenhuma (no texto da imagem, na bio e na
+>    assinatura) — entra a sede ou o alcance no lugar. Nunca duas ou três escolhidas a dedo, e nunca
+>    a cidade-sede fazendo as vezes de cobertura. Atendimento nacional não cita cidade.
 >
 > **Saída:** para cada editoria — **nome, objetivo em uma frase, a lista de CONTEÚDOS e a pergunta que
 > ela responde** (ver §4.2), mais os fatos que a sustentam. Item que depende de confirmação entra na
@@ -610,6 +660,8 @@ mesmos fatos: são os slots A, B, C e D em versão estática.
      4) PROVA SOCIAL — quem já confia (slot D): depoimentos e clientes, só com autorização.
      5) CONTATO — como comprar (slot C): passos para pedir, canais, horário, pagamento.
    O slot F não ganha destaque por padrão (rende mais em blog, Google e FAQ). Se trocar, diga.
+   CIDADES: se a empresa atende mais de uma cidade, o destaque de território lista TODAS, não uma
+   seleção. O título do círculo não leva nome de cidade quando há mais de uma.
    PARA CADA DESTAQUE ENTREGUE: o título (1 a 2 palavras, até ~11 caracteres — o que cabe legível
    no círculo), o que vai dentro (3 a 6 stories que já existem ou saem do material), a capa
    sugerida (estilo uniforme nos cinco, cor da identidade da empresa) e por que ele está nessa
@@ -630,6 +682,19 @@ mesmos fatos: são os slots A, B, C e D em versão estática.
         de imagens fingindo ser a empresa.
      c) TEXTO NA IMAGEM — título de até 6 palavras e no máximo 2 linhas de apoio; por lâmina, se
         carrossel. Não repita a assinatura: ela já está no rodapé.
+   CIDADES NOS FIXADOS — regra rígida, porque o fixado fica no ar o ano inteiro:
+     - Atende UMA cidade: ela entra normalmente, e o endereço entra se houver loja física.
+     - Atende VÁRIAS: a lista COMPLETA entra na legenda do fixado 1 e no fixado 3, onde não há
+       limite de espaço. Onde a lista não couber — o texto da imagem —, NÃO entra cidade nenhuma:
+       entra "Sede em X" quando o endereço importa para o cliente, ou o alcance sem nome de lugar.
+     - Atende estado, região ou o país inteiro: só o alcance, sem cidade. A cidade não é relevante.
+     - PROIBIDO escolher duas ou três cidades "principais" para caber num espaço curto. Ou cabem
+       todas, ou não cabe nenhuma: meia lista comunica que o resto não é atendido.
+     - PROIBIDO usar a cidade-sede como se fosse a cobertura ("Montes Claros e Região" numa empresa
+       que coleta em nove cidades). "Sede em X" diz onde a empresa fica; "X e Região" diz até onde
+       ela vai — não são a mesma afirmação.
+     - Destacar UMA praça é permitido em TEMA DE POST (é assim que a série do slot E funciona),
+       nunca em peça fixa.
    Diga a ordem de fixar: o Instagram põe o último fixado na primeira posição — fixe 3, 2 e 1.
 
 3. A ASSINATURA DE RODAPÉ — a faixa que fecha TODA imagem publicada. Defina UMA VEZ, aqui, e não a
@@ -641,13 +706,21 @@ mesmos fatos: são os slots A, B, C e D em versão estática.
      material. Nunca slogan de agência.
    - O WHATSAPP: com DDD. Fixo não entra na imagem — fica no fixado 3 e no Google.
    - O TERCEIRO ELEMENTO, um só, por regra:
-       vai até o cliente ou atende região (coleta, obra, entrega, rota) → "Cidade e Região";
+       atende UMA cidade só → "Cidade e Região";
        tem UMA loja física onde o cliente entra → o endereço curto;
+       atende VÁRIAS cidades e o endereço importa (retirada, loja, visita) → "Sede em X";
+       atende VÁRIAS cidades e o endereço não importa (coleta, obra, entrega, rota) → o alcance sem
+       nome de lugar ("Atendemos todo o Brasil", "Levamos até a sua obra") ou NADA;
+       atende o país → o alcance nacional, nunca uma cidade;
        tem site atual E ele é o destino da conversão → o site, sem https;
        site pesado, desatualizado ou que não converte → não entra, e fica escrito o gatilho de
        revisão (quando o site novo ou o Solusite estiver no ar);
-       várias lojas → "Cidade e Região", nunca lista de endereços;
+       várias lojas → a marca das unidades ou o alcance, nunca lista de endereços;
        nada se aplica → frase + WhatsApp.
+     A LINHA TEM ~70 CARACTERES: a lista de cidades não cabe, e meia lista é proibida. Quando a
+     empresa atende várias cidades, o normal é a cidade NÃO entrar na assinatura — ela vive na
+     legenda do fixado 1, no fixado 3, no destaque de território e no perfil do Google. Assinatura
+     de duas partes (frase + WhatsApp) é resultado legítimo, não peça incompleta.
    Entregue a assinatura recomendada, a justificativa de cada parte, o gatilho de revisão e as
    alternativas descartadas.
 
@@ -699,7 +772,8 @@ PARTE 5 — FORMATO DA SAÍDA
    de fixar.
 
 9. A ASSINATURA DE RODAPÉ — a linha recomendada, a justificativa de cada parte, o gatilho de
-   revisão e as alternativas descartadas.
+   revisão e as alternativas descartadas. Diga explicitamente por que a cidade entrou ou não
+   entrou, e onde a cobertura completa aparece.
 
 10. PENDÊNCIAS PARA O CS — a lista, cada uma como pergunta de um toque.
 
