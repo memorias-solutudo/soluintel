@@ -1,6 +1,6 @@
 # Solusite — o padrão do site do parceiro
 
-**Status:** vigente desde 29/09/2026 · primeiro caso aplicado: **LAAE Laboratório** (aba Solusite da central)
+**Status:** vigente desde 29/09/2026 · revisado no mesmo dia com títulos úteis, catálogo = páginas, FAQ por página, métricas da Descrição 3.0 e os blocos do Solusite · primeiro caso aplicado: **LAAE Laboratório** (aba Solusite da central)
 **Referência de formato:** artefato *Sobre a Empresa & FAQ* do caso New Rock
 (`artefatos/sobre-empresa-new-rock/`) — descrição com entidade primeiro, FAQ ancorado em fato, as
 três camadas da página e as regras de indexação para buscadores e IAs.
@@ -57,9 +57,16 @@ Obras, cases ou portfólio (com autorização).
 ali, ponto de atendimento. Sem isso é página que só troca o nome da cidade, o alvo número um das
 atualizações de spam do Google desde 2024.
 
+**Um item do catálogo é uma página do site, com o mesmo texto — e vice-versa.** Todo produto ou
+serviço da página Solutudo ganha a sua página no Solusite, e toda página de produto que o site
+recomendar entra no catálogo da Solutudo. Item condicionado sobe nas duas vitrines ao mesmo tempo.
+
+**Cada página de produto responde às próprias perguntas.** De 1 a 3, só com fato, além do FAQ geral
+— que é o mesmo nas duas vitrines.
+
 Para cada página, a entrega traz: **URL · H1 · title (até ~60 caracteres) · meta description (até
-~155) · a pergunta que ela responde · o conteúdo · os links internos · o JSON-LD esperado.**
-Caracteres contados, não estimados.
+~155) · a pergunta que ela responde · o conteúdo · as perguntas da página · os links internos · o
+JSON-LD esperado · a nota da rubrica com os critérios.** Caracteres contados, não estimados.
 
 ## 4. Regras de conteúdo
 
@@ -77,6 +84,55 @@ Caracteres contados, não estimados.
 8. **Cidades:** a sede é "sede em X"; a cobertura é a lista inteira ou o alcance. Nunca meia lista.
 9. **Setor regulado ou técnico:** credencial sempre com a ressalva do escopo, nenhuma promessa de
    resultado.
+10. **Títulos úteis, nunca rótulos.** Nenhum H1 ou H2 genérico — "Serviços", "Sobre", "Contato",
+    "O que fazemos", "Quem atendemos", "Perguntas frequentes". O título diz o que a pessoa busca
+    ("Análise de efluente industrial e sanitário em Montes Claros (MG)") ou responde a uma pergunta
+    ("Como é feita a coleta da amostra de água e efluente"). O menu pode ser curto, mas específico:
+    "Análises", nunca "Serviços".
+
+### 4.1 As métricas
+
+Todo texto de página passa pela **rubrica da Descrição 3.0** — seis dimensões, 100 pontos — com
+**critérios explícitos**, e a nota aparece junto com os critérios que ela cumpriu:
+
+| Dimensão | Pontos | Critérios |
+|---|---|---|
+| Entidade e local | 15 | nome da empresa na 1ª frase · categoria ou serviço na 1ª frase · sede ou alcance declarados |
+| Fatos verificáveis | 25 | proporção de frases com fonte confirmada; frase do site não lido ou a confirmar vale meio ponto; adjetivo sem fato tira 5 |
+| Resposta direta (AEO) | 20 | a 1ª frase responde o que é · responde onde, prazo, como pedir e como recebe · títulos que respondem a uma busca |
+| Estrutura extraível | 15 | média de até 22 palavras por frase · lista onde há enumeração · títulos descritivos |
+| Unicidade | 15 | 3 pontos por fato que só a empresa tem, até 5 |
+| Contato e próximo passo | 10 | canal por extenso · o que informar · horário ou agendamento |
+
+E os **limites por canal**, conferidos na mesma entrega: detalhes da empresa proporcional aos fatos
+(tipicamente 80 a 250 palavras, nunca esticado) · Google até 750 caracteres, com o essencial nos ~250
+primeiros · bio até 150 · title ~50 a 60 · meta ~140 a 155. **A enumeração de serviços é a mesma em
+todos os canais.** A entrega completa da 3.0 inclui ainda: a essência, os fatos usados com a fonte,
+as lacunas com dono, os claims evitados e se precisa de revisão humana.
+
+### 4.2 Os blocos do Solusite
+
+O Solusite replica a página Solutudo e acrescenta o que só um site próprio pode ter:
+
+| Bloco | O que leva | De onde vem |
+|---|---|---|
+| Banner, desktop e mobile | a frase de entidade e alcance; legenda sem meia lista de cidades | só no site |
+| Ícones | 3 ou 4 diferenciais verificáveis, em poucas palavras | só no site |
+| O laboratório, a loja, a empresa | o texto dos detalhes da empresa | replica o Destaque |
+| Produtos e serviços | um item do catálogo, uma página | replica o Destaque |
+| Perguntas | o FAQ geral + as perguntas de cada página | replica o Destaque + só no site |
+| Depoimentos | nome, empresa e cargo, com autorização | só no site |
+| Avaliações | exibidas, sem marcação de avaliação de si mesma | replica o Destaque |
+| Fotos | da operação real, com `alt` descritivo | replica o Destaque |
+| Contato, horário, pagamento, mapa | os mesmos dados em todos os canais | replica o Destaque |
+
+### 4.3 Além do Destaque
+
+O que costuma valer a pena só no site, conforme o negócio: **área do cliente** (portal, pedidos,
+laudos) · **pedido guiado**, um formulário curto que abre o WhatsApp com a mensagem pronta ·
+**credencial com prova**, com link para o registro oficial · **guia**, o blog das editorias ·
+**link de WhatsApp rastreável**, para medir o contato que vem do site · **página de cidade** só com
+fato próprio da cidade.
 
 ## 5. Camada técnica
 
@@ -148,9 +204,16 @@ cases (com autorização).
 Página por cidade só quando cada cidade tem fato próprio. Sem isso, é página que só troca o nome da
 cidade — o alvo número um das atualizações de spam do Google.
 
+UM ITEM DO CATÁLOGO, UMA PÁGINA — E VICE-VERSA
+Todo produto ou serviço da página Solutudo ganha a sua página no site, com o mesmo texto.
+Toda página de produto que o site recomendar entra no catálogo da Solutudo. Cada página
+responde de 1 a 3 perguntas próprias, só com fato, além do FAQ geral, que é o mesmo nas duas
+vitrines.
+
 PARA CADA PÁGINA, ENTREGUE
 URL · H1 · title (até ~60 caracteres) · meta description (até ~155) · a pergunta que ela responde ·
-o conteúdo · os links internos · o JSON-LD esperado. Conte os caracteres.
+o conteúdo · as perguntas da página · os links internos · o JSON-LD esperado · a nota da rubrica
+com os critérios. Conte os caracteres.
 
 REGRAS DE CONTEÚDO
 1. Entidade primeiro: a 1ª frase diz o que a empresa é, a categoria e a sede ou o escopo real.
@@ -162,6 +225,26 @@ REGRAS DE CONTEÚDO
 7. Sem superlativo, sem cauda genérica, sem datação relativa ("há mais de 20 anos").
 8. Cidades: a sede é "sede em X"; a cobertura é a lista inteira ou o alcance. Nunca meia lista.
 9. Setor regulado ou técnico: credencial com a ressalva do escopo, nenhuma promessa de resultado.
+10. Títulos úteis, nunca rótulos: nenhum H1 ou H2 como "Serviços", "Sobre", "Contato" ou "Perguntas
+    frequentes". O título diz o que a pessoa busca ou responde a uma pergunta. Menu curto, mas
+    específico: "Análises", nunca "Serviços".
+
+AS MÉTRICAS DA DESCRIÇÃO 3.0, EM TODA PÁGINA
+Rubrica de 100 pontos, com os critérios à vista: entidade e local 15 · fatos verificáveis 25 ·
+resposta direta 20 · estrutura extraível 15 · unicidade 15 · contato e próximo passo 10. Limites:
+detalhes da empresa tipicamente 80 a 250 palavras · Google até 750, essencial nos ~250 primeiros ·
+bio até 150 · title ~50 a 60 · meta ~140 a 155. A enumeração de serviços é a mesma em todos os
+canais. Entregue também: essência, fatos usados com a fonte, lacunas com dono, claims evitados e
+se precisa de revisão humana.
+
+OS BLOCOS DO SOLUSITE
+Replicam a página Solutudo: o texto da empresa · um item do catálogo por página · o FAQ · as
+avaliações, sem marcação · as fotos · contato, horário, pagamento e mapa.
+Só no site: banner com a frase de entidade e alcance · 3 ou 4 ícones de diferenciais verificáveis ·
+depoimentos com autorização · perguntas por página.
+Além do Destaque, conforme o negócio: área do cliente · pedido guiado que abre o WhatsApp com a
+mensagem pronta · credencial com link para o registro oficial · guia com as editorias · link de
+WhatsApp rastreável · página de cidade só com fato próprio.
 
 CAMADA TÉCNICA (da aplicação)
 - Todo conteúdo essencial no HTML servido. Desligou o JavaScript e o texto sumiu? Está errado.
