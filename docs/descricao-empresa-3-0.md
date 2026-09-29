@@ -24,7 +24,9 @@ padrão). Nenhum método garante posição, mapa ou citação por IA.
 1. **Solusite deixa de copiar o texto da Solutudo.** Mesma base de fatos e mesma
    essência; narrativa própria de primeira parte. Motivo: texto idêntico em dois
    domínios faz o buscador escolher só um. *(Reversão de decisão anterior — marcada
-   no artefato para validação final do time.)*
+   no artefato para validação final do time.)* **Atualização de 29/09/2026:** o
+   produto adotou **conteúdo único** nas duas superfícies, com o site sempre maior que
+   a página — ver `solusite-padrao.md` §2, onde estão o custo e a mitigação.
 2. **Números observacionais continuam no material como estimativas rotuladas**
    (94%×23%, FCP↔citação) — não somem, mas não são argumento de venda nem regra;
    a meta oficial de velocidade é Core Web Vitals.
@@ -234,7 +236,7 @@ humana quando `needs_human_review`.
 | Canal | Regra |
 |---|---|
 | Perfil Solutudo | Módulos do arquétipo; factual, comparável, tamanho variável |
-| Solusite | Mesma base de fatos, narrativa própria de primeira parte |
+| Solusite | ~~Mesma base de fatos, narrativa própria de primeira parte~~ → **o mesmo texto dos detalhes da empresa** (29/09/2026), com páginas que só o site tem — ver `solusite-padrao.md` |
 | Google (Perfil da Empresa) | ≤750 caracteres, essencial no início; sem URL, promoção ou preço; telefone no campo do perfil |
 | Instagram (bio) | ≤150 caracteres (recontado em código); emoji = escolha de marca |
 | `title` / meta | ~50–60 / ~140–160 como alvo editorial; o Google pode reescrever |
@@ -292,7 +294,8 @@ avaliações nativas · critérios de publicação de endereço/registro/CNPJ ·
 setor regulado.
 **Produto/operação:** taxonomia de arquétipos aprovada · fluxo de reivindicação e
 correção · SLA de reverificação de dados voláteis · experiência para perfis `noindex` ·
-separação editorial Solutudo × Solusite (validar a reversão da decisão).
+separação editorial Solutudo × Solusite (validar a reversão da decisão) — **resolvida em
+29/09/2026: conteúdo único, ver `solusite-padrao.md`**.
 **Engenharia:** contrato canônico de fatos + escopo por unidade · gerador
 determinístico de JSON-LD com teste de correspondência ao HTML · SSR do conteúdo
 crítico · URLs/redirects/canonicals/sitemaps/ciclo de vida · registro versionado de

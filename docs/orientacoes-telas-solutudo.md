@@ -120,7 +120,7 @@ e sem esconder a ação.
 | Canal | Regra |
 |---|---|
 | **Solutudo (Destaque)** | Descrição completa, com subtítulos e listas |
-| **Solusite** | Mesma base de fatos, **narrativa própria** (V3 — não copiar o texto da Solutudo) + título SEO (≤60) e meta description (≤155) |
+| **Solusite** | **O mesmo texto dos detalhes da empresa** (decisão de 29/09/2026, que substitui a narrativa própria da V3), com o site sempre maior que a página + título SEO (≤60) e meta description (≤155) por página — ver `solusite-padrao.md` |
 | **Google Meu Negócio** | Até 750 caracteres com o **essencial nos ~250 primeiros**; factual; **sem URL, sem foco promocional**; telefone fica no campo do perfil |
 | **Instagram (bio)** | Até 150 caracteres, **com emojis** e quebras de linha (1 ideia por linha) |
 
