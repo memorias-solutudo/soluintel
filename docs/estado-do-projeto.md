@@ -108,6 +108,7 @@ São **8 execuções por empresa** (4 ângulos de descoberta compartilham um pro
 | Pizza Frita Semião | 1737 | Pizzaria · Botucatu/SP | 40 → 92 | 6 itens | 6 |
 | Porto Certo Consórcio | 27460312 | Consórcio · Araraquara/SP · **setor regulado** | 44 → 91 | 7 itens | 6 |
 | EA3 Engenharia | 21651088 | Construtora · Avaré/SP | **31 → 92** | 29 itens (10 com ficha) | **7** |
+| Grupo Execon | 23008544 | Construtora · São Paulo/SP · **setor regulado** · primeira pelo processo da API | **33 → 81** | 12 fichas (8 páginas publicáveis) | 5 |
 
 A EA3 tem duas abas que as outras não têm: **Tráfego pago** e **Briefing**.
 
@@ -146,10 +147,11 @@ A EA3 tem duas abas que as outras não têm: **Tráfego pago** e **Briefing**.
 
 ## 7. Achados que valem para o produto inteiro
 
-1. **`12/05/1999` é valor-padrão do formulário, não fato.** Aparece idêntico no cadastro dos **três** parceiros — Semião, Porto Certo e EA3 —, em segmentos e cidades diferentes. Nunca usar em texto. **Vale investigar quantos dos 28 milhões de perfis têm essa data.**
+1. **`12/05/1999` é valor-padrão do formulário, não fato.** Aparece idêntico no cadastro dos **seis** parceiros analisados até 30/09/2026 — Semião, Porto Certo, EA3, Blocok, LAAE e Grupo Execon —, em segmentos e cidades diferentes. Nunca usar em texto. **Vale investigar quantos dos 28 milhões de perfis têm essa data.**
 2. **As "palavras-chave particulares" são o ativo mais subestimado do cadastro.** São as buscas reais que já encontraram a empresa — incluindo grafias erradas. Na EA3, 43 termos viraram 5 grupos de anúncio sem uma única suposição. Agência nenhuma tem isso no dia 1.
 3. **O cadastro responde 13 das 35 perguntas de briefing de campanha.** É a vantagem estrutural da Solutudo sobre agência: a reunião de fundação não começa do zero.
 4. **Texto de produto colado de ferramenta de IA vaza HTML de interface.** Encontrado na EA3 (`agent-turn`, `markdown prose dark:prose-invert`). Vale varrer a base inteira por essas classes.
+   **Mesma família, outro rastro: o tradutor automático do navegador.** Produto com o corpo envolvido em `<font dir="auto" style="vertical-align: inherit;">` foi traduzido na tela e colado de volta, e volta com erros como "canto de obras" (canteiro) e "Gerenciamento de Custódia" (custos). LAAE: 3 de 4 produtos. Grupo Execon: 6 de 9. Dois parceiros em seis é padrão: o editor de produto devia remover esse código ao salvar, e a base inteira merece uma varredura pela string `dir="auto" style="vertical-align: inherit;"`.
 5. **Ausência presumida não é fato.** Errei uma vez afirmando que o Porto Certo não tinha foto real, com base no nome da categoria da foto. Tinha. A correção está registrada na própria página.
 
 ---

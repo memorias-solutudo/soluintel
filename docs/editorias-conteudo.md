@@ -1,7 +1,7 @@
 # Editorias de conteúdo — padronização
 
 **Status:** vigente · pareado com `docs/descricao-empresa-3-0.md`
-**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas). O formato de referência da §4.2 vem dos casos EA3 e Blocok
+**Aplicado em:** Pizza Frita Semião (ID 1737, pizzaria) · Porto Certo Consórcio (ID 27460312, consórcio — setor regulado) · EA3 Engenharia (ID 21651088) · Blocok O Original (ID 27112782) · LAAE Laboratório (ID 32069845, laboratório ambiental — primeiro caso com datas cruzadas) · Grupo Execon (ID 23008544, construtora de alto padrão, setor regulado — primeiro caso pelo processo da API, com o envelope verificado por agentes). O formato de referência da §4.2 vem dos casos EA3 e Blocok
 **Última revisão:** 11/09/2026 · entra a §1.1, a declaração de acesso às fontes, obrigatória e em evidência · a §4.3 ganha a regra de cidades nas peças fixas · entram a §4.3 (as peças fixas do perfil: 5 destaques, 3 posts fixados e a assinatura de rodapé) e a PARTE 4 do prompt §8.1, aplicadas primeiro no LAAE
 
 Este documento formaliza o método usado para gerar as **6 editorias** e os **24 temas anuais** de cada
@@ -184,8 +184,8 @@ usar, e elas carregam a prova de permanência que o público técnico valoriza. 
 confirmada, **o marco redondo mais próximo entra no calendário do ano em que cai**, planejado com
 antecedência: "2028 — 25 anos" é pauta que se prepara em 2027, não que se descobre na véspera.
 
-> **Atenção ao valor-padrão.** A data de fundação do cadastro é notoriamente contaminada — cinco de
-> cinco parceiros trazem `12/05/1999`. Marco redondo só entra com o ano confirmado por outra fonte
+> **Atenção ao valor-padrão.** A data de fundação do cadastro é notoriamente contaminada — seis de
+> seis parceiros trazem `12/05/1999`. Marco redondo só entra com o ano confirmado por outra fonte
 > (descrição da empresa, site, reunião). Sem confirmação, vira pendência de CS, nunca pauta.
 
 ### Como aplicar

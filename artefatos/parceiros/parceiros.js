@@ -36,6 +36,12 @@
       nome: "Blocok O Original",
       meta: "Pardinho e Avaré/SP",
       estado: "completa"
+    },
+    {
+      pasta: "grupo-execon",
+      nome: "Grupo Execon",
+      meta: "São Paulo/SP",
+      estado: "completa"
     }
   ];
 
