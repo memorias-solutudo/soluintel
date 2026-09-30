@@ -85,6 +85,7 @@ São **8 execuções por empresa** (4 ângulos de descoberta compartilham um pro
 
 | Arquivo | Conteúdo |
 |---|---|
+| `docs/processo-api-cadastro.md` | **Entrada de todo parceiro:** o link da API do cadastro por ID, o fluxo em 6 passos e o caminho da automação. A chave nunca vai para arquivo |
 | `docs/descricao-empresa-3-0.md` | Spec da descrição 3.0 |
 | `docs/descricao-empresa-2-0.md` | Versão anterior |
 | `docs/editorias-conteudo.md` | 6 slots fixos (A processo · B oferta · C conversão · D público · E território · F dúvidas), ≥2 fatos por editoria, 24 temas |

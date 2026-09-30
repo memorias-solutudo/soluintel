@@ -98,6 +98,44 @@
   td b{color:var(--ink)}
   .note{margin-top:12px;background:var(--tint-yellow);border-radius:12px;padding:12px 15px;font-size:13px;color:#5A4200;font-weight:600;line-height:1.5}
   .foot{margin-top:36px;color:var(--g500);font-size:12.6px;text-align:center;line-height:1.6}
+  /* começar um parceiro · API do cadastro */
+  .start{border-color:rgba(167,1,253,.22);background:linear-gradient(180deg,#FBF6FF 0%,var(--white) 55%);margin-top:0;margin-bottom:22px}
+  .start .lead{font-size:14px;color:var(--g700);margin-top:8px;max-width:980px;line-height:1.55}
+  .flow{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:18px;counter-reset:f}
+  .flow li{position:relative;background:var(--white);border:var(--line);border-radius:14px;padding:13px 13px 12px;box-shadow:var(--shadow-card)}
+  .flow li::before{counter-increment:f;content:counter(f);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--grad-cta);color:#fff;font-size:12.5px;font-weight:800;margin-bottom:8px}
+  .flow li:not(:last-child)::after{content:"";position:absolute;top:25px;right:-9px;width:8px;height:2px;background:rgba(167,1,253,.35)}
+  .flow b{display:block;font-size:13.4px;letter-spacing:-.02em;line-height:1.25}
+  .flow span{display:block;font-size:12.2px;color:var(--g600);line-height:1.45;margin-top:4px}
+  .flow .who{display:inline-block;margin-top:8px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill);background:var(--g100);color:var(--g700)}
+  .flow .who.ai{background:var(--tint-lav);color:#7B00BE}
+  .gen{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;margin-top:20px;align-items:start}
+  .gbox{background:var(--white);border:var(--line);border-radius:16px;padding:16px 18px}
+  .gbox h3{margin-top:0;font-size:14.5px}
+  .gf{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .gf label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g600);flex:1 1 180px;min-width:0}
+  .gf input{font:inherit;font-size:15px;font-weight:700;letter-spacing:-.01em;text-transform:none;color:var(--ink);background:var(--g100);border:1px solid transparent;border-radius:11px;padding:10px 12px;min-height:44px;width:100%}
+  .gf input:focus-visible{outline:2px solid var(--brand-purple);outline-offset:1px;background:var(--white)}
+  .gurl{margin-top:12px;font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:12.4px;line-height:1.5;background:#15131A;color:#EDE7F6;border-radius:11px;padding:11px 13px;word-break:break-all}
+  .gurl i{font-style:normal;color:#FF8BD0}
+  .gurl em{font-style:normal;color:#9EF0D2}
+  .gbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .gbtn{font:inherit;font-size:13px;font-weight:800;letter-spacing:-.01em;border:0;border-radius:var(--pill);padding:10px 16px;min-height:44px;cursor:pointer;background:var(--g100);color:var(--ink)}
+  .gbtn.pri{background:var(--grad-cta);color:#fff}
+  .gbtn:disabled{opacity:.45;cursor:not-allowed}
+  .gbtn:focus-visible{outline:2px solid var(--brand-purple);outline-offset:2px}
+  .gmsg{font-size:12.6px;font-weight:700;color:var(--g600);margin-top:8px;min-height:18px}
+  .gmsg.ok{color:#06724F}
+  .gsafe{margin-top:12px;font-size:12.6px;line-height:1.5;color:#5A4200;background:var(--tint-yellow);border-radius:11px;padding:10px 13px;font-weight:600}
+  .sugs{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:10px}
+  .sugs li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:13px;color:var(--g700);line-height:1.5}
+  .sugs li b{color:var(--ink)}
+  .sugs .tag{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:var(--pill);white-space:nowrap;margin-top:2px}
+  .sugs .tag.hi{background:var(--tint-peach);color:#A33A12}
+  .sugs .tag.md{background:var(--tint-cyan);color:#065F73}
+  @media(max-width:1180px){.flow{grid-template-columns:repeat(3,minmax(0,1fr))}.flow li:nth-child(3)::after{display:none}}
+  @media(max-width:860px){.gen{grid-template-columns:1fr}}
+  @media(max-width:560px){.flow{grid-template-columns:1fr}.flow li::after{display:none}.start{padding:18px 16px}}
 </style>
 </head>
 <body>
@@ -119,6 +157,51 @@
 </div>
 
 <div class="wrap">
+
+  <section class="card start" id="comecar" aria-labelledby="comecar-t">
+    <span class="badge">Começar um parceiro · API do cadastro</span>
+    <h2 id="comecar-t">Troque a ID no fim do link e a análise começa</h2>
+    <p class="lead">Cada central nasce do cadastro que a empresa mantém na Solutudo. O link da API devolve esse cadastro inteiro; <b>só a ID muda de um parceiro para outro</b>. O caminho, hoje e automatizado, é este:</p>
+
+    <ol class="flow" aria-label="Processo, do cliente à central">
+      <li><b>Pegar a ID</b><span>Na lista de clientes Solutudo. Ex.: Grupo Execon = 23008544.</span><span class="who">você</span></li>
+      <li><b>Trocar a ID no link</b><span>No fim do código: <code>&amp;id=</code> seguido da ID. O gerador abaixo faz isso.</span><span class="who">você</span></li>
+      <li><b>Abrir a API</b><span>O navegador mostra o cadastro em JSON: empresa, produtos, fotos, contatos.</span><span class="who">você</span></li>
+      <li><b>Copiar e colar</b><span>Todo o conteúdo da página, colado na conversa com o Claude.</span><span class="who">você</span></li>
+      <li><b>Agentes na curadoria</b><span>Descoberta em 4 ângulos, verificação, redação e pauta, auditoria e supervisão.</span><span class="who ai">Claude</span></li>
+      <li><b>Central publicada</b><span>Destaque, Solusite e Conteúdo, com notas antes e depois e as pendências do CS.</span><span class="who ai">Claude</span></li>
+    </ol>
+
+    <div class="gen">
+      <div class="gbox">
+        <h3>Gerar o link da API</h3>
+        <div class="gf">
+          <label>ID da empresa na Solutudo<input id="g-id" inputmode="numeric" autocomplete="off" placeholder="ex.: 23008544" value="23008544"></label>
+          <label>Chave da API<input id="g-key" type="password" autocomplete="off" placeholder="cole uma vez; fica neste navegador"></label>
+        </div>
+        <div class="gurl" id="g-url" aria-live="polite"></div>
+        <div class="gbtns">
+          <button type="button" class="gbtn pri" id="g-open">Abrir a API</button>
+          <button type="button" class="gbtn" id="g-copy">Copiar o link</button>
+          <button type="button" class="gbtn" id="g-tpl">Copiar o modelo</button>
+          <button type="button" class="gbtn" id="g-forget">Esquecer a chave</button>
+        </div>
+        <p class="gmsg" id="g-msg" role="status"></p>
+        <p class="gsafe"><b>A chave não fica gravada nesta página.</b> O repositório e o site são públicos, e a API devolve o nome, o telefone e o e-mail do patrocinador. Por isso a chave é colada uma vez e fica guardada só neste navegador. O modelo do link, sem a chave, é este: <code>https://api.solutudo.com/ad_costumer_core/ad_costumer_core/getData?key=&lt;CHAVE&gt;&amp;id=&lt;ID&gt;</code></p>
+      </div>
+
+      <div class="gbox">
+        <h3>Para automatizar de verdade</h3>
+        <ul class="sugs">
+          <li><span class="tag hi">1º</span><span><b>Liberar <code>api.solutudo.com</code> na rede do ambiente do Claude.</b> Hoje o domínio é bloqueado aqui, e isso foi testado em 30/09. Liberado, o Claude busca o cadastro sozinho: você manda só a ID, ou uma lista de IDs, e os passos 3 e 4 somem. Some também o risco de colar um JSON cortado; o da Execon tinha cerca de 70 mil caracteres.</span></li>
+          <li><span class="tag hi">2º</span><span><b>Chave como segredo do ambiente</b>, na variável <code>SOLUTUDO_API_KEY</code>. O Claude lê a chave dali, e ela nunca passa pelo chat nem pelo repositório.</span></li>
+          <li><span class="tag md">3º</span><span><b>Fila por lista de IDs.</b> Cada parceiro entra no hub como "diagnóstico" e sobe para "central completa", com o mesmo seletor que já existe.</span></li>
+          <li><span class="tag md">4º</span><span><b>Guardar a foto datada do cadastro</b>, sem os campos do patrocinador, a cada rodada. É o que mede o antes e o depois e mostra o que o time já mudou. Na Execon, as fotos de 28 e 29/09 mostram o Solusite sendo montado.</span></li>
+          <li><span class="tag md">5º</span><span><b>Uma versão da API sem os dados do patrocinador.</b> Nenhuma análise usa esses campos, e o que não sai da origem não vaza.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <div class="tools">
     <label class="srch">
@@ -255,7 +338,7 @@
     <h2>Do cadastro à central, em três passos</h2>
     <p>O cadastro que a empresa já mantém na Solutudo é a fonte — fatos fornecidos pela própria empresa, o que habilita o <b>selo de procedência A</b>. Nada é inventado: o que não está no cadastro vira lacuna declarada ou pergunta para o CS.</p>
     <ul class="clean">
-      <li><b>1 · Dados:</b> o retorno de <code>getData?id=&lt;ID&gt;</code>, com empresa, produtos, características, horários, contatos, fotos e as buscas que já acharam a empresa.</li>
+      <li><b>1 · Dados:</b> o retorno de <code>getData?id=&lt;ID&gt;</code> (o link sai do <a href="#comecar">gerador no topo</a>), com empresa, produtos, características, horários, contatos, fotos e as buscas que já acharam a empresa.</li>
       <li><b>2 · Auditoria:</b> o que está publicado hoje é comparado com a Descrição 3.0, item a item, com score em seis dimensões e as pendências de cadastro separadas.</li>
       <li><b>3 · Central:</b> uma aba por produto contratado, mais redes e calendário de conteúdo — sempre com a mesma enumeração de fatos em todos os canais.</li>
     </ul>
@@ -280,6 +363,51 @@
 </div>
 
 <script src="parceiros.js" defer></script>
+<script>
+(function () {
+  "use strict";
+  var BASE = "https://api.solutudo.com/ad_costumer_core/ad_costumer_core/getData";
+  var LS = "soluintel.apiKey";
+  var $ = function (id) { return document.getElementById(id); };
+  var fId = $("g-id"), fKey = $("g-key"), out = $("g-url"), msg = $("g-msg");
+  if (!fId) { return; }
+  function lsGet() { try { return localStorage.getItem(LS) || ""; } catch (e) { return ""; } }
+  function lsSet(v) { try { if (v) { localStorage.setItem(LS, v); } else { localStorage.removeItem(LS); } } catch (e) {} }
+  function esc(v) { return String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function id() { return fId.value.replace(/\D/g, ""); }
+  function key() { return fKey.value.trim(); }
+  function url() { return BASE + "?key=" + encodeURIComponent(key()) + "&id=" + id(); }
+  function mask(k) { return k.length > 8 ? k.slice(0, 4) + "\u2022\u2022\u2022\u2022" + k.slice(-4) : "\u2022\u2022\u2022\u2022"; }
+  function paint() {
+    var i = id(), k = key();
+    out.innerHTML = esc(BASE) + "?key=" + (k ? "<i>" + esc(mask(k)) + "</i>" : "<i>&lt;CHAVE&gt;</i>") +
+      "&amp;id=" + (i ? "<em>" + esc(i) + "</em>" : "<em>&lt;ID&gt;</em>");
+    var ready = !!(i && k);
+    $("g-open").disabled = !ready; $("g-copy").disabled = !ready;
+    msg.className = "gmsg";
+    msg.textContent = !k ? "Cole a chave uma vez para abrir o link." : (!i ? "Digite a ID da empresa." : "");
+  }
+  function say(t) { msg.className = "gmsg ok"; msg.textContent = t; }
+  function copy(t, done) {
+    function fb() {
+      var ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.left = "-9999px"; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); say(done); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(function () { say(done); }, fb); } else { fb(); }
+  }
+  fKey.value = lsGet();
+  fId.addEventListener("input", paint);
+  fKey.addEventListener("input", function () { lsSet(key()); paint(); });
+  $("g-open").addEventListener("click", function () { if (id() && key()) { window.open(url(), "_blank", "noopener"); say("API aberta em outra aba. Copie todo o conteúdo e cole na conversa."); } });
+  $("g-copy").addEventListener("click", function () { if (id() && key()) { copy(url(), "Link com a ID " + id() + " copiado."); } });
+  $("g-tpl").addEventListener("click", function () { copy(BASE + "?key=<CHAVE>&id=<ID>", "Modelo copiado, sem a chave."); });
+  $("g-forget").addEventListener("click", function () { fKey.value = ""; lsSet(""); paint(); say("Chave apagada deste navegador."); });
+  paint();
+})();
+</script>
+
 <script>
 (function () {
   "use strict";
